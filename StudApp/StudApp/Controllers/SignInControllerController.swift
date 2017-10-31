@@ -25,6 +25,7 @@ final class SignInControllerController : UITableViewController, UITextFieldDeleg
             guard isLoading != oldValue else { return }
             isSignInErrorCellHidden = isLoading
             signInButton.isEnabled = !isLoading
+            navigationItem.setActivityIndicatorHidden(!isLoading)
         }
     }
     
@@ -55,7 +56,7 @@ final class SignInControllerController : UITableViewController, UITextFieldDeleg
     
     @IBAction func signInButtonTapped(_ sender: Any) {
         isLoading = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
             self.isLoading = false
             self.isSignInErrorCellHidden = false
         }

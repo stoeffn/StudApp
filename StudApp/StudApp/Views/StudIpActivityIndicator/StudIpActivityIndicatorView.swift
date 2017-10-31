@@ -1,0 +1,101 @@
+//
+//  StudIpActivityIndicatorView.swift
+//  StudApp
+//
+//  Created by Steffen Ryll on 10.02.17.
+//  Copyright © 2017 Steffen Ryll. All rights reserved.
+//
+
+import UIKit
+
+@IBDesignable
+final class StudIPActivityIndicatorView : UIView {
+    // MARK: - Life Cycle
+
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        applyStyles()
+        applyAnimations()
+    }
+
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        applyStyles()
+        applyAnimations()
+    }
+
+    override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        applyStyles()
+    }
+
+    // MARK: - Layers
+
+    private lazy var outerCircle: CAShapeLayer = {
+        let circle = CAShapeLayer()
+        circle.lineCap = kCALineCapButt
+        circle.fillColor = UIColor.clear.cgColor
+        circle.strokeColor = outerCircleColor.cgColor
+        circle.strokeStart = 0
+        circle.strokeEnd = 0.75
+        return circle
+    }()
+
+    private lazy var innerCircle: CAShapeLayer = {
+        let circle = CAShapeLayer()
+        circle.fillColor = innerCircleColor.cgColor
+        circle.strokeColor = UIColor.clear.cgColor
+        return circle
+    }()
+
+    // MARK: - Animations
+
+    private lazy var rotateAnimation: CABasicAnimation = {
+        let animation = CABasicAnimation(keyPath: "transform.rotation")
+        animation.duration = 1
+        animation.repeatCount = .infinity
+        animation.fromValue = CGFloat.pi / 2
+        animation.toValue = CGFloat.pi / 2 * 5
+        animation.isRemovedOnCompletion = false
+        return animation
+    }()
+
+    private lazy var strokeAnimation: CABasicAnimation = {
+        let animation = CABasicAnimation(keyPath: "strokeEnd")
+        animation.duration = 1
+        animation.repeatCount = .infinity
+        animation.fromValue = 0.75
+        animation.toValue = 0.25
+        animation.autoreverses = true
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        animation.isRemovedOnCompletion = false
+        return animation
+    }()
+
+    // MARK: - User Interface
+    
+    private let outerCircleColor = UIColor(red: 0.165, green: 0.29, blue: 0.486, alpha: 1)
+    private let innerCircleColor = UIColor(red: 0.827, green: 0.0667, blue: 0.125, alpha: 1)
+
+    override var frame: CGRect {
+        didSet { applyStyles() }
+    }
+
+    func applyStyles() {
+        backgroundColor = .clear
+
+        let width = bounds.size.width
+        outerCircle.frame = bounds
+        outerCircle.path = UIBezierPath(ovalIn: bounds).cgPath
+        outerCircle.lineWidth = width / 5.7
+        layer.addSublayer(outerCircle)
+
+        innerCircle.path = UIBezierPath(ovalIn: bounds.insetBy(dx: width / 3.5, dy: width / 3.5)).cgPath
+        layer.addSublayer(innerCircle)
+    }
+
+    private func applyAnimations() {
+        outerCircle.add(rotateAnimation, forKey: "rotation")
+        outerCircle.add(strokeAnimation, forKey: "stroke")
+    }
+}

@@ -50,6 +50,8 @@
 		2448D4BB1FA8E0AB00DAB97E /* ApiRoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4B31FA8E0AB00DAB97E /* ApiRoutesTests.swift */; };
 		2448D4BC1FA8E0AB00DAB97E /* ApiCredentialsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4B41FA8E0AB00DAB97E /* ApiCredentialsTests.swift */; };
 		2448D4BD1FA8E0AB00DAB97E /* TestableApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4B51FA8E0AB00DAB97E /* TestableApiRoutes.swift */; };
+		24E626771FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */; };
+		24E626781FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,6 +157,8 @@
 		2448D4B31FA8E0AB00DAB97E /* ApiRoutesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRoutesTests.swift; sourceTree = "<group>"; };
 		2448D4B41FA8E0AB00DAB97E /* ApiCredentialsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiCredentialsTests.swift; sourceTree = "<group>"; };
 		2448D4B51FA8E0AB00DAB97E /* TestableApiRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestableApiRoutes.swift; sourceTree = "<group>"; };
+		24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+StudIpActivityIndicatorView.swift"; sourceTree = "<group>"; };
+		24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudIpActivityIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -383,6 +387,7 @@
 		24E626721FA9203E0040F9F7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				24E626741FA9206B0040F9F7 /* StudIpActivityIndicator */,
 				241FD9661FA9022400FBD750 /* FilledButton.swift */,
 				241FD9681FA9087900FBD750 /* GroupedTextField.swift */,
 			);
@@ -396,6 +401,15 @@
 				243014251FA8FE2800680253 /* SignInControllerController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		24E626741FA9206B0040F9F7 /* StudIpActivityIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */,
+				24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */,
+			);
+			path = StudIpActivityIndicator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -611,8 +625,10 @@
 				241FD96F1FA9191500FBD750 /* SignInNavigationController.swift in Sources */,
 				241FD96B1FA9090F00FBD750 /* UI.swift in Sources */,
 				241FD9691FA9087900FBD750 /* GroupedTextField.swift in Sources */,
+				24E626771FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */,
 				243014261FA8FE2800680253 /* SignInControllerController.swift in Sources */,
 				2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */,
+				24E626781FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift in Sources */,
 				241FD9671FA9022400FBD750 /* FilledButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
