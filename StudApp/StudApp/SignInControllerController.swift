@@ -10,18 +10,7 @@ import UIKit
 import StudKit
 
 final class SignInControllerController : UITableViewController, UITextFieldDelegate {
-    // MARK: - Life Cycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        initUserInterface()
-    }
-    
     // MARK: - User Interface
-    
-    private func initUserInterface() {
-        navigationController?.navigationBar.removeBackground()
-    }
     
     @IBOutlet weak var usernameField: UITextField!
     
@@ -42,8 +31,8 @@ final class SignInControllerController : UITableViewController, UITextFieldDeleg
     // MARK: Table View Delegate
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        // Needs to be overriden in order to activate dynamic row sizing. This value is not set in interface builder because
-        // it would reset the rows' sizes to the default size in preview.
+        // Needs to be overriden in order to activate dynamic row sizing. This value is not set in interface builder because it
+        // would reset the rows' sizes to the default size in preview.
         return UITableViewAutomaticDimension
     }
 }
