@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		241FD9651FA8FFAD00FBD750 /* UINavigationBar+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9641FA8FFAD00FBD750 /* UINavigationBar+Utils.swift */; };
+		241FD9671FA9022400FBD750 /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9661FA9022400FBD750 /* FilledButton.swift */; };
 		243014261FA8FE2800680253 /* SignInControllerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243014251FA8FE2800680253 /* SignInControllerController.swift */; };
 		2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */; };
 		2448D4121FA8DA2400DAB97E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2448D4101FA8DA2400DAB97E /* Main.storyboard */; };
@@ -100,6 +102,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		241FD9641FA8FFAD00FBD750 /* UINavigationBar+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Utils.swift"; sourceTree = "<group>"; };
+		241FD9661FA9022400FBD750 /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
 		243014251FA8FE2800680253 /* SignInControllerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInControllerController.swift; sourceTree = "<group>"; };
 		2448D4091FA8DA2400DAB97E /* StudApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -188,6 +192,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		241FD9631FA8FF8A00FBD750 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				241FD9641FA8FFAD00FBD750 /* UINavigationBar+Utils.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		2448D4001FA8DA2400DAB97E = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +229,7 @@
 			children = (
 				2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */,
 				243014251FA8FE2800680253 /* SignInControllerController.swift */,
+				241FD9661FA9022400FBD750 /* FilledButton.swift */,
 				2448D4151FA8DA2400DAB97E /* LaunchScreen.storyboard */,
 				2448D4101FA8DA2400DAB97E /* Main.storyboard */,
 				2448D4131FA8DA2400DAB97E /* Assets.xcassets */,
@@ -276,6 +289,7 @@
 			children = (
 				2448D48D1FA8DED000DAB97E /* Foundation */,
 				2448D4601FA8DC2500DAB97E /* Swift */,
+				241FD9631FA8FF8A00FBD750 /* UIKit */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -571,6 +585,7 @@
 			files = (
 				243014261FA8FE2800680253 /* SignInControllerController.swift in Sources */,
 				2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */,
+				241FD9671FA9022400FBD750 /* FilledButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,6 +616,7 @@
 				2448D4A91FA8E07E00DAB97E /* HttpMethod.swift in Sources */,
 				2448D4771FA8DE2A00DAB97E /* ServiceContainer.swift in Sources */,
 				2448D4971FA8DFB200DAB97E /* StudKitServiceProvider.swift in Sources */,
+				241FD9651FA8FFAD00FBD750 /* UINavigationBar+Utils.swift in Sources */,
 				2448D4AA1FA8E07E00DAB97E /* ApiCredentials.swift in Sources */,
 				2448D4A61FA8E07E00DAB97E /* ApiRoutes.swift in Sources */,
 				2448D48F1FA8DEE800DAB97E /* FileManager+Utils.swift in Sources */,

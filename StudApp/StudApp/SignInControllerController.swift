@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import StudKit
 
-final class SignInControllerController: UITableViewController {
+final class SignInControllerController : UITableViewController {
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.navigationBar.removeBackground()
     }
 }
