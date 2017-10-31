@@ -30,6 +30,21 @@
 		2448D4971FA8DFB200DAB97E /* StudKitServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4961FA8DFB200DAB97E /* StudKitServiceProvider.swift */; };
 		2448D4991FA8E00800DAB97E /* StudKitTestsServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4981FA8E00800DAB97E /* StudKitTestsServiceProvider.swift */; };
 		2448D49B1FA8E01B00DAB97E /* Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D49A1FA8E01B00DAB97E /* Setup.swift */; };
+		2448D4A51FA8E07E00DAB97E /* Result+Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D49D1FA8E07E00DAB97E /* Result+Api.swift */; };
+		2448D4A61FA8E07E00DAB97E /* ApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D49E1FA8E07E00DAB97E /* ApiRoutes.swift */; };
+		2448D4A71FA8E07E00DAB97E /* Api+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D49F1FA8E07E00DAB97E /* Api+Decodable.swift */; };
+		2448D4A81FA8E07E00DAB97E /* Api+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4A01FA8E07E00DAB97E /* Api+Download.swift */; };
+		2448D4A91FA8E07E00DAB97E /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4A11FA8E07E00DAB97E /* HttpMethod.swift */; };
+		2448D4AA1FA8E07E00DAB97E /* ApiCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4A21FA8E07E00DAB97E /* ApiCredentials.swift */; };
+		2448D4AB1FA8E07E00DAB97E /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4A31FA8E07E00DAB97E /* Api.swift */; };
+		2448D4AC1FA8E07E00DAB97E /* URLSession+ApiCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4A41FA8E07E00DAB97E /* URLSession+ApiCredentials.swift */; };
+		2448D4B61FA8E0AB00DAB97E /* Result+ApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4AE1FA8E0AB00DAB97E /* Result+ApiTests.swift */; };
+		2448D4B71FA8E0AB00DAB97E /* ApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4AF1FA8E0AB00DAB97E /* ApiTests.swift */; };
+		2448D4B81FA8E0AB00DAB97E /* MockApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4B01FA8E0AB00DAB97E /* MockApi.swift */; };
+		2448D4BA1FA8E0AB00DAB97E /* TestRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4B21FA8E0AB00DAB97E /* TestRoutes.swift */; };
+		2448D4BB1FA8E0AB00DAB97E /* ApiRoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4B31FA8E0AB00DAB97E /* ApiRoutesTests.swift */; };
+		2448D4BC1FA8E0AB00DAB97E /* ApiCredentialsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4B41FA8E0AB00DAB97E /* ApiCredentialsTests.swift */; };
+		2448D4BD1FA8E0AB00DAB97E /* TestableApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4B51FA8E0AB00DAB97E /* TestableApiRoutes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +130,21 @@
 		2448D4961FA8DFB200DAB97E /* StudKitServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudKitServiceProvider.swift; sourceTree = "<group>"; };
 		2448D4981FA8E00800DAB97E /* StudKitTestsServiceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudKitTestsServiceProvider.swift; sourceTree = "<group>"; };
 		2448D49A1FA8E01B00DAB97E /* Setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setup.swift; sourceTree = "<group>"; };
+		2448D49D1FA8E07E00DAB97E /* Result+Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Result+Api.swift"; sourceTree = "<group>"; };
+		2448D49E1FA8E07E00DAB97E /* ApiRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRoutes.swift; sourceTree = "<group>"; };
+		2448D49F1FA8E07E00DAB97E /* Api+Decodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Api+Decodable.swift"; sourceTree = "<group>"; };
+		2448D4A01FA8E07E00DAB97E /* Api+Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Api+Download.swift"; sourceTree = "<group>"; };
+		2448D4A11FA8E07E00DAB97E /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
+		2448D4A21FA8E07E00DAB97E /* ApiCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiCredentials.swift; sourceTree = "<group>"; };
+		2448D4A31FA8E07E00DAB97E /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		2448D4A41FA8E07E00DAB97E /* URLSession+ApiCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSession+ApiCredentials.swift"; sourceTree = "<group>"; };
+		2448D4AE1FA8E0AB00DAB97E /* Result+ApiTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Result+ApiTests.swift"; sourceTree = "<group>"; };
+		2448D4AF1FA8E0AB00DAB97E /* ApiTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiTests.swift; sourceTree = "<group>"; };
+		2448D4B01FA8E0AB00DAB97E /* MockApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockApi.swift; sourceTree = "<group>"; };
+		2448D4B21FA8E0AB00DAB97E /* TestRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRoutes.swift; sourceTree = "<group>"; };
+		2448D4B31FA8E0AB00DAB97E /* ApiRoutesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRoutesTests.swift; sourceTree = "<group>"; };
+		2448D4B41FA8E0AB00DAB97E /* ApiCredentialsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiCredentialsTests.swift; sourceTree = "<group>"; };
+		2448D4B51FA8E0AB00DAB97E /* TestableApiRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestableApiRoutes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				2448D45F1FA8DC1D00DAB97E /* Extensions */,
+				2448D49C1FA8E07E00DAB97E /* Api */,
 				2448D4741FA8DE1700DAB97E /* Services */,
 				2448D45D1FA8DBA300DAB97E /* Result.swift */,
 				2448D4961FA8DFB200DAB97E /* StudKitServiceProvider.swift */,
@@ -230,6 +261,7 @@
 			isa = PBXGroup;
 			children = (
 				2448D4901FA8DF0900DAB97E /* Extensions */,
+				2448D4AD1FA8E0A000DAB97E /* Api */,
 				2448D4791FA8DE3300DAB97E /* Services */,
 				2448D44E1FA8DB1E00DAB97E /* ResultTests.swift */,
 				2448D49A1FA8E01B00DAB97E /* Setup.swift */,
@@ -296,6 +328,35 @@
 				2448D4921FA8DF1A00DAB97E /* FileManager+UtilsTests.swift */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		2448D49C1FA8E07E00DAB97E /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				2448D4A31FA8E07E00DAB97E /* Api.swift */,
+				2448D49F1FA8E07E00DAB97E /* Api+Decodable.swift */,
+				2448D4A01FA8E07E00DAB97E /* Api+Download.swift */,
+				2448D49E1FA8E07E00DAB97E /* ApiRoutes.swift */,
+				2448D4A21FA8E07E00DAB97E /* ApiCredentials.swift */,
+				2448D4A11FA8E07E00DAB97E /* HttpMethod.swift */,
+				2448D49D1FA8E07E00DAB97E /* Result+Api.swift */,
+				2448D4A41FA8E07E00DAB97E /* URLSession+ApiCredentials.swift */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
+		2448D4AD1FA8E0A000DAB97E /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				2448D4AF1FA8E0AB00DAB97E /* ApiTests.swift */,
+				2448D4B41FA8E0AB00DAB97E /* ApiCredentialsTests.swift */,
+				2448D4B31FA8E0AB00DAB97E /* ApiRoutesTests.swift */,
+				2448D4B01FA8E0AB00DAB97E /* MockApi.swift */,
+				2448D4AE1FA8E0AB00DAB97E /* Result+ApiTests.swift */,
+				2448D4B51FA8E0AB00DAB97E /* TestableApiRoutes.swift */,
+				2448D4B21FA8E0AB00DAB97E /* TestRoutes.swift */,
+			);
+			path = Api;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -535,11 +596,19 @@
 			files = (
 				2448D4781FA8DE2A00DAB97E /* ServiceProvider.swift in Sources */,
 				2448D4951FA8DF6000DAB97E /* StorageService.swift in Sources */,
+				2448D4A71FA8E07E00DAB97E /* Api+Decodable.swift in Sources */,
+				2448D4A81FA8E07E00DAB97E /* Api+Download.swift in Sources */,
+				2448D4A91FA8E07E00DAB97E /* HttpMethod.swift in Sources */,
 				2448D4771FA8DE2A00DAB97E /* ServiceContainer.swift in Sources */,
 				2448D4971FA8DFB200DAB97E /* StudKitServiceProvider.swift in Sources */,
+				2448D4AA1FA8E07E00DAB97E /* ApiCredentials.swift in Sources */,
+				2448D4A61FA8E07E00DAB97E /* ApiRoutes.swift in Sources */,
 				2448D48F1FA8DEE800DAB97E /* FileManager+Utils.swift in Sources */,
 				2448D45E1FA8DBA300DAB97E /* Result.swift in Sources */,
 				2448D4621FA8DC3900DAB97E /* String+Error.swift in Sources */,
+				2448D4AB1FA8E07E00DAB97E /* Api.swift in Sources */,
+				2448D4AC1FA8E07E00DAB97E /* URLSession+ApiCredentials.swift in Sources */,
+				2448D4A51FA8E07E00DAB97E /* Result+Api.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,10 +617,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				2448D4931FA8DF1A00DAB97E /* FileManager+UtilsTests.swift in Sources */,
+				2448D4BA1FA8E0AB00DAB97E /* TestRoutes.swift in Sources */,
+				2448D4BC1FA8E0AB00DAB97E /* ApiCredentialsTests.swift in Sources */,
 				2448D4991FA8E00800DAB97E /* StudKitTestsServiceProvider.swift in Sources */,
 				2448D44F1FA8DB1E00DAB97E /* ResultTests.swift in Sources */,
+				2448D4B61FA8E0AB00DAB97E /* Result+ApiTests.swift in Sources */,
+				2448D4B81FA8E0AB00DAB97E /* MockApi.swift in Sources */,
 				2448D49B1FA8E01B00DAB97E /* Setup.swift in Sources */,
 				2448D47B1FA8DE4000DAB97E /* ServiceContainerTests.swift in Sources */,
+				2448D4B71FA8E0AB00DAB97E /* ApiTests.swift in Sources */,
+				2448D4BB1FA8E0AB00DAB97E /* ApiRoutesTests.swift in Sources */,
+				2448D4BD1FA8E0AB00DAB97E /* TestableApiRoutes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
