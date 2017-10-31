@@ -27,6 +27,9 @@
 		2448D48F1FA8DEE800DAB97E /* FileManager+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D48E1FA8DEE800DAB97E /* FileManager+Utils.swift */; };
 		2448D4931FA8DF1A00DAB97E /* FileManager+UtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4921FA8DF1A00DAB97E /* FileManager+UtilsTests.swift */; };
 		2448D4951FA8DF6000DAB97E /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4941FA8DF6000DAB97E /* StorageService.swift */; };
+		2448D4971FA8DFB200DAB97E /* StudKitServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4961FA8DFB200DAB97E /* StudKitServiceProvider.swift */; };
+		2448D4991FA8E00800DAB97E /* StudKitTestsServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4981FA8E00800DAB97E /* StudKitTestsServiceProvider.swift */; };
+		2448D49B1FA8E01B00DAB97E /* Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D49A1FA8E01B00DAB97E /* Setup.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +112,9 @@
 		2448D48E1FA8DEE800DAB97E /* FileManager+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Utils.swift"; sourceTree = "<group>"; };
 		2448D4921FA8DF1A00DAB97E /* FileManager+UtilsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileManager+UtilsTests.swift"; sourceTree = "<group>"; };
 		2448D4941FA8DF6000DAB97E /* StorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		2448D4961FA8DFB200DAB97E /* StudKitServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudKitServiceProvider.swift; sourceTree = "<group>"; };
+		2448D4981FA8E00800DAB97E /* StudKitTestsServiceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudKitTestsServiceProvider.swift; sourceTree = "<group>"; };
+		2448D49A1FA8E01B00DAB97E /* Setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +219,7 @@
 				2448D45F1FA8DC1D00DAB97E /* Extensions */,
 				2448D4741FA8DE1700DAB97E /* Services */,
 				2448D45D1FA8DBA300DAB97E /* Result.swift */,
+				2448D4961FA8DFB200DAB97E /* StudKitServiceProvider.swift */,
 				2448D4411FA8DB1E00DAB97E /* StudKit.h */,
 				2448D4421FA8DB1E00DAB97E /* Info.plist */,
 			);
@@ -225,6 +232,8 @@
 				2448D4901FA8DF0900DAB97E /* Extensions */,
 				2448D4791FA8DE3300DAB97E /* Services */,
 				2448D44E1FA8DB1E00DAB97E /* ResultTests.swift */,
+				2448D49A1FA8E01B00DAB97E /* Setup.swift */,
+				2448D4981FA8E00800DAB97E /* StudKitTestsServiceProvider.swift */,
 				2448D4501FA8DB1E00DAB97E /* Info.plist */,
 			);
 			path = StudKitTests;
@@ -527,6 +536,7 @@
 				2448D4781FA8DE2A00DAB97E /* ServiceProvider.swift in Sources */,
 				2448D4951FA8DF6000DAB97E /* StorageService.swift in Sources */,
 				2448D4771FA8DE2A00DAB97E /* ServiceContainer.swift in Sources */,
+				2448D4971FA8DFB200DAB97E /* StudKitServiceProvider.swift in Sources */,
 				2448D48F1FA8DEE800DAB97E /* FileManager+Utils.swift in Sources */,
 				2448D45E1FA8DBA300DAB97E /* Result.swift in Sources */,
 				2448D4621FA8DC3900DAB97E /* String+Error.swift in Sources */,
@@ -538,7 +548,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2448D4931FA8DF1A00DAB97E /* FileManager+UtilsTests.swift in Sources */,
+				2448D4991FA8E00800DAB97E /* StudKitTestsServiceProvider.swift in Sources */,
 				2448D44F1FA8DB1E00DAB97E /* ResultTests.swift in Sources */,
+				2448D49B1FA8E01B00DAB97E /* Setup.swift in Sources */,
 				2448D47B1FA8DE4000DAB97E /* ServiceContainerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
