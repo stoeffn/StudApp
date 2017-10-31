@@ -38,4 +38,12 @@ final class SignInControllerController : UITableViewController, UITextFieldDeleg
         }
         return false
     }
+    
+    // MARK: Table View Delegate
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // Needs to be overriden in order to activate dynamic row sizing. This value is not set in interface builder because
+        // it would reset the rows' sizes to the default size in preview.
+        return UITableViewAutomaticDimension
+    }
 }
