@@ -9,12 +9,33 @@
 import UIKit
 import StudKit
 
-final class SignInControllerController : UITableViewController {
+final class SignInControllerController : UITableViewController, UITextFieldDelegate {
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        initUserInterface()
+    }
+    
+    // MARK: - User Interface
+    
+    private func initUserInterface() {
         navigationController?.navigationBar.removeBackground()
+    }
+    
+    @IBOutlet weak var usernameField: UITextField!
+    
+    @IBOutlet weak var paswordField: UITextField!
+
+    // MARK: - User Interaction
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case usernameField:
+            paswordField.becomeFirstResponder()
+        default:
+            break
+        }
+        return false
     }
 }

@@ -10,23 +10,7 @@ import UIKit
 
 @IBDesignable
 final class FilledButton : UIButton {
-    // MARK: - Life Cycle
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        initUserInterface()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        initUserInterface()
-    }
-    
     // MARK: - User Interface
-    
-    private func initUserInterface() {
-        layer.cornerRadius = 10
-    }
     
     override var isHighlighted: Bool {
         didSet {
@@ -35,6 +19,13 @@ final class FilledButton : UIButton {
                 self.alpha = alpha
                 self.titleLabel?.alpha = alpha
             }, completion: nil)
+        }
+    }
+    
+    @IBInspectable
+    var cornerRadius: CGFloat = UI.defaultCornerRadius {
+        didSet {
+            layer.cornerRadius = cornerRadius
         }
     }
 }
