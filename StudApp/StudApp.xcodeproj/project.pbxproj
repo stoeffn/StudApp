@@ -21,6 +21,9 @@
 		2448D4551FA8DB1E00DAB97E /* StudKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2448D43F1FA8DB1E00DAB97E /* StudKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2448D45E1FA8DBA300DAB97E /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D45D1FA8DBA300DAB97E /* Result.swift */; };
 		2448D4621FA8DC3900DAB97E /* String+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4611FA8DC3900DAB97E /* String+Error.swift */; };
+		2448D4771FA8DE2A00DAB97E /* ServiceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4751FA8DE2900DAB97E /* ServiceContainer.swift */; };
+		2448D4781FA8DE2A00DAB97E /* ServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4761FA8DE2900DAB97E /* ServiceProvider.swift */; };
+		2448D47B1FA8DE4000DAB97E /* ServiceContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D47A1FA8DE4000DAB97E /* ServiceContainerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +100,9 @@
 		2448D4501FA8DB1E00DAB97E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2448D45D1FA8DBA300DAB97E /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		2448D4611FA8DC3900DAB97E /* String+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Error.swift"; sourceTree = "<group>"; };
+		2448D4751FA8DE2900DAB97E /* ServiceContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceContainer.swift; sourceTree = "<group>"; };
+		2448D4761FA8DE2900DAB97E /* ServiceProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProvider.swift; sourceTree = "<group>"; };
+		2448D47A1FA8DE4000DAB97E /* ServiceContainerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceContainerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +204,7 @@
 		2448D4401FA8DB1E00DAB97E /* StudKit */ = {
 			isa = PBXGroup;
 			children = (
+				2448D4741FA8DE1700DAB97E /* Services */,
 				2448D45F1FA8DC1D00DAB97E /* Extensions */,
 				2448D45D1FA8DBA300DAB97E /* Result.swift */,
 				2448D4411FA8DB1E00DAB97E /* StudKit.h */,
@@ -209,6 +216,7 @@
 		2448D44D1FA8DB1E00DAB97E /* StudKitTests */ = {
 			isa = PBXGroup;
 			children = (
+				2448D4791FA8DE3300DAB97E /* Services */,
 				2448D44E1FA8DB1E00DAB97E /* ResultTests.swift */,
 				2448D4501FA8DB1E00DAB97E /* Info.plist */,
 			);
@@ -229,6 +237,23 @@
 				2448D4611FA8DC3900DAB97E /* String+Error.swift */,
 			);
 			path = Swift;
+			sourceTree = "<group>";
+		};
+		2448D4741FA8DE1700DAB97E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2448D4751FA8DE2900DAB97E /* ServiceContainer.swift */,
+				2448D4761FA8DE2900DAB97E /* ServiceProvider.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		2448D4791FA8DE3300DAB97E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2448D47A1FA8DE4000DAB97E /* ServiceContainerTests.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -466,6 +491,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2448D4781FA8DE2A00DAB97E /* ServiceProvider.swift in Sources */,
+				2448D4771FA8DE2A00DAB97E /* ServiceContainer.swift in Sources */,
 				2448D45E1FA8DBA300DAB97E /* Result.swift in Sources */,
 				2448D4621FA8DC3900DAB97E /* String+Error.swift in Sources */,
 			);
@@ -476,6 +503,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2448D44F1FA8DB1E00DAB97E /* ResultTests.swift in Sources */,
+				2448D47B1FA8DE4000DAB97E /* ServiceContainerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
