@@ -55,6 +55,8 @@ final class SignInControllerController : UITableViewController, UITextFieldDeleg
     }
     
     @IBAction func signInButtonTapped(_ sender: Any) {
+        if usernameField.text?.isEmpty ?? true || paswordField.text?.isEmpty ?? true { return }
+        
         isLoading = true
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
             self.isLoading = false
