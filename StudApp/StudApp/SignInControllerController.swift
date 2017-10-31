@@ -15,6 +15,21 @@ final class SignInControllerController : UITableViewController, UITextFieldDeleg
     @IBOutlet weak var usernameField: UITextField!
     
     @IBOutlet weak var paswordField: UITextField!
+    
+    private let signInErrorMessageIndexPath = IndexPath(row: 2, section: 0)
+    
+    var isSignInErrorCellHidden = true {
+        didSet {
+            guard isSignInErrorCellHidden != oldValue else { return }
+            tableView.performBatchUpdates({
+                if self.isSignInErrorCellHidden {
+                    self.tableView.deleteRows(at: [self.signInErrorMessageIndexPath], with: .fade)
+                } else {
+                    self.tableView.insertRows(at: [self.signInErrorMessageIndexPath], with: .fade)
+                }
+            }, completion: nil)
+        }
+    }
 
     // MARK: - User Interaction
     
@@ -26,6 +41,24 @@ final class SignInControllerController : UITableViewController, UITextFieldDeleg
             break
         }
         return false
+    }
+    
+    @IBAction func signInButtonTapped(_ sender: Any) {
+        isSignInErrorCellHidden = false
+    }
+    
+    // MARK: - Table View Data Source
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let cellCount = super.tableView(tableView, numberOfRowsInSection: section)
+        return isSignInErrorCellHidden ? cellCount - 1 : cellCount
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if isSignInErrorCellHidden && indexPath >= signInErrorMessageIndexPath {
+            return super.tableView(tableView, cellForRowAt: IndexPath(row: indexPath.row + 1, section: indexPath.section))
+        }
+        return super.tableView(tableView, cellForRowAt: indexPath)
     }
     
     // MARK: Table View Delegate
