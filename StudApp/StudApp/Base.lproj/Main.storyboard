@@ -29,7 +29,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="236"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rxE-7e-LKe">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LeibnizUniIcon" translatesAutoresizingMaskIntoConstraints="NO" id="rxE-7e-LKe">
                                                     <rect key="frame" x="91" y="32" width="192" height="192"/>
                                                     <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -227,4 +227,7 @@
             <point key="canvasLocation" x="-305" y="134"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="LeibnizUniIcon" width="512" height="512"/>
+    </resources>
 </document>
