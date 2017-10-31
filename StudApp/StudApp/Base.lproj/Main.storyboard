@@ -200,6 +200,7 @@
                     <navigationItem key="navigationItem" id="QFU-Rk-uBU"/>
                     <connections>
                         <outlet property="paswordField" destination="e25-tx-ryy" id="AFg-Oq-dzK"/>
+                        <outlet property="signInButton" destination="cZS-9a-wlw" id="C09-ot-fbn"/>
                         <outlet property="usernameField" destination="Iao-Vh-FML" id="ozU-Fe-273"/>
                     </connections>
                 </tableViewController>

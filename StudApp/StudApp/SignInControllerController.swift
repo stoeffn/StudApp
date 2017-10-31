@@ -16,7 +16,17 @@ final class SignInControllerController : UITableViewController, UITextFieldDeleg
     
     @IBOutlet weak var paswordField: UITextField!
     
+    @IBOutlet weak var signInButton: UIButton!
+    
     private let signInErrorMessageIndexPath = IndexPath(row: 2, section: 0)
+    
+    var isLoading = false {
+        didSet {
+            guard isLoading != oldValue else { return }
+            isSignInErrorCellHidden = isLoading
+            signInButton.isEnabled = !isLoading
+        }
+    }
     
     var isSignInErrorCellHidden = true {
         didSet {
@@ -44,7 +54,11 @@ final class SignInControllerController : UITableViewController, UITextFieldDeleg
     }
     
     @IBAction func signInButtonTapped(_ sender: Any) {
-        isSignInErrorCellHidden = false
+        isLoading = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            self.isLoading = false
+            self.isSignInErrorCellHidden = false
+        }
     }
     
     // MARK: - Table View Data Source

@@ -12,6 +12,21 @@ import UIKit
 final class FilledButton : UIButton {
     // MARK: - User Interface
     
+    private var enabledBackgroundColor: UIColor?
+    private let disabledBackgroundColor: UIColor = .lightGray
+    
+    override var isEnabled: Bool {
+        didSet {
+            // Cache original background color before setting to disabled color.
+            if enabledBackgroundColor == nil {
+                enabledBackgroundColor = backgroundColor
+            }
+            UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
+                self.backgroundColor = self.isEnabled ? self.enabledBackgroundColor : self.disabledBackgroundColor
+            }, completion: nil)
+        }
+    }
+    
     override var isHighlighted: Bool {
         didSet {
             UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
