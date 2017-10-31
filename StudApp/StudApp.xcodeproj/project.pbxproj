@@ -15,10 +15,12 @@
 		2448D4221FA8DA2400DAB97E /* StudAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4211FA8DA2400DAB97E /* StudAppTests.swift */; };
 		2448D42D1FA8DA2400DAB97E /* StudAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D42C1FA8DA2400DAB97E /* StudAppUITests.swift */; };
 		2448D4481FA8DB1E00DAB97E /* StudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2448D43F1FA8DB1E00DAB97E /* StudKit.framework */; };
-		2448D44F1FA8DB1E00DAB97E /* StudKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D44E1FA8DB1E00DAB97E /* StudKitTests.swift */; };
+		2448D44F1FA8DB1E00DAB97E /* ResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D44E1FA8DB1E00DAB97E /* ResultTests.swift */; };
 		2448D4511FA8DB1E00DAB97E /* StudKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 2448D4411FA8DB1E00DAB97E /* StudKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2448D4541FA8DB1E00DAB97E /* StudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2448D43F1FA8DB1E00DAB97E /* StudKit.framework */; };
 		2448D4551FA8DB1E00DAB97E /* StudKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2448D43F1FA8DB1E00DAB97E /* StudKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2448D45E1FA8DBA300DAB97E /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D45D1FA8DBA300DAB97E /* Result.swift */; };
+		2448D4621FA8DC3900DAB97E /* String+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4611FA8DC3900DAB97E /* String+Error.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,8 +93,10 @@
 		2448D4411FA8DB1E00DAB97E /* StudKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudKit.h; sourceTree = "<group>"; };
 		2448D4421FA8DB1E00DAB97E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2448D4471FA8DB1E00DAB97E /* StudKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2448D44E1FA8DB1E00DAB97E /* StudKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudKitTests.swift; sourceTree = "<group>"; };
+		2448D44E1FA8DB1E00DAB97E /* ResultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultTests.swift; sourceTree = "<group>"; };
 		2448D4501FA8DB1E00DAB97E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2448D45D1FA8DBA300DAB97E /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		2448D4611FA8DC3900DAB97E /* String+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Error.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +198,8 @@
 		2448D4401FA8DB1E00DAB97E /* StudKit */ = {
 			isa = PBXGroup;
 			children = (
+				2448D45F1FA8DC1D00DAB97E /* Extensions */,
+				2448D45D1FA8DBA300DAB97E /* Result.swift */,
 				2448D4411FA8DB1E00DAB97E /* StudKit.h */,
 				2448D4421FA8DB1E00DAB97E /* Info.plist */,
 			);
@@ -203,10 +209,26 @@
 		2448D44D1FA8DB1E00DAB97E /* StudKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				2448D44E1FA8DB1E00DAB97E /* StudKitTests.swift */,
+				2448D44E1FA8DB1E00DAB97E /* ResultTests.swift */,
 				2448D4501FA8DB1E00DAB97E /* Info.plist */,
 			);
 			path = StudKitTests;
+			sourceTree = "<group>";
+		};
+		2448D45F1FA8DC1D00DAB97E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2448D4601FA8DC2500DAB97E /* Swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2448D4601FA8DC2500DAB97E /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				2448D4611FA8DC3900DAB97E /* String+Error.swift */,
+			);
+			path = Swift;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,6 +363,7 @@
 					};
 					2448D43E1FA8DB1E00DAB97E = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 					2448D4461FA8DB1E00DAB97E = {
@@ -443,6 +466,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2448D45E1FA8DBA300DAB97E /* Result.swift in Sources */,
+				2448D4621FA8DC3900DAB97E /* String+Error.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,7 +475,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2448D44F1FA8DB1E00DAB97E /* StudKitTests.swift in Sources */,
+				2448D44F1FA8DB1E00DAB97E /* ResultTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,6 +639,7 @@
 		2448D4321FA8DA2400DAB97E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X63VKA93X8;
@@ -629,6 +655,7 @@
 		2448D4331FA8DA2400DAB97E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X63VKA93X8;
@@ -711,6 +738,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -725,6 +753,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = SteffenRyll.StudKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -736,6 +765,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;

@@ -14,6 +14,5 @@ FOUNDATION_EXPORT double StudKitVersionNumber;
 //! Project version string for StudKit.
 FOUNDATION_EXPORT const unsigned char StudKitVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <StudKit/PublicHeader.h>
-
-
+// In this header, you should import all the public headers of your framework using statements like
+// `#import <StudKit/PublicHeader.h>`
