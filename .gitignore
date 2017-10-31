@@ -1,0 +1,20 @@
+### macOS ###
+
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+### Xcode ###
+
+## User settings
+xcuserdata/
+
+# Swift Package Manager
+Packages/
+Package.pins
+Package.resolved
+.build/
