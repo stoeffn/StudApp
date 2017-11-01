@@ -1,0 +1,195 @@
+{
+    "collection": {
+        "\/api.php\/semester\/135de7259e0862cbcd3878e038253776": {
+            "id": "135de7259e0862cbcd3878e038253776",
+            "title": "WS 2008\/09",
+            "description": "",
+            "begin": 1222812000,
+            "end": 1238363999,
+            "seminars_begin": 1223244000,
+            "seminars_end": 1233442799
+        },
+        "\/api.php\/semester\/fd30f8364150eb2632c989cd2756295c": {
+            "id": "fd30f8364150eb2632c989cd2756295c",
+            "title": "SS 2009",
+            "description": "",
+            "begin": 1238364000,
+            "end": 1254347999,
+            "seminars_begin": 1238364000,
+            "seminars_end": 1246744799
+        },
+        "\/api.php\/semester\/90086410cada33d1b7cb0ef286b4ce9f": {
+            "id": "90086410cada33d1b7cb0ef286b4ce9f",
+            "title": "WS 2009\/10",
+            "description": "",
+            "begin": 1254348000,
+            "end": 1270072799,
+            "seminars_begin": 1254693600,
+            "seminars_end": 1264892399
+        },
+        "\/api.php\/semester\/54298f056dff7e1229b63e3606dcf78d": {
+            "id": "54298f056dff7e1229b63e3606dcf78d",
+            "title": "SS 2010",
+            "description": "",
+            "begin": 1270072800,
+            "end": 1285883999,
+            "seminars_begin": 1270504800,
+            "seminars_end": 1279403999
+        },
+        "\/api.php\/semester\/8e3548044ca767c21bf72e42906caf9c": {
+            "id": "8e3548044ca767c21bf72e42906caf9c",
+            "title": "WiSe 2010\/11",
+            "description": "",
+            "begin": 1285884000,
+            "end": 1301608799,
+            "seminars_begin": 1287352800,
+            "seminars_end": 1296946799
+        },
+        "\/api.php\/semester\/a37675090efffd17415842e2b652ebfe": {
+            "id": "a37675090efffd17415842e2b652ebfe",
+            "title": "SoSe 2011",
+            "description": "",
+            "begin": 1301608800,
+            "end": 1317419999,
+            "seminars_begin": 1301868000,
+            "seminars_end": 1310853599
+        },
+        "\/api.php\/semester\/650e0c307dc8c1bac242520d3283e766": {
+            "id": "650e0c307dc8c1bac242520d3283e766",
+            "title": "WiSe 2011\/12",
+            "description": "",
+            "begin": 1317420000,
+            "end": 1333231199,
+            "seminars_begin": 1318197600,
+            "seminars_end": 1327791599
+        },
+        "\/api.php\/semester\/77a1b2532857171e3d69d27022686341": {
+            "id": "77a1b2532857171e3d69d27022686341",
+            "title": "SoSe 2012",
+            "description": "",
+            "begin": 1333231200,
+            "end": 1349042399,
+            "seminars_begin": 1334008800,
+            "seminars_end": 1342907999
+        },
+        "\/api.php\/semester\/15c9dbd4f599face124619996ae8a8e1": {
+            "id": "15c9dbd4f599face124619996ae8a8e1",
+            "title": "WiSe 2012\/13",
+            "description": "",
+            "begin": 1349042400,
+            "end": 1364767199,
+            "seminars_begin": 1350252000,
+            "seminars_end": 1359845999
+        },
+        "\/api.php\/semester\/1dfa4d8d15946abad3736e4ed130df9c": {
+            "id": "1dfa4d8d15946abad3736e4ed130df9c",
+            "title": "SoSe 2013",
+            "description": "",
+            "begin": 1364767200,
+            "end": 1380578399,
+            "seminars_begin": 1364853600,
+            "seminars_end": 1373752799
+        },
+        "\/api.php\/semester\/674e2f1062ec2540abc69ed9882a8a16": {
+            "id": "674e2f1062ec2540abc69ed9882a8a16",
+            "title": "WiSe 2013\/14",
+            "description": "",
+            "begin": 1380578400,
+            "end": 1396303199,
+            "seminars_begin": 1381701600,
+            "seminars_end": 1391295599
+        },
+        "\/api.php\/semester\/45ca08f78d5e1049eccb57b0e103cd30": {
+            "id": "45ca08f78d5e1049eccb57b0e103cd30",
+            "title": "SoSe 2014",
+            "description": "",
+            "begin": 1396303200,
+            "end": 1412114399,
+            "seminars_begin": 1397080800,
+            "seminars_end": 1405547999
+        },
+        "\/api.php\/semester\/c13ae9151cb67f494d645fd32e307e07": {
+            "id": "c13ae9151cb67f494d645fd32e307e07",
+            "title": "WiSe 2014\/15",
+            "description": "",
+            "begin": 1412114400,
+            "end": 1427839199,
+            "seminars_begin": 1413151200,
+            "seminars_end": 1422745199
+        },
+        "\/api.php\/semester\/8ef27624b6b2b303d73db9974fa4f1e0": {
+            "id": "8ef27624b6b2b303d73db9974fa4f1e0",
+            "title": "SoSe 2015",
+            "description": "",
+            "begin": 1427839200,
+            "end": 1443650399,
+            "seminars_begin": 1428876000,
+            "seminars_end": 1437861599
+        },
+        "\/api.php\/semester\/3f2cc3a7db4905626ee8eddbc8c32b69": {
+            "id": "3f2cc3a7db4905626ee8eddbc8c32b69",
+            "title": "WiSe 2015\/16",
+            "description": "",
+            "begin": 1443650400,
+            "end": 1459461599,
+            "seminars_begin": 1444600800,
+            "seminars_end": 1454540399
+        },
+        "\/api.php\/semester\/19baac07e1f70b8a78a5cceafdb141a8": {
+            "id": "19baac07e1f70b8a78a5cceafdb141a8",
+            "title": "SoSe 2016",
+            "description": "",
+            "begin": 1459461600,
+            "end": 1475272799,
+            "seminars_begin": 1459720800,
+            "seminars_end": 1468706399
+        },
+        "\/api.php\/semester\/cda81a7cd20a808fc9bddc73c8ef0c85": {
+            "id": "cda81a7cd20a808fc9bddc73c8ef0c85",
+            "title": "WiSe 2016\/17",
+            "description": "",
+            "begin": 1475272800,
+            "end": 1490997599,
+            "seminars_begin": 1476655200,
+            "seminars_end": 1486249199
+        },
+        "\/api.php\/semester\/e06686a91b3ee3bd3756c04ce9944ffc": {
+            "id": "e06686a91b3ee3bd3756c04ce9944ffc",
+            "title": "SoSe 2017",
+            "description": "",
+            "begin": 1490997600,
+            "end": 1506808799,
+            "seminars_begin": 1491775200,
+            "seminars_end": 1500155999
+        },
+        "\/api.php\/semester\/7d61ef842ece9f06aa0f574981b422c9": {
+            "id": "7d61ef842ece9f06aa0f574981b422c9",
+            "title": "WiSe 2017\/18",
+            "description": "",
+            "begin": 1506808800,
+            "end": 1522533599,
+            "seminars_begin": 1508104800,
+            "seminars_end": 1517698799
+        },
+        "\/api.php\/semester\/75f60be2e7fd7dd23b8fad39b61af888": {
+            "id": "75f60be2e7fd7dd23b8fad39b61af888",
+            "title": "SoSe 2018",
+            "description": "",
+            "begin": 1522533600,
+            "end": 1538344799,
+            "seminars_begin": 1523224800,
+            "seminars_end": 1532210399
+        }
+    },
+    "pagination": {
+        "total": 20,
+        "offset": 0,
+        "limit": 20,
+        "links": {
+            "first": "\/api.php\/semesters?offset=0&limit=20",
+            "previous": "\/api.php\/semesters?offset=0&limit=20",
+            "next": "\/api.php\/semesters?offset=20&limit=20",
+            "last": "\/api.php\/semesters?offset=20&limit=20"
+        }
+    }
+}

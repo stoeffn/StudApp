@@ -1,0 +1,590 @@
+{
+    "collection": {
+        "\/api.php\/course\/17fa6d2927d129a3c13a0d0b591a55db": {
+            "course_id": "17fa6d2927d129a3c13a0d0b591a55db",
+            "number": "11360               ",
+            "title": "Übung: Programmieren II",
+            "subtitle": null,
+            "type": "17",
+            "description": "Literatur: ",
+            "location": null,
+            "lecturers": {
+                "\/api.php\/user\/b0a0aa677472242a7942fe720eb81106": {
+                    "id": "b0a0aa677472242a7942fe720eb81106",
+                    "href": "\/api.php\/user\/b0a0aa677472242a7942fe720eb81106",
+                    "name": {
+                        "username": "matthiasbecker",
+                        "formatted": "Dr.-Ing. Matthias Becker",
+                        "family": "Becker",
+                        "given": "Matthias",
+                        "prefix": "Dr.-Ing.",
+                        "suffix": ""
+                    },
+                    "avatar_small": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_small.png?d=1408369039",
+                    "avatar_medium": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_medium.png?d=1408369039",
+                    "avatar_normal": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_normal.png?d=1408369039",
+                    "avatar_original": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_original.png?d=0"
+                }
+            },
+            "members": {
+                "user": "\/api.php\/course\/17fa6d2927d129a3c13a0d0b591a55db\/members?status=user",
+                "user_count": 0,
+                "autor": "\/api.php\/course\/17fa6d2927d129a3c13a0d0b591a55db\/members?status=autor",
+                "autor_count": 482,
+                "tutor": "\/api.php\/course\/17fa6d2927d129a3c13a0d0b591a55db\/members?status=tutor",
+                "tutor_count": 2,
+                "dozent": "\/api.php\/course\/17fa6d2927d129a3c13a0d0b591a55db\/members?status=dozent",
+                "dozent_count": 1
+            },
+            "start_semester": "\/api.php\/semester\/e06686a91b3ee3bd3756c04ce9944ffc",
+            "end_semester": "\/api.php\/semester\/e06686a91b3ee3bd3756c04ce9944ffc",
+            "modules": {
+                "forum": "\/api.php\/course\/17fa6d2927d129a3c13a0d0b591a55db\/forum_categories",
+                "documents": "\/api.php\/course\/17fa6d2927d129a3c13a0d0b591a55db\/files",
+                "wiki": "\/api.php\/course\/17fa6d2927d129a3c13a0d0b591a55db\/wiki"
+            },
+            "group": 7
+        },
+        "\/api.php\/course\/1d9528af4a70b1e4d2786d075c0c0dca": {
+            "course_id": "1d9528af4a70b1e4d2786d075c0c0dca",
+            "number": "10652               ",
+            "title": "Übung zu Lineare Algebra B",
+            "subtitle": null,
+            "type": "3",
+            "description": "Literatur: ",
+            "location": null,
+            "lecturers": {
+                "\/api.php\/user\/b0161efb7c7f2997564c126caf04338d": {
+                    "id": "b0161efb7c7f2997564c126caf04338d",
+                    "href": "\/api.php\/user\/b0161efb7c7f2997564c126caf04338d",
+                    "name": {
+                        "username": "cuntz",
+                        "formatted": "Prof. Dr. Michael Cuntz",
+                        "family": "Cuntz",
+                        "given": "Michael",
+                        "prefix": "Prof. Dr.",
+                        "suffix": ""
+                    },
+                    "avatar_small": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_small.png?d=1408369039",
+                    "avatar_medium": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_medium.png?d=1408369039",
+                    "avatar_normal": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_normal.png?d=1408369039",
+                    "avatar_original": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_original.png?d=0"
+                }
+            },
+            "members": {
+                "user": "\/api.php\/course\/1d9528af4a70b1e4d2786d075c0c0dca\/members?status=user",
+                "user_count": 0,
+                "autor": "\/api.php\/course\/1d9528af4a70b1e4d2786d075c0c0dca\/members?status=autor",
+                "autor_count": 417,
+                "tutor": "\/api.php\/course\/1d9528af4a70b1e4d2786d075c0c0dca\/members?status=tutor",
+                "tutor_count": 1,
+                "dozent": "\/api.php\/course\/1d9528af4a70b1e4d2786d075c0c0dca\/members?status=dozent",
+                "dozent_count": 1
+            },
+            "start_semester": "\/api.php\/semester\/e06686a91b3ee3bd3756c04ce9944ffc",
+            "end_semester": "\/api.php\/semester\/e06686a91b3ee3bd3756c04ce9944ffc",
+            "modules": {
+                "forum": "\/api.php\/course\/1d9528af4a70b1e4d2786d075c0c0dca\/forum_categories",
+                "documents": "\/api.php\/course\/1d9528af4a70b1e4d2786d075c0c0dca\/files",
+                "wiki": "\/api.php\/course\/1d9528af4a70b1e4d2786d075c0c0dca\/wiki"
+            },
+            "group": 4
+        },
+        "\/api.php\/course\/884b28846d9a0325a1cd1a441d2f2f76": {
+            "course_id": "884b28846d9a0325a1cd1a441d2f2f76",
+            "number": "10654               ",
+            "title": "Übung zu Analysis B",
+            "subtitle": null,
+            "type": "3",
+            "description": "<p><strong>Module:<\/strong> Analytische Methoden f&uuml;r LbS<\/p>\n \n \n \n Literatur: ",
+            "location": null,
+            "lecturers": {
+                "\/api.php\/user\/78348bd4354318ee6a52720704f3eec1": {
+                    "id": "78348bd4354318ee6a52720704f3eec1",
+                    "href": "\/api.php\/user\/78348bd4354318ee6a52720704f3eec1",
+                    "name": {
+                        "username": "aastrup",
+                        "formatted": "Dr. Johannes Aastrup",
+                        "family": "Aastrup",
+                        "given": "Johannes",
+                        "prefix": "Dr.",
+                        "suffix": ""
+                    },
+                    "avatar_small": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_small.png?d=1408369039",
+                    "avatar_medium": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_medium.png?d=1408369039",
+                    "avatar_normal": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_normal.png?d=1408369039",
+                    "avatar_original": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_original.png?d=0"
+                },
+                "\/api.php\/user\/160dc11f1895d4251f33402a8eaefc02": {
+                    "id": "160dc11f1895d4251f33402a8eaefc02",
+                    "href": "\/api.php\/user\/160dc11f1895d4251f33402a8eaefc02",
+                    "name": {
+                        "username": "wbauer",
+                        "formatted": "Prof. Dr. Wolfram Bauer",
+                        "family": "Bauer",
+                        "given": "Wolfram",
+                        "prefix": "Prof. Dr.",
+                        "suffix": ""
+                    },
+                    "avatar_small": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_small.png?d=1408369039",
+                    "avatar_medium": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_medium.png?d=1408369039",
+                    "avatar_normal": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_normal.png?d=1408369039",
+                    "avatar_original": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_original.png?d=0"
+                }
+            },
+            "members": {
+                "user": "\/api.php\/course\/884b28846d9a0325a1cd1a441d2f2f76\/members?status=user",
+                "user_count": 0,
+                "autor": "\/api.php\/course\/884b28846d9a0325a1cd1a441d2f2f76\/members?status=autor",
+                "autor_count": 442,
+                "tutor": "\/api.php\/course\/884b28846d9a0325a1cd1a441d2f2f76\/members?status=tutor",
+                "tutor_count": 0,
+                "dozent": "\/api.php\/course\/884b28846d9a0325a1cd1a441d2f2f76\/members?status=dozent",
+                "dozent_count": 2
+            },
+            "start_semester": "\/api.php\/semester\/e06686a91b3ee3bd3756c04ce9944ffc",
+            "end_semester": "\/api.php\/semester\/e06686a91b3ee3bd3756c04ce9944ffc",
+            "modules": {
+                "forum": "\/api.php\/course\/884b28846d9a0325a1cd1a441d2f2f76\/forum_categories",
+                "documents": "\/api.php\/course\/884b28846d9a0325a1cd1a441d2f2f76\/files",
+                "wiki": "\/api.php\/course\/884b28846d9a0325a1cd1a441d2f2f76\/wiki"
+            },
+            "group": 2
+        },
+        "\/api.php\/course\/dcb1665dba57e59b39e7e47103e650de": {
+            "course_id": "dcb1665dba57e59b39e7e47103e650de",
+            "number": "36830               ",
+            "title": "Elektrotechnische Grundlagen der Informatik",
+            "subtitle": null,
+            "type": "1",
+            "description": "f. Studierende d. Mathematik u. d. Informatik\n \n \n \n Literatur: ",
+            "location": null,
+            "lecturers": {
+                "\/api.php\/user\/04d6260cee33c8a5a7cefa411ba88cfa": {
+                    "id": "04d6260cee33c8a5a7cefa411ba88cfa",
+                    "href": "\/api.php\/user\/04d6260cee33c8a5a7cefa411ba88cfa",
+                    "name": {
+                        "username": "hgra",
+                        "formatted": "Prof. Dr.-Ing. habil. Hartmut Grabinski",
+                        "family": "Grabinski",
+                        "given": "Hartmut",
+                        "prefix": "Prof. Dr.-Ing. habil.",
+                        "suffix": ""
+                    },
+                    "avatar_small": "https:\/\/studip.uni-hannover.de\/pictures\/user\/04d6260cee33c8a5a7cefa411ba88cfa_small.png?d=1254139816",
+                    "avatar_medium": "https:\/\/studip.uni-hannover.de\/pictures\/user\/04d6260cee33c8a5a7cefa411ba88cfa_medium.png?d=1254139816",
+                    "avatar_normal": "https:\/\/studip.uni-hannover.de\/pictures\/user\/04d6260cee33c8a5a7cefa411ba88cfa_normal.png?d=1254139816",
+                    "avatar_original": "https:\/\/studip.uni-hannover.de\/pictures\/user\/04d6260cee33c8a5a7cefa411ba88cfa_original.png?d=0"
+                }
+            },
+            "members": {
+                "user": "\/api.php\/course\/dcb1665dba57e59b39e7e47103e650de\/members?status=user",
+                "user_count": 0,
+                "autor": "\/api.php\/course\/dcb1665dba57e59b39e7e47103e650de\/members?status=autor",
+                "autor_count": 506,
+                "tutor": "\/api.php\/course\/dcb1665dba57e59b39e7e47103e650de\/members?status=tutor",
+                "tutor_count": 0,
+                "dozent": "\/api.php\/course\/dcb1665dba57e59b39e7e47103e650de\/members?status=dozent",
+                "dozent_count": 1
+            },
+            "start_semester": "\/api.php\/semester\/e06686a91b3ee3bd3756c04ce9944ffc",
+            "end_semester": "\/api.php\/semester\/e06686a91b3ee3bd3756c04ce9944ffc",
+            "modules": {
+                "forum": "\/api.php\/course\/dcb1665dba57e59b39e7e47103e650de\/forum_categories",
+                "documents": "\/api.php\/course\/dcb1665dba57e59b39e7e47103e650de\/files",
+                "wiki": "\/api.php\/course\/dcb1665dba57e59b39e7e47103e650de\/wiki"
+            },
+            "group": 6
+        },
+        "\/api.php\/course\/401f104f682590d118a44243d6270624": {
+            "course_id": "401f104f682590d118a44243d6270624",
+            "number": "36832               ",
+            "title": "Übung: Elektrotechnische Grundlagen der Informatik",
+            "subtitle": null,
+            "type": "3",
+            "description": "f. Studierende d. Mathematik u. d. Informatik\n \n \n \n Literatur: ",
+            "location": null,
+            "lecturers": {
+                "\/api.php\/user\/dc4719cf311ea662773f601cc898780a": {
+                    "id": "dc4719cf311ea662773f601cc898780a",
+                    "href": "\/api.php\/user\/dc4719cf311ea662773f601cc898780a",
+                    "name": {
+                        "username": "sara_dvb",
+                        "formatted": "Dipl.-Ing. Sara Divanbeigi",
+                        "family": "Divanbeigi",
+                        "given": "Sara",
+                        "prefix": "Dipl.-Ing.",
+                        "suffix": ""
+                    },
+                    "avatar_small": "https:\/\/studip.uni-hannover.de\/pictures\/user\/dc4719cf311ea662773f601cc898780a_small.png?d=1413217982",
+                    "avatar_medium": "https:\/\/studip.uni-hannover.de\/pictures\/user\/dc4719cf311ea662773f601cc898780a_medium.png?d=1413217982",
+                    "avatar_normal": "https:\/\/studip.uni-hannover.de\/pictures\/user\/dc4719cf311ea662773f601cc898780a_normal.png?d=1413217982",
+                    "avatar_original": "https:\/\/studip.uni-hannover.de\/pictures\/user\/dc4719cf311ea662773f601cc898780a_original.png?d=1413217982"
+                },
+                "\/api.php\/user\/04d6260cee33c8a5a7cefa411ba88cfa": {
+                    "id": "04d6260cee33c8a5a7cefa411ba88cfa",
+                    "href": "\/api.php\/user\/04d6260cee33c8a5a7cefa411ba88cfa",
+                    "name": {
+                        "username": "hgra",
+                        "formatted": "Prof. Dr.-Ing. habil. Hartmut Grabinski",
+                        "family": "Grabinski",
+                        "given": "Hartmut",
+                        "prefix": "Prof. Dr.-Ing. habil.",
+                        "suffix": ""
+                    },
+                    "avatar_small": "https:\/\/studip.uni-hannover.de\/pictures\/user\/04d6260cee33c8a5a7cefa411ba88cfa_small.png?d=1254139816",
+                    "avatar_medium": "https:\/\/studip.uni-hannover.de\/pictures\/user\/04d6260cee33c8a5a7cefa411ba88cfa_medium.png?d=1254139816",
+                    "avatar_normal": "https:\/\/studip.uni-hannover.de\/pictures\/user\/04d6260cee33c8a5a7cefa411ba88cfa_normal.png?d=1254139816",
+                    "avatar_original": "https:\/\/studip.uni-hannover.de\/pictures\/user\/04d6260cee33c8a5a7cefa411ba88cfa_original.png?d=0"
+                }
+            },
+            "members": {
+                "user": "\/api.php\/course\/401f104f682590d118a44243d6270624\/members?status=user",
+                "user_count": 0,
+                "autor": "\/api.php\/course\/401f104f682590d118a44243d6270624\/members?status=autor",
+                "autor_count": 484,
+                "tutor": "\/api.php\/course\/401f104f682590d118a44243d6270624\/members?status=tutor",
+                "tutor_count": 1,
+                "dozent": "\/api.php\/course\/401f104f682590d118a44243d6270624\/members?status=dozent",
+                "dozent_count": 2
+            },
+            "start_semester": "\/api.php\/semester\/e06686a91b3ee3bd3756c04ce9944ffc",
+            "end_semester": "\/api.php\/semester\/e06686a91b3ee3bd3756c04ce9944ffc",
+            "modules": {
+                "forum": "\/api.php\/course\/401f104f682590d118a44243d6270624\/forum_categories",
+                "documents": "\/api.php\/course\/401f104f682590d118a44243d6270624\/files",
+                "wiki": "\/api.php\/course\/401f104f682590d118a44243d6270624\/wiki"
+            },
+            "group": 6
+        },
+        "\/api.php\/course\/9df6ac314089a8a9f0a5768fcd725617": {
+            "course_id": "9df6ac314089a8a9f0a5768fcd725617",
+            "number": "",
+            "title": "Diskrete Strukturen für Studierende der Informatik",
+            "subtitle": null,
+            "type": "1",
+            "description": "<p>In dieser Vorlesung werden grundlegende Begriffe und Methoden der Kombinatorik <br \/>und algebraischen Strukturen vorgestellt, die fundamental in vielen Bereichen <br \/>der Informatik eingesetzt werden. Die Schwerpunktthemen sind dabei:<\/p>\r\n<ul>\r\n<li>Einf&uuml;hrung in die Kombinatorik<\/li>\r\n<\/ul>\r\n<ul>\r\n<li>Grundbegriffe der Graphentheorie<\/li>\r\n<\/ul>\r\n<ul>\r\n<li>Zahlentheorie und Arithmetik ( und algorithmische Aspekte)<\/li>\r\n<\/ul>\r\n<ul>\r\n<li>Algebraische Strukturen<\/li>\r\n<\/ul>\n \n Literatur: <p>A. Steger: Diskrete Strukturen 1, Springer 2002. <br \/>Weitere Literatur wird in der Vorlesung angegeben. <\/p>",
+            "location": null,
+            "lecturers": {
+                "\/api.php\/user\/c7d8e2dc0ededfabd5d90cf4da96f63e": {
+                    "id": "c7d8e2dc0ededfabd5d90cf4da96f63e",
+                    "href": "\/api.php\/user\/c7d8e2dc0ededfabd5d90cf4da96f63e",
+                    "name": {
+                        "username": "fourier@math.uni-hannover.de",
+                        "formatted": "Prof. Dr. Ghislain Fourier",
+                        "family": "Fourier",
+                        "given": "Ghislain",
+                        "prefix": "Prof. Dr.",
+                        "suffix": ""
+                    },
+                    "avatar_small": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_small.png?d=1408369039",
+                    "avatar_medium": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_medium.png?d=1408369039",
+                    "avatar_normal": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_normal.png?d=1408369039",
+                    "avatar_original": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_original.png?d=0"
+                }
+            },
+            "members": {
+                "user": "\/api.php\/course\/9df6ac314089a8a9f0a5768fcd725617\/members?status=user",
+                "user_count": 0,
+                "autor": "\/api.php\/course\/9df6ac314089a8a9f0a5768fcd725617\/members?status=autor",
+                "autor_count": 474,
+                "tutor": "\/api.php\/course\/9df6ac314089a8a9f0a5768fcd725617\/members?status=tutor",
+                "tutor_count": 2,
+                "dozent": "\/api.php\/course\/9df6ac314089a8a9f0a5768fcd725617\/members?status=dozent",
+                "dozent_count": 1
+            },
+            "start_semester": "\/api.php\/semester\/e06686a91b3ee3bd3756c04ce9944ffc",
+            "end_semester": "\/api.php\/semester\/e06686a91b3ee3bd3756c04ce9944ffc",
+            "modules": {
+                "forum": "\/api.php\/course\/9df6ac314089a8a9f0a5768fcd725617\/forum_categories",
+                "documents": "\/api.php\/course\/9df6ac314089a8a9f0a5768fcd725617\/files",
+                "wiki": "\/api.php\/course\/9df6ac314089a8a9f0a5768fcd725617\/wiki"
+            },
+            "group": 1
+        },
+        "\/api.php\/course\/429a19a594769634e3888018c68ed14d": {
+            "course_id": "429a19a594769634e3888018c68ed14d",
+            "number": "10711               ",
+            "title": "Übung zu Diskrete Strukturen für Studierende der Informatik",
+            "subtitle": null,
+            "type": "3",
+            "description": "Literatur: ",
+            "location": null,
+            "lecturers": {
+                "\/api.php\/user\/c7d8e2dc0ededfabd5d90cf4da96f63e": {
+                    "id": "c7d8e2dc0ededfabd5d90cf4da96f63e",
+                    "href": "\/api.php\/user\/c7d8e2dc0ededfabd5d90cf4da96f63e",
+                    "name": {
+                        "username": "fourier@math.uni-hannover.de",
+                        "formatted": "Prof. Dr. Ghislain Fourier",
+                        "family": "Fourier",
+                        "given": "Ghislain",
+                        "prefix": "Prof. Dr.",
+                        "suffix": ""
+                    },
+                    "avatar_small": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_small.png?d=1408369039",
+                    "avatar_medium": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_medium.png?d=1408369039",
+                    "avatar_normal": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_normal.png?d=1408369039",
+                    "avatar_original": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_original.png?d=0"
+                }
+            },
+            "members": {
+                "user": "\/api.php\/course\/429a19a594769634e3888018c68ed14d\/members?status=user",
+                "user_count": 0,
+                "autor": "\/api.php\/course\/429a19a594769634e3888018c68ed14d\/members?status=autor",
+                "autor_count": 460,
+                "tutor": "\/api.php\/course\/429a19a594769634e3888018c68ed14d\/members?status=tutor",
+                "tutor_count": 1,
+                "dozent": "\/api.php\/course\/429a19a594769634e3888018c68ed14d\/members?status=dozent",
+                "dozent_count": 1
+            },
+            "start_semester": "\/api.php\/semester\/e06686a91b3ee3bd3756c04ce9944ffc",
+            "end_semester": "\/api.php\/semester\/e06686a91b3ee3bd3756c04ce9944ffc",
+            "modules": {
+                "forum": "\/api.php\/course\/429a19a594769634e3888018c68ed14d\/forum_categories",
+                "documents": "\/api.php\/course\/429a19a594769634e3888018c68ed14d\/files",
+                "wiki": "\/api.php\/course\/429a19a594769634e3888018c68ed14d\/wiki"
+            },
+            "group": 1
+        },
+        "\/api.php\/course\/332795de30bb121c5a1eb53dc4006376": {
+            "course_id": "332795de30bb121c5a1eb53dc4006376",
+            "number": "11410               ",
+            "title": "Grundlagen der Rechnerarchitektur",
+            "subtitle": null,
+            "type": "1",
+            "description": "Literatur: ",
+            "location": null,
+            "lecturers": {
+                "\/api.php\/user\/c6811b81507a0ff6abe210004040f774": {
+                    "id": "c6811b81507a0ff6abe210004040f774",
+                    "href": "\/api.php\/user\/c6811b81507a0ff6abe210004040f774",
+                    "name": {
+                        "username": "JuergenBrehm",
+                        "formatted": "Apl. Prof. Dr.-Ing. habil. Jürgen Brehm",
+                        "family": "Brehm",
+                        "given": "Jürgen",
+                        "prefix": "Apl. Prof. Dr.-Ing. habil.",
+                        "suffix": ""
+                    },
+                    "avatar_small": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_small.png?d=1408369039",
+                    "avatar_medium": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_medium.png?d=1408369039",
+                    "avatar_normal": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_normal.png?d=1408369039",
+                    "avatar_original": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_original.png?d=0"
+                }
+            },
+            "members": {
+                "user": "\/api.php\/course\/332795de30bb121c5a1eb53dc4006376\/members?status=user",
+                "user_count": 0,
+                "autor": "\/api.php\/course\/332795de30bb121c5a1eb53dc4006376\/members?status=autor",
+                "autor_count": 620,
+                "tutor": "\/api.php\/course\/332795de30bb121c5a1eb53dc4006376\/members?status=tutor",
+                "tutor_count": 9,
+                "dozent": "\/api.php\/course\/332795de30bb121c5a1eb53dc4006376\/members?status=dozent",
+                "dozent_count": 1
+            },
+            "start_semester": "\/api.php\/semester\/e06686a91b3ee3bd3756c04ce9944ffc",
+            "end_semester": "\/api.php\/semester\/e06686a91b3ee3bd3756c04ce9944ffc",
+            "modules": {
+                "forum": "\/api.php\/course\/332795de30bb121c5a1eb53dc4006376\/forum_categories",
+                "documents": "\/api.php\/course\/332795de30bb121c5a1eb53dc4006376\/files",
+                "wiki": "\/api.php\/course\/332795de30bb121c5a1eb53dc4006376\/wiki"
+            },
+            "group": 3
+        },
+        "\/api.php\/course\/e9aee09a24845cffeac9798e3bbf4f42": {
+            "course_id": "e9aee09a24845cffeac9798e3bbf4f42",
+            "number": "11412               ",
+            "title": "Gruppenübungen zu Grundlagen der  Rechnerarchitektur",
+            "subtitle": null,
+            "type": "3",
+            "description": "Literatur: ",
+            "location": null,
+            "lecturers": {
+                "\/api.php\/user\/c6811b81507a0ff6abe210004040f774": {
+                    "id": "c6811b81507a0ff6abe210004040f774",
+                    "href": "\/api.php\/user\/c6811b81507a0ff6abe210004040f774",
+                    "name": {
+                        "username": "JuergenBrehm",
+                        "formatted": "Apl. Prof. Dr.-Ing. habil. Jürgen Brehm",
+                        "family": "Brehm",
+                        "given": "Jürgen",
+                        "prefix": "Apl. Prof. Dr.-Ing. habil.",
+                        "suffix": ""
+                    },
+                    "avatar_small": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_small.png?d=1408369039",
+                    "avatar_medium": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_medium.png?d=1408369039",
+                    "avatar_normal": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_normal.png?d=1408369039",
+                    "avatar_original": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_original.png?d=0"
+                },
+                "\/api.php\/user\/1165963e34cc2419854bbe0aa9155ca8": {
+                    "id": "1165963e34cc2419854bbe0aa9155ca8",
+                    "href": "\/api.php\/user\/1165963e34cc2419854bbe0aa9155ca8",
+                    "name": {
+                        "username": "OpusV",
+                        "formatted": "M. Sc. Oskar Pusz",
+                        "family": "Pusz",
+                        "given": "Oskar",
+                        "prefix": "M. Sc.",
+                        "suffix": ""
+                    },
+                    "avatar_small": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_small.png?d=1408369039",
+                    "avatar_medium": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_medium.png?d=1408369039",
+                    "avatar_normal": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_normal.png?d=1408369039",
+                    "avatar_original": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_original.png?d=0"
+                }
+            },
+            "members": {
+                "user": "\/api.php\/course\/e9aee09a24845cffeac9798e3bbf4f42\/members?status=user",
+                "user_count": 0,
+                "autor": "\/api.php\/course\/e9aee09a24845cffeac9798e3bbf4f42\/members?status=autor",
+                "autor_count": 600,
+                "tutor": "\/api.php\/course\/e9aee09a24845cffeac9798e3bbf4f42\/members?status=tutor",
+                "tutor_count": 8,
+                "dozent": "\/api.php\/course\/e9aee09a24845cffeac9798e3bbf4f42\/members?status=dozent",
+                "dozent_count": 2
+            },
+            "start_semester": "\/api.php\/semester\/e06686a91b3ee3bd3756c04ce9944ffc",
+            "end_semester": "\/api.php\/semester\/e06686a91b3ee3bd3756c04ce9944ffc",
+            "modules": {
+                "forum": "\/api.php\/course\/e9aee09a24845cffeac9798e3bbf4f42\/forum_categories",
+                "documents": "\/api.php\/course\/e9aee09a24845cffeac9798e3bbf4f42\/files",
+                "wiki": "\/api.php\/course\/e9aee09a24845cffeac9798e3bbf4f42\/wiki"
+            },
+            "group": 3
+        },
+        "\/api.php\/course\/4576b6d3ac62280d224da63438a0065f": {
+            "course_id": "4576b6d3ac62280d224da63438a0065f",
+            "number": "",
+            "title": "MELT-Community - Digitale Medien zum Studieren nutzen",
+            "subtitle": "Information und Austausch über Tools und Erfahrungen - von und für Studierende der LUH",
+            "type": "31",
+            "description": "**MELT** = **M**edienkompetenz – **E**ntwickeln, **L**ernen, **T**eilen.\r\n\r\n<br \/>\r\n<br \/>\r\nMELT ist eine Community, die im Rahmen des MELT-Projekts von uns HiWis für Studierende der LUH ins Leben gerufen wurde. Hier könnt ihr euch über eure ganz persönlichen Erfahrungen mit digitalen Medien im Uni-Alltag austauschen. Ihr habt eine nützliche App zum Lernen für euch entdeckt oder eine hilfreiche Veranstaltung zum Einsatz digitaler Medien besucht? Vielleicht seid ihr ja auch noch auf der Suche nach genau solchen Ratschlägen? Dann seid ihr in der MELT-Community genau richtig! Hier gibt es Infos zum Umgang mit Medien von Studierenden für Studierende. Zudem findet ihr im Wiki interessante, von uns zusammengestellte Informationen rund um das Thema Mediennutzung im Studium.\r\nKlickt euch doch einfach mal durch und teilt eure Erfahrungen mit den anderen Studis im Forum.\r\n\r\n<br \/>\r\n<br \/>\r\nEine Initiative der elearning-Service-Abteilung (elsa) im Rahmen des Projektes MELT (Medienkompetenz – Entwickeln – Lernen – Teilen) \r\nwww.elsa.uni-hannover.de\/melt.html",
+            "location": "",
+            "lecturers": {
+                "\/api.php\/user\/c7cc93201ddc2502969b74f7165a85ab": {
+                    "id": "c7cc93201ddc2502969b74f7165a85ab",
+                    "href": "\/api.php\/user\/c7cc93201ddc2502969b74f7165a85ab",
+                    "name": {
+                        "username": "cfrie_dozent",
+                        "formatted": "Claudia Frie",
+                        "family": "Frie",
+                        "given": "Claudia",
+                        "prefix": "",
+                        "suffix": ""
+                    },
+                    "avatar_small": "https:\/\/studip.uni-hannover.de\/pictures\/user\/c7cc93201ddc2502969b74f7165a85ab_small.png?d=1436865759",
+                    "avatar_medium": "https:\/\/studip.uni-hannover.de\/pictures\/user\/c7cc93201ddc2502969b74f7165a85ab_medium.png?d=1436865759",
+                    "avatar_normal": "https:\/\/studip.uni-hannover.de\/pictures\/user\/c7cc93201ddc2502969b74f7165a85ab_normal.png?d=1436865759",
+                    "avatar_original": "https:\/\/studip.uni-hannover.de\/pictures\/user\/c7cc93201ddc2502969b74f7165a85ab_original.png?d=1436865759"
+                },
+                "\/api.php\/user\/c656152365f6ac269d403da0c55462c6": {
+                    "id": "c656152365f6ac269d403da0c55462c6",
+                    "href": "\/api.php\/user\/c656152365f6ac269d403da0c55462c6",
+                    "name": {
+                        "username": "Team-MELT",
+                        "formatted": "Team MELT",
+                        "family": "MELT",
+                        "given": "Team",
+                        "prefix": "",
+                        "suffix": ""
+                    },
+                    "avatar_small": "https:\/\/studip.uni-hannover.de\/pictures\/user\/c656152365f6ac269d403da0c55462c6_small.png?d=1465551277",
+                    "avatar_medium": "https:\/\/studip.uni-hannover.de\/pictures\/user\/c656152365f6ac269d403da0c55462c6_medium.png?d=1465551277",
+                    "avatar_normal": "https:\/\/studip.uni-hannover.de\/pictures\/user\/c656152365f6ac269d403da0c55462c6_normal.png?d=1465551277",
+                    "avatar_original": "https:\/\/studip.uni-hannover.de\/pictures\/user\/c656152365f6ac269d403da0c55462c6_original.png?d=1465551277"
+                },
+                "\/api.php\/user\/d552b025f81007874eb73f2e3981a276": {
+                    "id": "d552b025f81007874eb73f2e3981a276",
+                    "href": "\/api.php\/user\/d552b025f81007874eb73f2e3981a276",
+                    "name": {
+                        "username": "JanaPanke",
+                        "formatted": "Dr. rer. nat. Jana Panke",
+                        "family": "Panke",
+                        "given": "Jana",
+                        "prefix": "Dr. rer. nat.",
+                        "suffix": ""
+                    },
+                    "avatar_small": "https:\/\/studip.uni-hannover.de\/pictures\/user\/d552b025f81007874eb73f2e3981a276_small.png?d=1500544313",
+                    "avatar_medium": "https:\/\/studip.uni-hannover.de\/pictures\/user\/d552b025f81007874eb73f2e3981a276_medium.png?d=1500544312",
+                    "avatar_normal": "https:\/\/studip.uni-hannover.de\/pictures\/user\/d552b025f81007874eb73f2e3981a276_normal.png?d=1500544312",
+                    "avatar_original": "https:\/\/studip.uni-hannover.de\/pictures\/user\/d552b025f81007874eb73f2e3981a276_original.png?d=1500544312"
+                }
+            },
+            "members": {
+                "user": "\/api.php\/course\/4576b6d3ac62280d224da63438a0065f\/members?status=user",
+                "user_count": 0,
+                "autor": "\/api.php\/course\/4576b6d3ac62280d224da63438a0065f\/members?status=autor",
+                "autor_count": 974,
+                "tutor": "\/api.php\/course\/4576b6d3ac62280d224da63438a0065f\/members?status=tutor",
+                "tutor_count": 5,
+                "dozent": "\/api.php\/course\/4576b6d3ac62280d224da63438a0065f\/members?status=dozent",
+                "dozent_count": 3
+            },
+            "start_semester": "\/api.php\/semester\/3f2cc3a7db4905626ee8eddbc8c32b69",
+            "end_semester": null,
+            "modules": {
+                "forum": "\/api.php\/course\/4576b6d3ac62280d224da63438a0065f\/forum_categories",
+                "documents": "\/api.php\/course\/4576b6d3ac62280d224da63438a0065f\/files",
+                "wiki": "\/api.php\/course\/4576b6d3ac62280d224da63438a0065f\/wiki"
+            },
+            "group": 8
+        },
+        "\/api.php\/course\/56d808711bd7ae7614e12d206bf49e36": {
+            "course_id": "56d808711bd7ae7614e12d206bf49e36",
+            "number": "",
+            "title": "Gruppenübung zu Elektrotechnische Grundlagen der Informatik",
+            "subtitle": null,
+            "type": "3",
+            "description": "",
+            "location": null,
+            "lecturers": {
+                "\/api.php\/user\/c6d0d2ee4503de149796ef9981059fa2": {
+                    "id": "c6d0d2ee4503de149796ef9981059fa2",
+                    "href": "\/api.php\/user\/c6d0d2ee4503de149796ef9981059fa2",
+                    "name": {
+                        "username": "rechmalm",
+                        "formatted": "Dipl.-Ing. Malgorzata Rechmal",
+                        "family": "Rechmal",
+                        "given": "Malgorzata",
+                        "prefix": "Dipl.-Ing.",
+                        "suffix": ""
+                    },
+                    "avatar_small": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_small.png?d=1408369039",
+                    "avatar_medium": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_medium.png?d=1408369039",
+                    "avatar_normal": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_normal.png?d=1408369039",
+                    "avatar_original": "https:\/\/studip.uni-hannover.de\/pictures\/user\/nobody_original.png?d=0"
+                }
+            },
+            "members": {
+                "user": "\/api.php\/course\/56d808711bd7ae7614e12d206bf49e36\/members?status=user",
+                "user_count": 0,
+                "autor": "\/api.php\/course\/56d808711bd7ae7614e12d206bf49e36\/members?status=autor",
+                "autor_count": 457,
+                "tutor": "\/api.php\/course\/56d808711bd7ae7614e12d206bf49e36\/members?status=tutor",
+                "tutor_count": 6,
+                "dozent": "\/api.php\/course\/56d808711bd7ae7614e12d206bf49e36\/members?status=dozent",
+                "dozent_count": 1
+            },
+            "start_semester": "\/api.php\/semester\/e06686a91b3ee3bd3756c04ce9944ffc",
+            "end_semester": "\/api.php\/semester\/e06686a91b3ee3bd3756c04ce9944ffc",
+            "modules": {
+                "forum": "\/api.php\/course\/56d808711bd7ae7614e12d206bf49e36\/forum_categories",
+                "documents": "\/api.php\/course\/56d808711bd7ae7614e12d206bf49e36\/files",
+                "wiki": "\/api.php\/course\/56d808711bd7ae7614e12d206bf49e36\/wiki"
+            },
+            "group": 6
+        }
+    },
+    "pagination": {
+        "total": 31,
+        "offset": 20,
+        "limit": 20,
+        "links": {
+            "first": "\/api.php\/user\/f1480088c469549fb9bb29cfef4fa1ad\/courses?offset=0&limit=20",
+            "previous": "\/api.php\/user\/f1480088c469549fb9bb29cfef4fa1ad\/courses?offset=0&limit=20",
+            "next": "\/api.php\/user\/f1480088c469549fb9bb29cfef4fa1ad\/courses?offset=20&limit=20",
+            "last": "\/api.php\/user\/f1480088c469549fb9bb29cfef4fa1ad\/courses?offset=20&limit=20"
+        }
+    }
+}
