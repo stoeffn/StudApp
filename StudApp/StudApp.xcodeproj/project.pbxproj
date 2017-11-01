@@ -88,6 +88,7 @@
 		24D361121FAA5F0500BBBAED /* StudIpRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361101FAA5F0500BBBAED /* StudIpRoutes.swift */; };
 		24D361151FAA5F0E00BBBAED /* CollectionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361131FAA5F0E00BBBAED /* CollectionResponse.swift */; };
 		24D361161FAA5F0E00BBBAED /* Api+CollectionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361141FAA5F0E00BBBAED /* Api+CollectionResponse.swift */; };
+		24D361181FAA5F6200BBBAED /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361171FAA5F6200BBBAED /* CoreDataService.swift */; };
 		24E626771FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */; };
 		24E626781FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */; };
 /* End PBXBuildFile section */
@@ -233,6 +234,7 @@
 		24D361101FAA5F0500BBBAED /* StudIpRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudIpRoutes.swift; sourceTree = "<group>"; };
 		24D361131FAA5F0E00BBBAED /* CollectionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionResponse.swift; sourceTree = "<group>"; };
 		24D361141FAA5F0E00BBBAED /* Api+CollectionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Api+CollectionResponse.swift"; sourceTree = "<group>"; };
+		24D361171FAA5F6200BBBAED /* CoreDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+StudIpActivityIndicatorView.swift"; sourceTree = "<group>"; };
 		24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudIpActivityIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -401,9 +403,11 @@
 		2448D4741FA8DE1700DAB97E /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				24D361171FAA5F6200BBBAED /* CoreDataService.swift */,
 				2448D4751FA8DE2900DAB97E /* ServiceContainer.swift */,
 				2448D4761FA8DE2900DAB97E /* ServiceProvider.swift */,
 				2448D4941FA8DF6000DAB97E /* StorageService.swift */,
+				24D3610F1FAA5F0500BBBAED /* StudIpService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -514,7 +518,6 @@
 				24D361141FAA5F0E00BBBAED /* Api+CollectionResponse.swift */,
 				24D361131FAA5F0E00BBBAED /* CollectionResponse.swift */,
 				24D361101FAA5F0500BBBAED /* StudIpRoutes.swift */,
-				24D3610F1FAA5F0500BBBAED /* StudIpService.swift */,
 				24D360EC1FAA5DC500BBBAED /* Transforms.swift */,
 			);
 			path = StudIp;
@@ -875,6 +878,7 @@
 				24D360D31FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift in Sources */,
 				24D360DF1FAA5D3800BBBAED /* String+HTML.swift in Sources */,
 				24D361071FAA5E2300BBBAED /* SemesterService.swift in Sources */,
+				24D361181FAA5F6200BBBAED /* CoreDataService.swift in Sources */,
 				24D360CF1FAA5AFE00BBBAED /* CDCreatable.swift in Sources */,
 				24D361161FAA5F0E00BBBAED /* Api+CollectionResponse.swift in Sources */,
 			);

@@ -9,6 +9,8 @@
 public class StudKitServiceProvider : ServiceProvider {
     public init() { }
     
+    static let appGroupIdentifier = "group.SteffenRyll.StudKit"
+    
     func provideJsonDecoder() -> JSONDecoder {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .secondsSince1970
@@ -19,8 +21,29 @@ public class StudKitServiceProvider : ServiceProvider {
         return StorageService()
     }
     
+    func provideCoreDataService() -> CoreDataService {
+        return CoreDataService(modelName: "StudKit", appGroupIdentifier: StudKitServiceProvider.appGroupIdentifier)
+    }
+    
+    func provideStudIpService() -> StudIpService {
+        let credentials = ApiCredentials(username: "username", password: "password")
+        return StudIpService(credentials: credentials)
+    }
+    
+    func provideSemesterService() -> SemesterService {
+        return SemesterService()
+    }
+    
+    func provideCourseService() -> CourseService {
+        return CourseService()
+    }
+    
     public func registerServices(in container: ServiceContainer) {
         container[JSONDecoder.self] = provideJsonDecoder()
         container[StorageService.self] = provideStorageService()
+        container[CoreDataService.self] = provideCoreDataService()
+        container[StudIpService.self] = provideStudIpService()
+        container[SemesterService.self] = provideSemesterService()
+        container[CourseService.self] = provideCourseService()
     }
 }
