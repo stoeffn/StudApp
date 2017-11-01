@@ -57,6 +57,12 @@
 		24D360CF1FAA5AFE00BBBAED /* CDCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C81FAA5AFE00BBBAED /* CDCreatable.swift */; };
 		24D360D01FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C91FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift */; };
 		24D360D31FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360D21FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift */; };
+		24D360DA1FAA5D3800BBBAED /* String+Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360D41FAA5D3800BBBAED /* String+Regex.swift */; };
+		24D360DB1FAA5D3800BBBAED /* Int+NSNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360D51FAA5D3800BBBAED /* Int+NSNumber.swift */; };
+		24D360DC1FAA5D3800BBBAED /* Array+Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360D61FAA5D3800BBBAED /* Array+Set.swift */; };
+		24D360DD1FAA5D3800BBBAED /* Set+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360D71FAA5D3800BBBAED /* Set+Array.swift */; };
+		24D360DE1FAA5D3800BBBAED /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360D81FAA5D3800BBBAED /* String+Utils.swift */; };
+		24D360DF1FAA5D3800BBBAED /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360D91FAA5D3800BBBAED /* String+HTML.swift */; };
 		24E626771FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */; };
 		24E626781FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */; };
 /* End PBXBuildFile section */
@@ -171,6 +177,12 @@
 		24D360C81FAA5AFE00BBBAED /* CDCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDCreatable.swift; sourceTree = "<group>"; };
 		24D360C91FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFetchRequestResult+Utils.swift"; sourceTree = "<group>"; };
 		24D360D21FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMangedObjectContext+Utils.swift"; sourceTree = "<group>"; };
+		24D360D41FAA5D3800BBBAED /* String+Regex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Regex.swift"; sourceTree = "<group>"; };
+		24D360D51FAA5D3800BBBAED /* Int+NSNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+NSNumber.swift"; sourceTree = "<group>"; };
+		24D360D61FAA5D3800BBBAED /* Array+Set.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Set.swift"; sourceTree = "<group>"; };
+		24D360D71FAA5D3800BBBAED /* Set+Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Set+Array.swift"; sourceTree = "<group>"; };
+		24D360D81FAA5D3800BBBAED /* String+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
+		24D360D91FAA5D3800BBBAED /* String+HTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+HTML.swift"; sourceTree = "<group>"; };
 		24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+StudIpActivityIndicatorView.swift"; sourceTree = "<group>"; };
 		24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudIpActivityIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -324,7 +336,13 @@
 		2448D4601FA8DC2500DAB97E /* Swift */ = {
 			isa = PBXGroup;
 			children = (
+				24D360D61FAA5D3800BBBAED /* Array+Set.swift */,
+				24D360D51FAA5D3800BBBAED /* Int+NSNumber.swift */,
+				24D360D71FAA5D3800BBBAED /* Set+Array.swift */,
 				2448D4611FA8DC3900DAB97E /* String+Error.swift */,
+				24D360D91FAA5D3800BBBAED /* String+HTML.swift */,
+				24D360D41FAA5D3800BBBAED /* String+Regex.swift */,
+				24D360D81FAA5D3800BBBAED /* String+Utils.swift */,
 			);
 			path = Swift;
 			sourceTree = "<group>";
@@ -691,7 +709,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				24D360D01FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift in Sources */,
+				24D360DD1FAA5D3800BBBAED /* Set+Array.swift in Sources */,
 				2448D4781FA8DE2A00DAB97E /* ServiceProvider.swift in Sources */,
+				24D360DA1FAA5D3800BBBAED /* String+Regex.swift in Sources */,
 				24D360C21FAA58A000BBBAED /* StudKit.xcdatamodeld in Sources */,
 				2448D4951FA8DF6000DAB97E /* StorageService.swift in Sources */,
 				2448D4A71FA8E07E00DAB97E /* Api+Decodable.swift in Sources */,
@@ -699,6 +719,8 @@
 				2448D4A91FA8E07E00DAB97E /* HttpMethod.swift in Sources */,
 				2448D4771FA8DE2A00DAB97E /* ServiceContainer.swift in Sources */,
 				2448D4971FA8DFB200DAB97E /* StudKitServiceProvider.swift in Sources */,
+				24D360DB1FAA5D3800BBBAED /* Int+NSNumber.swift in Sources */,
+				24D360DE1FAA5D3800BBBAED /* String+Utils.swift in Sources */,
 				241FD9651FA8FFAD00FBD750 /* UINavigationBar+Utils.swift in Sources */,
 				2448D4AA1FA8E07E00DAB97E /* ApiCredentials.swift in Sources */,
 				2448D4A61FA8E07E00DAB97E /* ApiRoutes.swift in Sources */,
@@ -708,10 +730,12 @@
 				2448D45E1FA8DBA300DAB97E /* Result.swift in Sources */,
 				24D360CD1FAA5AFE00BBBAED /* CDUpdatable.swift in Sources */,
 				2448D4621FA8DC3900DAB97E /* String+Error.swift in Sources */,
+				24D360DC1FAA5D3800BBBAED /* Array+Set.swift in Sources */,
 				2448D4AB1FA8E07E00DAB97E /* Api.swift in Sources */,
 				2448D4AC1FA8E07E00DAB97E /* URLSession+ApiCredentials.swift in Sources */,
 				2448D4A51FA8E07E00DAB97E /* Result+Api.swift in Sources */,
 				24D360D31FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift in Sources */,
+				24D360DF1FAA5D3800BBBAED /* String+HTML.swift in Sources */,
 				24D360CF1FAA5AFE00BBBAED /* CDCreatable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
