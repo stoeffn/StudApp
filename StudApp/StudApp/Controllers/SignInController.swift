@@ -16,6 +16,7 @@ final class SignInController : UITableViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.stateChanged = setState
     }
     
     // MARK: - User Interface
@@ -24,29 +25,49 @@ final class SignInController : UITableViewController, UITextFieldDelegate {
     
     @IBOutlet weak var passwordField: UITextField!
     
+    @IBOutlet weak var errorLabel: UILabel!
+    
     @IBOutlet weak var signInButton: UIButton!
     
-    private let signInErrorMessageIndexPath = IndexPath(row: 2, section: 0)
+    private let errorMessageIndexPath = IndexPath(row: 2, section: 0)
     
-    private var isLoading = false {
+    var isLoading = false {
         didSet {
             guard isLoading != oldValue else { return }
-            isSignInErrorCellHidden = isLoading
+            isErrorCellHidden = isLoading
             signInButton.isEnabled = !isLoading
             navigationItem.setActivityIndicatorHidden(!isLoading)
         }
     }
     
-    private var isSignInErrorCellHidden = true {
+    var isErrorCellHidden = true {
         didSet {
-            guard isSignInErrorCellHidden != oldValue else { return }
+            guard isErrorCellHidden != oldValue else { return }
             tableView.performBatchUpdates({
-                if self.isSignInErrorCellHidden {
-                    self.tableView.deleteRows(at: [self.signInErrorMessageIndexPath], with: .fade)
+                if self.isErrorCellHidden {
+                    self.tableView.deleteRows(at: [self.errorMessageIndexPath], with: .fade)
                 } else {
-                    self.tableView.insertRows(at: [self.signInErrorMessageIndexPath], with: .fade)
+                    self.tableView.insertRows(at: [self.errorMessageIndexPath], with: .fade)
                 }
             }, completion: nil)
+        }
+    }
+    
+    func setState(_ state: SignInViewModel.State) {
+        switch state {
+        case .idle:
+            isLoading = false
+            isErrorCellHidden = true
+        case .loading:
+            isLoading = true
+            isErrorCellHidden = true
+        case let .failure(message):
+            errorLabel.text = message
+            isLoading = false
+            isErrorCellHidden = false
+        case .success:
+            isLoading = true
+            isErrorCellHidden = true
         }
     }
 
@@ -69,11 +90,11 @@ final class SignInController : UITableViewController, UITextFieldDelegate {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let cellCount = super.tableView(tableView, numberOfRowsInSection: section)
-        return isSignInErrorCellHidden ? cellCount - 1 : cellCount
+        return isErrorCellHidden ? cellCount - 1 : cellCount
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if isSignInErrorCellHidden && indexPath >= signInErrorMessageIndexPath {
+        if isErrorCellHidden && indexPath >= errorMessageIndexPath {
             return super.tableView(tableView, cellForRowAt: IndexPath(row: indexPath.row + 1, section: indexPath.section))
         }
         return super.tableView(tableView, cellForRowAt: indexPath)

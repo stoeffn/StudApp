@@ -199,6 +199,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="QFU-Rk-uBU"/>
                     <connections>
+                        <outlet property="errorLabel" destination="ffy-2R-Hqm" id="FE8-kL-iG1"/>
                         <outlet property="passwordField" destination="e25-tx-ryy" id="s1A-yt-fJr"/>
                         <outlet property="signInButton" destination="cZS-9a-wlw" id="C09-ot-fbn"/>
                         <outlet property="usernameField" destination="Iao-Vh-FML" id="ozU-Fe-273"/>
