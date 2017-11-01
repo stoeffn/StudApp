@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Color" representedClassName="Color" syncable="YES">
+        <attribute name="orderId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="uiColor" attributeType="Transformable" customClassName="UIColor" syncable="YES"/>
+        <relationship name="courseStates" toMany="YES" deletionRule="Nullify" destinationEntity="CourseState" inverseName="color" inverseEntity="CourseState" syncable="YES"/>
+        <fetchIndex name="byOrderId">
+            <fetchIndexElement property="orderId" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="orderId"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Course" representedClassName="Course" syncable="YES">
+        <attribute name="id" attributeType="String" minValueString="1" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" attributeType="String" minValueString="1" syncable="YES"/>
+        <relationship name="files" toMany="YES" deletionRule="Cascade" destinationEntity="File" inverseName="course" inverseEntity="File" syncable="YES"/>
+        <relationship name="lecturers" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="lecturedCourses" inverseEntity="User" syncable="YES"/>
+        <relationship name="semesters" toMany="YES" deletionRule="Cascade" destinationEntity="Semester" inverseName="courses" inverseEntity="Semester" syncable="YES"/>
+        <relationship name="state" maxCount="1" deletionRule="Cascade" destinationEntity="CourseState" inverseName="course" inverseEntity="CourseState" syncable="YES"/>
+        <fetchIndex name="byId">
+            <fetchIndexElement property="id" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="CourseState" representedClassName="CourseState" syncable="YES">
+        <attribute name="favoriteRank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isHidden" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastUsedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="tagData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="color" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Color" inverseName="courseStates" inverseEntity="Color" syncable="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Course" inverseName="state" inverseEntity="Course" syncable="YES"/>
+        <fetchIndex name="byHidden">
+            <fetchIndexElement property="isHidden" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="File" representedClassName="File" syncable="YES">
+        <attribute name="creationDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="String" minValueString="1" syncable="YES"/>
+        <attribute name="modificationDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="numberOfDownloads" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="size" attributeType="Integer 64" defaultValueString="-1" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="typeIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="children" toMany="YES" deletionRule="Cascade" destinationEntity="File" inverseName="parent" inverseEntity="File" syncable="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="files" inverseEntity="Course" syncable="YES"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="files" inverseEntity="User" syncable="YES"/>
+        <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="File" inverseName="children" inverseEntity="File" syncable="YES"/>
+        <relationship name="state" maxCount="1" deletionRule="Cascade" destinationEntity="FileState" inverseName="file" inverseEntity="FileState" syncable="YES"/>
+        <fetchIndex name="byId">
+            <fetchIndexElement property="id" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="FileState" representedClassName="FileState" syncable="YES">
+        <attribute name="favoriteRank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastUsedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="tagData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="file" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="File" inverseName="state" inverseEntity="File" syncable="YES"/>
+    </entity>
+    <entity name="Semester" representedClassName="Semester" syncable="YES">
+        <attribute name="beginDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="coursesBeginDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="coursesEndDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="endDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="String" minValueString="1" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <relationship name="courses" toMany="YES" deletionRule="Cascade" destinationEntity="Course" inverseName="semesters" inverseEntity="Course" syncable="YES"/>
+        <relationship name="state" maxCount="1" deletionRule="Cascade" destinationEntity="SemesterState" inverseName="semester" inverseEntity="SemesterState" syncable="YES"/>
+        <fetchIndex name="byId">
+            <fetchIndexElement property="id" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="SemesterState" representedClassName="SemesterState" syncable="YES">
+        <attribute name="isCollapsed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="semester" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Semester" inverseName="state" inverseEntity="Semester" syncable="YES"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="familyName" attributeType="String" syncable="YES"/>
+        <attribute name="givenName" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="String" minValueString="1" syncable="YES"/>
+        <attribute name="namePrefix" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nameSuffix" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pictureModificationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="username" attributeType="String" syncable="YES"/>
+        <relationship name="files" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="owner" inverseEntity="File" syncable="YES"/>
+        <relationship name="lecturedCourses" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="lecturers" inverseEntity="Course" syncable="YES"/>
+        <fetchIndex name="byId">
+            <fetchIndexElement property="id" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <elements>
+        <element name="Color" positionX="-8181" positionY="-2122" width="128" height="90"/>
+        <element name="Course" positionX="-8568" positionY="-2218" width="128" height="195"/>
+        <element name="CourseState" positionX="-8354" positionY="-2142" width="128" height="135"/>
+        <element name="File" positionX="-8381" positionY="-1971" width="128" height="240"/>
+        <element name="FileState" positionX="-8199" positionY="-1836" width="128" height="103"/>
+        <element name="Semester" positionX="-8748" positionY="-2188" width="128" height="165"/>
+        <element name="SemesterState" positionX="-8910" positionY="-2100" width="128" height="73"/>
+        <element name="User" positionX="-8748" positionY="-1924" width="128" height="180"/>
+    </elements>
+</model>
