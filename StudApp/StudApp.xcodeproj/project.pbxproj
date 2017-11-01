@@ -51,6 +51,12 @@
 		2448D4BC1FA8E0AB00DAB97E /* ApiCredentialsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4B41FA8E0AB00DAB97E /* ApiCredentialsTests.swift */; };
 		2448D4BD1FA8E0AB00DAB97E /* TestableApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4B51FA8E0AB00DAB97E /* TestableApiRoutes.swift */; };
 		24D360C21FAA58A000BBBAED /* StudKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C01FAA58A000BBBAED /* StudKit.xcdatamodeld */; };
+		24D360CC1FAA5AFE00BBBAED /* CDIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */; };
+		24D360CD1FAA5AFE00BBBAED /* CDUpdatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C61FAA5AFE00BBBAED /* CDUpdatable.swift */; };
+		24D360CE1FAA5AFE00BBBAED /* CDConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C71FAA5AFE00BBBAED /* CDConvertible.swift */; };
+		24D360CF1FAA5AFE00BBBAED /* CDCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C81FAA5AFE00BBBAED /* CDCreatable.swift */; };
+		24D360D01FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C91FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift */; };
+		24D360D31FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360D21FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift */; };
 		24E626771FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */; };
 		24E626781FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */; };
 /* End PBXBuildFile section */
@@ -159,6 +165,12 @@
 		2448D4B41FA8E0AB00DAB97E /* ApiCredentialsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiCredentialsTests.swift; sourceTree = "<group>"; };
 		2448D4B51FA8E0AB00DAB97E /* TestableApiRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestableApiRoutes.swift; sourceTree = "<group>"; };
 		24D360C11FAA58A000BBBAED /* StudKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StudKit.xcdatamodel; sourceTree = "<group>"; };
+		24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDIdentifiable.swift; sourceTree = "<group>"; };
+		24D360C61FAA5AFE00BBBAED /* CDUpdatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDUpdatable.swift; sourceTree = "<group>"; };
+		24D360C71FAA5AFE00BBBAED /* CDConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDConvertible.swift; sourceTree = "<group>"; };
+		24D360C81FAA5AFE00BBBAED /* CDCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDCreatable.swift; sourceTree = "<group>"; };
+		24D360C91FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFetchRequestResult+Utils.swift"; sourceTree = "<group>"; };
+		24D360D21FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMangedObjectContext+Utils.swift"; sourceTree = "<group>"; };
 		24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+StudIpActivityIndicatorView.swift"; sourceTree = "<group>"; };
 		24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudIpActivityIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -301,6 +313,7 @@
 		2448D45F1FA8DC1D00DAB97E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				24D360D11FAA5CB300BBBAED /* CoreData */,
 				2448D48D1FA8DED000DAB97E /* Foundation */,
 				2448D4601FA8DC2500DAB97E /* Swift */,
 				241FD9631FA8FF8A00FBD750 /* UIKit */,
@@ -393,6 +406,19 @@
 				24D360C01FAA58A000BBBAED /* StudKit.xcdatamodeld */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		24D360D11FAA5CB300BBBAED /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				24D360C71FAA5AFE00BBBAED /* CDConvertible.swift */,
+				24D360C81FAA5AFE00BBBAED /* CDCreatable.swift */,
+				24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */,
+				24D360C61FAA5AFE00BBBAED /* CDUpdatable.swift */,
+				24D360C91FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift */,
+				24D360D21FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		24E626721FA9203E0040F9F7 /* Views */ = {
@@ -664,6 +690,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24D360D01FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift in Sources */,
 				2448D4781FA8DE2A00DAB97E /* ServiceProvider.swift in Sources */,
 				24D360C21FAA58A000BBBAED /* StudKit.xcdatamodeld in Sources */,
 				2448D4951FA8DF6000DAB97E /* StorageService.swift in Sources */,
@@ -675,12 +702,17 @@
 				241FD9651FA8FFAD00FBD750 /* UINavigationBar+Utils.swift in Sources */,
 				2448D4AA1FA8E07E00DAB97E /* ApiCredentials.swift in Sources */,
 				2448D4A61FA8E07E00DAB97E /* ApiRoutes.swift in Sources */,
+				24D360CE1FAA5AFE00BBBAED /* CDConvertible.swift in Sources */,
 				2448D48F1FA8DEE800DAB97E /* FileManager+Utils.swift in Sources */,
+				24D360CC1FAA5AFE00BBBAED /* CDIdentifiable.swift in Sources */,
 				2448D45E1FA8DBA300DAB97E /* Result.swift in Sources */,
+				24D360CD1FAA5AFE00BBBAED /* CDUpdatable.swift in Sources */,
 				2448D4621FA8DC3900DAB97E /* String+Error.swift in Sources */,
 				2448D4AB1FA8E07E00DAB97E /* Api.swift in Sources */,
 				2448D4AC1FA8E07E00DAB97E /* URLSession+ApiCredentials.swift in Sources */,
 				2448D4A51FA8E07E00DAB97E /* Result+Api.swift in Sources */,
+				24D360D31FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift in Sources */,
+				24D360CF1FAA5AFE00BBBAED /* CDCreatable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
