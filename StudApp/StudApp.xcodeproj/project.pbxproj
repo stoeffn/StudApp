@@ -63,6 +63,31 @@
 		24D360DD1FAA5D3800BBBAED /* Set+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360D71FAA5D3800BBBAED /* Set+Array.swift */; };
 		24D360DE1FAA5D3800BBBAED /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360D81FAA5D3800BBBAED /* String+Utils.swift */; };
 		24D360DF1FAA5D3800BBBAED /* String+HTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360D91FAA5D3800BBBAED /* String+HTML.swift */; };
+		24D360E61FAA5D7600BBBAED /* CourseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360E11FAA5D7500BBBAED /* CourseState.swift */; };
+		24D360E71FAA5D7600BBBAED /* CourseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360E21FAA5D7500BBBAED /* CourseService.swift */; };
+		24D360E81FAA5D7600BBBAED /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360E31FAA5D7500BBBAED /* Course.swift */; };
+		24D360E91FAA5D7600BBBAED /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360E41FAA5D7500BBBAED /* CourseModel.swift */; };
+		24D360EA1FAA5D7600BBBAED /* CourseModel+CDConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360E51FAA5D7500BBBAED /* CourseModel+CDConvertible.swift */; };
+		24D360ED1FAA5DC500BBBAED /* Transforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360EC1FAA5DC500BBBAED /* Transforms.swift */; };
+		24D360F61FAA5DE800BBBAED /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360F11FAA5DE800BBBAED /* File.swift */; };
+		24D360F71FAA5DE800BBBAED /* FileState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360F21FAA5DE800BBBAED /* FileState.swift */; };
+		24D360F81FAA5DE800BBBAED /* FileModel+CDConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360F31FAA5DE800BBBAED /* FileModel+CDConvertible.swift */; };
+		24D360F91FAA5DE800BBBAED /* FilesContaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360F41FAA5DE800BBBAED /* FilesContaining.swift */; };
+		24D360FA1FAA5DE800BBBAED /* FileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360F51FAA5DE800BBBAED /* FileModel.swift */; };
+		24D360FE1FAA5E0800BBBAED /* UserModel+CDConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360FB1FAA5E0800BBBAED /* UserModel+CDConvertible.swift */; };
+		24D360FF1FAA5E0800BBBAED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360FC1FAA5E0800BBBAED /* User.swift */; };
+		24D361001FAA5E0800BBBAED /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360FD1FAA5E0800BBBAED /* UserModel.swift */; };
+		24D361061FAA5E2300BBBAED /* SemesterModel+CDConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361011FAA5E2200BBBAED /* SemesterModel+CDConvertible.swift */; };
+		24D361071FAA5E2300BBBAED /* SemesterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361021FAA5E2200BBBAED /* SemesterService.swift */; };
+		24D361081FAA5E2300BBBAED /* SemesterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361031FAA5E2300BBBAED /* SemesterModel.swift */; };
+		24D361091FAA5E2300BBBAED /* Semester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361041FAA5E2300BBBAED /* Semester.swift */; };
+		24D3610A1FAA5E2300BBBAED /* SemesterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361051FAA5E2300BBBAED /* SemesterState.swift */; };
+		24D3610C1FAA5E4E00BBBAED /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3610B1FAA5E4E00BBBAED /* Color.swift */; };
+		24D3610E1FAA5ED600BBBAED /* CDColorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3610D1FAA5ED600BBBAED /* CDColorable.swift */; };
+		24D361111FAA5F0500BBBAED /* StudIpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3610F1FAA5F0500BBBAED /* StudIpService.swift */; };
+		24D361121FAA5F0500BBBAED /* StudIpRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361101FAA5F0500BBBAED /* StudIpRoutes.swift */; };
+		24D361151FAA5F0E00BBBAED /* CollectionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361131FAA5F0E00BBBAED /* CollectionResponse.swift */; };
+		24D361161FAA5F0E00BBBAED /* Api+CollectionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361141FAA5F0E00BBBAED /* Api+CollectionResponse.swift */; };
 		24E626771FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */; };
 		24E626781FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */; };
 /* End PBXBuildFile section */
@@ -183,6 +208,31 @@
 		24D360D71FAA5D3800BBBAED /* Set+Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Set+Array.swift"; sourceTree = "<group>"; };
 		24D360D81FAA5D3800BBBAED /* String+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
 		24D360D91FAA5D3800BBBAED /* String+HTML.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+HTML.swift"; sourceTree = "<group>"; };
+		24D360E11FAA5D7500BBBAED /* CourseState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseState.swift; sourceTree = "<group>"; };
+		24D360E21FAA5D7500BBBAED /* CourseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseService.swift; sourceTree = "<group>"; };
+		24D360E31FAA5D7500BBBAED /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		24D360E41FAA5D7500BBBAED /* CourseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseModel.swift; sourceTree = "<group>"; };
+		24D360E51FAA5D7500BBBAED /* CourseModel+CDConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CourseModel+CDConvertible.swift"; sourceTree = "<group>"; };
+		24D360EC1FAA5DC500BBBAED /* Transforms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transforms.swift; sourceTree = "<group>"; };
+		24D360F11FAA5DE800BBBAED /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		24D360F21FAA5DE800BBBAED /* FileState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileState.swift; sourceTree = "<group>"; };
+		24D360F31FAA5DE800BBBAED /* FileModel+CDConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileModel+CDConvertible.swift"; sourceTree = "<group>"; };
+		24D360F41FAA5DE800BBBAED /* FilesContaining.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilesContaining.swift; sourceTree = "<group>"; };
+		24D360F51FAA5DE800BBBAED /* FileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileModel.swift; sourceTree = "<group>"; };
+		24D360FB1FAA5E0800BBBAED /* UserModel+CDConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserModel+CDConvertible.swift"; sourceTree = "<group>"; };
+		24D360FC1FAA5E0800BBBAED /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		24D360FD1FAA5E0800BBBAED /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		24D361011FAA5E2200BBBAED /* SemesterModel+CDConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SemesterModel+CDConvertible.swift"; sourceTree = "<group>"; };
+		24D361021FAA5E2200BBBAED /* SemesterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SemesterService.swift; sourceTree = "<group>"; };
+		24D361031FAA5E2300BBBAED /* SemesterModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SemesterModel.swift; sourceTree = "<group>"; };
+		24D361041FAA5E2300BBBAED /* Semester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Semester.swift; sourceTree = "<group>"; };
+		24D361051FAA5E2300BBBAED /* SemesterState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SemesterState.swift; sourceTree = "<group>"; };
+		24D3610B1FAA5E4E00BBBAED /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		24D3610D1FAA5ED600BBBAED /* CDColorable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDColorable.swift; sourceTree = "<group>"; };
+		24D3610F1FAA5F0500BBBAED /* StudIpService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudIpService.swift; sourceTree = "<group>"; };
+		24D361101FAA5F0500BBBAED /* StudIpRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudIpRoutes.swift; sourceTree = "<group>"; };
+		24D361131FAA5F0E00BBBAED /* CollectionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionResponse.swift; sourceTree = "<group>"; };
+		24D361141FAA5F0E00BBBAED /* Api+CollectionResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Api+CollectionResponse.swift"; sourceTree = "<group>"; };
 		24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+StudIpActivityIndicatorView.swift"; sourceTree = "<group>"; };
 		24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudIpActivityIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -300,6 +350,7 @@
 				2448D49C1FA8E07E00DAB97E /* Api */,
 				24D360BE1FAA585B00BBBAED /* Models */,
 				2448D4741FA8DE1700DAB97E /* Services */,
+				24D360EB1FAA5DA700BBBAED /* StudIp */,
 				2448D45D1FA8DBA300DAB97E /* Result.swift */,
 				2448D4961FA8DFB200DAB97E /* StudKitServiceProvider.swift */,
 				2448D4411FA8DB1E00DAB97E /* StudKit.h */,
@@ -421,6 +472,11 @@
 		24D360BE1FAA585B00BBBAED /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				24D360E01FAA5D6400BBBAED /* Course */,
+				24D360F01FAA5DDD00BBBAED /* File */,
+				24D360EF1FAA5DD000BBBAED /* Semester */,
+				24D360EE1FAA5DCC00BBBAED /* User */,
+				24D3610B1FAA5E4E00BBBAED /* Color.swift */,
 				24D360C01FAA58A000BBBAED /* StudKit.xcdatamodeld */,
 			);
 			path = Models;
@@ -433,10 +489,69 @@
 				24D360C81FAA5AFE00BBBAED /* CDCreatable.swift */,
 				24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */,
 				24D360C61FAA5AFE00BBBAED /* CDUpdatable.swift */,
+				24D3610D1FAA5ED600BBBAED /* CDColorable.swift */,
 				24D360C91FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift */,
 				24D360D21FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		24D360E01FAA5D6400BBBAED /* Course */ = {
+			isa = PBXGroup;
+			children = (
+				24D360E31FAA5D7500BBBAED /* Course.swift */,
+				24D360E41FAA5D7500BBBAED /* CourseModel.swift */,
+				24D360E51FAA5D7500BBBAED /* CourseModel+CDConvertible.swift */,
+				24D360E21FAA5D7500BBBAED /* CourseService.swift */,
+				24D360E11FAA5D7500BBBAED /* CourseState.swift */,
+			);
+			path = Course;
+			sourceTree = "<group>";
+		};
+		24D360EB1FAA5DA700BBBAED /* StudIp */ = {
+			isa = PBXGroup;
+			children = (
+				24D361141FAA5F0E00BBBAED /* Api+CollectionResponse.swift */,
+				24D361131FAA5F0E00BBBAED /* CollectionResponse.swift */,
+				24D361101FAA5F0500BBBAED /* StudIpRoutes.swift */,
+				24D3610F1FAA5F0500BBBAED /* StudIpService.swift */,
+				24D360EC1FAA5DC500BBBAED /* Transforms.swift */,
+			);
+			path = StudIp;
+			sourceTree = "<group>";
+		};
+		24D360EE1FAA5DCC00BBBAED /* User */ = {
+			isa = PBXGroup;
+			children = (
+				24D360FC1FAA5E0800BBBAED /* User.swift */,
+				24D360FD1FAA5E0800BBBAED /* UserModel.swift */,
+				24D360FB1FAA5E0800BBBAED /* UserModel+CDConvertible.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		24D360EF1FAA5DD000BBBAED /* Semester */ = {
+			isa = PBXGroup;
+			children = (
+				24D361041FAA5E2300BBBAED /* Semester.swift */,
+				24D361031FAA5E2300BBBAED /* SemesterModel.swift */,
+				24D361011FAA5E2200BBBAED /* SemesterModel+CDConvertible.swift */,
+				24D361021FAA5E2200BBBAED /* SemesterService.swift */,
+				24D361051FAA5E2300BBBAED /* SemesterState.swift */,
+			);
+			path = Semester;
+			sourceTree = "<group>";
+		};
+		24D360F01FAA5DDD00BBBAED /* File */ = {
+			isa = PBXGroup;
+			children = (
+				24D360F11FAA5DE800BBBAED /* File.swift */,
+				24D360F51FAA5DE800BBBAED /* FileModel.swift */,
+				24D360F31FAA5DE800BBBAED /* FileModel+CDConvertible.swift */,
+				24D360F41FAA5DE800BBBAED /* FilesContaining.swift */,
+				24D360F21FAA5DE800BBBAED /* FileState.swift */,
+			);
+			path = File;
 			sourceTree = "<group>";
 		};
 		24E626721FA9203E0040F9F7 /* Views */ = {
@@ -708,15 +823,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24D360E91FAA5D7600BBBAED /* CourseModel.swift in Sources */,
 				24D360D01FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift in Sources */,
 				24D360DD1FAA5D3800BBBAED /* Set+Array.swift in Sources */,
 				2448D4781FA8DE2A00DAB97E /* ServiceProvider.swift in Sources */,
 				24D360DA1FAA5D3800BBBAED /* String+Regex.swift in Sources */,
+				24D360EA1FAA5D7600BBBAED /* CourseModel+CDConvertible.swift in Sources */,
+				24D361061FAA5E2300BBBAED /* SemesterModel+CDConvertible.swift in Sources */,
+				24D360E71FAA5D7600BBBAED /* CourseService.swift in Sources */,
 				24D360C21FAA58A000BBBAED /* StudKit.xcdatamodeld in Sources */,
 				2448D4951FA8DF6000DAB97E /* StorageService.swift in Sources */,
 				2448D4A71FA8E07E00DAB97E /* Api+Decodable.swift in Sources */,
 				2448D4A81FA8E07E00DAB97E /* Api+Download.swift in Sources */,
+				24D361121FAA5F0500BBBAED /* StudIpRoutes.swift in Sources */,
 				2448D4A91FA8E07E00DAB97E /* HttpMethod.swift in Sources */,
+				24D360F81FAA5DE800BBBAED /* FileModel+CDConvertible.swift in Sources */,
 				2448D4771FA8DE2A00DAB97E /* ServiceContainer.swift in Sources */,
 				2448D4971FA8DFB200DAB97E /* StudKitServiceProvider.swift in Sources */,
 				24D360DB1FAA5D3800BBBAED /* Int+NSNumber.swift in Sources */,
@@ -724,19 +845,38 @@
 				241FD9651FA8FFAD00FBD750 /* UINavigationBar+Utils.swift in Sources */,
 				2448D4AA1FA8E07E00DAB97E /* ApiCredentials.swift in Sources */,
 				2448D4A61FA8E07E00DAB97E /* ApiRoutes.swift in Sources */,
+				24D360FF1FAA5E0800BBBAED /* User.swift in Sources */,
+				24D360E61FAA5D7600BBBAED /* CourseState.swift in Sources */,
+				24D3610C1FAA5E4E00BBBAED /* Color.swift in Sources */,
+				24D3610A1FAA5E2300BBBAED /* SemesterState.swift in Sources */,
 				24D360CE1FAA5AFE00BBBAED /* CDConvertible.swift in Sources */,
 				2448D48F1FA8DEE800DAB97E /* FileManager+Utils.swift in Sources */,
 				24D360CC1FAA5AFE00BBBAED /* CDIdentifiable.swift in Sources */,
 				2448D45E1FA8DBA300DAB97E /* Result.swift in Sources */,
 				24D360CD1FAA5AFE00BBBAED /* CDUpdatable.swift in Sources */,
+				24D360F71FAA5DE800BBBAED /* FileState.swift in Sources */,
+				24D360FE1FAA5E0800BBBAED /* UserModel+CDConvertible.swift in Sources */,
+				24D360FA1FAA5DE800BBBAED /* FileModel.swift in Sources */,
+				24D3610E1FAA5ED600BBBAED /* CDColorable.swift in Sources */,
+				24D360F61FAA5DE800BBBAED /* File.swift in Sources */,
 				2448D4621FA8DC3900DAB97E /* String+Error.swift in Sources */,
+				24D360E81FAA5D7600BBBAED /* Course.swift in Sources */,
 				24D360DC1FAA5D3800BBBAED /* Array+Set.swift in Sources */,
 				2448D4AB1FA8E07E00DAB97E /* Api.swift in Sources */,
+				24D360F91FAA5DE800BBBAED /* FilesContaining.swift in Sources */,
+				24D361091FAA5E2300BBBAED /* Semester.swift in Sources */,
+				24D361081FAA5E2300BBBAED /* SemesterModel.swift in Sources */,
+				24D361001FAA5E0800BBBAED /* UserModel.swift in Sources */,
 				2448D4AC1FA8E07E00DAB97E /* URLSession+ApiCredentials.swift in Sources */,
+				24D361111FAA5F0500BBBAED /* StudIpService.swift in Sources */,
+				24D361151FAA5F0E00BBBAED /* CollectionResponse.swift in Sources */,
+				24D360ED1FAA5DC500BBBAED /* Transforms.swift in Sources */,
 				2448D4A51FA8E07E00DAB97E /* Result+Api.swift in Sources */,
 				24D360D31FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift in Sources */,
 				24D360DF1FAA5D3800BBBAED /* String+HTML.swift in Sources */,
+				24D361071FAA5E2300BBBAED /* SemesterService.swift in Sources */,
 				24D360CF1FAA5AFE00BBBAED /* CDCreatable.swift in Sources */,
+				24D361161FAA5F0E00BBBAED /* Api+CollectionResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

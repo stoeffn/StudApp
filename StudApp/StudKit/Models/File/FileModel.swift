@@ -1,0 +1,118 @@
+//
+//  FileModel.swift
+//  StudKit
+//
+//  Created by Steffen Ryll on 22.07.17.
+//  Copyright © 2017 Steffen Ryll. All rights reserved.
+//
+
+import MobileCoreServices
+import CoreData
+
+struct FileModel : Decodable {
+    private let folderId: String?
+    private let fileId: String?
+    private let filename: String?
+    private let coursePath: String
+    private let parentId: String?
+    let children: [FileModel]
+    let title: String
+    let creationDate: Date
+    let modificationDate: Date
+    let size: Int?
+    let numberOfDownloads: Int?
+    private let ownerPath: String?
+
+    enum CodingKeys : String, CodingKey {
+        case folderId = "folder_id"
+        case fileId = "file_id"
+        case filename
+        case coursePath = "course"
+        case parentId = "range_id"
+        case children = "documents"
+        case title = "name"
+        case creationDate = "mkdate"
+        case modificationDate = "chdate"
+        case size = "filesize"
+        case numberOfDownloads = "downloads"
+        case ownerPath = "author"
+    }
+
+    init(folderId: String? = nil, fileId: String? = nil, name: String? = nil, coursePath: String,
+        parentId: String? = nil, children: [FileModel] = [], title: String, creationDate: Date = Date(),
+        modificationDate: Date = Date(), size: Int? = nil, numberOfDownloads: Int? = nil, ownerPath: String? = nil) {
+        self.folderId = folderId
+        self.fileId = fileId
+        self.filename = name
+        self.coursePath = coursePath
+        self.parentId = parentId
+        self.children = children
+        self.title = title
+        self.creationDate = creationDate
+        self.modificationDate = modificationDate
+        self.size = size
+        self.numberOfDownloads = numberOfDownloads
+        self.ownerPath = ownerPath
+    }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        folderId = try values.decodeIfPresent(String.self, forKey: .folderId)
+        fileId = try values.decodeIfPresent(String.self, forKey: .fileId)
+        filename = try values.decodeIfPresent(String.self, forKey: .filename)
+        coursePath = try values.decode(String.self, forKey: .coursePath)
+        parentId = try values.decodeIfPresent(String.self, forKey: .parentId)
+        title = try values.decode(String.self, forKey: .title)
+        creationDate = try values.decode(Date.self, forKey: .creationDate)
+        modificationDate = try values.decode(Date.self, forKey: .modificationDate)
+        size = try values.decodeIfPresent(Int.self, forKey: .size)
+        numberOfDownloads = try values.decodeIfPresent(Int.self, forKey: .numberOfDownloads)
+        ownerPath = try values.decodeIfPresent(String.self, forKey: .ownerPath)
+        
+        if let childrenCollection = try? values.decodeIfPresent([String: FileModel].self, forKey: .children),
+            let children = childrenCollection?.values {
+            self.children = Array(children)
+        } else {
+            children = []
+        }
+    }
+
+    var id: String? {
+        return isFolder ? folderId : fileId
+    }
+
+    var courseId: String? {
+        return StudIp.transformIdPath(coursePath)
+    }
+
+    var ownerId: String? {
+        return StudIp.transformIdPath(ownerPath)
+    }
+
+    var isFolder: Bool {
+        return folderId != nil
+    }
+
+    var typeIdentifier: String {
+        if isFolder {
+            return kUTTypeFolder as String
+        }
+        guard let fileExtension = filename?.components(separatedBy: ".").last else { return "" }
+        let typeIdentifier = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension as CFString, nil)
+        return typeIdentifier?.takeRetainedValue() as String? ?? ""
+    }
+
+    var name: String? {
+        return isFolder ? title : filename
+    }
+
+    func fetchCourse(in context: NSManagedObjectContext) throws -> Course? {
+        guard let courseId = courseId, let course = try Course.fetch(byId: courseId, in: context) else { return nil }
+        return course
+    }
+
+    func fetchParent(in context: NSManagedObjectContext) throws -> File? {
+        guard let parentId = parentId, let file = try File.fetch(byId: parentId, in: context) else { return nil }
+        return file
+    }
+}
