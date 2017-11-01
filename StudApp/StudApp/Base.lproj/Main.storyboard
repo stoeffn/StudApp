@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Sign In Controller Controller-->
+        <!--Sign In Controller-->
         <scene sceneID="7Ux-Hi-JTh">
             <objects>
-                <tableViewController id="REk-SH-Xkn" customClass="SignInControllerController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="REk-SH-Xkn" customClass="SignInController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6NK-zh-9Sk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -177,7 +177,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="signInButtonTapped:" destination="REk-SH-Xkn" eventType="touchUpInside" id="w3v-OL-G0t"/>
+                                                        <action selector="signInButtonTapped:" destination="REk-SH-Xkn" eventType="touchUpInside" id="1GK-aa-1ju"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -199,7 +199,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="QFU-Rk-uBU"/>
                     <connections>
-                        <outlet property="paswordField" destination="e25-tx-ryy" id="AFg-Oq-dzK"/>
+                        <outlet property="passwordField" destination="e25-tx-ryy" id="s1A-yt-fJr"/>
                         <outlet property="signInButton" destination="cZS-9a-wlw" id="C09-ot-fbn"/>
                         <outlet property="usernameField" destination="Iao-Vh-FML" id="ozU-Fe-273"/>
                     </connections>

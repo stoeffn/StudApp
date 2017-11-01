@@ -12,7 +12,7 @@
 		241FD9691FA9087900FBD750 /* GroupedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9681FA9087900FBD750 /* GroupedTextField.swift */; };
 		241FD96B1FA9090F00FBD750 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD96A1FA9090F00FBD750 /* UI.swift */; };
 		241FD96F1FA9191500FBD750 /* SignInNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD96E1FA9191500FBD750 /* SignInNavigationController.swift */; };
-		243014261FA8FE2800680253 /* SignInControllerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243014251FA8FE2800680253 /* SignInControllerController.swift */; };
+		243014261FA8FE2800680253 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243014251FA8FE2800680253 /* SignInController.swift */; };
 		2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */; };
 		2448D4121FA8DA2400DAB97E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2448D4101FA8DA2400DAB97E /* Main.storyboard */; };
 		2448D4141FA8DA2400DAB97E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2448D4131FA8DA2400DAB97E /* Assets.xcassets */; };
@@ -121,6 +121,7 @@
 		24D361611FAA641600BBBAED /* courseCollection.json in Resources */ = {isa = PBXBuildFile; fileRef = 24D3615D1FAA641500BBBAED /* courseCollection.json */; };
 		24D361621FAA641600BBBAED /* semesterCollection.json in Resources */ = {isa = PBXBuildFile; fileRef = 24D3615E1FAA641500BBBAED /* semesterCollection.json */; };
 		24D361631FAA641600BBBAED /* courseCollection+20.json in Resources */ = {isa = PBXBuildFile; fileRef = 24D3615F1FAA641600BBBAED /* courseCollection+20.json */; };
+		24D361661FAA648B00BBBAED /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361651FAA648B00BBBAED /* SignInViewModel.swift */; };
 		24E626771FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */; };
 		24E626781FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */; };
 /* End PBXBuildFile section */
@@ -183,7 +184,7 @@
 		241FD9681FA9087900FBD750 /* GroupedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedTextField.swift; sourceTree = "<group>"; };
 		241FD96A1FA9090F00FBD750 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
 		241FD96E1FA9191500FBD750 /* SignInNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInNavigationController.swift; sourceTree = "<group>"; };
-		243014251FA8FE2800680253 /* SignInControllerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInControllerController.swift; sourceTree = "<group>"; };
+		243014251FA8FE2800680253 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		2448D4091FA8DA2400DAB97E /* StudApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2448D4111FA8DA2400DAB97E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -299,6 +300,7 @@
 		24D3615D1FAA641500BBBAED /* courseCollection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = courseCollection.json; sourceTree = "<group>"; };
 		24D3615E1FAA641500BBBAED /* semesterCollection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = semesterCollection.json; sourceTree = "<group>"; };
 		24D3615F1FAA641600BBBAED /* courseCollection+20.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "courseCollection+20.json"; sourceTree = "<group>"; };
+		24D361651FAA648B00BBBAED /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+StudIpActivityIndicatorView.swift"; sourceTree = "<group>"; };
 		24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudIpActivityIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -417,6 +419,7 @@
 				24D360BE1FAA585B00BBBAED /* Models */,
 				2448D4741FA8DE1700DAB97E /* Services */,
 				24D360EB1FAA5DA700BBBAED /* StudIp */,
+				24D361641FAA646200BBBAED /* ViewModels */,
 				2448D45D1FA8DBA300DAB97E /* Result.swift */,
 				2448D4961FA8DFB200DAB97E /* StudKitServiceProvider.swift */,
 				2448D4411FA8DB1E00DAB97E /* StudKit.h */,
@@ -725,6 +728,14 @@
 			path = Reponses;
 			sourceTree = "<group>";
 		};
+		24D361641FAA646200BBBAED /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				24D361651FAA648B00BBBAED /* SignInViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		24E626721FA9203E0040F9F7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -739,7 +750,7 @@
 			isa = PBXGroup;
 			children = (
 				241FD96E1FA9191500FBD750 /* SignInNavigationController.swift */,
-				243014251FA8FE2800680253 /* SignInControllerController.swift */,
+				243014251FA8FE2800680253 /* SignInController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -971,7 +982,7 @@
 				241FD96B1FA9090F00FBD750 /* UI.swift in Sources */,
 				241FD9691FA9087900FBD750 /* GroupedTextField.swift in Sources */,
 				24E626771FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */,
-				243014261FA8FE2800680253 /* SignInControllerController.swift in Sources */,
+				243014261FA8FE2800680253 /* SignInController.swift in Sources */,
 				2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */,
 				24E626781FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift in Sources */,
 				241FD9671FA9022400FBD750 /* FilledButton.swift in Sources */,
@@ -1034,6 +1045,7 @@
 				24D360FA1FAA5DE800BBBAED /* FileModel.swift in Sources */,
 				24D3610E1FAA5ED600BBBAED /* CDColorable.swift in Sources */,
 				24D360F61FAA5DE800BBBAED /* File.swift in Sources */,
+				24D361661FAA648B00BBBAED /* SignInViewModel.swift in Sources */,
 				2448D4621FA8DC3900DAB97E /* String+Error.swift in Sources */,
 				24D360E81FAA5D7600BBBAED /* Course.swift in Sources */,
 				24D360DC1FAA5D3800BBBAED /* Array+Set.swift in Sources */,

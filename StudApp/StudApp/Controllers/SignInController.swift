@@ -1,5 +1,5 @@
 //
-//  SignInControllerController.swift
+//  SignInController.swift
 //  StudApp
 //
 //  Created by Steffen Ryll on 31.10.17.
@@ -9,18 +9,26 @@
 import UIKit
 import StudKit
 
-final class SignInControllerController : UITableViewController, UITextFieldDelegate {
+final class SignInController : UITableViewController, UITextFieldDelegate {
+    private let viewModel = SignInViewModel()
+    
+    // MARK: - Life Cycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
     // MARK: - User Interface
     
     @IBOutlet weak var usernameField: UITextField!
     
-    @IBOutlet weak var paswordField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
     
     @IBOutlet weak var signInButton: UIButton!
     
     private let signInErrorMessageIndexPath = IndexPath(row: 2, section: 0)
     
-    var isLoading = false {
+    private var isLoading = false {
         didSet {
             guard isLoading != oldValue else { return }
             isSignInErrorCellHidden = isLoading
@@ -29,7 +37,7 @@ final class SignInControllerController : UITableViewController, UITextFieldDeleg
         }
     }
     
-    var isSignInErrorCellHidden = true {
+    private var isSignInErrorCellHidden = true {
         didSet {
             guard isSignInErrorCellHidden != oldValue else { return }
             tableView.performBatchUpdates({
@@ -46,22 +54,15 @@ final class SignInControllerController : UITableViewController, UITextFieldDeleg
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
-        case usernameField:
-            paswordField.becomeFirstResponder()
-        default:
-            break
+        case usernameField: passwordField.becomeFirstResponder()
+        default: break
         }
         return false
     }
     
     @IBAction func signInButtonTapped(_ sender: Any) {
-        if usernameField.text?.isEmpty ?? true || paswordField.text?.isEmpty ?? true { return }
-        
-        isLoading = true
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
-            self.isLoading = false
-            self.isSignInErrorCellHidden = false
-        }
+        guard let username = usernameField.text, let password = passwordField.text else { return }
+        viewModel.attemptSignIn(withUsername: username, password: password)
     }
     
     // MARK: - Table View Data Source
