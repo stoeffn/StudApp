@@ -95,7 +95,10 @@
 		24D361231FAA5FF500BBBAED /* Set+ArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3611F1FAA5FF500BBBAED /* Set+ArrayTests.swift */; };
 		24D361241FAA5FF500BBBAED /* String+RegexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361201FAA5FF500BBBAED /* String+RegexTests.swift */; };
 		24D361251FAA5FF500BBBAED /* Array+SetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361211FAA5FF500BBBAED /* Array+SetTests.swift */; };
-		24D361281FAA605000BBBAED /* StudIpRoutes+TestableApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361271FAA605000BBBAED /* StudIpRoutes+TestableApiRoutes.swift */; };
+		24D3612D1FAA60E000BBBAED /* StudIpRoutes+TestableApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361291FAA60E000BBBAED /* StudIpRoutes+TestableApiRoutes.swift */; };
+		24D3612E1FAA60E000BBBAED /* Api+CollectionResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3612A1FAA60E000BBBAED /* Api+CollectionResponseTests.swift */; };
+		24D3612F1FAA60E000BBBAED /* CollectionResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3612B1FAA60E000BBBAED /* CollectionResponseTests.swift */; };
+		24D361301FAA60E000BBBAED /* TransformsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3612C1FAA60E000BBBAED /* TransformsTests.swift */; };
 		24E626771FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */; };
 		24E626781FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */; };
 /* End PBXBuildFile section */
@@ -248,7 +251,10 @@
 		24D3611F1FAA5FF500BBBAED /* Set+ArrayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Set+ArrayTests.swift"; sourceTree = "<group>"; };
 		24D361201FAA5FF500BBBAED /* String+RegexTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+RegexTests.swift"; sourceTree = "<group>"; };
 		24D361211FAA5FF500BBBAED /* Array+SetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+SetTests.swift"; sourceTree = "<group>"; };
-		24D361271FAA605000BBBAED /* StudIpRoutes+TestableApiRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StudIpRoutes+TestableApiRoutes.swift"; sourceTree = "<group>"; };
+		24D361291FAA60E000BBBAED /* StudIpRoutes+TestableApiRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "StudIpRoutes+TestableApiRoutes.swift"; path = "../../../../StudIP/StudKit/StudKit/StudKitTests/StudIp/StudIpRoutes+TestableApiRoutes.swift"; sourceTree = "<group>"; };
+		24D3612A1FAA60E000BBBAED /* Api+CollectionResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Api+CollectionResponseTests.swift"; sourceTree = "<group>"; };
+		24D3612B1FAA60E000BBBAED /* CollectionResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionResponseTests.swift; sourceTree = "<group>"; };
+		24D3612C1FAA60E000BBBAED /* TransformsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransformsTests.swift; sourceTree = "<group>"; };
 		24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+StudIpActivityIndicatorView.swift"; sourceTree = "<group>"; };
 		24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudIpActivityIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -589,7 +595,10 @@
 		24D361261FAA603400BBBAED /* StudIp */ = {
 			isa = PBXGroup;
 			children = (
-				24D361271FAA605000BBBAED /* StudIpRoutes+TestableApiRoutes.swift */,
+				24D3612A1FAA60E000BBBAED /* Api+CollectionResponseTests.swift */,
+				24D3612B1FAA60E000BBBAED /* CollectionResponseTests.swift */,
+				24D361291FAA60E000BBBAED /* StudIpRoutes+TestableApiRoutes.swift */,
+				24D3612C1FAA60E000BBBAED /* TransformsTests.swift */,
 			);
 			path = StudIp;
 			sourceTree = "<group>";
@@ -925,6 +934,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24D361301FAA60E000BBBAED /* TransformsTests.swift in Sources */,
 				24D361251FAA5FF500BBBAED /* Array+SetTests.swift in Sources */,
 				2448D4931FA8DF1A00DAB97E /* FileManager+UtilsTests.swift in Sources */,
 				2448D4BA1FA8E0AB00DAB97E /* TestRoutes.swift in Sources */,
@@ -933,8 +943,8 @@
 				24D361241FAA5FF500BBBAED /* String+RegexTests.swift in Sources */,
 				2448D4991FA8E00800DAB97E /* StudKitTestsServiceProvider.swift in Sources */,
 				2448D44F1FA8DB1E00DAB97E /* ResultTests.swift in Sources */,
+				24D3612F1FAA60E000BBBAED /* CollectionResponseTests.swift in Sources */,
 				24D3611B1FAA5FC900BBBAED /* JSONDecoder+Resource.swift in Sources */,
-				24D361281FAA605000BBBAED /* StudIpRoutes+TestableApiRoutes.swift in Sources */,
 				2448D4B61FA8E0AB00DAB97E /* Result+ApiTests.swift in Sources */,
 				24D361231FAA5FF500BBBAED /* Set+ArrayTests.swift in Sources */,
 				2448D4B81FA8E0AB00DAB97E /* MockApi.swift in Sources */,
@@ -942,6 +952,8 @@
 				24D361221FAA5FF500BBBAED /* Int+NSNumberTests.swift in Sources */,
 				2448D47B1FA8DE4000DAB97E /* ServiceContainerTests.swift in Sources */,
 				2448D4B71FA8E0AB00DAB97E /* ApiTests.swift in Sources */,
+				24D3612D1FAA60E000BBBAED /* StudIpRoutes+TestableApiRoutes.swift in Sources */,
+				24D3612E1FAA60E000BBBAED /* Api+CollectionResponseTests.swift in Sources */,
 				2448D4BB1FA8E0AB00DAB97E /* ApiRoutesTests.swift in Sources */,
 				2448D4BD1FA8E0AB00DAB97E /* TestableApiRoutes.swift in Sources */,
 			);

@@ -76,7 +76,7 @@ enum TestRoutes : String, TestableApiRoutes {
     var type: Decodable.Type? {
         switch self {
         case .object: return Test.self
-        case .collection, .failingCollection: return nil
+        case .collection, .failingCollection: return CollectionResponse<Test>.self
         }
     }
 
