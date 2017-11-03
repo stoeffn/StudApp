@@ -7,16 +7,13 @@
 //
 
 final class StudIpService {
-    private static let url = URL(string: "https://studip.uni-hannover.de/api.php")!
-
-    typealias Routes = StudIpRoutes
     let api: Api<StudIpRoutes>
+    
+    init(baseUrl: URL) {
+        api = Api<StudIpRoutes>(baseUrl: baseUrl)
+    }
 
     init(api: Api<StudIpRoutes>) {
         self.api = api
-    }
-    
-    init(credentials: ApiCredentials) {
-        api = Api<StudIpRoutes>(baseUrl: StudIpService.url, credentials: credentials)
     }
 }

@@ -9,6 +9,7 @@
 public class StudKitServiceProvider : ServiceProvider {
     public init() { }
     
+    static let studIpBaseUrl = URL(string: "https://studip.uni-hannover.de/api.php")!
     static let appGroupIdentifier = "group.SteffenRyll.StudKit"
     
     func provideJsonDecoder() -> JSONDecoder {
@@ -26,8 +27,7 @@ public class StudKitServiceProvider : ServiceProvider {
     }
     
     func provideStudIpService() -> StudIpService {
-        let credentials = ApiCredentials(username: "username", password: "password")
-        return StudIpService(credentials: credentials)
+        return StudIpService(baseUrl: StudKitServiceProvider.studIpBaseUrl)
     }
     
     func provideSemesterService() -> SemesterService {
