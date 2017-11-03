@@ -478,7 +478,6 @@
 				2448D4751FA8DE2900DAB97E /* ServiceContainer.swift */,
 				2448D4761FA8DE2900DAB97E /* ServiceProvider.swift */,
 				2448D4941FA8DF6000DAB97E /* StorageService.swift */,
-				24D3610F1FAA5F0500BBBAED /* StudIpService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -593,6 +592,7 @@
 				24D361141FAA5F0E00BBBAED /* Api+CollectionResponse.swift */,
 				24D361131FAA5F0E00BBBAED /* CollectionResponse.swift */,
 				24D361101FAA5F0500BBBAED /* StudIpRoutes.swift */,
+				24D3610F1FAA5F0500BBBAED /* StudIpService.swift */,
 				24D360EC1FAA5DC500BBBAED /* Transforms.swift */,
 			);
 			path = StudIp;
