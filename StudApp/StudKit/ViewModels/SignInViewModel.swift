@@ -8,12 +8,17 @@
 
 public final class SignInViewModel {
     public enum State {
+        /// Initial state.
         case idle
         
+        /// The application is currently making a network request, i.e. trying to sign in. The view should show an
+        /// indication of that.
         case loading
-            
+        
+        /// There was an error signing in. The view should display the associated error.
         case failure(String)
         
+        /// User has been signed in successfully. The view should now show the application's main view.
         case success
     }
     
