@@ -7,6 +7,8 @@
 //
 
 public enum StudIpRoutes : ApiRoutes {
+    case discovery
+    
     case semesters
 
     case courses(forUserId: String)
@@ -19,6 +21,8 @@ public enum StudIpRoutes : ApiRoutes {
 
     var path: String {
         switch self {
+        case .discovery:
+            return "discovery"
         case .semesters:
             return "semesters"
         case .courses(let userId):
@@ -34,6 +38,7 @@ public enum StudIpRoutes : ApiRoutes {
 
     var type: Decodable.Type? {
         switch self {
+        case .discovery: return [String: [String: String]].self
         case .semesters: return CollectionResponse<SemesterModel>.self
         case .courses: return CollectionResponse<CourseModel>.self
         case .files: return CollectionResponse<FileModel>.self

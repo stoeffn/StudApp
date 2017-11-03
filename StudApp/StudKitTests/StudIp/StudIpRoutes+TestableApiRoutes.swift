@@ -12,6 +12,8 @@ extension StudIpRoutes : TestableApiRoutes {
     func testData(for parameters: [URLQueryItem]) throws -> Data {
         let offset = parameters.filter({ $0.name == "offset" }).first?.value ?? "0"
         switch self {
+        case .discovery:
+            return Data(fromResource: "disovery")
         case .semesters:
             return Data(fromResource: "semesterCollection")
         case .courses:

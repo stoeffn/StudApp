@@ -1,0 +1,50 @@
+{
+    "\/course\/:course_id": {
+        "get": "Show a single course"
+    },
+    "\/course\/:course_id\/events": {
+        "get": "returns events for a given course"
+    },
+    "\/course\/:course_id\/files": {
+        "get": "Dateien\/Ordner einer Veranstaltung"
+    },
+    "\/course\/:course_id\/members": {
+        "get": "List all members of a course.\nOptionally filtered by a URL parameter 'status'."
+    },
+    "\/course\/:course_id\/news": {
+        "get": "News einer Veranstaltung auslesen"
+    },
+    "\/discovery": {
+        "get": "Schnittstellenbeschreibung"
+    },
+    "\/file\/:file_id": {
+        "get": "(Meta-)Daten einer Datei bzw. eines Ordners"
+    },
+    "\/file\/:file_id\/content": {
+        "get": "Inhalte einer Datei"
+    },
+    "\/news\/:news_id": {
+        "delete": "News löschen"
+    },
+    "\/news\/:news_id\/comments": {
+        "get": "News-Comments auslesen"
+    },
+    "\/semester\/:semester_id": {
+        "get": "Returns a single semester."
+    },
+    "\/semesters": {
+        "get": "Returns a list of all semesters."
+    },
+    "\/studip\/news": {
+        "get": "Globale News auslesen"
+    },
+    "\/user": {
+        "get": "getUser - retrieves data of a user"
+    },
+    "\/user\/:user_id\/activitystream": {
+        "get": "List activities for an user"
+    },
+    "\/user\/:user_id\/courses": {
+        "get": "Lists all courses of a user including the semesters in which\nthat course is active.\nOptionally filtered by a URL parameter 'semester'."
+    }
+}
