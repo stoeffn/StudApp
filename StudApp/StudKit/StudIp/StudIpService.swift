@@ -16,4 +16,8 @@ final class StudIpService {
     init(api: Api<StudIpRoutes>) {
         self.api = api
     }
+    
+    func signIn(withUsername username: String, password: String, completionHandler: ResultCallback<Void>) {
+        completionHandler(.success(()))
+    }
 }

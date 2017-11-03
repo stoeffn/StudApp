@@ -8,8 +8,16 @@
 
 public final class SignInViewModel {
     public enum State {
-        case idle, loading, failure(String), success
+        case idle
+        
+        case loading
+            
+        case failure(String)
+        
+        case success
     }
+    
+    private let studIp = ServiceContainer.default[StudIpService.self]
     
     public var state: State = .idle {
         didSet { stateChanged?(state) }
@@ -26,8 +34,13 @@ public final class SignInViewModel {
         }
         
         state = .loading
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
-            self.state = .failure("Please check your credentials for typos")
+        studIp.signIn(withUsername: username, password: password) { result in
+            switch result {
+            case .success:
+                self.state = .success
+            case let .failure(error):
+                self.state = .failure(error?.localizedDescription ?? "There was an error signing in :/")
+            }
         }
     }
 }
