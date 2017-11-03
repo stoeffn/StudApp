@@ -51,6 +51,13 @@
 		2448D4BC1FA8E0AB00DAB97E /* ApiCredentialsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4B41FA8E0AB00DAB97E /* ApiCredentialsTests.swift */; };
 		2448D4BD1FA8E0AB00DAB97E /* TestableApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4B51FA8E0AB00DAB97E /* TestableApiRoutes.swift */; };
 		246F3ABA1FAC7BEA00A477FF /* discovery.json in Resources */ = {isa = PBXBuildFile; fileRef = 246F3AB91FAC7BEA00A477FF /* discovery.json */; };
+		246F3AC51FAC879C00A477FF /* DataChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3ABE1FAC879C00A477FF /* DataChange.swift */; };
+		246F3AC61FAC879C00A477FF /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3ABF1FAC879C00A477FF /* DataSource.swift */; };
+		246F3AC71FAC879C00A477FF /* DataSourceDelegate+UITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3AC01FAC879C00A477FF /* DataSourceDelegate+UITableViewController.swift */; };
+		246F3AC81FAC879C00A477FF /* DataSourceSectionDelegate+UITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3AC11FAC879C00A477FF /* DataSourceSectionDelegate+UITableViewController.swift */; };
+		246F3AC91FAC879C00A477FF /* DataSourceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3AC21FAC879C00A477FF /* DataSourceSection.swift */; };
+		246F3ACA1FAC879C00A477FF /* DataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3AC31FAC879C00A477FF /* DataSourceDelegate.swift */; };
+		246F3ACB1FAC879C00A477FF /* DataSourceSectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3AC41FAC879C00A477FF /* DataSourceSectionDelegate.swift */; };
 		24D360C21FAA58A000BBBAED /* StudKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C01FAA58A000BBBAED /* StudKit.xcdatamodeld */; };
 		24D360CC1FAA5AFE00BBBAED /* CDIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */; };
 		24D360CD1FAA5AFE00BBBAED /* CDUpdatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C61FAA5AFE00BBBAED /* CDUpdatable.swift */; };
@@ -231,6 +238,13 @@
 		2448D4B41FA8E0AB00DAB97E /* ApiCredentialsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiCredentialsTests.swift; sourceTree = "<group>"; };
 		2448D4B51FA8E0AB00DAB97E /* TestableApiRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestableApiRoutes.swift; sourceTree = "<group>"; };
 		246F3AB91FAC7BEA00A477FF /* discovery.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = discovery.json; sourceTree = "<group>"; };
+		246F3ABE1FAC879C00A477FF /* DataChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataChange.swift; sourceTree = "<group>"; };
+		246F3ABF1FAC879C00A477FF /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		246F3AC01FAC879C00A477FF /* DataSourceDelegate+UITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataSourceDelegate+UITableViewController.swift"; sourceTree = "<group>"; };
+		246F3AC11FAC879C00A477FF /* DataSourceSectionDelegate+UITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataSourceSectionDelegate+UITableViewController.swift"; sourceTree = "<group>"; };
+		246F3AC21FAC879C00A477FF /* DataSourceSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceSection.swift; sourceTree = "<group>"; };
+		246F3AC31FAC879C00A477FF /* DataSourceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceDelegate.swift; sourceTree = "<group>"; };
+		246F3AC41FAC879C00A477FF /* DataSourceSectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceSectionDelegate.swift; sourceTree = "<group>"; };
 		24D360C11FAA58A000BBBAED /* StudKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StudKit.xcdatamodel; sourceTree = "<group>"; };
 		24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDIdentifiable.swift; sourceTree = "<group>"; };
 		24D360C61FAA5AFE00BBBAED /* CDUpdatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDUpdatable.swift; sourceTree = "<group>"; };
@@ -416,8 +430,9 @@
 		2448D4401FA8DB1E00DAB97E /* StudKit */ = {
 			isa = PBXGroup;
 			children = (
-				2448D45F1FA8DC1D00DAB97E /* Extensions */,
 				2448D49C1FA8E07E00DAB97E /* Api */,
+				2448D45F1FA8DC1D00DAB97E /* Extensions */,
+				246F3ABD1FAC877400A477FF /* DataSource */,
 				24D360BE1FAA585B00BBBAED /* Models */,
 				2448D4741FA8DE1700DAB97E /* Services */,
 				24D360EB1FAA5DA700BBBAED /* StudIp */,
@@ -545,6 +560,20 @@
 				2448D4B21FA8E0AB00DAB97E /* TestRoutes.swift */,
 			);
 			path = Api;
+			sourceTree = "<group>";
+		};
+		246F3ABD1FAC877400A477FF /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				246F3ABE1FAC879C00A477FF /* DataChange.swift */,
+				246F3ABF1FAC879C00A477FF /* DataSource.swift */,
+				246F3AC31FAC879C00A477FF /* DataSourceDelegate.swift */,
+				246F3AC01FAC879C00A477FF /* DataSourceDelegate+UITableViewController.swift */,
+				246F3AC21FAC879C00A477FF /* DataSourceSection.swift */,
+				246F3AC41FAC879C00A477FF /* DataSourceSectionDelegate.swift */,
+				246F3AC11FAC879C00A477FF /* DataSourceSectionDelegate+UITableViewController.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 		24D360BE1FAA585B00BBBAED /* Models */ = {
@@ -1021,6 +1050,7 @@
 				24D360EA1FAA5D7600BBBAED /* CourseModel+CDConvertible.swift in Sources */,
 				24D361061FAA5E2300BBBAED /* SemesterModel+CDConvertible.swift in Sources */,
 				24D360E71FAA5D7600BBBAED /* CourseService.swift in Sources */,
+				246F3AC71FAC879C00A477FF /* DataSourceDelegate+UITableViewController.swift in Sources */,
 				24D360C21FAA58A000BBBAED /* StudKit.xcdatamodeld in Sources */,
 				2448D4951FA8DF6000DAB97E /* StorageService.swift in Sources */,
 				2448D4A71FA8E07E00DAB97E /* Api+Decodable.swift in Sources */,
@@ -1037,12 +1067,14 @@
 				2448D4A61FA8E07E00DAB97E /* ApiRoutes.swift in Sources */,
 				24D360FF1FAA5E0800BBBAED /* User.swift in Sources */,
 				24D360E61FAA5D7600BBBAED /* CourseState.swift in Sources */,
+				246F3ACB1FAC879C00A477FF /* DataSourceSectionDelegate.swift in Sources */,
 				24D3610C1FAA5E4E00BBBAED /* Color.swift in Sources */,
 				24D3610A1FAA5E2300BBBAED /* SemesterState.swift in Sources */,
 				24D360CE1FAA5AFE00BBBAED /* CDConvertible.swift in Sources */,
 				2448D48F1FA8DEE800DAB97E /* FileManager+Utils.swift in Sources */,
 				24D360CC1FAA5AFE00BBBAED /* CDIdentifiable.swift in Sources */,
 				2448D45E1FA8DBA300DAB97E /* Result.swift in Sources */,
+				246F3AC81FAC879C00A477FF /* DataSourceSectionDelegate+UITableViewController.swift in Sources */,
 				24D360CD1FAA5AFE00BBBAED /* CDUpdatable.swift in Sources */,
 				24D360F71FAA5DE800BBBAED /* FileState.swift in Sources */,
 				24D360FE1FAA5E0800BBBAED /* UserModel+CDConvertible.swift in Sources */,
@@ -1060,15 +1092,19 @@
 				24D361001FAA5E0800BBBAED /* UserModel.swift in Sources */,
 				2448D4AC1FA8E07E00DAB97E /* URLSession+ApiCredentials.swift in Sources */,
 				24D361111FAA5F0500BBBAED /* StudIpService.swift in Sources */,
+				246F3AC91FAC879C00A477FF /* DataSourceSection.swift in Sources */,
 				24D361151FAA5F0E00BBBAED /* CollectionResponse.swift in Sources */,
 				24D360ED1FAA5DC500BBBAED /* Transforms.swift in Sources */,
 				2448D4A51FA8E07E00DAB97E /* Result+Api.swift in Sources */,
 				24D360D31FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift in Sources */,
 				24D360DF1FAA5D3800BBBAED /* String+HTML.swift in Sources */,
+				246F3ACA1FAC879C00A477FF /* DataSourceDelegate.swift in Sources */,
 				24D361071FAA5E2300BBBAED /* SemesterService.swift in Sources */,
 				24D361181FAA5F6200BBBAED /* CoreDataService.swift in Sources */,
+				246F3AC61FAC879C00A477FF /* DataSource.swift in Sources */,
 				24D360CF1FAA5AFE00BBBAED /* CDCreatable.swift in Sources */,
 				24D361161FAA5F0E00BBBAED /* Api+CollectionResponse.swift in Sources */,
+				246F3AC51FAC879C00A477FF /* DataChange.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
