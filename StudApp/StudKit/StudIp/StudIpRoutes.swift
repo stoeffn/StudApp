@@ -6,7 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-public enum StudIpRoutes: ApiRoutes {
+public enum StudIpRoutes : ApiRoutes {
     case semesters
 
     case courses(forUserId: String)

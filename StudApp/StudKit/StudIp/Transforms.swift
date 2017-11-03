@@ -6,7 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-struct StudIp {
+enum StudIp {
     static func transformIdPath(_ path: String?) -> String? {
         return path?
             .components(separatedBy: "/")
@@ -28,6 +28,4 @@ struct StudIp {
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .nilWhenEmpty
     }
-
-    private init() { }
 }
