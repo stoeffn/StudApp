@@ -60,6 +60,9 @@
 		246F3ACB1FAC879C00A477FF /* DataSourceSectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3AC41FAC879C00A477FF /* DataSourceSectionDelegate.swift */; };
 		246F3ACD1FAC881100A477FF /* CoursesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3ACC1FAC881100A477FF /* CoursesViewModel.swift */; };
 		24CFB5D11FB24E2500F30DEA /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D01FB24E2500F30DEA /* MainController.swift */; };
+		24CFB5D61FB24F4D00F30DEA /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D31FB24F4C00F30DEA /* Routable.swift */; };
+		24CFB5D71FB24F4D00F30DEA /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D41FB24F4C00F30DEA /* Routes.swift */; };
+		24CFB5D81FB24F4D00F30DEA /* UIViewController+Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D51FB24F4D00F30DEA /* UIViewController+Routes.swift */; };
 		24D360C21FAA58A000BBBAED /* StudKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C01FAA58A000BBBAED /* StudKit.xcdatamodeld */; };
 		24D360CC1FAA5AFE00BBBAED /* CDIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */; };
 		24D360CD1FAA5AFE00BBBAED /* CDUpdatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C61FAA5AFE00BBBAED /* CDUpdatable.swift */; };
@@ -249,6 +252,9 @@
 		246F3AC41FAC879C00A477FF /* DataSourceSectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceSectionDelegate.swift; sourceTree = "<group>"; };
 		246F3ACC1FAC881100A477FF /* CoursesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoursesViewModel.swift; sourceTree = "<group>"; };
 		24CFB5D01FB24E2500F30DEA /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		24CFB5D31FB24F4C00F30DEA /* Routable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
+		24CFB5D41FB24F4C00F30DEA /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
+		24CFB5D51FB24F4D00F30DEA /* UIViewController+Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Routes.swift"; sourceTree = "<group>"; };
 		24D360C11FAA58A000BBBAED /* StudKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StudKit.xcdatamodel; sourceTree = "<group>"; };
 		24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDIdentifiable.swift; sourceTree = "<group>"; };
 		24D360C61FAA5AFE00BBBAED /* CDUpdatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDUpdatable.swift; sourceTree = "<group>"; };
@@ -438,6 +444,7 @@
 				246F3ABD1FAC877400A477FF /* DataSource */,
 				2448D45F1FA8DC1D00DAB97E /* Extensions */,
 				24D360BE1FAA585B00BBBAED /* Models */,
+				24CFB5D21FB24F2700F30DEA /* Routable */,
 				2448D4741FA8DE1700DAB97E /* Services */,
 				24D360EB1FAA5DA700BBBAED /* StudIp */,
 				24D361641FAA646200BBBAED /* ViewModels */,
@@ -578,6 +585,16 @@
 				246F3AC11FAC879C00A477FF /* DataSourceSectionDelegate+UITableViewController.swift */,
 			);
 			path = DataSource;
+			sourceTree = "<group>";
+		};
+		24CFB5D21FB24F2700F30DEA /* Routable */ = {
+			isa = PBXGroup;
+			children = (
+				24CFB5D31FB24F4C00F30DEA /* Routable.swift */,
+				24CFB5D41FB24F4C00F30DEA /* Routes.swift */,
+				24CFB5D51FB24F4D00F30DEA /* UIViewController+Routes.swift */,
+			);
+			path = Routable;
 			sourceTree = "<group>";
 		};
 		24D360BE1FAA585B00BBBAED /* Models */ = {
@@ -1064,10 +1081,12 @@
 				2448D4A81FA8E07E00DAB97E /* Api+Download.swift in Sources */,
 				24D361121FAA5F0500BBBAED /* StudIpRoutes.swift in Sources */,
 				2448D4A91FA8E07E00DAB97E /* HttpMethod.swift in Sources */,
+				24CFB5D81FB24F4D00F30DEA /* UIViewController+Routes.swift in Sources */,
 				24D360F81FAA5DE800BBBAED /* FileModel+CDConvertible.swift in Sources */,
 				2448D4771FA8DE2A00DAB97E /* ServiceContainer.swift in Sources */,
 				2448D4971FA8DFB200DAB97E /* StudKitServiceProvider.swift in Sources */,
 				24D360DB1FAA5D3800BBBAED /* Int+NSNumber.swift in Sources */,
+				24CFB5D71FB24F4D00F30DEA /* Routes.swift in Sources */,
 				24D360DE1FAA5D3800BBBAED /* String+Utils.swift in Sources */,
 				241FD9651FA8FFAD00FBD750 /* UINavigationBar+Utils.swift in Sources */,
 				2448D4AA1FA8E07E00DAB97E /* ApiCredentials.swift in Sources */,
@@ -1103,6 +1122,7 @@
 				246F3AC91FAC879C00A477FF /* DataSourceSection.swift in Sources */,
 				24D361151FAA5F0E00BBBAED /* CollectionResponse.swift in Sources */,
 				24D360ED1FAA5DC500BBBAED /* Transforms.swift in Sources */,
+				24CFB5D61FB24F4D00F30DEA /* Routable.swift in Sources */,
 				2448D4A51FA8E07E00DAB97E /* Result+Api.swift in Sources */,
 				24D360D31FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift in Sources */,
 				24D360DF1FAA5D3800BBBAED /* String+HTML.swift in Sources */,
