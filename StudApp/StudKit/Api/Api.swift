@@ -10,11 +10,11 @@ class Api<Routes: ApiRoutes> {
     let baseUrl: URL
     let session: URLSession
 
-    init(baseUrl: URL, credentials: ApiCredentials? = nil) {
+    init(baseUrl: URL, session: URLSession = URLSession()) {
         self.baseUrl = baseUrl
-        self.session = URLSession(credentials: credentials)
+        self.session = session
     }
-
+    
     func url(for route: Routes, parameters: [URLQueryItem] = []) -> URL? {
         let url = baseUrl.appendingPathComponent(route.path)
         var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
