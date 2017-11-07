@@ -10,12 +10,14 @@ import UIKit
 import StudKit
 
 final class SignInController : UITableViewController, UITextFieldDelegate {
-    private let viewModel = SignInViewModel()
+    private var viewModel: SignInViewModel!
     
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        viewModel = SignInViewModel()
         viewModel.stateChanged = setState
     }
     
