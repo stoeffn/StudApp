@@ -6,8 +6,8 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-/// Completion handler that receives a result of the desired type or an error.
-public typealias ResultCallback<Value> = (Result<Value>) -> Void
+/// Closure, usually a completion handler, that receives a result of the desired type or an error.
+public typealias ResultHandler<Value> = (Result<Value>) -> Void
 
 /// Container for either a value or an optional error.
 ///

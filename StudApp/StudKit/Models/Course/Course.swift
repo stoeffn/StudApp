@@ -27,10 +27,10 @@ public final class Course : NSManagedObject, CDCreatable, CDIdentifiable, CDUpda
         state = CourseState(createIn: context)
     }
 
-    public func updateFiles(in context: NSManagedObjectContext, completionHandler: @escaping ResultCallback<[File]>) {
+    public func updateFiles(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[File]>) {
         let studIp = ServiceContainer.default[StudIpService.self]
         studIp.api.requestCompleteCollection(.files(forCourseId: id)) { (result: Result<[FileModel]>) in
-            File.update(using: result, in: context, completionHandler: completionHandler)
+            File.update(using: result, in: context, handler: handler)
         }
     }
 

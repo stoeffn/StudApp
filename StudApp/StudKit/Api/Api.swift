@@ -29,8 +29,8 @@ class Api<Routes: ApiRoutes> {
     }
 
     @discardableResult
-    func request(_ route: Routes, parameters: [URLQueryItem] = [], queue: DispatchQueue = DispatchQueue.main,
-                 completionHandler: @escaping ResultCallback<Data>) -> Progress {
+    func request(_ route: Routes, parameters: [URLQueryItem] = [], queue: DispatchQueue = .main,
+                 handler: @escaping ResultHandler<Data>) -> Progress {
         guard let url = self.url(for: route, parameters: parameters) else {
             fatalError("Cannot construct URL for route '\(route)'.")
         }
@@ -39,7 +39,7 @@ class Api<Routes: ApiRoutes> {
             let response = response as? HTTPURLResponse
             let result = Result(data, error: error, statusCode: response?.statusCode)
             queue.async {
-                completionHandler(result)
+                handler(result)
             }
         }
         task.resume()

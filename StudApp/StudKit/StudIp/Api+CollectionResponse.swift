@@ -12,27 +12,27 @@ extension Api {
     @discardableResult
     func requestCollection<Result>(_ route: Routes, afterOffset offset: Int = 0,
                                    itemsPerRequest: Int = defaultNumberOfItemsPerRequest,
-                                   completionHandler: @escaping ResultCallback<CollectionResponse<Result>>) -> Progress {
+                                   handler: @escaping ResultHandler<CollectionResponse<Result>>) -> Progress {
         let offsetQuery = URLQueryItem(name: "offset", value: String(offset))
         let limitQuery = URLQueryItem(name: "limit", value: String(itemsPerRequest))
         return requestDecoded(route, parameters: [offsetQuery, limitQuery]) { result in
-            completionHandler(result)
+            handler(result)
         }
     }
 
     func requestCompleteCollection<Value: Decodable>(_ route: Routes, afterOffset offset: Int = 0,
                                                      itemsPerRequest: Int = defaultNumberOfItemsPerRequest,
                                                      items initialItems: [Value] = [],
-                                                     completionHandler: @escaping ResultCallback<[Value]>) {
+                                                     handler: @escaping ResultHandler<[Value]>) {
         requestCollection(route, afterOffset: offset, itemsPerRequest: itemsPerRequest) { (result: Result<CollectionResponse<Value>>) in
             guard let collection = result.value else {
-                return completionHandler(result.replacingValue(nil))
+                return handler(result.replacingValue(nil))
             }
             let items = initialItems + collection.items
             if let offset = collection.pagination.nextOffset {
-                self.requestCompleteCollection(route, afterOffset: offset, items: items, completionHandler: completionHandler)
+                self.requestCompleteCollection(route, afterOffset: offset, items: items, handler: handler)
             } else {
-                completionHandler(result.replacingValue(items))
+                handler(result.replacingValue(items))
             }
         }
     }

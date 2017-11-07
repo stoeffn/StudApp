@@ -17,11 +17,11 @@ final class StudIpService {
         self.api = api
     }
     
-    func signIn(withUsername username: String, password: String, completionHandler: @escaping ResultCallback<Void>) {
+    func signIn(withUsername username: String, password: String, handler: @escaping ResultHandler<Void>) {
         // TODO: Research a more professional way for changing session credentials.
         api.session = URLSession(credentials: ApiCredentials(username: username, password: password))
         api.request(.discovery) { result in
-            completionHandler(result.replacingValue(()))
+            handler(result.replacingValue(()))
             // TODO: Save credentials.
         }
     }

@@ -9,13 +9,12 @@
 extension Api {
     @discardableResult
     func requestDecoded<Result: Decodable>(_ route: Routes, parameters: [URLQueryItem] = [],
-                                           queue: DispatchQueue = DispatchQueue.main,
-                                           completionHandler: @escaping ResultCallback<Result>) -> Progress {
+                                           queue: DispatchQueue = .main, handler: @escaping ResultHandler<Result>) -> Progress {
         guard let type = route.type as? Result.Type else {
             fatalError("Trying to decode response from untyped API route '\(route)'.")
         }
         return request(route, parameters: parameters, queue: queue) { result in
-            completionHandler(result.decoded(type))
+            handler(result.decoded(type))
         }
     }
 }

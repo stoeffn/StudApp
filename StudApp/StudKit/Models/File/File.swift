@@ -60,8 +60,8 @@ public final class File : NSManagedObject, CDCreatable, CDIdentifiable, CDUpdata
     }
 
     @discardableResult
-    public func download(completionHandler: @escaping ResultCallback<URL>) -> Progress {
+    public func download(handler: @escaping ResultHandler<URL>) -> Progress {
         let studIp = ServiceContainer.default[StudIpService.self]
-        return studIp.api.download(.fileContents(id: id), to: localUrl, completionHandler: completionHandler)
+        return studIp.api.download(.fileContents(id: id), to: localUrl, handler: handler)
     }
 }

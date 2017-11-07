@@ -12,15 +12,15 @@ protocol CDUpdatable { }
 
 extension CDUpdatable where Self : NSManagedObject {
     static func update<Model: CDConvertible>(using result: Result<[Model]>, in context: NSManagedObjectContext,
-                                             completionHandler: @escaping ResultCallback<[Self]>) {
+                                             handler: @escaping ResultHandler<[Self]>) {
         guard let models = result.value else {
-            return completionHandler(result.replacingValue(nil))
+            return handler(result.replacingValue(nil))
         }
         do {
             let coreDataModels = try models.flatMap { try $0.coreDataModel(in: context) as? Self }
-            completionHandler(result.replacingValue(coreDataModels))
+            handler(result.replacingValue(coreDataModels))
         } catch {
-            completionHandler(.failure(error))
+            handler(.failure(error))
         }
     }
 }

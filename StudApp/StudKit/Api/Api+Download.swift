@@ -8,8 +8,8 @@
 
 extension Api {
     @discardableResult
-    func download(_ route: Routes, parameters: [URLQueryItem] = [], queue: DispatchQueue = DispatchQueue.main,
-                  completionHandler: @escaping ResultCallback<URL>) -> Progress {
+    func download(_ route: Routes, parameters: [URLQueryItem] = [], queue: DispatchQueue = .main,
+                  handler: @escaping ResultHandler<URL>) -> Progress {
         guard let url = self.url(for: route, parameters: parameters) else {
             fatalError("Cannot construct URL for route '\(route)'.")
         }
@@ -18,7 +18,7 @@ extension Api {
             let response = response as? HTTPURLResponse
             let result = Result(url, error: error, statusCode: response?.statusCode)
             queue.async {
-                completionHandler(result)
+                handler(result)
             }
         }
         task.resume()
@@ -27,16 +27,16 @@ extension Api {
 
     @discardableResult
     func download(_ route: Routes, to destination: URL, parameters: [URLQueryItem] = [],
-                  queue: DispatchQueue = DispatchQueue.main, completionHandler: @escaping ResultCallback<URL>) -> Progress {
+                  queue: DispatchQueue = .main, handler: @escaping ResultHandler<URL>) -> Progress {
         return download(route, parameters: parameters, queue: queue) { result in
-            guard let url = result.value else { return completionHandler(result) }
+            guard let url = result.value else { return handler(result) }
             do {
                 let fileManager = FileManager.default
                 try FileManager.default.createIntermediateDirectories(forFileAt: destination)
                 try fileManager.moveItem(at: url, to: destination)
-                completionHandler(result.replacingValue(destination))
+                handler(result.replacingValue(destination))
             } catch {
-                completionHandler(.failure(error))
+                handler(.failure(error))
             }
         }
     }

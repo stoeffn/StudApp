@@ -10,12 +10,13 @@
 
 final class MockApi<Routes : TestableApiRoutes> : Api<Routes> {
     @discardableResult
-    override func request(_ route: Routes, parameters: [URLQueryItem] = [], completionHandler: @escaping ResultCallback<Data>) -> Progress {
+    override func request(_ route: Routes, parameters: [URLQueryItem] = [], queue: DispatchQueue = .main,
+                          handler: @escaping ResultHandler<Data>) -> Progress {
         do {
             let data = try route.testData(for: parameters)
-            completionHandler(.success(data))
+            handler(.success(data))
         } catch {
-            completionHandler(.failure(error))
+            handler(.failure(error))
         }
         return Progress()
     }
