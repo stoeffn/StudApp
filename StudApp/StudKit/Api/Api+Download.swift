@@ -8,7 +8,8 @@
 
 extension Api {
     @discardableResult
-    func download(_ route: Routes, parameters: [URLQueryItem] = [], completionHandler: @escaping ResultCallback<URL>) -> Progress {
+    func download(_ route: Routes, parameters: [URLQueryItem] = [], queue: DispatchQueue = DispatchQueue.main,
+                  completionHandler: @escaping ResultCallback<URL>) -> Progress {
         guard let url = self.url(for: route, parameters: parameters) else {
             fatalError("Cannot construct URL for route '\(route)'.")
         }
@@ -16,7 +17,9 @@ extension Api {
         let task = session.downloadTask(with: request) { url, response, error in
             let response = response as? HTTPURLResponse
             let result = Result(url, error: error, statusCode: response?.statusCode)
-            completionHandler(result)
+            queue.async {
+                completionHandler(result)
+            }
         }
         task.resume()
         return task.progress
@@ -24,8 +27,8 @@ extension Api {
 
     @discardableResult
     func download(_ route: Routes, to destination: URL, parameters: [URLQueryItem] = [],
-                  completionHandler: @escaping ResultCallback<URL>) -> Progress {
-        return download(route, parameters: parameters) { result in
+                  queue: DispatchQueue = DispatchQueue.main, completionHandler: @escaping ResultCallback<URL>) -> Progress {
+        return download(route, parameters: parameters, queue: queue) { result in
             guard let url = result.value else { return completionHandler(result) }
             do {
                 let fileManager = FileManager.default

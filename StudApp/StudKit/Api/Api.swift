@@ -8,13 +8,13 @@
 
 class Api<Routes: ApiRoutes> {
     let baseUrl: URL
-    let session: URLSession
+    var session: URLSession
 
     init(baseUrl: URL, session: URLSession = URLSession()) {
         self.baseUrl = baseUrl
         self.session = session
     }
-    
+
     func url(for route: Routes, parameters: [URLQueryItem] = []) -> URL? {
         let url = baseUrl.appendingPathComponent(route.path)
         var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
@@ -29,7 +29,8 @@ class Api<Routes: ApiRoutes> {
     }
 
     @discardableResult
-    func request(_ route: Routes, parameters: [URLQueryItem] = [], completionHandler: @escaping ResultCallback<Data>) -> Progress {
+    func request(_ route: Routes, parameters: [URLQueryItem] = [], queue: DispatchQueue = DispatchQueue.main,
+                 completionHandler: @escaping ResultCallback<Data>) -> Progress {
         guard let url = self.url(for: route, parameters: parameters) else {
             fatalError("Cannot construct URL for route '\(route)'.")
         }
@@ -37,7 +38,9 @@ class Api<Routes: ApiRoutes> {
         let task = session.dataTask(with: request) { data, response, error in
             let response = response as? HTTPURLResponse
             let result = Result(data, error: error, statusCode: response?.statusCode)
-            completionHandler(result)
+            queue.async {
+                completionHandler(result)
+            }
         }
         task.resume()
         return task.progress
