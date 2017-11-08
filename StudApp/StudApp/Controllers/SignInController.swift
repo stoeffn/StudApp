@@ -9,7 +9,7 @@
 import UIKit
 import StudKit
 
-final class SignInController : UITableViewController, UITextFieldDelegate {
+final class SignInController : UITableViewController, UITextFieldDelegate, Routable {
     private var viewModel: SignInViewModel!
     
     // MARK: - Life Cycle
@@ -19,6 +19,10 @@ final class SignInController : UITableViewController, UITextFieldDelegate {
 
         viewModel = SignInViewModel()
         viewModel.stateChanged = setState
+    }
+
+    func prepareDependencies(for route: Routes) {
+        // TODO
     }
     
     // MARK: - User Interface

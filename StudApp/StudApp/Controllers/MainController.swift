@@ -14,6 +14,12 @@ class MainController : UITabBarController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        performSegue(withIdentifier: "signIn", sender: self)
+        performSegue(withRoute: Segues.signIn)
+    }
+
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        prepare(for: Segues.signIn, destination: segue.destination)
     }
 }
