@@ -44,7 +44,7 @@ public final class SignInViewModel {
             case .success:
                 self.state = .success
             case let .failure(error):
-                self.state = .failure(error?.localizedDescription ?? "There was an error signing in :/")
+                self.state = .failure(error?.localizedDescription ?? "Please check your username and password")
             }
         }
     }

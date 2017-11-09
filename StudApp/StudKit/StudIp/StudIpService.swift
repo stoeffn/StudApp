@@ -17,12 +17,17 @@ final class StudIpService {
         self.api = api
     }
     
+    /// Try to sign into Stud.IP using the credentials provided.
     func signIn(withUsername username: String, password: String, handler: @escaping ResultHandler<Void>) {
-        // TODO: Research a more professional way for changing session credentials.
-        api.session = URLSession(credentials: ApiCredentials(username: username, password: password))
+        let credential = URLCredential(user: username, password: password, persistence: .forSession)
+        URLCredentialStorage.shared.setDefaultCredential(credential, for: api.protectionSpace)
+        
         api.request(.discovery) { result in
+            if result.isSuccess {
+                let validatedCredential = URLCredential(user: username, password: password, persistence: .synchronizable)
+                URLCredentialStorage.shared.setDefaultCredential(validatedCredential, for: self.api.protectionSpace)
+            }
             handler(result.replacingValue(()))
-            // TODO: Save credentials.
         }
     }
 }

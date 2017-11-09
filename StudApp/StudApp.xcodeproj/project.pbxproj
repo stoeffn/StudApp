@@ -37,12 +37,8 @@
 		2448D49B1FA8E01B00DAB97E /* Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D49A1FA8E01B00DAB97E /* Setup.swift */; };
 		2448D4A51FA8E07E00DAB97E /* Result+Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D49D1FA8E07E00DAB97E /* Result+Api.swift */; };
 		2448D4A61FA8E07E00DAB97E /* ApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D49E1FA8E07E00DAB97E /* ApiRoutes.swift */; };
-		2448D4A71FA8E07E00DAB97E /* Api+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D49F1FA8E07E00DAB97E /* Api+Decodable.swift */; };
-		2448D4A81FA8E07E00DAB97E /* Api+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4A01FA8E07E00DAB97E /* Api+Download.swift */; };
 		2448D4A91FA8E07E00DAB97E /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4A11FA8E07E00DAB97E /* HttpMethod.swift */; };
-		2448D4AA1FA8E07E00DAB97E /* ApiCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4A21FA8E07E00DAB97E /* ApiCredentials.swift */; };
 		2448D4AB1FA8E07E00DAB97E /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4A31FA8E07E00DAB97E /* Api.swift */; };
-		2448D4AC1FA8E07E00DAB97E /* URLSession+ApiCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4A41FA8E07E00DAB97E /* URLSession+ApiCredentials.swift */; };
 		2448D4B61FA8E0AB00DAB97E /* Result+ApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4AE1FA8E0AB00DAB97E /* Result+ApiTests.swift */; };
 		2448D4B71FA8E0AB00DAB97E /* ApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4AF1FA8E0AB00DAB97E /* ApiTests.swift */; };
 		2448D4B81FA8E0AB00DAB97E /* MockApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4B01FA8E0AB00DAB97E /* MockApi.swift */; };
@@ -230,12 +226,8 @@
 		2448D49A1FA8E01B00DAB97E /* Setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setup.swift; sourceTree = "<group>"; };
 		2448D49D1FA8E07E00DAB97E /* Result+Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Result+Api.swift"; sourceTree = "<group>"; };
 		2448D49E1FA8E07E00DAB97E /* ApiRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRoutes.swift; sourceTree = "<group>"; };
-		2448D49F1FA8E07E00DAB97E /* Api+Decodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Api+Decodable.swift"; sourceTree = "<group>"; };
-		2448D4A01FA8E07E00DAB97E /* Api+Download.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Api+Download.swift"; sourceTree = "<group>"; };
 		2448D4A11FA8E07E00DAB97E /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
-		2448D4A21FA8E07E00DAB97E /* ApiCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiCredentials.swift; sourceTree = "<group>"; };
 		2448D4A31FA8E07E00DAB97E /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
-		2448D4A41FA8E07E00DAB97E /* URLSession+ApiCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSession+ApiCredentials.swift"; sourceTree = "<group>"; };
 		2448D4AE1FA8E0AB00DAB97E /* Result+ApiTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Result+ApiTests.swift"; sourceTree = "<group>"; };
 		2448D4AF1FA8E0AB00DAB97E /* ApiTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiTests.swift; sourceTree = "<group>"; };
 		2448D4B01FA8E0AB00DAB97E /* MockApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockApi.swift; sourceTree = "<group>"; };
@@ -551,13 +543,9 @@
 			isa = PBXGroup;
 			children = (
 				2448D4A31FA8E07E00DAB97E /* Api.swift */,
-				2448D49F1FA8E07E00DAB97E /* Api+Decodable.swift */,
-				2448D4A01FA8E07E00DAB97E /* Api+Download.swift */,
 				2448D49E1FA8E07E00DAB97E /* ApiRoutes.swift */,
-				2448D4A21FA8E07E00DAB97E /* ApiCredentials.swift */,
 				2448D4A11FA8E07E00DAB97E /* HttpMethod.swift */,
 				2448D49D1FA8E07E00DAB97E /* Result+Api.swift */,
-				2448D4A41FA8E07E00DAB97E /* URLSession+ApiCredentials.swift */,
 			);
 			path = Api;
 			sourceTree = "<group>";
@@ -1081,8 +1069,6 @@
 				246F3AC71FAC879C00A477FF /* DataSourceDelegate+UITableViewController.swift in Sources */,
 				24D360C21FAA58A000BBBAED /* StudKit.xcdatamodeld in Sources */,
 				2448D4951FA8DF6000DAB97E /* StorageService.swift in Sources */,
-				2448D4A71FA8E07E00DAB97E /* Api+Decodable.swift in Sources */,
-				2448D4A81FA8E07E00DAB97E /* Api+Download.swift in Sources */,
 				24D361121FAA5F0500BBBAED /* StudIpRoutes.swift in Sources */,
 				2448D4A91FA8E07E00DAB97E /* HttpMethod.swift in Sources */,
 				24CFB5D81FB24F4D00F30DEA /* UIViewController+Routes.swift in Sources */,
@@ -1093,7 +1079,6 @@
 				24CFB5D71FB24F4D00F30DEA /* Routes.swift in Sources */,
 				24D360DE1FAA5D3800BBBAED /* String+Utils.swift in Sources */,
 				241FD9651FA8FFAD00FBD750 /* UINavigationBar+Utils.swift in Sources */,
-				2448D4AA1FA8E07E00DAB97E /* ApiCredentials.swift in Sources */,
 				2448D4A61FA8E07E00DAB97E /* ApiRoutes.swift in Sources */,
 				24D360FF1FAA5E0800BBBAED /* User.swift in Sources */,
 				24D360E61FAA5D7600BBBAED /* CourseState.swift in Sources */,
@@ -1121,7 +1106,6 @@
 				24D361091FAA5E2300BBBAED /* Semester.swift in Sources */,
 				24D361081FAA5E2300BBBAED /* SemesterModel.swift in Sources */,
 				24D361001FAA5E0800BBBAED /* UserModel.swift in Sources */,
-				2448D4AC1FA8E07E00DAB97E /* URLSession+ApiCredentials.swift in Sources */,
 				24D361111FAA5F0500BBBAED /* StudIpService.swift in Sources */,
 				246F3AC91FAC879C00A477FF /* DataSourceSection.swift in Sources */,
 				24D361151FAA5F0E00BBBAED /* CollectionResponse.swift in Sources */,
@@ -1349,12 +1333,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X63VKA93X8;
 				INFOPLIST_FILE = StudApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SteffenRyll.StudApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1365,12 +1351,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X63VKA93X8;
 				INFOPLIST_FILE = StudApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SteffenRyll.StudApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
