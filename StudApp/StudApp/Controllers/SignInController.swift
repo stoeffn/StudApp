@@ -44,6 +44,8 @@ final class SignInController : UITableViewController, UITextFieldDelegate, Routa
         didSet {
             guard isLoading != oldValue else { return }
             isErrorCellHidden = isLoading
+            usernameField.isEnabled = !isLoading
+            passwordField.isEnabled = !isLoading
             signInButton.isEnabled = !isLoading
             navigationItem.setActivityIndicatorHidden(!isLoading)
         }
