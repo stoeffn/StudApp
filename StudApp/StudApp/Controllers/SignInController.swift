@@ -19,6 +19,9 @@ final class SignInController : UITableViewController, UITextFieldDelegate, Routa
 
         viewModel = SignInViewModel()
         viewModel.stateChanged = setState
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow),
+                                               name: .UIKeyboardDidShow, object: nil)
     }
 
     func prepareDependencies(for route: Routes) {
@@ -76,18 +79,34 @@ final class SignInController : UITableViewController, UITextFieldDelegate, Routa
             isErrorCellHidden = true
         }
     }
+    
+    func scrollToBottom() {
+        let lastSectionIndex = tableView.numberOfSections - 1
+        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
+        let lastIndexPath = IndexPath(row: lastRowIndex, section: lastSectionIndex)
+        tableView.scrollToRow(at: lastIndexPath, at: .top, animated: true)
+    }
+    
+    @objc
+    private dynamic func keyboardDidShow() {
+        scrollToBottom()
+    }
 
     // MARK: - User Interaction
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
-        case usernameField: passwordField.becomeFirstResponder()
-        default: break
+        case usernameField:
+            passwordField.becomeFirstResponder()
+            scrollToBottom()
+        default:
+            break
         }
         return false
     }
     
-    @IBAction func signInButtonTapped(_ sender: Any) {
+    @IBAction
+    private func signInButtonTapped(_ sender: Any) {
         guard let username = usernameField.text, let password = passwordField.text else { return }
         viewModel.attemptSignIn(withUsername: username, password: password)
     }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13770" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B8u-Ro-L8Q">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13528" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B8u-Ro-L8Q">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13770"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13526"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -184,7 +184,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="cZS-9a-wlw" firstAttribute="leading" relation="lessThanOrEqual" secondItem="X6o-fM-1n3" secondAttribute="leadingMargin" constant="32" id="8yw-TX-Y8d"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cZS-9a-wlw" secondAttribute="bottom" constant="8" id="N7g-SX-YJV"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cZS-9a-wlw" secondAttribute="bottom" constant="16" id="N7g-SX-YJV"/>
                                                 <constraint firstItem="cZS-9a-wlw" firstAttribute="top" secondItem="X6o-fM-1n3" secondAttribute="top" constant="16" id="YPo-WU-A4d"/>
                                                 <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="cZS-9a-wlw" secondAttribute="trailing" constant="32" id="jF7-VR-Cfg"/>
                                             </constraints>
