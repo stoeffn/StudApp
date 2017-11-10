@@ -9,11 +9,14 @@
 class Api<Routes: ApiRoutes> {
     private let defaultPort = 443
     private let baseUrl: URL
+    private let realm: String?
     private let session: URLSession
     private let authenticationMethod: String?
 
-    init(baseUrl: URL, session: URLSession = .shared, authenticationMethod: String = NSURLAuthenticationMethodHTTPBasic) {
+    init(baseUrl: URL, realm : String? = nil, session: URLSession = .shared,
+         authenticationMethod: String = NSURLAuthenticationMethodHTTPBasic) {
         self.baseUrl = baseUrl
+        self.realm = realm
         self.session = session
         self.authenticationMethod = authenticationMethod
     }
@@ -23,7 +26,7 @@ class Api<Routes: ApiRoutes> {
             fatalError("Cannot get host or scheme from base URL '\(baseUrl)'.")
         }
         return URLProtectionSpace(host: host, port: baseUrl.port ?? defaultPort, protocol: scheme,
-                                  realm: nil, authenticationMethod: authenticationMethod)
+                                  realm: realm, authenticationMethod: authenticationMethod)
     }
 
     func url(for route: Routes, parameters: [URLQueryItem] = []) -> URL? {

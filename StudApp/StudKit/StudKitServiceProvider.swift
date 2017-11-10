@@ -10,6 +10,7 @@ public class StudKitServiceProvider : ServiceProvider {
     public init() { }
     
     static let studIpBaseUrl = URL(string: "https://studip.uni-hannover.de/api.php")!
+    static let studIpRealm = "luh"
     static let appGroupIdentifier = "group.SteffenRyll.StudKit"
     
     func provideJsonDecoder() -> JSONDecoder {
@@ -27,7 +28,7 @@ public class StudKitServiceProvider : ServiceProvider {
     }
     
     func provideStudIpService() -> StudIpService {
-        return StudIpService(baseUrl: StudKitServiceProvider.studIpBaseUrl)
+        return StudIpService(baseUrl: StudKitServiceProvider.studIpBaseUrl, realm: StudKitServiceProvider.studIpRealm)
     }
     
     func provideSemesterService() -> SemesterService {

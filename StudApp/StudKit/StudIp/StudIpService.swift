@@ -9,8 +9,8 @@
 final class StudIpService {
     let api: Api<StudIpRoutes>
     
-    init(baseUrl: URL) {
-        api = Api<StudIpRoutes>(baseUrl: baseUrl)
+    init(baseUrl: URL, realm: String) {
+        api = Api<StudIpRoutes>(baseUrl: baseUrl, realm: realm)
     }
 
     init(api: Api<StudIpRoutes>) {
