@@ -27,12 +27,26 @@ final class StudIpService {
         URLCredentialStorage.shared.setDefaultCredential(credential, for: api.protectionSpace)
         
         api.request(.discovery) { result in
-            if result.isSuccess {
-                let validatedCredential = URLCredential(user: username, password: password, persistence: .synchronizable)
-                URLCredentialStorage.shared.setDefaultCredential(validatedCredential, for: self.api.protectionSpace)
-                Defaults[.isSignedIn] = true
+            guard result.isSuccess else {
+                return handler(result.replacingValue(()))
             }
-            handler(result.replacingValue(()))
+
+            let validatedCredential = URLCredential(user: username, password: password, persistence: .synchronizable)
+            URLCredentialStorage.shared.setDefaultCredential(validatedCredential, for: self.api.protectionSpace)
+            Defaults[.isSignedIn] = true
+
+            self.updateMainData(handler: handler)
+        }
+    }
+
+    func updateMainData(handler: @escaping ResultHandler<Void>) {
+        let coreDataService = ServiceContainer.default[CoreDataService.self]
+        let semesterService = ServiceContainer.default[SemesterService.self]
+
+        coreDataService.performBackgroundTask { context in
+            semesterService.updateSemesters(in: context) { result in
+                handler(result.replacingValue(()))
+            }
         }
     }
 }
