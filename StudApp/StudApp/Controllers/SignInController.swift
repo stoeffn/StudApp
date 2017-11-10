@@ -79,6 +79,7 @@ final class SignInController : UITableViewController, UITextFieldDelegate, Routa
         case .success:
             isLoading = false
             isErrorCellHidden = true
+            dismiss(animated: true, completion: nil)
         }
     }
     

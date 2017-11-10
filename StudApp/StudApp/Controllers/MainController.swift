@@ -7,14 +7,25 @@
 //
 
 import UIKit
+import StudKit
 
 class MainController : UITabBarController {
+    private var viewModel: MainViewModel!
+
     // MARK: - Life Cycle
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        viewModel = MainViewModel()
+    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        performSegue(withRoute: Segues.signIn)
+        if !viewModel.isSignedIn {
+            performSegue(withRoute: Segues.signIn)
+        }
     }
 
     // MARK: - Navigation
