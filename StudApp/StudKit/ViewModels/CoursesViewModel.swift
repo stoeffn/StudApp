@@ -9,7 +9,8 @@
 import CoreData
 
 public final class CoursesViewModel : NSObject {
-    private let coreData = ServiceContainer.default[CoreDataService.self]
+    private let coreDataService = ServiceContainer.default[CoreDataService.self]
+    private let courseService = ServiceContainer.default[CourseService.self]
     
     private var courses = [Course]()
     
@@ -21,8 +22,16 @@ public final class CoursesViewModel : NSObject {
     }
     
     private(set) lazy var controller: NSFetchedResultsController<Course>
-        = NSFetchedResultsController(fetchRequest: Course.fetchRequest(), managedObjectContext: coreData.viewContext,
+        = NSFetchedResultsController(fetchRequest: Course.fetchRequest(), managedObjectContext: coreDataService.viewContext,
                                      sectionNameKeyPath: nil, cacheName: nil)
+
+    func update(handler: @escaping ResultHandler<Void>) {
+        coreDataService.performBackgroundTask { context in
+            self.courseService.updateCourses(in: context) { result in
+                handler(result.replacingValue(()))
+            }
+        }
+    }
 }
 
 // MARK: - Data Source Section
