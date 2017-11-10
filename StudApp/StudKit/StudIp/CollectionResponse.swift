@@ -6,7 +6,8 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-struct CollectionResponse<Element : Decodable> : Decodable {
+/// Decoded representation of a generic Stud.IP API response that encapsulates a paginated collection.
+struct CollectionResponse<Element: Decodable> : Decodable {
     struct Pagination : Decodable {
         let total: Int
         let offset: Int
