@@ -6,17 +6,26 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+/// Selection of API routes exposed by the Stud.IP API.
 public enum StudIpRoutes : ApiRoutes {
+    /// Contains information on available routes and access restrictions.
     case discovery
-    
+
+    /// Returns all semesters, usually starting about ten years in the past and ending one year in the
+    /// future.
     case semesters
 
+    /// Returns all courses that a user with the given id is enrolled in.
     case courses(forUserId: String)
 
+    /// Returns the complete file tree for a course with the given id, including all folder and document
+    /// meta data.
     case files(forCourseId: String)
 
+    /// Returns the contents of a file with the given id.
     case fileContents(id: String)
 
+    /// Returns the profile picture at the URL given.
     case profilePicture(URL)
 
     var path: String {
