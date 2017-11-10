@@ -60,6 +60,8 @@
 		24CFB5D71FB24F4D00F30DEA /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D41FB24F4C00F30DEA /* Routes.swift */; };
 		24CFB5D81FB24F4D00F30DEA /* UIViewController+Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D51FB24F4D00F30DEA /* UIViewController+Routes.swift */; };
 		24CFB5DA1FB2500900F30DEA /* Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D91FB2500900F30DEA /* Segues.swift */; };
+		24D178E71FB6020200EC5F4A /* SwiftyUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D178E61FB6020200EC5F4A /* SwiftyUserDefaults.swift */; };
+		24D178E91FB605BF00EC5F4A /* DefaultsKeys+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D178E81FB605BF00EC5F4A /* DefaultsKeys+Keys.swift */; };
 		24D360C21FAA58A000BBBAED /* StudKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C01FAA58A000BBBAED /* StudKit.xcdatamodeld */; };
 		24D360CC1FAA5AFE00BBBAED /* CDIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */; };
 		24D360CD1FAA5AFE00BBBAED /* CDUpdatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C61FAA5AFE00BBBAED /* CDUpdatable.swift */; };
@@ -249,6 +251,8 @@
 		24CFB5D41FB24F4C00F30DEA /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		24CFB5D51FB24F4D00F30DEA /* UIViewController+Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Routes.swift"; sourceTree = "<group>"; };
 		24CFB5D91FB2500900F30DEA /* Segues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segues.swift; sourceTree = "<group>"; };
+		24D178E61FB6020200EC5F4A /* SwiftyUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyUserDefaults.swift; sourceTree = "<group>"; };
+		24D178E81FB605BF00EC5F4A /* DefaultsKeys+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultsKeys+Keys.swift"; sourceTree = "<group>"; };
 		24D360C11FAA58A000BBBAED /* StudKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StudKit.xcdatamodel; sourceTree = "<group>"; };
 		24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDIdentifiable.swift; sourceTree = "<group>"; };
 		24D360C61FAA5AFE00BBBAED /* CDUpdatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDUpdatable.swift; sourceTree = "<group>"; };
@@ -435,6 +439,7 @@
 		2448D4401FA8DB1E00DAB97E /* StudKit */ = {
 			isa = PBXGroup;
 			children = (
+				24D178E51FB601F200EC5F4A /* Vendors */,
 				2448D49C1FA8E07E00DAB97E /* Api */,
 				246F3ABD1FAC877400A477FF /* DataSource */,
 				2448D45F1FA8DC1D00DAB97E /* Extensions */,
@@ -443,6 +448,7 @@
 				2448D4741FA8DE1700DAB97E /* Services */,
 				24D360EB1FAA5DA700BBBAED /* StudIp */,
 				24D361641FAA646200BBBAED /* ViewModels */,
+				24D178E81FB605BF00EC5F4A /* DefaultsKeys+Keys.swift */,
 				2448D45D1FA8DBA300DAB97E /* Result.swift */,
 				2448D4961FA8DFB200DAB97E /* StudKitServiceProvider.swift */,
 				2448D4411FA8DB1E00DAB97E /* StudKit.h */,
@@ -586,6 +592,14 @@
 				24CFB5D51FB24F4D00F30DEA /* UIViewController+Routes.swift */,
 			);
 			path = Routable;
+			sourceTree = "<group>";
+		};
+		24D178E51FB601F200EC5F4A /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				24D178E61FB6020200EC5F4A /* SwiftyUserDefaults.swift */,
+			);
+			path = Vendors;
 			sourceTree = "<group>";
 		};
 		24D360BE1FAA585B00BBBAED /* Models */ = {
@@ -1074,6 +1088,7 @@
 				24CFB5D81FB24F4D00F30DEA /* UIViewController+Routes.swift in Sources */,
 				24D360F81FAA5DE800BBBAED /* FileModel+CDConvertible.swift in Sources */,
 				2448D4771FA8DE2A00DAB97E /* ServiceContainer.swift in Sources */,
+				24D178E71FB6020200EC5F4A /* SwiftyUserDefaults.swift in Sources */,
 				2448D4971FA8DFB200DAB97E /* StudKitServiceProvider.swift in Sources */,
 				24D360DB1FAA5D3800BBBAED /* Int+NSNumber.swift in Sources */,
 				24CFB5D71FB24F4D00F30DEA /* Routes.swift in Sources */,
@@ -1096,6 +1111,7 @@
 				24D360FA1FAA5DE800BBBAED /* FileModel.swift in Sources */,
 				24D3610E1FAA5ED600BBBAED /* CDColorable.swift in Sources */,
 				24D360F61FAA5DE800BBBAED /* File.swift in Sources */,
+				24D178E91FB605BF00EC5F4A /* DefaultsKeys+Keys.swift in Sources */,
 				24D361661FAA648B00BBBAED /* SignInViewModel.swift in Sources */,
 				2448D4621FA8DC3900DAB97E /* String+Error.swift in Sources */,
 				24D360E81FAA5D7600BBBAED /* Course.swift in Sources */,
