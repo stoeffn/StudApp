@@ -10,12 +10,23 @@ import UIKit
 import StudKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+final class AppDelegate: UIResponder, UIApplicationDelegate {
+    private var coreDataService: CoreDataService?
+
     var window: UIWindow?
 
     func application(_: UIApplication,
                      didFinishLaunchingWithOptions _: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         ServiceContainer.default.register(providers: StudKitServiceProvider())
+        coreDataService = ServiceContainer.default[CoreDataService.self]
         return true
+    }
+
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        try? coreDataService?.viewContext.saveWhenChanged()
+    }
+
+    func applicationWillTerminate(_ application: UIApplication) {
+        try? coreDataService?.viewContext.saveWhenChanged()
     }
 }
