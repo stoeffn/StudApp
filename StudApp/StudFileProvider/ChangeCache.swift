@@ -1,5 +1,5 @@
 //
-//  ChangeTracker.swift
+//  ChangeCache.swift
 //  StudFileProvider
 //
 //  Created by Steffen Ryll on 11.11.17.
@@ -9,10 +9,12 @@
 import FileProvider
 import StudKit
 
-final class ChangeTracker<Item: CDIdentifiable>: DataSourceSectionDelegate {
+/// Caches changes to a data source section.
+final class ChangeCache<Item: CDIdentifiable> {
     private(set) var updatedItems = [Item]()
     private(set) var deletedItemIdentifiers = [NSFileProviderItemIdentifier]()
 
+    /// File provider sync anchor, containing a UNIX timestamp.
     var currentSyncAnchor: NSFileProviderSyncAnchor {
         let now = Date()
         guard let data = String(now.timeIntervalSince1970).data(using: .utf8) else {
@@ -21,11 +23,16 @@ final class ChangeTracker<Item: CDIdentifiable>: DataSourceSectionDelegate {
         return NSFileProviderSyncAnchor(data)
     }
 
+    /// Clears the cache.
     func flush() {
         updatedItems.removeAll()
         deletedItemIdentifiers.removeAll()
     }
+}
 
+// MARK: - Data Source Section Delegate
+
+extension ChangeCache: DataSourceSectionDelegate {
     func data<Section: DataSourceSection>(changedIn row: Section.Row, at index: Int, change: DataChange<Section.Row, Int>,
                                           in section: Section) {
         guard let item = row as? Item else { fatalError() }
