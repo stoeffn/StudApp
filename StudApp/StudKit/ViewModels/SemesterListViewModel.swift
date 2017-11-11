@@ -1,5 +1,5 @@
 //
-//  SemestersViewModel.swift
+//  SemesterListViewModel.swift
 //  StudKit
 //
 //  Created by Steffen Ryll on 11.11.17.
@@ -8,7 +8,7 @@
 
 import CoreData
 
-public final class SemestersViewModel: NSObject {
+public final class SemesterListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let semesterService = ServiceContainer.default[SemesterService.self]
 
@@ -25,6 +25,10 @@ public final class SemestersViewModel: NSObject {
         = NSFetchedResultsController(fetchRequest: Semester.fetchRequest(), managedObjectContext: coreDataService.viewContext,
                                      sectionNameKeyPath: nil, cacheName: nil)
 
+    func fetch() {
+        try? controller.performFetch()
+    }
+
     func update(handler: @escaping ResultHandler<Void>) {
         coreDataService.performBackgroundTask { context in
             self.semesterService.updateSemesters(in: context) { result in
@@ -36,7 +40,7 @@ public final class SemestersViewModel: NSObject {
 
 // MARK: - Data Source Section
 
-extension SemestersViewModel: DataSourceSection {
+extension SemesterListViewModel: DataSourceSection {
     public typealias Row = Semester
 
     public var numberOfRows: Int {
@@ -50,7 +54,7 @@ extension SemestersViewModel: DataSourceSection {
 
 // MARK: - Fetched Results Controller Delegate
 
-extension SemestersViewModel: NSFetchedResultsControllerDelegate {
+extension SemesterListViewModel: NSFetchedResultsControllerDelegate {
     public func controllerWillChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
         delegate?.dataWillChange(in: self)
     }

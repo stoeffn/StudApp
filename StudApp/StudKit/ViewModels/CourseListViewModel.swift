@@ -1,5 +1,5 @@
 //
-//  CoursesViewModel.swift
+//  CourseListViewModel.swift
 //  StudKit
 //
 //  Created by Steffen Ryll on 03.11.17.
@@ -8,7 +8,7 @@
 
 import CoreData
 
-public final class CoursesViewModel: NSObject {
+public final class CourseListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let courseService = ServiceContainer.default[CourseService.self]
 
@@ -36,7 +36,7 @@ public final class CoursesViewModel: NSObject {
 
 // MARK: - Data Source Section
 
-extension CoursesViewModel: DataSourceSection {
+extension CourseListViewModel: DataSourceSection {
     public typealias Row = Course
 
     public var numberOfRows: Int {
@@ -50,7 +50,7 @@ extension CoursesViewModel: DataSourceSection {
 
 // MARK: - Fetched Results Controller Delegate
 
-extension CoursesViewModel: NSFetchedResultsControllerDelegate {
+extension CourseListViewModel: NSFetchedResultsControllerDelegate {
     public func controllerWillChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
         delegate?.dataWillChange(in: self)
     }
