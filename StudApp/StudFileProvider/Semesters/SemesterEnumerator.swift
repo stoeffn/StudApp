@@ -19,6 +19,11 @@ final class SemesterEnumerator: NSObject, NSFileProviderEnumerator {
 
         viewModel.delegate = cache
         viewModel.fetch()
+        viewModel.update { result in
+            if result.isSuccess {
+                NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
+            }
+        }
     }
 
     func invalidate() {}
