@@ -16,10 +16,10 @@ public protocol DataSourceSectionDelegate: class {
 }
 
 public extension DataSourceSectionDelegate {
-    func dataWillChange<Section: DataSourceSection>(in section: Section) {}
+    func dataWillChange<Section: DataSourceSection>(in _: Section) {}
 
-    func dataDidChange<Section: DataSourceSection>(in section: Section) {}
+    func dataDidChange<Section: DataSourceSection>(in _: Section) {}
 
-    func data<Section: DataSourceSection>(changedIn row: Section.Row, at index: Int,
-                                          change: DataChange<Section.Row, Int>, in section: Section) {}
+    func data<Section: DataSourceSection>(changedIn _: Section.Row, at _: Int, change _: DataChange<Section.Row, Int>,
+                                          in _: Section) {}
 }

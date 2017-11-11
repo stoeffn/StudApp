@@ -11,10 +11,13 @@ import FileProvider
 import StudKit
 
 final class FileProviderExtension: NSFileProviderExtension {
+    private let coreDataService: CoreDataService
+
     // MARK: - Life Cycle
 
     override init() {
         ServiceContainer.default.register(providers: StudKitServiceProvider())
+        coreDataService = ServiceContainer.default[CoreDataService.self]
     }
 
     // MARK: - Providing Meta Data
@@ -55,15 +58,16 @@ final class FileProviderExtension: NSFileProviderExtension {
     override func item(for identifier: NSFileProviderItemIdentifier) throws -> NSFileProviderItem {
         switch identifier.modelType {
         case .root:
-            return try RootItem(context: coreData.viewContext)
+            return try RootItem(context: coreDataService.viewContext)
         case .workingSet:
             throw "Not implemented: Working Set Item"
-        case let .semester(id):
-            return try SemesterItem(byId: id, context: coreData.viewContext)
-        case let .course(id):
-            return try CourseItem(byId: id, context: coreData.viewContext)
-        case let .file(id):
-            return try FileItem(byId: id, context: coreData.viewContext)
+        case .semester, .course, .file:
+            guard let model = try? self.model(for: identifier, in: coreDataService.viewContext),
+                let unwrappedModel = model,
+                let item = try? unwrappedModel.fileProviderItem(context: coreDataService.viewContext) else {
+                throw NSFileProviderError(.noSuchItem)
+            }
+            return item
         }
     }
 }

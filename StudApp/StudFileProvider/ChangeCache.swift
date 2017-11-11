@@ -37,8 +37,8 @@ final class ChangeCache<Item: CDIdentifiable> {
 // MARK: - Data Source Section Delegate
 
 extension ChangeCache: DataSourceSectionDelegate {
-    func data<Section: DataSourceSection>(changedIn row: Section.Row, at index: Int, change: DataChange<Section.Row, Int>,
-                                          in section: Section) {
+    func data<Section: DataSourceSection>(changedIn row: Section.Row, at _: Int, change: DataChange<Section.Row, Int>,
+                                          in _: Section) {
         guard let item = row as? Item else { fatalError() }
         switch change {
         case .insert, .update:

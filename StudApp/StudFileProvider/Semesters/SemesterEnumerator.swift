@@ -28,13 +28,13 @@ final class SemesterEnumerator: NSObject, NSFileProviderEnumerator {
 
     func invalidate() {}
 
-    func enumerateItems(for observer: NSFileProviderEnumerationObserver, startingAt page: NSFileProviderPage) {
+    func enumerateItems(for observer: NSFileProviderEnumerationObserver, startingAt _: NSFileProviderPage) {
         let items = viewModel.semesters.flatMap { try? SemesterItem(from: $0) }
         observer.didEnumerate(items)
         observer.finishEnumerating(upTo: nil)
     }
 
-    func enumerateChanges(for observer: NSFileProviderChangeObserver, from anchor: NSFileProviderSyncAnchor) {
+    func enumerateChanges(for observer: NSFileProviderChangeObserver, from _: NSFileProviderSyncAnchor) {
         let updatedItems = cache.updatedItems.flatMap { try? SemesterItem(from: $0) }
         observer.didUpdate(updatedItems)
         observer.didDeleteItems(withIdentifiers: cache.deletedItemIdentifiers)
