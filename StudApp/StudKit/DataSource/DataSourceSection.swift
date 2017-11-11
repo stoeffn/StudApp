@@ -6,7 +6,7 @@
 //  Copyright © 2017 Remonder. All rights reserved.
 //
 
-public protocol DataSourceSection {
+public protocol DataSourceSection: Sequence {
     associatedtype Row
 
     weak var delegate: DataSourceSectionDelegate? { get set }
@@ -14,4 +14,12 @@ public protocol DataSourceSection {
     var numberOfRows: Int { get }
 
     subscript(rowAt _: Int) -> Row { get }
+}
+
+extension DataSourceSection {
+    public typealias Iterator = RangeIterator<Row>
+
+    public func makeIterator() -> Iterator {
+        return Iterator(numberOfRows: 0) { index in self[rowAt: index] }
+    }
 }

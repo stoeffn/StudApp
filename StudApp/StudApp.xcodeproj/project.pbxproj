@@ -154,6 +154,7 @@
 		24FE8A0A1FB78B8D00A4A3C6 /* CourseEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A091FB78B8D00A4A3C6 /* CourseEnumerator.swift */; };
 		24FE8A0C1FB78BCE00A4A3C6 /* FolderEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A0B1FB78BCE00A4A3C6 /* FolderEnumerator.swift */; };
 		24FE8A0E1FB78BF700A4A3C6 /* WorkingSetEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A0D1FB78BF700A4A3C6 /* WorkingSetEnumerator.swift */; };
+		24FE8A121FB7B0D100A4A3C6 /* RangeIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A111FB7B0D100A4A3C6 /* RangeIterator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -391,6 +392,7 @@
 		24FE8A0B1FB78BCE00A4A3C6 /* FolderEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderEnumerator.swift; sourceTree = "<group>"; };
 		24FE8A0D1FB78BF700A4A3C6 /* WorkingSetEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingSetEnumerator.swift; sourceTree = "<group>"; };
 		24FE8A0F1FB78DBF00A4A3C6 /* StudApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudApp.entitlements; sourceTree = "<group>"; };
+		24FE8A111FB7B0D100A4A3C6 /* RangeIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeIterator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -522,6 +524,7 @@
 				2448D4741FA8DE1700DAB97E /* Services */,
 				24D360EB1FAA5DA700BBBAED /* StudIp */,
 				24D361641FAA646200BBBAED /* ViewModels */,
+				24FE8A111FB7B0D100A4A3C6 /* RangeIterator.swift */,
 				2448D45D1FA8DBA300DAB97E /* Result.swift */,
 				2448D4961FA8DFB200DAB97E /* StudKitServiceProvider.swift */,
 				2448D4411FA8DB1E00DAB97E /* StudKit.h */,
@@ -1332,6 +1335,7 @@
 				24D360F81FAA5DE800BBBAED /* FileModel+CDConvertible.swift in Sources */,
 				2448D4771FA8DE2A00DAB97E /* ServiceContainer.swift in Sources */,
 				24D178E71FB6020200EC5F4A /* SwiftyUserDefaults.swift in Sources */,
+				24FE8A121FB7B0D100A4A3C6 /* RangeIterator.swift in Sources */,
 				2448D4971FA8DFB200DAB97E /* StudKitServiceProvider.swift in Sources */,
 				24CFB5D71FB24F4D00F30DEA /* Routes.swift in Sources */,
 				24D360DE1FAA5D3800BBBAED /* String+Utils.swift in Sources */,
