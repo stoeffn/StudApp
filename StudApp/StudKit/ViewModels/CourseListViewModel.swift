@@ -33,6 +33,7 @@ public final class CourseListViewModel: NSObject {
     public func update(handler: @escaping ResultHandler<Void>) {
         coreDataService.performBackgroundTask { context in
             self.courseService.updateCourses(in: context) { result in
+                try? context.saveWhenChanged()
                 handler(result.replacingValue(()))
             }
         }
