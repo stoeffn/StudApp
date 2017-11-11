@@ -152,6 +152,9 @@
 		24FE8A041FB7857400A4A3C6 /* CourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A011FB7857300A4A3C6 /* CourseItem.swift */; };
 		24FE8A051FB7857400A4A3C6 /* FolderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A021FB7857300A4A3C6 /* FolderItem.swift */; };
 		24FE8A061FB7857400A4A3C6 /* RootItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A031FB7857400A4A3C6 /* RootItem.swift */; };
+		24FE8A0A1FB78B8D00A4A3C6 /* CourseEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A091FB78B8D00A4A3C6 /* CourseEnumerator.swift */; };
+		24FE8A0C1FB78BCE00A4A3C6 /* FolderEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A0B1FB78BCE00A4A3C6 /* FolderEnumerator.swift */; };
+		24FE8A0E1FB78BF700A4A3C6 /* WorkingSetEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A0D1FB78BF700A4A3C6 /* WorkingSetEnumerator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -386,6 +389,9 @@
 		24FE8A011FB7857300A4A3C6 /* CourseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItem.swift; sourceTree = "<group>"; };
 		24FE8A021FB7857300A4A3C6 /* FolderItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderItem.swift; sourceTree = "<group>"; };
 		24FE8A031FB7857400A4A3C6 /* RootItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootItem.swift; sourceTree = "<group>"; };
+		24FE8A091FB78B8D00A4A3C6 /* CourseEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseEnumerator.swift; sourceTree = "<group>"; };
+		24FE8A0B1FB78BCE00A4A3C6 /* FolderEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderEnumerator.swift; sourceTree = "<group>"; };
+		24FE8A0D1FB78BF700A4A3C6 /* WorkingSetEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingSetEnumerator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -871,6 +877,7 @@
 				24FE89E81FB7725100A4A3C6 /* ChangeCache.swift */,
 				24D9EF841FB75818006776B7 /* FileProviderExtension.swift */,
 				24FE8A031FB7857400A4A3C6 /* RootItem.swift */,
+				24FE8A0D1FB78BF700A4A3C6 /* WorkingSetEnumerator.swift */,
 				24D9EF8A1FB75819006776B7 /* Info.plist */,
 				24D9EF8B1FB75819006776B7 /* StudFileProvider.entitlements */,
 			);
@@ -984,6 +991,7 @@
 			isa = PBXGroup;
 			children = (
 				24FE8A011FB7857300A4A3C6 /* CourseItem.swift */,
+				24FE8A091FB78B8D00A4A3C6 /* CourseEnumerator.swift */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
@@ -992,6 +1000,7 @@
 			isa = PBXGroup;
 			children = (
 				24FE8A021FB7857300A4A3C6 /* FolderItem.swift */,
+				24FE8A0B1FB78BCE00A4A3C6 /* FolderEnumerator.swift */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -1419,8 +1428,11 @@
 				24FE89EC1FB7778300A4A3C6 /* FileProviderItemConvertibleState.swift in Sources */,
 				24FE89DE1FB7653E00A4A3C6 /* CDIdentifiable+NSItemIdentifier.swift in Sources */,
 				24FE89F01FB7799D00A4A3C6 /* NSFileProviderItemIdentifier+Utils.swift in Sources */,
+				24FE8A0E1FB78BF700A4A3C6 /* WorkingSetEnumerator.swift in Sources */,
 				24FE8A051FB7857400A4A3C6 /* FolderItem.swift in Sources */,
 				24FE89FE1FB784C900A4A3C6 /* Course+FileProviderItemConvertible.swift in Sources */,
+				24FE8A0C1FB78BCE00A4A3C6 /* FolderEnumerator.swift in Sources */,
+				24FE8A0A1FB78B8D00A4A3C6 /* CourseEnumerator.swift in Sources */,
 				24FE89FA1FB7849F00A4A3C6 /* File+FileProviderItemConvertible.swift in Sources */,
 				24FE89F41FB77BD100A4A3C6 /* Semester+FileProviderItemConvertible.swift in Sources */,
 				24FE8A061FB7857400A4A3C6 /* RootItem.swift in Sources */,
