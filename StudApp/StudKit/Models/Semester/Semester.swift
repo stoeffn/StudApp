@@ -9,7 +9,7 @@
 import CoreData
 
 @objc(Semester)
-public final class Semester : NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable {
+public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable {
     @NSManaged public var id: String
     @NSManaged public var title: String
     @NSManaged public var beginDate: Date
@@ -39,7 +39,8 @@ public final class Semester : NSManagedObject, CDCreatable, CDIdentifiable, CDUp
     public static func fetch(from beginSemester: Semester, to endSemester: Semester? = nil,
                              in context: NSManagedObjectContext) throws -> [Semester] {
         let endDate = endSemester?.endDate ?? .distantFuture
-        let predicate = NSPredicate(format: "beginDate >= %@ AND endDate <= %@", beginSemester.beginDate as CVarArg, endDate as CVarArg)
+        let predicate = NSPredicate(format: "beginDate >= %@ AND endDate <= %@", beginSemester.beginDate as CVarArg,
+                                    endDate as CVarArg)
         let request = fetchRequest(predicate: predicate, sortDescriptors: [])
         return try context.fetch(request)
     }
@@ -48,7 +49,7 @@ public final class Semester : NSManagedObject, CDCreatable, CDIdentifiable, CDUp
         let predicate = NSPredicate(format: "isHidden == NO AND %@ IN course.semesters", self)
         let sortDescriptors = [
             NSSortDescriptor(keyPath: \CourseState.color?.orderId, ascending: true),
-            NSSortDescriptor(keyPath: \CourseState.course.title, ascending: true)
+            NSSortDescriptor(keyPath: \CourseState.course.title, ascending: true),
         ]
         return CourseState.fetchRequest(predicate: predicate, sortDescriptors: sortDescriptors,
                                         relationshipKeyPathsForPrefetching: ["course"])

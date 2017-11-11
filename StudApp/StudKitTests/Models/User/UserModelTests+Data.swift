@@ -15,7 +15,7 @@ extension UserModelTests {
     static let userData = """
         {
             "id": "e894bd27b2c3f5b25e438932f14b60e1",
-            "avatar_normal": "https:\\/\\/studip.uni-hannover.de\\/pictures\\/user\\/a123c516de7c999f646c72c53ab38dc8_normal.png?d=1440683948",
+            "avatar_normal": "https:\\/\\/stud.ip\\/pictures\\/user\\/a123c516de7c999f646c72c53ab38dc8_normal.png?d=1440683948",
             "name": {
                 "username": "username",
                 "formatted": "Formatted Name",
@@ -30,7 +30,7 @@ extension UserModelTests {
     static let userWithoutPrefixAndPictureData = """
         {
             "id": "e894bd27b2c3f5b25e438932f14b60e1",
-            "avatar_normal": "https:\\/\\/studip.uni-hannover.de\\/pictures\\/user\\/nobody_normal.png?d=1440683948",
+            "avatar_normal": "https:\\/\\/stud.ip\\/pictures\\/user\\/nobody_normal.png?d=1440683948",
             "name": {
                 "username": "username",
                 "formatted": "Formatted Name",

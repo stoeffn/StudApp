@@ -20,8 +20,8 @@ public extension UIViewController {
         } else {
             let destinationDescription = String(describing: type(of: self))
             let errorMessage = """
-            Cannot use route with identifier '\(route.identifier)' with destination view controller '\(destinationDescription)'
-            as neither it nor its first child view controller conform to protocol Routable'.
+            Cannot use route with identifier '\(route.identifier)' with destination view controller
+            '\(destinationDescription)' as neither it nor its first child view controller conform to protocol Routable'.
             """
             fatalError(errorMessage)
         }

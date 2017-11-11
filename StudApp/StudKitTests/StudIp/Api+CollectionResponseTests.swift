@@ -34,7 +34,8 @@ final class ApiCollectionResponseTests: XCTestCase {
 
     func testRequestCompleteCollection_Request5_Response() {
         let items = [Test(id: "0")]
-        api.requestCompleteCollection(.collection, afterOffset: 5, itemsPerRequest: 5, items: items) { (result: Result<[Test]>) in
+        api.requestCompleteCollection(.collection, afterOffset: 5, itemsPerRequest: 5,
+                                      items: items) { (result: Result<[Test]>) in
             XCTAssertTrue(result.isSuccess)
             XCTAssertEqual(result.value?.count, 3)
             XCTAssertEqual(result.value?.first?.id, "0")
@@ -44,7 +45,8 @@ final class ApiCollectionResponseTests: XCTestCase {
 
     func testRequestCompleteCollection_Request10_Response() {
         let items = [Test(id: "0"), Test(id: "1")]
-        api.requestCompleteCollection(.collection, afterOffset: 10, itemsPerRequest: 5, items: items) { (result: Result<[Test]>) in
+        api.requestCompleteCollection(.collection, afterOffset: 10, itemsPerRequest: 5,
+                                      items: items) { (result: Result<[Test]>) in
             XCTAssertTrue(result.isSuccess)
             XCTAssertEqual(result.value?.count, 3)
             XCTAssertEqual(result.value?.first?.id, "0")

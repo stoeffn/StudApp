@@ -8,9 +8,9 @@
 
 @testable import StudKit
 
-final class MockApi<Routes : TestableApiRoutes> : Api<Routes> {
+final class MockApi<Routes: TestableApiRoutes>: Api<Routes> {
     @discardableResult
-    override func request(_ route: Routes, parameters: [URLQueryItem] = [], queue: DispatchQueue = .main,
+    override func request(_ route: Routes, parameters: [URLQueryItem] = [], queue _: DispatchQueue = .main,
                           handler: @escaping ResultHandler<Data>) -> Progress {
         do {
             let data = try route.testData(for: parameters)

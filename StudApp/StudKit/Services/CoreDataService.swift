@@ -30,7 +30,8 @@ public final class CoreDataService {
             : CoreDataService.persistentStoreDescription(forStoreAt: containerUrl, modelName: modelName)
     }
 
-    private static func persistentStoreDescription(forStoreAt containerUrl: URL?, modelName: String) -> NSPersistentStoreDescription {
+    private static func persistentStoreDescription(forStoreAt containerUrl: URL?,
+                                                   modelName: String) -> NSPersistentStoreDescription {
         let description: NSPersistentStoreDescription = {
             guard let storeUrl = containerUrl?.appendingPathComponent(modelName) else { return NSPersistentStoreDescription() }
             return NSPersistentStoreDescription(url: storeUrl)

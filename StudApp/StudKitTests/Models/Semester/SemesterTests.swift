@@ -46,26 +46,26 @@ final class SemesterTests: XCTestCase {
 
     func testFetchNonEmpty_2NonEmpty() {
         let semesters = try! Semester.fetchNonEmpty(in: context)
-        XCTAssertEqual(semesters.map { $0.id }.set, Set(arrayLiteral: "2", "3"))
+        XCTAssertEqual(semesters.map { $0.id }.set, ["2", "3"] as Set)
     }
 
     func testFetchFrom_1to2_12() {
         let from = try! Semester.fetch(byId: "1", in: context)
         let to = try! Semester.fetch(byId: "2", in: context)
         let semesters = try! Semester.fetch(from: from!, to: to, in: context)
-        XCTAssertEqual(semesters.map { $0.id }.set, Set(arrayLiteral: "1", "2"))
+        XCTAssertEqual(semesters.map { $0.id }.set, ["1", "2"] as Set)
     }
 
     func testFetchFrom_1to3_123() {
         let from = try! Semester.fetch(byId: "1", in: context)
         let to = try! Semester.fetch(byId: "3", in: context)
         let semesters = try! Semester.fetch(from: from!, to: to, in: context)
-        XCTAssertEqual(semesters.map { $0.id }.set, Set(arrayLiteral: "1", "2", "3"))
+        XCTAssertEqual(semesters.map { $0.id }.set, ["1", "2", "3"] as Set)
     }
 
     func testFetchFrom_2_23() {
         let from = try! Semester.fetch(byId: "2", in: context)
         let semesters = try! Semester.fetch(from: from!, in: context)
-        XCTAssertEqual(semesters.map { $0.id }.set, Set(arrayLiteral: "2", "3"))
+        XCTAssertEqual(semesters.map { $0.id }.set, ["2", "3"] as Set)
     }
 }

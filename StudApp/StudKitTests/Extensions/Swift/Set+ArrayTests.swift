@@ -11,6 +11,6 @@ import XCTest
 
 final class SetArrayTests: XCTestCase {
     func testArray() {
-        XCTAssertEqual(Set(arrayLiteral: 1, 2, 3).array.sorted(), [1, 2, 3])
+        XCTAssertEqual(([1, 2, 3] as Set).array.sorted(), [1, 2, 3])
     }
 }

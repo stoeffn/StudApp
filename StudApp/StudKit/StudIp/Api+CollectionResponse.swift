@@ -24,7 +24,8 @@ extension Api {
                                                      itemsPerRequest: Int = defaultNumberOfItemsPerRequest,
                                                      items initialItems: [Value] = [],
                                                      handler: @escaping ResultHandler<[Value]>) {
-        requestCollection(route, afterOffset: offset, itemsPerRequest: itemsPerRequest) { (result: Result<CollectionResponse<Value>>) in
+        requestCollection(route, afterOffset: offset,
+                          itemsPerRequest: itemsPerRequest) { (result: Result<CollectionResponse<Value>>) in
             guard let collection = result.value else {
                 return handler(result.replacingValue(nil))
             }

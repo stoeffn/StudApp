@@ -11,6 +11,6 @@ import XCTest
 
 final class IntNSNumberTests: XCTestCase {
     func testNsNumber() {
-        XCTAssertEqual(42.nsNumber, NSNumber(integerLiteral: 42))
+        XCTAssertEqual(42.nsNumber, 42 as NSNumber))
     }
 }
