@@ -11,7 +11,7 @@ import StudKit
 
 extension Course: FileProviderItemConvertible {
     var itemState: FileProviderItemConvertibleState {
-        return self.state
+        return state
     }
 
     func fileProviderItem(context: NSManagedObjectContext) throws -> NSFileProviderItem {

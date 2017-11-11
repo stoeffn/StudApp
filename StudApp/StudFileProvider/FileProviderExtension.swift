@@ -131,7 +131,7 @@ final class FileProviderExtension: NSFileProviderExtension {
         }
     }
 
-    override func itemChanged(at url: URL) { }
+    override func itemChanged(at _: URL) {}
 
     override func stopProvidingItem(at url: URL) {
         try? FileManager.default.removeItem(at: url)
