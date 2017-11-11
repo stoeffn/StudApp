@@ -7,12 +7,13 @@
 //
 
 import FileProvider
+import StudKit
 
 final class FileProviderExtension: NSFileProviderExtension {
     var fileManager = FileManager()
 
     override init() {
-        super.init()
+        ServiceContainer.default.register(providers: StudKitServiceProvider())
     }
 
     func item(for _: NSFileProviderItemIdentifier) throws -> NSFileProviderItem? {

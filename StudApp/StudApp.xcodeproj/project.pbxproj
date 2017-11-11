@@ -842,8 +842,8 @@
 		24D9EF831FB75818006776B7 /* StudFileProvider */ = {
 			isa = PBXGroup;
 			children = (
-				24FE89DF1FB765AC00A4A3C6 /* Semesters */,
 				24FE89D91FB7652200A4A3C6 /* Extensions */,
+				24FE89DF1FB765AC00A4A3C6 /* Semesters */,
 				24D9EF841FB75818006776B7 /* FileProviderExtension.swift */,
 				24FE89E81FB7725100A4A3C6 /* ChangeCache.swift */,
 				24D9EF8A1FB75819006776B7 /* Info.plist */,
