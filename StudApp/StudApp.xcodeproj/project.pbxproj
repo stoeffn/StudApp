@@ -142,6 +142,7 @@
 		24FE89E31FB7674F00A4A3C6 /* SemesterEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E21FB7674F00A4A3C6 /* SemesterEnumerator.swift */; };
 		24FE89E91FB7725100A4A3C6 /* ChangeCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E81FB7725100A4A3C6 /* ChangeCache.swift */; };
 		24FE89EC1FB7778300A4A3C6 /* FileProviderItemConvertibleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89EB1FB7778300A4A3C6 /* FileProviderItemConvertibleState.swift */; };
+		24FE89F01FB7799D00A4A3C6 /* NSFileProviderItemIdentifier+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89EF1FB7799D00A4A3C6 /* NSFileProviderItemIdentifier+Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -366,6 +367,7 @@
 		24FE89E21FB7674F00A4A3C6 /* SemesterEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterEnumerator.swift; sourceTree = "<group>"; };
 		24FE89E81FB7725100A4A3C6 /* ChangeCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCache.swift; sourceTree = "<group>"; };
 		24FE89EB1FB7778300A4A3C6 /* FileProviderItemConvertibleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderItemConvertibleState.swift; sourceTree = "<group>"; };
+		24FE89EF1FB7799D00A4A3C6 /* NSFileProviderItemIdentifier+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFileProviderItemIdentifier+Utils.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -914,6 +916,7 @@
 			children = (
 				24FE89DB1FB7653E00A4A3C6 /* FileProviderItemConvertible.swift */,
 				24FE89EB1FB7778300A4A3C6 /* FileProviderItemConvertibleState.swift */,
+				24FE89EF1FB7799D00A4A3C6 /* NSFileProviderItemIdentifier+Utils.swift */,
 			);
 			path = FileProvider;
 			sourceTree = "<group>";
@@ -1338,6 +1341,7 @@
 				24FE89E91FB7725100A4A3C6 /* ChangeCache.swift in Sources */,
 				24FE89EC1FB7778300A4A3C6 /* FileProviderItemConvertibleState.swift in Sources */,
 				24FE89DE1FB7653E00A4A3C6 /* CDIdentifiable+NSItemIdentifier.swift in Sources */,
+				24FE89F01FB7799D00A4A3C6 /* NSFileProviderItemIdentifier+Utils.swift in Sources */,
 				24D9EF851FB75818006776B7 /* FileProviderExtension.swift in Sources */,
 				24FE89DD1FB7653E00A4A3C6 /* FileProviderItemConvertible.swift in Sources */,
 			);
