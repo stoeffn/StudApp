@@ -47,7 +47,8 @@ final class FileProviderExtension: NSFileProviderExtension {
     }
 
     override func startProvidingItem(at _: URL, completionHandler: ((_ error: Error?) -> Void)?) {
-        // Should ensure that the actual file is in the position returned by URLForItemWithIdentifier:, then call the completion handler
+        // Should ensure that the actual file is in the position returned by URLForItemWithIdentifier:, then call the completion
+        // handler
 
         /* TODO:
          This is one of the main entry points of the file provider. We need to check whether the file already exists on disk,
@@ -88,10 +89,12 @@ final class FileProviderExtension: NSFileProviderExtension {
     }
 
     override func stopProvidingItem(at url: URL) {
-        // Called after the last claim to the file has been released. At this point, it is safe for the file provider to remove the content file.
+        // Called after the last claim to the file has been released. At this point, it is safe for the file provider to remove
+        // the content file.
         // Care should be taken that the corresponding placeholder file stays behind after the content file has been deleted.
 
-        // Called after the last claim to the file has been released. At this point, it is safe for the file provider to remove the content file.
+        // Called after the last claim to the file has been released. At this point, it is safe for the file provider to remove
+        // the content file.
 
         // TODO: look up whether the file has local changes
         let fileHasLocalChanges = false

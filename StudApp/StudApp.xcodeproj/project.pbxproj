@@ -138,9 +138,6 @@
 		24D9EF851FB75818006776B7 /* FileProviderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9EF841FB75818006776B7 /* FileProviderExtension.swift */; };
 		24D9EF871FB75818006776B7 /* FileProviderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9EF861FB75818006776B7 /* FileProviderItem.swift */; };
 		24D9EF891FB75818006776B7 /* FileProviderEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9EF881FB75818006776B7 /* FileProviderEnumerator.swift */; };
-		24D9EF931FB75819006776B7 /* DocumentActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9EF921FB75819006776B7 /* DocumentActionViewController.swift */; };
-		24D9EF961FB75819006776B7 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24D9EF941FB75819006776B7 /* MainInterface.storyboard */; };
-		24D9EF9B1FB75819006776B7 /* StudFileProviderUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 24D9EF901FB75819006776B7 /* StudFileProviderUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		24D9EF9E1FB75819006776B7 /* StudFileProvider.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 24D9EF821FB75818006776B7 /* StudFileProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		24E626771FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */; };
 		24E626781FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */; };
@@ -182,13 +179,6 @@
 			remoteGlobalIDString = 2448D43E1FA8DB1E00DAB97E;
 			remoteInfo = StudKit;
 		};
-		24D9EF981FB75819006776B7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2448D4011FA8DA2400DAB97E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 24D9EF8F1FB75819006776B7;
-			remoteInfo = StudFileProviderUI;
-		};
 		24D9EF9C1FB75819006776B7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2448D4011FA8DA2400DAB97E /* Project object */;
@@ -216,7 +206,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				24D9EF9B1FB75819006776B7 /* StudFileProviderUI.appex in Embed App Extensions */,
 				24D9EF9E1FB75819006776B7 /* StudFileProvider.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -366,10 +355,6 @@
 		24D9EF881FB75818006776B7 /* FileProviderEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderEnumerator.swift; sourceTree = "<group>"; };
 		24D9EF8A1FB75819006776B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24D9EF8B1FB75819006776B7 /* StudFileProvider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudFileProvider.entitlements; sourceTree = "<group>"; };
-		24D9EF901FB75819006776B7 /* StudFileProviderUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StudFileProviderUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		24D9EF921FB75819006776B7 /* DocumentActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentActionViewController.swift; sourceTree = "<group>"; };
-		24D9EF951FB75819006776B7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		24D9EF971FB75819006776B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+StudIpActivityIndicatorView.swift"; sourceTree = "<group>"; };
 		24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudIpActivityIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -419,13 +404,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		24D9EF8D1FB75819006776B7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -446,7 +424,6 @@
 				2448D4401FA8DB1E00DAB97E /* StudKit */,
 				2448D44D1FA8DB1E00DAB97E /* StudKitTests */,
 				24D9EF831FB75818006776B7 /* StudFileProvider */,
-				24D9EF911FB75819006776B7 /* StudFileProviderUI */,
 				2448D40A1FA8DA2400DAB97E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -460,7 +437,6 @@
 				2448D43F1FA8DB1E00DAB97E /* StudKit.framework */,
 				2448D4471FA8DB1E00DAB97E /* StudKitTests.xctest */,
 				24D9EF821FB75818006776B7 /* StudFileProvider.appex */,
-				24D9EF901FB75819006776B7 /* StudFileProviderUI.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -871,16 +847,6 @@
 			path = StudFileProvider;
 			sourceTree = "<group>";
 		};
-		24D9EF911FB75819006776B7 /* StudFileProviderUI */ = {
-			isa = PBXGroup;
-			children = (
-				24D9EF921FB75819006776B7 /* DocumentActionViewController.swift */,
-				24D9EF941FB75819006776B7 /* MainInterface.storyboard */,
-				24D9EF971FB75819006776B7 /* Info.plist */,
-			);
-			path = StudFileProviderUI;
-			sourceTree = "<group>";
-		};
 		24E626721FA9203E0040F9F7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -938,7 +904,6 @@
 			);
 			dependencies = (
 				2448D4531FA8DB1E00DAB97E /* PBXTargetDependency */,
-				24D9EF991FB75819006776B7 /* PBXTargetDependency */,
 				24D9EF9D1FB75819006776B7 /* PBXTargetDependency */,
 			);
 			name = StudApp;
@@ -1037,23 +1002,6 @@
 			productReference = 24D9EF821FB75818006776B7 /* StudFileProvider.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		24D9EF8F1FB75819006776B7 /* StudFileProviderUI */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 24D9EFA31FB75819006776B7 /* Build configuration list for PBXNativeTarget "StudFileProviderUI" */;
-			buildPhases = (
-				24D9EF8C1FB75819006776B7 /* Sources */,
-				24D9EF8D1FB75819006776B7 /* Frameworks */,
-				24D9EF8E1FB75819006776B7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = StudFileProviderUI;
-			productName = StudFileProviderUI;
-			productReference = 24D9EF901FB75819006776B7 /* StudFileProviderUI.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1092,10 +1040,6 @@
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
 					};
-					24D9EF8F1FB75819006776B7 = {
-						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Automatic;
-					};
 				};
 			};
 			buildConfigurationList = 2448D4041FA8DA2400DAB97E /* Build configuration list for PBXProject "StudApp" */;
@@ -1117,7 +1061,6 @@
 				2448D43E1FA8DB1E00DAB97E /* StudKit */,
 				2448D4461FA8DB1E00DAB97E /* StudKitTests */,
 				24D9EF811FB75818006776B7 /* StudFileProvider */,
-				24D9EF8F1FB75819006776B7 /* StudFileProviderUI */,
 			);
 		};
 /* End PBXProject section */
@@ -1170,14 +1113,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		24D9EF8E1FB75819006776B7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				24D9EF961FB75819006776B7 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1364,14 +1299,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		24D9EF8C1FB75819006776B7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				24D9EF931FB75819006776B7 /* DocumentActionViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1400,11 +1327,6 @@
 			target = 2448D43E1FA8DB1E00DAB97E /* StudKit */;
 			targetProxy = 2448D4521FA8DB1E00DAB97E /* PBXContainerItemProxy */;
 		};
-		24D9EF991FB75819006776B7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 24D9EF8F1FB75819006776B7 /* StudFileProviderUI */;
-			targetProxy = 24D9EF981FB75819006776B7 /* PBXContainerItemProxy */;
-		};
 		24D9EF9D1FB75819006776B7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 24D9EF811FB75818006776B7 /* StudFileProvider */;
@@ -1427,14 +1349,6 @@
 				2448D4161FA8DA2400DAB97E /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		24D9EF941FB75819006776B7 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				24D9EF951FB75819006776B7 /* Base */,
-			);
-			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1771,37 +1685,6 @@
 			};
 			name = Release;
 		};
-		24D9EFA11FB75819006776B7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X63VKA93X8;
-				INFOPLIST_FILE = StudFileProviderUI/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "ryll.Stud-Sync.FileProviderUI";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		24D9EFA21FB75819006776B7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = X63VKA93X8;
-				INFOPLIST_FILE = StudFileProviderUI/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "ryll.Stud-Sync.FileProviderUI";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1855,15 +1738,6 @@
 			buildConfigurations = (
 				2448D45B1FA8DB1E00DAB97E /* Debug */,
 				2448D45C1FA8DB1E00DAB97E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		24D9EFA31FB75819006776B7 /* Build configuration list for PBXNativeTarget "StudFileProviderUI" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				24D9EFA11FB75819006776B7 /* Debug */,
-				24D9EFA21FB75819006776B7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
