@@ -18,7 +18,7 @@ protocol FileProviderItemConvertible {
     func fileProviderItem(context: NSManagedObjectContext) throws -> NSFileProviderItem
 }
 
-extension FileProviderItemConvertible where Self : NSFetchRequestResult {
+extension FileProviderItemConvertible where Self: NSFetchRequestResult {
     static func fetchItemsInWorkingSet(in context: NSManagedObjectContext) throws -> [Self] {
         let predicate = NSPredicate(format: "lastUsedDate != NIL OR tagData != NIL OR favoriteRank != 0")
         return try context.fetch(fetchRequest(predicate: predicate))

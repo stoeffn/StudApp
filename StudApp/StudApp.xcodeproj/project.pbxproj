@@ -133,13 +133,12 @@
 		24D361661FAA648B00BBBAED /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361651FAA648B00BBBAED /* SignInViewModel.swift */; };
 		24D9EF561FB7559C006776B7 /* SemestersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9EF551FB7559C006776B7 /* SemestersViewModel.swift */; };
 		24D9EF851FB75818006776B7 /* FileProviderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9EF841FB75818006776B7 /* FileProviderExtension.swift */; };
-		24D9EF871FB75818006776B7 /* FileProviderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9EF861FB75818006776B7 /* FileProviderItem.swift */; };
-		24D9EF891FB75818006776B7 /* FileProviderEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9EF881FB75818006776B7 /* FileProviderEnumerator.swift */; };
 		24D9EF9E1FB75819006776B7 /* StudFileProvider.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 24D9EF821FB75818006776B7 /* StudFileProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		24E626771FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */; };
 		24E626781FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */; };
 		24FE89DD1FB7653E00A4A3C6 /* FileProviderItemConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89DB1FB7653E00A4A3C6 /* FileProviderItemConvertible.swift */; };
 		24FE89DE1FB7653E00A4A3C6 /* CDIdentifiable+NSItemIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89DC1FB7653E00A4A3C6 /* CDIdentifiable+NSItemIdentifier.swift */; };
+		24FE89E11FB7661700A4A3C6 /* SemesterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E01FB7661700A4A3C6 /* SemesterItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -347,14 +346,13 @@
 		24D9EF551FB7559C006776B7 /* SemestersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemestersViewModel.swift; sourceTree = "<group>"; };
 		24D9EF821FB75818006776B7 /* StudFileProvider.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StudFileProvider.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		24D9EF841FB75818006776B7 /* FileProviderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderExtension.swift; sourceTree = "<group>"; };
-		24D9EF861FB75818006776B7 /* FileProviderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderItem.swift; sourceTree = "<group>"; };
-		24D9EF881FB75818006776B7 /* FileProviderEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderEnumerator.swift; sourceTree = "<group>"; };
 		24D9EF8A1FB75819006776B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24D9EF8B1FB75819006776B7 /* StudFileProvider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudFileProvider.entitlements; sourceTree = "<group>"; };
 		24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+StudIpActivityIndicatorView.swift"; sourceTree = "<group>"; };
 		24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudIpActivityIndicatorView.swift; sourceTree = "<group>"; };
 		24FE89DB1FB7653E00A4A3C6 /* FileProviderItemConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileProviderItemConvertible.swift; sourceTree = "<group>"; };
 		24FE89DC1FB7653E00A4A3C6 /* CDIdentifiable+NSItemIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDIdentifiable+NSItemIdentifier.swift"; sourceTree = "<group>"; };
+		24FE89E01FB7661700A4A3C6 /* SemesterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -833,10 +831,9 @@
 		24D9EF831FB75818006776B7 /* StudFileProvider */ = {
 			isa = PBXGroup;
 			children = (
+				24FE89DF1FB765AC00A4A3C6 /* Semesters */,
 				24FE89D91FB7652200A4A3C6 /* Extensions */,
 				24D9EF841FB75818006776B7 /* FileProviderExtension.swift */,
-				24D9EF861FB75818006776B7 /* FileProviderItem.swift */,
-				24D9EF881FB75818006776B7 /* FileProviderEnumerator.swift */,
 				24D9EF8A1FB75819006776B7 /* Info.plist */,
 				24D9EF8B1FB75819006776B7 /* StudFileProvider.entitlements */,
 			);
@@ -887,6 +884,14 @@
 				24FE89DC1FB7653E00A4A3C6 /* CDIdentifiable+NSItemIdentifier.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		24FE89DF1FB765AC00A4A3C6 /* Semesters */ = {
+			isa = PBXGroup;
+			children = (
+				24FE89E01FB7661700A4A3C6 /* SemesterItem.swift */,
+			);
+			path = Semesters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1303,11 +1308,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24FE89E11FB7661700A4A3C6 /* SemesterItem.swift in Sources */,
 				24FE89DE1FB7653E00A4A3C6 /* CDIdentifiable+NSItemIdentifier.swift in Sources */,
 				24D9EF851FB75818006776B7 /* FileProviderExtension.swift in Sources */,
 				24FE89DD1FB7653E00A4A3C6 /* FileProviderItemConvertible.swift in Sources */,
-				24D9EF871FB75818006776B7 /* FileProviderItem.swift in Sources */,
-				24D9EF891FB75818006776B7 /* FileProviderEnumerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
