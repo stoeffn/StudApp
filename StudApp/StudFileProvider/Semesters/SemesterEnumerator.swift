@@ -9,6 +9,7 @@
 import StudKit
 
 final class SemesterEnumerator: NSObject, NSFileProviderEnumerator {
+    private let viewModel = SemesterListViewModel()
     private var itemIdentifier: NSFileProviderItemIdentifier
 
     init(itemIdentifier: NSFileProviderItemIdentifier) {

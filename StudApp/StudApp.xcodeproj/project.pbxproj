@@ -185,6 +185,13 @@
 			remoteGlobalIDString = 24D9EF811FB75818006776B7;
 			remoteInfo = StudFileProvider;
 		};
+		24FE89E61FB768E600A4A3C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2448D4011FA8DA2400DAB97E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2448D43E1FA8DB1E00DAB97E;
+			remoteInfo = StudKit;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1017,6 +1024,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				24FE89E71FB768E600A4A3C6 /* PBXTargetDependency */,
 			);
 			name = StudFileProvider;
 			productName = StudFileProvider;
@@ -1351,6 +1359,11 @@
 			isa = PBXTargetDependency;
 			target = 24D9EF811FB75818006776B7 /* StudFileProvider */;
 			targetProxy = 24D9EF9C1FB75819006776B7 /* PBXContainerItemProxy */;
+		};
+		24FE89E71FB768E600A4A3C6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2448D43E1FA8DB1E00DAB97E /* StudKit */;
+			targetProxy = 24FE89E61FB768E600A4A3C6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
