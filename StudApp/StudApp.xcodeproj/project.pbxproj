@@ -60,7 +60,6 @@
 		24CFB5D81FB24F4D00F30DEA /* UIViewController+Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D51FB24F4D00F30DEA /* UIViewController+Routes.swift */; };
 		24CFB5DA1FB2500900F30DEA /* Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D91FB2500900F30DEA /* Segues.swift */; };
 		24D178E71FB6020200EC5F4A /* SwiftyUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D178E61FB6020200EC5F4A /* SwiftyUserDefaults.swift */; };
-		24D178E91FB605BF00EC5F4A /* DefaultsKeys+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D178E81FB605BF00EC5F4A /* DefaultsKeys+Keys.swift */; };
 		24D178EB1FB606B200EC5F4A /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D178EA1FB606B200EC5F4A /* MainViewModel.swift */; };
 		24D360C21FAA58A000BBBAED /* StudKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C01FAA58A000BBBAED /* StudKit.xcdatamodeld */; };
 		24D360CC1FAA5AFE00BBBAED /* CDIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */; };
@@ -295,7 +294,6 @@
 		24CFB5D51FB24F4D00F30DEA /* UIViewController+Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Routes.swift"; sourceTree = "<group>"; };
 		24CFB5D91FB2500900F30DEA /* Segues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segues.swift; sourceTree = "<group>"; };
 		24D178E61FB6020200EC5F4A /* SwiftyUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyUserDefaults.swift; sourceTree = "<group>"; };
-		24D178E81FB605BF00EC5F4A /* DefaultsKeys+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultsKeys+Keys.swift"; sourceTree = "<group>"; };
 		24D178EA1FB606B200EC5F4A /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		24D360C11FAA58A000BBBAED /* StudKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StudKit.xcdatamodel; sourceTree = "<group>"; };
 		24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDIdentifiable.swift; sourceTree = "<group>"; };
@@ -524,7 +522,6 @@
 				2448D4741FA8DE1700DAB97E /* Services */,
 				24D360EB1FAA5DA700BBBAED /* StudIp */,
 				24D361641FAA646200BBBAED /* ViewModels */,
-				24D178E81FB605BF00EC5F4A /* DefaultsKeys+Keys.swift */,
 				2448D45D1FA8DBA300DAB97E /* Result.swift */,
 				2448D4961FA8DFB200DAB97E /* StudKitServiceProvider.swift */,
 				2448D4411FA8DB1E00DAB97E /* StudKit.h */,
@@ -1349,7 +1346,6 @@
 				24D9EF561FB7559C006776B7 /* SemesterListViewModel.swift in Sources */,
 				24D3610E1FAA5ED600BBBAED /* CDColorable.swift in Sources */,
 				24D360F61FAA5DE800BBBAED /* File.swift in Sources */,
-				24D178E91FB605BF00EC5F4A /* DefaultsKeys+Keys.swift in Sources */,
 				24D361661FAA648B00BBBAED /* SignInViewModel.swift in Sources */,
 				2448D4621FA8DC3900DAB97E /* String+Error.swift in Sources */,
 				24D360E81FAA5D7600BBBAED /* Course.swift in Sources */,

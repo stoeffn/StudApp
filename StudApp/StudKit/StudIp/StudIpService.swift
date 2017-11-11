@@ -19,9 +19,10 @@ final class StudIpService {
 
     /// Whether the user is currently signed in.
     ///
-    /// - Warning: This does not garantuee that the credential is actually correct as this is just a flag set in user defaults.
+    /// - Warning: This does not garantuee that the credential is actually correct as this implementation only relies on a
+    ///            credential being stored. Thus, the password might have changed in the meantime.
     var isSignedIn: Bool {
-        return Defaults[.isSignedIn]
+        return URLCredentialStorage.shared.defaultCredential(for: api.protectionSpace) != nil
     }
 
     /// Try to sign into Stud.IP using the credentials provided and update main data when successful.
@@ -32,8 +33,7 @@ final class StudIpService {
     ///  3. Remove session credential.
     ///  4. Abort if credential was rejected or another error occured during the request.
     ///  5. Create a permanent credential from the now validated username and password and save it as the default.
-    ///  6. Set a flag in user defaults, indicating that the user is signed in.
-    ///  7. Update main data that is crucial for the application to work.
+    ///  6. Update main data that is crucial for the application to work.
     ///
     /// - Parameters:
     ///   - username: Stud.IP username.
@@ -52,7 +52,6 @@ final class StudIpService {
 
             let validatedCredential = URLCredential(user: username, password: password, persistence: .synchronizable)
             URLCredentialStorage.shared.setDefaultCredential(validatedCredential, for: self.api.protectionSpace)
-            Defaults[.isSignedIn] = true
 
             self.updateMainData(handler: handler)
         }
