@@ -140,6 +140,7 @@
 		24FE89DE1FB7653E00A4A3C6 /* CDIdentifiable+NSItemIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89DC1FB7653E00A4A3C6 /* CDIdentifiable+NSItemIdentifier.swift */; };
 		24FE89E11FB7661700A4A3C6 /* SemesterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E01FB7661700A4A3C6 /* SemesterItem.swift */; };
 		24FE89E31FB7674F00A4A3C6 /* SemesterEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E21FB7674F00A4A3C6 /* SemesterEnumerator.swift */; };
+		24FE89E91FB7725100A4A3C6 /* ChangeTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E81FB7725100A4A3C6 /* ChangeTracker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -362,6 +363,7 @@
 		24FE89DC1FB7653E00A4A3C6 /* CDIdentifiable+NSItemIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDIdentifiable+NSItemIdentifier.swift"; sourceTree = "<group>"; };
 		24FE89E01FB7661700A4A3C6 /* SemesterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterItem.swift; sourceTree = "<group>"; };
 		24FE89E21FB7674F00A4A3C6 /* SemesterEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterEnumerator.swift; sourceTree = "<group>"; };
+		24FE89E81FB7725100A4A3C6 /* ChangeTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeTracker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -843,6 +845,7 @@
 				24FE89DF1FB765AC00A4A3C6 /* Semesters */,
 				24FE89D91FB7652200A4A3C6 /* Extensions */,
 				24D9EF841FB75818006776B7 /* FileProviderExtension.swift */,
+				24FE89E81FB7725100A4A3C6 /* ChangeTracker.swift */,
 				24D9EF8A1FB75819006776B7 /* Info.plist */,
 				24D9EF8B1FB75819006776B7 /* StudFileProvider.entitlements */,
 			);
@@ -1321,6 +1324,7 @@
 			files = (
 				24FE89E31FB7674F00A4A3C6 /* SemesterEnumerator.swift in Sources */,
 				24FE89E11FB7661700A4A3C6 /* SemesterItem.swift in Sources */,
+				24FE89E91FB7725100A4A3C6 /* ChangeTracker.swift in Sources */,
 				24FE89DE1FB7653E00A4A3C6 /* CDIdentifiable+NSItemIdentifier.swift in Sources */,
 				24D9EF851FB75818006776B7 /* FileProviderExtension.swift in Sources */,
 				24FE89DD1FB7653E00A4A3C6 /* FileProviderItemConvertible.swift in Sources */,

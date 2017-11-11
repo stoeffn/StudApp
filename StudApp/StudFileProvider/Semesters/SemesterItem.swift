@@ -33,9 +33,7 @@ final class SemesterItem: NSObject, NSFileProviderItem {
             ? semester.state.favoriteRank as NSNumber : nil
     }
 
-    convenience init(from semester: Semester, context _: NSManagedObjectContext,
-                     parentItemIdentifier: NSFileProviderItemIdentifier = .rootContainer) throws {
-        let childItemCount = 42
-        self.init(from: semester, childItemCount: childItemCount, parentItemIdentifier: parentItemIdentifier)
+    convenience init(from semester: Semester, parentItemIdentifier: NSFileProviderItemIdentifier = .rootContainer) throws {
+        self.init(from: semester, childItemCount: 42, parentItemIdentifier: parentItemIdentifier)
     }
 }

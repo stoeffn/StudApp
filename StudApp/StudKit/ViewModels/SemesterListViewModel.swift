@@ -12,7 +12,7 @@ public final class SemesterListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let semesterService = ServiceContainer.default[SemesterService.self]
 
-    private var semesters = [Semester]()
+    public private(set) var semesters = [Semester]()
 
     public weak var delegate: DataSourceSectionDelegate?
 
