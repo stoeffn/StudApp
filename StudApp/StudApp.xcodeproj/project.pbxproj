@@ -1148,6 +1148,9 @@
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
 							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
 						};
 					};
 					2448D41C1FA8DA2400DAB97E = {
@@ -1173,6 +1176,11 @@
 					24D9EF811FB75818006776B7 = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

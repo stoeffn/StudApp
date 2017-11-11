@@ -7,5 +7,9 @@
 		<string>group.SteffenRyll.StudApp</string>
 		<string>group.SteffenRyll.StudKit</string>
 	</array>
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)SteffenRyll.StudApp</string>
+	</array>
 </dict>
 </plist>
