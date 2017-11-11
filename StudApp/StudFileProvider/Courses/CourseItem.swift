@@ -35,15 +35,14 @@ final class CourseItem: NSObject, NSFileProviderItem {
         ownerNameComponents = course.lecturers.first?.nameComponents
     }
 
-    convenience init(from course: Course, context _: NSManagedObjectContext,
-                     parentItemIdentifier: NSFileProviderItemIdentifier = .rootContainer) throws {
-        let childItemCount = 42
+    convenience init(from course: Course, context: NSManagedObjectContext) throws {
+        guard let parentItemIdentifier = course.semesters.first?.itemIdentifier else { throw NSFileProviderError(.noSuchItem) }
+        let childItemCount = try context.count(for: course.rootFilesFetchRequest)
         self.init(from: course, childItemCount: childItemCount, parentItemIdentifier: parentItemIdentifier)
     }
 
-    convenience init(byId id: String, context: NSManagedObjectContext,
-                     parentItemIdentifier: NSFileProviderItemIdentifier = .rootContainer) throws {
+    convenience init(byId id: String, context: NSManagedObjectContext) throws {
         guard let course = try Course.fetch(byId: id, in: context) else { throw NSFileProviderError(.noSuchItem) }
-        try self.init(from: course, context: context, parentItemIdentifier: parentItemIdentifier)
+        try self.init(from: course, context: context)
     }
 }

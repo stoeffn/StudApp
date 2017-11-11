@@ -15,6 +15,6 @@ extension Semester: FileProviderItemConvertible {
     }
 
     func fileProviderItem(context _: NSManagedObjectContext) throws -> NSFileProviderItem {
-        return SemesterItem(from: self, childItemCount: 42)
+        return try SemesterItem(from: self)
     }
 }
