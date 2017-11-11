@@ -10,7 +10,7 @@ import CoreData
 import StudKit
 
 extension File: FileProviderItemConvertible {
-    var state: FileProviderItemConvertibleState {
+    var itemState: FileProviderItemConvertibleState {
         return self.state
     }
 

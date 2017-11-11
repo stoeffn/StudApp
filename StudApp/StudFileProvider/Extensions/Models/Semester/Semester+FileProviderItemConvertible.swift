@@ -10,7 +10,7 @@ import CoreData
 import StudKit
 
 extension Semester: FileProviderItemConvertible {
-    var state: FileProviderItemConvertibleState {
+    var itemState: FileProviderItemConvertibleState {
         return self.state
     }
 

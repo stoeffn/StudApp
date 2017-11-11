@@ -11,7 +11,7 @@ import FileProvider
 import StudKit
 
 protocol FileProviderItemConvertible {
-    var state: FileProviderItemConvertibleState { get }
+    var itemState: FileProviderItemConvertibleState { get }
 
     func fileProviderItem(context: NSManagedObjectContext) throws -> NSFileProviderItem
 }
