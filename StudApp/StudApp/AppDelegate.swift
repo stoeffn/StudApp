@@ -22,11 +22,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func applicationDidEnterBackground(_ application: UIApplication) {
+    func applicationDidEnterBackground(_: UIApplication) {
         try? coreDataService?.viewContext.saveWhenChanged()
     }
 
-    func applicationWillTerminate(_ application: UIApplication) {
+    func applicationWillTerminate(_: UIApplication) {
         try? coreDataService?.viewContext.saveWhenChanged()
     }
 }

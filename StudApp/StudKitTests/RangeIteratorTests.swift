@@ -36,7 +36,7 @@ final class RangeIteratorTests: XCTestCase {
         var iterator = testDataSourceSection.makeIterator()
         XCTAssertEqual(iterator.next(), 0)
         XCTAssertEqual(iterator.next(), 1)
-        XCTAssertEqual(iterator.next(), 3)
+        XCTAssertEqual(iterator.next(), 2)
         XCTAssertEqual(iterator.next(), nil)
     }
 }
