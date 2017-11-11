@@ -10,8 +10,8 @@ import FileProvider
 
 public extension NSFileProviderItemIdentifier {
     public enum ModelType {
-        case root
         case workingSet
+        case root
         case semester(id: String)
         case course(id: String)
         case file(id: String)
@@ -29,10 +29,10 @@ public extension NSFileProviderItemIdentifier {
     }
 
     public var modelType: ModelType {
-        if self == .rootContainer {
-            return .root
-        } else if self == .workingSet {
+        if self == .workingSet {
             return .workingSet
+        } else if self == .rootContainer {
+            return .root
         }
 
         switch parts.first {

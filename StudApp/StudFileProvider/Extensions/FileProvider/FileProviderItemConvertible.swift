@@ -10,7 +10,7 @@ import CoreData
 import FileProvider
 import StudKit
 
-protocol FileProviderItemConvertible {
+protocol FileProviderItemConvertible: class {
     var itemState: FileProviderItemConvertibleState { get }
 
     func fileProviderItem(context: NSManagedObjectContext) throws -> NSFileProviderItem

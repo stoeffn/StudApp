@@ -15,6 +15,6 @@ extension Course: FileProviderItemConvertible {
     }
 
     func fileProviderItem(context: NSManagedObjectContext) throws -> NSFileProviderItem {
-        return CourseItem(from: self, context: context)
+        return try CourseItem(from: self, context: context)
     }
 }
