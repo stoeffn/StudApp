@@ -79,7 +79,11 @@ extension SemesterListViewModel: NSFetchedResultsControllerDelegate {
         case .update:
             guard let indexPath = indexPath else { return }
             let semester = controller.object(at: indexPath)
-            semesters[indexPath.row] = semester
+            if indexPath.row > semesters.count - 1 {
+                semesters.append(semester)
+            } else {
+                semesters[indexPath.row] = semester
+            }
             delegate?.data(changedIn: semester, at: indexPath.row, change: .update(semester), in: self)
         case .move:
             guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
