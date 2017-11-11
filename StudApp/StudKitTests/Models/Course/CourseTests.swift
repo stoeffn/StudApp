@@ -68,7 +68,7 @@ final class CourseTests: XCTestCase {
 
     func testFetchFiles_Course1_Files() {
         let course = try! Course.fetch(byId: "0", in: context)
-        let rootFiles = try! course?.fetchFiles(in: context)
+        let rootFiles = try! course?.fetchRootFiles(in: context)
         XCTAssertNotNil(course)
         XCTAssertNotNil(rootFiles)
         XCTAssertEqual(rootFiles?.count, 2)
@@ -76,7 +76,7 @@ final class CourseTests: XCTestCase {
 
     func testFetchFiles_Course2_Files() {
         let course = try! Course.fetch(byId: "1", in: context)
-        let rootFiles = try! course?.fetchFiles(in: context)
+        let rootFiles = try! course?.fetchRootFiles(in: context)
         XCTAssertNotNil(course)
         XCTAssertNotNil(rootFiles)
         XCTAssertEqual(rootFiles?.count, 1)
@@ -84,7 +84,7 @@ final class CourseTests: XCTestCase {
 
     func testFetchFiles_Course3_Empty() {
         let course = try! Course.fetch(byId: "2", in: context)
-        let rootFiles = try! course?.fetchFiles(in: context)
+        let rootFiles = try! course?.fetchRootFiles(in: context)
         XCTAssertNotNil(course)
         XCTAssertNotNil(rootFiles)
         XCTAssertTrue(rootFiles?.isEmpty ?? false)

@@ -10,7 +10,7 @@ import MobileCoreServices
 import CoreData
 
 @objc(File)
-public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable, FilesContaining {
+public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable {
     @NSManaged public var id: String
     @NSManaged public var creationDate: Date
     @NSManaged public var modificationDate: Date
@@ -54,7 +54,7 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
         return File.isDownloaded(id: id)
     }
 
-    public var filesFetchRequest: NSFetchRequest<File> {
+    public var childrenFetchRequest: NSFetchRequest<File> {
         let predicate = NSPredicate(format: "parent == %@", id)
         return File.fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["state"])
     }

@@ -13,7 +13,6 @@ public final class CourseState: NSManagedObject, CDCreatable, CDColorable {
     @NSManaged public var lastUsedDate: Date?
     @NSManaged public var favoriteRank: Int
     @NSManaged public var tagData: Data?
-    @NSManaged public var isHidden: Bool
 
     @NSManaged public var color: Color?
     @NSManaged public var course: Course

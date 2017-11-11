@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="17B48" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Color" representedClassName="Color" syncable="YES">
         <attribute name="orderId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="uiColor" attributeType="Transformable" customClassName="UIColor" syncable="YES"/>
@@ -35,13 +35,12 @@
     </entity>
     <entity name="CourseState" representedClassName="CourseState" syncable="YES">
         <attribute name="favoriteRank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="isHidden" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lastUsedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="tagData" optional="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="color" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Color" inverseName="courseStates" inverseEntity="Color" syncable="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Course" inverseName="state" inverseEntity="Course" syncable="YES"/>
-        <fetchIndex name="byHidden">
-            <fetchIndexElement property="isHidden" type="Binary" order="ascending"/>
+        <fetchIndex name="byFavoriteRank">
+            <fetchIndexElement property="favoriteRank" type="Binary" order="ascending"/>
         </fetchIndex>
     </entity>
     <entity name="File" representedClassName="File" syncable="YES">
@@ -92,7 +91,9 @@
         </uniquenessConstraints>
     </entity>
     <entity name="SemesterState" representedClassName="SemesterState" syncable="YES">
-        <attribute name="isCollapsed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="favoriteRank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="lastUsedDate" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="tagData" optional="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="semester" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Semester" inverseName="state" inverseEntity="Semester" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
@@ -115,13 +116,13 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Color" positionX="-8181" positionY="-2122" width="128" height="90"/>
+        <element name="Color" positionX="-8181" positionY="-2124" width="128" height="90"/>
         <element name="Course" positionX="-8568" positionY="-2218" width="128" height="195"/>
-        <element name="CourseState" positionX="-8354" positionY="-2142" width="128" height="135"/>
+        <element name="CourseState" positionX="-8354" positionY="-2142" width="128" height="120"/>
         <element name="File" positionX="-8381" positionY="-1971" width="128" height="240"/>
         <element name="FileState" positionX="-8199" positionY="-1836" width="128" height="103"/>
         <element name="Semester" positionX="-8748" positionY="-2188" width="128" height="165"/>
-        <element name="SemesterState" positionX="-8910" positionY="-2100" width="128" height="73"/>
+        <element name="SemesterState" positionX="-8910" positionY="-2121" width="128" height="105"/>
         <element name="User" positionX="-8748" positionY="-1924" width="128" height="180"/>
     </elements>
 </model>

@@ -37,7 +37,7 @@ final class CourseFileTests: XCTestCase {
 
             XCTAssertTrue(fileResult.isSuccess)
             XCTAssertEqual(try! File.fetch(in: self.context!).count, 59)
-            XCTAssertEqual(try! course!.fetchFiles(in: self.context).count, 7)
+            XCTAssertEqual(try! course!.fetchRootFiles(in: self.context).count, 7)
             XCTAssertEqual(file?.course.id, "a2c88e905abf322d1868640859f13c99")
             XCTAssertEqual(file?.title, "Leitfaden zur ErgebnisPIN")
         }

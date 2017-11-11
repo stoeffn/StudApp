@@ -25,17 +25,6 @@ public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDUpd
         state = SemesterState(createIn: context)
     }
 
-    public static var nonEmptyFetchRequest: NSFetchRequest<Semester> {
-        let predicate = NSPredicate(format: "SUBQUERY(courses, $course, $course.state.isHidden == NO).@count > 0")
-        let sortDescriptor = NSSortDescriptor(keyPath: \Semester.beginDate, ascending: false)
-        return fetchRequest(predicate: predicate, sortDescriptors: [sortDescriptor],
-                            relationshipKeyPathsForPrefetching: ["state"])
-    }
-
-    public static func fetchNonEmpty(in context: NSManagedObjectContext) throws -> [Semester] {
-        return try context.fetch(nonEmptyFetchRequest)
-    }
-
     public static func fetch(from beginSemester: Semester, to endSemester: Semester? = nil,
                              in context: NSManagedObjectContext) throws -> [Semester] {
         let endDate = endSemester?.endDate ?? .distantFuture
@@ -46,7 +35,7 @@ public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDUpd
     }
 
     public var coursesFetchRequest: NSFetchRequest<CourseState> {
-        let predicate = NSPredicate(format: "isHidden == NO AND %@ IN course.semesters", self)
+        let predicate = NSPredicate(format: "%@ IN course.semesters", self)
         let sortDescriptors = [
             NSSortDescriptor(keyPath: \CourseState.color?.orderId, ascending: true),
             NSSortDescriptor(keyPath: \CourseState.course.title, ascending: true),

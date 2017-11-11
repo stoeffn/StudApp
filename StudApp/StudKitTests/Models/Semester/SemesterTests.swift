@@ -44,11 +44,6 @@ final class SemesterTests: XCTestCase {
         XCTAssertNotNil(semester.state)
     }
 
-    func testFetchNonEmpty_2NonEmpty() {
-        let semesters = try! Semester.fetchNonEmpty(in: context)
-        XCTAssertEqual(semesters.map { $0.id }.set, ["2", "3"] as Set)
-    }
-
     func testFetchFrom_1to2_12() {
         let from = try! Semester.fetch(byId: "1", in: context)
         let to = try! Semester.fetch(byId: "2", in: context)
