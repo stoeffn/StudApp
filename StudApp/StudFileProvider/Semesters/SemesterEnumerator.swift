@@ -36,4 +36,8 @@ final class SemesterEnumerator: NSObject, NSFileProviderEnumerator {
         observer.finishEnumeratingChanges(upTo: cache.currentSyncAnchor, moreComing: false)
         cache.flush()
     }
+
+    func currentSyncAnchor(completionHandler: @escaping (NSFileProviderSyncAnchor?) -> Void) {
+        completionHandler(cache.currentSyncAnchor)
+    }
 }

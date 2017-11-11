@@ -12,12 +12,15 @@ import StudKit
 /// Caches changes to a data source section.
 final class ChangeCache<Item: CDIdentifiable> {
     private(set) var updatedItems = [Item]()
+
     private(set) var deletedItemIdentifiers = [NSFileProviderItemIdentifier]()
 
     /// File provider sync anchor, containing a UNIX timestamp.
-    var currentSyncAnchor: NSFileProviderSyncAnchor {
-        let now = Date()
-        guard let data = String(now.timeIntervalSince1970).data(using: .utf8) else {
+    private(set) var currentSyncAnchor = ChangeCache.syncAnchor()
+
+    /// Generates a sync anchor for the date given. Defaults to now.
+    private static func syncAnchor(for date: Date = Date()) -> NSFileProviderSyncAnchor {
+        guard let data = String(date.timeIntervalSince1970).data(using: .utf8) else {
             fatalError("Cannot generate sync anchor data from current time.")
         }
         return NSFileProviderSyncAnchor(data)
@@ -27,6 +30,7 @@ final class ChangeCache<Item: CDIdentifiable> {
     func flush() {
         updatedItems.removeAll()
         deletedItemIdentifiers.removeAll()
+        currentSyncAnchor = ChangeCache.syncAnchor()
     }
 }
 
