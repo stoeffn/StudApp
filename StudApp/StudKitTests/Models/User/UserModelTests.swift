@@ -10,7 +10,7 @@ import CoreData
 import XCTest
 @testable import StudKit
 
-final class UserModelTests : XCTestCase {
+final class UserModelTests: XCTestCase {
     let decoder = ServiceContainer.default[JSONDecoder.self]
 
     func testInit_UserData_User() {

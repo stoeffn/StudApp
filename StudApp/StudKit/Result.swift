@@ -19,7 +19,7 @@ public typealias ResultHandler<Value> = (Result<Value>) -> Void
 public enum Result<Value> {
     case failure(Error?)
     case success(Value)
-    
+
     /// Creates a new operation result depending on whether the value given is `nil`.
     ///
     /// - Parameters:
@@ -32,7 +32,7 @@ public enum Result<Value> {
         }
         self = .failure(error)
     }
-    
+
     /// Returns whether self is `success`.
     public var isSuccess: Bool {
         switch self {
@@ -40,28 +40,28 @@ public enum Result<Value> {
         case .failure: return false
         }
     }
-    
+
     /// Returns `true` if the result is a failure, `false` otherwise.
     public var isFailure: Bool {
         return !isSuccess
     }
-    
+
     /// Returns the associated error if attached, `nil` otherwise.
     public var error: Error? {
         switch self {
         case .success: return nil
-        case .failure(let error): return error
+        case let .failure(error): return error
         }
     }
-    
+
     /// Returns the associated value if the result is a success, `nil` otherwise.
     public var value: Value? {
         switch self {
-        case .success(let value): return value
+        case let .success(value): return value
         case .failure: return nil
         }
     }
-    
+
     /// Returns a new operation result, keeping the error if set and replacing the value.
     ///
     /// - Remarks: This might be useful when transforming the result's data before returning it. The same rules as in
@@ -70,7 +70,7 @@ public enum Result<Value> {
         switch self {
         case .success:
             return Result<NewValue>(value)
-        case .failure(let error):
+        case let .failure(error):
             return .failure(error)
         }
     }

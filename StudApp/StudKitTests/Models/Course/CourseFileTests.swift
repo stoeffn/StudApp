@@ -10,7 +10,7 @@ import CoreData
 import XCTest
 @testable import StudKit
 
-final class CourseFileTests : XCTestCase {
+final class CourseFileTests: XCTestCase {
     let service = ServiceContainer.default[CourseService.self]
     var context: NSManagedObjectContext!
     var course: Course!

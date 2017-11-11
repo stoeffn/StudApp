@@ -6,7 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-public extension Array where Element : Hashable {
+public extension Array where Element: Hashable {
     var set: Set<Element> {
         return Set(self)
     }

@@ -13,14 +13,14 @@ class Api<Routes: ApiRoutes> {
     private let session: URLSession
     private let authenticationMethod: String?
 
-    init(baseUrl: URL, realm : String? = nil, session: URLSession = .shared,
+    init(baseUrl: URL, realm: String? = nil, session: URLSession = .shared,
          authenticationMethod: String = NSURLAuthenticationMethodHTTPBasic) {
         self.baseUrl = baseUrl
         self.realm = realm
         self.session = session
         self.authenticationMethod = authenticationMethod
     }
-    
+
     var protectionSpace: URLProtectionSpace {
         guard let host = baseUrl.host, let scheme = baseUrl.scheme else {
             fatalError("Cannot get host or scheme from base URL '\(baseUrl)'.")
@@ -79,7 +79,7 @@ extension Api {
         task.resume()
         return task.progress
     }
-    
+
     @discardableResult
     func download(_ route: Routes, to destination: URL, parameters: [URLQueryItem] = [],
                   queue: DispatchQueue = .main, handler: @escaping ResultHandler<URL>) -> Progress {

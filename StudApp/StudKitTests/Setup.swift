@@ -9,7 +9,7 @@
 @testable import StudKit
 
 @objc(Setup)
-final class Setup : NSObject {
+final class Setup: NSObject {
     override init() {
         ServiceContainer.default.register(providers: StudKitTestsServiceProvider())
     }

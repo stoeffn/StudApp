@@ -9,35 +9,35 @@
 import XCTest
 @testable import StudKit
 
-final class ResultTests : XCTestCase {
+final class ResultTests: XCTestCase {
     func testInit_Value_Success() {
         let result = Result(42)
         XCTAssertEqual(result.value, 42)
         XCTAssertTrue(result.isSuccess)
         XCTAssertFalse(result.isFailure)
     }
-    
+
     func testInit_Error_Failure() {
         let result = Result(42, error: "Error")
         XCTAssertNil(result.value)
         XCTAssertFalse(result.isSuccess)
         XCTAssertTrue(result.isFailure)
     }
-    
+
     func testInit_NoValue_Failure() {
         let result = Result<Int>(nil)
         XCTAssertNil(result.value)
         XCTAssertFalse(result.isSuccess)
         XCTAssertTrue(result.isFailure)
     }
-    
+
     func testReplacingValue_Value_Success() {
         let result = Result(42).replacingValue("Hello, World!")
         XCTAssertEqual(result.value, "Hello, World!")
         XCTAssertTrue(result.isSuccess)
         XCTAssertFalse(result.isFailure)
     }
-    
+
     func testReplacingValue_Nil_Failure() {
         let result: Result<String> = Result(42).replacingValue(nil)
         XCTAssertNil(result.value)

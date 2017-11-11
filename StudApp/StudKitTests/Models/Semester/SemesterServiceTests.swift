@@ -6,12 +6,11 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-
 import CoreData
 import XCTest
 @testable import StudKit
 
-final class SemesterServiceTests : XCTestCase {
+final class SemesterServiceTests: XCTestCase {
     let service = ServiceContainer.default[SemesterService.self]
     var context: NSManagedObjectContext!
 

@@ -9,7 +9,7 @@
 import MobileCoreServices
 import CoreData
 
-struct FileModel : Decodable {
+struct FileModel: Decodable {
     private let folderId: String?
     private let fileId: String?
     private let filename: String?
@@ -23,7 +23,7 @@ struct FileModel : Decodable {
     let numberOfDownloads: Int?
     private let ownerPath: String?
 
-    enum CodingKeys : String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case folderId = "folder_id"
         case fileId = "file_id"
         case filename
@@ -39,11 +39,11 @@ struct FileModel : Decodable {
     }
 
     init(folderId: String? = nil, fileId: String? = nil, name: String? = nil, coursePath: String,
-        parentId: String? = nil, children: [FileModel] = [], title: String, creationDate: Date = Date(),
-        modificationDate: Date = Date(), size: Int? = nil, numberOfDownloads: Int? = nil, ownerPath: String? = nil) {
+         parentId: String? = nil, children: [FileModel] = [], title: String, creationDate: Date = Date(),
+         modificationDate: Date = Date(), size: Int? = nil, numberOfDownloads: Int? = nil, ownerPath: String? = nil) {
         self.folderId = folderId
         self.fileId = fileId
-        self.filename = name
+        filename = name
         self.coursePath = coursePath
         self.parentId = parentId
         self.children = children
@@ -68,7 +68,7 @@ struct FileModel : Decodable {
         size = try values.decodeIfPresent(Int.self, forKey: .size)
         numberOfDownloads = try values.decodeIfPresent(Int.self, forKey: .numberOfDownloads)
         ownerPath = try values.decodeIfPresent(String.self, forKey: .ownerPath)
-        
+
         if let childrenCollection = try? values.decodeIfPresent([String: FileModel].self, forKey: .children),
             let children = childrenCollection?.values {
             self.children = Array(children)

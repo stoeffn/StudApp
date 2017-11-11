@@ -6,4 +6,4 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-extension String : Error { }
+extension String: Error {}

@@ -6,7 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-struct SemesterModel : Decodable {
+struct SemesterModel: Decodable {
     let id: String
     let title: String
     let beginDate: Date
@@ -14,7 +14,7 @@ struct SemesterModel : Decodable {
     let coursesBeginDate: Date
     let coursesEndDate: Date
 
-    enum CodingKeys : String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id
         case title
         case beginDate = "begin"

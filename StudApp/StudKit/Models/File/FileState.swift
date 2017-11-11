@@ -9,11 +9,10 @@
 import CoreData
 
 @objc(FileState)
-public final class FileState : NSManagedObject, CDCreatable {
+public final class FileState: NSManagedObject, CDCreatable {
     @NSManaged public var lastUsedDate: Date?
     @NSManaged public var favoriteRank: Int
     @NSManaged public var tagData: Data?
 
     @NSManaged public var file: File
 }
-

@@ -7,7 +7,7 @@
 //
 
 /// Selection of API routes exposed by the Stud.IP API.
-public enum StudIpRoutes : ApiRoutes {
+public enum StudIpRoutes: ApiRoutes {
     /// Contains information on available routes and access restrictions.
     case discovery
 
@@ -34,13 +34,13 @@ public enum StudIpRoutes : ApiRoutes {
             return "discovery"
         case .semesters:
             return "semesters"
-        case .courses(let userId):
+        case let .courses(userId):
             return "user/\(userId)/courses"
-        case .files(let courseId):
+        case let .files(courseId):
             return "course/\(courseId)/files"
-        case .fileContents(let fileId):
+        case let .fileContents(fileId):
             return "file/\(fileId)/content"
-        case .profilePicture(let url):
+        case let .profilePicture(url):
             return url.path
         }
     }

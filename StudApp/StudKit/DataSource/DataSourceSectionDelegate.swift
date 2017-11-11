@@ -6,7 +6,7 @@
 //  Copyright © 2017 Remonder. All rights reserved.
 //
 
-public protocol DataSourceSectionDelegate : class {
+public protocol DataSourceSectionDelegate: class {
     func dataWillChange<Section: DataSourceSection>(in section: Section)
 
     func dataDidChange<Section: DataSourceSection>(in section: Section)

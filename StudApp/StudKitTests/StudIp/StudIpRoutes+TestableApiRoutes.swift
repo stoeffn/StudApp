@@ -8,7 +8,7 @@
 
 @testable import StudKit
 
-extension StudIpRoutes : TestableApiRoutes {
+extension StudIpRoutes: TestableApiRoutes {
     func testData(for parameters: [URLQueryItem]) throws -> Data {
         let offset = parameters.filter({ $0.name == "offset" }).first?.value ?? "0"
         switch self {

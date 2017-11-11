@@ -9,7 +9,7 @@
 import XCTest
 @testable import StudKit
 
-final class IntNSNumberTests : XCTestCase {
+final class IntNSNumberTests: XCTestCase {
     func testNsNumber() {
         XCTAssertEqual(42.nsNumber, NSNumber(integerLiteral: 42))
     }

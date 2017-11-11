@@ -8,7 +8,7 @@
 
 import StudKit
 
-enum Segues : Routes {
+enum Segues: Routes {
     case signIn
 
     var identifier: String {

@@ -10,7 +10,7 @@ import CoreData
 import XCTest
 @testable import StudKit
 
-final class IdentifiableTests : XCTestCase {
+final class IdentifiableTests: XCTestCase {
     var context: NSManagedObjectContext!
 
     override func setUp() {
@@ -19,7 +19,7 @@ final class IdentifiableTests : XCTestCase {
         try! CourseModel(id: "0", title: "A").coreDataModel(in: context)
         try! CourseModel(id: "1", title: "B").coreDataModel(in: context)
     }
-    
+
     func testFetchById_ExistingId_Course() {
         let course = try! Course.fetch(byId: "1", in: context)
         XCTAssertNotNil(course)

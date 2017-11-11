@@ -7,8 +7,8 @@
 //
 
 /// Decoded representation of a generic Stud.IP API response that encapsulates a paginated collection.
-struct CollectionResponse<Element: Decodable> : Decodable {
-    struct Pagination : Decodable {
+struct CollectionResponse<Element: Decodable>: Decodable {
+    struct Pagination: Decodable {
         let total: Int
         let offset: Int
         let limit: Int
@@ -19,7 +19,7 @@ struct CollectionResponse<Element: Decodable> : Decodable {
         }
     }
 
-    enum CodingKeys : String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case collection, pagination
     }
 

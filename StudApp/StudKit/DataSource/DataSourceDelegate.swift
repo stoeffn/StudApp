@@ -6,7 +6,7 @@
 //  Copyright © 2017 Remonder. All rights reserved.
 //
 
-public protocol DataSourceDelegate : class {
+public protocol DataSourceDelegate: class {
     func dataWillChange<Source: DataSource>(in source: Source)
 
     func dataDidChange<Source: DataSource>(in source: Source)

@@ -9,7 +9,7 @@
 import CoreData
 
 @objc(SemesterState)
-public final class SemesterState : NSManagedObject, CDCreatable {
+public final class SemesterState: NSManagedObject, CDCreatable {
     @NSManaged public var isCollapsed: Bool
 
     @NSManaged public var semester: Semester

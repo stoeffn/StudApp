@@ -29,7 +29,7 @@ extension String {
     /// - Returns: `self`
     @discardableResult
     mutating func replaceMatches(_ pattern: String, with template: String) -> String {
-        self = self.replacingMatches(pattern, with: template)
+        self = replacingMatches(pattern, with: template)
         return self
     }
 }

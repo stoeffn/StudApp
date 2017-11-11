@@ -8,7 +8,7 @@
 
 final class StudIpService {
     let api: Api<StudIpRoutes>
-    
+
     init(baseUrl: URL, realm: String) {
         api = Api<StudIpRoutes>(baseUrl: baseUrl, realm: realm)
     }
@@ -23,7 +23,7 @@ final class StudIpService {
     var isSignedIn: Bool {
         return Defaults[.isSignedIn]
     }
-    
+
     /// Try to sign into Stud.IP using the credentials provided and update main data when successful.
     ///
     /// ## How it works
@@ -41,7 +41,7 @@ final class StudIpService {
     func signIn(withUsername username: String, password: String, handler: @escaping ResultHandler<Void>) {
         let credential = URLCredential(user: username, password: password, persistence: .forSession)
         URLCredentialStorage.shared.setDefaultCredential(credential, for: api.protectionSpace)
-        
+
         api.request(.discovery) { result in
             guard result.isSuccess else {
                 return handler(result.replacingValue(()))

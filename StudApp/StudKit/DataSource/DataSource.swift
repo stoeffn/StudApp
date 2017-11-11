@@ -16,7 +16,7 @@ public protocol DataSource {
 
     func numberOfRows(inSection index: Int) -> Int
 
-    subscript (sectionAt index: Int) -> Section { get }
+    subscript(sectionAt _: Int) -> Section { get }
 
-    subscript (rowAt indexPath: IndexPath) -> Row { get }
+    subscript(rowAt _: IndexPath) -> Row { get }
 }

@@ -8,9 +8,9 @@
 
 import CoreData
 
-protocol CDUpdatable { }
+protocol CDUpdatable {}
 
-extension CDUpdatable where Self : NSManagedObject {
+extension CDUpdatable where Self: NSManagedObject {
     static func update<Model: CDConvertible>(using result: Result<[Model]>, in context: NSManagedObjectContext,
                                              handler: @escaping ResultHandler<[Self]>) {
         guard let models = result.value else {

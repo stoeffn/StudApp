@@ -10,7 +10,7 @@ import CoreData
 import XCTest
 @testable import StudKit
 
-final class UpdatableTests : XCTestCase {
+final class UpdatableTests: XCTestCase {
     var context: NSManagedObjectContext!
 
     override func setUp() {
@@ -51,7 +51,7 @@ final class UpdatableTests : XCTestCase {
         try! CourseModel(id: "2", title: "Updated Course").coreDataModel(in: context)
         try! context.save()
 
-        let course = try! Course.fetch(byId: "2", in: self.context)
+        let course = try! Course.fetch(byId: "2", in: context)
         XCTAssertEqual(course?.title, "Updated Course")
     }
 

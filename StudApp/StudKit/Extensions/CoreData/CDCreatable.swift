@@ -14,7 +14,7 @@ public protocol CDCreatable {
     init(createIn context: NSManagedObjectContext)
 }
 
-extension CDCreatable where Self : CDCreatable {
+extension CDCreatable where Self: CDCreatable {
     public init(createIn context: NSManagedObjectContext) {
         self.init(context: context)
     }

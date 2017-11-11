@@ -8,11 +8,11 @@
 
 @testable import StudKit
 
-final class StudKitTestsServiceProvider : StudKitServiceProvider {
+final class StudKitTestsServiceProvider: StudKitServiceProvider {
     override func provideCoreDataService() -> CoreDataService {
         return CoreDataService(modelName: "StudKit", inMemory: true)
     }
-    
+
     override func provideStudIpService() -> StudIpService {
         let api = MockApi<StudIpRoutes>(baseUrl: URL(string: "https://example.com")!)
         return StudIpService(api: api)

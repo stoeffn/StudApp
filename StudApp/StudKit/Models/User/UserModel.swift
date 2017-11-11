@@ -6,7 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-struct UserModel : Decodable {
+struct UserModel: Decodable {
     let id: String
     let username: String
     let givenName: String
@@ -15,13 +15,13 @@ struct UserModel : Decodable {
     private let rawNameSuffix: String
     private let pictureUrl: URL?
 
-    enum CodingKeys : String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id
         case name
         case pictureUrl = "avatar_normal"
     }
 
-    enum NameKeys : String, CodingKey {
+    enum NameKeys: String, CodingKey {
         case username
         case givenName = "given"
         case familyName = "family"

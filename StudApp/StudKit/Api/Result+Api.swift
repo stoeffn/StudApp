@@ -8,7 +8,7 @@
 
 extension Result {
     init(_ value: Value?, error: Error? = nil, statusCode: Int?) {
-        if let value = value, let statusCode = statusCode, error == nil, 200...299 ~= statusCode {
+        if let value = value, let statusCode = statusCode, error == nil, 200 ... 299 ~= statusCode {
             self = .success(value)
             return
         }

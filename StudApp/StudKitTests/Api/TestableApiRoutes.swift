@@ -8,6 +8,6 @@
 
 @testable import StudKit
 
-protocol TestableApiRoutes : ApiRoutes {
+protocol TestableApiRoutes: ApiRoutes {
     func testData(for parameters: [URLQueryItem]) throws -> Data
 }

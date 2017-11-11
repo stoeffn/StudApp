@@ -9,7 +9,7 @@
 import CoreData
 
 @objc(Color)
-public final class Color : NSManagedObject, CDCreatable {
+public final class Color: NSManagedObject, CDCreatable {
     @NSManaged public var orderId: Int
     @NSManaged public var uiColor: UIColor
 
@@ -27,7 +27,7 @@ public final class Color : NSManagedObject, CDCreatable {
     }
 
     @discardableResult
-    public static func createNewColorsWhenNeeded(in context: NSManagedObjectContext) -> [Color] {
+    public static func createNewColorsWhenNeeded(in _: NSManagedObjectContext) -> [Color] {
         fatalError("Not implemented.")
     }
 }

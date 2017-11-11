@@ -9,12 +9,12 @@
 import UIKit
 
 @IBDesignable
-final class FilledButton : UIButton {
+final class FilledButton: UIButton {
     // MARK: - User Interface
-    
+
     private var enabledBackgroundColor: UIColor?
     private let disabledBackgroundColor: UIColor = .lightGray
-    
+
     override var isEnabled: Bool {
         didSet {
             // Cache original background color before setting to disabled color.
@@ -26,7 +26,7 @@ final class FilledButton : UIButton {
             }, completion: nil)
         }
     }
-    
+
     override var isHighlighted: Bool {
         didSet {
             UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
@@ -36,7 +36,7 @@ final class FilledButton : UIButton {
             }, completion: nil)
         }
     }
-    
+
     @IBInspectable
     var cornerRadius: CGFloat = UI.defaultCornerRadius {
         didSet {

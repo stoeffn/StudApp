@@ -6,7 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-struct CourseModel : Decodable {
+struct CourseModel: Decodable {
     let id: String
     private let rawNumber: String?
     let title: String
@@ -17,7 +17,7 @@ struct CourseModel : Decodable {
     private let beginSemesterPath: String
     private let endSemesterPath: String?
 
-    enum CodingKeys : String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case id = "course_id"
         case rawNumber = "number"
         case title

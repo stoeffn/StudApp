@@ -9,8 +9,8 @@
 import XCTest
 @testable import StudKit
 
-final class ApiRoutesTests : XCTestCase {
-    struct Routes : ApiRoutes {
+final class ApiRoutesTests: XCTestCase {
+    struct Routes: ApiRoutes {
         let path: String = ""
     }
 

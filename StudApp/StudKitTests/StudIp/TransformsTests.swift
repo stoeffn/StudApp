@@ -9,7 +9,7 @@
 import XCTest
 @testable import StudKit
 
-final class TransformsTests : XCTestCase {
+final class TransformsTests: XCTestCase {
     func testTransformIdpath_IdPath_Id() {
         XCTAssertEqual(StudIp.transformIdPath("/api.php/semester/123"), "123")
     }

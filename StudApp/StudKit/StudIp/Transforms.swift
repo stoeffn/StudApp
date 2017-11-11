@@ -28,7 +28,7 @@ enum StudIp {
 
     /// Returns the input, decoding HTML characters, removing HTML tags and special prefixes, as well as
     /// trimming whitespace.
-    static func transformCourseSummary(_ summary : String?) -> String? {
+    static func transformCourseSummary(_ summary: String?) -> String? {
         return summary?
             .replacingMatches("<[^>]+>", with: "")
             .replacingMatches("Literatur: $", with: "")

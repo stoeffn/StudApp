@@ -25,7 +25,7 @@ public final class CoreDataService {
 
         self.modelName = modelName
         self.modelUrl = modelUrl
-        self.storeDescription = inMemory
+        storeDescription = inMemory
             ? CoreDataService.inMemoryStoreDescription()
             : CoreDataService.persistentStoreDescription(forStoreAt: containerUrl, modelName: modelName)
     }
@@ -51,7 +51,7 @@ public final class CoreDataService {
         }
         let container = NSPersistentContainer(name: modelName, managedObjectModel: model)
         container.persistentStoreDescriptions = [storeDescription]
-        container.loadPersistentStores { (storeDescription, error) in
+        container.loadPersistentStores { _, error in
             if let error = error as NSError? {
                 /*
                  Typical reasons for an error here include:

@@ -10,7 +10,7 @@ import MobileCoreServices
 import CoreData
 
 @objc(File)
-public final class File : NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable, FilesContaining {
+public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable, FilesContaining {
     @NSManaged public var id: String
     @NSManaged public var creationDate: Date
     @NSManaged public var modificationDate: Date

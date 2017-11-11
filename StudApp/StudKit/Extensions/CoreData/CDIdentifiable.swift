@@ -12,7 +12,7 @@ public protocol CDIdentifiable {
     var id: String { get }
 }
 
-public extension CDIdentifiable where Self : NSFetchRequestResult {
+public extension CDIdentifiable where Self: NSFetchRequestResult {
     public static func fetch(byId id: String?, in context: NSManagedObjectContext) throws -> Self? {
         guard let id = id, !id.isEmpty else { return nil }
         let predicate = NSPredicate(format: "id == %@", id)
@@ -20,7 +20,7 @@ public extension CDIdentifiable where Self : NSFetchRequestResult {
     }
 }
 
-public extension CDIdentifiable where Self : NSFetchRequestResult & CDCreatable {
+public extension CDIdentifiable where Self: NSFetchRequestResult & CDCreatable {
     public static func fetch(byId id: String?, orCreateIn context: NSManagedObjectContext) throws -> Self {
         return try fetch(byId: id, in: context) ?? Self(createIn: context)
     }

@@ -9,7 +9,7 @@
 import XCTest
 @testable import StudKit
 
-final class StringRegexTests : XCTestCase {
+final class StringRegexTests: XCTestCase {
     func testReplaceMatches() {
         XCTAssertEqual("This is an 'awesome' test!".replacingMatches(" is ", with: " was "), "This was an 'awesome' test!")
     }

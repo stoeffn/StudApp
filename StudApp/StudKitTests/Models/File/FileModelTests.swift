@@ -11,7 +11,7 @@ import MobileCoreServices
 import XCTest
 @testable import StudKit
 
-final class FileModelTests : XCTestCase {
+final class FileModelTests: XCTestCase {
     let decoder = ServiceContainer.default[JSONDecoder.self]
     var context: NSManagedObjectContext!
 

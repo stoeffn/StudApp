@@ -10,7 +10,7 @@ import CoreData
 import XCTest
 @testable import StudKit
 
-final class FetchableTests : XCTestCase {
+final class FetchableTests: XCTestCase {
     var context: NSManagedObjectContext!
 
     override func setUp() {

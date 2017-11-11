@@ -9,7 +9,7 @@
 import XCTest
 @testable import StudKit
 
-final class ApiCollectionResponseTests : XCTestCase {
+final class ApiCollectionResponseTests: XCTestCase {
     private let api = MockApi<TestRoutes>(baseUrl: URL(string: "https://example.com")!)
 
     func testRequestCollection_Request0_Response0() {

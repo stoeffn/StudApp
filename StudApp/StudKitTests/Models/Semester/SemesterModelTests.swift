@@ -10,7 +10,7 @@ import CoreData
 import XCTest
 @testable import StudKit
 
-final class SemesterModelTests : XCTestCase {
+final class SemesterModelTests: XCTestCase {
     let decoder = ServiceContainer.default[JSONDecoder.self]
 
     func testInit_SemesterData_Semester() {

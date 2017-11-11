@@ -9,7 +9,7 @@
 import XCTest
 @testable import StudKit
 
-final class SetArrayTests : XCTestCase {
+final class SetArrayTests: XCTestCase {
     func testArray() {
         XCTAssertEqual(Set(arrayLiteral: 1, 2, 3).array.sorted(), [1, 2, 3])
     }

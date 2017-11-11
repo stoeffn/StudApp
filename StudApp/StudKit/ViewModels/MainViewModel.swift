@@ -9,7 +9,7 @@
 public final class MainViewModel {
     private let studIp = ServiceContainer.default[StudIpService.self]
 
-    public init() { }
+    public init() {}
 
     public var isSignedIn: Bool {
         return studIp.isSignedIn

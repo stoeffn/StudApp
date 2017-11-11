@@ -9,23 +9,23 @@
 import XCTest
 import StudKit
 
-protocol TestProtocol { }
+protocol TestProtocol {}
 
-final class ServiceContainerTests : XCTestCase {
-    final class TestClass : TestProtocol { }
+final class ServiceContainerTests: XCTestCase {
+    final class TestClass: TestProtocol {}
 
-    final class GenericTestClass<Value> : TestProtocol { }
+    final class GenericTestClass<Value>: TestProtocol {}
 
-    struct TestStruct : TestProtocol {
+    struct TestStruct: TestProtocol {
         let id: String
     }
 
-    final class TestProvider : ServiceProvider {
+    final class TestProvider: ServiceProvider {
         func registerServices(in container: ServiceContainer) {
             container[String.self] = "123"
         }
     }
-    
+
     func testSubscript_class_class() {
         let container = ServiceContainer()
         let test = TestClass()

@@ -9,9 +9,9 @@
 import XCTest
 @testable import StudKit
 
-final class CourseModelTests : XCTestCase {
+final class CourseModelTests: XCTestCase {
     let decoder = ServiceContainer.default[JSONDecoder.self]
-    
+
     func testInit_CourseData_Course() {
         let course = try! decoder.decode(CourseModel.self, from: CourseModelTests.courseData)
         XCTAssertEqual(course.id, "0")

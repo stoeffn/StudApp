@@ -8,7 +8,7 @@
 
 import CoreData
 
-extension FileModel : CDConvertible {
+extension FileModel: CDConvertible {
     @discardableResult
     func coreDataModel(in context: NSManagedObjectContext) throws -> NSManagedObject {
         guard let id = id, let name = name, let course = try fetchCourse(in: context) else {

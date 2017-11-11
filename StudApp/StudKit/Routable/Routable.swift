@@ -6,6 +6,6 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-public protocol Routable : class {
+public protocol Routable: class {
     func prepareDependencies(for route: Routes)
 }

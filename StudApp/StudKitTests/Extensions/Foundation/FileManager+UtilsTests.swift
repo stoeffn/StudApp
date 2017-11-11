@@ -9,7 +9,7 @@
 import XCTest
 @testable import StudKit
 
-final class FileManagerExtensionsTests : XCTestCase {
+final class FileManagerExtensionsTests: XCTestCase {
     let storageService = ServiceContainer.default[StorageService.self]
 
     override func setUp() {

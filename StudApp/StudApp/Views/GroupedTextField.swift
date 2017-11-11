@@ -9,27 +9,27 @@
 import UIKit
 
 @IBDesignable
-final class GroupedTextField : UITextField {
+final class GroupedTextField: UITextField {
     // MARK: - Life Cycle
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         initUserInterface()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initUserInterface()
     }
-    
+
     // MARK: - User Interface
-    
+
     private func initUserInterface() {
         borderStyle = .none
         layer.borderWidth = 0.5
         layer.borderColor = UIColor.lightGray.cgColor
     }
-    
+
     @IBInspectable
     var cornerRadius: CGFloat = UI.defaultCornerRadius {
         didSet {
@@ -37,7 +37,7 @@ final class GroupedTextField : UITextField {
             layoutSubviews()
         }
     }
-    
+
     @IBInspectable
     var position: Position = .middle {
         didSet {
@@ -51,19 +51,19 @@ final class GroupedTextField : UITextField {
             }
         }
     }
-    
+
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.insetBy(dx: cornerRadius, dy: cornerRadius / 2)
     }
-    
+
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
         return textRect(forBounds: bounds)
     }
-    
-    // MARK - Position
-    
+
+    // MARK: - Position
+
     @objc
-    enum Position : Int {
+    enum Position: Int {
         case top, middle, bottom
     }
 }

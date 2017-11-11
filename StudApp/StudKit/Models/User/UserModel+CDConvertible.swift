@@ -8,7 +8,7 @@
 
 import CoreData
 
-extension UserModel : CDConvertible {
+extension UserModel: CDConvertible {
     @discardableResult
     func coreDataModel(in context: NSManagedObjectContext) throws -> NSManagedObject {
         let user = try User.fetch(byId: id, orCreateIn: context)

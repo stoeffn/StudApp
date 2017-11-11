@@ -9,7 +9,7 @@
 import XCTest
 @testable import StudKit
 
-final class CollectionResponseTests : XCTestCase {
+final class CollectionResponseTests: XCTestCase {
     let decoder = ServiceContainer.default[JSONDecoder.self]
     let data = """
         {

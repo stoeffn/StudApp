@@ -13,5 +13,5 @@ public protocol DataSourceSection {
 
     var numberOfRows: Int { get }
 
-    subscript (rowAt index: Int) -> Row { get }
+    subscript(rowAt _: Int) -> Row { get }
 }

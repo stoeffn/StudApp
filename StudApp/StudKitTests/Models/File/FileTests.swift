@@ -10,7 +10,7 @@ import CoreData
 import XCTest
 @testable import StudKit
 
-final class FileTests : XCTestCase {
+final class FileTests: XCTestCase {
     let decoder = ServiceContainer.default[JSONDecoder.self]
     var context: NSManagedObjectContext!
 

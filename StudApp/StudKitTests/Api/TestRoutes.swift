@@ -9,11 +9,11 @@
 import Foundation
 @testable import StudKit
 
-struct Test : Decodable {
+struct Test: Decodable {
     let id: String
 }
 
-enum TestRoutes : String, TestableApiRoutes {
+enum TestRoutes: String, TestableApiRoutes {
     case object
     case collection
     case failingCollection

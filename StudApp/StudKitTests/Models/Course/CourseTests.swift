@@ -10,7 +10,7 @@ import CoreData
 import XCTest
 @testable import StudKit
 
-final class CourseTests : XCTestCase {
+final class CourseTests: XCTestCase {
     var context: NSManagedObjectContext!
 
     override func setUp() {
@@ -40,7 +40,7 @@ final class CourseTests : XCTestCase {
                                       rawLecturers: ["abc": UserModelTests.user], beginSemesterPath: "/0",
                                       endSemesterPath: "/0")
             .coreDataModel(in: context) as! Course
-        
+
         XCTAssertEqual(course.id, "0")
         XCTAssertEqual(course.number, "123")
         XCTAssertEqual(course.title, "Title")

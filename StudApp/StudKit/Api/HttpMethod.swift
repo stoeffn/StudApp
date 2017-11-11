@@ -6,6 +6,6 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-enum HttpMethod : String {
+enum HttpMethod: String {
     case get, post, put, delete, options
 }

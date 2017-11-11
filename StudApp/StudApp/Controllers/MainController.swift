@@ -9,7 +9,7 @@
 import UIKit
 import StudKit
 
-class MainController : UITabBarController {
+class MainController: UITabBarController {
     private var viewModel: MainViewModel!
 
     // MARK: - Life Cycle
@@ -30,7 +30,7 @@ class MainController : UITabBarController {
 
     // MARK: - Navigation
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         prepare(for: Segues.signIn, destination: segue.destination)
     }
 }

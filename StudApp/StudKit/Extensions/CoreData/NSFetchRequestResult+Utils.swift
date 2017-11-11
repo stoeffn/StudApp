@@ -9,7 +9,7 @@
 import CoreData
 
 public extension NSFetchRequestResult {
-    public static func fetchRequest(predicate: NSPredicate? = nil,sortDescriptors: [NSSortDescriptor] = [],
+    public static func fetchRequest(predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor] = [],
                                     relationshipKeyPathsForPrefetching: [String] = []) -> NSFetchRequest<Self> {
         let request = NSFetchRequest<Self>(entityName: String(describing: Self.self))
         request.predicate = predicate

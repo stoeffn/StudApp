@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-final class StudIPActivityIndicatorView : UIView {
+final class StudIPActivityIndicatorView: UIView {
     // MARK: - Life Cycle
 
     public override init(frame: CGRect) {
@@ -18,7 +18,7 @@ final class StudIPActivityIndicatorView : UIView {
         applyAnimations()
     }
 
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         applyStyles()
         applyAnimations()
@@ -73,7 +73,7 @@ final class StudIPActivityIndicatorView : UIView {
     }()
 
     // MARK: - User Interface
-    
+
     private let outerCircleColor = UIColor(red: 0.165, green: 0.29, blue: 0.486, alpha: 1)
     private let innerCircleColor = UIColor(red: 0.827, green: 0.0667, blue: 0.125, alpha: 1)
 

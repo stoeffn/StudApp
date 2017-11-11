@@ -8,7 +8,7 @@
 
 import CoreData
 
-extension SemesterModel : CDConvertible {
+extension SemesterModel: CDConvertible {
     @discardableResult
     func coreDataModel(in context: NSManagedObjectContext) throws -> NSManagedObject {
         let semester = try Semester.fetch(byId: id, orCreateIn: context)

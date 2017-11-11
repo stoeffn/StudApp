@@ -9,7 +9,7 @@
 import CoreData
 
 @objc(Course)
-public final class Course : NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable, FilesContaining {
+public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable, FilesContaining {
     @NSManaged public var id: String
     @NSManaged public var number: String?
     @NSManaged public var title: String
