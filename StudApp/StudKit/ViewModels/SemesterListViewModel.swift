@@ -32,7 +32,7 @@ public final class SemesterListViewModel: NSObject {
     public func update(handler: @escaping ResultHandler<Void>) {
         coreDataService.performBackgroundTask { context in
             self.semesterService.updateSemesters(in: context) { result in
-                try? self.coreDataService.viewContext.saveWhenChanged()
+                try? context.saveWhenChanged()
                 handler(result.replacingValue(()))
             }
         }
@@ -64,8 +64,8 @@ extension SemesterListViewModel: NSFetchedResultsControllerDelegate {
         delegate?.dataDidChange(in: self)
     }
 
-    public func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange _: Any,
-                           at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+    public func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange _: Any, at indexPath: IndexPath?,
+                           for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
         case .insert:
             guard let indexPath = newIndexPath else { return }
