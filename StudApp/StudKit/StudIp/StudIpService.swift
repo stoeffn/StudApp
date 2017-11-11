@@ -29,10 +29,11 @@ final class StudIpService {
     /// ## How it works
     ///  1. Create a new session credential with the provided username and password and save it as the default.
     ///  2. Request the password-protected discovery route, which provides information on available routes.
-    ///  3. Abort if credential was rejected or another error occured during the request.
-    ///  4. Create a permanent credential from the now validated username and password and save it as the default.
-    ///  5. Set a flag in user defaults, indicating that the user is signed in.
-    ///  6. Update main data that is crucial for the application to work.
+    ///  3. Remove session credential.
+    ///  4. Abort if credential was rejected or another error occured during the request.
+    ///  5. Create a permanent credential from the now validated username and password and save it as the default.
+    ///  6. Set a flag in user defaults, indicating that the user is signed in.
+    ///  7. Update main data that is crucial for the application to work.
     ///
     /// - Parameters:
     ///   - username: Stud.IP username.
@@ -43,6 +44,8 @@ final class StudIpService {
         URLCredentialStorage.shared.setDefaultCredential(credential, for: api.protectionSpace)
 
         api.request(.discovery) { result in
+            URLCredentialStorage.shared.remove(credential, for: self.api.protectionSpace)
+
             guard result.isSuccess else {
                 return handler(result.replacingValue(()))
             }
