@@ -12,8 +12,6 @@ public final class SemesterListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let semesterService = ServiceContainer.default[SemesterService.self]
 
-    public private(set) var semesters = [Semester]()
-
     public weak var delegate: DataSourceSectionDelegate?
 
     public override init() {
@@ -45,11 +43,11 @@ extension SemesterListViewModel: DataSourceSection {
     public typealias Row = Semester
 
     public var numberOfRows: Int {
-        return semesters.count
+        return controller.fetchedObjects?.count ?? 0
     }
 
     public subscript(rowAt index: Int) -> Semester {
-        return semesters[index]
+        return controller.object(at: IndexPath(row: index, section: 0))
     }
 }
 
@@ -64,31 +62,21 @@ extension SemesterListViewModel: NSFetchedResultsControllerDelegate {
         delegate?.dataDidChange(in: self)
     }
 
-    public func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange _: Any, at indexPath: IndexPath?,
+    public func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange object: Any, at indexPath: IndexPath?,
                            for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        guard let semester = object as? Semester else { fatalError() }
         switch type {
         case .insert:
             guard let indexPath = newIndexPath else { return }
-            let semester = controller.object(at: indexPath)
-            semesters.insert(semester, at: indexPath.row)
             delegate?.data(changedIn: semester, at: indexPath.row, change: .insert, in: self)
         case .delete:
             guard let indexPath = indexPath else { return }
-            let semester = semesters.remove(at: indexPath.row)
             delegate?.data(changedIn: semester, at: indexPath.row, change: .delete, in: self)
         case .update:
             guard let indexPath = indexPath else { return }
-            let semester = controller.object(at: indexPath)
-            if indexPath.row > semesters.count - 1 {
-                semesters.append(semester)
-            } else {
-                semesters[indexPath.row] = semester
-            }
             delegate?.data(changedIn: semester, at: indexPath.row, change: .update(semester), in: self)
         case .move:
             guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
-            let semester = semesters.remove(at: indexPath.row)
-            semesters.insert(semester, at: newIndexPath.row)
             delegate?.data(changedIn: semester, at: indexPath.row, change: .move(to: newIndexPath.row), in: self)
         }
     }

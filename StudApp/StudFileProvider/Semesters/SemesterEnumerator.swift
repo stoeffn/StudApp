@@ -29,8 +29,11 @@ final class SemesterEnumerator: NSObject, NSFileProviderEnumerator {
     func invalidate() {}
 
     func enumerateItems(for observer: NSFileProviderEnumerationObserver, startingAt _: NSFileProviderPage) {
-        let items = viewModel.semesters.flatMap { try? SemesterItem(from: $0) }
-        observer.didEnumerate(items)
+        for index in 0...viewModel.numberOfRows - 1 {
+            if let item = try? SemesterItem(from: viewModel[rowAt: index]) {
+                observer.didEnumerate([item])
+            }
+        }
         observer.finishEnumerating(upTo: nil)
     }
 
