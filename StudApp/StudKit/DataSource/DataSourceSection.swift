@@ -1,6 +1,6 @@
 //
 //  DataSourceSection.swift
-//  RemonderKit
+//  StudKit
 //
 //  Created by Steffen Ryll on 19.09.17.
 //  Copyright © 2017 Remonder. All rights reserved.
