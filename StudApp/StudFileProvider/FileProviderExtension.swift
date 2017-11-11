@@ -15,7 +15,7 @@ final class FileProviderExtension: NSFileProviderExtension {
         super.init()
     }
 
-    func item(for identifier: NSFileProviderItemIdentifier) throws -> NSFileProviderItem? {
+    func item(for _: NSFileProviderItemIdentifier) throws -> NSFileProviderItem? {
         // resolve the given identifier to a record in the model
 
         // TODO: implement the actual lookup
@@ -46,7 +46,7 @@ final class FileProviderExtension: NSFileProviderExtension {
         return NSFileProviderItemIdentifier(pathComponents[pathComponents.count - 2])
     }
 
-    override func startProvidingItem(at url: URL, completionHandler: ((_ error: Error?) -> Void)?) {
+    override func startProvidingItem(at _: URL, completionHandler: ((_ error: Error?) -> Void)?) {
         // Should ensure that the actual file is in the position returned by URLForItemWithIdentifier:, then call the completion handler
 
         /* TODO:
@@ -54,29 +54,29 @@ final class FileProviderExtension: NSFileProviderExtension {
          whether we know of a more recent version of the file, and implement a policy for these cases. Pseudocode:
 
          if !fileOnDisk {
-             downloadRemoteFile()
-             callCompletion(downloadErrorOrNil)
+         downloadRemoteFile()
+         callCompletion(downloadErrorOrNil)
          } else if fileIsCurrent {
-             callCompletion(nil)
+         callCompletion(nil)
          } else {
-             if localFileHasChanges {
-                 // in this case, a version of the file is on disk, but we know of a more recent version
-                 // we need to implement a strategy to resolve this conflict
-                 moveLocalFileAside()
-                 scheduleUploadOfLocalFile()
-                 downloadRemoteFile()
-                 callCompletion(downloadErrorOrNil)
-             } else {
-                 downloadRemoteFile()
-                 callCompletion(downloadErrorOrNil)
-             }
+         if localFileHasChanges {
+         // in this case, a version of the file is on disk, but we know of a more recent version
+         // we need to implement a strategy to resolve this conflict
+         moveLocalFileAside()
+         scheduleUploadOfLocalFile()
+         downloadRemoteFile()
+         callCompletion(downloadErrorOrNil)
+         } else {
+         downloadRemoteFile()
+         callCompletion(downloadErrorOrNil)
+         }
          }
          */
 
         completionHandler?(NSError(domain: NSCocoaErrorDomain, code: NSFeatureUnsupportedError, userInfo: [:]))
     }
 
-    override func itemChanged(at url: URL) {
+    override func itemChanged(at _: URL) {
         // Called at some point after the file has changed; the provider may then trigger an upload
 
         /* TODO:
@@ -105,7 +105,7 @@ final class FileProviderExtension: NSFileProviderExtension {
             }
 
             // write out a placeholder to facilitate future property lookups
-            self.providePlaceholder(at: url, completionHandler: { _ in
+            providePlaceholder(at: url, completionHandler: { _ in
                 // TODO: handle any error, do any necessary cleanup
             })
         }
