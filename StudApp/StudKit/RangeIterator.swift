@@ -7,18 +7,19 @@
 //
 
 public struct RangeIterator<Element>: IteratorProtocol {
-    private var currentIndex = 0
-    var numberOfRows: Int
-    var elementAt: (Int) -> Element
+    private var currentIndex: Int
+    private var range: CountableRange<Int>
+    private var elementAt: (Int) -> Element
 
-    init(numberOfRows: Int, elementAt: @escaping (Int) -> Element) {
-        self.numberOfRows = numberOfRows
+    init(range: CountableRange<Int>, elementAt: @escaping (Int) -> Element) {
+        self.currentIndex = range.lowerBound
+        self.range = range
         self.elementAt = elementAt
     }
 
     public mutating func next() -> Element? {
         defer { currentIndex += 1 }
-        guard currentIndex < numberOfRows - 1 else { return nil }
+        guard currentIndex < range.upperBound else { return nil }
         return elementAt(currentIndex)
     }
 }

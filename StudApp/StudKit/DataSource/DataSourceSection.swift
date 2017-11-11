@@ -20,6 +20,6 @@ extension DataSourceSection {
     public typealias Iterator = RangeIterator<Row>
 
     public func makeIterator() -> Iterator {
-        return Iterator(numberOfRows: 0) { index in self[rowAt: index] }
+        return Iterator(range: 0..<numberOfRows) { index in self[rowAt: index] }
     }
 }

@@ -155,6 +155,7 @@
 		24FE8A0C1FB78BCE00A4A3C6 /* FolderEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A0B1FB78BCE00A4A3C6 /* FolderEnumerator.swift */; };
 		24FE8A0E1FB78BF700A4A3C6 /* WorkingSetEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A0D1FB78BF700A4A3C6 /* WorkingSetEnumerator.swift */; };
 		24FE8A121FB7B0D100A4A3C6 /* RangeIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A111FB7B0D100A4A3C6 /* RangeIterator.swift */; };
+		24FE8A141FB7B1A000A4A3C6 /* RangeIteratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A131FB7B1A000A4A3C6 /* RangeIteratorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -393,6 +394,7 @@
 		24FE8A0D1FB78BF700A4A3C6 /* WorkingSetEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingSetEnumerator.swift; sourceTree = "<group>"; };
 		24FE8A0F1FB78DBF00A4A3C6 /* StudApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudApp.entitlements; sourceTree = "<group>"; };
 		24FE8A111FB7B0D100A4A3C6 /* RangeIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeIterator.swift; sourceTree = "<group>"; };
+		24FE8A131FB7B1A000A4A3C6 /* RangeIteratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeIteratorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -541,6 +543,7 @@
 				24D361381FAA637E00BBBAED /* Models */,
 				2448D4791FA8DE3300DAB97E /* Services */,
 				24D361261FAA603400BBBAED /* StudIp */,
+				24FE8A131FB7B1A000A4A3C6 /* RangeIteratorTests.swift */,
 				2448D44E1FA8DB1E00DAB97E /* ResultTests.swift */,
 				2448D49A1FA8E01B00DAB97E /* Setup.swift */,
 				2448D4981FA8E00800DAB97E /* StudKitTestsServiceProvider.swift */,
@@ -1422,6 +1425,7 @@
 				2448D47B1FA8DE4000DAB97E /* ServiceContainerTests.swift in Sources */,
 				2448D4B71FA8E0AB00DAB97E /* ApiTests.swift in Sources */,
 				24D3612D1FAA60E000BBBAED /* StudIpRoutes+TestableApiRoutes.swift in Sources */,
+				24FE8A141FB7B1A000A4A3C6 /* RangeIteratorTests.swift in Sources */,
 				24D361361FAA633000BBBAED /* UpdatableTests.swift in Sources */,
 				24D3612E1FAA60E000BBBAED /* Api+CollectionResponseTests.swift in Sources */,
 				24D3614B1FAA63CE00BBBAED /* FileModelTests+Data.swift in Sources */,
