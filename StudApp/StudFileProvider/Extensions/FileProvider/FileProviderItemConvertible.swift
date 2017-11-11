@@ -11,16 +11,14 @@ import FileProvider
 import StudKit
 
 protocol FileProviderItemConvertible {
-    var favoriteRank: Int { get set }
-    var lastUsedDate: Date? { get set }
-    var tagData: Data? { get set }
+    var state: FileProviderItemConvertibleState { get }
 
     func fileProviderItem(context: NSManagedObjectContext) throws -> NSFileProviderItem
 }
 
 extension FileProviderItemConvertible where Self: NSFetchRequestResult {
     static func fetchItemsInWorkingSet(in context: NSManagedObjectContext) throws -> [Self] {
-        let predicate = NSPredicate(format: "lastUsedDate != NIL OR tagData != NIL OR favoriteRank != 0")
-        return try context.fetch(fetchRequest(predicate: predicate))
+        let predicate = NSPredicate(format: "state.lastUsedDate != NIL OR state.tagData != NIL OR state.favoriteRank != 0")
+        return try context.fetch(fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["state"]))
     }
 }
