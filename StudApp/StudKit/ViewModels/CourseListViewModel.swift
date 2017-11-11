@@ -11,21 +11,26 @@ import CoreData
 public final class CourseListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let courseService = ServiceContainer.default[CourseService.self]
-
-    private var courses = [Course]()
+    private var fetchRequest: NSFetchRequest<Course>
 
     public weak var delegate: DataSourceSectionDelegate?
 
-    public override init() {
+    public init(fetchRequest: NSFetchRequest<Course> = Course.fetchRequest()) {
+        self.fetchRequest = fetchRequest
         super.init()
+
         controller.delegate = self
     }
 
     private(set) lazy var controller: NSFetchedResultsController<Course>
-        = NSFetchedResultsController(fetchRequest: Course.fetchRequest(), managedObjectContext: coreDataService.viewContext,
+        = NSFetchedResultsController(fetchRequest: self.fetchRequest, managedObjectContext: coreDataService.viewContext,
                                      sectionNameKeyPath: nil, cacheName: nil)
 
-    func update(handler: @escaping ResultHandler<Void>) {
+    public func fetch() {
+        try? controller.performFetch()
+    }
+
+    public func update(handler: @escaping ResultHandler<Void>) {
         coreDataService.performBackgroundTask { context in
             self.courseService.updateCourses(in: context) { result in
                 handler(result.replacingValue(()))
@@ -40,11 +45,11 @@ extension CourseListViewModel: DataSourceSection {
     public typealias Row = Course
 
     public var numberOfRows: Int {
-        return courses.count
+        return controller.fetchedObjects?.count ?? 0
     }
 
     public subscript(rowAt index: Int) -> Course {
-        return courses[index]
+        return controller.object(at: IndexPath(row: index, section: 0))
     }
 }
 
@@ -59,27 +64,21 @@ extension CourseListViewModel: NSFetchedResultsControllerDelegate {
         delegate?.dataDidChange(in: self)
     }
 
-    public func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange _: Any,
+    public func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange object: Any,
                            at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        guard let course = object as? Course else { fatalError() }
         switch type {
         case .insert:
             guard let indexPath = newIndexPath else { return }
-            let course = controller.object(at: indexPath)
-            courses.insert(course, at: indexPath.row)
             delegate?.data(changedIn: course, at: indexPath.row, change: .insert, in: self)
         case .delete:
             guard let indexPath = indexPath else { return }
-            let course = courses.remove(at: indexPath.row)
             delegate?.data(changedIn: course, at: indexPath.row, change: .delete, in: self)
         case .update:
             guard let indexPath = indexPath else { return }
-            let course = controller.object(at: indexPath)
-            courses[indexPath.row] = course
             delegate?.data(changedIn: course, at: indexPath.row, change: .update(course), in: self)
         case .move:
             guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
-            let course = courses.remove(at: indexPath.row)
-            courses.insert(course, at: newIndexPath.row)
             delegate?.data(changedIn: course, at: indexPath.row, change: .move(to: newIndexPath.row), in: self)
         }
     }

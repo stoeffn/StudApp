@@ -34,14 +34,11 @@ public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDUpd
         return try context.fetch(request)
     }
 
-    public var coursesFetchRequest: NSFetchRequest<CourseState> {
-        let predicate = NSPredicate(format: "%@ IN course.semesters", self)
-        let sortDescriptors = [
-            NSSortDescriptor(keyPath: \CourseState.color?.orderId, ascending: true),
-            NSSortDescriptor(keyPath: \CourseState.course.title, ascending: true),
-        ]
-        return CourseState.fetchRequest(predicate: predicate, sortDescriptors: sortDescriptors,
-                                        relationshipKeyPathsForPrefetching: ["course"])
+    public var coursesFetchRequest: NSFetchRequest<Course> {
+        let predicate = NSPredicate(format: "%@ IN semesters", self)
+        let sortDescriptors = [NSSortDescriptor(keyPath: \Course.title, ascending: true)]
+        return Course.fetchRequest(predicate: predicate, sortDescriptors: sortDescriptors,
+                                   relationshipKeyPathsForPrefetching: ["state"])
     }
 
     public var isCurrent: Bool {

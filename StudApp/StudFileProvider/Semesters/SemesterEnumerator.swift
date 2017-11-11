@@ -9,6 +9,7 @@
 import StudKit
 
 final class SemesterEnumerator: NSObject, NSFileProviderEnumerator {
+    private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let itemIdentifier: NSFileProviderItemIdentifier
     private let viewModel = SemesterListViewModel()
     private let cache = ChangeCache<Semester>()
@@ -30,7 +31,7 @@ final class SemesterEnumerator: NSObject, NSFileProviderEnumerator {
 
     func enumerateItems(for observer: NSFileProviderEnumerationObserver, startingAt _: NSFileProviderPage) {
         for index in 0...viewModel.numberOfRows - 1 {
-            if let item = try? SemesterItem(from: viewModel[rowAt: index]) {
+            if let item = try? viewModel[rowAt: index].fileProviderItem(context: coreDataService.viewContext) {
                 observer.didEnumerate([item])
             }
         }
@@ -38,7 +39,7 @@ final class SemesterEnumerator: NSObject, NSFileProviderEnumerator {
     }
 
     func enumerateChanges(for observer: NSFileProviderChangeObserver, from _: NSFileProviderSyncAnchor) {
-        let updatedItems = cache.updatedItems.flatMap { try? SemesterItem(from: $0) }
+        let updatedItems = cache.updatedItems.flatMap { try? $0.fileProviderItem(context: coreDataService.viewContext) }
         observer.didUpdate(updatedItems)
         observer.didDeleteItems(withIdentifiers: cache.deletedItemIdentifiers)
         observer.finishEnumeratingChanges(upTo: cache.currentSyncAnchor, moreComing: false)

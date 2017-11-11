@@ -11,16 +11,19 @@ import CoreData
 public final class SemesterListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let semesterService = ServiceContainer.default[SemesterService.self]
+    private var fetchRequest: NSFetchRequest<Semester>
 
     public weak var delegate: DataSourceSectionDelegate?
 
-    public override init() {
+    public init(fetchRequest: NSFetchRequest<Semester> = Semester.fetchRequest()) {
+        self.fetchRequest = fetchRequest
         super.init()
+
         controller.delegate = self
     }
 
     private(set) lazy var controller: NSFetchedResultsController<Semester>
-        = NSFetchedResultsController(fetchRequest: Semester.fetchRequest(), managedObjectContext: coreDataService.viewContext,
+        = NSFetchedResultsController(fetchRequest: self.fetchRequest, managedObjectContext: coreDataService.viewContext,
                                      sectionNameKeyPath: nil, cacheName: nil)
 
     public func fetch() {
