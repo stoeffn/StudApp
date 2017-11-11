@@ -1,0 +1,24 @@
+line_length: 128
+
+disabled_rules:
+  - todo
+  - force_try
+  - force_cast
+  - trailing_comma
+
+excluded:
+  - StudKit/Vendors
+
+identifier_name:
+  excluded:
+    - id
+
+type_name:
+  excluded:
+    - UI
+
+force_try:
+  excluded:
+    - StudAppTests
+    - StudAppUITests
+    - StudKitTests
