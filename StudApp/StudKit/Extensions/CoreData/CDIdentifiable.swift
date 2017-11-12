@@ -21,8 +21,9 @@ public extension CDIdentifiable where Self: NSFetchRequestResult {
 }
 
 public extension CDIdentifiable where Self: NSFetchRequestResult & CDCreatable {
-    public static func fetch(byId id: String?, orCreateIn context: NSManagedObjectContext) throws -> Self {
-        return try fetch(byId: id, in: context) ?? Self(createIn: context)
+    static func fetch(byId id: String, orCreateIn context: NSManagedObjectContext) throws -> (Self, isNew: Bool) {
+        let result = try fetch(byId: id, in: context).map { ($0, isNew: false) }
+        return result ?? (Self(createIn: context), isNew: true)
     }
 }
 

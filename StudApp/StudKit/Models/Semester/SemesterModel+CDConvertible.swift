@@ -11,13 +11,18 @@ import CoreData
 extension SemesterModel: CDConvertible {
     @discardableResult
     func coreDataModel(in context: NSManagedObjectContext) throws -> NSManagedObject {
-        let semester = try Semester.fetch(byId: id, orCreateIn: context)
+        let (semester, isNew) = try Semester.fetch(byId: id, orCreateIn: context)
         semester.id = id
         semester.title = title
         semester.beginDate = beginDate
         semester.endDate = endDate
         semester.coursesBeginDate = coursesBeginDate
         semester.coursesEndDate = coursesEndDate
+
+        if isNew {
+            semester.state.isHidden = !semester.isCurrent
+        }
+
         return semester
     }
 }

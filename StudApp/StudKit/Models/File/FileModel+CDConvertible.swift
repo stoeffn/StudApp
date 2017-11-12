@@ -14,7 +14,7 @@ extension FileModel: CDConvertible {
         guard let id = id, let name = name, let course = try fetchCourse(in: context) else {
             throw "Cannot create file core data model from invalid file model."
         }
-        let file = try File.fetch(byId: id, orCreateIn: context)
+        let (file, _) = try File.fetch(byId: id, orCreateIn: context)
         file.id = id
         file.typeIdentifier = typeIdentifier
         file.course = course

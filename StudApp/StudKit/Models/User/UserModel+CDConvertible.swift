@@ -11,7 +11,7 @@ import CoreData
 extension UserModel: CDConvertible {
     @discardableResult
     func coreDataModel(in context: NSManagedObjectContext) throws -> NSManagedObject {
-        let user = try User.fetch(byId: id, orCreateIn: context)
+        let (user, _) = try User.fetch(byId: id, orCreateIn: context)
         user.id = id
         user.username = username
         user.givenName = givenName

@@ -11,7 +11,7 @@ import CoreData
 extension CourseModel: CDConvertible {
     @discardableResult
     func coreDataModel(in context: NSManagedObjectContext) throws -> NSManagedObject {
-        let course = try Course.fetch(byId: id, orCreateIn: context)
+        let (course, _) = try Course.fetch(byId: id, orCreateIn: context)
         course.id = id
         course.number = number
         course.title = title
