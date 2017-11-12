@@ -12,7 +12,7 @@ public struct RangeIterator<Element>: IteratorProtocol {
     private var elementAt: (Int) -> Element
 
     init(range: CountableRange<Int>, elementAt: @escaping (Int) -> Element) {
-        self.currentIndex = range.lowerBound
+        currentIndex = range.lowerBound
         self.range = range
         self.elementAt = elementAt
     }
