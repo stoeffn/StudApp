@@ -6,7 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-final public class StorageService {
+public final class StorageService {
     lazy var documentsUrl: URL = {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         guard let path = paths.first else {
