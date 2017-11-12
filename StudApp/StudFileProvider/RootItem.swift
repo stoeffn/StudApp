@@ -22,7 +22,8 @@ final class RootItem: NSObject, NSFileProviderItem {
         self.childItemCount = childItemCount as NSNumber
     }
 
-    convenience init(context _: NSManagedObjectContext) throws {
-        self.init(childItemCount: 42)
+    convenience init(context: NSManagedObjectContext) throws {
+        let childItemCount = try context.count(for: Semester.fetchRequest())
+        self.init(childItemCount: childItemCount)
     }
 }
