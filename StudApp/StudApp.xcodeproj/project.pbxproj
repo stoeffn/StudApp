@@ -156,6 +156,7 @@
 		24FE8A0E1FB78BF700A4A3C6 /* WorkingSetEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A0D1FB78BF700A4A3C6 /* WorkingSetEnumerator.swift */; };
 		24FE8A121FB7B0D100A4A3C6 /* RangeIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A111FB7B0D100A4A3C6 /* RangeIterator.swift */; };
 		24FE8A141FB7B1A000A4A3C6 /* RangeIteratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A131FB7B1A000A4A3C6 /* RangeIteratorTests.swift */; };
+		24FE8A161FB8527E00A4A3C6 /* FolderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A151FB8527D00A4A3C6 /* FolderViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -395,6 +396,7 @@
 		24FE8A0F1FB78DBF00A4A3C6 /* StudApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudApp.entitlements; sourceTree = "<group>"; };
 		24FE8A111FB7B0D100A4A3C6 /* RangeIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeIterator.swift; sourceTree = "<group>"; };
 		24FE8A131FB7B1A000A4A3C6 /* RangeIteratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeIteratorTests.swift; sourceTree = "<group>"; };
+		24FE8A151FB8527D00A4A3C6 /* FolderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -865,6 +867,7 @@
 			isa = PBXGroup;
 			children = (
 				246F3ACC1FAC881100A477FF /* CourseListViewModel.swift */,
+				24FE8A151FB8527D00A4A3C6 /* FolderViewModel.swift */,
 				24D178EA1FB606B200EC5F4A /* MainViewModel.swift */,
 				24D9EF551FB7559C006776B7 /* SemesterListViewModel.swift */,
 				24D361651FAA648B00BBBAED /* SignInViewModel.swift */,
@@ -1357,6 +1360,7 @@
 				24D360CD1FAA5AFE00BBBAED /* CDUpdatable.swift in Sources */,
 				24D360F71FAA5DE800BBBAED /* FileState.swift in Sources */,
 				24D360FE1FAA5E0800BBBAED /* UserModel+CDConvertible.swift in Sources */,
+				24FE8A161FB8527E00A4A3C6 /* FolderViewModel.swift in Sources */,
 				24D360FA1FAA5DE800BBBAED /* FileModel.swift in Sources */,
 				24D9EF561FB7559C006776B7 /* SemesterListViewModel.swift in Sources */,
 				24D3610E1FAA5ED600BBBAED /* CDColorable.swift in Sources */,
