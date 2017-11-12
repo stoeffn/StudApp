@@ -31,25 +31,13 @@ public class StudKitServiceProvider: ServiceProvider {
         return StudIpService(baseUrl: StudKitServiceProvider.studIpBaseUrl, realm: StudKitServiceProvider.studIpRealm)
     }
 
-    func provideSemesterService() -> SemesterService {
-        return SemesterService()
-    }
-
-    func provideCourseService() -> CourseService {
-        return CourseService()
-    }
-
-    func provideFileService() -> FileService {
-        return FileService()
-    }
-
     public func registerServices(in container: ServiceContainer) {
         container[JSONDecoder.self] = provideJsonDecoder()
         container[StorageService.self] = provideStorageService()
         container[CoreDataService.self] = provideCoreDataService()
         container[StudIpService.self] = provideStudIpService()
-        container[SemesterService.self] = provideSemesterService()
-        container[CourseService.self] = provideCourseService()
-        container[FileService.self] = provideFileService()
+        container[SemesterService.self] = SemesterService()
+        container[CourseService.self] = CourseService()
+        container[FileService.self] = FileService()
     }
 }
