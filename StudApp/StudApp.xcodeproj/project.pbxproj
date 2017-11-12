@@ -486,7 +486,6 @@
 		2448D40B1FA8DA2400DAB97E /* StudApp */ = {
 			isa = PBXGroup;
 			children = (
-				24FE8A0F1FB78DBF00A4A3C6 /* StudApp.entitlements */,
 				24E626731FA920490040F9F7 /* Controllers */,
 				24E626721FA9203E0040F9F7 /* Views */,
 				2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */,
@@ -495,6 +494,7 @@
 				2448D4151FA8DA2400DAB97E /* LaunchScreen.storyboard */,
 				2448D4101FA8DA2400DAB97E /* Main.storyboard */,
 				2448D4131FA8DA2400DAB97E /* Assets.xcassets */,
+				24FE8A0F1FB78DBF00A4A3C6 /* StudApp.entitlements */,
 				2448D4181FA8DA2400DAB97E /* Info.plist */,
 			);
 			path = StudApp;

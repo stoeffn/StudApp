@@ -39,15 +39,17 @@ final class GroupedTextField: UITextField {
     }
 
     @IBInspectable
-    var position: Position = .middle {
+    var position: String = Position.middle.rawValue {
         didSet {
-            switch position {
-            case .top:
+            switch Position(rawValue: position) {
+            case .top?:
                 layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-            case .middle:
+            case .middle?:
                 layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-            case .bottom:
+            case .bottom?:
                 layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+            case .none:
+                fatalError("Cannot set position with raw value '\(position)'.")
             }
         }
     }
@@ -62,8 +64,7 @@ final class GroupedTextField: UITextField {
 
     // MARK: - Position
 
-    @objc
-    enum Position: Int {
+    enum Position: String {
         case top, middle, bottom
     }
 }
