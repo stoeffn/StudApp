@@ -30,8 +30,7 @@ final class CourseItem: NSObject, NSFileProviderItem {
         self.parentItemIdentifier = parentItemIdentifier
         lastUsedDate = course.state.lastUsedDate
         tagData = course.state.tagData
-        favoriteRank = course.state.favoriteRank != NSFileProviderFavoriteRankUnranked
-            ? course.state.favoriteRank as NSNumber : nil
+        favoriteRank = !course.state.isUnranked ? course.state.favoriteRank as NSNumber : nil
         ownerNameComponents = course.lecturers.first?.nameComponents
     }
 

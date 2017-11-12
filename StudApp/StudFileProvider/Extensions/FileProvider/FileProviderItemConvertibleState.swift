@@ -13,3 +13,9 @@ protocol FileProviderItemConvertibleState: class {
     var lastUsedDate: Date? { get set }
     var tagData: Data? { get set }
 }
+
+extension FileProviderItemConvertibleState {
+    var isUnranked: Bool {
+        return favoriteRank == Int(NSFileProviderFavoriteRankUnranked)
+    }
+}

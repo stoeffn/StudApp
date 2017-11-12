@@ -39,8 +39,7 @@ final class FileItem: NSObject, NSFileProviderItem {
         lastUsedDate = file.state.lastUsedDate
         isDownloaded = file.isDownloaded
         tagData = file.state.tagData
-        favoriteRank = file.state.favoriteRank != NSFileProviderFavoriteRankUnranked
-            ? file.state.favoriteRank as NSNumber : nil
+        favoriteRank = !file.state.isUnranked ? file.state.favoriteRank as NSNumber : nil
         ownerNameComponents = file.owner?.nameComponents
     }
 
