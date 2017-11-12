@@ -15,4 +15,10 @@ public final class SemesterState: NSManagedObject, CDCreatable {
     @NSManaged public var tagData: Data?
 
     @NSManaged public var semester: Semester
+
+    public required convenience init(createIn context: NSManagedObjectContext) {
+        self.init(context: context)
+
+        favoriteRank = Int(NSFileProviderFavoriteRankUnranked)
+    }
 }

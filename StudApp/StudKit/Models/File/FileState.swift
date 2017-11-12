@@ -15,4 +15,10 @@ public final class FileState: NSManagedObject, CDCreatable {
     @NSManaged public var tagData: Data?
 
     @NSManaged public var file: File
+
+    public required convenience init(createIn context: NSManagedObjectContext) {
+        self.init(context: context)
+
+        favoriteRank = Int(NSFileProviderFavoriteRankUnranked)
+    }
 }

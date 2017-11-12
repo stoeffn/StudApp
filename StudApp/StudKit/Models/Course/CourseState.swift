@@ -20,6 +20,7 @@ public final class CourseState: NSManagedObject, CDCreatable, CDColorable {
     public required convenience init(createIn context: NSManagedObjectContext) {
         self.init(context: context)
 
+        favoriteRank = Int(NSFileProviderFavoriteRankUnranked)
         if let color = try? Color.default(in: context) {
             self.color = color
         }
