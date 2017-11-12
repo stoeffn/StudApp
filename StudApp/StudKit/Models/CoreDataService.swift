@@ -77,4 +77,11 @@ public final class CoreDataService {
     public func performBackgroundTask(task: @escaping (NSManagedObjectContext) -> Void) {
         return persistentContainer.performBackgroundTask(task)
     }
+
+    func removeAllObjects(in context: NSManagedObjectContext) throws {
+        try [Semester.fetchRequest(), User.fetchRequest()]
+            .flatMap { try context.fetch($0) }
+            .flatMap { $0 as? NSManagedObject }
+            .forEach { context.delete($0) }
+    }
 }

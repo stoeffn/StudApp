@@ -600,10 +600,8 @@
 		2448D4741FA8DE1700DAB97E /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				24D361171FAA5F6200BBBAED /* CoreDataService.swift */,
 				2448D4751FA8DE2900DAB97E /* ServiceContainer.swift */,
 				2448D4761FA8DE2900DAB97E /* ServiceProvider.swift */,
-				2448D4941FA8DF6000DAB97E /* StorageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -711,6 +709,8 @@
 				24D360EF1FAA5DD000BBBAED /* Semester */,
 				24D360EE1FAA5DCC00BBBAED /* User */,
 				24D3610B1FAA5E4E00BBBAED /* Color.swift */,
+				24D361171FAA5F6200BBBAED /* CoreDataService.swift */,
+				2448D4941FA8DF6000DAB97E /* StorageService.swift */,
 				24D360C01FAA58A000BBBAED /* StudKit.xcdatamodeld */,
 			);
 			path = Models;

@@ -64,7 +64,7 @@ final class StudIpService {
         }
     }
 
-    /// Removes the default credential used for authentication and replaces it with an empty credential.
+    /// Removes the default credential used for authentication, replaces it with an empty credential, and clears the data base.
     func signOut() {
         let protectionSpace = api.protectionSpace
 
@@ -73,5 +73,8 @@ final class StudIpService {
 
         let emptyCredential = URLCredential(user: "", password: "", persistence: .synchronizable)
         URLCredentialStorage.shared.setDefaultCredential(emptyCredential, for: protectionSpace)
+
+        let coreDataService = ServiceContainer.default[CoreDataService.self]
+        try? coreDataService.removeAllObjects(in: coreDataService.viewContext)
     }
 }
