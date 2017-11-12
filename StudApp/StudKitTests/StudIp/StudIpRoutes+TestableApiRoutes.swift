@@ -22,7 +22,7 @@ extension StudIpRoutes: TestableApiRoutes {
             case "20": return Data(fromResource: "courseCollection+20")
             default: fatalError("No Mock API data for route '\(self)' and offset '\(offset)'.")
             }
-        case .files:
+        case .filesInCourse:
             switch offset {
             case "0": return Data(fromResource: "fileCollection")
             default: fatalError("No Mock API data for route '\(self)' and offset '\(offset)'.")
