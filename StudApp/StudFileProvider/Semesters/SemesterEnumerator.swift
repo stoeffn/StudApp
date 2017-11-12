@@ -11,7 +11,7 @@ import StudKit
 final class SemesterEnumerator: NSObject, NSFileProviderEnumerator {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let itemIdentifier: NSFileProviderItemIdentifier
-    private let viewModel = SemesterListViewModel()
+    private let viewModel = SemesterListViewModel(fetchRequest: Semester.nonHiddenFetchRequest)
     private let cache = ChangeCache()
 
     init(itemIdentifier: NSFileProviderItemIdentifier) {

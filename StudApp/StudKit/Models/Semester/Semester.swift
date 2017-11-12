@@ -40,6 +40,11 @@ public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDUpd
                             relationshipKeyPathsForPrefetching: ["state"])
     }
 
+    public static var nonHiddenFetchRequest: NSFetchRequest<Semester> {
+        let predicate = NSPredicate(format: "state.isHidden == NO")
+        return fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["state"])
+    }
+
     public var coursesFetchRequest: NSFetchRequest<Course> {
         let predicate = NSPredicate(format: "%@ IN semesters", self)
         let sortDescriptors = [NSSortDescriptor(keyPath: \Course.title, ascending: true)]
