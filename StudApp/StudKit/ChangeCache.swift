@@ -7,18 +7,19 @@
 //
 
 import FileProvider
-import StudKit
 
 /// Caches changes to a data source section.
-class ChangeCache {
-    private(set) var updatedItems = [CDIdentifiable & FileProviderItemConvertible]()
+public class ChangeCache {
+    public private(set) var updatedItems = [CDIdentifiable & FileProviderItemConvertible]()
 
-    private(set) var deletedItemIdentifiers = [NSFileProviderItemIdentifier]()
+    public private(set) var deletedItemIdentifiers = [NSFileProviderItemIdentifier]()
 
     /// File provider sync anchor, containing a UNIX timestamp.
-    private(set) var currentSyncAnchor = ChangeCache.syncAnchor()
+    public private(set) var currentSyncAnchor = ChangeCache.syncAnchor()
 
-    var dataDidChange: (() -> Void)?
+    public var dataDidChange: (() -> Void)?
+
+    public init() {}
 
     /// Generates a sync anchor for the date given. Defaults to now.
     private static func syncAnchor(for date: Date = Date()) -> NSFileProviderSyncAnchor {
@@ -29,7 +30,7 @@ class ChangeCache {
     }
 
     /// Clears the cache.
-    func flush() {
+    public func flush() {
         updatedItems.removeAll()
         deletedItemIdentifiers.removeAll()
         currentSyncAnchor = ChangeCache.syncAnchor()
@@ -39,12 +40,12 @@ class ChangeCache {
 // MARK: - Data Source Section Delegate
 
 extension ChangeCache: DataSourceSectionDelegate {
-    func dataDidChange<Section: DataSourceSection>(in _: Section) {
+    public func dataDidChange<Section: DataSourceSection>(in _: Section) {
         dataDidChange?()
     }
 
-    func data<Section: DataSourceSection>(changedIn row: Section.Row, at _: Int, change: DataChange<Section.Row, Int>,
-                                          in _: Section) {
+    public func data<Section: DataSourceSection>(changedIn row: Section.Row, at _: Int, change: DataChange<Section.Row, Int>,
+                                                 in _: Section) {
         guard let item = row as? CDIdentifiable & FileProviderItemConvertible else { fatalError() }
         switch change {
         case .insert, .update:

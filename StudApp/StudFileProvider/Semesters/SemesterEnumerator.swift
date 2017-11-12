@@ -8,43 +8,18 @@
 
 import StudKit
 
-final class SemesterEnumerator: NSObject, NSFileProviderEnumerator {
-    private let coreDataService = ServiceContainer.default[CoreDataService.self]
-    private let itemIdentifier: NSFileProviderItemIdentifier
+final class SemesterEnumerator: CachingFileEnumerator {
     private let viewModel = SemesterListViewModel(fetchRequest: Semester.nonHiddenFetchRequest)
-    private let cache = ChangeCache()
 
-    init(itemIdentifier: NSFileProviderItemIdentifier) {
-        self.itemIdentifier = itemIdentifier
-
-        super.init()
+    override init(itemIdentifier: NSFileProviderItemIdentifier) {
+        super.init(itemIdentifier: itemIdentifier)
 
         viewModel.delegate = cache
         viewModel.fetch()
         viewModel.update()
-
-        cache.dataDidChange = {
-            NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
-        }
     }
 
-    func invalidate() {}
-
-    func enumerateItems(for observer: NSFileProviderEnumerationObserver, startingAt _: NSFileProviderPage) {
-        let items = viewModel.flatMap { try? $0.fileProviderItem(context: coreDataService.viewContext) }
-        observer.didEnumerate(items)
-        observer.finishEnumerating(upTo: nil)
-    }
-
-    func enumerateChanges(for observer: NSFileProviderChangeObserver, from _: NSFileProviderSyncAnchor) {
-        let updatedItems = cache.updatedItems.flatMap { try? $0.fileProviderItem(context: coreDataService.viewContext) }
-        observer.didUpdate(updatedItems)
-        observer.didDeleteItems(withIdentifiers: cache.deletedItemIdentifiers)
-        observer.finishEnumeratingChanges(upTo: cache.currentSyncAnchor, moreComing: false)
-        cache.flush()
-    }
-
-    func currentSyncAnchor(completionHandler: @escaping (NSFileProviderSyncAnchor?) -> Void) {
-        completionHandler(cache.currentSyncAnchor)
+    override var items: [NSFileProviderItem] {
+        return viewModel.flatMap { try? $0.fileProviderItem(context: coreDataService.viewContext) }
     }
 }

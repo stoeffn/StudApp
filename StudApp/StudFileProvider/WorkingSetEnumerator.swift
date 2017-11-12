@@ -9,22 +9,17 @@
 import CoreData
 import StudKit
 
-final class WorkingSetEnumerator: NSObject, NSFileProviderEnumerator {
-    private let coreDataService = ServiceContainer.default[CoreDataService.self]
-    private let itemIdentifier: NSFileProviderItemIdentifier
+final class WorkingSetEnumerator: CachingFileEnumerator {
     private let viewModels: [WorkingSetViewModel]
-    private let cache = ChangeCache()
 
-    init(itemIdentifier: NSFileProviderItemIdentifier) {
-        self.itemIdentifier = itemIdentifier
-
+    override init(itemIdentifier: NSFileProviderItemIdentifier) {
         viewModels = [
             WorkingSetViewModel(fetchRequest: Semester.workingSetFetchRequest as! NSFetchRequest<NSFetchRequestResult>),
             WorkingSetViewModel(fetchRequest: Course.workingSetFetchRequest as! NSFetchRequest<NSFetchRequestResult>),
             WorkingSetViewModel(fetchRequest: File.workingSetFetchRequest as! NSFetchRequest<NSFetchRequestResult>),
         ]
 
-        super.init()
+        super.init(itemIdentifier: itemIdentifier)
 
         for viewModel in viewModels {
             viewModel.delegate = cache
@@ -32,25 +27,9 @@ final class WorkingSetEnumerator: NSObject, NSFileProviderEnumerator {
         }
     }
 
-    func invalidate() {}
-
-    func enumerateItems(for observer: NSFileProviderEnumerationObserver, startingAt _: NSFileProviderPage) {
-        let items = viewModels
+    override var items: [NSFileProviderItem] {
+        return viewModels
             .flatMap { $0 }
             .flatMap { try? $0.fileProviderItem(context: coreDataService.viewContext) }
-        observer.didEnumerate(items)
-        observer.finishEnumerating(upTo: nil)
-    }
-
-    func enumerateChanges(for observer: NSFileProviderChangeObserver, from _: NSFileProviderSyncAnchor) {
-        let updatedItems = cache.updatedItems.flatMap { try? $0.fileProviderItem(context: coreDataService.viewContext) }
-        observer.didUpdate(updatedItems)
-        observer.didDeleteItems(withIdentifiers: cache.deletedItemIdentifiers)
-        observer.finishEnumeratingChanges(upTo: cache.currentSyncAnchor, moreComing: false)
-        cache.flush()
-    }
-
-    func currentSyncAnchor(completionHandler: @escaping (NSFileProviderSyncAnchor?) -> Void) {
-        completionHandler(cache.currentSyncAnchor)
     }
 }
