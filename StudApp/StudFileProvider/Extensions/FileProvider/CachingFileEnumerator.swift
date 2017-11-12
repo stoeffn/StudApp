@@ -23,9 +23,7 @@ open class CachingFileEnumerator: NSObject {
         }
     }
 
-    open var items: [NSFileProviderItem] {
-        return []
-    }
+    open var items: [NSFileProviderItem] { return [] }
 }
 
 extension CachingFileEnumerator: NSFileProviderEnumerator {
