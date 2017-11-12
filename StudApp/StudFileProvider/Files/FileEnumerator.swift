@@ -13,7 +13,7 @@ final class FileEnumerator: NSObject, NSFileProviderEnumerator {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let itemIdentifier: NSFileProviderItemIdentifier
     private let viewModel: FileListViewModel
-    private let cache = ChangeCache<File>()
+    private let cache = ChangeCache()
 
     init(itemIdentifier: NSFileProviderItemIdentifier) {
         self.itemIdentifier = itemIdentifier

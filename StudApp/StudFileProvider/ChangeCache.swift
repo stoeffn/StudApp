@@ -10,8 +10,8 @@ import FileProvider
 import StudKit
 
 /// Caches changes to a data source section.
-final class ChangeCache<Item: CDIdentifiable> {
-    private(set) var updatedItems = [Item]()
+class ChangeCache {
+    private(set) var updatedItems = [CDIdentifiable & FileProviderItemConvertible]()
 
     private(set) var deletedItemIdentifiers = [NSFileProviderItemIdentifier]()
 
@@ -39,7 +39,7 @@ final class ChangeCache<Item: CDIdentifiable> {
 extension ChangeCache: DataSourceSectionDelegate {
     func data<Section: DataSourceSection>(changedIn row: Section.Row, at _: Int, change: DataChange<Section.Row, Int>,
                                           in _: Section) {
-        guard let item = row as? Item else { fatalError() }
+        guard let item = row as? CDIdentifiable & FileProviderItemConvertible else { fatalError() }
         switch change {
         case .insert, .update:
             updatedItems.append(item)

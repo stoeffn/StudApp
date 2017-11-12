@@ -13,7 +13,7 @@ final class WorkingSetEnumerator: NSObject, NSFileProviderEnumerator {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let itemIdentifier: NSFileProviderItemIdentifier
     private let viewModels: [WorkingSetViewModel]
-    private let cache = ChangeCache<Course>()
+    private let cache = ChangeCache()
 
     init(itemIdentifier: NSFileProviderItemIdentifier) {
         self.itemIdentifier = itemIdentifier

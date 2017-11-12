@@ -12,7 +12,7 @@ final class SemesterEnumerator: NSObject, NSFileProviderEnumerator {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let itemIdentifier: NSFileProviderItemIdentifier
     private let viewModel = SemesterListViewModel()
-    private let cache = ChangeCache<Semester>()
+    private let cache = ChangeCache()
 
     init(itemIdentifier: NSFileProviderItemIdentifier) {
         self.itemIdentifier = itemIdentifier

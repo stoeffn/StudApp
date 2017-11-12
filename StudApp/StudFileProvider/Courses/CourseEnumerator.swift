@@ -12,7 +12,7 @@ final class CourseEnumerator: NSObject, NSFileProviderEnumerator {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let itemIdentifier: NSFileProviderItemIdentifier
     private let viewModel: CourseListViewModel
-    private let cache = ChangeCache<Course>()
+    private let cache = ChangeCache()
 
     init(itemIdentifier: NSFileProviderItemIdentifier) {
         self.itemIdentifier = itemIdentifier
