@@ -54,6 +54,7 @@
 		246F3ACA1FAC879C00A477FF /* DataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3AC31FAC879C00A477FF /* DataSourceDelegate.swift */; };
 		246F3ACB1FAC879C00A477FF /* DataSourceSectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3AC41FAC879C00A477FF /* DataSourceSectionDelegate.swift */; };
 		246F3ACD1FAC881100A477FF /* CourseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3ACC1FAC881100A477FF /* CourseListViewModel.swift */; };
+		24712BD81FB858CC0067E416 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BD71FB858CC0067E416 /* FileService.swift */; };
 		24CFB5D11FB24E2500F30DEA /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D01FB24E2500F30DEA /* MainController.swift */; };
 		24CFB5D61FB24F4D00F30DEA /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D31FB24F4C00F30DEA /* Routable.swift */; };
 		24CFB5D71FB24F4D00F30DEA /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D41FB24F4C00F30DEA /* Routes.swift */; };
@@ -291,6 +292,7 @@
 		246F3AC31FAC879C00A477FF /* DataSourceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceDelegate.swift; sourceTree = "<group>"; };
 		246F3AC41FAC879C00A477FF /* DataSourceSectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceSectionDelegate.swift; sourceTree = "<group>"; };
 		246F3ACC1FAC881100A477FF /* CourseListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListViewModel.swift; sourceTree = "<group>"; };
+		24712BD71FB858CC0067E416 /* FileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
 		24CFB5D01FB24E2500F30DEA /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		24CFB5D31FB24F4C00F30DEA /* Routable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
 		24CFB5D41FB24F4C00F30DEA /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
@@ -760,6 +762,7 @@
 				24D360F11FAA5DE800BBBAED /* File.swift */,
 				24D360F51FAA5DE800BBBAED /* FileModel.swift */,
 				24D360F31FAA5DE800BBBAED /* FileModel+CDConvertible.swift */,
+				24712BD71FB858CC0067E416 /* FileService.swift */,
 				24D360F21FAA5DE800BBBAED /* FileState.swift */,
 			);
 			path = File;
@@ -1358,6 +1361,7 @@
 				2448D45E1FA8DBA300DAB97E /* Result.swift in Sources */,
 				246F3AC81FAC879C00A477FF /* DataSourceSectionDelegate+UITableViewController.swift in Sources */,
 				24D360CD1FAA5AFE00BBBAED /* CDUpdatable.swift in Sources */,
+				24712BD81FB858CC0067E416 /* FileService.swift in Sources */,
 				24D360F71FAA5DE800BBBAED /* FileState.swift in Sources */,
 				24D360FE1FAA5E0800BBBAED /* UserModel+CDConvertible.swift in Sources */,
 				24FE8A161FB8527E00A4A3C6 /* FileListViewModel.swift in Sources */,

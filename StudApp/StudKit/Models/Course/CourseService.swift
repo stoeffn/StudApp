@@ -16,7 +16,7 @@ public final class CourseService {
         studIp = ServiceContainer.default[StudIpService.self]
     }
 
-    public func updateCourses(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Course]>) {
+    public func update(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Course]>) {
         studIp.api.requestCompleteCollection(.courses(forUserId: userId)) { (result: Result<[CourseModel]>) in
             Course.update(using: result, in: context, handler: handler)
         }

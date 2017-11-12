@@ -25,7 +25,7 @@ final class SemesterServiceTests: XCTestCase {
     }
 
     func testUpdate_SemesterCollectionResponse_Success() {
-        service.updateSemesters(in: context) { semesterResult in
+        service.update(in: context) { semesterResult in
             try! self.context.save()
             let semester = try! Semester.fetch(byId: "135de7259e0862cbcd3878e038253776", in: self.context)
 

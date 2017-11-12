@@ -15,7 +15,7 @@ public final class SemesterService {
         studIp = ServiceContainer.default[StudIpService.self]
     }
 
-    public func updateSemesters(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Semester]>) {
+    public func update(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Semester]>) {
         studIp.api.requestCompleteCollection(.semesters) { (result: Result<[SemesterModel]>) in
             Semester.update(using: result, in: context, handler: handler)
         }

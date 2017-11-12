@@ -32,7 +32,7 @@ public final class SemesterListViewModel: NSObject {
 
     public func update(handler: @escaping ResultHandler<Void>) {
         coreDataService.performBackgroundTask { context in
-            self.semesterService.updateSemesters(in: context) { result in
+            self.semesterService.update(in: context) { result in
                 try? context.saveWhenChanged()
                 handler(result.replacingValue(()))
             }

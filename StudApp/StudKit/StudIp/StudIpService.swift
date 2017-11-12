@@ -63,7 +63,7 @@ final class StudIpService {
         let semesterService = ServiceContainer.default[SemesterService.self]
 
         coreDataService.performBackgroundTask { context in
-            semesterService.updateSemesters(in: context) { result in
+            semesterService.update(in: context) { result in
                 handler(result.replacingValue(()))
             }
         }

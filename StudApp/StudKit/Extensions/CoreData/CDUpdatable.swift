@@ -23,4 +23,14 @@ extension CDUpdatable where Self: NSManagedObject {
             handler(.failure(error))
         }
     }
+
+    static func update<Model: CDConvertible>(using result: Result<Model>, in context: NSManagedObjectContext,
+                                             handler: @escaping ResultHandler<Self>) {
+        guard let value = result.value else {
+            return handler(result.replacingValue(nil))
+        }
+        return update(using: result.replacingValue([value]), in: context) { result in
+            handler(result.replacingValue(result.value?.first))
+        }
+    }
 }

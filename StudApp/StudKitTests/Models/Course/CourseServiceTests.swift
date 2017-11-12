@@ -30,7 +30,7 @@ final class CourseServiceTests: XCTestCase {
     }
 
     func testUpdate_CourseCollectionResponse_Success() {
-        service.updateCourses(in: context) { courseResult in
+        service.update(in: context) { courseResult in
             try! self.context.save()
             let course = try! Course.fetch(byId: "e894bd27b2c3f5b25e438932f14b60e1", in: self.context)
 
