@@ -6,9 +6,11 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -206,22 +208,6 @@
             </objects>
             <point key="canvasLocation" x="686" y="609"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="dDo-u4-NU5">
-            <objects>
-                <viewController id="nD8-ix-uDI" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="q2E-GJ-NPO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="jAr-e0-Ury"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="" id="vwL-vj-jpe"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="a3V-at-4Ao" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="687" y="-102"/>
-        </scene>
         <!--Main Controller-->
         <scene sceneID="KQ9-7f-jGt">
             <objects>
@@ -232,13 +218,73 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="nD8-ix-uDI" kind="relationship" relationship="viewControllers" id="atw-eI-EFa"/>
                         <segue destination="nJg-0c-dPm" kind="presentation" identifier="signInSegue" animates="NO" id="g2F-HD-as5"/>
+                        <segue destination="dbq-bM-eAu" kind="relationship" relationship="viewControllers" id="9ED-Sa-84k"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l4I-wS-6ep" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-63" y="-102"/>
+        </scene>
+        <!--Semesters-->
+        <scene sceneID="Cns-4i-M79">
+            <objects>
+                <tableViewController id="fag-gD-kkk" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wbO-Dc-EFE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SemesterCell" rowHeight="44" id="LuS-fg-8Z4">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LuS-fg-8Z4" id="Gy1-Jm-6Zb">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aC2-PB-6AY">
+                                            <rect key="frame" x="16" y="3" width="286" height="21"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1PE-yg-wtG">
+                                            <rect key="frame" x="310" y="6" width="51" height="31"/>
+                                        </switch>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Range" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ulN-Sq-zTS">
+                                            <rect key="frame" x="16" y="21" width="286" height="20"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="aC2-PB-6AY" firstAttribute="leading" secondItem="Gy1-Jm-6Zb" secondAttribute="leading" constant="16" id="0pf-sV-zwq"/>
+                                        <constraint firstItem="ulN-Sq-zTS" firstAttribute="firstBaseline" secondItem="aC2-PB-6AY" secondAttribute="baseline" multiplier="0.7" constant="20" symbolType="layoutAnchor" id="4dG-1q-CGO"/>
+                                        <constraint firstItem="1PE-yg-wtG" firstAttribute="leading" secondItem="ulN-Sq-zTS" secondAttribute="trailing" constant="8" id="6th-W5-7oX"/>
+                                        <constraint firstItem="ulN-Sq-zTS" firstAttribute="leading" secondItem="aC2-PB-6AY" secondAttribute="leading" id="DQk-hG-5Gp"/>
+                                        <constraint firstItem="1PE-yg-wtG" firstAttribute="leading" secondItem="aC2-PB-6AY" secondAttribute="trailing" constant="8" id="VOs-BL-S2h"/>
+                                        <constraint firstItem="1PE-yg-wtG" firstAttribute="centerY" secondItem="Gy1-Jm-6Zb" secondAttribute="centerY" id="ZP6-oY-iAL"/>
+                                        <constraint firstItem="aC2-PB-6AY" firstAttribute="top" secondItem="Gy1-Jm-6Zb" secondAttribute="topMargin" constant="-8" id="oZW-bD-DAy"/>
+                                        <constraint firstAttribute="trailing" secondItem="1PE-yg-wtG" secondAttribute="trailing" constant="16" id="sXZ-6k-dMh"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="ulN-Sq-zTS" secondAttribute="bottom" constant="-8" id="wmg-yI-OLS"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="fag-gD-kkk" id="6Hs-kH-zJL"/>
+                            <outlet property="delegate" destination="fag-gD-kkk" id="HNe-w1-zFZ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Semesters" id="vkk-T4-jfp">
+                        <barButtonItem key="rightBarButtonItem" image="UserGlyph" id="rvu-vT-g3v"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rrt-iF-Hpg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1429.5999999999999" y="-103.89805097451276"/>
         </scene>
         <!--Sign In Navigation Controller-->
         <scene sceneID="6yh-zB-2Ps">
@@ -258,8 +304,29 @@
             </objects>
             <point key="canvasLocation" x="-63" y="609"/>
         </scene>
+        <!--Semesters-->
+        <scene sceneID="1Rz-lA-yYv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dbq-bM-eAu" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Semesters" image="SemestersGlyph" id="7my-5k-oCp"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="j1E-Mk-AWe">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fag-gD-kkk" kind="relationship" relationship="rootViewController" id="g3v-NV-FHc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZnP-g1-nQE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="684.79999999999995" y="-102.54872563718142"/>
+        </scene>
     </scenes>
     <resources>
         <image name="LeibnizUniIcon" width="512" height="512"/>
+        <image name="SemestersGlyph" width="17" height="17"/>
+        <image name="UserGlyph" width="25" height="25"/>
     </resources>
 </document>
