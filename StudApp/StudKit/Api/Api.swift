@@ -52,6 +52,7 @@ class Api<Routes: ApiRoutes> {
         let task = session.dataTask(with: request) { data, response, error in
             let response = response as? HTTPURLResponse
             let result = Result(data, error: error, statusCode: response?.statusCode)
+
             queue.async {
                 handler(result)
             }
@@ -63,8 +64,7 @@ class Api<Routes: ApiRoutes> {
 
 extension Api {
     @discardableResult
-    func download(_ route: Routes, parameters: [URLQueryItem] = [], queue: DispatchQueue = .main,
-                  handler: @escaping ResultHandler<URL>) -> Progress {
+    func download(_ route: Routes, parameters: [URLQueryItem] = [], handler: @escaping ResultHandler<URL>) -> Progress {
         guard let url = self.url(for: route, parameters: parameters) else {
             fatalError("Cannot construct URL for route '\(route)'.")
         }
@@ -72,9 +72,7 @@ extension Api {
         let task = session.downloadTask(with: request) { url, response, error in
             let response = response as? HTTPURLResponse
             let result = Result(url, error: error, statusCode: response?.statusCode)
-            queue.async {
-                handler(result)
-            }
+            handler(result)
         }
         task.resume()
         return task.progress
@@ -83,14 +81,19 @@ extension Api {
     @discardableResult
     func download(_ route: Routes, to destination: URL, parameters: [URLQueryItem] = [],
                   queue: DispatchQueue = .main, handler: @escaping ResultHandler<URL>) -> Progress {
-        return download(route, parameters: parameters, queue: queue) { result in
+        return download(route, parameters: parameters) { result in
             guard let url = result.value else { return handler(result) }
             do {
                 try FileManager.default.createIntermediateDirectories(forFileAt: destination)
                 try FileManager.default.moveItem(at: url, to: destination)
-                handler(result.replacingValue(destination))
+
+                queue.async {
+                    handler(result.replacingValue(destination))
+                }
             } catch {
-                handler(.failure(error))
+                queue.async {
+                    handler(.failure(error))
+                }
             }
         }
     }
