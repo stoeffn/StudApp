@@ -25,7 +25,7 @@ final class StudIpService {
         return URLCredentialStorage.shared.defaultCredential(for: api.protectionSpace) != nil
     }
 
-    /// Try to sign into Stud.IP using the credentials provided and update main data when successful.
+    /// Tries to sign into Stud.IP using the credentials provided.
     ///
     /// ## How it works
     ///  1. Create a new session credential with the provided username and password and save it as the default.
@@ -33,7 +33,6 @@ final class StudIpService {
     ///  3. Remove session credential.
     ///  4. Abort if credential was rejected or another error occured during the request.
     ///  5. Create a permanent credential from the now validated username and password and save it as the default.
-    ///  6. Update main data that is crucial for the application to work.
     ///
     /// - Parameters:
     ///   - username: Stud.IP username.
@@ -53,19 +52,14 @@ final class StudIpService {
             let validatedCredential = URLCredential(user: username, password: password, persistence: .synchronizable)
             URLCredentialStorage.shared.setDefaultCredential(validatedCredential, for: self.api.protectionSpace)
 
-            self.updateMainData(handler: handler)
+            handler(result.replacingValue(()))
         }
     }
 
-    /// Update data, which is crucial for the application to work, e.g. semesters.
-    func updateMainData(handler: @escaping ResultHandler<Void>) {
-        let coreDataService = ServiceContainer.default[CoreDataService.self]
-        let semesterService = ServiceContainer.default[SemesterService.self]
-
-        coreDataService.performBackgroundTask { context in
-            semesterService.update(in: context) { result in
-                handler(result.replacingValue(()))
-            }
-        }
+    /// Removes the default credential used for authentication.
+    func signOut() {
+        let protectionSpace = api.protectionSpace
+        guard let credential = URLCredentialStorage.shared.defaultCredential(for: protectionSpace) else { return }
+        URLCredentialStorage.shared.remove(credential, for: protectionSpace)
     }
 }
