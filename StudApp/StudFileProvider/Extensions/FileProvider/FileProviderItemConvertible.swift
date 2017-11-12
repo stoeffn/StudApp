@@ -16,8 +16,13 @@ public protocol FileProviderItemConvertible: class {
 }
 
 extension FileProviderItemConvertible where Self: NSFetchRequestResult {
+    public static var workingSetFetchRequest: NSFetchRequest<Self> {
+        let predicate = NSPredicate(format: "state.lastUsedDate != NIL OR state.tagData != NIL OR state.favoriteRank != %@",
+                                    NSFileProviderFavoriteRankUnranked)
+        return fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["state"])
+    }
+
     public static func fetchItemsInWorkingSet(in context: NSManagedObjectContext) throws -> [Self] {
-        let predicate = NSPredicate(format: "state.lastUsedDate != NIL OR state.tagData != NIL OR state.favoriteRank != 0")
-        return try context.fetch(fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["state"]))
+        return try context.fetch(workingSetFetchRequest)
     }
 }
