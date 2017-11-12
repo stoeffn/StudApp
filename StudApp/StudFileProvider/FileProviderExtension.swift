@@ -76,7 +76,7 @@ final class FileProviderExtension: NSFileProviderExtension {
     override func enumerator(for containerItemIdentifier: NSFileProviderItemIdentifier) throws -> NSFileProviderEnumerator {
         switch containerItemIdentifier.model {
         case .workingSet:
-            return WorkingSetEnumerator()
+            return WorkingSetEnumerator(itemIdentifier: containerItemIdentifier)
         case .root:
             return SemesterEnumerator(itemIdentifier: containerItemIdentifier)
         case .semester:

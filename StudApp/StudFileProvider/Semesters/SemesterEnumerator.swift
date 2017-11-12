@@ -16,6 +16,7 @@ final class SemesterEnumerator: NSObject, NSFileProviderEnumerator {
 
     init(itemIdentifier: NSFileProviderItemIdentifier) {
         self.itemIdentifier = itemIdentifier
+
         super.init()
 
         viewModel.delegate = cache

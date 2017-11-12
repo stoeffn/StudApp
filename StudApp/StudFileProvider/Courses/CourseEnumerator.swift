@@ -21,6 +21,7 @@ final class CourseEnumerator: NSObject, NSFileProviderEnumerator {
             let unwrappedSemester = semester else { fatalError() }
 
         viewModel = CourseListViewModel(semester: unwrappedSemester)
+
         super.init()
 
         viewModel.delegate = cache
