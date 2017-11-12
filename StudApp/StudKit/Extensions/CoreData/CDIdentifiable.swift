@@ -25,3 +25,14 @@ public extension CDIdentifiable where Self: NSFetchRequestResult & CDCreatable {
         return try fetch(byId: id, in: context) ?? Self(createIn: context)
     }
 }
+
+extension CDIdentifiable {
+    public static func itemIdentifier(forId id: String) -> NSFileProviderItemIdentifier {
+        let itemIdentifier = String(describing: Self.self).lowercased().appending("-").appending(id)
+        return NSFileProviderItemIdentifier(rawValue: itemIdentifier)
+    }
+
+    public var itemIdentifier: NSFileProviderItemIdentifier {
+        return Self.itemIdentifier(forId: id)
+    }
+}

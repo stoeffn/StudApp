@@ -9,7 +9,7 @@
 import FileProvider
 
 public extension NSFileProviderItemIdentifier {
-    public enum ModelType {
+    public enum Models {
         case workingSet
         case root
         case semester(id: String)
@@ -28,7 +28,7 @@ public extension NSFileProviderItemIdentifier {
         return id
     }
 
-    public var modelType: ModelType {
+    public var model: Models {
         if self == .workingSet {
             return .workingSet
         } else if self == .rootContainer {

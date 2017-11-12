@@ -8,16 +8,15 @@
 
 import CoreData
 import FileProvider
-import StudKit
 
-protocol FileProviderItemConvertible: class {
+public protocol FileProviderItemConvertible: class {
     var itemState: FileProviderItemConvertibleState { get }
 
     func fileProviderItem(context: NSManagedObjectContext) throws -> NSFileProviderItem
 }
 
 extension FileProviderItemConvertible where Self: NSFetchRequestResult {
-    static func fetchItemsInWorkingSet(in context: NSManagedObjectContext) throws -> [Self] {
+    public static func fetchItemsInWorkingSet(in context: NSManagedObjectContext) throws -> [Self] {
         let predicate = NSPredicate(format: "state.lastUsedDate != NIL OR state.tagData != NIL OR state.favoriteRank != 0")
         return try context.fetch(fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["state"]))
     }

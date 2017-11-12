@@ -55,6 +55,9 @@
 		246F3ACB1FAC879C00A477FF /* DataSourceSectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3AC41FAC879C00A477FF /* DataSourceSectionDelegate.swift */; };
 		246F3ACD1FAC881100A477FF /* CourseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3ACC1FAC881100A477FF /* CourseListViewModel.swift */; };
 		24712BD81FB858CC0067E416 /* FileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BD71FB858CC0067E416 /* FileService.swift */; };
+		24712BDF1FB886940067E416 /* FileProviderItemConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89DB1FB7653E00A4A3C6 /* FileProviderItemConvertible.swift */; };
+		24712BE01FB886980067E416 /* FileProviderItemConvertibleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89EB1FB7778300A4A3C6 /* FileProviderItemConvertibleState.swift */; };
+		24712BE11FB8869B0067E416 /* NSFileProviderItemIdentifier+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89EF1FB7799D00A4A3C6 /* NSFileProviderItemIdentifier+Utils.swift */; };
 		24CFB5D11FB24E2500F30DEA /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D01FB24E2500F30DEA /* MainController.swift */; };
 		24CFB5D61FB24F4D00F30DEA /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D31FB24F4C00F30DEA /* Routable.swift */; };
 		24CFB5D71FB24F4D00F30DEA /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D41FB24F4C00F30DEA /* Routes.swift */; };
@@ -136,13 +139,9 @@
 		24D9EF9E1FB75819006776B7 /* StudFileProvider.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 24D9EF821FB75818006776B7 /* StudFileProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		24E626771FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */; };
 		24E626781FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */; };
-		24FE89DD1FB7653E00A4A3C6 /* FileProviderItemConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89DB1FB7653E00A4A3C6 /* FileProviderItemConvertible.swift */; };
-		24FE89DE1FB7653E00A4A3C6 /* CDIdentifiable+NSItemIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89DC1FB7653E00A4A3C6 /* CDIdentifiable+NSItemIdentifier.swift */; };
 		24FE89E11FB7661700A4A3C6 /* SemesterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E01FB7661700A4A3C6 /* SemesterItem.swift */; };
 		24FE89E31FB7674F00A4A3C6 /* SemesterEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E21FB7674F00A4A3C6 /* SemesterEnumerator.swift */; };
 		24FE89E91FB7725100A4A3C6 /* ChangeCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E81FB7725100A4A3C6 /* ChangeCache.swift */; };
-		24FE89EC1FB7778300A4A3C6 /* FileProviderItemConvertibleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89EB1FB7778300A4A3C6 /* FileProviderItemConvertibleState.swift */; };
-		24FE89F01FB7799D00A4A3C6 /* NSFileProviderItemIdentifier+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89EF1FB7799D00A4A3C6 /* NSFileProviderItemIdentifier+Utils.swift */; };
 		24FE89F41FB77BD100A4A3C6 /* Semester+FileProviderItemConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89F31FB77BD100A4A3C6 /* Semester+FileProviderItemConvertible.swift */; };
 		24FE89F61FB77C0400A4A3C6 /* SemesterState+FileProviderItemConvertibleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89F51FB77C0400A4A3C6 /* SemesterState+FileProviderItemConvertibleState.swift */; };
 		24FE89FA1FB7849F00A4A3C6 /* File+FileProviderItemConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89F91FB7849F00A4A3C6 /* File+FileProviderItemConvertible.swift */; };
@@ -377,7 +376,6 @@
 		24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+StudIpActivityIndicatorView.swift"; sourceTree = "<group>"; };
 		24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudIpActivityIndicatorView.swift; sourceTree = "<group>"; };
 		24FE89DB1FB7653E00A4A3C6 /* FileProviderItemConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileProviderItemConvertible.swift; sourceTree = "<group>"; };
-		24FE89DC1FB7653E00A4A3C6 /* CDIdentifiable+NSItemIdentifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDIdentifiable+NSItemIdentifier.swift"; sourceTree = "<group>"; };
 		24FE89E01FB7661700A4A3C6 /* SemesterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterItem.swift; sourceTree = "<group>"; };
 		24FE89E21FB7674F00A4A3C6 /* SemesterEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterEnumerator.swift; sourceTree = "<group>"; };
 		24FE89E81FB7725100A4A3C6 /* ChangeCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeCache.swift; sourceTree = "<group>"; };
@@ -560,6 +558,7 @@
 			isa = PBXGroup;
 			children = (
 				24D360D11FAA5CB300BBBAED /* CoreData */,
+				24FE89EA1FB7775800A4A3C6 /* FileProvider */,
 				2448D48D1FA8DED000DAB97E /* Foundation */,
 				2448D4601FA8DC2500DAB97E /* Swift */,
 				241FD9631FA8FF8A00FBD750 /* UIKit */,
@@ -927,19 +926,9 @@
 		24FE89D91FB7652200A4A3C6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				24FE89DA1FB7653300A4A3C6 /* CoreData */,
-				24FE89EA1FB7775800A4A3C6 /* FileProvider */,
 				24FE89F11FB77B9600A4A3C6 /* Models */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		24FE89DA1FB7653300A4A3C6 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				24FE89DC1FB7653E00A4A3C6 /* CDIdentifiable+NSItemIdentifier.swift */,
-			);
-			path = CoreData;
 			sourceTree = "<group>";
 		};
 		24FE89DF1FB765AC00A4A3C6 /* Semesters */ = {
@@ -958,7 +947,8 @@
 				24FE89EB1FB7778300A4A3C6 /* FileProviderItemConvertibleState.swift */,
 				24FE89EF1FB7799D00A4A3C6 /* NSFileProviderItemIdentifier+Utils.swift */,
 			);
-			path = FileProvider;
+			name = FileProvider;
+			path = ../../StudFileProvider/Extensions/FileProvider;
 			sourceTree = "<group>";
 		};
 		24FE89F11FB77B9600A4A3C6 /* Models */ = {
@@ -1354,6 +1344,7 @@
 				24D360E61FAA5D7600BBBAED /* CourseState.swift in Sources */,
 				246F3ACB1FAC879C00A477FF /* DataSourceSectionDelegate.swift in Sources */,
 				24D3610C1FAA5E4E00BBBAED /* Color.swift in Sources */,
+				24712BE11FB8869B0067E416 /* NSFileProviderItemIdentifier+Utils.swift in Sources */,
 				24D3610A1FAA5E2300BBBAED /* SemesterState.swift in Sources */,
 				24D360CE1FAA5AFE00BBBAED /* CDConvertible.swift in Sources */,
 				2448D48F1FA8DEE800DAB97E /* FileManager+Utils.swift in Sources */,
@@ -1377,6 +1368,7 @@
 				246F3ACD1FAC881100A477FF /* CourseListViewModel.swift in Sources */,
 				24D361091FAA5E2300BBBAED /* Semester.swift in Sources */,
 				24D361081FAA5E2300BBBAED /* SemesterModel.swift in Sources */,
+				24712BE01FB886980067E416 /* FileProviderItemConvertibleState.swift in Sources */,
 				24D361001FAA5E0800BBBAED /* UserModel.swift in Sources */,
 				24D361111FAA5F0500BBBAED /* StudIpService.swift in Sources */,
 				246F3AC91FAC879C00A477FF /* DataSourceSection.swift in Sources */,
@@ -1388,6 +1380,7 @@
 				24D360DF1FAA5D3800BBBAED /* String+HTML.swift in Sources */,
 				246F3ACA1FAC879C00A477FF /* DataSourceDelegate.swift in Sources */,
 				24D361071FAA5E2300BBBAED /* SemesterService.swift in Sources */,
+				24712BDF1FB886940067E416 /* FileProviderItemConvertible.swift in Sources */,
 				24D361181FAA5F6200BBBAED /* CoreDataService.swift in Sources */,
 				246F3AC61FAC879C00A477FF /* DataSource.swift in Sources */,
 				24D360CF1FAA5AFE00BBBAED /* CDCreatable.swift in Sources */,
@@ -1452,9 +1445,6 @@
 				24FE89E31FB7674F00A4A3C6 /* SemesterEnumerator.swift in Sources */,
 				24FE89E11FB7661700A4A3C6 /* SemesterItem.swift in Sources */,
 				24FE89E91FB7725100A4A3C6 /* ChangeCache.swift in Sources */,
-				24FE89EC1FB7778300A4A3C6 /* FileProviderItemConvertibleState.swift in Sources */,
-				24FE89DE1FB7653E00A4A3C6 /* CDIdentifiable+NSItemIdentifier.swift in Sources */,
-				24FE89F01FB7799D00A4A3C6 /* NSFileProviderItemIdentifier+Utils.swift in Sources */,
 				24FE8A0E1FB78BF700A4A3C6 /* WorkingSetEnumerator.swift in Sources */,
 				24FE8A051FB7857400A4A3C6 /* FileItem.swift in Sources */,
 				24FE89FE1FB784C900A4A3C6 /* Course+FileProviderItemConvertible.swift in Sources */,
@@ -1464,7 +1454,6 @@
 				24FE89F41FB77BD100A4A3C6 /* Semester+FileProviderItemConvertible.swift in Sources */,
 				24FE8A061FB7857400A4A3C6 /* RootItem.swift in Sources */,
 				24D9EF851FB75818006776B7 /* FileProviderExtension.swift in Sources */,
-				24FE89DD1FB7653E00A4A3C6 /* FileProviderItemConvertible.swift in Sources */,
 				24FE89F61FB77C0400A4A3C6 /* SemesterState+FileProviderItemConvertibleState.swift in Sources */,
 				24FE89FC1FB784B300A4A3C6 /* FileState+FileProviderItemConvertibleState.swift in Sources */,
 			);

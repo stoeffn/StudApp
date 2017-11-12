@@ -43,7 +43,7 @@ final class FileProviderExtension: NSFileProviderExtension {
 
     static func model(for identifier: NSFileProviderItemIdentifier,
                       in context: NSManagedObjectContext) throws -> FileProviderItemConvertible? {
-        switch identifier.modelType {
+        switch identifier.model {
         case .root, .workingSet:
             fatalError("Cannot fetch model of root container or working set.")
         case let .semester(id):
@@ -56,7 +56,7 @@ final class FileProviderExtension: NSFileProviderExtension {
     }
 
     override func item(for identifier: NSFileProviderItemIdentifier) throws -> NSFileProviderItem {
-        switch identifier.modelType {
+        switch identifier.model {
         case .workingSet:
             throw "Not implemented: Working Set Item"
         case .root:
@@ -74,7 +74,7 @@ final class FileProviderExtension: NSFileProviderExtension {
     // MARK: - Enumeration
 
     override func enumerator(for containerItemIdentifier: NSFileProviderItemIdentifier) throws -> NSFileProviderEnumerator {
-        switch containerItemIdentifier.modelType {
+        switch containerItemIdentifier.model {
         case .workingSet:
             return WorkingSetEnumerator()
         case .root:

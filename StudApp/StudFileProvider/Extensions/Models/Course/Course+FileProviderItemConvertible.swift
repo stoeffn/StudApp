@@ -10,11 +10,11 @@ import CoreData
 import StudKit
 
 extension Course: FileProviderItemConvertible {
-    var itemState: FileProviderItemConvertibleState {
+    public var itemState: FileProviderItemConvertibleState {
         return state
     }
 
-    func fileProviderItem(context: NSManagedObjectContext) throws -> NSFileProviderItem {
+    public func fileProviderItem(context: NSManagedObjectContext) throws -> NSFileProviderItem {
         return try CourseItem(from: self, context: context)
     }
 }
