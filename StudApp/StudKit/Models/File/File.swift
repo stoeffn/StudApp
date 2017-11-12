@@ -62,6 +62,11 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
     @discardableResult
     public func download(handler: @escaping ResultHandler<URL>) -> Progress {
         let studIp = ServiceContainer.default[StudIpService.self]
-        return studIp.api.download(.fileContents(forFileId: id), to: localUrl, handler: handler)
+        return studIp.api.download(.fileContents(forFileId: id), to: localUrl) { result in
+            if result.isFailure {
+                try? FileManager.default.removeItem(at: self.localUrl.deletingLastPathComponent())
+            }
+            handler(result)
+        }
     }
 }

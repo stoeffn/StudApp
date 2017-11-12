@@ -7,8 +7,8 @@
 //
 
 public extension FileManager {
-    func createIntermediateDirectories(forFileAt fileUrl: URL, attributes: [FileAttributeKey: Any]? = nil) throws {
-        let url = fileUrl.deletingLastPathComponent()
-        try createDirectory(at: url, withIntermediateDirectories: true, attributes: attributes)
+    func createIntermediateDirectories(forFileAt url: URL, attributes: [FileAttributeKey: Any]? = nil) throws {
+        let directoryUrl = url.deletingLastPathComponent()
+        try createDirectory(at: directoryUrl, withIntermediateDirectories: true, attributes: attributes)
     }
 }

@@ -86,9 +86,8 @@ extension Api {
         return download(route, parameters: parameters, queue: queue) { result in
             guard let url = result.value else { return handler(result) }
             do {
-                let fileManager = FileManager.default
                 try FileManager.default.createIntermediateDirectories(forFileAt: destination)
-                try fileManager.moveItem(at: url, to: destination)
+                try FileManager.default.moveItem(at: url, to: destination)
                 handler(result.replacingValue(destination))
             } catch {
                 handler(.failure(error))

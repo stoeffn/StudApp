@@ -142,8 +142,7 @@ final class FileProviderExtension: NSFileProviderExtension {
 
     override func providePlaceholder(at url: URL, completionHandler: @escaping (Error?) -> Void) {
         guard let identifier = persistentIdentifierForItem(at: url) else {
-            completionHandler(NSFileProviderError(.noSuchItem))
-            return
+            return completionHandler(NSFileProviderError(.noSuchItem))
         }
         do {
             let placeholderUrl = NSFileProviderManager.placeholderURL(for: url)
@@ -157,19 +156,22 @@ final class FileProviderExtension: NSFileProviderExtension {
 
     // MARK: - Modifying Meta Data
 
-    private func modifyItemAndCallCompletion(withIdentifier identifier: NSFileProviderItemIdentifier,
-                                             completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void,
-                                             task: ((inout FileProviderItemConvertible?) -> Void)) {
+    private func modifyItem(withIdentifier identifier: NSFileProviderItemIdentifier,
+                            completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void,
+                            task: ((inout FileProviderItemConvertible?) -> Void)) {
         do {
             var model = try FileProviderExtension.model(for: identifier, in: coreDataService.viewContext)
             task(&model)
             try coreDataService.viewContext.save()
+
             guard let item = try model?.fileProviderItem(context: coreDataService.viewContext) else {
                 return completionHandler(nil, NSFileProviderError(.noSuchItem))
             }
+
             NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
             NSFileProviderManager.default.signalEnumerator(for: identifier) { _ in }
             NSFileProviderManager.default.signalEnumerator(for: item.parentItemIdentifier) { _ in }
+
             completionHandler(item, nil)
         } catch {
             completionHandler(nil, NSFileProviderError(.noSuchItem))
@@ -178,21 +180,21 @@ final class FileProviderExtension: NSFileProviderExtension {
 
     override func setLastUsedDate(_ lastUsedDate: Date?, forItemIdentifier itemIdentifier: NSFileProviderItemIdentifier,
                                   completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) {
-        modifyItemAndCallCompletion(withIdentifier: itemIdentifier, completionHandler: completionHandler) { model in
+        modifyItem(withIdentifier: itemIdentifier, completionHandler: completionHandler) { model in
             model?.itemState.lastUsedDate = lastUsedDate
         }
     }
 
     override func setFavoriteRank(_ favoriteRank: NSNumber?, forItemIdentifier itemIdentifier: NSFileProviderItemIdentifier,
                                   completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) {
-        modifyItemAndCallCompletion(withIdentifier: itemIdentifier, completionHandler: completionHandler) { model in
+        modifyItem(withIdentifier: itemIdentifier, completionHandler: completionHandler) { model in
             model?.itemState.favoriteRank = favoriteRank?.intValue ?? Int(NSFileProviderFavoriteRankUnranked)
         }
     }
 
     override func setTagData(_ tagData: Data?, forItemIdentifier itemIdentifier: NSFileProviderItemIdentifier,
                              completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) {
-        modifyItemAndCallCompletion(withIdentifier: itemIdentifier, completionHandler: completionHandler) { model in
+        modifyItem(withIdentifier: itemIdentifier, completionHandler: completionHandler) { model in
             model?.itemState.tagData = tagData
         }
     }
