@@ -22,7 +22,9 @@ public final class SignInViewModel {
         case success
     }
 
-    private let studIp = ServiceContainer.default[StudIpService.self]
+    private let coreDataService = ServiceContainer.default[CoreDataService.self]
+    private let studIpService = ServiceContainer.default[StudIpService.self]
+    private let semesterService = ServiceContainer.default[SemesterService.self]
 
     public var state: State = .idle {
         didSet { stateChanged?(state) }
@@ -39,13 +41,21 @@ public final class SignInViewModel {
         }
 
         state = .loading
-        studIp.signIn(withUsername: username, password: password) { result in
+        studIpService.signIn(withUsername: username, password: password) { result in
             switch result {
             case .success:
                 self.state = .success
+                self.updateSemesters()
             case let .failure(error):
                 self.state = .failure(error?.localizedDescription ?? "Please check your username and password")
             }
+        }
+    }
+
+    public func updateSemesters() {
+        coreDataService.performBackgroundTask { context in
+            self.semesterService.update(in: context) { _ in }
+            try? context.saveWhenChanged()
         }
     }
 }
