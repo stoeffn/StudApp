@@ -20,4 +20,10 @@ public final class SemesterService {
             Semester.update(using: result, in: context, handler: handler)
         }
     }
+
+    public func setHidden(_ semester: Semester, hidden: Bool) {
+        semester.state.isHidden = hidden
+        try? semester.managedObjectContext?.saveWhenChanged()
+        NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
+    }
 }

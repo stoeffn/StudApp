@@ -25,6 +25,6 @@ extension DateFormatter {
         self.init()
         self.dateStyle = dateStyle
         self.timeStyle = timeStyle
-        self.dateFormat = format
+        dateFormat = format
     }
 }

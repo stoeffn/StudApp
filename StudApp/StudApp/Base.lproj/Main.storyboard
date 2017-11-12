@@ -250,6 +250,9 @@
                                         </label>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1PE-yg-wtG">
                                             <rect key="frame" x="302" y="7.5" width="51" height="31"/>
+                                            <connections>
+                                                <action selector="isHiddenSwitchValueChanged:" destination="LuS-fg-8Z4" eventType="valueChanged" id="3gr-gB-8hl"/>
+                                            </connections>
                                         </switch>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Range" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ulN-Sq-zTS">
                                             <rect key="frame" x="24" y="20.5" width="270" height="22.5"/>

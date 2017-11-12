@@ -10,6 +10,8 @@ import UIKit
 import StudKit
 
 final class SemesterCell: UITableViewCell {
+    private let semesterService = ServiceContainer.default[SemesterService.self]
+
     // MARK: - Life Cycle
 
     var semester: Semester? {
@@ -27,4 +29,12 @@ final class SemesterCell: UITableViewCell {
     @IBOutlet weak var monthRangeLabel: UILabel!
 
     @IBOutlet weak var isHiddenSwitch: UISwitch!
+
+    // MARK: - User Interaction
+
+    @IBAction
+    func isHiddenSwitchValueChanged(_: Any) {
+        guard let semester = semester else { return }
+        semesterService.setHidden(semester, hidden: !isHiddenSwitch.isOn)
+    }
 }
