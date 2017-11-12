@@ -26,11 +26,11 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
 
     // MARK: Table View Data Source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in _: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return viewModel.numberOfRows
     }
 

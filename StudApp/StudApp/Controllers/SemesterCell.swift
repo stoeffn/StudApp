@@ -15,7 +15,7 @@ final class SemesterCell: UITableViewCell {
     var semester: Semester? {
         didSet {
             titleLabel.text = semester?.title
-            dateRangeLabel.text = semester?.beginDate.description
+            monthRangeLabel.text = semester?.monthRange
         }
     }
 
@@ -23,7 +23,7 @@ final class SemesterCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
 
-    @IBOutlet weak var dateRangeLabel: UILabel!
+    @IBOutlet weak var monthRangeLabel: UILabel!
 
     @IBOutlet weak var isHiddenSwitch: UISwitch!
 }

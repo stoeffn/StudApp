@@ -45,4 +45,8 @@ public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDUpd
         let now = Date()
         return now >= beginDate && now <= endDate
     }
+
+    public var monthRange: String {
+        return "\(beginDate.formattedMonthAndYear)–\(endDate.formattedMonthAndYear)"
+    }
 }

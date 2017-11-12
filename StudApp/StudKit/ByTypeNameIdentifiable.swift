@@ -7,7 +7,7 @@
 //
 
 /// Something that can be identified by its non-generic type name, e.g. a database table or table view cell.
-public protocol ByTypeNameIdentifiable { }
+public protocol ByTypeNameIdentifiable {}
 
 public extension ByTypeNameIdentifiable {
     /// This object's type name without generic type information, e.g. `Set` instead of `Set<Int>`.
@@ -21,4 +21,4 @@ public extension ByTypeNameIdentifiable {
 
 // MARK: - Conformances
 
-extension UITableViewCell: ByTypeNameIdentifiable { }
+extension UITableViewCell: ByTypeNameIdentifiable {}

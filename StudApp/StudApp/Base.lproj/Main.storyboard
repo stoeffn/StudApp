@@ -273,8 +273,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="dateRangeLabel" destination="ulN-Sq-zTS" id="Tg1-aM-rrE"/>
                                     <outlet property="isHiddenSwitch" destination="1PE-yg-wtG" id="8fd-Qz-93B"/>
+                                    <outlet property="monthRangeLabel" destination="ulN-Sq-zTS" id="Tg1-aM-rrE"/>
                                     <outlet property="titleLabel" destination="aC2-PB-6AY" id="d6j-be-bWX"/>
                                 </connections>
                             </tableViewCell>

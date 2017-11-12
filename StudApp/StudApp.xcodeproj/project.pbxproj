@@ -62,6 +62,9 @@
 		24712BE61FB8B0E20067E416 /* SemesterListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BE51FB8B0E20067E416 /* SemesterListController.swift */; };
 		24712BE81FB8B4420067E416 /* SemesterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BE71FB8B4420067E416 /* SemesterCell.swift */; };
 		24712BEA1FB8B48A0067E416 /* ByTypeNameIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BE91FB8B48A0067E416 /* ByTypeNameIdentifiable.swift */; };
+		24712BF41FB8B80B0067E416 /* DateComponentsFormatter+Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BF11FB8B80A0067E416 /* DateComponentsFormatter+Shared.swift */; };
+		24712BF51FB8B80B0067E416 /* Date+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BF21FB8B80A0067E416 /* Date+Formatting.swift */; };
+		24712BF61FB8B80B0067E416 /* DateFormatter+Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BF31FB8B80B0067E416 /* DateFormatter+Shared.swift */; };
 		24CFB5D11FB24E2500F30DEA /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D01FB24E2500F30DEA /* MainController.swift */; };
 		24CFB5D61FB24F4D00F30DEA /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D31FB24F4C00F30DEA /* Routable.swift */; };
 		24CFB5D71FB24F4D00F30DEA /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D41FB24F4C00F30DEA /* Routes.swift */; };
@@ -300,6 +303,9 @@
 		24712BE51FB8B0E20067E416 /* SemesterListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterListController.swift; sourceTree = "<group>"; };
 		24712BE71FB8B4420067E416 /* SemesterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterCell.swift; sourceTree = "<group>"; };
 		24712BE91FB8B48A0067E416 /* ByTypeNameIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByTypeNameIdentifiable.swift; sourceTree = "<group>"; };
+		24712BF11FB8B80A0067E416 /* DateComponentsFormatter+Shared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateComponentsFormatter+Shared.swift"; sourceTree = "<group>"; };
+		24712BF21FB8B80A0067E416 /* Date+Formatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Formatting.swift"; sourceTree = "<group>"; };
+		24712BF31FB8B80B0067E416 /* DateFormatter+Shared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Shared.swift"; sourceTree = "<group>"; };
 		24CFB5D01FB24E2500F30DEA /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		24CFB5D31FB24F4C00F30DEA /* Routable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
 		24CFB5D41FB24F4C00F30DEA /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
@@ -610,6 +616,9 @@
 		2448D48D1FA8DED000DAB97E /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				24712BF21FB8B80A0067E416 /* Date+Formatting.swift */,
+				24712BF11FB8B80A0067E416 /* DateComponentsFormatter+Shared.swift */,
+				24712BF31FB8B80B0067E416 /* DateFormatter+Shared.swift */,
 				2448D48E1FA8DEE800DAB97E /* FileManager+Utils.swift */,
 			);
 			path = Foundation;
@@ -1338,6 +1347,7 @@
 				24D360DA1FAA5D3800BBBAED /* String+Regex.swift in Sources */,
 				24712BEA1FB8B48A0067E416 /* ByTypeNameIdentifiable.swift in Sources */,
 				24D360EA1FAA5D7600BBBAED /* CourseModel+CDConvertible.swift in Sources */,
+				24712BF61FB8B80B0067E416 /* DateFormatter+Shared.swift in Sources */,
 				24D361061FAA5E2300BBBAED /* SemesterModel+CDConvertible.swift in Sources */,
 				24D360E71FAA5D7600BBBAED /* CourseService.swift in Sources */,
 				246F3AC71FAC879C00A477FF /* DataSourceDelegate+UITableViewController.swift in Sources */,
@@ -1351,6 +1361,7 @@
 				24D178E71FB6020200EC5F4A /* SwiftyUserDefaults.swift in Sources */,
 				24FE8A121FB7B0D100A4A3C6 /* RangeIterator.swift in Sources */,
 				2448D4971FA8DFB200DAB97E /* StudKitServiceProvider.swift in Sources */,
+				24712BF41FB8B80B0067E416 /* DateComponentsFormatter+Shared.swift in Sources */,
 				24712BE41FB888E30067E416 /* WorkingSetViewModel.swift in Sources */,
 				24CFB5D71FB24F4D00F30DEA /* Routes.swift in Sources */,
 				24D360DE1FAA5D3800BBBAED /* String+Utils.swift in Sources */,
@@ -1396,6 +1407,7 @@
 				24D360DF1FAA5D3800BBBAED /* String+HTML.swift in Sources */,
 				246F3ACA1FAC879C00A477FF /* DataSourceDelegate.swift in Sources */,
 				24D361071FAA5E2300BBBAED /* SemesterService.swift in Sources */,
+				24712BF51FB8B80B0067E416 /* Date+Formatting.swift in Sources */,
 				24712BDF1FB886940067E416 /* FileProviderItemConvertible.swift in Sources */,
 				24D361181FAA5F6200BBBAED /* CoreDataService.swift in Sources */,
 				246F3AC61FAC879C00A477FF /* DataSource.swift in Sources */,
