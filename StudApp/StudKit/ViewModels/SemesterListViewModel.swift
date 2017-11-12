@@ -15,7 +15,7 @@ public final class SemesterListViewModel: NSObject {
 
     public weak var delegate: DataSourceSectionDelegate?
 
-    public init(fetchRequest: NSFetchRequest<Semester> = Semester.fetchRequest()) {
+    public init(fetchRequest: NSFetchRequest<Semester> = Semester.sortedFetchRequest) {
         self.fetchRequest = fetchRequest
         super.init()
 

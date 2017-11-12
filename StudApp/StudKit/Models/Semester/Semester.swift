@@ -34,6 +34,12 @@ public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDUpd
         return try context.fetch(request)
     }
 
+    public static var sortedFetchRequest: NSFetchRequest<Semester> {
+        let sortDescriptor = NSSortDescriptor(keyPath: \Semester.beginDate, ascending: false)
+        return fetchRequest(predicate: NSPredicate(value: true), sortDescriptors: [sortDescriptor],
+                            relationshipKeyPathsForPrefetching: ["state"])
+    }
+
     public var coursesFetchRequest: NSFetchRequest<Course> {
         let predicate = NSPredicate(format: "%@ IN semesters", self)
         let sortDescriptors = [NSSortDescriptor(keyPath: \Course.title, ascending: true)]
@@ -47,6 +53,6 @@ public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDUpd
     }
 
     public var monthRange: String {
-        return "\(beginDate.formattedMonthAndYear)–\(endDate.formattedMonthAndYear)"
+        return "\(beginDate.formattedMonthAndYear) – \(endDate.formattedMonthAndYear)"
     }
 }
