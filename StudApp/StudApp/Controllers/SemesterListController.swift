@@ -20,6 +20,8 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
         viewModel = SemesterListViewModel()
         viewModel.delegate = self
         viewModel.fetch()
+
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     // MARK: Table View Data Source
@@ -33,6 +35,11 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: "SemesterCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SemesterCell.typeIdentifier,
+                                                       for: indexPath) as? SemesterCell else {
+            fatalError("Cannot dequeue cell with identifier '\(SemesterCell.typeIdentifier)'.")
+        }
+        cell.semester = viewModel[rowAt: indexPath.row]
+        return cell
     }
 }

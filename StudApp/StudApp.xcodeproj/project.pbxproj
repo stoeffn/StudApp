@@ -60,6 +60,8 @@
 		24712BE11FB8869B0067E416 /* NSFileProviderItemIdentifier+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89EF1FB7799D00A4A3C6 /* NSFileProviderItemIdentifier+Utils.swift */; };
 		24712BE41FB888E30067E416 /* WorkingSetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BE31FB888E30067E416 /* WorkingSetViewModel.swift */; };
 		24712BE61FB8B0E20067E416 /* SemesterListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BE51FB8B0E20067E416 /* SemesterListController.swift */; };
+		24712BE81FB8B4420067E416 /* SemesterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BE71FB8B4420067E416 /* SemesterCell.swift */; };
+		24712BEA1FB8B48A0067E416 /* ByTypeNameIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BE91FB8B48A0067E416 /* ByTypeNameIdentifiable.swift */; };
 		24CFB5D11FB24E2500F30DEA /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D01FB24E2500F30DEA /* MainController.swift */; };
 		24CFB5D61FB24F4D00F30DEA /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D31FB24F4C00F30DEA /* Routable.swift */; };
 		24CFB5D71FB24F4D00F30DEA /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D41FB24F4C00F30DEA /* Routes.swift */; };
@@ -296,6 +298,8 @@
 		24712BD71FB858CC0067E416 /* FileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileService.swift; sourceTree = "<group>"; };
 		24712BE31FB888E30067E416 /* WorkingSetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkingSetViewModel.swift; sourceTree = "<group>"; };
 		24712BE51FB8B0E20067E416 /* SemesterListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterListController.swift; sourceTree = "<group>"; };
+		24712BE71FB8B4420067E416 /* SemesterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterCell.swift; sourceTree = "<group>"; };
+		24712BE91FB8B48A0067E416 /* ByTypeNameIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByTypeNameIdentifiable.swift; sourceTree = "<group>"; };
 		24CFB5D01FB24E2500F30DEA /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		24CFB5D31FB24F4C00F30DEA /* Routable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
 		24CFB5D41FB24F4C00F30DEA /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
@@ -532,6 +536,7 @@
 				2448D4741FA8DE1700DAB97E /* Services */,
 				24D360EB1FAA5DA700BBBAED /* StudIp */,
 				24D361641FAA646200BBBAED /* ViewModels */,
+				24712BE91FB8B48A0067E416 /* ByTypeNameIdentifiable.swift */,
 				24FE8A111FB7B0D100A4A3C6 /* RangeIterator.swift */,
 				2448D45D1FA8DBA300DAB97E /* Result.swift */,
 				2448D4961FA8DFB200DAB97E /* StudKitServiceProvider.swift */,
@@ -914,6 +919,7 @@
 			children = (
 				24CFB5D01FB24E2500F30DEA /* MainController.swift */,
 				24712BE51FB8B0E20067E416 /* SemesterListController.swift */,
+				24712BE71FB8B4420067E416 /* SemesterCell.swift */,
 				241FD96E1FA9191500FBD750 /* SignInNavigationController.swift */,
 				243014251FA8FE2800680253 /* SignInController.swift */,
 			);
@@ -1295,6 +1301,7 @@
 				241FD9691FA9087900FBD750 /* GroupedTextField.swift in Sources */,
 				24712BE61FB8B0E20067E416 /* SemesterListController.swift in Sources */,
 				24E626771FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */,
+				24712BE81FB8B4420067E416 /* SemesterCell.swift in Sources */,
 				24CFB5D11FB24E2500F30DEA /* MainController.swift in Sources */,
 				243014261FA8FE2800680253 /* SignInController.swift in Sources */,
 				2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */,
@@ -1329,6 +1336,7 @@
 				24D360DD1FAA5D3800BBBAED /* Set+Array.swift in Sources */,
 				2448D4781FA8DE2A00DAB97E /* ServiceProvider.swift in Sources */,
 				24D360DA1FAA5D3800BBBAED /* String+Regex.swift in Sources */,
+				24712BEA1FB8B48A0067E416 /* ByTypeNameIdentifiable.swift in Sources */,
 				24D360EA1FAA5D7600BBBAED /* CourseModel+CDConvertible.swift in Sources */,
 				24D361061FAA5E2300BBBAED /* SemesterModel+CDConvertible.swift in Sources */,
 				24D360E71FAA5D7600BBBAED /* CourseService.swift in Sources */,
