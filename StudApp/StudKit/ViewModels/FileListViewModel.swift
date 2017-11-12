@@ -10,11 +10,14 @@ import CoreData
 
 public final class FileListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
-    private var fetchRequest: NSFetchRequest<File>
+    private let fileService = ServiceContainer.default[FileService.self]
+    private let containingId: String
+    private let fetchRequest: NSFetchRequest<File>
 
     public weak var delegate: DataSourceSectionDelegate?
 
-    public init(fetchRequest: NSFetchRequest<File>) {
+    public init(containingId: String, fetchRequest: NSFetchRequest<File>) {
+        self.containingId = containingId
         self.fetchRequest = fetchRequest
         super.init()
 
@@ -30,7 +33,12 @@ public final class FileListViewModel: NSObject {
     }
 
     public func update(handler: @escaping ResultHandler<Void>) {
-
+        coreDataService.performBackgroundTask { context in
+            self.fileService.update(fileWithId: self.containingId, in: context) { result in
+                try? context.saveWhenChanged()
+                handler(result.replacingValue(()))
+            }
+        }
     }
 }
 

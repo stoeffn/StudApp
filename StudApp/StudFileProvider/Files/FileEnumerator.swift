@@ -22,7 +22,7 @@ final class FileEnumerator: NSObject, NSFileProviderEnumerator {
                                                                   context: coreDataService.viewContext),
             let unwrappedFetchRequest = fetchRequest else { fatalError() }
 
-        viewModel = FileListViewModel(fetchRequest: unwrappedFetchRequest)
+        viewModel = FileListViewModel(containingId: itemIdentifier.id, fetchRequest: unwrappedFetchRequest)
         super.init()
 
         viewModel.delegate = cache

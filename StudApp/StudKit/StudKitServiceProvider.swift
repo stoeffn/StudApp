@@ -39,6 +39,10 @@ public class StudKitServiceProvider: ServiceProvider {
         return CourseService()
     }
 
+    func provideFileService() -> FileService {
+        return FileService()
+    }
+
     public func registerServices(in container: ServiceContainer) {
         container[JSONDecoder.self] = provideJsonDecoder()
         container[StorageService.self] = provideStorageService()
@@ -46,5 +50,6 @@ public class StudKitServiceProvider: ServiceProvider {
         container[StudIpService.self] = provideStudIpService()
         container[SemesterService.self] = provideSemesterService()
         container[CourseService.self] = provideCourseService()
+        container[FileService.self] = provideFileService()
     }
 }
