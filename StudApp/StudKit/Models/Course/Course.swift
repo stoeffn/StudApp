@@ -28,7 +28,7 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdat
     }
 
     public var rootFilesFetchRequest: NSFetchRequest<File> {
-        let predicate = NSPredicate(format: "course.id == %@ AND parent == NIL", id)
+        let predicate = NSPredicate(format: "course == %@ AND parent == NIL", self)
         return File.fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["state"])
     }
 

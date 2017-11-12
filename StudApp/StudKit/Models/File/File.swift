@@ -55,7 +55,7 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
     }
 
     public var childrenFetchRequest: NSFetchRequest<File> {
-        let predicate = NSPredicate(format: "parent == %@", id)
+        let predicate = NSPredicate(format: "parent == %@", self)
         return File.fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["state"])
     }
 
