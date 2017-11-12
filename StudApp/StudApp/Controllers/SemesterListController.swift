@@ -20,6 +20,7 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
         viewModel = SemesterListViewModel()
         viewModel.delegate = self
         viewModel.fetch()
+        viewModel.update { _ in }
 
         navigationController?.navigationBar.prefersLargeTitles = true
     }
