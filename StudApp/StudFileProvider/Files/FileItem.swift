@@ -28,7 +28,7 @@ final class FileItem: NSObject, NSFileProviderItem {
 
     init(from file: File, parentItemIdentifier: NSFileProviderItemIdentifier) {
         itemIdentifier = file.itemIdentifier
-        filename = file.name
+        filename = file.title
         typeIdentifier = file.typeIdentifier
         capabilities = file.isFolder ? [.allowsReading, .allowsContentEnumerating] : [.allowsReading]
         childItemCount = file.children.count as NSNumber
