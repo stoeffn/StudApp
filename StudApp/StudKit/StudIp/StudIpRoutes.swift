@@ -20,10 +20,13 @@ public enum StudIpRoutes: ApiRoutes {
 
     /// Returns the complete file tree for a course with the given id, including all folder and document
     /// meta data.
-    case files(forCourseId: String)
+    case filesInCourse(withId: String)
+
+    /// Returns meta data for a single file with first-level children in case of a folder.
+    case file(withId: String)
 
     /// Returns the contents of a file with the given id.
-    case fileContents(id: String)
+    case fileContents(forFileId: String)
 
     /// Returns the profile picture at the URL given.
     case profilePicture(URL)
@@ -36,8 +39,10 @@ public enum StudIpRoutes: ApiRoutes {
             return "semesters"
         case let .courses(userId):
             return "user/\(userId)/courses"
-        case let .files(courseId):
+        case let .filesInCourse(courseId):
             return "course/\(courseId)/files"
+        case let .file(folderId):
+            return "file/\(folderId)"
         case let .fileContents(fileId):
             return "file/\(fileId)/content"
         case let .profilePicture(url):
@@ -50,7 +55,8 @@ public enum StudIpRoutes: ApiRoutes {
         case .discovery: return [String: [String: String]].self
         case .semesters: return CollectionResponse<SemesterModel>.self
         case .courses: return CollectionResponse<CourseModel>.self
-        case .files: return CollectionResponse<FileModel>.self
+        case .filesInCourse: return CollectionResponse<FileModel>.self
+        case .file: return FileModel.self
         case .fileContents, .profilePicture: return nil
         }
     }
