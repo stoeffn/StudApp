@@ -21,5 +21,6 @@ public final class SemesterState: NSManagedObject, CDCreatable {
         self.init(context: context)
 
         favoriteRank = Int(NSFileProviderFavoriteRankUnranked)
+        isHidden = !semester.isCurrent
     }
 }

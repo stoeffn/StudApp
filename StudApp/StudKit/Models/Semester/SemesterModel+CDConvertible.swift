@@ -18,7 +18,6 @@ extension SemesterModel: CDConvertible {
         semester.endDate = endDate
         semester.coursesBeginDate = coursesBeginDate
         semester.coursesEndDate = coursesEndDate
-        semester.state.isHidden = !semester.isCurrent
         return semester
     }
 }
