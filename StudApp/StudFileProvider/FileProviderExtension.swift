@@ -41,8 +41,8 @@ final class FileProviderExtension: NSFileProviderExtension {
             .appendingPathComponent(item.filename, isDirectory: false)
     }
 
-    func model(for identifier: NSFileProviderItemIdentifier,
-               in context: NSManagedObjectContext) throws -> FileProviderItemConvertible? {
+    static func model(for identifier: NSFileProviderItemIdentifier,
+                      in context: NSManagedObjectContext) throws -> FileProviderItemConvertible? {
         switch identifier.modelType {
         case .root, .workingSet:
             fatalError("Cannot fetch model of root container or working set.")
@@ -62,7 +62,7 @@ final class FileProviderExtension: NSFileProviderExtension {
         case .root:
             return try RootItem(context: coreDataService.viewContext)
         case .semester, .course, .file:
-            guard let model = try? self.model(for: identifier, in: coreDataService.viewContext),
+            guard let model = try? FileProviderExtension.model(for: identifier, in: coreDataService.viewContext),
                 let unwrappedModel = model,
                 let item = try? unwrappedModel.fileProviderItem(context: coreDataService.viewContext) else {
                 throw NSFileProviderError(.noSuchItem)
@@ -161,7 +161,7 @@ final class FileProviderExtension: NSFileProviderExtension {
                                              completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void,
                                              task: ((inout FileProviderItemConvertible?) -> Void)) {
         do {
-            var model = try self.model(for: identifier, in: coreDataService.viewContext)
+            var model = try FileProviderExtension.model(for: identifier, in: coreDataService.viewContext)
             task(&model)
             try coreDataService.viewContext.save()
             guard let item = try model?.fileProviderItem(context: coreDataService.viewContext) else {

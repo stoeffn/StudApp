@@ -11,22 +11,22 @@ import CoreData
 public final class FileListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let fileService = ServiceContainer.default[FileService.self]
-    private let containingId: String
-    private let fetchRequest: NSFetchRequest<File>
+    private let course: Course
+    private let parentFolder: File?
 
     public weak var delegate: DataSourceSectionDelegate?
 
-    public init(containingId: String, fetchRequest: NSFetchRequest<File>) {
-        self.containingId = containingId
-        self.fetchRequest = fetchRequest
+    public init(course: Course, parentFolder: File? = nil) {
+        self.course = course
+        self.parentFolder = parentFolder
         super.init()
 
         controller.delegate = self
     }
 
     private(set) lazy var controller: NSFetchedResultsController<File>
-        = NSFetchedResultsController(fetchRequest: self.fetchRequest, managedObjectContext: coreDataService.viewContext,
-                                     sectionNameKeyPath: nil, cacheName: nil)
+        = NSFetchedResultsController(fetchRequest: parentFolder?.childrenFetchRequest ?? course.rootFilesFetchRequest,
+                                     managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
 
     public func fetch() {
         try? controller.performFetch()
@@ -34,7 +34,7 @@ public final class FileListViewModel: NSObject {
 
     public func update(handler: @escaping ResultHandler<Void>) {
         coreDataService.performBackgroundTask { context in
-            self.fileService.update(fileWithId: self.containingId, in: context) { result in
+            self.fileService.update(filesInCourseWithId: self.course.id, in: context) { result in
                 try? context.saveWhenChanged()
                 handler(result.replacingValue(()))
             }

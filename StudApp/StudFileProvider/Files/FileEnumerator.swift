@@ -18,11 +18,18 @@ final class FileEnumerator: NSObject, NSFileProviderEnumerator {
     init(itemIdentifier: NSFileProviderItemIdentifier) {
         self.itemIdentifier = itemIdentifier
 
-        guard let fetchRequest = try? FileEnumerator.fetchRequest(forChildrenInItemWithIdentifier: itemIdentifier,
-                                                                  context: coreDataService.viewContext),
-            let unwrappedFetchRequest = fetchRequest else { fatalError() }
+        guard let model = try? FileProviderExtension.model(for: itemIdentifier, in: coreDataService.viewContext) else {
+            fatalError("Cannot get model for item with identifier '\(itemIdentifier)'.")
+        }
+        switch model {
+        case let course as Course:
+            viewModel = FileListViewModel(course: course)
+        case let folder as File:
+            viewModel = FileListViewModel(course: folder.course, parentFolder: folder)
+        default:
+            fatalError("Cannot list files in item with identifier '\(itemIdentifier)'.")
+        }
 
-        viewModel = FileListViewModel(containingId: itemIdentifier.id, fetchRequest: unwrappedFetchRequest)
         super.init()
 
         viewModel.delegate = cache
@@ -31,18 +38,6 @@ final class FileEnumerator: NSObject, NSFileProviderEnumerator {
             if result.isSuccess {
                 NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
             }
-        }
-    }
-
-    private static func fetchRequest(forChildrenInItemWithIdentifier identifier: NSFileProviderItemIdentifier,
-                                     context: NSManagedObjectContext) throws -> NSFetchRequest<File>? {
-        switch identifier.modelType {
-        case let .course(id):
-            return try Course.fetch(byId: id, in: context)?.rootFilesFetchRequest
-        case let .file(id):
-            return try File.fetch(byId: id, in: context)?.childrenFetchRequest
-        default:
-            fatalError("Cannot fetch files in item with identifier \(identifier).")
         }
     }
 

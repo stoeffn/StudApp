@@ -11,20 +11,20 @@ import CoreData
 public final class CourseListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let courseService = ServiceContainer.default[CourseService.self]
-    private var fetchRequest: NSFetchRequest<Course>
+    private let semester: Semester
 
     public weak var delegate: DataSourceSectionDelegate?
 
-    public init(fetchRequest: NSFetchRequest<Course> = Course.fetchRequest()) {
-        self.fetchRequest = fetchRequest
+    public init(semester: Semester) {
+        self.semester = semester
         super.init()
 
         controller.delegate = self
     }
 
     private(set) lazy var controller: NSFetchedResultsController<Course>
-        = NSFetchedResultsController(fetchRequest: self.fetchRequest, managedObjectContext: coreDataService.viewContext,
-                                     sectionNameKeyPath: nil, cacheName: nil)
+        = NSFetchedResultsController(fetchRequest: semester.coursesFetchRequest,
+                                     managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
 
     public func fetch() {
         try? controller.performFetch()

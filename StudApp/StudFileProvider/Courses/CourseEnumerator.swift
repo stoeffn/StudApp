@@ -20,7 +20,7 @@ final class CourseEnumerator: NSObject, NSFileProviderEnumerator {
         guard let semester = try? Semester.fetch(byId: itemIdentifier.id, in: coreDataService.viewContext),
             let unwrappedSemester = semester else { fatalError() }
 
-        viewModel = CourseListViewModel(fetchRequest: unwrappedSemester.coursesFetchRequest)
+        viewModel = CourseListViewModel(semester: unwrappedSemester)
         super.init()
 
         viewModel.delegate = cache

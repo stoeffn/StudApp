@@ -27,13 +27,6 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdat
         state = CourseState(createIn: context)
     }
 
-    public func updateFiles(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[File]>) {
-        let studIp = ServiceContainer.default[StudIpService.self]
-        studIp.api.requestCompleteCollection(.filesInCourse(withId: id)) { (result: Result<[FileModel]>) in
-            File.update(using: result, in: context, handler: handler)
-        }
-    }
-
     public var rootFilesFetchRequest: NSFetchRequest<File> {
         let predicate = NSPredicate(format: "course.id == %@ AND parent == NIL", id)
         return File.fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["state"])
