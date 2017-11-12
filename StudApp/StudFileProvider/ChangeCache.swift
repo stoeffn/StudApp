@@ -18,6 +18,8 @@ class ChangeCache {
     /// File provider sync anchor, containing a UNIX timestamp.
     private(set) var currentSyncAnchor = ChangeCache.syncAnchor()
 
+    var dataDidChange: (() -> Void)?
+
     /// Generates a sync anchor for the date given. Defaults to now.
     private static func syncAnchor(for date: Date = Date()) -> NSFileProviderSyncAnchor {
         guard let data = String(date.timeIntervalSince1970).data(using: .utf8) else {
@@ -37,6 +39,10 @@ class ChangeCache {
 // MARK: - Data Source Section Delegate
 
 extension ChangeCache: DataSourceSectionDelegate {
+    func dataDidChange<Section: DataSourceSection>(in _: Section) {
+        dataDidChange?()
+    }
+
     func data<Section: DataSourceSection>(changedIn row: Section.Row, at _: Int, change: DataChange<Section.Row, Int>,
                                           in _: Section) {
         guard let item = row as? CDIdentifiable & FileProviderItemConvertible else { fatalError() }

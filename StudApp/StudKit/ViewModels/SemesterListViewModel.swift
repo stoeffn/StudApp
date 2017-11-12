@@ -30,11 +30,11 @@ public final class SemesterListViewModel: NSObject {
         try? controller.performFetch()
     }
 
-    public func update(handler: @escaping ResultHandler<Void>) {
+    public func update(handler: ResultHandler<Void>? = nil) {
         coreDataService.performBackgroundTask { context in
             self.semesterService.update(in: context) { result in
                 try? context.saveWhenChanged()
-                handler(result.replacingValue(()))
+                handler?(result.replacingValue(()))
             }
         }
     }
