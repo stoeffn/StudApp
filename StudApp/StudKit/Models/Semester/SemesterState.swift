@@ -13,6 +13,7 @@ public final class SemesterState: NSManagedObject, CDCreatable {
     @NSManaged public var lastUsedDate: Date?
     @NSManaged public var favoriteRank: Int
     @NSManaged public var tagData: Data?
+    @NSManaged public var isHidden: Bool
 
     @NSManaged public var semester: Semester
 

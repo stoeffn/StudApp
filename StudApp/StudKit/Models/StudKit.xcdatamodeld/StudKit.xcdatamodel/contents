@@ -92,6 +92,7 @@
     </entity>
     <entity name="SemesterState" representedClassName="SemesterState" syncable="YES">
         <attribute name="favoriteRank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isHidden" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lastUsedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="tagData" optional="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="semester" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Semester" inverseName="state" inverseEntity="Semester" syncable="YES"/>
@@ -122,7 +123,7 @@
         <element name="File" positionX="-8381" positionY="-1971" width="128" height="240"/>
         <element name="FileState" positionX="-8199" positionY="-1836" width="128" height="103"/>
         <element name="Semester" positionX="-8748" positionY="-2188" width="128" height="165"/>
-        <element name="SemesterState" positionX="-8910" positionY="-2121" width="128" height="105"/>
+        <element name="SemesterState" positionX="-8910" positionY="-2121" width="128" height="120"/>
         <element name="User" positionX="-8748" positionY="-1924" width="128" height="180"/>
     </elements>
 </model>

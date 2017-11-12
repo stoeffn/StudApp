@@ -16,6 +16,7 @@ final class SemesterCell: UITableViewCell {
         didSet {
             titleLabel.text = semester?.title
             monthRangeLabel.text = semester?.monthRange
+            isHiddenSwitch.isOn = !(semester?.state.isHidden ?? true)
         }
     }
 
