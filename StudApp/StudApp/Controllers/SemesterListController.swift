@@ -20,7 +20,7 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
         viewModel = SemesterListViewModel()
         viewModel.delegate = self
         viewModel.fetch()
-        viewModel.update { _ in }
+        viewModel.update()
 
         navigationController?.navigationBar.prefersLargeTitles = true
     }
@@ -42,5 +42,23 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
         }
         cell.semester = viewModel[rowAt: indexPath.row]
         return cell
+    }
+
+    // MARK: - User Interaction
+
+    @IBAction
+    func userButtonTapped(_ sender: Any) {
+        func signOut(_: UIAlertAction) {
+            self.viewModel.signOut()
+            self.tabBarController?.performSegue(withRoute: Segues.signIn)
+        }
+
+        guard let barButtonItem = sender as? UIBarButtonItem else { return }
+
+        let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        controller.popoverPresentationController?.barButtonItem = barButtonItem
+        controller.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: signOut))
+        controller.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(controller, animated: true, completion: nil)
     }
 }

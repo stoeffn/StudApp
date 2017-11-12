@@ -11,6 +11,7 @@ import CoreData
 public final class SemesterListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let semesterService = ServiceContainer.default[SemesterService.self]
+    private let studIpService = ServiceContainer.default[StudIpService.self]
     private var fetchRequest: NSFetchRequest<Semester>
 
     public weak var delegate: DataSourceSectionDelegate?
@@ -37,6 +38,10 @@ public final class SemesterListViewModel: NSObject {
                 handler?(result.replacingValue(()))
             }
         }
+    }
+
+    public func signOut() {
+        studIpService.signOut()
     }
 }
 

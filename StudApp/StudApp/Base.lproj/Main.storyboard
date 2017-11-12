@@ -289,7 +289,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Semesters" id="vkk-T4-jfp">
-                        <barButtonItem key="rightBarButtonItem" image="UserGlyph" id="rvu-vT-g3v"/>
+                        <barButtonItem key="rightBarButtonItem" image="UserGlyph" id="rvu-vT-g3v">
+                            <connections>
+                                <action selector="userButtonTapped:" destination="fag-gD-kkk" id="uje-KC-NUI"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rrt-iF-Hpg" userLabel="First Responder" sceneMemberID="firstResponder"/>
