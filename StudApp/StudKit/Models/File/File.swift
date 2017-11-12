@@ -38,7 +38,9 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
     }
 
     public static func isDownloaded(id: String) -> Bool {
-        return FileManager.default.fileExists(atPath: localContainerUrl(forId: id).path)
+        let containerPath = localContainerUrl(forId: id).path
+        return FileManager.default.fileExists(atPath: containerPath)
+            && !((try? FileManager.default.contentsOfDirectory(atPath: containerPath).isEmpty) ?? true)
     }
 
     public var isFolder: Bool {
