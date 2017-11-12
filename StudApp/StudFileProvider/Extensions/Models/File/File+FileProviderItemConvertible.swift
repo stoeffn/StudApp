@@ -15,6 +15,6 @@ extension File: FileProviderItemConvertible {
     }
 
     func fileProviderItem(context _: NSManagedObjectContext) throws -> NSFileProviderItem {
-        return try FolderItem(from: self)
+        return try FileItem(from: self)
     }
 }

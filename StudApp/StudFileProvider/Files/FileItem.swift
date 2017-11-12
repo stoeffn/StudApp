@@ -1,5 +1,5 @@
 //
-//  FolderItem.swift
+//  FileItem.swift
 //  StudFileProvider
 //
 //  Created by Steffen Ryll on 16.07.17.
@@ -9,7 +9,7 @@
 import CoreData
 import StudKit
 
-final class FolderItem: NSObject, NSFileProviderItem {
+final class FileItem: NSObject, NSFileProviderItem {
     let itemIdentifier: NSFileProviderItemIdentifier
     let filename: String
     let typeIdentifier: String

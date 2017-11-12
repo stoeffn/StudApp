@@ -82,9 +82,9 @@ final class FileProviderExtension: NSFileProviderExtension {
         case .semester:
             return CourseEnumerator(itemIdentifier: containerItemIdentifier)
         case .course:
-            return FolderEnumerator(itemIdentifier: containerItemIdentifier)
+            return FileEnumerator(itemIdentifier: containerItemIdentifier)
         case .file:
-            return FolderEnumerator(itemIdentifier: containerItemIdentifier)
+            return FileEnumerator(itemIdentifier: containerItemIdentifier)
         }
     }
 

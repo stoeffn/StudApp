@@ -1,5 +1,5 @@
 //
-//  FolderEnumerator.swift
+//  FileEnumerator.swift
 //  StudFileProvider
 //
 //  Created by Steffen Ryll on 11.11.17.
@@ -8,7 +8,7 @@
 
 import StudKit
 
-final class FolderEnumerator: NSObject, NSFileProviderEnumerator {
+final class FileEnumerator: NSObject, NSFileProviderEnumerator {
     private let itemIdentifier: NSFileProviderItemIdentifier
 
     init(itemIdentifier: NSFileProviderItemIdentifier) {

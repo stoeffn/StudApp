@@ -149,14 +149,14 @@
 		24FE89FE1FB784C900A4A3C6 /* Course+FileProviderItemConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89FD1FB784C900A4A3C6 /* Course+FileProviderItemConvertible.swift */; };
 		24FE8A001FB784D400A4A3C6 /* CourseState+FileProviderItemConvertibleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89FF1FB784D400A4A3C6 /* CourseState+FileProviderItemConvertibleState.swift */; };
 		24FE8A041FB7857400A4A3C6 /* CourseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A011FB7857300A4A3C6 /* CourseItem.swift */; };
-		24FE8A051FB7857400A4A3C6 /* FolderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A021FB7857300A4A3C6 /* FolderItem.swift */; };
+		24FE8A051FB7857400A4A3C6 /* FileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A021FB7857300A4A3C6 /* FileItem.swift */; };
 		24FE8A061FB7857400A4A3C6 /* RootItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A031FB7857400A4A3C6 /* RootItem.swift */; };
 		24FE8A0A1FB78B8D00A4A3C6 /* CourseEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A091FB78B8D00A4A3C6 /* CourseEnumerator.swift */; };
-		24FE8A0C1FB78BCE00A4A3C6 /* FolderEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A0B1FB78BCE00A4A3C6 /* FolderEnumerator.swift */; };
+		24FE8A0C1FB78BCE00A4A3C6 /* FileEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A0B1FB78BCE00A4A3C6 /* FileEnumerator.swift */; };
 		24FE8A0E1FB78BF700A4A3C6 /* WorkingSetEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A0D1FB78BF700A4A3C6 /* WorkingSetEnumerator.swift */; };
 		24FE8A121FB7B0D100A4A3C6 /* RangeIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A111FB7B0D100A4A3C6 /* RangeIterator.swift */; };
 		24FE8A141FB7B1A000A4A3C6 /* RangeIteratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A131FB7B1A000A4A3C6 /* RangeIteratorTests.swift */; };
-		24FE8A161FB8527E00A4A3C6 /* FolderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A151FB8527D00A4A3C6 /* FolderViewModel.swift */; };
+		24FE8A161FB8527E00A4A3C6 /* FileListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE8A151FB8527D00A4A3C6 /* FileListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -388,15 +388,15 @@
 		24FE89FD1FB784C900A4A3C6 /* Course+FileProviderItemConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Course+FileProviderItemConvertible.swift"; sourceTree = "<group>"; };
 		24FE89FF1FB784D400A4A3C6 /* CourseState+FileProviderItemConvertibleState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CourseState+FileProviderItemConvertibleState.swift"; sourceTree = "<group>"; };
 		24FE8A011FB7857300A4A3C6 /* CourseItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseItem.swift; sourceTree = "<group>"; };
-		24FE8A021FB7857300A4A3C6 /* FolderItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderItem.swift; sourceTree = "<group>"; };
+		24FE8A021FB7857300A4A3C6 /* FileItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileItem.swift; sourceTree = "<group>"; };
 		24FE8A031FB7857400A4A3C6 /* RootItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootItem.swift; sourceTree = "<group>"; };
 		24FE8A091FB78B8D00A4A3C6 /* CourseEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseEnumerator.swift; sourceTree = "<group>"; };
-		24FE8A0B1FB78BCE00A4A3C6 /* FolderEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderEnumerator.swift; sourceTree = "<group>"; };
+		24FE8A0B1FB78BCE00A4A3C6 /* FileEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEnumerator.swift; sourceTree = "<group>"; };
 		24FE8A0D1FB78BF700A4A3C6 /* WorkingSetEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkingSetEnumerator.swift; sourceTree = "<group>"; };
 		24FE8A0F1FB78DBF00A4A3C6 /* StudApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudApp.entitlements; sourceTree = "<group>"; };
 		24FE8A111FB7B0D100A4A3C6 /* RangeIterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeIterator.swift; sourceTree = "<group>"; };
 		24FE8A131FB7B1A000A4A3C6 /* RangeIteratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RangeIteratorTests.swift; sourceTree = "<group>"; };
-		24FE8A151FB8527D00A4A3C6 /* FolderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViewModel.swift; sourceTree = "<group>"; };
+		24FE8A151FB8527D00A4A3C6 /* FileListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -867,7 +867,7 @@
 			isa = PBXGroup;
 			children = (
 				246F3ACC1FAC881100A477FF /* CourseListViewModel.swift */,
-				24FE8A151FB8527D00A4A3C6 /* FolderViewModel.swift */,
+				24FE8A151FB8527D00A4A3C6 /* FileListViewModel.swift */,
 				24D178EA1FB606B200EC5F4A /* MainViewModel.swift */,
 				24D9EF551FB7559C006776B7 /* SemesterListViewModel.swift */,
 				24D361651FAA648B00BBBAED /* SignInViewModel.swift */,
@@ -1007,8 +1007,8 @@
 		24FE8A081FB7858300A4A3C6 /* Files */ = {
 			isa = PBXGroup;
 			children = (
-				24FE8A021FB7857300A4A3C6 /* FolderItem.swift */,
-				24FE8A0B1FB78BCE00A4A3C6 /* FolderEnumerator.swift */,
+				24FE8A021FB7857300A4A3C6 /* FileItem.swift */,
+				24FE8A0B1FB78BCE00A4A3C6 /* FileEnumerator.swift */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -1360,7 +1360,7 @@
 				24D360CD1FAA5AFE00BBBAED /* CDUpdatable.swift in Sources */,
 				24D360F71FAA5DE800BBBAED /* FileState.swift in Sources */,
 				24D360FE1FAA5E0800BBBAED /* UserModel+CDConvertible.swift in Sources */,
-				24FE8A161FB8527E00A4A3C6 /* FolderViewModel.swift in Sources */,
+				24FE8A161FB8527E00A4A3C6 /* FileListViewModel.swift in Sources */,
 				24D360FA1FAA5DE800BBBAED /* FileModel.swift in Sources */,
 				24D9EF561FB7559C006776B7 /* SemesterListViewModel.swift in Sources */,
 				24D3610E1FAA5ED600BBBAED /* CDColorable.swift in Sources */,
@@ -1452,9 +1452,9 @@
 				24FE89DE1FB7653E00A4A3C6 /* CDIdentifiable+NSItemIdentifier.swift in Sources */,
 				24FE89F01FB7799D00A4A3C6 /* NSFileProviderItemIdentifier+Utils.swift in Sources */,
 				24FE8A0E1FB78BF700A4A3C6 /* WorkingSetEnumerator.swift in Sources */,
-				24FE8A051FB7857400A4A3C6 /* FolderItem.swift in Sources */,
+				24FE8A051FB7857400A4A3C6 /* FileItem.swift in Sources */,
 				24FE89FE1FB784C900A4A3C6 /* Course+FileProviderItemConvertible.swift in Sources */,
-				24FE8A0C1FB78BCE00A4A3C6 /* FolderEnumerator.swift in Sources */,
+				24FE8A0C1FB78BCE00A4A3C6 /* FileEnumerator.swift in Sources */,
 				24FE8A0A1FB78B8D00A4A3C6 /* CourseEnumerator.swift in Sources */,
 				24FE89FA1FB7849F00A4A3C6 /* File+FileProviderItemConvertible.swift in Sources */,
 				24FE89F41FB77BD100A4A3C6 /* Semester+FileProviderItemConvertible.swift in Sources */,

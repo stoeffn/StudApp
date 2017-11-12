@@ -1,5 +1,5 @@
 //
-//  FolderViewModel.swift
+//  FileListViewModel.swift
 //  StudKit
 //
 //  Created by Steffen Ryll on 12.11.17.
@@ -8,7 +8,7 @@
 
 import CoreData
 
-public final class FolderViewModel: NSObject {
+public final class FileListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private var fetchRequest: NSFetchRequest<File>
 
@@ -36,7 +36,7 @@ public final class FolderViewModel: NSObject {
 
 // MARK: - Data Source Section
 
-extension FolderViewModel: DataSourceSection {
+extension FileListViewModel: DataSourceSection {
     public typealias Row = File
 
     public var numberOfRows: Int {
@@ -50,7 +50,7 @@ extension FolderViewModel: DataSourceSection {
 
 // MARK: - Fetched Results Controller Delegate
 
-extension FolderViewModel: NSFetchedResultsControllerDelegate {
+extension FileListViewModel: NSFetchedResultsControllerDelegate {
     public func controllerWillChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
         delegate?.dataWillChange(in: self)
     }
@@ -61,20 +61,20 @@ extension FolderViewModel: NSFetchedResultsControllerDelegate {
 
     public func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange object: Any,
                            at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        guard let folder = object as? File else { fatalError() }
+        guard let file = object as? File else { fatalError() }
         switch type {
         case .insert:
             guard let indexPath = newIndexPath else { return }
-            delegate?.data(changedIn: folder, at: indexPath.row, change: .insert, in: self)
+            delegate?.data(changedIn: file, at: indexPath.row, change: .insert, in: self)
         case .delete:
             guard let indexPath = indexPath else { return }
-            delegate?.data(changedIn: folder, at: indexPath.row, change: .delete, in: self)
+            delegate?.data(changedIn: file, at: indexPath.row, change: .delete, in: self)
         case .update:
             guard let indexPath = indexPath else { return }
-            delegate?.data(changedIn: folder, at: indexPath.row, change: .update(folder), in: self)
+            delegate?.data(changedIn: file, at: indexPath.row, change: .update(file), in: self)
         case .move:
             guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
-            delegate?.data(changedIn: folder, at: indexPath.row, change: .move(to: newIndexPath.row), in: self)
+            delegate?.data(changedIn: file, at: indexPath.row, change: .move(to: newIndexPath.row), in: self)
         }
     }
 }
