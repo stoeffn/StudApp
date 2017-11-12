@@ -29,7 +29,7 @@ final class SemesterItem: NSObject, NSFileProviderItem {
         self.parentItemIdentifier = parentItemIdentifier
         lastUsedDate = semester.state.lastUsedDate
         tagData = semester.state.tagData
-        favoriteRank = semester.state.isUnranked ? semester.state.favoriteRank as NSNumber : nil
+        favoriteRank = !semester.state.isUnranked ? semester.state.favoriteRank as NSNumber : nil
     }
 
     convenience init(from semester: Semester) throws {
