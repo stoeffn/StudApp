@@ -9,7 +9,7 @@
 import CoreData
 
 /// Something, usually a core data managed object, that can be uniquely identified.
-public protocol CDIdentifiable {
+public protocol CDIdentifiable: ByTypeNameIdentifiable {
     /// Identifier that uniquely identifies this object.
     var id: String { get }
 }
@@ -49,7 +49,7 @@ extension CDIdentifiable {
     /// - Parameter id: Identifier to include in the item identifier.
     /// - Returns: Item identifier with the format `{lowercase type name} + "-" + {identifier}`.
     public static func itemIdentifier(forId id: String) -> NSFileProviderItemIdentifier {
-        let itemIdentifier = String(describing: Self.self).lowercased().appending("-").appending(id)
+        let itemIdentifier = typeIdentifier.lowercased().appending("-").appending(id)
         return NSFileProviderItemIdentifier(rawValue: itemIdentifier)
     }
 
