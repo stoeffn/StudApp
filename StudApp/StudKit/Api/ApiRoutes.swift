@@ -14,6 +14,8 @@ protocol ApiRoutes {
     var method: HttpMethod { get }
 }
 
+// MARK: - Default Implementation
+
 extension ApiRoutes {
     var type: Decodable.Type? {
         return nil

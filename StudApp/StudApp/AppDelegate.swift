@@ -14,6 +14,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     private var coreDataService: CoreDataService?
 
     var window: UIWindow?
+    
+    // MARK: - Life Cycle
 
     func application(_: UIApplication,
                      didFinishLaunchingWithOptions _: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

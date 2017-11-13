@@ -14,7 +14,7 @@ public protocol CDIdentifiable: ByTypeNameIdentifiable {
     var id: String { get }
 }
 
-// MARK: - Utility Methods
+// MARK: - Utilities
 
 public extension CDIdentifiable where Self: NSFetchRequestResult {
     /// Fetches an object by the identifier given.

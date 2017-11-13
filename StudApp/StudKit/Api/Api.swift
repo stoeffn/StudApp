@@ -41,7 +41,11 @@ class Api<Routes: ApiRoutes> {
         request.httpMethod = method.rawValue
         return request
     }
+}
 
+// MARK: - Making Data Requests
+
+extension Api {
     @discardableResult
     func request(_ route: Routes, parameters: [URLQueryItem] = [], queue: DispatchQueue = .main,
                  handler: @escaping ResultHandler<Data>) -> Progress {
@@ -61,6 +65,23 @@ class Api<Routes: ApiRoutes> {
         return task.progress
     }
 }
+
+// MARK: - Decoding Data
+
+extension Api {
+    @discardableResult
+    func requestDecoded<Result: Decodable>(_ route: Routes, parameters: [URLQueryItem] = [],
+                                           queue: DispatchQueue = .main, handler: @escaping ResultHandler<Result>) -> Progress {
+        guard let type = route.type as? Result.Type else {
+            fatalError("Trying to decode response from untyped API route '\(route)'.")
+        }
+        return request(route, parameters: parameters, queue: queue) { result in
+            handler(result.decoded(type))
+        }
+    }
+}
+
+// MARK: - Downloading
 
 extension Api {
     @discardableResult
@@ -95,19 +116,6 @@ extension Api {
                     handler(.failure(error))
                 }
             }
-        }
-    }
-}
-
-extension Api {
-    @discardableResult
-    func requestDecoded<Result: Decodable>(_ route: Routes, parameters: [URLQueryItem] = [],
-                                           queue: DispatchQueue = .main, handler: @escaping ResultHandler<Result>) -> Progress {
-        guard let type = route.type as? Result.Type else {
-            fatalError("Trying to decode response from untyped API route '\(route)'.")
-        }
-        return request(route, parameters: parameters, queue: queue) { result in
-            handler(result.decoded(type))
         }
     }
 }

@@ -17,7 +17,11 @@ public final class User: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
     @NSManaged public var namePrefix: String?
     @NSManaged public var nameSuffix: String?
     @NSManaged public var pictureModificationDate: Date?
+}
 
+// MARK: - Utilities
+
+public extension User {
     public var nameComponents: PersonNameComponents {
         var components = PersonNameComponents()
         components.givenName = givenName

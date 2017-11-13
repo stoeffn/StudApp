@@ -42,7 +42,11 @@ struct CourseModel: Decodable {
         self.beginSemesterPath = beginSemesterPath
         self.endSemesterPath = endSemesterPath
     }
+}
 
+// MARK: - Utilities
+
+extension CourseModel {
     var number: String? {
         return StudIp.transformCourseNumber(rawNumber)
     }

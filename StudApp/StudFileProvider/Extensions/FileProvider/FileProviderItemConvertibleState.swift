@@ -14,6 +14,8 @@ public protocol FileProviderItemConvertibleState: class {
     var tagData: Data? { get set }
 }
 
+// MARK: - Utilities
+
 extension FileProviderItemConvertibleState {
     public var isUnranked: Bool {
         return favoriteRank == Int(NSFileProviderFavoriteRankUnranked)

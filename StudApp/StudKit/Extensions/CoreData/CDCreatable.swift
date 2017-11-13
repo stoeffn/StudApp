@@ -32,7 +32,7 @@ extension CDCreatable where Self: CDCreatable {
     }
 }
 
-// MARK: - Utility Methods
+// MARK: - Utilities
 
 extension CDCreatable where Self : NSManagedObject {
     /// Specifies that this object should be removed from its persistent store when changes are committed. When changes are

@@ -76,7 +76,11 @@ struct FileModel: Decodable {
             children = []
         }
     }
+}
 
+// MARK: - Utilities
+
+extension FileModel {
     var id: String? {
         return isFolder ? folderId : fileId
     }

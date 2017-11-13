@@ -20,7 +20,11 @@ public final class Color: NSManagedObject, CDCreatable {
         self.orderId = orderId
         self.uiColor = uiColor
     }
+}
 
+// MARK: - Core Data Operation
+
+extension Color {
     public static func `default`(in context: NSManagedObjectContext) throws -> Color? {
         let predicate = NSPredicate(format: "orderId == 0")
         return try context.fetch(fetchRequest(predicate: predicate)).first

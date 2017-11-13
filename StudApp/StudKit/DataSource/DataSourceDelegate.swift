@@ -18,6 +18,8 @@ public protocol DataSourceDelegate: class {
                                   change: DataChange<Source.Section, Int>, in source: Source)
 }
 
+// MARK: - Default Implementation
+
 public extension DataSourceDelegate {
     func dataWillChange<Source: DataSource>(in _: Source) {}
 

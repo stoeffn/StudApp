@@ -26,7 +26,11 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdat
         self.init(context: context)
         state = CourseState(createIn: context)
     }
+}
 
+// MARK: - Core Data Operations
+
+extension Course {
     public var rootFilesFetchRequest: NSFetchRequest<File> {
         let predicate = NSPredicate(format: "course == %@ AND parent == NIL", self)
         return File.fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["state"])

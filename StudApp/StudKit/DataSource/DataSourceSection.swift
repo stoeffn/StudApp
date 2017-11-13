@@ -16,6 +16,8 @@ public protocol DataSourceSection: Sequence {
     subscript(rowAt _: Int) -> Row { get }
 }
 
+// MARK: - Default Implementation
+
 extension DataSourceSection {
     public typealias Iterator = RangeIterator<Row>
 

@@ -52,7 +52,11 @@ struct UserModel: Decodable {
         self.rawNameSuffix = rawNameSuffix
         self.pictureUrl = pictureUrl
     }
+}
 
+// MARK: - Utilities
+
+extension UserModel {
     var namePrefix: String? {
         return rawNamePrefix.nilWhenEmpty
     }

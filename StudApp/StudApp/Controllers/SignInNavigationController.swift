@@ -19,7 +19,7 @@ final class SignInNavigationController: UINavigationController {
         return view
     }()
 
-    // - MARK: Life Cycle
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()

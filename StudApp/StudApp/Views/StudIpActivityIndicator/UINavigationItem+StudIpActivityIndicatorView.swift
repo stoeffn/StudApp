@@ -24,7 +24,7 @@ extension UINavigationItem {
 
     /// Replaces the right bar button item with a activity indicator if enabled, restores the previous item otherwise.
     ///
-    /// - parameter hidden: Whether to hide loading indicator.
+    /// - Parameter hidden: Whether to hide loading indicator.
     func setActivityIndicatorHidden(_ hidden: Bool) {
         if !hidden {
             cachedRightBarButtonItem = rightBarButtonItem

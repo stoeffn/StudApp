@@ -24,7 +24,24 @@ public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDUpd
         self.init(context: context)
         state = SemesterState(createIn: context)
     }
+}
 
+// MARK: - Utilities
+
+public extension Semester {
+    public var isCurrent: Bool {
+        let now = Date()
+        return now >= beginDate && now <= endDate
+    }
+    
+    public var monthRange: String {
+        return "\(beginDate.formattedMonthAndYear) – \(endDate.formattedMonthAndYear)"
+    }
+}
+
+// MARK: - Core Data Operations
+
+extension Semester {
     public static func fetch(from beginSemester: Semester, to endSemester: Semester? = nil,
                              in context: NSManagedObjectContext) throws -> [Semester] {
         let endDate = endSemester?.endDate ?? .distantFuture
@@ -50,14 +67,5 @@ public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDUpd
         let sortDescriptors = [NSSortDescriptor(keyPath: \Course.title, ascending: true)]
         return Course.fetchRequest(predicate: predicate, sortDescriptors: sortDescriptors,
                                    relationshipKeyPathsForPrefetching: ["state"])
-    }
-
-    public var isCurrent: Bool {
-        let now = Date()
-        return now >= beginDate && now <= endDate
-    }
-
-    public var monthRange: String {
-        return "\(beginDate.formattedMonthAndYear) – \(endDate.formattedMonthAndYear)"
     }
 }

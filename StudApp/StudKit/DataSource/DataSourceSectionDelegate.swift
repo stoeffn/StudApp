@@ -15,6 +15,8 @@ public protocol DataSourceSectionDelegate: class {
                                           change: DataChange<Section.Row, Int>, in section: Section)
 }
 
+// MARK: - Default Implementation
+
 public extension DataSourceSectionDelegate {
     func dataWillChange<Section: DataSourceSection>(in _: Section) {}
 

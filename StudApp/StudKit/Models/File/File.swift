@@ -30,7 +30,11 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
         self.init(context: context)
         state = FileState(createIn: context)
     }
+}
 
+// MARK: - Utilities
+
+public extension File {
     public static func localContainerUrl(forId id: String) -> URL {
         let storageService = ServiceContainer.default[StorageService.self]
         return storageService.documentsUrl
@@ -55,12 +59,19 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
     public var isDownloaded: Bool {
         return File.isDownloaded(id: id)
     }
+}
 
+// MARK: - Core Data Operations
+
+extension File {
     public var childrenFetchRequest: NSFetchRequest<File> {
         let predicate = NSPredicate(format: "parent == %@", self)
         return File.fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["state"])
     }
+}
 
+// TODO: Move to service
+extension File {
     @discardableResult
     public func download(handler: @escaping ResultHandler<URL>) -> Progress {
         let studIp = ServiceContainer.default[StudIpService.self]

@@ -16,6 +16,8 @@ extension Result {
     }
 }
 
+// MARK: - Default Implementation
+
 extension Result where Value == Data {
     /// Returns the API result decoded from its JSON representation.
     ///

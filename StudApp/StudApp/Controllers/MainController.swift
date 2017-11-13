@@ -9,7 +9,7 @@
 import UIKit
 import StudKit
 
-class MainController: UITabBarController {
+final class MainController: UITabBarController {
     private var viewModel: MainViewModel!
 
     // MARK: - Life Cycle
