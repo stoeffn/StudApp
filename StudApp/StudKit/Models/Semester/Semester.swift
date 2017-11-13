@@ -33,7 +33,7 @@ public extension Semester {
         let now = Date()
         return now >= beginDate && now <= endDate
     }
-    
+
     public var monthRange: String {
         return "\(beginDate.formattedMonthAndYear) – \(endDate.formattedMonthAndYear)"
     }

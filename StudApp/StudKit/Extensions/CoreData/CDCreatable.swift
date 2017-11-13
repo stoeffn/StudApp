@@ -34,7 +34,7 @@ extension CDCreatable where Self: CDCreatable {
 
 // MARK: - Utilities
 
-extension CDCreatable where Self : NSManagedObject {
+extension CDCreatable where Self: NSManagedObject {
     /// Specifies that this object should be removed from its persistent store when changes are committed. When changes are
     /// committed, the object will be removed from the uniquing tables. If object has not yet been saved to a persistent store,
     /// it is simply removed from `context`.
