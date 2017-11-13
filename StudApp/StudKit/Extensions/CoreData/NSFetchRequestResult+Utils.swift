@@ -9,6 +9,7 @@
 import CoreData
 
 public extension NSFetchRequestResult {
+    /// Returns a fetch request for this object, using the parameters given as its properties.
     public static func fetchRequest(predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor] = [],
                                     relationshipKeyPathsForPrefetching: [String] = []) -> NSFetchRequest<Self> {
         let request = NSFetchRequest<Self>(entityName: String(describing: Self.self))
@@ -18,6 +19,7 @@ public extension NSFetchRequestResult {
         return request
     }
 
+    /// Returns an array of all objects of that type in a given context sorted by `sortDescriptors`.
     public static func fetch(in context: NSManagedObjectContext, sortDescriptors: [NSSortDescriptor] = []) throws -> [Self] {
         return try context.fetch(fetchRequest(sortDescriptors: sortDescriptors))
     }
