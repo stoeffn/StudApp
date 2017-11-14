@@ -48,7 +48,7 @@ class Api<Routes: ApiRoutes> {
 extension Api {
     @discardableResult
     func request(_ route: Routes, parameters: [URLQueryItem] = [], queue: DispatchQueue = .main,
-                 handler: @escaping ResultHandler<Data>) -> Progress {
+                 handler: @escaping ResultHandler<Data>) -> URLSessionTask {
         guard let url = self.url(for: route, parameters: parameters) else {
             fatalError("Cannot construct URL for route '\(route)'.")
         }
@@ -62,7 +62,7 @@ extension Api {
             }
         }
         task.resume()
-        return task.progress
+        return task
     }
 }
 
@@ -71,7 +71,8 @@ extension Api {
 extension Api {
     @discardableResult
     func requestDecoded<Result: Decodable>(_ route: Routes, parameters: [URLQueryItem] = [],
-                                           queue: DispatchQueue = .main, handler: @escaping ResultHandler<Result>) -> Progress {
+                                           queue: DispatchQueue = .main,
+                                           handler: @escaping ResultHandler<Result>) -> URLSessionTask {
         guard let type = route.type as? Result.Type else {
             fatalError("Trying to decode response from untyped API route '\(route)'.")
         }
@@ -85,7 +86,7 @@ extension Api {
 
 extension Api {
     @discardableResult
-    func download(_ route: Routes, parameters: [URLQueryItem] = [], handler: @escaping ResultHandler<URL>) -> Progress {
+    func download(_ route: Routes, parameters: [URLQueryItem] = [], handler: @escaping ResultHandler<URL>) -> URLSessionTask {
         guard let url = self.url(for: route, parameters: parameters) else {
             fatalError("Cannot construct URL for route '\(route)'.")
         }
@@ -96,12 +97,12 @@ extension Api {
             handler(result)
         }
         task.resume()
-        return task.progress
+        return task
     }
 
     @discardableResult
     func download(_ route: Routes, to destination: URL, parameters: [URLQueryItem] = [],
-                  queue: DispatchQueue = .main, handler: @escaping ResultHandler<URL>) -> Progress {
+                  queue: DispatchQueue = .main, handler: @escaping ResultHandler<URL>) -> URLSessionTask {
         return download(route, parameters: parameters) { result in
             guard let url = result.value else { return handler(result) }
             do {

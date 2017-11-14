@@ -81,7 +81,7 @@ extension File {
 // TODO: Move to service
 extension File {
     @discardableResult
-    public func download(handler: @escaping ResultHandler<URL>) -> Progress {
+    public func download(handler: @escaping ResultHandler<URL>) -> URLSessionTask {
         let studIp = ServiceContainer.default[StudIpService.self]
         return studIp.api.download(.fileContents(forFileId: id), to: localUrl) { result in
             if result.isFailure {
