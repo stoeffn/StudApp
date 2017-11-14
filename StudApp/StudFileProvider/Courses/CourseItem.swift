@@ -13,14 +13,14 @@ import StudKit
 final class CourseItem: NSObject, NSFileProviderItem {
     let itemIdentifier: NSFileProviderItemIdentifier
     let filename: String
-    let typeIdentifier: String = kUTTypeFolder as String
+    let typeIdentifier = kUTTypeFolder as String
     let capabilities: NSFileProviderItemCapabilities = [.allowsContentEnumerating, .allowsReading]
     let childItemCount: NSNumber?
     let parentItemIdentifier: NSFileProviderItemIdentifier
     let lastUsedDate: Date?
     let tagData: Data?
     let favoriteRank: NSNumber?
-    let isShared: Bool = true
+    let isShared = true
     let ownerNameComponents: PersonNameComponents?
 
     init(from course: Course, childItemCount: Int, parentItemIdentifier: NSFileProviderItemIdentifier = .rootContainer) {

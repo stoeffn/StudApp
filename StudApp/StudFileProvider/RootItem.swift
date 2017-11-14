@@ -12,8 +12,8 @@ import StudKit
 
 final class RootItem: NSObject, NSFileProviderItem {
     let itemIdentifier: NSFileProviderItemIdentifier = .rootContainer
-    let filename: String = "Semesters"
-    let typeIdentifier: String = kUTTypeFolder as String
+    let filename = "Semesters"
+    let typeIdentifier = kUTTypeFolder as String
     let capabilities: NSFileProviderItemCapabilities = [.allowsContentEnumerating, .allowsReading]
     let childItemCount: NSNumber?
     let parentItemIdentifier: NSFileProviderItemIdentifier = .rootContainer

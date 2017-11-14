@@ -20,12 +20,14 @@ final class FileItem: NSObject, NSFileProviderItem {
     let contentModificationDate: Date?
     let creationDate: Date?
     let lastUsedDate: Date?
+    let isUploaded = true
     let isDownloaded: Bool
     let isMostRecentVersionDownloaded: Bool
     let tagData: Data?
     let favoriteRank: NSNumber?
-    let isShared: Bool = true
+    let isShared = true
     let ownerNameComponents: PersonNameComponents?
+    let versionIdentifier: Data?
 
     init(from file: File, parentItemIdentifier: NSFileProviderItemIdentifier) {
         itemIdentifier = file.itemIdentifier
@@ -43,6 +45,7 @@ final class FileItem: NSObject, NSFileProviderItem {
         tagData = file.state.tagData
         favoriteRank = !file.state.isUnranked ? file.state.favoriteRank as NSNumber : nil
         ownerNameComponents = file.owner?.nameComponents
+        versionIdentifier = contentModificationDate?.description.data(using: .utf8)
     }
 
     convenience init(from file: File) throws {

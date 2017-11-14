@@ -14,7 +14,7 @@ import StudKit
 final class SemesterItem: NSObject, NSFileProviderItem {
     let itemIdentifier: NSFileProviderItemIdentifier
     let filename: String
-    let typeIdentifier: String = kUTTypeFolder as String
+    let typeIdentifier = kUTTypeFolder as String
     let capabilities: NSFileProviderItemCapabilities = [.allowsContentEnumerating, .allowsReading]
     let childItemCount: NSNumber?
     let parentItemIdentifier: NSFileProviderItemIdentifier
