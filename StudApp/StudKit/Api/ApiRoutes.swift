@@ -13,7 +13,7 @@ protocol ApiRoutes: Hashable {
 
     var method: HttpMethod { get }
 
-    var expiresAfter: TimeInterval? { get }
+    var expiresAfter: TimeInterval { get }
 }
 
 // MARK: - Equatable Conformance
@@ -43,7 +43,7 @@ extension ApiRoutes {
         return .get
     }
 
-    var expiresAfter: TimeInterval? {
-        return nil
+    var expiresAfter: TimeInterval {
+        return 0
     }
 }

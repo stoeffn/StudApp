@@ -12,6 +12,7 @@ class Api<Routes: ApiRoutes> {
     private let realm: String?
     private let session: URLSession
     private let authenticationMethod: String?
+    private var lastRouteAccesses = [Routes: Date]()
 
     init(baseUrl: URL, realm: String? = nil, session: URLSession = .shared,
          authenticationMethod: String = NSURLAuthenticationMethodHTTPBasic) {
@@ -41,14 +42,26 @@ class Api<Routes: ApiRoutes> {
         request.httpMethod = method.rawValue
         return request
     }
+
+    func isRouteExpired(_ route: Routes) -> Bool {
+        guard let lastAccess = lastRouteAccesses[route] else { return true }
+        return lastAccess + route.expiresAfter < Date()
+    }
+
+    func setRouteAccessed(_ route: Routes) {
+        lastRouteAccesses[route] = Date()
+    }
 }
 
 // MARK: - Making Data Requests
 
 extension Api {
     @discardableResult
-    func request(_ route: Routes, parameters: [URLQueryItem] = [], queue: DispatchQueue = .main,
-                 handler: @escaping ResultHandler<Data>) -> URLSessionTask {
+    func request(_ route: Routes, parameters: [URLQueryItem] = [], ignoreLastAccess: Bool = false, queue: DispatchQueue = .main,
+                 handler: @escaping ResultHandler<Data>) -> URLSessionTask? {
+        guard ignoreLastAccess || isRouteExpired(route) else { return nil }
+        setRouteAccessed(route)
+
         guard let url = self.url(for: route, parameters: parameters) else {
             fatalError("Cannot construct URL for route '\(route)'.")
         }
@@ -70,13 +83,13 @@ extension Api {
 
 extension Api {
     @discardableResult
-    func requestDecoded<Result: Decodable>(_ route: Routes, parameters: [URLQueryItem] = [],
+    func requestDecoded<Result: Decodable>(_ route: Routes, parameters: [URLQueryItem] = [], ignoreLastAccess: Bool = false,
                                            queue: DispatchQueue = .main,
-                                           handler: @escaping ResultHandler<Result>) -> URLSessionTask {
+                                           handler: @escaping ResultHandler<Result>) -> URLSessionTask? {
         guard let type = route.type as? Result.Type else {
             fatalError("Trying to decode response from untyped API route '\(route)'.")
         }
-        return request(route, parameters: parameters, queue: queue) { result in
+        return request(route, parameters: parameters, ignoreLastAccess: ignoreLastAccess, queue: queue) { result in
             handler(result.decoded(type))
         }
     }

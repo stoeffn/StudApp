@@ -12,7 +12,7 @@ extension Api {
     @discardableResult
     func requestCollection<Result>(_ route: Routes, afterOffset offset: Int = 0,
                                    itemsPerRequest: Int = defaultNumberOfItemsPerRequest,
-                                   handler: @escaping ResultHandler<CollectionResponse<Result>>) -> URLSessionTask {
+                                   handler: @escaping ResultHandler<CollectionResponse<Result>>) -> URLSessionTask? {
         let offsetQuery = URLQueryItem(name: "offset", value: String(offset))
         let limitQuery = URLQueryItem(name: "limit", value: String(itemsPerRequest))
         return requestDecoded(route, parameters: [offsetQuery, limitQuery]) { result in
