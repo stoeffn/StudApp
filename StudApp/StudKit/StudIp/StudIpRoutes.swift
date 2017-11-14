@@ -60,4 +60,15 @@ public enum StudIpRoutes: ApiRoutes {
         case .fileContents, .profilePicture: return nil
         }
     }
+
+    var expiresAfter: TimeInterval {
+        switch self {
+        case .discovery:
+            return 0
+        case .semesters, .courses, .filesInCourse, .file, .fileContents:
+            return 60
+        case .profilePicture:
+            return 60 * 60
+        }
+    }
 }
