@@ -59,6 +59,14 @@ public extension File {
     public var isDownloaded: Bool {
         return File.isDownloaded(id: id)
     }
+
+    public var isMostRecentVersionDownloaded: Bool {
+        guard isDownloaded,
+            let localAttributes = try? FileManager.default.attributesOfItem(atPath: localUrl.path) as NSDictionary,
+            let localModificationDate = localAttributes.fileModificationDate()
+        else { return false }
+        return localModificationDate >= modificationDate
+    }
 }
 
 // MARK: - Core Data Operations

@@ -21,6 +21,7 @@ final class FileItem: NSObject, NSFileProviderItem {
     let creationDate: Date?
     let lastUsedDate: Date?
     let isDownloaded: Bool
+    let isMostRecentVersionDownloaded: Bool
     let tagData: Data?
     let favoriteRank: NSNumber?
     let isShared: Bool = true
@@ -38,6 +39,7 @@ final class FileItem: NSObject, NSFileProviderItem {
         creationDate = file.creationDate
         lastUsedDate = file.state.lastUsedDate
         isDownloaded = file.isDownloaded
+        isMostRecentVersionDownloaded = file.isMostRecentVersionDownloaded
         tagData = file.state.tagData
         favoriteRank = !file.state.isUnranked ? file.state.favoriteRank as NSNumber : nil
         ownerNameComponents = file.owner?.nameComponents
