@@ -51,6 +51,10 @@ class Api<Routes: ApiRoutes> {
     func setRouteAccessed(_ route: Routes) {
         lastRouteAccesses[route] = Date()
     }
+
+    func removeRouteAccesses() {
+        lastRouteAccesses.removeAll()
+    }
 }
 
 // MARK: - Making Data Requests
