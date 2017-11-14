@@ -63,12 +63,9 @@ public enum StudIpRoutes: ApiRoutes {
 
     var expiresAfter: TimeInterval {
         switch self {
-        case .discovery:
-            return 0
-        case .semesters, .courses, .filesInCourse, .file, .fileContents:
-            return 60
-        case .profilePicture:
-            return 60 * 60
+        case .discovery: return 0
+        case .courses, .filesInCourse, .file, .fileContents: return 60
+        case .semesters, .profilePicture: return 60 * 60
         }
     }
 }
