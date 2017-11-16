@@ -17,8 +17,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Life Cycle
 
-    func application(_: UIApplication,
-                     didFinishLaunchingWithOptions _: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         ServiceContainer.default.register(providers: StudKitServiceProvider())
         coreDataService = ServiceContainer.default[CoreDataService.self]
         return true

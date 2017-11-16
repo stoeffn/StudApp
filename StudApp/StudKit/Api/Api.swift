@@ -113,13 +113,16 @@ extension Api {
     func request(_ route: Routes, parameters: [URLQueryItem] = [], ignoreLastAccess: Bool = false, queue: DispatchQueue = .main,
                  handler: @escaping ResultHandler<Data>) -> URLSessionTask? {
         guard ignoreLastAccess || isRouteExpired(route) else { return nil }
-        setRouteAccessed(route)
 
         let url = self.url(for: route, parameters: parameters)
         let request = self.request(for: url, method: route.method)
         let task = session.dataTask(with: request) { data, response, error in
             let response = response as? HTTPURLResponse
             let result = Result(data, error: error, statusCode: response?.statusCode)
+
+            if result.isSuccess {
+                self.setRouteAccessed(route)
+            }
 
             queue.async {
                 handler(result)
