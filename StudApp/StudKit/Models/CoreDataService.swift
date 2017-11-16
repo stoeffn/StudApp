@@ -85,4 +85,20 @@ public final class CoreDataService {
             .flatMap { $0 as? NSManagedObject }
             .forEach { context.delete($0) }
     }
+
+    func mergeHistory(into context: NSManagedObjectContext, handler: @escaping () -> Void) {
+        context.performAndWait {
+            let historyFetchRequest = NSPersistentHistoryChangeRequest.fetchHistory(after: Date() - 10)
+            guard let historyResult = try? context.execute(historyFetchRequest) as? NSPersistentHistoryResult,
+                let history = historyResult?.result as? [NSPersistentHistoryTransaction] else {
+                fatalError("Cannot fetch persistent history.")
+            }
+
+            for transaction in history {
+                context.mergeChanges(fromContextDidSave: transaction.objectIDNotification())
+            }
+
+            handler()
+        }
+    }
 }
