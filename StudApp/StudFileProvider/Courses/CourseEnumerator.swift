@@ -22,7 +22,9 @@ final class CourseEnumerator: CachingFileEnumerator {
 
         viewModel.delegate = cache
         viewModel.fetch()
-        viewModel.update()
+        viewModel.update { _ in
+            NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
+        }
     }
 
     override var items: [NSFileProviderItem] {

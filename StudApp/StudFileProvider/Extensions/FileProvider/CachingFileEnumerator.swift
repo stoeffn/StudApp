@@ -16,12 +16,6 @@ open class CachingFileEnumerator: NSObject {
 
     public init(itemIdentifier: NSFileProviderItemIdentifier) {
         self.itemIdentifier = itemIdentifier
-
-        super.init()
-
-        cache.dataDidChange = {
-            NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
-        }
     }
 
     open var items: [NSFileProviderItem] { return [] }

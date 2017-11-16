@@ -17,8 +17,6 @@ public class ChangeCache {
     /// File provider sync anchor, containing a UNIX timestamp.
     public private(set) var currentSyncAnchor = ChangeCache.syncAnchor()
 
-    public var dataDidChange: (() -> Void)?
-
     public init() {}
 
     /// Generates a sync anchor for the date given. Defaults to now.
@@ -40,10 +38,6 @@ public class ChangeCache {
 // MARK: - Data Source Section Delegate
 
 extension ChangeCache: DataSourceSectionDelegate {
-    public func dataDidChange<Section: DataSourceSection>(in _: Section) {
-        dataDidChange?()
-    }
-
     public func data<Section: DataSourceSection>(changedIn row: Section.Row, at _: Int, change: DataChange<Section.Row, Int>,
                                                  in _: Section) {
         guard let item = row as? CDIdentifiable & FileProviderItemConvertible else { fatalError() }
