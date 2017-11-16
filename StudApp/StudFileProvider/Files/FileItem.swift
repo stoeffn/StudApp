@@ -10,6 +10,8 @@ import CoreData
 import StudKit
 
 final class FileItem: NSObject, NSFileProviderItem {
+    private static let realFilenameUserInfoKey = "realFilename"
+
     let itemIdentifier: NSFileProviderItemIdentifier
     let filename: String
     let typeIdentifier: String
@@ -28,6 +30,7 @@ final class FileItem: NSObject, NSFileProviderItem {
     let isShared = true
     let ownerNameComponents: PersonNameComponents?
     let versionIdentifier: Data?
+    var userInfo: [AnyHashable: Any]? = [:]
 
     init(from file: File, parentItemIdentifier: NSFileProviderItemIdentifier) {
         itemIdentifier = file.itemIdentifier
@@ -46,6 +49,10 @@ final class FileItem: NSObject, NSFileProviderItem {
         favoriteRank = !file.state.isUnranked ? file.state.favoriteRank as NSNumber : nil
         ownerNameComponents = file.owner?.nameComponents
         versionIdentifier = contentModificationDate?.description.data(using: .utf8)
+
+        super.init()
+
+        realFilename = file.name
     }
 
     convenience init(from file: File) throws {
@@ -56,5 +63,10 @@ final class FileItem: NSObject, NSFileProviderItem {
     convenience init(byId id: String, context: NSManagedObjectContext) throws {
         guard let file = try File.fetch(byId: id, in: context) else { throw NSFileProviderError(.noSuchItem) }
         try self.init(from: file)
+    }
+
+    var realFilename: String? {
+        get { return userInfo?[FileItem.realFilenameUserInfoKey] as? String }
+        set { userInfo?[FileItem.realFilenameUserInfoKey] = newValue }
     }
 }

@@ -36,9 +36,11 @@ final class FileProviderExtension: NSFileProviderExtension {
     }
 
     override func urlForItem(withPersistentIdentifier identifier: NSFileProviderItemIdentifier) -> URL? {
-        guard let item = try? item(for: identifier) else { return nil }
+        guard let item = try? item(for: identifier),
+            let fileItem = item as? FileItem,
+            let filename = fileItem.realFilename else { return nil }
         return containerUrlForItem(withPersistentIdentifier: identifier)
-            .appendingPathComponent(item.filename, isDirectory: false)
+            .appendingPathComponent(filename, isDirectory: false)
     }
 
     static func model(for identifier: NSFileProviderItemIdentifier,
@@ -134,9 +136,8 @@ final class FileProviderExtension: NSFileProviderExtension {
     override func itemChanged(at _: URL) {}
 
     override func stopProvidingItem(at url: URL) {
-        try? FileManager.default.removeItem(at: url)
-        providePlaceholder(at: url) { error in
-            print(error as Any)
+        providePlaceholder(at: url) { _ in
+            try? FileManager.default.removeItem(at: url)
         }
     }
 

@@ -6,6 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import CoreData
 import FileProvider
 
 open class CachingFileEnumerator: NSObject {
@@ -37,6 +38,7 @@ extension CachingFileEnumerator: NSFileProviderEnumerator {
     }
 
     public func enumerateChanges(for observer: NSFileProviderChangeObserver, from _: NSFileProviderSyncAnchor) {
+        print("HALLELUJA")
         let updatedItems = cache.updatedItems.flatMap { try? $0.fileProviderItem(context: coreDataService.viewContext) }
         observer.didUpdate(updatedItems)
         observer.didDeleteItems(withIdentifiers: cache.deletedItemIdentifiers)
