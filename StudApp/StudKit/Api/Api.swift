@@ -104,7 +104,7 @@ extension Api {
     ///   - ignoreLastAccess: Whether to ignore the route's expiry policy. Defaults to `false`.
     ///   - queue: Dispatch queue to execute the completion handler on. Defaults to the main queue.
     ///   - handler: Completion handler receiving raw data.
-    /// - Returns: URL task or `nil` if the route is not expired.
+    /// - Returns: URL task in its resumed state or `nil` if the route is not expired.
     @discardableResult
     func request(_ route: Routes, parameters: [URLQueryItem] = [], ignoreLastAccess: Bool = false, queue: DispatchQueue = .main,
                  handler: @escaping ResultHandler<Data>) -> URLSessionTask? {
@@ -139,7 +139,7 @@ extension Api {
     ///   - ignoreLastAccess: Whether to ignore the route's expiry policy. Defaults to `false`.
     ///   - queue: Dispatch queue to execute the completion handler on. Defaults to the main queue.
     ///   - handler: Completion handler receiving raw data.
-    /// - Returns: URL task or `nil` if the route is not expired.
+    /// - Returns: URL task in its resumed state or `nil` if the route is not expired.
     /// - Precondition: `route`'s type must not be `nil`.
     @discardableResult
     func requestDecoded<Result: Decodable>(_ route: Routes, parameters: [URLQueryItem] = [], ignoreLastAccess: Bool = false,
@@ -157,6 +157,18 @@ extension Api {
 // MARK: - Downloading
 
 extension Api {
+    /// Downloads data from this API to disk.
+    ///
+    /// If the request completes successfully, the location parameter of the completion handler block contains the location of
+    /// the temporary file, and the error parameter is `nil`. You must move the file or open it for reading before the
+    /// completion handler returns. Otherwise, the downloaded file might be deleted.
+    ///
+    /// - Parameters:
+    ///   - route: Route to request data from.
+    ///   - parameters: Optional query parameters.
+    ///   - handler: Completion handler a URL pointing to the dowloaded file.
+    /// - Returns: URL task in its resumed state.
+    /// - Remark: There is no `queue` parameter on this method because the file must be read or moved synchronously.
     @discardableResult
     func download(_ route: Routes, parameters: [URLQueryItem] = [], handler: @escaping ResultHandler<URL>) -> URLSessionTask {
         guard let url = self.url(for: route, parameters: parameters) else {
@@ -172,6 +184,15 @@ extension Api {
         return task
     }
 
+    /// Downloads data from this API to disk and moves it to `destination`.
+    ///
+    /// - Parameters:
+    ///   - route: Route to request data from.
+    ///   - destination: Destination `URL` to move the file to after the download completes successfully.
+    ///   - parameters: Optional query parameters.
+    ///   - queue: Dispatch queue to execute the completion handler on. Defaults to the main queue.
+    ///   - handler: Completion handler a URL pointing to the dowloaded file.
+    /// - Returns: URL task in its resumed state.
     @discardableResult
     func download(_ route: Routes, to destination: URL, parameters: [URLQueryItem] = [],
                   queue: DispatchQueue = .main, handler: @escaping ResultHandler<URL>) -> URLSessionTask {
