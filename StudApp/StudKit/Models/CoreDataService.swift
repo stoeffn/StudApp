@@ -12,6 +12,7 @@ public final class CoreDataService {
     private let modelName: String
     private let modelUrl: URL
     private let storeDescription: NSPersistentStoreDescription
+    private var currentHistoryToken: NSPersistentHistoryToken?
 
     init(modelName: String, appGroupIdentifier: String? = nil, inMemory: Bool = false) {
         let bundle = Bundle(for: type(of: self))
@@ -88,7 +89,7 @@ public final class CoreDataService {
 
     func mergeHistory(into context: NSManagedObjectContext, handler: @escaping () -> Void) {
         context.performAndWait {
-            let historyFetchRequest = NSPersistentHistoryChangeRequest.fetchHistory(after: Date() - 10)
+            let historyFetchRequest = NSPersistentHistoryChangeRequest.fetchHistory(after: currentHistoryToken)
             guard let historyResult = try? context.execute(historyFetchRequest) as? NSPersistentHistoryResult,
                 let history = historyResult?.result as? [NSPersistentHistoryTransaction] else {
                 fatalError("Cannot fetch persistent history.")
@@ -96,6 +97,7 @@ public final class CoreDataService {
 
             for transaction in history {
                 context.mergeChanges(fromContextDidSave: transaction.objectIDNotification())
+                self.currentHistoryToken = transaction.token
             }
 
             handler()
