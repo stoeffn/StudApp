@@ -37,6 +37,7 @@ public final class CoreDataService {
             return NSPersistentStoreDescription(url: storeUrl)
         }()
         description.type = NSSQLiteStoreType
+        description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
         return description
     }
 
