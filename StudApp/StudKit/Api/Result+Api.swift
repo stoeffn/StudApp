@@ -19,7 +19,8 @@ extension Result {
 // MARK: - Default Implementation
 
 extension Result where Value == Data {
-    /// Returns the API result decoded from its JSON representation.
+    /// Returns the API result decoded from its JSON representation. If the data is not valid, the return value will be a
+    /// `.failure`.
     ///
     /// - Parameter type: Expected object type.
     func decoded<Value: Decodable>(_ type: Value.Type) -> Result<Value> {

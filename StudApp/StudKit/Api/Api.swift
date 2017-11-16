@@ -59,11 +59,15 @@ class Api<Routes: ApiRoutes> {
     }
 
     /// Returns the full `URL` for `route`, consisting of the base `URL` as well as the route's path and query parameters.
-    func url(for route: Routes, parameters: [URLQueryItem] = []) -> URL? {
+    func url(for route: Routes, parameters: [URLQueryItem] = []) -> URL {
         let url = baseUrl.appendingPathComponent(route.path)
         var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
         components?.queryItems = parameters
-        return components?.url
+
+        guard let urlWithParamters = components?.url else {
+            fatalError("Cannot construct URL with query parameters for route '\(route)'.")
+        }
+        return urlWithParamters
     }
 
     /// Returns a request for the `URL` given and an HTTP method.
@@ -111,9 +115,7 @@ extension Api {
         guard ignoreLastAccess || isRouteExpired(route) else { return nil }
         setRouteAccessed(route)
 
-        guard let url = self.url(for: route, parameters: parameters) else {
-            fatalError("Cannot construct URL for route '\(route)'.")
-        }
+        let url = self.url(for: route, parameters: parameters)
         let request = self.request(for: url, method: route.method)
         let task = session.dataTask(with: request) { data, response, error in
             let response = response as? HTTPURLResponse
@@ -141,6 +143,7 @@ extension Api {
     ///   - handler: Completion handler receiving raw data.
     /// - Returns: URL task in its resumed state or `nil` if the route is not expired.
     /// - Precondition: `route`'s type must not be `nil`.
+    /// - Remark: At the moment, this method supports JSON decoding only.
     @discardableResult
     func requestDecoded<Result: Decodable>(_ route: Routes, parameters: [URLQueryItem] = [], ignoreLastAccess: Bool = false,
                                            queue: DispatchQueue = .main,
@@ -171,9 +174,7 @@ extension Api {
     /// - Remark: There is no `queue` parameter on this method because the file must be read or moved synchronously.
     @discardableResult
     func download(_ route: Routes, parameters: [URLQueryItem] = [], handler: @escaping ResultHandler<URL>) -> URLSessionTask {
-        guard let url = self.url(for: route, parameters: parameters) else {
-            fatalError("Cannot construct URL for route '\(route)'.")
-        }
+        let url = self.url(for: route, parameters: parameters)
         let request = self.request(for: url, method: route.method)
         let task = session.downloadTask(with: request) { url, response, error in
             let response = response as? HTTPURLResponse
