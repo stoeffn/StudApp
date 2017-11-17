@@ -15,7 +15,13 @@ public final class HistoryService {
     public init(currentTarget: Targets) {
         self.currentTarget = currentTarget
 
-        currentHistoryToken = currentTarget.mergedHistoryTokens.last
+        currentHistoryToken = currentTarget.mergedHistoryTokens?.last
+    }
+
+    public func latestCommonHistoryToken(in targets: [Targets]) -> NSPersistentHistoryToken? {
+        return targets
+            .flatMap { $0.mergedHistoryTokens?.reversed() }
+            .firstCommonElement(type: NSPersistentHistoryToken.self)
     }
 
     public func mergeHistory(into context: NSManagedObjectContext) {
@@ -29,10 +35,10 @@ public final class HistoryService {
 
         for transaction in history {
             context.mergeChanges(fromContextDidSave: transaction.objectIDNotification())
-            mergedHistoryTokens.append(transaction.token)
+            mergedHistoryTokens?.append(transaction.token)
         }
 
         currentTarget.mergedHistoryTokens = mergedHistoryTokens
-        currentHistoryToken = mergedHistoryTokens.last ?? currentHistoryToken
+        currentHistoryToken = mergedHistoryTokens?.last ?? currentHistoryToken
     }
 }

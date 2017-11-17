@@ -16,21 +16,22 @@ extension DefaultsKeys {
 // MARK: Targets Utilities
 
 extension Targets {
-    var mergedHistoryTokensUserDefaultsKey: DefaultsKey<[Data]> {
+    var mergedHistoryTokensUserDefaultsKey: DefaultsKey<[Data]>? {
         switch self {
         case .app: return DefaultsKeys.mergedAppHistoryTokens
         case .fileProvider: return DefaultsKeys.mergedFileProviderHistoryTokens
-        default: fatalError("Cannot get merged history tokens user defaults key for target '\(self)'.")
+        default: return nil
         }
     }
 
-    var mergedHistoryTokens: [NSPersistentHistoryToken] {
+    var mergedHistoryTokens: [NSPersistentHistoryToken]? {
         get {
-            return Defaults[mergedHistoryTokensUserDefaultsKey]
-                .flatMap { NSPersistentHistoryToken.from(data: $0) }
+            guard let key = mergedHistoryTokensUserDefaultsKey else { return nil }
+            return Defaults[key].flatMap { NSPersistentHistoryToken.from(data: $0) }
         }
         set {
-            Defaults[mergedHistoryTokensUserDefaultsKey] = newValue.map { $0.data }
+            guard let newValue = newValue, let key = mergedHistoryTokensUserDefaultsKey else { return }
+            Defaults[key] = newValue.map { $0.data }
         }
     }
 }
