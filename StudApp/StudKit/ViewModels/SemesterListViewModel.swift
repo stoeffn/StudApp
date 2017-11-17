@@ -8,6 +8,10 @@
 
 import CoreData
 
+/// Manages a list of semesters.
+///
+/// In order to display initial data, you must call `fetch()`. Changes in the view context are automatically propagated to
+/// `delegate`. This class also supports updating data from the server.
 public final class SemesterListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let semesterService = ServiceContainer.default[SemesterService.self]
@@ -16,6 +20,8 @@ public final class SemesterListViewModel: NSObject {
 
     public weak var delegate: DataSourceSectionDelegate?
 
+    /// Creates a new semester list view model managing the semesters in returned by the request given, which defaults to all
+    /// semesters.
     public init(fetchRequest: NSFetchRequest<Semester> = Semester.sortedFetchRequest) {
         self.fetchRequest = fetchRequest
         super.init()
@@ -27,10 +33,12 @@ public final class SemesterListViewModel: NSObject {
         = NSFetchedResultsController(fetchRequest: self.fetchRequest, managedObjectContext: coreDataService.viewContext,
                                      sectionNameKeyPath: nil, cacheName: nil)
 
+    /// Fetches initial data.
     public func fetch() {
         try? controller.performFetch()
     }
 
+    /// Updates data from the server.
     public func update(handler: ResultHandler<Void>? = nil) {
         coreDataService.performBackgroundTask { context in
             self.semesterService.update(in: context) { result in
@@ -40,6 +48,7 @@ public final class SemesterListViewModel: NSObject {
         }
     }
 
+    /// Sign user out of this app and the API.
     public func signOut() {
         studIpService.signOut()
     }
