@@ -8,6 +8,10 @@
 
 import CoreData
 
+/// Manages a list of courses in the semester given.
+///
+/// In order to display initial data, you must call `fetch()`. Changes in the view context are automatically propagated to
+/// `delegate`. This class also supports updating data from the server.
 public final class CourseListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let courseService = ServiceContainer.default[CourseService.self]
@@ -15,6 +19,7 @@ public final class CourseListViewModel: NSObject {
 
     public weak var delegate: DataSourceSectionDelegate?
 
+    /// Creates a new course list view model managing the given semester's courses.
     public init(semester: Semester) {
         self.semester = semester
         super.init()
@@ -26,10 +31,12 @@ public final class CourseListViewModel: NSObject {
         = NSFetchedResultsController(fetchRequest: semester.coursesFetchRequest,
                                      managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
 
+    /// Fetches initial data.
     public func fetch() {
         try? controller.performFetch()
     }
 
+    /// Updates data from the server.
     public func update(handler: ResultHandler<Void>? = nil) {
         coreDataService.performBackgroundTask { context in
             self.courseService.update(in: context) { result in
@@ -65,8 +72,8 @@ extension CourseListViewModel: NSFetchedResultsControllerDelegate {
         delegate?.dataDidChange(in: self)
     }
 
-    public func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange object: Any,
-                           at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+    public func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange object: Any, at indexPath: IndexPath?,
+                           for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         guard let course = object as? Course else { fatalError() }
         switch type {
         case .insert:

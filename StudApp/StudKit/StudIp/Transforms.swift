@@ -9,7 +9,7 @@
 enum StudIp {
     /// Returns the id from a path with an id as its last component.
     ///
-    /// Examples:
+    /// ## Examples
     /// - "/api/rooms/abc" -> "abc"
     /// - "api/rooms/" -> `nil`
     static func transformIdPath(_ path: String?) -> String? {

@@ -8,6 +8,10 @@
 
 import CoreData
 
+/// Manages a list of files in the course or folder given. In case of a course, it manages its root files.
+///
+/// In order to display initial data, you must call `fetch()`. Changes in the view context are automatically propagated to
+/// `delegate`. This class also supports updating data from the server.
 public final class FileListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let fileService = ServiceContainer.default[FileService.self]
@@ -16,6 +20,12 @@ public final class FileListViewModel: NSObject {
 
     public weak var delegate: DataSourceSectionDelegate?
 
+    /// Creates a new file list view model.
+    ///
+    /// - Parameters:
+    ///   - course: Course of the files to manage.
+    ///   - parentFolder: If non-nil, this class manages this folder's children. Otherwise, it manages the root files of
+    ///                   `course`.
     public init(course: Course, parentFolder: File? = nil) {
         self.course = course
         self.parentFolder = parentFolder
@@ -28,10 +38,12 @@ public final class FileListViewModel: NSObject {
         = NSFetchedResultsController(fetchRequest: parentFolder?.childrenFetchRequest ?? course.rootFilesFetchRequest,
                                      managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
 
+    /// Fetches initial data.
     public func fetch() {
         try? controller.performFetch()
     }
 
+    /// Updates data from the server. Please note that this method not only updates one folder but the course's whole file tree.
     public func update(handler: ResultHandler<Void>? = nil) {
         coreDataService.performBackgroundTask { context in
             self.fileService.update(filesInCourseWithId: self.course.id, in: context) { result in

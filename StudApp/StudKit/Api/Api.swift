@@ -107,7 +107,7 @@ extension Api {
     ///   - parameters: Optional query parameters.
     ///   - ignoreLastAccess: Whether to ignore the route's expiry policy. Defaults to `false`.
     ///   - queue: Dispatch queue to execute the completion handler on. Defaults to the main queue.
-    ///   - handler: Completion handler receiving raw data.
+    ///   - handler: Completion handler receiving a result with the raw data.
     /// - Returns: URL task in its resumed state or `nil` if the route is not expired.
     @discardableResult
     func request(_ route: Routes, parameters: [URLQueryItem] = [], ignoreLastAccess: Bool = false, queue: DispatchQueue = .main,
@@ -143,7 +143,7 @@ extension Api {
     ///   - parameters: Optional query parameters.
     ///   - ignoreLastAccess: Whether to ignore the route's expiry policy. Defaults to `false`.
     ///   - queue: Dispatch queue to execute the completion handler on. Defaults to the main queue.
-    ///   - handler: Completion handler receiving raw data.
+    ///   - handler: Completion handler receiving a result with the decoded object.
     /// - Returns: URL task in its resumed state or `nil` if the route is not expired.
     /// - Precondition: `route`'s type must not be `nil`.
     /// - Remark: At the moment, this method supports JSON decoding only.
@@ -195,7 +195,7 @@ extension Api {
     ///   - destination: Destination `URL` to move the file to after the download completes successfully.
     ///   - parameters: Optional query parameters.
     ///   - queue: Dispatch queue to execute the completion handler on. Defaults to the main queue.
-    ///   - handler: Completion handler a URL pointing to the dowloaded file.
+    ///   - handler: Completion handler receiving a result with an URL pointing to the dowloaded file.
     /// - Returns: URL task in its resumed state.
     @discardableResult
     func download(_ route: Routes, to destination: URL, parameters: [URLQueryItem] = [],

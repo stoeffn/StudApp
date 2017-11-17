@@ -8,12 +8,19 @@
 
 import CoreData
 
+/// Manages the file provider's working set, i.e. recently used files, tagged files, and favorites.
+///
+/// In order to display initial data, you must call `fetch()`. Changes in the view context are automatically propagated to
+/// `delegate`.
+///
+/// - Remark: You will need a separate wokring set view model for each supported file type.
 public final class WorkingSetViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let fetchRequest: NSFetchRequest<NSFetchRequestResult>
 
     public weak var delegate: DataSourceSectionDelegate?
 
+    /// Creates a new working set view model managing the data returned by the fetch request given.
     public init(fetchRequest: NSFetchRequest<NSFetchRequestResult>) {
         self.fetchRequest = fetchRequest
         super.init()
@@ -25,6 +32,7 @@ public final class WorkingSetViewModel: NSObject {
         = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: coreDataService.viewContext,
                                      sectionNameKeyPath: nil, cacheName: nil)
 
+    /// Fetches initial data.
     public func fetch() {
         try? controller.performFetch()
     }
