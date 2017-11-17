@@ -14,10 +14,8 @@ public final class HistoryService {
 
     public init(currentTarget: Targets) {
         self.currentTarget = currentTarget
-    }
 
-    public func isHistoryTransaction(withToken token: NSPersistentHistoryToken, mergedInto targets: [Targets]) -> Bool {
-        return true
+        currentHistoryToken = currentTarget.mergedHistoryTokens.last
     }
 
     public func mergeHistory(into context: NSManagedObjectContext) {
@@ -27,10 +25,14 @@ public final class HistoryService {
                 fatalError("Cannot fetch persistent history.")
         }
 
+        var mergedHistoryTokens = currentTarget.mergedHistoryTokens
+
         for transaction in history {
             context.mergeChanges(fromContextDidSave: transaction.objectIDNotification())
+            mergedHistoryTokens.append(transaction.token)
         }
 
-        currentHistoryToken = history.last?.token ?? currentHistoryToken
+        currentTarget.mergedHistoryTokens = mergedHistoryTokens
+        currentHistoryToken = mergedHistoryTokens.last ?? currentHistoryToken
     }
 }
