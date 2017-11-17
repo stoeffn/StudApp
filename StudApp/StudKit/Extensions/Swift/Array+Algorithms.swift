@@ -7,7 +7,18 @@
 //
 
 extension Array where Element == [Hashable] {
-    func firstCommonElement<Value: Hashable>(type _: Value.Type) -> Value? {
+    /// Finds the first element common to all contained arrays.
+    ///
+    /// This algorithm works by advancing an element index, starting with zero. On each iteration, it stores each sub-array's
+    /// element at the current index in a set in order to keep track of previously visited elements on a per-array basis. Then,
+    /// it checks—for each current element—whether it was visited by each array before. If this is the case, the element is
+    /// returned.
+    ///
+    /// - Parameter type: Type to search for, ignoring all other types. This parameter is necessary due to restrictions in the
+    ///                   Swift generics system.
+    /// - Returns: First element or `nil` if none was found.
+    /// - Complexity: `O(n * m²)` where `n` is the maximum amount of elements in an array and `m` is the number of arrays.
+    func firstCommonElement<Value: Hashable>(type: Value.Type) -> Value? {
         guard let shortestSequenceCount = map({ $0.count }).min() else { return nil }
         var visitedElementsArray = map { _ in Set<Value>() }
 
