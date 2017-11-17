@@ -35,13 +35,16 @@ extension CachingFileEnumerator: NSFileProviderEnumerator {
     }
 
     public func enumerateChanges(for observer: NSFileProviderChangeObserver, from _: NSFileProviderSyncAnchor) {
-        historyService.mergeHistory(into: coreDataService.viewContext) {
-            self.fetchItems?()
+        coreDataService.viewContext.performAndWait {
+            historyService.mergeHistory(into: self.coreDataService.viewContext)
+
             let updatedItems = self.cache.updatedItems
                 .flatMap { try? $0.fileProviderItem(context: self.coreDataService.viewContext) }
+
             observer.didUpdate(updatedItems)
             observer.didDeleteItems(withIdentifiers: self.cache.deletedItemIdentifiers)
             observer.finishEnumeratingChanges(upTo: self.cache.currentSyncAnchor, moreComing: false)
+
             self.cache.flush()
         }
     }
