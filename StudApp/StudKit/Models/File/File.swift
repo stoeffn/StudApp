@@ -35,6 +35,16 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
 // MARK: - Core Data Operations
 
 extension File {
+    public static var downloadedFetchRequest: NSFetchRequest<File> {
+        let predicate = NSPredicate(format: "typeIdentifier != %@", kUTTypeFolder as String)
+        let sortDescriptors = [
+            NSSortDescriptor(keyPath: \File.course.title, ascending: true),
+            NSSortDescriptor(keyPath: \File.title, ascending: true)
+        ]
+        return File.fetchRequest(predicate: predicate, sortDescriptors: sortDescriptors,
+                                 relationshipKeyPathsForPrefetching: ["state"])
+    }
+
     public var childrenFetchRequest: NSFetchRequest<File> {
         let predicate = NSPredicate(format: "parent == %@", self)
         return File.fetchRequest(predicate: predicate, shouldRefreshRefetchedObjects: true,
