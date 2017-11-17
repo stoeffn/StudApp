@@ -19,6 +19,22 @@ public protocol DataSource: Sequence {
     subscript(sectionAt _: Int) -> Section { get }
 
     subscript(rowAt _: IndexPath) -> Row { get }
+
+    var sectionIndexTitles: [String]? { get }
+
+    func section(forSectionIndexTitle title: String, at index: Int) -> Int
+}
+
+// MARK: - Default Implementation
+
+extension DataSource {
+    var sectionIndexTitles: [String]? {
+        return nil
+    }
+
+    func section(forSectionIndexTitle title: String, at index: Int) -> Int {
+        fatalError("Cannot get section for section index title: Not implemented.")
+    }
 }
 
 // MARK: - Utilities

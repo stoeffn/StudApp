@@ -58,6 +58,14 @@ extension DownloadListViewModel: DataSource {
     public subscript(rowAt indexPath: IndexPath) -> File {
         return controller.object(at: indexPath)
     }
+
+    public var sectionIndexTitles: [String]? {
+        return controller.sectionIndexTitles
+    }
+
+    public func section(forSectionIndexTitle title: String, at index: Int) -> Int {
+        return controller.section(forSectionIndexTitle: title, at: index)
+    }
 }
 
 // MARK: - Fetched Results Controller Delegate
