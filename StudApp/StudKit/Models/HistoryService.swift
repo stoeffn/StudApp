@@ -22,11 +22,6 @@ public final class HistoryService {
             for transaction in history {
                 context.mergeChanges(fromContextDidSave: transaction.objectIDNotification())
                 self.currentHistoryToken = transaction.token
-
-                for change in transaction.changes ?? [] {
-                    let object = context.object(with: change.changedObjectID)
-                    context.refresh(object, mergeChanges: true)
-                }
             }
 
             handler()
