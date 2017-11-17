@@ -15,7 +15,7 @@ final class UserTests: XCTestCase {
     var context: NSManagedObjectContext!
 
     override func setUp() {
-        context = StudKitTestsServiceProvider().provideCoreDataService().viewContext
+        context = StudKitTestsServiceProvider(target: .tests).provideCoreDataService().viewContext
     }
 
     func testInit_UserModel_User() {

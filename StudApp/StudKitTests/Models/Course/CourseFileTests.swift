@@ -15,7 +15,7 @@ final class FileServiceTests: XCTestCase {
     var context: NSManagedObjectContext!
 
     override func setUp() {
-        context = StudKitTestsServiceProvider().provideCoreDataService().viewContext
+        context = StudKitTestsServiceProvider(target: .tests).provideCoreDataService().viewContext
 
         try! CourseModel(id: "a2c88e905abf322d1868640859f13c99", title: "Course").coreDataModel(in: context!)
 

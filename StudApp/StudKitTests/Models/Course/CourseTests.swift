@@ -14,7 +14,7 @@ final class CourseTests: XCTestCase {
     var context: NSManagedObjectContext!
 
     override func setUp() {
-        context = StudKitTestsServiceProvider().provideCoreDataService().viewContext
+        context = StudKitTestsServiceProvider(target: .tests).provideCoreDataService().viewContext
 
         try! SemesterModel(id: "0", title: "Semester", beginDate: Date(timeIntervalSince1970: 0),
                            endDate: Date(timeIntervalSince1970: 9), coursesBeginDate: .distantPast,

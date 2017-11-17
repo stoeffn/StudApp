@@ -14,7 +14,7 @@ final class FetchableTests: XCTestCase {
     var context: NSManagedObjectContext!
 
     override func setUp() {
-        context = StudKitTestsServiceProvider().provideCoreDataService().viewContext
+        context = StudKitTestsServiceProvider(target: .tests).provideCoreDataService().viewContext
 
         try! CourseModel(id: "0", title: "A").coreDataModel(in: context)
         try! CourseModel(id: "1", title: "B").coreDataModel(in: context)

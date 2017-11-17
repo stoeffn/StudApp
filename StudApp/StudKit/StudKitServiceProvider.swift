@@ -7,11 +7,19 @@
 //
 
 public class StudKitServiceProvider: ServiceProvider {
-    public init() {}
+    public enum Targets {
+        case app, fileProvider, tests
+    }
 
     static let studIpBaseUrl = URL(string: "https://studip.uni-hannover.de/api.php")!
     static let studIpRealm = "luh"
     static let appGroupIdentifier = "group.SteffenRyll.StudKit"
+
+    let currentTarget: Targets
+
+    public init(target: Targets) {
+        currentTarget = target
+    }
 
     func provideJsonDecoder() -> JSONDecoder {
         let decoder = JSONDecoder()
