@@ -35,6 +35,7 @@ public class StudKitServiceProvider: ServiceProvider {
         container[JSONDecoder.self] = provideJsonDecoder()
         container[StorageService.self] = provideStorageService()
         container[CoreDataService.self] = provideCoreDataService()
+        container[HistoryService.self] = HistoryService()
         container[StudIpService.self] = provideStudIpService()
         container[SemesterService.self] = SemesterService()
         container[CourseService.self] = CourseService()

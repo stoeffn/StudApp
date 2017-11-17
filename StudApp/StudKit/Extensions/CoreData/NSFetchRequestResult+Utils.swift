@@ -11,10 +11,12 @@ import CoreData
 public extension NSFetchRequestResult {
     /// Returns a fetch request for this object, using the parameters given as its properties.
     public static func fetchRequest(predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor] = [],
+                                    shouldRefreshRefetchedObjects: Bool = false,
                                     relationshipKeyPathsForPrefetching: [String] = []) -> NSFetchRequest<Self> {
         let request = NSFetchRequest<Self>(entityName: String(describing: Self.self))
         request.predicate = predicate
         request.sortDescriptors = sortDescriptors
+        request.shouldRefreshRefetchedObjects = shouldRefreshRefetchedObjects
         request.relationshipKeyPathsForPrefetching = relationshipKeyPathsForPrefetching
         return request
     }

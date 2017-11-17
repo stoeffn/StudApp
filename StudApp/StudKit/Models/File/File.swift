@@ -32,6 +32,16 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
     }
 }
 
+// MARK: - Core Data Operations
+
+extension File {
+    public var childrenFetchRequest: NSFetchRequest<File> {
+        let predicate = NSPredicate(format: "parent == %@", self)
+        return File.fetchRequest(predicate: predicate, shouldRefreshRefetchedObjects: true,
+                                 relationshipKeyPathsForPrefetching: ["state"])
+    }
+}
+
 // MARK: - Utilities
 
 public extension File {
@@ -69,16 +79,7 @@ public extension File {
     }
 }
 
-// MARK: - Core Data Operations
-
-extension File {
-    public var childrenFetchRequest: NSFetchRequest<File> {
-        let predicate = NSPredicate(format: "parent == %@", self)
-        return File.fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["state"])
-    }
-}
-
-// TODO: Move to service
+// TODO: Move to StudIp group
 extension File {
     @discardableResult
     public func download(handler: @escaping ResultHandler<URL>) -> URLSessionTask {

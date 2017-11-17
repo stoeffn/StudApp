@@ -12,6 +12,7 @@ import FileProvider
 open class CachingFileEnumerator: NSObject {
     public let itemIdentifier: NSFileProviderItemIdentifier
     public let coreDataService = ServiceContainer.default[CoreDataService.self]
+    public let historyService = ServiceContainer.default[HistoryService.self]
     public let cache = ChangeCache()
 
     public init(itemIdentifier: NSFileProviderItemIdentifier) {
@@ -19,6 +20,8 @@ open class CachingFileEnumerator: NSObject {
     }
 
     open var items: [NSFileProviderItem] { return [] }
+
+    open var fetchItems: (() -> Void)?
 }
 
 // MARK: - File Provider Enumerator Conformance
@@ -32,7 +35,8 @@ extension CachingFileEnumerator: NSFileProviderEnumerator {
     }
 
     public func enumerateChanges(for observer: NSFileProviderChangeObserver, from _: NSFileProviderSyncAnchor) {
-        coreDataService.mergeHistory(into: coreDataService.viewContext) {
+        historyService.mergeHistory(into: coreDataService.viewContext) {
+            self.fetchItems?()
             let updatedItems = self.cache.updatedItems
                 .flatMap { try? $0.fileProviderItem(context: self.coreDataService.viewContext) }
             observer.didUpdate(updatedItems)

@@ -54,18 +54,19 @@ extension Semester {
     public static var sortedFetchRequest: NSFetchRequest<Semester> {
         let sortDescriptor = NSSortDescriptor(keyPath: \Semester.beginDate, ascending: false)
         return fetchRequest(predicate: NSPredicate(value: true), sortDescriptors: [sortDescriptor],
-                            relationshipKeyPathsForPrefetching: ["state"])
+                            shouldRefreshRefetchedObjects: true, relationshipKeyPathsForPrefetching: ["state"])
     }
 
     public static var nonHiddenFetchRequest: NSFetchRequest<Semester> {
         let predicate = NSPredicate(format: "state.isHidden == NO")
-        return fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["state"])
+        return fetchRequest(predicate: predicate, shouldRefreshRefetchedObjects: true,
+                            relationshipKeyPathsForPrefetching: ["state"])
     }
 
     public var coursesFetchRequest: NSFetchRequest<Course> {
         let predicate = NSPredicate(format: "%@ IN semesters", self)
         let sortDescriptors = [NSSortDescriptor(keyPath: \Course.title, ascending: true)]
-        return Course.fetchRequest(predicate: predicate, sortDescriptors: sortDescriptors,
+        return Course.fetchRequest(predicate: predicate, sortDescriptors: sortDescriptors, shouldRefreshRefetchedObjects: true,
                                    relationshipKeyPathsForPrefetching: ["state"])
     }
 }
