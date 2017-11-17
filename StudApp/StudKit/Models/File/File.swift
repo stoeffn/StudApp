@@ -39,7 +39,7 @@ extension File {
         let predicate = NSPredicate(format: "typeIdentifier != %@", kUTTypeFolder as String)
         let sortDescriptors = [
             NSSortDescriptor(keyPath: \File.course.title, ascending: true),
-            NSSortDescriptor(keyPath: \File.title, ascending: true)
+            NSSortDescriptor(keyPath: \File.title, ascending: true),
         ]
         return File.fetchRequest(predicate: predicate, sortDescriptors: sortDescriptors,
                                  relationshipKeyPathsForPrefetching: ["state"])

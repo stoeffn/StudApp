@@ -32,7 +32,7 @@ extension DataSource {
         return nil
     }
 
-    func section(forSectionIndexTitle title: String, at index: Int) -> Int {
+    func section(forSectionIndexTitle _: String, at _: Int) -> Int {
         fatalError("Cannot get section for section index title: Not implemented.")
     }
 }

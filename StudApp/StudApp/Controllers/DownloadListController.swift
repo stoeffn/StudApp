@@ -41,15 +41,15 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         return viewModel[sectionAt: section]
     }
 
-    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+    override func sectionIndexTitles(for _: UITableView) -> [String]? {
         return viewModel.sectionIndexTitles
     }
 
-    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+    override func tableView(_: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
         return viewModel.section(forSectionIndexTitle: title, at: index)
     }
 }
