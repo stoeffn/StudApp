@@ -52,7 +52,7 @@ extension DownloadListViewModel: DataSource {
     }
 
     public subscript(sectionAt index: Int) -> String? {
-        return controller.sections?[index].indexTitle
+        return controller.sections?[index].name
     }
 
     public subscript(rowAt indexPath: IndexPath) -> File {
