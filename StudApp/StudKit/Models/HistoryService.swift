@@ -9,7 +9,12 @@
 import CoreData
 
 public final class HistoryService {
+    private var currentTarget: Targets
     private var currentHistoryToken: NSPersistentHistoryToken?
+
+    public init(currentTarget: Targets) {
+        self.currentTarget = currentTarget
+    }
 
     public func mergeHistory(into context: NSManagedObjectContext, handler: @escaping () -> Void) {
         context.performAndWait {
