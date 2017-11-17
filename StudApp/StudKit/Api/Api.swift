@@ -95,11 +95,9 @@ class Api<Routes: ApiRoutes> {
     func removeRouteAccesses() {
         lastRouteAccesses.removeAll()
     }
-}
 
-// MARK: - Making Data Requests
+    // MARK: - Making Data Requests
 
-extension Api {
     /// Requests data from this API.
     ///
     /// - Parameters:
@@ -131,11 +129,9 @@ extension Api {
         task.resume()
         return task
     }
-}
 
-// MARK: - Decoding Data
+    // MARK: - Decoding Data
 
-extension Api {
     /// Requests data from this API and decodes as the type defined by the route.
     ///
     /// - Parameters:
@@ -158,11 +154,9 @@ extension Api {
             handler(result.decoded(type))
         }
     }
-}
 
-// MARK: - Downloading
+    // MARK: - Downloading Data
 
-extension Api {
     /// Downloads data from this API to disk.
     ///
     /// If the request completes successfully, the location parameter of the completion handler block contains the location of
