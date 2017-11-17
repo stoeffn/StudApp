@@ -7,15 +7,11 @@
 //
 
 public class StudKitServiceProvider: ServiceProvider {
-    public enum Targets {
-        case app, fileProvider, tests
-    }
-
     static let studIpBaseUrl = URL(string: "https://studip.uni-hannover.de/api.php")!
     static let studIpRealm = "luh"
     static let appGroupIdentifier = "group.SteffenRyll.StudKit"
 
-    let currentTarget: Targets
+    private let currentTarget: Targets
 
     public init(target: Targets) {
         currentTarget = target
@@ -25,10 +21,6 @@ public class StudKitServiceProvider: ServiceProvider {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .secondsSince1970
         return decoder
-    }
-
-    func provideStorageService() -> StorageService {
-        return StorageService()
     }
 
     func provideCoreDataService() -> CoreDataService {
@@ -41,9 +33,9 @@ public class StudKitServiceProvider: ServiceProvider {
 
     public func registerServices(in container: ServiceContainer) {
         container[JSONDecoder.self] = provideJsonDecoder()
-        container[StorageService.self] = provideStorageService()
+        container[StorageService.self] = StorageService()
         container[CoreDataService.self] = provideCoreDataService()
-        container[HistoryService.self] = HistoryService()
+        container[HistoryService.self] = HistoryService(currentTarget: currentTarget)
         container[StudIpService.self] = provideStudIpService()
         container[SemesterService.self] = SemesterService()
         container[CourseService.self] = CourseService()
