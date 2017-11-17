@@ -156,6 +156,7 @@
 		24FD78641FBF67720072F860 /* Array+AlgorithmsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78631FBF67720072F860 /* Array+AlgorithmsTests.swift */; };
 		24FD78671FBF7BF00072F860 /* SwiftyUserDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78661FBF7BF00072F860 /* SwiftyUserDefaultsTests.swift */; };
 		24FD78691FBF7CB20072F860 /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78681FBF7CB20072F860 /* TestHelper.swift */; };
+		24FD786E1FBF81EA0072F860 /* DownloadListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD786D1FBF81EA0072F860 /* DownloadListController.swift */; };
 		24FE89E11FB7661700A4A3C6 /* SemesterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E01FB7661700A4A3C6 /* SemesterItem.swift */; };
 		24FE89E31FB7674F00A4A3C6 /* SemesterEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E21FB7674F00A4A3C6 /* SemesterEnumerator.swift */; };
 		24FE89F41FB77BD100A4A3C6 /* Semester+FileProviderItemConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89F31FB77BD100A4A3C6 /* Semester+FileProviderItemConvertible.swift */; };
@@ -408,6 +409,7 @@
 		24FD78661FBF7BF00072F860 /* SwiftyUserDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyUserDefaultsTests.swift; sourceTree = "<group>"; };
 		24FD78681FBF7CB20072F860 /* TestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelper.swift; sourceTree = "<group>"; };
 		24FD786B1FBF7D1E0072F860 /* SwiftyUserDefaults.license */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftyUserDefaults.license; sourceTree = "<group>"; };
+		24FD786D1FBF81EA0072F860 /* DownloadListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadListController.swift; sourceTree = "<group>"; };
 		24FE89DB1FB7653E00A4A3C6 /* FileProviderItemConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileProviderItemConvertible.swift; sourceTree = "<group>"; };
 		24FE89E01FB7661700A4A3C6 /* SemesterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterItem.swift; sourceTree = "<group>"; };
 		24FE89E21FB7674F00A4A3C6 /* SemesterEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterEnumerator.swift; sourceTree = "<group>"; };
@@ -954,6 +956,7 @@
 			isa = PBXGroup;
 			children = (
 				24CFB5D01FB24E2500F30DEA /* MainController.swift */,
+				24FD786D1FBF81EA0072F860 /* DownloadListController.swift */,
 				24712BE51FB8B0E20067E416 /* SemesterListController.swift */,
 				24712BE71FB8B4420067E416 /* SemesterCell.swift */,
 				241FD96E1FA9191500FBD750 /* SignInNavigationController.swift */,
@@ -1356,6 +1359,7 @@
 				24712BE61FB8B0E20067E416 /* SemesterListController.swift in Sources */,
 				24E626771FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */,
 				24712BE81FB8B4420067E416 /* SemesterCell.swift in Sources */,
+				24FD786E1FBF81EA0072F860 /* DownloadListController.swift in Sources */,
 				24CFB5D11FB24E2500F30DEA /* MainController.swift in Sources */,
 				243014261FA8FE2800680253 /* SignInController.swift in Sources */,
 				2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */,
