@@ -9,5 +9,5 @@
 public enum Targets: String {
     case app, fileProvider, tests
 
-    static let iOSTargets: [Targets] = [.app, .fileProvider]
+    public static var iOSTargets: [Targets] = [.app, .fileProvider]
 }

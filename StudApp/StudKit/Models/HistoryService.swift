@@ -18,17 +18,36 @@ public final class HistoryService {
         currentHistoryToken = currentTarget.mergedHistoryTokens?.last
     }
 
-    public func latestCommonHistoryToken(in targets: [Targets]) -> NSPersistentHistoryToken? {
+    func latestCommonHistoryToken(in targets: [Targets]) -> NSPersistentHistoryToken? {
         return targets
             .flatMap { $0.mergedHistoryTokens?.reversed() }
             .firstCommonElement(type: NSPersistentHistoryToken.self)
     }
 
-    public func mergeHistory(into context: NSManagedObjectContext) {
+    func deleteHistoryTokens(in targets: inout [Targets], before token: NSPersistentHistoryToken) {
+        for (index, target) in targets.enumerated() {
+            guard let mergedHistoryTokens = target.mergedHistoryTokens,
+                let tokenIndex = mergedHistoryTokens.index(of: token) else { continue }
+            targets[index].mergedHistoryTokens = Array(mergedHistoryTokens.dropFirst(tokenIndex))
+        }
+    }
+
+    func deleteHistory(before token: NSPersistentHistoryToken, in context: NSManagedObjectContext) throws {
+        let deleteHistoryRequest = NSPersistentHistoryChangeRequest.deleteHistory(before: token)
+        try context.execute(deleteHistoryRequest)
+    }
+
+    public func deleteMergedHistoryAndTokens(in targets: inout [Targets], in context: NSManagedObjectContext) throws {
+        guard let token = latestCommonHistoryToken(in: targets) else { return }
+        try deleteHistory(before: token, in: context)
+        deleteHistoryTokens(in: &targets, before: token)
+    }
+
+    public func mergeHistory(into context: NSManagedObjectContext) throws {
         let historyFetchRequest = NSPersistentHistoryChangeRequest.fetchHistory(after: currentHistoryToken)
-        guard let historyResult = try? context.execute(historyFetchRequest) as? NSPersistentHistoryResult,
-            let history = historyResult?.result as? [NSPersistentHistoryTransaction] else {
-            fatalError("Cannot fetch core data persistent history.")
+        guard let historyResult = try context.execute(historyFetchRequest) as? NSPersistentHistoryResult,
+            let history = historyResult.result as? [NSPersistentHistoryTransaction] else {
+            fatalError("Cannot convert persistent history fetch result to transaction.")
         }
 
         var mergedHistoryTokens = currentTarget.mergedHistoryTokens

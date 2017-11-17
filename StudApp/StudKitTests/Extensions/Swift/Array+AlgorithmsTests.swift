@@ -39,7 +39,7 @@ final class ArrayAlgorithmsTests: XCTestCase {
         let element = [
             ["y", "g", "e", "b"],
             ["e", "b", "f"],
-            ["g", "e", "b", "d", "x"]
+            ["g", "e", "b", "d", "x"],
         ].firstCommonElement(type: String.self)
         XCTAssertEqual("e", element)
     }
@@ -48,7 +48,7 @@ final class ArrayAlgorithmsTests: XCTestCase {
         let element = [
             ["y", "g", "e", "b"],
             ["e", "b", "f"],
-            ["g", "b", "d", "x"]
+            ["g", "b", "d", "x"],
         ].firstCommonElement(type: String.self)
         XCTAssertNil(element)
     }
@@ -57,7 +57,7 @@ final class ArrayAlgorithmsTests: XCTestCase {
         let element = [
             ["y", "g", "e", "b"],
             ["e", "b", "f"],
-            ["g", "e", "b", "d", "x"]
+            ["g", "e", "b", "d", "x"],
         ].firstCommonElement(type: Int.self)
         XCTAssertNil(element)
     }

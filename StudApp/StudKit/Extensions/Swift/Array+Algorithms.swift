@@ -18,11 +18,11 @@ extension Array where Element == [Hashable] {
     ///                   Swift generics system.
     /// - Returns: First element or `nil` if none was found.
     /// - Complexity: `O(n * m²)` where `n` is the maximum amount of elements in an array and `m` is the number of arrays.
-    func firstCommonElement<Value: Hashable>(type: Value.Type) -> Value? {
+    func firstCommonElement<Value: Hashable>(type _: Value.Type) -> Value? {
         guard let shortestSequenceCount = map({ $0.count }).min() else { return nil }
         var visitedElementsArray = map { _ in Set<Value>() }
 
-        for elementIndex in 0..<shortestSequenceCount {
+        for elementIndex in 0 ..< shortestSequenceCount {
             let elementsAtIndex = flatMap { $0[elementIndex] as? Value }
             for (arrayIndex, element) in elementsAtIndex.enumerated() {
                 visitedElementsArray[arrayIndex].insert(element)
