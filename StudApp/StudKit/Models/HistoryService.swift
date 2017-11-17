@@ -16,7 +16,7 @@ public final class HistoryService {
         self.currentTarget = currentTarget
     }
 
-    public func isHistoryMerged(into targets: [Targets]) -> Bool {
+    public func isHistoryTransaction(withToken token: NSPersistentHistoryToken, mergedInto targets: [Targets]) -> Bool {
         return true
     }
 

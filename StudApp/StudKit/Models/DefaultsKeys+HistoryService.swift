@@ -9,37 +9,29 @@
 import CoreData
 
 extension DefaultsKeys {
-    static let currentAppHistoryToken = DefaultsKey<Data>(Targets.app.rawValue)
-    static let currentFileProviderHistoryToken = DefaultsKey<Data>(Targets.fileProvider.rawValue)
+    static let mergedAppHistoryTokens = DefaultsKey<[Data]>(Targets.app.rawValue)
+    static let mergedFileProviderHistoryTokens = DefaultsKey<[Data]>(Targets.fileProvider.rawValue)
 }
 
 // MARK: Targets Utilities
 
 extension Targets {
-    var currentHistoryTokenUserDefaultsKey: DefaultsKey<Data>? {
+    var mergedHistoryTokensUserDefaultsKey: DefaultsKey<[Data]>? {
         switch self {
-        case .app: return DefaultsKeys.currentAppHistoryToken
-        case .fileProvider: return DefaultsKeys.currentFileProviderHistoryToken
+        case .app: return DefaultsKeys.mergedAppHistoryTokens
+        case .fileProvider: return DefaultsKeys.mergedFileProviderHistoryTokens
         default: return nil
         }
     }
 
-    var currentHistoryToken: NSPersistentHistoryToken? {
+    var mergedHistoryTokens: [NSPersistentHistoryToken]? {
         get {
-            guard let key = currentHistoryTokenUserDefaultsKey else { return nil }
-            let unarchiver = NSKeyedUnarchiver(forReadingWith: Defaults[key])
-            unarchiver.requiresSecureCoding = true
-            let token = unarchiver.decodeObject(of: NSPersistentHistoryToken.self, forKey: NSKeyedArchiveRootObjectKey)
-            unarchiver.finishDecoding()
-            return token
+            guard let key = mergedHistoryTokensUserDefaultsKey else { return nil }
+            return Defaults[key].flatMap { NSPersistentHistoryToken.from(data: $0) }
         }
         set {
-            guard let key = currentHistoryTokenUserDefaultsKey else { return }
-            let data = NSMutableData()
-            let archiver = NSKeyedArchiver(forWritingWith: data)
-            archiver.requiresSecureCoding = true
-            archiver.finishEncoding()
-            Defaults[key] = data as Data
+            guard let newValue = newValue, let key = mergedHistoryTokensUserDefaultsKey else { return }
+            Defaults[key] = newValue.map { $0.data }
         }
     }
 }
