@@ -154,6 +154,8 @@
 		24FD78601FBF4D330072F860 /* NSPersistentHistoryToken+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785F1FBF4D330072F860 /* NSPersistentHistoryToken+Utils.swift */; };
 		24FD78621FBF673B0072F860 /* Array+Algorithms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78611FBF673B0072F860 /* Array+Algorithms.swift */; };
 		24FD78641FBF67720072F860 /* Array+AlgorithmsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78631FBF67720072F860 /* Array+AlgorithmsTests.swift */; };
+		24FD78671FBF7BF00072F860 /* SwiftyUserDefaultsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78661FBF7BF00072F860 /* SwiftyUserDefaultsTests.swift */; };
+		24FD78691FBF7CB20072F860 /* TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78681FBF7CB20072F860 /* TestHelper.swift */; };
 		24FE89E11FB7661700A4A3C6 /* SemesterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E01FB7661700A4A3C6 /* SemesterItem.swift */; };
 		24FE89E31FB7674F00A4A3C6 /* SemesterEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E21FB7674F00A4A3C6 /* SemesterEnumerator.swift */; };
 		24FE89F41FB77BD100A4A3C6 /* Semester+FileProviderItemConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89F31FB77BD100A4A3C6 /* Semester+FileProviderItemConvertible.swift */; };
@@ -403,6 +405,9 @@
 		24FD785F1FBF4D330072F860 /* NSPersistentHistoryToken+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPersistentHistoryToken+Utils.swift"; sourceTree = "<group>"; };
 		24FD78611FBF673B0072F860 /* Array+Algorithms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Algorithms.swift"; sourceTree = "<group>"; };
 		24FD78631FBF67720072F860 /* Array+AlgorithmsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+AlgorithmsTests.swift"; sourceTree = "<group>"; };
+		24FD78661FBF7BF00072F860 /* SwiftyUserDefaultsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyUserDefaultsTests.swift; sourceTree = "<group>"; };
+		24FD78681FBF7CB20072F860 /* TestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestHelper.swift; sourceTree = "<group>"; };
+		24FD786B1FBF7D1E0072F860 /* SwiftyUserDefaults.license */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwiftyUserDefaults.license; sourceTree = "<group>"; };
 		24FE89DB1FB7653E00A4A3C6 /* FileProviderItemConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileProviderItemConvertible.swift; sourceTree = "<group>"; };
 		24FE89E01FB7661700A4A3C6 /* SemesterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterItem.swift; sourceTree = "<group>"; };
 		24FE89E21FB7674F00A4A3C6 /* SemesterEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterEnumerator.swift; sourceTree = "<group>"; };
@@ -486,6 +491,7 @@
 		2448D4001FA8DA2400DAB97E = {
 			isa = PBXGroup;
 			children = (
+				24FD786A1FBF7D0D0072F860 /* Licenses */,
 				2448D40B1FA8DA2400DAB97E /* StudApp */,
 				2448D4201FA8DA2400DAB97E /* StudAppTests */,
 				2448D42B1FA8DA2400DAB97E /* StudAppUITests */,
@@ -576,6 +582,7 @@
 				24D361381FAA637E00BBBAED /* Models */,
 				2448D4791FA8DE3300DAB97E /* Services */,
 				24D361261FAA603400BBBAED /* StudIp */,
+				24FD78651FBF7BDB0072F860 /* Vendors */,
 				24FE8A131FB7B1A000A4A3C6 /* RangeIteratorTests.swift */,
 				2448D44E1FA8DB1E00DAB97E /* ResultTests.swift */,
 				2448D49A1FA8E01B00DAB97E /* Setup.swift */,
@@ -962,6 +969,23 @@
 				24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */,
 			);
 			path = StudIpActivityIndicator;
+			sourceTree = "<group>";
+		};
+		24FD78651FBF7BDB0072F860 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+				24FD78661FBF7BF00072F860 /* SwiftyUserDefaultsTests.swift */,
+				24FD78681FBF7CB20072F860 /* TestHelper.swift */,
+			);
+			path = Vendors;
+			sourceTree = "<group>";
+		};
+		24FD786A1FBF7D0D0072F860 /* Licenses */ = {
+			isa = PBXGroup;
+			children = (
+				24FD786B1FBF7D1E0072F860 /* SwiftyUserDefaults.license */,
+			);
+			path = Licenses;
 			sourceTree = "<group>";
 		};
 		24FE89D91FB7652200A4A3C6 /* Extensions */ = {
@@ -1459,6 +1483,7 @@
 				24D361511FAA63D800BBBAED /* SemesterModelTests.swift in Sources */,
 				24D361591FAA63DF00BBBAED /* UserModelTests.swift in Sources */,
 				2448D4BA1FA8E0AB00DAB97E /* TestRoutes.swift in Sources */,
+				24FD78691FBF7CB20072F860 /* TestHelper.swift in Sources */,
 				24D3611C1FAA5FC900BBBAED /* Data+Resource.swift in Sources */,
 				24D361451FAA63C500BBBAED /* CourseModelTests+Data.swift in Sources */,
 				24D361371FAA633000BBBAED /* IdentifiableTests.swift in Sources */,
@@ -1486,6 +1511,7 @@
 				24FE8A141FB7B1A000A4A3C6 /* RangeIteratorTests.swift in Sources */,
 				24D361361FAA633000BBBAED /* UpdatableTests.swift in Sources */,
 				24D3612E1FAA60E000BBBAED /* Api+CollectionResponseTests.swift in Sources */,
+				24FD78671FBF7BF00072F860 /* SwiftyUserDefaultsTests.swift in Sources */,
 				24D3614B1FAA63CE00BBBAED /* FileModelTests+Data.swift in Sources */,
 				2448D4BB1FA8E0AB00DAB97E /* ApiRoutesTests.swift in Sources */,
 				24D3614C1FAA63CE00BBBAED /* FileModelTests.swift in Sources */,
