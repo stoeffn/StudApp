@@ -11,7 +11,7 @@ import StudKit
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
-    private var coreDataService: CoreDataService?
+    private var coreDataService: CoreDataService!
 
     var window: UIWindow?
 
@@ -20,14 +20,18 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         ServiceContainer.default.register(providers: StudKitServiceProvider(target: .app))
         coreDataService = ServiceContainer.default[CoreDataService.self]
+
+        let historyService = ServiceContainer.default[HistoryService.self]
+        historyService.mergeHistory(into: coreDataService.viewContext)
+
         return true
     }
 
     func applicationDidEnterBackground(_: UIApplication) {
-        try? coreDataService?.viewContext.saveWhenChanged()
+        try? coreDataService.viewContext.saveWhenChanged()
     }
 
     func applicationWillTerminate(_: UIApplication) {
-        try? coreDataService?.viewContext.saveWhenChanged()
+        try? coreDataService.viewContext.saveWhenChanged()
     }
 }

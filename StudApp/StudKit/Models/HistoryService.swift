@@ -22,7 +22,7 @@ public final class HistoryService {
         let historyFetchRequest = NSPersistentHistoryChangeRequest.fetchHistory(after: currentHistoryToken)
         guard let historyResult = try? context.execute(historyFetchRequest) as? NSPersistentHistoryResult,
             let history = historyResult?.result as? [NSPersistentHistoryTransaction] else {
-                fatalError("Cannot fetch persistent history.")
+            fatalError("Cannot fetch core data persistent history.")
         }
 
         var mergedHistoryTokens = currentTarget.mergedHistoryTokens

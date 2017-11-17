@@ -18,6 +18,9 @@ final class FileProviderExtension: NSFileProviderExtension {
     override init() {
         ServiceContainer.default.register(providers: StudKitServiceProvider(target: .fileProvider))
         coreDataService = ServiceContainer.default[CoreDataService.self]
+
+        let historyService = ServiceContainer.default[HistoryService.self]
+        historyService.mergeHistory(into: coreDataService.viewContext)
     }
 
     // MARK: - Providing Meta Data
