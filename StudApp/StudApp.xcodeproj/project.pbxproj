@@ -152,6 +152,8 @@
 		24FD785C1FBF45030072F860 /* DefaultsKeys+HistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785B1FBF45030072F860 /* DefaultsKeys+HistoryService.swift */; };
 		24FD785E1FBF45B10072F860 /* Targets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785D1FBF45B10072F860 /* Targets.swift */; };
 		24FD78601FBF4D330072F860 /* NSPersistentHistoryToken+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785F1FBF4D330072F860 /* NSPersistentHistoryToken+Utils.swift */; };
+		24FD78621FBF673B0072F860 /* Array+Algorithms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78611FBF673B0072F860 /* Array+Algorithms.swift */; };
+		24FD78641FBF67720072F860 /* Array+AlgorithmsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78631FBF67720072F860 /* Array+AlgorithmsTests.swift */; };
 		24FE89E11FB7661700A4A3C6 /* SemesterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E01FB7661700A4A3C6 /* SemesterItem.swift */; };
 		24FE89E31FB7674F00A4A3C6 /* SemesterEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E21FB7674F00A4A3C6 /* SemesterEnumerator.swift */; };
 		24FE89F41FB77BD100A4A3C6 /* Semester+FileProviderItemConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89F31FB77BD100A4A3C6 /* Semester+FileProviderItemConvertible.swift */; };
@@ -399,6 +401,8 @@
 		24FD785B1FBF45030072F860 /* DefaultsKeys+HistoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultsKeys+HistoryService.swift"; sourceTree = "<group>"; };
 		24FD785D1FBF45B10072F860 /* Targets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Targets.swift; sourceTree = "<group>"; };
 		24FD785F1FBF4D330072F860 /* NSPersistentHistoryToken+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPersistentHistoryToken+Utils.swift"; sourceTree = "<group>"; };
+		24FD78611FBF673B0072F860 /* Array+Algorithms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Algorithms.swift"; sourceTree = "<group>"; };
+		24FD78631FBF67720072F860 /* Array+AlgorithmsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+AlgorithmsTests.swift"; sourceTree = "<group>"; };
 		24FE89DB1FB7653E00A4A3C6 /* FileProviderItemConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileProviderItemConvertible.swift; sourceTree = "<group>"; };
 		24FE89E01FB7661700A4A3C6 /* SemesterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterItem.swift; sourceTree = "<group>"; };
 		24FE89E21FB7674F00A4A3C6 /* SemesterEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterEnumerator.swift; sourceTree = "<group>"; };
@@ -597,6 +601,7 @@
 			isa = PBXGroup;
 			children = (
 				24D360D61FAA5D3800BBBAED /* Array+Set.swift */,
+				24FD78611FBF673B0072F860 /* Array+Algorithms.swift */,
 				24D360D71FAA5D3800BBBAED /* Set+Array.swift */,
 				2448D4611FA8DC3900DAB97E /* String+Error.swift */,
 				24D360D91FAA5D3800BBBAED /* String+HTML.swift */,
@@ -804,6 +809,7 @@
 			isa = PBXGroup;
 			children = (
 				24D361211FAA5FF500BBBAED /* Array+SetTests.swift */,
+				24FD78631FBF67720072F860 /* Array+AlgorithmsTests.swift */,
 				24D3611F1FAA5FF500BBBAED /* Set+ArrayTests.swift */,
 				24D361201FAA5FF500BBBAED /* String+RegexTests.swift */,
 			);
@@ -1434,6 +1440,7 @@
 				24D360CF1FAA5AFE00BBBAED /* CDCreatable.swift in Sources */,
 				24D361161FAA5F0E00BBBAED /* Api+CollectionResponse.swift in Sources */,
 				246F3AC51FAC879C00A477FF /* DataChange.swift in Sources */,
+				24FD78621FBF673B0072F860 /* Array+Algorithms.swift in Sources */,
 				24712BF91FB8CDE30067E416 /* ChangeCache.swift in Sources */,
 				24D178EB1FB606B200EC5F4A /* MainViewModel.swift in Sources */,
 			);
@@ -1472,6 +1479,7 @@
 				24D361421FAA63C500BBBAED /* CourseTests.swift in Sources */,
 				2448D49B1FA8E01B00DAB97E /* Setup.swift in Sources */,
 				24D361441FAA63C500BBBAED /* CourseServiceTests.swift in Sources */,
+				24FD78641FBF67720072F860 /* Array+AlgorithmsTests.swift in Sources */,
 				2448D47B1FA8DE4000DAB97E /* ServiceContainerTests.swift in Sources */,
 				2448D4B71FA8E0AB00DAB97E /* ApiTests.swift in Sources */,
 				24D3612D1FAA60E000BBBAED /* StudIpRoutes+TestableApiRoutes.swift in Sources */,
