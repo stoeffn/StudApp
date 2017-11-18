@@ -12,12 +12,12 @@ extension Targets {
     var lastHistoryTransactionTimestamp: Date? {
         get {
             let storageService = ServiceContainer.default[StorageService.self]
-            let key = storageService.defaults.lastHistoryTransactionTimestampKey(for: self)
+            let key = UserDefaults.lastHistoryTransactionTimestampKey(for: self)
             return storageService.defaults.object(forKey: key) as? Date
         }
         set {
             let storageService = ServiceContainer.default[StorageService.self]
-            let key = storageService.defaults.lastHistoryTransactionTimestampKey(for: self)
+            let key = UserDefaults.lastHistoryTransactionTimestampKey(for: self)
             storageService.defaults.set(newValue, forKey: key)
         }
     }

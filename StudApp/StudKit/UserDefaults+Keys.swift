@@ -7,7 +7,7 @@
 //
 
 extension UserDefaults {
-    func lastHistoryTransactionTimestampKey(for target: Targets) -> String {
-        return "\(target)-lastHistoryTransactionTimestamp"
+    static func lastHistoryTransactionTimestampKey(for target: Targets) -> String {
+        return "lastHistoryTransactionTimestamp-\(target)"
     }
 }
