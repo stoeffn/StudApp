@@ -81,7 +81,7 @@ extension File {
 
     public func removeDownload() throws {
         state.downloadDate = nil
-        try managedObjectContext?.saveWhenChanged()
         try FileManager.default.removeItem(at: localUrl)
+        try managedObjectContext?.saveWhenChanged()
     }
 }

@@ -61,6 +61,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
             let file = self.viewModel[rowAt: indexPath]
             let success = self.viewModel.removeDownload(file)
             handler(success)
+            tableView.reloadData()
         }
 
         let removeDownloadAction = UIContextualAction(style: .destructive, title: "Remove", handler: removeDownloadHandler)
