@@ -15,6 +15,7 @@ import CoreData
 public final class DownloadListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let fileService = ServiceContainer.default[CourseService.self]
+    private var observers = [Any]()
 
     public weak var delegate: DataSourceDelegate?
 
@@ -23,6 +24,18 @@ public final class DownloadListViewModel: NSObject {
         super.init()
 
         controller.delegate = self
+
+        let notifiactionName = HistoryService.MergeNotificationName
+        let observer = NotificationCenter.default.addObserver(forName: notifiactionName, object: nil, queue: .main) { _ in
+            self.fetch()
+        }
+        observers.append(observer)
+    }
+
+    deinit {
+        for observer in observers {
+            NotificationCenter.default.removeObserver(observer)
+        }
     }
 
     private(set) lazy var controller: NSFetchedResultsController<File>

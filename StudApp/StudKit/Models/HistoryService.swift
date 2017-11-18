@@ -9,6 +9,8 @@
 import CoreData
 
 public final class HistoryService {
+    public static let MergeNotificationName = NSNotification.Name(rawValue: "DidMergePersistentHistory")
+
     private var currentTarget: Targets
     private var lastTransactionTimestamp: Date?
 

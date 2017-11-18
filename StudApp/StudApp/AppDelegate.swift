@@ -23,10 +23,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         coreDataService = ServiceContainer.default[CoreDataService.self]
         historyService = ServiceContainer.default[HistoryService.self]
 
-        coreDataService.viewContext.performAndWait {
-            try? historyService.mergeHistory(into: coreDataService.viewContext)
-            try? historyService.deleteMergedHistory(in: Targets.iOSTargets, in: coreDataService.viewContext)
-        }
+        try? historyService.mergeHistory(into: coreDataService.viewContext)
+        try? historyService.deleteMergedHistory(in: Targets.iOSTargets, in: coreDataService.viewContext)
 
         return true
     }
@@ -36,10 +34,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_: UIApplication) {
-        coreDataService.viewContext.performAndWait {
-            try? historyService.mergeHistory(into: coreDataService.viewContext)
-            try? historyService.deleteMergedHistory(in: Targets.iOSTargets, in: coreDataService.viewContext)
-        }
+        try? historyService.mergeHistory(into: coreDataService.viewContext)
+        try? historyService.deleteMergedHistory(in: Targets.iOSTargets, in: coreDataService.viewContext)
+        NotificationCenter.default.post(name: HistoryService.MergeNotificationName, object: nil)
     }
 
     func applicationWillTerminate(_: UIApplication) {
