@@ -41,14 +41,13 @@ extension File {
             NSSortDescriptor(keyPath: \File.course.title, ascending: true),
             NSSortDescriptor(keyPath: \File.title, ascending: true),
         ]
-        return File.fetchRequest(predicate: predicate, sortDescriptors: sortDescriptors, shouldRefreshRefetchedObjects: true,
+        return File.fetchRequest(predicate: predicate, sortDescriptors: sortDescriptors,
                                  relationshipKeyPathsForPrefetching: ["state"])
     }
 
     public var childrenFetchRequest: NSFetchRequest<File> {
         let predicate = NSPredicate(format: "parent == %@", self)
-        return File.fetchRequest(predicate: predicate, shouldRefreshRefetchedObjects: true,
-                                 relationshipKeyPathsForPrefetching: ["state"])
+        return File.fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["state"])
     }
 }
 
