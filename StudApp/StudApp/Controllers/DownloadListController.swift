@@ -57,9 +57,9 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
     override func tableView(_: UITableView,
                             trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        func removeDownloadHandler(action: UIContextualAction, view: UIView, handler: @escaping (Bool) -> Void) {
-            let file = self.viewModel[rowAt: indexPath]
-            let success = self.viewModel.removeDownload(file)
+        func removeDownloadHandler(action _: UIContextualAction, view _: UIView, handler: @escaping (Bool) -> Void) {
+            let file = viewModel[rowAt: indexPath]
+            let success = viewModel.removeDownload(file)
             handler(success)
         }
 
