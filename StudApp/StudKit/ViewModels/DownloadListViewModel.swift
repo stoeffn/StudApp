@@ -27,7 +27,7 @@ public final class DownloadListViewModel: NSObject {
 
         let notifiactionName = HistoryService.MergeNotificationName
         let observer = NotificationCenter.default.addObserver(forName: notifiactionName, object: nil, queue: .main) { _ in
-            self.fetch()
+            //self.fetch()
         }
         observers.append(observer)
     }
@@ -38,9 +38,9 @@ public final class DownloadListViewModel: NSObject {
         }
     }
 
-    private(set) lazy var controller: NSFetchedResultsController<File>
+    private(set) lazy var controller: NSFetchedResultsController<FileState>
         = NSFetchedResultsController(fetchRequest: File.downloadedFetchRequest,
-                                     managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: "course.title",
+                                     managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: "file.course.title",
                                      cacheName: nil)
 
     /// Fetches initial data.
@@ -51,7 +51,7 @@ public final class DownloadListViewModel: NSObject {
     public func removeDownload(_ file: File) -> Bool {
         do {
             try file.removeDownload()
-            fetch()
+            try controller.performFetch()
             return true
         } catch {
             return false
@@ -79,7 +79,7 @@ extension DownloadListViewModel: DataSource {
     }
 
     public subscript(rowAt indexPath: IndexPath) -> File {
-        return controller.object(at: indexPath)
+        return controller.object(at: indexPath).file
     }
 
     public var sectionIndexTitles: [String]? {
@@ -119,7 +119,8 @@ extension DownloadListViewModel: NSFetchedResultsControllerDelegate {
 
     public func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange object: Any, at indexPath: IndexPath?,
                            for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        guard let file = object as? File else { fatalError() }
+        guard let fileState = object as? FileState else { fatalError() }
+        let file = fileState.file
         switch type {
         case .insert:
             guard let indexPath = newIndexPath else { return }

@@ -35,14 +35,14 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
 // MARK: - Core Data Operations
 
 extension File {
-    public static var downloadedFetchRequest: NSFetchRequest<File> {
-        let predicate = NSPredicate(format: "state.downloadDate != NIL")
+    public static var downloadedFetchRequest: NSFetchRequest<FileState> {
+        let predicate = NSPredicate(format: "downloadDate != NIL")
         let sortDescriptors = [
-            NSSortDescriptor(keyPath: \File.course.title, ascending: true),
-            NSSortDescriptor(keyPath: \File.title, ascending: true),
+            NSSortDescriptor(keyPath: \FileState.file.course.title, ascending: true),
+            NSSortDescriptor(keyPath: \FileState.file.title, ascending: true),
         ]
-        return File.fetchRequest(predicate: predicate, sortDescriptors: sortDescriptors,
-                                 relationshipKeyPathsForPrefetching: ["state"])
+        return FileState.fetchRequest(predicate: predicate, sortDescriptors: sortDescriptors,
+                                      relationshipKeyPathsForPrefetching: ["file"])
     }
 
     public var childrenFetchRequest: NSFetchRequest<File> {
