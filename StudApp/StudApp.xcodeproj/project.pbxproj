@@ -155,6 +155,7 @@
 		24FD78641FBF67720072F860 /* Array+AlgorithmsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78631FBF67720072F860 /* Array+AlgorithmsTests.swift */; };
 		24FD786E1FBF81EA0072F860 /* DownloadListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD786D1FBF81EA0072F860 /* DownloadListController.swift */; };
 		24FD78701FBF826D0072F860 /* DownloadListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD786F1FBF826D0072F860 /* DownloadListViewModel.swift */; };
+		24FD78721FC07C630072F860 /* UserDefaults+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78711FC07C630072F860 /* UserDefaults+Keys.swift */; };
 		24FE89E11FB7661700A4A3C6 /* SemesterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E01FB7661700A4A3C6 /* SemesterItem.swift */; };
 		24FE89E31FB7674F00A4A3C6 /* SemesterEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E21FB7674F00A4A3C6 /* SemesterEnumerator.swift */; };
 		24FE89F41FB77BD100A4A3C6 /* Semester+FileProviderItemConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89F31FB77BD100A4A3C6 /* Semester+FileProviderItemConvertible.swift */; };
@@ -405,6 +406,7 @@
 		24FD78631FBF67720072F860 /* Array+AlgorithmsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+AlgorithmsTests.swift"; sourceTree = "<group>"; };
 		24FD786D1FBF81EA0072F860 /* DownloadListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadListController.swift; sourceTree = "<group>"; };
 		24FD786F1FBF826D0072F860 /* DownloadListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadListViewModel.swift; sourceTree = "<group>"; };
+		24FD78711FC07C630072F860 /* UserDefaults+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Keys.swift"; sourceTree = "<group>"; };
 		24FE89DB1FB7653E00A4A3C6 /* FileProviderItemConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileProviderItemConvertible.swift; sourceTree = "<group>"; };
 		24FE89E01FB7661700A4A3C6 /* SemesterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterItem.swift; sourceTree = "<group>"; };
 		24FE89E21FB7674F00A4A3C6 /* SemesterEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterEnumerator.swift; sourceTree = "<group>"; };
@@ -564,6 +566,7 @@
 				2448D4941FA8DF6000DAB97E /* StorageService.swift */,
 				2448D4961FA8DFB200DAB97E /* StudKitServiceProvider.swift */,
 				24FD785D1FBF45B10072F860 /* Targets.swift */,
+				24FD78711FC07C630072F860 /* UserDefaults+Keys.swift */,
 				2448D4411FA8DB1E00DAB97E /* StudKit.h */,
 				2448D4421FA8DB1E00DAB97E /* Info.plist */,
 			);
@@ -1436,6 +1439,7 @@
 				24D360CF1FAA5AFE00BBBAED /* CDCreatable.swift in Sources */,
 				24D361161FAA5F0E00BBBAED /* Api+CollectionResponse.swift in Sources */,
 				246F3AC51FAC879C00A477FF /* DataChange.swift in Sources */,
+				24FD78721FC07C630072F860 /* UserDefaults+Keys.swift in Sources */,
 				24FD78621FBF673B0072F860 /* Array+Algorithms.swift in Sources */,
 				24712BF91FB8CDE30067E416 /* ChangeCache.swift in Sources */,
 				24D178EB1FB606B200EC5F4A /* MainViewModel.swift in Sources */,

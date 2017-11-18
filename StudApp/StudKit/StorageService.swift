@@ -7,7 +7,13 @@
 //
 
 public final class StorageService {
-    let defaults = UserDefaults(suiteName: StudKitServiceProvider.appGroupIdentifier)
+    lazy var defaults: UserDefaults = {
+        let identifier = StudKitServiceProvider.appGroupIdentifier
+        guard let defaults = UserDefaults(suiteName: identifier) else {
+            fatalError("Cannot initialize user defaults for app group with identifier '\(identifier)'")
+        }
+        return defaults
+    }()
 
     lazy var documentsUrl: URL = {
         let identifier = StudKitServiceProvider.appGroupIdentifier

@@ -9,26 +9,16 @@
 import CoreData
 
 extension Targets {
-    var lastHistoryTransactionTimestampKey: String? {
-        switch self {
-        case .app: return "historyTokensMergedIntoApp"
-        case .fileProvider: return "historyTokensMergedIntoFileProvider"
-        default: return nil
-        }
-    }
-
     var lastHistoryTransactionTimestamp: Date? {
         get {
             let storageService = ServiceContainer.default[StorageService.self]
-            guard let defaults = storageService.defaults,
-                let key = lastHistoryTransactionTimestampKey else { return nil }
-            return defaults.object(forKey: key) as? Date
+            let key = storageService.defaults.lastHistoryTransactionTimestampKey(for: self)
+            return storageService.defaults.object(forKey: key) as? Date
         }
         set {
             let storageService = ServiceContainer.default[StorageService.self]
-            guard let defaults = storageService.defaults,
-                let key = lastHistoryTransactionTimestampKey else { return }
-            defaults.set(newValue, forKey: key)
+            let key = storageService.defaults.lastHistoryTransactionTimestampKey(for: self)
+            storageService.defaults.set(newValue, forKey: key)
         }
     }
 }
