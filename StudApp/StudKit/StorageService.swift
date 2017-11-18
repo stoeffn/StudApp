@@ -10,10 +10,10 @@ public final class StorageService {
     let defaults = UserDefaults(suiteName: StudKitServiceProvider.appGroupIdentifier)
 
     lazy var documentsUrl: URL = {
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        guard let path = paths.first else {
-            fatalError("Cannot construct default documents directory URL.")
+        let identifier = StudKitServiceProvider.appGroupIdentifier
+        guard let appGroupUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: identifier) else {
+            fatalError("Cannot create URL for app group directory with identifier '\(identifier)'.")
         }
-        return URL(fileURLWithPath: path)
+        return appGroupUrl.appendingPathComponent("Dcouments", isDirectory: true)
     }()
 }
