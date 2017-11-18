@@ -34,6 +34,10 @@ public final class DownloadListViewModel: NSObject {
     public func fetch() {
         try? controller.performFetch()
     }
+
+    public func removeDownload(_ file: File) {
+        try? file.removeDownload()
+    }
 }
 
 // MARK: - Data Source Section

@@ -76,11 +76,12 @@ extension File {
     @discardableResult
     public func download(handler: @escaping ResultHandler<URL>) -> URLSessionTask {
         let studIp = ServiceContainer.default[StudIpService.self]
-        return studIp.api.download(.fileContents(forFileId: id), to: localUrl) { result in
-            if result.isFailure {
-                try? FileManager.default.removeItem(at: self.localUrl.deletingLastPathComponent())
-            }
-            handler(result)
-        }
+        return studIp.api.download(.fileContents(forFileId: id), to: localUrl, handler: handler)
+    }
+
+    public func removeDownload() throws {
+        state.downloadDate = nil
+        try managedObjectContext?.saveWhenChanged()
+        try FileManager.default.removeItem(at: File.localContainerUrl(forId: id))
     }
 }

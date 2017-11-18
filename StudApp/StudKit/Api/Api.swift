@@ -196,7 +196,7 @@ class Api<Routes: ApiRoutes> {
     func download(_ route: Routes, to destination: URL, parameters: [URLQueryItem] = [],
                   queue: DispatchQueue = .main, handler: @escaping ResultHandler<URL>) -> URLSessionTask {
         return download(route, parameters: parameters) { result in
-            guard let url = result.value else { return handler(result) }
+            guard let url = result.value, result.isSuccess else { return handler(result) }
             do {
                 try FileManager.default.createIntermediateDirectories(forFileAt: destination)
                 try? FileManager.default.removeItem(at: destination)
