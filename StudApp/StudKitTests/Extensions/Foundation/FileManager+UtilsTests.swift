@@ -17,6 +17,11 @@ final class FileManagerExtensionsTests: XCTestCase {
         try? FileManager.default.removeItem(at: testFolder)
     }
 
+    override func tearDown() {
+        let testFolder = storageService.documentsUrl.appendingPathComponent("test", isDirectory: true)
+        try? FileManager.default.removeItem(at: testFolder)
+    }
+
     func testCreateIntermediateDirectories_NewUrl_Created() {
         let testFolderUrl = storageService.documentsUrl.appendingPathComponent("test", isDirectory: true)
         let folder2Url = testFolderUrl.appendingPathComponent("folder2", isDirectory: true)
