@@ -38,7 +38,6 @@ public final class DownloadListViewModel: NSObject {
     public func removeDownload(_ file: File) -> Bool {
         do {
             try file.removeDownload()
-            try controller.performFetch()
             return true
         } catch {
             return false
