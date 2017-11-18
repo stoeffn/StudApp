@@ -79,6 +79,21 @@ extension DownloadListViewModel: NSFetchedResultsControllerDelegate {
         delegate?.dataDidChange(in: self)
     }
 
+    public func controller(_: NSFetchedResultsController<NSFetchRequestResult>,
+                           didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex index: Int,
+                           for type: NSFetchedResultsChangeType) {
+        switch type {
+        case .insert:
+            delegate?.data(changedIn: sectionInfo.name, at: index, change: .insert, in: self)
+        case .delete:
+            delegate?.data(changedIn: sectionInfo.name, at: index, change: .delete, in: self)
+        case .update:
+            delegate?.data(changedIn: sectionInfo.name, at: index, change: .update(sectionInfo.name), in: self)
+        case .move:
+            delegate?.data(changedIn: sectionInfo.name, at: index, change: .move(to: index), in: self)
+        }
+    }
+
     public func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange object: Any, at indexPath: IndexPath?,
                            for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         guard let file = object as? File else { fatalError() }
