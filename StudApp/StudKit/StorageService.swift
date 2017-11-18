@@ -7,6 +7,8 @@
 //
 
 public final class StorageService {
+    let defaults = UserDefaults(suiteName: StudKitServiceProvider.appGroupIdentifier)
+
     lazy var documentsUrl: URL = {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         guard let path = paths.first else {
