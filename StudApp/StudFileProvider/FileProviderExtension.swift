@@ -21,7 +21,7 @@ final class FileProviderExtension: NSFileProviderExtension {
 
         let historyService = ServiceContainer.default[HistoryService.self]
         try? historyService.mergeHistory(into: coreDataService.viewContext)
-        try? historyService.deleteMergedHistory(in: Targets.iOSTargets, in: coreDataService.viewContext)
+        try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
     }
 
     // MARK: - Providing Meta Data

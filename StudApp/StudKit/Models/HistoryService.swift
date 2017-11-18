@@ -24,7 +24,7 @@ public final class HistoryService {
             .min()
     }
 
-    public func deleteMergedHistory(in targets: [Targets], in context: NSManagedObjectContext) throws {
+    public func deleteHistory(mergedInto targets: [Targets], in context: NSManagedObjectContext) throws {
         guard let timestamp = lastCommonTransactionTimestamp(in: targets) else { return }
         let deleteHistoryRequest = NSPersistentHistoryChangeRequest.deleteHistory(before: timestamp)
         try context.execute(deleteHistoryRequest)
