@@ -61,12 +61,6 @@ public extension File {
             .appendingPathComponent(id, isDirectory: true)
     }
 
-    public static func isDownloaded(id: String) -> Bool {
-        let containerPath = localContainerUrl(forId: id).path
-        return FileManager.default.fileExists(atPath: containerPath)
-            && !((try? FileManager.default.contentsOfDirectory(atPath: containerPath).isEmpty) ?? true)
-    }
-
     public var isFolder: Bool {
         return typeIdentifier == kUTTypeFolder as String
     }
@@ -74,18 +68,6 @@ public extension File {
     public var localUrl: URL {
         return File.localContainerUrl(forId: id)
             .appendingPathComponent(name, isDirectory: false)
-    }
-
-    public var isDownloaded: Bool {
-        return File.isDownloaded(id: id)
-    }
-
-    public var isMostRecentVersionDownloaded: Bool {
-        guard isDownloaded,
-            let localAttributes = try? FileManager.default.attributesOfItem(atPath: localUrl.path) as NSDictionary,
-            let localModificationDate = localAttributes.fileModificationDate()
-        else { return false }
-        return localModificationDate >= modificationDate
     }
 }
 

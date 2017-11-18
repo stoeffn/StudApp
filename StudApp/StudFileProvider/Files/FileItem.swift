@@ -43,12 +43,12 @@ final class FileItem: NSObject, NSFileProviderItem {
         contentModificationDate = file.modificationDate
         creationDate = file.creationDate
         lastUsedDate = file.state.lastUsedDate
-        isDownloaded = file.isDownloaded
-        isMostRecentVersionDownloaded = file.isMostRecentVersionDownloaded
+        isDownloaded = file.state.isDownloaded
+        isMostRecentVersionDownloaded = file.state.isMostRecentVersionDownloaded
         tagData = file.state.tagData
         favoriteRank = !file.state.isUnranked ? file.state.favoriteRank as NSNumber : nil
         ownerNameComponents = file.owner?.nameComponents
-        versionIdentifier = contentModificationDate?.description.data(using: .utf8)
+        versionIdentifier = file.state.downloadDate?.description.data(using: .utf8)
 
         super.init()
 

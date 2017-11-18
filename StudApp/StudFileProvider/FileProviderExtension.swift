@@ -104,11 +104,16 @@ final class FileProviderExtension: NSFileProviderExtension {
     }
 
     func startProvidingRemote(file: File, completionHandler: ((_ error: Error?) -> Void)?) throws {
+        let downloadDate = Date()
         file.download { result in
             guard result.isSuccess else {
                 completionHandler?(NSFileProviderError(.serverUnreachable))
                 return
             }
+
+            file.state.downloadDate = downloadDate
+            try? file.managedObjectContext?.saveWhenChanged()
+
             do {
                 try self.startProvidingDownloaded(file: file, completionHandler: completionHandler)
             } catch {
@@ -127,7 +132,7 @@ final class FileProviderExtension: NSFileProviderExtension {
                 completionHandler?(NSFileProviderError(.noSuchItem))
                 return
             }
-            if File.isDownloaded(id: itemIdentifier.id) {
+            if file.state.isDownloaded {
                 try startProvidingDownloaded(file: file, completionHandler: completionHandler)
             } else {
                 try startProvidingRemote(file: file, completionHandler: completionHandler)

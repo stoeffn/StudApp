@@ -191,6 +191,7 @@ class Api<Routes: ApiRoutes> {
     ///   - queue: Dispatch queue to execute the completion handler on. Defaults to the main queue.
     ///   - handler: Completion handler receiving a result with an URL pointing to the dowloaded file.
     /// - Returns: URL task in its resumed state.
+    /// - Remark: The downloaded document overrides any existing file at `destination`.
     @discardableResult
     func download(_ route: Routes, to destination: URL, parameters: [URLQueryItem] = [],
                   queue: DispatchQueue = .main, handler: @escaping ResultHandler<URL>) -> URLSessionTask {
@@ -198,6 +199,7 @@ class Api<Routes: ApiRoutes> {
             guard let url = result.value else { return handler(result) }
             do {
                 try FileManager.default.createIntermediateDirectories(forFileAt: destination)
+                try? FileManager.default.removeItem(at: destination)
                 try FileManager.default.moveItem(at: url, to: destination)
 
                 queue.async {

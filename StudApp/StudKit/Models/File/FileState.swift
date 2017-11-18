@@ -14,11 +14,26 @@ public final class FileState: NSManagedObject, CDCreatable {
     @NSManaged public var favoriteRank: Int
     @NSManaged public var tagData: Data?
 
+    @NSManaged public var downloadDate: Date?
+
     @NSManaged public var file: File
 
     public required convenience init(createIn context: NSManagedObjectContext) {
         self.init(context: context)
 
         favoriteRank = Int(NSFileProviderFavoriteRankUnranked)
+    }
+}
+
+// MARK: - Utilites
+
+public extension FileState {
+    public var isDownloaded: Bool {
+        return downloadDate != nil
+    }
+
+    public var isMostRecentVersionDownloaded: Bool {
+        guard let downloadDate = downloadDate else { return false }
+        return downloadDate <= file.modificationDate
     }
 }
