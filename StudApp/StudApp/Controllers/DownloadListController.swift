@@ -24,7 +24,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
 
-    // MARK: Table View Data Source
+    // MARK: - Table View Data Source
 
     override func numberOfSections(in _: UITableView) -> Int {
         return viewModel.numberOfSections
@@ -51,5 +51,19 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
     override func tableView(_: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
         return viewModel.section(forSectionIndexTitle: title, at: index)
+    }
+
+    // MARK: - Table View Delegate
+
+    override func tableView(_: UITableView,
+                            trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        func removeDownloadHandler(action: UIContextualAction, view: UIView, handler: @escaping (Bool) -> Void) {
+            let file = self.viewModel[rowAt: indexPath]
+            let success = self.viewModel.removeDownload(file)
+            handler(success)
+        }
+
+        let removeDownloadAction = UIContextualAction(style: .destructive, title: "Remove", handler: removeDownloadHandler)
+        return UISwipeActionsConfiguration(actions: [removeDownloadAction])
     }
 }
