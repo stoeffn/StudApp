@@ -24,7 +24,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         historyService = ServiceContainer.default[HistoryService.self]
 
         try? historyService.mergeHistory(into: coreDataService.viewContext)
-        try? historyService.deleteMergedHistoryAndTokens(in: &Targets.iOSTargets, in: coreDataService.viewContext)
+        try? historyService.deleteMergedHistory(in: Targets.iOSTargets, in: coreDataService.viewContext)
 
         return true
     }
@@ -35,7 +35,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_: UIApplication) {
         try? historyService.mergeHistory(into: coreDataService.viewContext)
-        try? historyService.deleteMergedHistoryAndTokens(in: &Targets.iOSTargets, in: coreDataService.viewContext)
+        try? historyService.deleteMergedHistory(in: Targets.iOSTargets, in: coreDataService.viewContext)
     }
 
     func applicationWillTerminate(_: UIApplication) {

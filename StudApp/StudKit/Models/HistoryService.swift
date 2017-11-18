@@ -10,54 +10,38 @@ import CoreData
 
 public final class HistoryService {
     private var currentTarget: Targets
-    private var currentHistoryToken: NSPersistentHistoryToken?
+    private var lastTransactionTimestamp: Date?
 
     public init(currentTarget: Targets) {
         self.currentTarget = currentTarget
 
-        currentHistoryToken = currentTarget.mergedHistoryTokens?.last
+        lastTransactionTimestamp = currentTarget.lastHistoryTransactionTimestamp
     }
 
-    func latestCommonHistoryToken(in targets: [Targets]) -> NSPersistentHistoryToken? {
+    func lastCommonTransactionTimestamp(in targets: [Targets]) -> Date? {
         return targets
-            .flatMap { $0.mergedHistoryTokens?.reversed() }
-            .firstCommonElement(type: NSPersistentHistoryToken.self)
+            .map { $0.lastHistoryTransactionTimestamp ?? .distantPast }
+            .min()
     }
 
-    func deleteHistoryTokens(in targets: inout [Targets], before token: NSPersistentHistoryToken) {
-        for (index, target) in targets.enumerated() {
-            guard let mergedHistoryTokens = target.mergedHistoryTokens,
-                let tokenIndex = mergedHistoryTokens.index(of: token) else { continue }
-            targets[index].mergedHistoryTokens = Array(mergedHistoryTokens.dropFirst(tokenIndex))
-        }
-    }
-
-    func deleteHistory(before token: NSPersistentHistoryToken, in context: NSManagedObjectContext) throws {
-        let deleteHistoryRequest = NSPersistentHistoryChangeRequest.deleteHistory(before: token)
+    public func deleteMergedHistory(in targets: [Targets], in context: NSManagedObjectContext) throws {
+        guard let timestamp = lastCommonTransactionTimestamp(in: targets) else { return }
+        let deleteHistoryRequest = NSPersistentHistoryChangeRequest.deleteHistory(before: timestamp)
         try context.execute(deleteHistoryRequest)
     }
 
-    public func deleteMergedHistoryAndTokens(in targets: inout [Targets], in context: NSManagedObjectContext) throws {
-        guard let token = latestCommonHistoryToken(in: targets) else { return }
-        try deleteHistory(before: token, in: context)
-        deleteHistoryTokens(in: &targets, before: token)
-    }
-
     public func mergeHistory(into context: NSManagedObjectContext) throws {
-        let historyFetchRequest = NSPersistentHistoryChangeRequest.fetchHistory(after: currentHistoryToken)
+        let historyFetchRequest = NSPersistentHistoryChangeRequest.fetchHistory(after: lastTransactionTimestamp ?? .distantPast)
         guard let historyResult = try context.execute(historyFetchRequest) as? NSPersistentHistoryResult,
             let history = historyResult.result as? [NSPersistentHistoryTransaction] else {
             fatalError("Cannot convert persistent history fetch result to transaction.")
         }
 
-        var mergedHistoryTokens = currentTarget.mergedHistoryTokens
-
         for transaction in history {
             context.mergeChanges(fromContextDidSave: transaction.objectIDNotification())
-            mergedHistoryTokens?.append(transaction.token)
         }
 
-        currentTarget.mergedHistoryTokens = mergedHistoryTokens
-        currentHistoryToken = mergedHistoryTokens?.last ?? currentHistoryToken
+        lastTransactionTimestamp = history.last?.timestamp ?? lastTransactionTimestamp
+        currentTarget.lastHistoryTransactionTimestamp = lastTransactionTimestamp
     }
 }
