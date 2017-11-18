@@ -36,7 +36,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(_: UIApplication) {
         try? historyService.mergeHistory(into: coreDataService.viewContext)
         try? historyService.deleteMergedHistory(in: Targets.iOSTargets, in: coreDataService.viewContext)
-        NotificationCenter.default.post(name: HistoryService.MergeNotificationName, object: nil)
     }
 
     func applicationWillTerminate(_: UIApplication) {
