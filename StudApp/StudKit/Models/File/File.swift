@@ -41,7 +41,7 @@ extension File {
             NSSortDescriptor(keyPath: \File.course.title, ascending: true),
             NSSortDescriptor(keyPath: \File.title, ascending: true),
         ]
-        return File.fetchRequest(predicate: predicate, sortDescriptors: sortDescriptors,
+        return File.fetchRequest(predicate: predicate, sortDescriptors: sortDescriptors, shouldRefreshRefetchedObjects: true,
                                  relationshipKeyPathsForPrefetching: ["state"])
     }
 

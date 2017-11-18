@@ -28,7 +28,7 @@ public final class DownloadListViewModel: NSObject {
     private(set) lazy var controller: NSFetchedResultsController<File>
         = NSFetchedResultsController(fetchRequest: File.downloadedFetchRequest,
                                      managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: "course.title",
-                                     cacheName: "downloadedDocuments")
+                                     cacheName: nil)
 
     /// Fetches initial data.
     public func fetch() {
