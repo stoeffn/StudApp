@@ -36,7 +36,7 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
 
 extension File {
     public static var downloadedFetchRequest: NSFetchRequest<File> {
-        let predicate = NSPredicate(format: "typeIdentifier != %@", kUTTypeFolder as String)
+        let predicate = NSPredicate(format: "state.downloadDate != NIL")
         let sortDescriptors = [
             NSSortDescriptor(keyPath: \File.course.title, ascending: true),
             NSSortDescriptor(keyPath: \File.title, ascending: true),
