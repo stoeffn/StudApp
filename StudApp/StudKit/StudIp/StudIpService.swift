@@ -79,6 +79,9 @@ public final class StudIpService {
         let coreDataService = ServiceContainer.default[CoreDataService.self]
         try? coreDataService.removeAllObjects(in: coreDataService.viewContext)
 
+        let storageService = ServiceContainer.default[StorageService.self]
+        try? storageService.removeAllDocuments()
+
         NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
         NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
     }
