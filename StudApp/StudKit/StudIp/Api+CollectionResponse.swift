@@ -6,7 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-private let defaultNumberOfItemsPerRequest = 20
+private let defaultNumberOfItemsPerRequest = 64
 
 extension Api {
     /// Requests data from this API and interprets it as a paginated collection.
