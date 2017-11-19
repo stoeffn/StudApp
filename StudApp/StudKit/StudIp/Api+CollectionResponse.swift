@@ -53,6 +53,7 @@ extension Api {
         requestCollection(route, afterOffset: offset, itemsPerRequest: itemsPerRequest,
                           ignoreLastAccess: ignoreLastAccess) { (result: Result<CollectionResponse<Value>>) in
             guard let collection = result.value else {
+                self.removeLastAccess(for: route)
                 return handler(result.replacingValue(nil))
             }
             let items = initialItems + collection.items

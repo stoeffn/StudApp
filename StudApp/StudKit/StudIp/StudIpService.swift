@@ -74,7 +74,7 @@ final class StudIpService {
         let emptyCredential = URLCredential(user: "", password: "", persistence: .synchronizable)
         URLCredentialStorage.shared.setDefaultCredential(emptyCredential, for: protectionSpace)
 
-        api.removeRouteAccesses()
+        api.removeLastRouteAccesses()
 
         let coreDataService = ServiceContainer.default[CoreDataService.self]
         try? coreDataService.removeAllObjects(in: coreDataService.viewContext)
