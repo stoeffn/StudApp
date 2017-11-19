@@ -12,12 +12,14 @@ import StudKit
 
 final class FileProviderExtension: NSFileProviderExtension {
     private let coreDataService: CoreDataService
+    private let studIpService: StudIpService
 
     // MARK: - Life Cycle
 
     override init() {
         ServiceContainer.default.register(providers: StudKitServiceProvider(target: .fileProvider))
         coreDataService = ServiceContainer.default[CoreDataService.self]
+        studIpService = ServiceContainer.default[StudIpService.self]
 
         let historyService = ServiceContainer.default[HistoryService.self]
         try? historyService.mergeHistory(into: coreDataService.viewContext)
@@ -80,6 +82,8 @@ final class FileProviderExtension: NSFileProviderExtension {
     // MARK: - Enumeration
 
     override func enumerator(for containerItemIdentifier: NSFileProviderItemIdentifier) throws -> NSFileProviderEnumerator {
+        guard studIpService.isSignedIn else { throw NSFileProviderError(.notAuthenticated) }
+
         switch containerItemIdentifier.model {
         case .workingSet:
             return WorkingSetEnumerator(itemIdentifier: containerItemIdentifier)
