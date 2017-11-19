@@ -31,12 +31,12 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdat
 // MARK: - Core Data Operations
 
 extension Course {
-    public var rootFilesFetchRequest: NSFetchRequest<File> {
-        let predicate = NSPredicate(format: "course == %@ AND parent == NIL", self)
-        return File.fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["state"])
+    public var rootFilesFetchRequest: NSFetchRequest<FileState> {
+        let predicate = NSPredicate(format: "file.course == %@ AND file.parent == NIL", self)
+        return FileState.fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["file"])
     }
 
-    public func fetchRootFiles(in context: NSManagedObjectContext) throws -> [File] {
+    public func fetchRootFiles(in context: NSManagedObjectContext) throws -> [FileState] {
         return try context.fetch(rootFilesFetchRequest)
     }
 }

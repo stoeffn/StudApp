@@ -16,20 +16,20 @@ public final class SemesterListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let semesterService = ServiceContainer.default[SemesterService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]
-    private var fetchRequest: NSFetchRequest<Semester>
+    private var fetchRequest: NSFetchRequest<SemesterState>
 
     public weak var delegate: DataSourceSectionDelegate?
 
     /// Creates a new semester list view model managing the semesters in returned by the request given, which defaults to all
     /// semesters.
-    public init(fetchRequest: NSFetchRequest<Semester> = Semester.sortedFetchRequest) {
+    public init(fetchRequest: NSFetchRequest<SemesterState> = Semester.sortedFetchRequest) {
         self.fetchRequest = fetchRequest
         super.init()
 
         controller.delegate = self
     }
 
-    private(set) lazy var controller: NSFetchedResultsController<Semester>
+    private(set) lazy var controller: NSFetchedResultsController<SemesterState>
         = NSFetchedResultsController(fetchRequest: self.fetchRequest, managedObjectContext: coreDataService.viewContext,
                                      sectionNameKeyPath: nil, cacheName: nil)
 
@@ -64,7 +64,7 @@ extension SemesterListViewModel: DataSourceSection {
     }
 
     public subscript(rowAt index: Int) -> Semester {
-        return controller.object(at: IndexPath(row: index, section: 0))
+        return controller.object(at: IndexPath(row: index, section: 0)).semester
     }
 }
 
@@ -81,20 +81,20 @@ extension SemesterListViewModel: NSFetchedResultsControllerDelegate {
 
     public func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange object: Any, at indexPath: IndexPath?,
                            for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        guard let semester = object as? Semester else { fatalError() }
+        guard let state = object as? SemesterState else { fatalError() }
         switch type {
         case .insert:
             guard let indexPath = newIndexPath else { return }
-            delegate?.data(changedIn: semester, at: indexPath.row, change: .insert, in: self)
+            delegate?.data(changedIn: state.semester, at: indexPath.row, change: .insert, in: self)
         case .delete:
             guard let indexPath = indexPath else { return }
-            delegate?.data(changedIn: semester, at: indexPath.row, change: .delete, in: self)
+            delegate?.data(changedIn: state.semester, at: indexPath.row, change: .delete, in: self)
         case .update:
             guard let indexPath = indexPath else { return }
-            delegate?.data(changedIn: semester, at: indexPath.row, change: .update(semester), in: self)
+            delegate?.data(changedIn: state.semester, at: indexPath.row, change: .update(state.semester), in: self)
         case .move:
             guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
-            delegate?.data(changedIn: semester, at: indexPath.row, change: .move(to: newIndexPath.row), in: self)
+            delegate?.data(changedIn: state.semester, at: indexPath.row, change: .move(to: newIndexPath.row), in: self)
         }
     }
 }

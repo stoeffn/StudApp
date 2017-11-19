@@ -45,9 +45,9 @@ extension File {
                                       relationshipKeyPathsForPrefetching: ["file"])
     }
 
-    public var childrenFetchRequest: NSFetchRequest<File> {
-        let predicate = NSPredicate(format: "parent == %@", self)
-        return File.fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["state"])
+    public var childrenFetchRequest: NSFetchRequest<FileState> {
+        let predicate = NSPredicate(format: "file.parent == %@", self)
+        return FileState.fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["file"])
     }
 }
 
