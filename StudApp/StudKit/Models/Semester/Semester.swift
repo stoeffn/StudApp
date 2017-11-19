@@ -62,6 +62,10 @@ extension Semester {
         return SemesterState.fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["semester"])
     }
 
+    public static func fetchNonHidden(in context: NSManagedObjectContext) throws -> [Semester] {
+        return try context.fetch(nonHiddenFetchRequest).map { $0.semester }
+    }
+
     public var coursesFetchRequest: NSFetchRequest<CourseState> {
         let predicate = NSPredicate(format: "%@ IN course.semesters", self)
         let sortDescriptors = [NSSortDescriptor(keyPath: \CourseState.course.title, ascending: true)]

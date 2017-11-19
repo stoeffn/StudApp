@@ -19,6 +19,12 @@ public final class CourseService {
     public func update(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Course]>) {
         studIp.api.requestCompleteCollection(.courses(forUserId: userId)) { (result: Result<[CourseModel]>) in
             Course.update(using: result, in: context, handler: handler)
+
+            guard let semesters = try? Semester.fetchNonHidden(in: context) else { return }
+            for semester in semesters {
+                NSFileProviderManager.default.signalEnumerator(for: semester.itemIdentifier) { _ in }
+            }
+            NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
         }
     }
 }

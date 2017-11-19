@@ -36,7 +36,7 @@ extension Course {
         return FileState.fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["file"])
     }
 
-    public func fetchRootFiles(in context: NSManagedObjectContext) throws -> [FileState] {
-        return try context.fetch(rootFilesFetchRequest)
+    public func fetchRootFiles(in context: NSManagedObjectContext) throws -> [File] {
+        return try context.fetch(rootFilesFetchRequest).map { $0.file }
     }
 }

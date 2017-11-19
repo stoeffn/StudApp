@@ -16,9 +16,7 @@ final class SemesterEnumerator: CachingFileEnumerator {
 
         viewModel.delegate = cache
         viewModel.fetch()
-        viewModel.update { _ in
-            NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
-        }
+        viewModel.update()
     }
 
     override var items: [NSFileProviderItem] {

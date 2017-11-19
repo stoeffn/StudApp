@@ -46,7 +46,7 @@ public final class FileListViewModel: NSObject {
     /// Updates data from the server. Please note that this method not only updates one folder but the course's whole file tree.
     public func update(handler: ResultHandler<Void>? = nil) {
         coreDataService.performBackgroundTask { context in
-            self.fileService.update(filesInCourseWithId: self.course.id, in: context) { result in
+            self.fileService.update(filesInCourse: self.course, in: context) { result in
                 try? context.saveWhenChanged()
                 handler?(result.replacingValue(()))
             }

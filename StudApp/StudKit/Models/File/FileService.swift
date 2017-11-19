@@ -15,16 +15,22 @@ public final class FileService {
         studIp = ServiceContainer.default[StudIpService.self]
     }
 
-    public func update(filesInCourseWithId courseId: String, in context: NSManagedObjectContext,
+    public func update(filesInCourse course: Course, in context: NSManagedObjectContext,
                        handler: @escaping ResultHandler<[File]>) {
-        studIp.api.requestCompleteCollection(.filesInCourse(withId: courseId)) { (result: Result<[FileModel]>) in
+        studIp.api.requestCompleteCollection(.filesInCourse(withId: course.id)) { (result: Result<[FileModel]>) in
             File.update(using: result, in: context, handler: handler)
+
+            NSFileProviderManager.default.signalEnumerator(for: course.itemIdentifier) { _ in }
+            NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
         }
     }
 
-    public func update(fileWithId id: String, in context: NSManagedObjectContext, handler: @escaping ResultHandler<File>) {
-        studIp.api.requestDecoded(.file(withId: id)) { (result: Result<FileModel>) in
+    public func update(folder: File, in context: NSManagedObjectContext, handler: @escaping ResultHandler<File>) {
+        studIp.api.requestDecoded(.file(withId: folder.id)) { (result: Result<FileModel>) in
             File.update(using: result, in: context, handler: handler)
+
+            NSFileProviderManager.default.signalEnumerator(for: folder.itemIdentifier) { _ in }
+            NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
         }
     }
 }
