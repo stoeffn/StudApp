@@ -17,6 +17,8 @@ public final class User: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
     @NSManaged public var namePrefix: String?
     @NSManaged public var nameSuffix: String?
     @NSManaged public var pictureModificationDate: Date?
+
+    @NSManaged public var lecturedCourses: Set<Course>
 }
 
 // MARK: - Utilities
