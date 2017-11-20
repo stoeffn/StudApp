@@ -14,13 +14,13 @@ public typealias ResultHandler<Value> = (Result<Value>) -> Void
 /// Use this enumeration as a return or completion handler value instead of using a tuple consisting of both a value and an
 /// error.
 ///
-/// - success: Implies that the operation succeeded with a return value.
-/// - failure: Implies that the operation failed with an optional error.
+/// - success: Implies that an operation succeeded with a return value.
+/// - failure: Implies that an operation failed with an optional error.
 public enum Result<Value> {
     case failure(Error?)
     case success(Value)
 
-    /// Creates a new operation result depending on whether the value given is `nil`.
+    /// Creates a new result depending on whether the value given is `nil`.
     ///
     /// - Parameters:
     ///   - value: Optional value. Result will be a failure if set to `nil`.
@@ -62,7 +62,7 @@ public enum Result<Value> {
         }
     }
 
-    /// Returns a new operation result, keeping the error if set and replacing the value.
+    /// Returns a new result, keeping the error if set and replacing the value.
     ///
     /// - Remarks: This might be useful when transforming the result's data before returning it. The same rules as in
     ///            the initializer apply for `value` being `nil`.

@@ -7,6 +7,12 @@
 //
 
 extension Result {
+    /// Creates a new result depending on whether the value given is `nil`.
+    ///
+    /// - Parameters:
+    ///   - value: Optional value. Result will be a failure if set to `nil`.
+    ///   - error: Optional error. Result will be a failure if set.
+    ///   - statusCode: Optional HTTP status code. Result will be a failure if not in the 200 range.
     init(_ value: Value?, error: Error? = nil, statusCode: Int?) {
         if let value = value, let statusCode = statusCode, error == nil, 200 ... 299 ~= statusCode {
             self = .success(value)
