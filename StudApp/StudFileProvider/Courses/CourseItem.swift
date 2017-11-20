@@ -68,9 +68,4 @@ final class CourseItem: NSObject, NSFileProviderItem {
         let childItemCount = try context.count(for: course.rootFilesFetchRequest)
         self.init(from: course, childItemCount: childItemCount, parentItemIdentifier: parentItemIdentifier)
     }
-
-    convenience init(byId id: String, context: NSManagedObjectContext) throws {
-        guard let course = try Course.fetch(byId: id, in: context) else { throw NSFileProviderError(.noSuchItem) }
-        try self.init(from: course, context: context)
-    }
 }

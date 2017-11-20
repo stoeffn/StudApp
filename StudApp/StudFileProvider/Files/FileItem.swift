@@ -118,9 +118,4 @@ final class FileItem: NSObject, NSFileProviderItem {
         let parentIdentifier = file.parent?.itemIdentifier ?? file.course.itemIdentifier
         self.init(from: file, parentItemIdentifier: parentIdentifier)
     }
-
-    convenience init(byId id: String, context: NSManagedObjectContext) throws {
-        guard let file = try File.fetch(byId: id, in: context) else { throw NSFileProviderError(.noSuchItem) }
-        try self.init(from: file)
-    }
 }
