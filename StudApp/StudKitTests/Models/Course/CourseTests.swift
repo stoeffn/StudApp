@@ -57,13 +57,13 @@ final class CourseTests: XCTestCase {
     func testBySemester_0_3Courses() {
         let semester = try! Semester.fetch(byId: "0", in: context)
         let courses = try! context.fetch(semester!.coursesFetchRequest)
-        XCTAssertEqual(courses.map { $0.id }.set, ["0", "1", "2"] as Set)
+        XCTAssertEqual(courses.map { $0.course.id }.set, ["0", "1", "2"] as Set)
     }
 
     func testBySemester_1_2Courses() {
         let semester = try! Semester.fetch(byId: "1", in: context)
         let courses = try! context.fetch(semester!.coursesFetchRequest)
-        XCTAssertEqual(courses.map { $0.id }.set, ["2", "3"] as Set)
+        XCTAssertEqual(courses.map { $0.course.id }.set, ["2", "3"] as Set)
     }
 
     func testFetchFiles_Course1_Files() {

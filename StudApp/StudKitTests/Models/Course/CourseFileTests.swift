@@ -11,13 +11,15 @@ import XCTest
 @testable import StudKit
 
 final class FileServiceTests: XCTestCase {
-    let service = ServiceContainer.default[FileService.self]
-    var context: NSManagedObjectContext!
+    private let service = ServiceContainer.default[FileService.self]
+    private var context: NSManagedObjectContext!
+    private var course: Course!
 
     override func setUp() {
         context = StudKitTestsServiceProvider(target: .tests).provideCoreDataService().viewContext
 
-        try! CourseModel(id: "a2c88e905abf322d1868640859f13c99", title: "Course").coreDataModel(in: context!)
+        course = try! CourseModel(id: "a2c88e905abf322d1868640859f13c99", title: "Course")
+            .coreDataModel(in: context!) as! Course
 
         try! FileModel(fileId: "123456784c20d3c1931649b979ecd73e", name: "f.pdf",
                        coursePath: "/a2c88e905abf322d1868640859f13c99", title: "Current").coreDataModel(in: context!)
@@ -28,7 +30,7 @@ final class FileServiceTests: XCTestCase {
     }
 
     func testUpdate_FileCollectionResponse_Success() {
-        service.update(filesInCourseWithId: "a2c88e905abf322d1868640859f13c99", in: context) { fileResult in
+        service.update(filesIn: course, in: context) { fileResult in
             try! self.context!.save()
             let course = try! Course.fetch(byId: "a2c88e905abf322d1868640859f13c99", in: self.context)
             let file = try! File.fetch(byId: "d4a7bef74c20d3c1931649b979ecd73e", in: self.context)

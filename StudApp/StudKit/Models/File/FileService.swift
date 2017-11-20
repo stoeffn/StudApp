@@ -15,8 +15,7 @@ public final class FileService {
         studIp = ServiceContainer.default[StudIpService.self]
     }
 
-    public func update(filesInCourse course: Course, in context: NSManagedObjectContext,
-                       handler: @escaping ResultHandler<[File]>) {
+    public func update(filesIn course: Course, in context: NSManagedObjectContext, handler: @escaping ResultHandler<[File]>) {
         studIp.api.requestCompleteCollection(.filesInCourse(withId: course.id)) { (result: Result<[FileModel]>) in
             File.update(using: result, in: context, handler: handler)
 
