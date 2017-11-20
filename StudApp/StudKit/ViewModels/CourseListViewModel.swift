@@ -27,7 +27,7 @@ public final class CourseListViewModel: NSObject {
         controller.delegate = self
     }
 
-    private(set) lazy var controller: NSFetchedResultsController<Course>
+    private(set) lazy var controller: NSFetchedResultsController<CourseState>
         = NSFetchedResultsController(fetchRequest: semester.coursesFetchRequest,
                                      managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
 
@@ -57,7 +57,7 @@ extension CourseListViewModel: DataSourceSection {
     }
 
     public subscript(rowAt index: Int) -> Course {
-        return controller.object(at: IndexPath(row: index, section: 0))
+        return controller.object(at: IndexPath(row: index, section: 0)).course
     }
 }
 
@@ -74,20 +74,20 @@ extension CourseListViewModel: NSFetchedResultsControllerDelegate {
 
     public func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange object: Any, at indexPath: IndexPath?,
                            for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        guard let course = object as? Course else { fatalError() }
+        guard let state = object as? CourseState else { fatalError() }
         switch type {
         case .insert:
             guard let indexPath = newIndexPath else { return }
-            delegate?.data(changedIn: course, at: indexPath.row, change: .insert, in: self)
+            delegate?.data(changedIn: state.course, at: indexPath.row, change: .insert, in: self)
         case .delete:
             guard let indexPath = indexPath else { return }
-            delegate?.data(changedIn: course, at: indexPath.row, change: .delete, in: self)
+            delegate?.data(changedIn: state.course, at: indexPath.row, change: .delete, in: self)
         case .update:
             guard let indexPath = indexPath else { return }
-            delegate?.data(changedIn: course, at: indexPath.row, change: .update(course), in: self)
+            delegate?.data(changedIn: state.course, at: indexPath.row, change: .update(state.course), in: self)
         case .move:
             guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
-            delegate?.data(changedIn: course, at: indexPath.row, change: .move(to: newIndexPath.row), in: self)
+            delegate?.data(changedIn: state.course, at: indexPath.row, change: .move(to: newIndexPath.row), in: self)
         }
     }
 }

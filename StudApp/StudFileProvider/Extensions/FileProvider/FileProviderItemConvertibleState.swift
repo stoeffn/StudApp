@@ -9,6 +9,8 @@
 import Foundation
 
 public protocol FileProviderItemConvertibleState: class {
+    var item: FileProviderItemConvertible { get }
+
     var favoriteRank: Int { get set }
     var lastUsedDate: Date? { get set }
     var tagData: Data? { get set }

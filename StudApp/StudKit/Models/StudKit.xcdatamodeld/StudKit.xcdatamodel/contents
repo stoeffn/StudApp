@@ -22,7 +22,7 @@
         <attribute name="title" attributeType="String" minValueString="1" syncable="YES"/>
         <relationship name="files" toMany="YES" deletionRule="Cascade" destinationEntity="File" inverseName="course" inverseEntity="File" syncable="YES"/>
         <relationship name="lecturers" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="lecturedCourses" inverseEntity="User" syncable="YES"/>
-        <relationship name="semesters" toMany="YES" deletionRule="Cascade" destinationEntity="Semester" inverseName="courses" inverseEntity="Semester" syncable="YES"/>
+        <relationship name="semesters" toMany="YES" deletionRule="Nullify" destinationEntity="Semester" inverseName="courses" inverseEntity="Semester" syncable="YES"/>
         <relationship name="state" maxCount="1" deletionRule="Cascade" destinationEntity="CourseState" inverseName="course" inverseEntity="CourseState" syncable="YES"/>
         <fetchIndex name="byId">
             <fetchIndexElement property="id" type="Binary" order="ascending"/>
@@ -80,7 +80,7 @@
         <attribute name="endDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" attributeType="String" minValueString="1" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
-        <relationship name="courses" toMany="YES" deletionRule="Cascade" destinationEntity="Course" inverseName="semesters" inverseEntity="Course" syncable="YES"/>
+        <relationship name="courses" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="semesters" inverseEntity="Course" syncable="YES"/>
         <relationship name="state" maxCount="1" deletionRule="Cascade" destinationEntity="SemesterState" inverseName="semester" inverseEntity="SemesterState" syncable="YES"/>
         <fetchIndex name="byId">
             <fetchIndexElement property="id" type="Binary" order="ascending"/>

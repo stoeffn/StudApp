@@ -6,7 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-private let defaultNumberOfItemsPerRequest = 20
+private let defaultNumberOfItemsPerRequest = 64
 
 extension Api {
     /// Requests data from this API and interprets it as a paginated collection.
@@ -53,6 +53,7 @@ extension Api {
         requestCollection(route, afterOffset: offset, itemsPerRequest: itemsPerRequest,
                           ignoreLastAccess: ignoreLastAccess) { (result: Result<CollectionResponse<Value>>) in
             guard let collection = result.value else {
+                self.removeLastAccess(for: route)
                 return handler(result.replacingValue(nil))
             }
             let items = initialItems + collection.items

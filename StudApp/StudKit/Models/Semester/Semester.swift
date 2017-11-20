@@ -51,22 +51,25 @@ extension Semester {
         return try context.fetch(request)
     }
 
-    public static var sortedFetchRequest: NSFetchRequest<Semester> {
-        let sortDescriptor = NSSortDescriptor(keyPath: \Semester.beginDate, ascending: false)
-        return fetchRequest(predicate: NSPredicate(value: true), sortDescriptors: [sortDescriptor],
-                            shouldRefreshRefetchedObjects: true, relationshipKeyPathsForPrefetching: ["state"])
+    public static var sortedFetchRequest: NSFetchRequest<SemesterState> {
+        let sortDescriptor = NSSortDescriptor(keyPath: \SemesterState.semester.beginDate, ascending: false)
+        return SemesterState.fetchRequest(predicate: NSPredicate(value: true), sortDescriptors: [sortDescriptor],
+                                          relationshipKeyPathsForPrefetching: ["semester"])
     }
 
-    public static var nonHiddenFetchRequest: NSFetchRequest<Semester> {
-        let predicate = NSPredicate(format: "state.isHidden == NO")
-        return fetchRequest(predicate: predicate, shouldRefreshRefetchedObjects: true,
-                            relationshipKeyPathsForPrefetching: ["state"])
+    public static var nonHiddenFetchRequest: NSFetchRequest<SemesterState> {
+        let predicate = NSPredicate(format: "isHidden == NO")
+        return SemesterState.fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["semester"])
     }
 
-    public var coursesFetchRequest: NSFetchRequest<Course> {
-        let predicate = NSPredicate(format: "%@ IN semesters", self)
-        let sortDescriptors = [NSSortDescriptor(keyPath: \Course.title, ascending: true)]
-        return Course.fetchRequest(predicate: predicate, sortDescriptors: sortDescriptors, shouldRefreshRefetchedObjects: true,
-                                   relationshipKeyPathsForPrefetching: ["state"])
+    public static func fetchNonHidden(in context: NSManagedObjectContext) throws -> [Semester] {
+        return try context.fetch(nonHiddenFetchRequest).map { $0.semester }
+    }
+
+    public var coursesFetchRequest: NSFetchRequest<CourseState> {
+        let predicate = NSPredicate(format: "%@ IN course.semesters", self)
+        let sortDescriptors = [NSSortDescriptor(keyPath: \CourseState.course.title, ascending: true)]
+        return CourseState.fetchRequest(predicate: predicate, sortDescriptors: sortDescriptors,
+                                        relationshipKeyPathsForPrefetching: ["course"])
     }
 }

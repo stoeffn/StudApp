@@ -8,4 +8,8 @@
 
 import StudKit
 
-extension CourseState: FileProviderItemConvertibleState {}
+extension CourseState: FileProviderItemConvertibleState {
+    public var item: FileProviderItemConvertible {
+        return course
+    }
+}

@@ -6,7 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-final class StudIpService {
+public final class StudIpService {
     let api: Api<StudIpRoutes>
 
     init(baseUrl: URL, realm: String) {
@@ -21,7 +21,7 @@ final class StudIpService {
     ///
     /// - Warning: This does not garantuee that the credential is actually correct as this implementation only relies on a
     ///            credential being stored. Thus, the password might have changed in the meantime.
-    var isSignedIn: Bool {
+    public var isSignedIn: Bool {
         guard let credential = URLCredentialStorage.shared.defaultCredential(for: api.protectionSpace) else { return false }
         return !(credential.user?.isEmpty ?? true)
     }
@@ -74,9 +74,15 @@ final class StudIpService {
         let emptyCredential = URLCredential(user: "", password: "", persistence: .synchronizable)
         URLCredentialStorage.shared.setDefaultCredential(emptyCredential, for: protectionSpace)
 
-        api.removeRouteAccesses()
+        api.removeLastRouteAccesses()
 
         let coreDataService = ServiceContainer.default[CoreDataService.self]
         try? coreDataService.removeAllObjects(in: coreDataService.viewContext)
+
+        let storageService = ServiceContainer.default[StorageService.self]
+        try? storageService.removeAllDocuments()
+
+        NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
+        NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
     }
 }

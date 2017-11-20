@@ -22,4 +22,8 @@ public final class StorageService {
         }
         return appGroupUrl.appendingPathComponent("Dcouments", isDirectory: true)
     }()
+
+    func removeAllDocuments() throws {
+        try FileManager.default.removeItem(at: documentsUrl)
+    }
 }

@@ -89,10 +89,15 @@ class Api<Routes: ApiRoutes> {
         lastRouteAccesses[route] = Date()
     }
 
+    /// Removes the last access date for `route`.
+    func removeLastAccess(for route: Routes) {
+        lastRouteAccesses.removeValue(forKey: route)
+    }
+
     /// Clears all route access data.
     ///
     /// For example, this is useful when signing out because all data should be reloaded when signing back in.
-    func removeRouteAccesses() {
+    func removeLastRouteAccesses() {
         lastRouteAccesses.removeAll()
     }
 
