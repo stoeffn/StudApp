@@ -11,27 +11,56 @@ import MobileCoreServices
 import StudKit
 
 final class CourseItem: NSObject, NSFileProviderItem {
+    // MARK: - Required Properties
+
     let itemIdentifier: NSFileProviderItemIdentifier
+
     let filename: String
+
     let typeIdentifier = kUTTypeFolder as String
+
     let capabilities: NSFileProviderItemCapabilities = [.allowsContentEnumerating, .allowsReading]
+
+    // MARK: - Managing Content
+
     let childItemCount: NSNumber?
+
+    // MARK: - Specifying Content Location
+
     let parentItemIdentifier: NSFileProviderItemIdentifier
+
+    // MARK: - Tracking Usage
+
     let lastUsedDate: Date?
-    let tagData: Data?
-    let favoriteRank: NSNumber?
+
+    // MARK: - Sharing
+
     let isShared = true
+
     let ownerNameComponents: PersonNameComponents?
+
+    // MARK: - Managing Metadata
+
+    let tagData: Data?
+
+    let favoriteRank: NSNumber?
+
+    // MARK: - Life Cycle
 
     init(from course: Course, childItemCount: Int, parentItemIdentifier: NSFileProviderItemIdentifier = .rootContainer) {
         itemIdentifier = course.itemIdentifier
         filename = course.title
+
         self.childItemCount = childItemCount as NSNumber
+
         self.parentItemIdentifier = parentItemIdentifier
+
         lastUsedDate = course.state.lastUsedDate
+
+        ownerNameComponents = course.lecturers.first?.nameComponents
+
         tagData = course.state.tagData
         favoriteRank = !course.state.isUnranked ? course.state.favoriteRank as NSNumber : nil
-        ownerNameComponents = course.lecturers.first?.nameComponents
     }
 
     convenience init(from course: Course, context: NSManagedObjectContext) throws {
