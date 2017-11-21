@@ -12,6 +12,8 @@ import StudKit
 final class WorkingSetEnumerator: CachingFileEnumerator {
     private let viewModels: [WorkingSetViewModel]
 
+    // MARK: - Life Cycle
+
     override init(itemIdentifier: NSFileProviderItemIdentifier) {
         viewModels = [
             WorkingSetViewModel(fetchRequest: Semester.workingSetFetchRequest as! NSFetchRequest<NSFetchRequestResult>),
@@ -26,6 +28,8 @@ final class WorkingSetEnumerator: CachingFileEnumerator {
             viewModel.fetch()
         }
     }
+
+    // MARK: - Providing Items
 
     override var items: [NSFileProviderItem] {
         return viewModels
