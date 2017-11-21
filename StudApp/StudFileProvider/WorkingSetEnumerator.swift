@@ -9,11 +9,14 @@
 import CoreData
 import StudKit
 
+/// Enumerates all files, eg. semesters, courses or documents, that are currently considered important. This includes any
+/// items marked as favorite, recently used items, and tagged items.
 final class WorkingSetEnumerator: CachingFileEnumerator {
     private let viewModels: [WorkingSetViewModel]
 
     // MARK: - Life Cycle
 
+    /// Creates a new working set enumerator for items currently considered important.
     override init(itemIdentifier: NSFileProviderItemIdentifier) {
         viewModels = [
             WorkingSetViewModel(fetchRequest: Semester.workingSetFetchRequest as! NSFetchRequest<NSFetchRequestResult>),

@@ -8,12 +8,16 @@
 
 import StudKit
 
+/// Enumerates all visible semesters.
 final class SemesterEnumerator: CachingFileEnumerator {
     private let viewModel = SemesterListViewModel(fetchRequest: Semester.nonHiddenFetchRequest)
 
     // MARK: - Life Cycle
 
-    override init(itemIdentifier: NSFileProviderItemIdentifier) {
+    /// Creates a new semester enumerator.
+    ///
+    /// - Parameter itemIdentifier: Item identifier for the containing item, which should be the default root container.
+    override init(itemIdentifier: NSFileProviderItemIdentifier = .rootContainer) {
         super.init(itemIdentifier: itemIdentifier)
 
         viewModel.delegate = cache

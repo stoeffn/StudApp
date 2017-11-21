@@ -9,16 +9,33 @@
 import CoreData
 import FileProvider
 
+/// Enumerates any file items, e.g. courses, documents, or folders, returned by `items` and handles caching changed items until
+/// asked to enumerate those changes.
+///
+/// When asked to enumerate items, this class uses those returned by `items` after merging Core Data persistent history into the
+/// view context.
+///
+/// Enumerating changes works similarly: History is merged first. Then, it enumerates updates and deletes contained in `cache`
+/// and resets the cache.
+///
+/// In order for this to work, you need to inform `cache` about any changes to the enumerator's content.
+///
+/// - Remark: This class is not generic so it can implement an Objective C protocol.
 open class CachingFileEnumerator: NSObject {
     public let itemIdentifier: NSFileProviderItemIdentifier
     public let coreDataService = ServiceContainer.default[CoreDataService.self]
     public let historyService = ServiceContainer.default[HistoryService.self]
     public let cache = ChangeCache()
 
+    // MARK: - Life Cycle
+
     public init(itemIdentifier: NSFileProviderItemIdentifier) {
         self.itemIdentifier = itemIdentifier
     }
 
+    // MARK: - Providing Items
+
+    /// File items to be enumerated, including any changed items. Defaults to none and should thus be overridden.
     open var items: [NSFileProviderItem] {
         return []
     }

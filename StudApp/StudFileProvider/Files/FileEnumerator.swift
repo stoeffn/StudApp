@@ -9,13 +9,18 @@
 import CoreData
 import StudKit
 
+/// Enumerates folders and documents inside a course or folder.
 final class FileEnumerator: CachingFileEnumerator {
     private let viewModel: FileListViewModel
 
     // MARK: - Life Cycle
 
+    /// Creates a new enumerator for folders and documents.
+    ///
+    /// - Parameter itemIdentifier: Item identifier for the containing item, which can either be a folder or course.
     override init(itemIdentifier: NSFileProviderItemIdentifier) {
         let coreDataService = ServiceContainer.default[CoreDataService.self]
+
         guard let model = try? FileProviderExtension.model(for: itemIdentifier, in: coreDataService.viewContext) else {
             fatalError("Cannot get model for item with identifier '\(itemIdentifier)'.")
         }
@@ -26,7 +31,7 @@ final class FileEnumerator: CachingFileEnumerator {
         case let folder as File:
             viewModel = FileListViewModel(course: folder.course, parentFolder: folder)
         default:
-            fatalError("Cannot list files in item with identifier '\(itemIdentifier)'.")
+            fatalError("Cannot enumerate files in item with identifier '\(itemIdentifier)'.")
         }
 
         super.init(itemIdentifier: itemIdentifier)
