@@ -10,6 +10,7 @@ import StudKit
 
 /// Enumerates all courses in a semester.
 final class CourseEnumerator: CachingFileEnumerator {
+    private let itemIdentifier: NSFileProviderItemIdentifier
     private let viewModel: CourseListViewModel
 
     // MARK: - Life Cycle
@@ -17,7 +18,9 @@ final class CourseEnumerator: CachingFileEnumerator {
     /// Creates a new course enumerator.
     ///
     /// - Parameter itemIdentifier: Item identifier for the containing item, which should be a course item.
-    override init(itemIdentifier: NSFileProviderItemIdentifier) {
+    init(itemIdentifier: NSFileProviderItemIdentifier) {
+        self.itemIdentifier = itemIdentifier
+
         let coreDataService = ServiceContainer.default[CoreDataService.self]
 
         guard let semester = try? Semester.fetch(byId: itemIdentifier.id, in: coreDataService.viewContext),
@@ -27,7 +30,7 @@ final class CourseEnumerator: CachingFileEnumerator {
 
         viewModel = CourseListViewModel(semester: unwrappedSemester)
 
-        super.init(itemIdentifier: itemIdentifier)
+        super.init()
 
         viewModel.delegate = cache
         viewModel.fetch()

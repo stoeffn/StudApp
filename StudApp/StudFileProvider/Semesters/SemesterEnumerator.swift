@@ -15,10 +15,8 @@ final class SemesterEnumerator: CachingFileEnumerator {
     // MARK: - Life Cycle
 
     /// Creates a new semester enumerator.
-    ///
-    /// - Parameter itemIdentifier: Item identifier for the containing item, which should be the default root container.
-    override init(itemIdentifier: NSFileProviderItemIdentifier = .rootContainer) {
-        super.init(itemIdentifier: itemIdentifier)
+    override init() {
+        super.init()
 
         viewModel.delegate = cache
         viewModel.fetch()

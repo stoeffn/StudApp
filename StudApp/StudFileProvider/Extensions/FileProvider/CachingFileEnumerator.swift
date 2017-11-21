@@ -22,16 +22,9 @@ import FileProvider
 ///
 /// - Remark: This class is not generic so it can implement an Objective C protocol.
 open class CachingFileEnumerator: NSObject {
-    public let itemIdentifier: NSFileProviderItemIdentifier
     public let coreDataService = ServiceContainer.default[CoreDataService.self]
     public let historyService = ServiceContainer.default[HistoryService.self]
     public let cache = ChangeCache()
-
-    // MARK: - Life Cycle
-
-    public init(itemIdentifier: NSFileProviderItemIdentifier) {
-        self.itemIdentifier = itemIdentifier
-    }
 
     // MARK: - Providing Items
 

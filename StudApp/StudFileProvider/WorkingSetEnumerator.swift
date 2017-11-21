@@ -17,14 +17,14 @@ final class WorkingSetEnumerator: CachingFileEnumerator {
     // MARK: - Life Cycle
 
     /// Creates a new working set enumerator for items currently considered important.
-    override init(itemIdentifier: NSFileProviderItemIdentifier) {
+    override init() {
         viewModels = [
             WorkingSetViewModel(fetchRequest: Semester.workingSetFetchRequest as! NSFetchRequest<NSFetchRequestResult>),
             WorkingSetViewModel(fetchRequest: Course.workingSetFetchRequest as! NSFetchRequest<NSFetchRequestResult>),
             WorkingSetViewModel(fetchRequest: File.workingSetFetchRequest as! NSFetchRequest<NSFetchRequestResult>),
         ]
 
-        super.init(itemIdentifier: itemIdentifier)
+        super.init()
 
         for viewModel in viewModels {
             viewModel.delegate = cache

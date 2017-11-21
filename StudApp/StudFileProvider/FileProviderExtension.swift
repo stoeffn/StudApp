@@ -84,9 +84,9 @@ final class FileProviderExtension: NSFileProviderExtension {
 
         switch containerItemIdentifier.model {
         case .workingSet:
-            return WorkingSetEnumerator(itemIdentifier: containerItemIdentifier)
+            return WorkingSetEnumerator()
         case .root:
-            return SemesterEnumerator(itemIdentifier: containerItemIdentifier)
+            return SemesterEnumerator()
         case .semester:
             return CourseEnumerator(itemIdentifier: containerItemIdentifier)
         case .course:
