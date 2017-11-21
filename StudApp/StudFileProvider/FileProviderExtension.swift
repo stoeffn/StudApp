@@ -26,7 +26,7 @@ final class FileProviderExtension: NSFileProviderExtension {
         try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
     }
 
-    // MARK: - Providing Meta Data
+    // MARK: - Working with Items and Persistent Identifiers
 
     override func persistentIdentifierForItem(at url: URL) -> NSFileProviderItemIdentifier? {
         // Exploit the fact that the path structure has been defined as
@@ -79,8 +79,6 @@ final class FileProviderExtension: NSFileProviderExtension {
         }
     }
 
-    // MARK: - Enumeration
-
     override func enumerator(for containerItemIdentifier: NSFileProviderItemIdentifier) throws -> NSFileProviderEnumerator {
         guard studIpService.isSignedIn else { throw NSFileProviderError(.notAuthenticated) }
 
@@ -98,7 +96,23 @@ final class FileProviderExtension: NSFileProviderExtension {
         }
     }
 
-    // MARK: - Providing Files
+    // MARK: - Managing Shared Files
+
+    override func itemChanged(at _: URL) {}
+
+    override func providePlaceholder(at url: URL, completionHandler: @escaping (Error?) -> Void) {
+        guard let identifier = persistentIdentifierForItem(at: url) else {
+            return completionHandler(NSFileProviderError(.noSuchItem))
+        }
+        do {
+            let placeholderUrl = NSFileProviderManager.placeholderURL(for: url)
+            try FileManager.default.createIntermediateDirectories(forFileAt: placeholderUrl)
+            try NSFileProviderManager.writePlaceholder(at: placeholderUrl, withMetadata: item(for: identifier))
+            completionHandler(nil)
+        } catch {
+            completionHandler(error)
+        }
+    }
 
     func startProvidingDownloaded(file: File, completionHandler: ((_ error: Error?) -> Void)?) throws {
         let destination = urlForItem(withPersistentIdentifier: file.itemIdentifier)!
@@ -146,29 +160,13 @@ final class FileProviderExtension: NSFileProviderExtension {
         }
     }
 
-    override func itemChanged(at _: URL) {}
-
     override func stopProvidingItem(at url: URL) {
         providePlaceholder(at: url) { _ in
             try? FileManager.default.removeItem(at: url)
         }
     }
 
-    override func providePlaceholder(at url: URL, completionHandler: @escaping (Error?) -> Void) {
-        guard let identifier = persistentIdentifierForItem(at: url) else {
-            return completionHandler(NSFileProviderError(.noSuchItem))
-        }
-        do {
-            let placeholderUrl = NSFileProviderManager.placeholderURL(for: url)
-            try FileManager.default.createIntermediateDirectories(forFileAt: placeholderUrl)
-            try NSFileProviderManager.writePlaceholder(at: placeholderUrl, withMetadata: item(for: identifier))
-            completionHandler(nil)
-        } catch {
-            completionHandler(error)
-        }
-    }
-
-    // MARK: - Modifying Meta Data
+    // MARK: - Handling Actions
 
     private func modifyItem(withIdentifier identifier: NSFileProviderItemIdentifier,
                             completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void,

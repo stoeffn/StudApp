@@ -11,12 +11,7 @@ import MobileCoreServices
 import StudKit
 
 final class RootItem: NSObject, NSFileProviderItem {
-    let itemIdentifier: NSFileProviderItemIdentifier = .rootContainer
-    let filename = "Semesters"
-    let typeIdentifier = kUTTypeFolder as String
-    let capabilities: NSFileProviderItemCapabilities = [.allowsContentEnumerating, .allowsReading]
-    let childItemCount: NSNumber?
-    let parentItemIdentifier: NSFileProviderItemIdentifier = .rootContainer
+    // MARK: - Life Cycle
 
     init(childItemCount: Int) {
         self.childItemCount = childItemCount as NSNumber
@@ -26,4 +21,24 @@ final class RootItem: NSObject, NSFileProviderItem {
         let childItemCount = try context.count(for: Semester.fetchRequest())
         self.init(childItemCount: childItemCount)
     }
+
+    // MARK: - File Provider Item Conformance
+
+    // MARK: Required Properties
+
+    let itemIdentifier: NSFileProviderItemIdentifier = .rootContainer
+
+    let filename = "Semesters"
+
+    let typeIdentifier = kUTTypeFolder as String
+
+    let capabilities: NSFileProviderItemCapabilities = [.allowsContentEnumerating, .allowsReading]
+
+    // MARK: Managing Content
+
+    let childItemCount: NSNumber?
+
+    // MARK: Specifying Content Location
+
+    let parentItemIdentifier: NSFileProviderItemIdentifier = .rootContainer
 }
