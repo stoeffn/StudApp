@@ -10,7 +10,7 @@ import CoreData
 import StudKit
 
 final class FileEnumerator: CachingFileEnumerator {
-    private let viewModel: FileListViewModel
+    // MARK: - Life Cycle
 
     override init(itemIdentifier: NSFileProviderItemIdentifier) {
         let coreDataService = ServiceContainer.default[CoreDataService.self]
@@ -33,6 +33,12 @@ final class FileEnumerator: CachingFileEnumerator {
         viewModel.fetch()
         viewModel.update()
     }
+
+    // MARK: - Properties
+
+    private let viewModel: FileListViewModel
+
+    // MARK: Providing Items
 
     override var items: [NSFileProviderItem] {
         return viewModel.flatMap { try? $0.fileProviderItem(context: coreDataService.viewContext) }

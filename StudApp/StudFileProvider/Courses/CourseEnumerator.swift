@@ -9,7 +9,7 @@
 import StudKit
 
 final class CourseEnumerator: CachingFileEnumerator {
-    private let viewModel: CourseListViewModel
+    // MARK: - Life Cycle
 
     override init(itemIdentifier: NSFileProviderItemIdentifier) {
         let coreDataService = ServiceContainer.default[CoreDataService.self]
@@ -24,6 +24,12 @@ final class CourseEnumerator: CachingFileEnumerator {
         viewModel.fetch()
         viewModel.update()
     }
+
+    // MARK: - Properties
+
+    private let viewModel: CourseListViewModel
+
+    // MARK: Providing Items
 
     override var items: [NSFileProviderItem] {
         return viewModel.flatMap { try? $0.fileProviderItem(context: coreDataService.viewContext) }

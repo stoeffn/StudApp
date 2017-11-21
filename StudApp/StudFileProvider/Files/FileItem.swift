@@ -11,76 +11,9 @@ import StudKit
 
 /// Represents a document or folder item.
 final class FileItem: NSObject, NSFileProviderItem {
+    // MARK: - Constants
+
     private static let realFilenameUserInfoKey = "realFilename"
-
-    // MARK: - Required Properties
-
-    let itemIdentifier: NSFileProviderItemIdentifier
-
-    /// File display name.
-    ///
-    /// - Remark: For the file system level name, please see `realFilename`.
-    let filename: String
-
-    let typeIdentifier: String
-
-    let capabilities: NSFileProviderItemCapabilities
-
-    // MARK: - Managing Content
-
-    let childItemCount: NSNumber?
-
-    let documentSize: NSNumber?
-
-    // MARK: - Specifying Content Location
-
-    let parentItemIdentifier: NSFileProviderItemIdentifier
-
-    // MARK: - Tracking Usage
-
-    let contentModificationDate: Date?
-
-    let creationDate: Date?
-
-    let lastUsedDate: Date?
-
-    // MARK: - Tracking Versions
-
-    let versionIdentifier: Data?
-
-    let isMostRecentVersionDownloaded: Bool
-
-    // MARK: - Monitoring File Transfers
-
-    let isUploaded = true
-
-    let isDownloaded: Bool
-
-    // MARK: - Sharing
-
-    let isShared = true
-
-    let ownerNameComponents: PersonNameComponents?
-
-    // MARK: - Managing Metadata
-
-    let tagData: Data?
-
-    let favoriteRank: NSNumber?
-
-    var userInfo: [AnyHashable: Any]? = [:]
-
-    // MARK: - Additional Properties
-
-    /// File name on file system level.
-    ///
-    /// `File` has both a name and a title. The name is, as one would expect, the name at file system level, whereas the title
-    /// is a simplified display name, often containing additional or more human-readable information. As `filename` on
-    /// `NSFileProviderItem` refers to the display name, it contains the title of a `File`.
-    var realFilename: String? {
-        get { return userInfo?[FileItem.realFilenameUserInfoKey] as? String }
-        set { userInfo?[FileItem.realFilenameUserInfoKey] = newValue }
-    }
 
     // MARK: - Life Cycle
 
@@ -117,5 +50,76 @@ final class FileItem: NSObject, NSFileProviderItem {
     convenience init(from file: File) throws {
         let parentIdentifier = file.parent?.itemIdentifier ?? file.course.itemIdentifier
         self.init(from: file, parentItemIdentifier: parentIdentifier)
+    }
+
+    // MARK: - File Provider Item Conformance
+
+    // MARK: Required Properties
+
+    let itemIdentifier: NSFileProviderItemIdentifier
+
+    /// File display name.
+    ///
+    /// - Remark: For the file system level name, please see `realFilename`.
+    let filename: String
+
+    let typeIdentifier: String
+
+    let capabilities: NSFileProviderItemCapabilities
+
+    // MARK: Managing Content
+
+    let childItemCount: NSNumber?
+
+    let documentSize: NSNumber?
+
+    // MARK: Specifying Content Location
+
+    let parentItemIdentifier: NSFileProviderItemIdentifier
+
+    // MARK: Tracking Usage
+
+    let contentModificationDate: Date?
+
+    let creationDate: Date?
+
+    let lastUsedDate: Date?
+
+    // MARK: Tracking Versions
+
+    let versionIdentifier: Data?
+
+    let isMostRecentVersionDownloaded: Bool
+
+    // MARK: Monitoring File Transfers
+
+    let isUploaded = true
+
+    let isDownloaded: Bool
+
+    // MARK: Sharing
+
+    let isShared = true
+
+    let ownerNameComponents: PersonNameComponents?
+
+    // MARK: Managing Metadata
+
+    let tagData: Data?
+
+    let favoriteRank: NSNumber?
+
+    var userInfo: [AnyHashable: Any]? = [:]
+
+    // MARK: Additional Properties
+
+    /// File name on file system level.
+    ///
+    /// `File` has both a name and a title. The name is, as one would expect, the name at file system level, whereas the title
+    /// is a simplified display name, often containing additional or more human-readable information. As `filename` on
+    /// `NSFileProviderItem` refers to the display name, it contains the title of a `File`.
+    var realFilename: String? {
+        get { return userInfo?[FileItem.realFilenameUserInfoKey] as? String }
+        set { userInfo?[FileItem.realFilenameUserInfoKey] = newValue }
     }
 }

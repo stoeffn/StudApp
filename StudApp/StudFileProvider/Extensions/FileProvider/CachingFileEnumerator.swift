@@ -27,6 +27,8 @@ open class CachingFileEnumerator: NSObject {
 // MARK: - File Provider Enumerator Conformance
 
 extension CachingFileEnumerator: NSFileProviderEnumerator {
+    // MARK: Enumerating Items and Changes
+
     public func invalidate() {}
 
     public func enumerateItems(for observer: NSFileProviderEnumerationObserver, startingAt _: NSFileProviderPage) {

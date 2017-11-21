@@ -11,40 +11,6 @@ import MobileCoreServices
 import StudKit
 
 final class CourseItem: NSObject, NSFileProviderItem {
-    // MARK: - Required Properties
-
-    let itemIdentifier: NSFileProviderItemIdentifier
-
-    let filename: String
-
-    let typeIdentifier = kUTTypeFolder as String
-
-    let capabilities: NSFileProviderItemCapabilities = [.allowsContentEnumerating, .allowsReading]
-
-    // MARK: - Managing Content
-
-    let childItemCount: NSNumber?
-
-    // MARK: - Specifying Content Location
-
-    let parentItemIdentifier: NSFileProviderItemIdentifier
-
-    // MARK: - Tracking Usage
-
-    let lastUsedDate: Date?
-
-    // MARK: - Sharing
-
-    let isShared = true
-
-    let ownerNameComponents: PersonNameComponents?
-
-    // MARK: - Managing Metadata
-
-    let tagData: Data?
-
-    let favoriteRank: NSNumber?
-
     // MARK: - Life Cycle
 
     init(from course: Course, childItemCount: Int, parentItemIdentifier: NSFileProviderItemIdentifier = .rootContainer) {
@@ -68,4 +34,40 @@ final class CourseItem: NSObject, NSFileProviderItem {
         let childItemCount = try context.count(for: course.rootFilesFetchRequest)
         self.init(from: course, childItemCount: childItemCount, parentItemIdentifier: parentItemIdentifier)
     }
+
+    // MARK: - File Provider Item Conformance
+
+    // MARK: Required Properties
+
+    let itemIdentifier: NSFileProviderItemIdentifier
+
+    let filename: String
+
+    let typeIdentifier = kUTTypeFolder as String
+
+    let capabilities: NSFileProviderItemCapabilities = [.allowsContentEnumerating, .allowsReading]
+
+    // MARK: Managing Content
+
+    let childItemCount: NSNumber?
+
+    // MARK: Specifying Content Location
+
+    let parentItemIdentifier: NSFileProviderItemIdentifier
+
+    // MARK: Tracking Usage
+
+    let lastUsedDate: Date?
+
+    // MARK: Sharing
+
+    let isShared = true
+
+    let ownerNameComponents: PersonNameComponents?
+
+    // MARK: Managing Metadata
+
+    let tagData: Data?
+
+    let favoriteRank: NSNumber?
 }

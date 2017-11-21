@@ -9,7 +9,7 @@
 import StudKit
 
 final class SemesterEnumerator: CachingFileEnumerator {
-    private let viewModel = SemesterListViewModel(fetchRequest: Semester.nonHiddenFetchRequest)
+    // MARK: - Life Cycle
 
     override init(itemIdentifier: NSFileProviderItemIdentifier) {
         super.init(itemIdentifier: itemIdentifier)
@@ -18,6 +18,12 @@ final class SemesterEnumerator: CachingFileEnumerator {
         viewModel.fetch()
         viewModel.update()
     }
+
+    // MARK: - Properties
+
+    private let viewModel = SemesterListViewModel(fetchRequest: Semester.nonHiddenFetchRequest)
+
+    // MARK: Providing Items
 
     override var items: [NSFileProviderItem] {
         return viewModel.flatMap { try? $0.fileProviderItem(context: coreDataService.viewContext) }
