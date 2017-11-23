@@ -44,17 +44,6 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
 
     @IBAction
     func userButtonTapped(_ sender: Any) {
-        func signOut(_: UIAlertAction) {
-            viewModel.signOut()
-            tabBarController?.performSegue(withRoute: Segues.signIn)
-        }
-
-        guard let barButtonItem = sender as? UIBarButtonItem else { return }
-
-        let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        controller.popoverPresentationController?.barButtonItem = barButtonItem
-        controller.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: signOut))
-        controller.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        present(controller, animated: true, completion: nil)
+        (tabBarController as? MainController)?.userButtonTapped(sender)
     }
 }

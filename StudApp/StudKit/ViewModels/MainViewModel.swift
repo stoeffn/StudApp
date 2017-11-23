@@ -8,7 +8,7 @@
 
 /// Manages applications main view.
 public final class MainViewModel {
-    private let studIp = ServiceContainer.default[StudIpService.self]
+    private let studIpService = ServiceContainer.default[StudIpService.self]
 
     public init() {}
 
@@ -17,6 +17,11 @@ public final class MainViewModel {
     /// - Warning: This does not garantuee that the credential is actually correct as this implementation only relies on a
     ///            credential being stored. Thus, the password might have changed in the meantime.
     public var isSignedIn: Bool {
-        return studIp.isSignedIn
+        return studIpService.isSignedIn
+    }
+
+    /// Sign user out of this app and the API.
+    public func signOut() {
+        studIpService.signOut()
     }
 }

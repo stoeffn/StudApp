@@ -32,4 +32,22 @@ final class MainController: UITabBarController {
     override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         prepare(for: Segues.signIn, destination: segue.destination)
     }
+
+    // MARK: - User Interaction
+
+    @IBAction
+    func userButtonTapped(_ sender: Any) {
+        func signOut(_: UIAlertAction) {
+            viewModel.signOut()
+            tabBarController?.performSegue(withRoute: Segues.signIn)
+        }
+
+        guard let barButtonItem = sender as? UIBarButtonItem else { return }
+
+        let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        controller.popoverPresentationController?.barButtonItem = barButtonItem
+        controller.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: signOut))
+        controller.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(controller, animated: true, completion: nil)
+    }
 }

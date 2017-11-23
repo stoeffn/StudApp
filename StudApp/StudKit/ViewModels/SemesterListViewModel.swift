@@ -47,11 +47,6 @@ public final class SemesterListViewModel: NSObject {
             }
         }
     }
-
-    /// Sign user out of this app and the API.
-    public func signOut() {
-        studIpService.signOut()
-    }
 }
 
 // MARK: - Data Source Section

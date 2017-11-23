@@ -70,6 +70,13 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         guard let cell = tableView.cellForRow(at: indexPath) as? FileCell else { return }
         cell.documentController?.presentPreview(animated: true)
     }
+
+    // MARK: - User Interaction
+
+    @IBAction
+    func userButtonTapped(_ sender: Any) {
+        (tabBarController as? MainController)?.userButtonTapped(sender)
+    }
 }
 
 // MARK: - Document Interaction Controller Conformance
@@ -82,6 +89,6 @@ extension DownloadListController: UIDocumentInteractionControllerDelegate {
     func documentInteractionControllerViewForPreview(_: UIDocumentInteractionController) -> UIView? {
         guard let indexPath = tableView.indexPathForSelectedRow,
             let cell = tableView.cellForRow(at: indexPath) as? FileCell else { return nil }
-        return cell.titleLabel
+        return cell.iconView
     }
 }
