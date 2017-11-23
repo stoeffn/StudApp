@@ -89,18 +89,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         }
     }
 
-    override func tableView(_: UITableView, performAction action: Selector, forRowAt _: IndexPath, withSender _: Any?) {
-        guard let indexPath = tableView.indexPathForSelectedRow,
-            let cell = tableView.cellForRow(at: indexPath) as? FileCell else { return }
-
-        switch action {
-        case #selector(copy(_:)):
-            break
-        case #selector(FileCell.shareDocument(sender:)):
-            break
-        default:
-            break
-        }
+    override func tableView(_: UITableView, performAction _: Selector, forRowAt _: IndexPath, withSender _: Any?) {
     }
 
     // MARK: - User Interaction
