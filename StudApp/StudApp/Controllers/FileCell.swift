@@ -17,7 +17,6 @@ final class FileCell: UITableViewCell {
 
             documentController = UIDocumentInteractionController(url: file.localUrl)
             documentController?.name = file.title
-            documentController?.presentPreview(animated: true)
 
             iconView?.image = documentController?.icons.first
             titleLabel?.text = file.title
@@ -43,4 +42,11 @@ final class FileCell: UITableViewCell {
     @IBOutlet weak var downloadCountLabel: UILabel?
 
     @IBOutlet weak var userLabel: UILabel?
+
+    // MARK: - User Interaction
+
+    @objc
+    func shareDocument(sender _: UIMenuController) {
+        documentController?.presentOptionsMenu(from: frame, in: self, animated: true)
+    }
 }

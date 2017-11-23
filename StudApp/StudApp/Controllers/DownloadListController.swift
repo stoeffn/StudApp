@@ -20,6 +20,10 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         viewModel.delegate = self
         viewModel.fetch()
 
+        let shareItem = UIMenuItem(title: "Share", action: #selector(FileCell.shareDocument(sender:)))
+        UIMenuController.shared.menuItems = [shareItem]
+        UIMenuController.shared.update()
+
         navigationController?.navigationBar.prefersLargeTitles = true
     }
 
@@ -69,6 +73,34 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? FileCell else { return }
         cell.documentController?.presentPreview(animated: true)
+    }
+
+    override func tableView(_: UITableView, shouldShowMenuForRowAt _: IndexPath) -> Bool {
+        return true
+    }
+
+    override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt _: IndexPath,
+                            withSender _: Any?) -> Bool {
+        switch action {
+        case #selector(FileCell.shareDocument(sender:)):
+            return true
+        default:
+            return false
+        }
+    }
+
+    override func tableView(_: UITableView, performAction action: Selector, forRowAt _: IndexPath, withSender _: Any?) {
+        guard let indexPath = tableView.indexPathForSelectedRow,
+            let cell = tableView.cellForRow(at: indexPath) as? FileCell else { return }
+
+        switch action {
+        case #selector(copy(_:)):
+            break
+        case #selector(FileCell.shareDocument(sender:)):
+            break
+        default:
+            break
+        }
     }
 
     // MARK: - User Interaction
