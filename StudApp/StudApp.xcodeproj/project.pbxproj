@@ -277,6 +277,7 @@
 		243817911FC76BDC004052D0 /* DocumentActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentActionViewController.swift; sourceTree = "<group>"; };
 		243817941FC76BDC004052D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		243817961FC76BDC004052D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2438179F1FC77226004052D0 /* StudFileProviderUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudFileProviderUI.entitlements; sourceTree = "<group>"; };
 		2448D4091FA8DA2400DAB97E /* StudApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2448D4111FA8DA2400DAB97E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -518,6 +519,7 @@
 		243817901FC76BDC004052D0 /* StudFileProviderUI */ = {
 			isa = PBXGroup;
 			children = (
+				2438179F1FC77226004052D0 /* StudFileProviderUI.entitlements */,
 				243817911FC76BDC004052D0 /* DocumentActionViewController.swift */,
 				243817931FC76BDC004052D0 /* MainInterface.storyboard */,
 				243817961FC76BDC004052D0 /* Info.plist */,
@@ -1247,6 +1249,14 @@
 					2438178E1FC76BDC004052D0 = {
 						CreatedOnToolsVersion = 9.1;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					2448D4081FA8DA2400DAB97E = {
 						CreatedOnToolsVersion = 9.1;
@@ -1676,6 +1686,7 @@
 		2438179A1FC76BDC004052D0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = StudFileProviderUI/StudFileProviderUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X63VKA93X8;
 				INFOPLIST_FILE = StudFileProviderUI/Info.plist;
@@ -1692,6 +1703,7 @@
 		2438179B1FC76BDC004052D0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = StudFileProviderUI/StudFileProviderUI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X63VKA93X8;
 				INFOPLIST_FILE = StudFileProviderUI/Info.plist;
