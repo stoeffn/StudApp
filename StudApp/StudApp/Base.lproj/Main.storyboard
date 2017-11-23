@@ -258,7 +258,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Range" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ulN-Sq-zTS">
                                                     <rect key="frame" x="0.0" y="15.5" width="70.5" height="28"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="textColor" white="0.5999906994047618" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -290,7 +290,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Semesters" id="vkk-T4-jfp">
-                        <barButtonItem key="rightBarButtonItem" image="UserGlyph" id="rvu-vT-g3v">
+                        <barButtonItem key="rightBarButtonItem" image="UserBarButtonGlyph" id="rvu-vT-g3v">
                             <connections>
                                 <action selector="userButtonTapped:" destination="fag-gD-kkk" id="uje-KC-NUI"/>
                             </connections>
@@ -332,34 +332,108 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="4" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hoA-MM-Mjf">
-                                                            <rect key="frame" x="0.0" y="22.5" width="222" height="16"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="1" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hoA-MM-Mjf">
+                                                            <rect key="frame" x="0.0" y="22.5" width="275.5" height="16"/>
                                                             <subviews>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TimeSubtitleGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="V56-Rv-kVH">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="V56-Rv-kVH" secondAttribute="height" multiplier="1:1" id="U3N-fg-s28"/>
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                                                            <color key="value" white="0.75" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Yesterday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FmD-1v-GgI">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="16"/>
+                                                                    <rect key="frame" x="17" y="0.0" width="60" height="16"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <color key="textColor" white="0.59900483630952384" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ggZ-gv-b6Q">
+                                                                    <rect key="frame" x="78" y="7.5" width="3" height="1"/>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="3" id="MOC-o0-Wey"/>
+                                                                        <constraint firstAttribute="height" constant="1" id="xrp-jV-K2S"/>
+                                                                    </constraints>
+                                                                </view>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SizeSubtitleGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="N6i-5P-pIM">
+                                                                    <rect key="frame" x="82" y="0.0" width="16" height="16"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="N6i-5P-pIM" secondAttribute="height" multiplier="1:1" id="SLf-ZI-g9o"/>
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                                                            <color key="value" white="0.75" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="123 KB" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8BZ-7m-neU">
-                                                                    <rect key="frame" x="64" y="0.0" width="42.5" height="16"/>
+                                                                    <rect key="frame" x="99" y="0.0" width="42.5" height="16"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <color key="textColor" white="0.60419456845238095" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m8B-5U-sbm">
+                                                                    <rect key="frame" x="142.5" y="7.5" width="3" height="1"/>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="1" id="I2B-bR-09P"/>
+                                                                    </constraints>
+                                                                </view>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownloadCountSubtitleGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="h0Q-Ko-WEb">
+                                                                    <rect key="frame" x="146.5" y="0.0" width="16" height="16"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="h0Q-Ko-WEb" secondAttribute="height" multiplier="1:1" id="xHo-fd-0fg"/>
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                                                            <color key="value" white="0.75" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="42x" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pjy-iB-tdf">
-                                                                    <rect key="frame" x="110.5" y="0.0" width="23" height="16"/>
+                                                                    <rect key="frame" x="163.5" y="0.0" width="23" height="16"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <color key="textColor" white="0.59576822916666661" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Manuel Neuer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L2C-Ga-Zb6">
-                                                                    <rect key="frame" x="137.5" y="0.0" width="84.5" height="16"/>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ivd-KC-NjC">
+                                                                    <rect key="frame" x="187.5" y="7.5" width="3" height="1"/>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="1" id="0Ea-6V-EBd"/>
+                                                                    </constraints>
+                                                                </view>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserSubtitleGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="nHG-cC-ocN">
+                                                                    <rect key="frame" x="191.5" y="0.0" width="16" height="16"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" secondItem="nHG-cC-ocN" secondAttribute="height" multiplier="1:1" id="Xtg-NV-q3X"/>
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                                                            <color key="value" white="0.75" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </imageView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Steve Jobs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L2C-Ga-Zb6">
+                                                                    <rect key="frame" x="208.5" y="0.0" width="67" height="16"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <color key="textColor" white="0.60494791666666659" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="h0Q-Ko-WEb" firstAttribute="width" secondItem="h0Q-Ko-WEb" secondAttribute="height" multiplier="1:1" id="4G6-3v-qzN"/>
+                                                                <constraint firstItem="m8B-5U-sbm" firstAttribute="width" secondItem="ggZ-gv-b6Q" secondAttribute="width" id="I21-IW-MOm"/>
+                                                                <constraint firstItem="nHG-cC-ocN" firstAttribute="width" secondItem="nHG-cC-ocN" secondAttribute="height" multiplier="1:1" id="cdW-vl-mQE"/>
+                                                                <constraint firstItem="V56-Rv-kVH" firstAttribute="height" secondItem="FmD-1v-GgI" secondAttribute="height" id="csO-US-arn"/>
+                                                                <constraint firstItem="N6i-5P-pIM" firstAttribute="width" secondItem="N6i-5P-pIM" secondAttribute="height" multiplier="1:1" id="e7u-6o-KQg"/>
+                                                                <constraint firstItem="ivd-KC-NjC" firstAttribute="width" secondItem="m8B-5U-sbm" secondAttribute="width" id="em1-41-8u8"/>
+                                                            </constraints>
                                                         </stackView>
                                                     </subviews>
                                                 </stackView>
@@ -389,7 +463,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Downloads" id="4ue-wS-o7Q">
-                        <barButtonItem key="rightBarButtonItem" image="UserGlyph" id="33u-sQ-yQP">
+                        <barButtonItem key="rightBarButtonItem" image="UserBarButtonGlyph" id="33u-sQ-yQP">
                             <connections>
                                 <action selector="userButtonTapped:" destination="fag-gD-kkk" id="s2G-6g-B6r"/>
                             </connections>
@@ -422,7 +496,7 @@
         <scene sceneID="1Rz-lA-yYv">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dbq-bM-eAu" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Semesters" image="SemestersGlyph" id="7my-5k-oCp"/>
+                    <tabBarItem key="tabBarItem" title="Semesters" image="SemestersTabBarGlyph" id="7my-5k-oCp"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="j1E-Mk-AWe">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -458,8 +532,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="DownloadCountSubtitleGlyph" width="16" height="16"/>
         <image name="LeibnizUniIcon" width="512" height="512"/>
-        <image name="SemestersGlyph" width="23" height="23"/>
-        <image name="UserGlyph" width="25" height="25"/>
+        <image name="SemestersTabBarGlyph" width="23" height="23"/>
+        <image name="SizeSubtitleGlyph" width="16" height="16"/>
+        <image name="TimeSubtitleGlyph" width="16" height="16"/>
+        <image name="UserBarButtonGlyph" width="25" height="25"/>
+        <image name="UserSubtitleGlyph" width="16" height="16"/>
     </resources>
 </document>
