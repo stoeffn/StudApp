@@ -3,7 +3,7 @@
 //  StudKit
 //
 //  Created by Steffen Ryll on 04.12.16.
-//  Copyright © 2016 Julian Lobe & Steffen Ryll. All rights reserved.
+//  Copyright © 2016 Steffen Ryll. All rights reserved.
 //
 
 extension Date {
@@ -67,6 +67,7 @@ public extension Date {
     func formatted(using formatter: DateFormatter) -> String {
         return formatter.string(from: self)
     }
+
     /// The date's day of the week in short from, e.g. "Sun".
     var shortWeekday: String {
         return DateFormatter.shared.shortWeekday.string(from: self)

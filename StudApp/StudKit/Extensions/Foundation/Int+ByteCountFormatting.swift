@@ -3,7 +3,7 @@
 //  StudApp
 //
 //  Created by Steffen Ryll on 20.02.17.
-//  Copyright © 2017 Julian Lobe & Steffen Ryll. All rights reserved.
+//  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
 public extension Int {
@@ -16,6 +16,6 @@ public extension Int {
 public extension Int64 {
     /// Formatted as a string containing the value as a byte count in a huma-readable format.
     public var formattedAsByteCount: String {
-        return ByteCountFormatter.shared.string(fromByteCount: self)
+        return ByteCountFormatter.string(fromByteCount: self, countStyle: .file)
     }
 }

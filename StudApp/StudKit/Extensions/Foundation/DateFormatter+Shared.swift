@@ -3,7 +3,7 @@
 //  StudKit
 //
 //  Created by Steffen Ryll on 12.12.16.
-//  Copyright © 2016 Julian Lobe & Steffen Ryll. All rights reserved.
+//  Copyright © 2016 Steffen Ryll. All rights reserved.
 //
 
 /// A container for a lazy date formatter cache.
