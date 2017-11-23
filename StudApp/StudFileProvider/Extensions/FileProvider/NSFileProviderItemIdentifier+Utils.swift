@@ -9,6 +9,13 @@
 import FileProvider
 
 public extension NSFileProviderItemIdentifier {
+    /// Models that can be represented by a file provider item identifier.
+    ///
+    /// - workingSet: Working set containing items currently considered important.
+    /// - root: Root container.
+    /// - semester: Semester by its id.
+    /// - course: Course by its id.
+    /// - file: Folder or document by its id.
     public enum Models {
         case workingSet
         case root
@@ -21,6 +28,7 @@ public extension NSFileProviderItemIdentifier {
         return rawValue.components(separatedBy: "-")
     }
 
+    /// Item's id contained in this identifier, e.g. the course id.
     public var id: String {
         guard let id = parts.last else {
             fatalError("Cannot parse item identifier '\(rawValue)'.")
@@ -28,6 +36,7 @@ public extension NSFileProviderItemIdentifier {
         return id
     }
 
+    /// Type of model that this item identifier describes.
     public var model: Models {
         if self == .workingSet {
             return .workingSet

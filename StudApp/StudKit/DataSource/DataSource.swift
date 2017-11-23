@@ -37,7 +37,7 @@ extension DataSource {
     }
 }
 
-// MARK: - Utilities
+// MARK: - Iterating
 
 extension DataSource {
     public typealias Iterator = RangeIterator<Section>

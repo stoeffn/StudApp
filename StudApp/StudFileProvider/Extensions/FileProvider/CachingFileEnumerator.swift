@@ -16,7 +16,8 @@ import FileProvider
 /// view context.
 ///
 /// Enumerating changes works similarly: History is merged first. Then, it enumerates updates and deletes contained in `cache`
-/// and resets the cache.
+/// and resets the cache. Caching is needed because the system asks for changes on its own, triggered by signaling the
+/// enumerator.
 ///
 /// In order for this to work, you need to inform `cache` about any changes to the enumerator's content.
 ///
