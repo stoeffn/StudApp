@@ -19,9 +19,12 @@ final class FileCell: UITableViewCell {
             documentController?.name = file.title
             documentController?.presentPreview(animated: true)
 
-            iconView?.image = documentController?.icons.last
+            iconView?.image = documentController?.icons.first
             titleLabel?.text = file.title
-            subtitleLabel?.text = file.owner?.familyName
+            modificationDateLabel?.text = file.modificationDate.formatted(using: .shortDate)
+            sizeLabel?.text = file.size.formattedAsByteCount
+            downloadCountLabel?.text = "\(file.numberOfDownloads)x"
+            userLabel?.text = file.owner?.nameComponents.formatted()
         }
     }
 
@@ -33,5 +36,11 @@ final class FileCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel?
 
-    @IBOutlet weak var subtitleLabel: UILabel?
+    @IBOutlet weak var modificationDateLabel: UILabel?
+
+    @IBOutlet weak var sizeLabel: UILabel?
+
+    @IBOutlet weak var downloadCountLabel: UILabel?
+
+    @IBOutlet weak var userLabel: UILabel?
 }

@@ -79,7 +79,7 @@ extension DownloadListController: UIDocumentInteractionControllerDelegate {
         return self
     }
 
-    func documentInteractionControllerViewForPreview(_ controller: UIDocumentInteractionController) -> UIView? {
+    func documentInteractionControllerViewForPreview(_: UIDocumentInteractionController) -> UIView? {
         guard let indexPath = tableView.indexPathForSelectedRow,
             let cell = tableView.cellForRow(at: indexPath) as? FileCell else { return nil }
         return cell.titleLabel
