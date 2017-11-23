@@ -6,7 +6,6 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-import UIKit
 import StudKit
 
 final class DownloadListController: UITableViewController, DataSourceDelegate {
@@ -35,9 +34,8 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FileCell", for: indexPath)
-        let file = viewModel[rowAt: indexPath]
-        cell.textLabel?.text = file.title
+        let cell = tableView.dequeueReusableCell(withIdentifier: FileCell.typeIdentifier, for: indexPath)
+        (cell as? FileCell)?.file = viewModel[rowAt: indexPath]
         return cell
     }
 

@@ -6,7 +6,6 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-import UIKit
 import StudKit
 
 final class SemesterListController: UITableViewController, DataSourceSectionDelegate {
@@ -36,11 +35,8 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SemesterCell.typeIdentifier,
-                                                       for: indexPath) as? SemesterCell else {
-            fatalError("Cannot dequeue cell with identifier '\(SemesterCell.typeIdentifier)'.")
-        }
-        cell.semester = viewModel[rowAt: indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: SemesterCell.typeIdentifier, for: indexPath)
+        (cell as? SemesterCell)?.semester = viewModel[rowAt: indexPath.row]
         return cell
     }
 

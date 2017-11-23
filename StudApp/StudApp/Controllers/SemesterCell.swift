@@ -6,7 +6,6 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-import UIKit
 import StudKit
 
 final class SemesterCell: UITableViewCell {
