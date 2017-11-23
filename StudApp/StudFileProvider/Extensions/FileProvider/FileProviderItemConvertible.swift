@@ -30,7 +30,6 @@ extension FileProviderItemConvertible where Self: NSFetchRequestResult {
         return fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["state"])
     }
 
-
     /// Fetches all objects of this type in the working set, which includes recently used items, tagged items, and items marked
     /// as favorite.
     public static func fetchItemsInWorkingSet(in context: NSManagedObjectContext) throws -> [Self] {
