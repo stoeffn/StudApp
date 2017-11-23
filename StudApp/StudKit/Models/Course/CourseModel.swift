@@ -6,6 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+/// Represents a decoded course object as returned by the API.
 struct CourseModel: Decodable {
     let id: String
     private let rawNumber: String?

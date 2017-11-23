@@ -8,14 +8,20 @@
 
 import CoreData
 
+/// Represents the current state of a course.
 @objc(CourseState)
 public final class CourseState: NSManagedObject, CDCreatable, CDColorable {
     @NSManaged public var lastUsedDate: Date?
+
     @NSManaged public var favoriteRank: Int
+
     @NSManaged public var tagData: Data?
 
     @NSManaged public var color: Color?
+    
     @NSManaged public var course: Course
+
+    // MARK: Life Cycle
 
     public required convenience init(createIn context: NSManagedObjectContext) {
         self.init(context: context)
