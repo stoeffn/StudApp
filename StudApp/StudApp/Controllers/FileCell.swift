@@ -15,11 +15,13 @@ final class FileCell: UITableViewCell {
         didSet {
             guard let file = file else { return }
 
-            titleLabel?.text = file.title
-
             documentController = UIDocumentInteractionController(url: file.localUrl)
             documentController?.name = file.title
             documentController?.presentPreview(animated: true)
+
+            iconView?.image = documentController?.icons.last
+            titleLabel?.text = file.title
+            subtitleLabel?.text = file.owner?.familyName
         }
     }
 
@@ -27,5 +29,9 @@ final class FileCell: UITableViewCell {
 
     // MARK: - User Interface
 
+    @IBOutlet weak var iconView: UIImageView?
+
     @IBOutlet weak var titleLabel: UILabel?
+
+    @IBOutlet weak var subtitleLabel: UILabel?
 }
