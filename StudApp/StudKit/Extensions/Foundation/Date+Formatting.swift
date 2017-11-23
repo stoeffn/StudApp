@@ -68,16 +68,6 @@ public extension Date {
         return formatter.string(from: self)
     }
 
-    /// The date's day of the week in short from, e.g. "Sun".
-    var shortWeekday: String {
-        return DateFormatter.shared.shortWeekday.string(from: self)
-    }
-
-    /// The date's day of the week in long from, e.g. "Sunday".
-    var weekday: String {
-        return DateFormatter.shared.weekday.string(from: self)
-    }
-
     /// Returns the difference to now, formatted as a localized string that includes the remaining units w/o seconds.
     var formattedAsRemainingDateTimeFromNow: String? {
         return formatted(asRemainingDateTimeFrom: Date())
@@ -85,7 +75,7 @@ public extension Date {
 
     /// Returns the difference to `date`, formatted as a localized string that includes the remaining units w/o seconds.
     func formatted(asRemainingDateTimeFrom date: Date) -> String? {
-        return DateComponentsFormatter.shared.dateTimeRemaining.string(from: date, to: self)
+        return DateComponentsFormatter.dateTimeRemaining.string(from: date, to: self)
     }
 
     /// Returns the difference to now, formatted as a localized string that includes the remaining units w/o seconds.
@@ -95,6 +85,6 @@ public extension Date {
 
     /// Returns the difference to `date`, formatted as a localized string that includes the units w/o seconds.
     func formatted(asShortDifferenceFrom date: Date) -> String? {
-        return DateComponentsFormatter.shared.short.string(from: self, to: date)
+        return DateComponentsFormatter.short.string(from: self, to: date)
     }
 }

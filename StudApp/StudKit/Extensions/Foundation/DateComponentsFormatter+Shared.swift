@@ -6,9 +6,8 @@
 //  Copyright © 2016 Steffen Ryll. All rights reserved.
 //
 
-/// A container for a lazy date components formatter cache.
-struct SharedDateComponentsFormatters {
-    lazy var dateTimeRemaining: DateComponentsFormatter = {
+extension DateComponentsFormatter {
+    public static let dateTimeRemaining: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .full
         formatter.maximumUnitCount = 2
@@ -18,15 +17,11 @@ struct SharedDateComponentsFormatters {
         return formatter
     }()
 
-    lazy var short: DateComponentsFormatter = {
+    public static let short: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
         formatter.unitsStyle = .full
         formatter.maximumUnitCount = 1
         formatter.collapsesLargestUnit = true
         return formatter
     }()
-}
-
-extension DateComponentsFormatter {
-    static var shared = SharedDateComponentsFormatters()
 }
