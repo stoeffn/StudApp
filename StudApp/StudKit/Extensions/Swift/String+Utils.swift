@@ -7,6 +7,7 @@
 //
 
 public extension String {
+    /// Returns `nil` in case of an empty string. Otherwise, this method returns the string itself.
     public var nilWhenEmpty: String? {
         return isEmpty ? nil : self
     }

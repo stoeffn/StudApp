@@ -6,8 +6,8 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-// Mapping from XML/HTML character entity reference to character
-// From http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references
+/// Mapping from XML/HTML character entity reference to character
+/// From http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references
 private let characterEntities: [String: Character] = [
     // XML predefined entities:
     "&quot;": "\"",
@@ -270,23 +270,22 @@ extension String {
     /// Returns a new string made by replacing in the `String` all HTML character entity references with the
     /// corresponding character.
     var decodedHTML: String {
-
-        // Convert the number in the string to the corresponding
-        // Unicode character, e.g.
-        //    decodeNumeric("64", 10)   --> "@"
-        //    decodeNumeric("20ac", 16) --> "€"
+        /// Convert the number in the string to the corresponding
+        /// Unicode character, e.g.
+        ///    decodeNumeric("64", 10)   --> "@"
+        ///    decodeNumeric("20ac", 16) --> "€"
         func decodeNumeric(_ string: String, base: Int) -> Character? {
             guard let code = UInt32(string, radix: base),
                 let uniScalar = UnicodeScalar(code) else { return nil }
             return Character(uniScalar)
         }
 
-        // Decode the HTML character entity to the corresponding
-        // Unicode character, return `nil` for invalid input.
-        //     decode("&#64;")    --> "@"
-        //     decode("&#x20ac;") --> "€"
-        //     decode("&lt;")     --> "<"
-        //     decode("&foo;")    --> nil
+        /// Decode the HTML character entity to the corresponding
+        /// Unicode character, return `nil` for invalid input.
+        ///     decode("&#64;")    --> "@"
+        ///     decode("&#x20ac;") --> "€"
+        ///     decode("&lt;")     --> "<"
+        ///     decode("&foo;")    --> nil
         func decode(_ entity: String) -> Character? {
             if entity.hasPrefix("&#x") || entity.hasPrefix("&#X") {
                 let startIndex = entity.index(entity.startIndex, offsetBy: 3)
