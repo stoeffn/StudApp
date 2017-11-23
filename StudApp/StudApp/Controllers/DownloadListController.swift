@@ -64,4 +64,19 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         let removeDownloadAction = UIContextualAction(style: .destructive, title: "Remove", handler: removeDownloadHandler)
         return UISwipeActionsConfiguration(actions: [removeDownloadAction])
     }
+
+    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let documentUrl = viewModel[rowAt: indexPath].localUrl
+        let documentController = UIDocumentInteractionController(url: documentUrl)
+        documentController.delegate = self
+        documentController.presentPreview(animated: true)
+    }
+}
+
+// MARK: - Document Interaction Controller Conformance
+
+extension DownloadListController: UIDocumentInteractionControllerDelegate {
+    func documentInteractionControllerViewControllerForPreview(_: UIDocumentInteractionController) -> UIViewController {
+        return self
+    }
 }
