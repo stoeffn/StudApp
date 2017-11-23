@@ -36,6 +36,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FileCell.typeIdentifier, for: indexPath)
         (cell as? FileCell)?.file = viewModel[rowAt: indexPath]
+        (cell as? FileCell)?.documentController?.delegate = self
         return cell
     }
 
@@ -66,10 +67,8 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     }
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let documentUrl = viewModel[rowAt: indexPath].localUrl
-        let documentController = UIDocumentInteractionController(url: documentUrl)
-        documentController.delegate = self
-        documentController.presentPreview(animated: true)
+        guard let cell = tableView.cellForRow(at: indexPath) as? FileCell else { return }
+        cell.documentController?.presentPreview(animated: true)
     }
 }
 
@@ -78,5 +77,11 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 extension DownloadListController: UIDocumentInteractionControllerDelegate {
     func documentInteractionControllerViewControllerForPreview(_: UIDocumentInteractionController) -> UIViewController {
         return self
+    }
+
+    func documentInteractionControllerViewForPreview(_ controller: UIDocumentInteractionController) -> UIView? {
+        guard let indexPath = tableView.indexPathForSelectedRow,
+            let cell = tableView.cellForRow(at: indexPath) as? FileCell else { return nil }
+        return cell.titleLabel
     }
 }

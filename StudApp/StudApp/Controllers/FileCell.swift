@@ -13,9 +13,17 @@ final class FileCell: UITableViewCell {
 
     var file: File? {
         didSet {
-            titleLabel?.text = file?.title
+            guard let file = file else { return }
+
+            titleLabel?.text = file.title
+
+            documentController = UIDocumentInteractionController(url: file.localUrl)
+            documentController?.name = file.title
+            documentController?.presentPreview(animated: true)
         }
     }
+
+    var documentController: UIDocumentInteractionController?
 
     // MARK: - User Interface
 
