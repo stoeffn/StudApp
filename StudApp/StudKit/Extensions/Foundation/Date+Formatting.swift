@@ -63,31 +63,10 @@ public extension Date {
         return Calendar.current.date(from: components) ?? self
     }
 
-    /// Formatted date string using the current locale and the medium date style.
-    var formattedDate: String {
-        return DateFormatter.shared.mediumDate.string(from: self)
+    /// Returns this date as a formatted string using the formatter given.
+    func formatted(using formatter: DateFormatter) -> String {
+        return formatter.string(from: self)
     }
-
-    /// Formatted date string using the current locale and the medium date and time style.
-    var formattedDateTime: String {
-        return DateFormatter.shared.mediumDateTime.string(from: self)
-    }
-
-    /// Formatted date string using the current locale and the long date style.
-    var formattedLongDate: String {
-        return DateFormatter.shared.longDate.string(from: self)
-    }
-
-    /// Formatted as full month name followed by the year.
-    var formattedMonthAndYear: String {
-        return DateFormatter.shared.monthAndYear.string(from: self)
-    }
-
-    /// Formatted time string using the current locale and the short time style.
-    var formattedTime: String {
-        return DateFormatter.shared.shortTime.string(from: self)
-    }
-
     /// The date's day of the week in short from, e.g. "Sun".
     var shortWeekday: String {
         return DateFormatter.shared.shortWeekday.string(from: self)
@@ -96,28 +75,6 @@ public extension Date {
     /// The date's day of the week in long from, e.g. "Sunday".
     var weekday: String {
         return DateFormatter.shared.weekday.string(from: self)
-    }
-
-    /// The difference from now in days as a relative date string.
-    ///
-    /// - returns: "yesterday", "today", and "tomorrow", the weekdays for the next week, or defaults to a long date
-    var formattedAsRelativeDateFromNow: String {
-        let today = Calendar(identifier: .gregorian).startOfDay(for: Date())
-        let date = Calendar(identifier: .gregorian).startOfDay(for: self)
-        return date.formatted(asRelativeDateFrom: today)
-    }
-
-    /// Returns the difference from another date in days as relative date string.
-    ///
-    /// - returns: "yesterday", "today", and "tomorrow", the weekdays for the next week, or defaults to a long date
-    func formatted(asRelativeDateFrom date: Date) -> String {
-        switch days(from: date) {
-        case -1: return "yesterday"
-        case 0: return "today"
-        case 1: return "tomorrow"
-        case 2 ... 7: return weekday
-        default: return formattedLongDate
-        }
     }
 
     /// Returns the difference to now, formatted as a localized string that includes the remaining units w/o seconds.

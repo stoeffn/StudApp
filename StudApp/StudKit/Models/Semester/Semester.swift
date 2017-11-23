@@ -35,7 +35,8 @@ public extension Semester {
     }
 
     public var monthRange: String {
-        return "\(beginDate.formattedMonthAndYear) – \(endDate.formattedMonthAndYear)"
+        let formatter = DateFormatter.shared.monthAndYear
+        return "\(beginDate.formatted(using: formatter)) – \(endDate.formatted(using: formatter))"
     }
 }
 
