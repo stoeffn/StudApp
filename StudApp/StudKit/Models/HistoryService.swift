@@ -43,6 +43,8 @@ public final class HistoryService {
     /// Merges persistent history into the context given and marks the current target as up-to-date. To delete history that was
     /// merged into every target, invoke `deleteHistory(mergedInto:in:)` after calling this method.
     ///
+    /// - Parameter context: Managed object context, which should ideally be the view context or a context to be merged into the
+    ///                      view context.
     /// - Postcondition: The current target's last history transaction timestamp is set to the last transaction timestamp.
     public func mergeHistory(into context: NSManagedObjectContext) throws {
         let historyFetchRequest = NSPersistentHistoryChangeRequest

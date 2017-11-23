@@ -8,6 +8,7 @@
 
 import CoreData
 
+/// Manages the Core Data stack.
 public final class CoreDataService {
     private let modelName: String
     private let modelUrl: URL
@@ -71,10 +72,19 @@ public final class CoreDataService {
         return container
     }()
 
+    /// The managed object context associated with the main queue.
     public var viewContext: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
 
+    /// Causes the persistent container to execute the block against a new private queue context.
+    ///
+    /// Each time this method is invoked, the persistent container creates a new `NSManagedObjectContext` with the
+    /// `concurrencyType` set to `privateQueueConcurrencyType`. The persistent container then executes the passed in block
+    /// against that newly created context on the context’s private queue.
+    ///
+    /// - Parameter task: A block that is executed by the persistent container against a newly created private context. The
+    ///                    private context is passed into the block as part of the execution of the block.
     public func performBackgroundTask(task: @escaping (NSManagedObjectContext) -> Void) {
         return persistentContainer.performBackgroundTask(task)
     }

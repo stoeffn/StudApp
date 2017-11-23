@@ -9,6 +9,7 @@
 import CoreData
 
 extension Targets {
+    /// Timestamp of the last Core Data persistent history merge into the target's view context.
     var lastHistoryTransactionTimestamp: Date? {
         get {
             let storageService = ServiceContainer.default[StorageService.self]
