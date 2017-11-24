@@ -31,6 +31,9 @@ public enum StudIpRoutes: ApiRoutes {
     /// Returns the profile picture at the URL given.
     case profilePicture(URL)
 
+    /// Returns the current user.
+    case currentUser
+
     var path: String {
         switch self {
         case .discovery:
@@ -47,6 +50,8 @@ public enum StudIpRoutes: ApiRoutes {
             return "file/\(fileId)/content"
         case let .profilePicture(url):
             return url.path
+        case .currentUser:
+            return "user"
         }
     }
 
@@ -58,14 +63,18 @@ public enum StudIpRoutes: ApiRoutes {
         case .filesInCourse: return CollectionResponse<FileResponse>.self
         case .file: return FileResponse.self
         case .fileContents, .profilePicture: return nil
+        case .currentUser: return UserResponse.self
         }
     }
 
     var expiresAfter: TimeInterval {
         switch self {
-        case .discovery: return 0
-        case .courses, .filesInCourse, .file, .fileContents: return 60
-        case .semesters, .profilePicture: return 60 * 60
+        case .discovery:
+            return 0
+        case .courses, .filesInCourse, .file, .fileContents, .currentUser:
+            return 60
+        case .semesters, .profilePicture:
+            return 60 * 60
         }
     }
 }

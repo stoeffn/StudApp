@@ -10,4 +10,6 @@ extension UserDefaults {
     static func lastHistoryTransactionTimestampKey(for target: Targets) -> String {
         return "lastHistoryTransactionTimestamp-\(target)"
     }
+
+    static let currentUserIdKey = "currentUserId"
 }
