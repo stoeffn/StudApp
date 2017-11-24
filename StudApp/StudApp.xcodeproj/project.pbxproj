@@ -20,7 +20,6 @@
 		243817AC1FC88B18004052D0 /* GroupedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9681FA9087900FBD750 /* GroupedTextField.swift */; };
 		243817AF1FC88B2B004052D0 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD96A1FA9090F00FBD750 /* UI.swift */; };
 		2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */; };
-		2448D4141FA8DA2400DAB97E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2448D4131FA8DA2400DAB97E /* Assets.xcassets */; };
 		2448D4221FA8DA2400DAB97E /* StudAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4211FA8DA2400DAB97E /* StudAppTests.swift */; };
 		2448D42D1FA8DA2400DAB97E /* StudAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D42C1FA8DA2400DAB97E /* StudAppUITests.swift */; };
 		2448D4481FA8DB1E00DAB97E /* StudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2448D43F1FA8DB1E00DAB97E /* StudKit.framework */; };
@@ -160,6 +159,8 @@
 		24E60B681FC8C754000EDD2A /* Semesters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B671FC8C754000EDD2A /* Semesters.storyboard */; };
 		24E60B6A1FC8C76F000EDD2A /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B691FC8C76F000EDD2A /* SignIn.storyboard */; };
 		24E60B6C1FC8C77F000EDD2A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B6B1FC8C77F000EDD2A /* MainInterface.storyboard */; };
+		24E60B6D1FC8CC9E000EDD2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2448D4131FA8DA2400DAB97E /* Assets.xcassets */; };
+		24E60B701FC8CCE5000EDD2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B6F1FC8CCE5000EDD2A /* Assets.xcassets */; };
 		24FD785A1FBF3F030072F860 /* HistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78591FBF3F030072F860 /* HistoryService.swift */; };
 		24FD785C1FBF45030072F860 /* Targets+NSPersistentHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */; };
 		24FD785E1FBF45B10072F860 /* Targets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785D1FBF45B10072F860 /* Targets.swift */; };
@@ -432,6 +433,7 @@
 		24E60B671FC8C754000EDD2A /* Semesters.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Semesters.storyboard; sourceTree = "<group>"; };
 		24E60B691FC8C76F000EDD2A /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		24E60B6B1FC8C77F000EDD2A /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		24E60B6F1FC8CCE5000EDD2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+StudIpActivityIndicatorView.swift"; sourceTree = "<group>"; };
 		24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudIpActivityIndicatorView.swift; sourceTree = "<group>"; };
 		24FD78591FBF3F030072F860 /* HistoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryService.swift; sourceTree = "<group>"; };
@@ -596,7 +598,7 @@
 				2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */,
 				24CFB5D91FB2500900F30DEA /* Segues.swift */,
 				24E60B631FC8C73F000EDD2A /* LaunchScreen.storyboard */,
-				2448D4131FA8DA2400DAB97E /* Assets.xcassets */,
+				24E60B6F1FC8CCE5000EDD2A /* Assets.xcassets */,
 				24FE8A0F1FB78DBF00A4A3C6 /* StudApp.entitlements */,
 				2448D4181FA8DA2400DAB97E /* Info.plist */,
 			);
@@ -640,6 +642,7 @@
 				241FD96A1FA9090F00FBD750 /* UI.swift */,
 				24FD78711FC07C630072F860 /* UserDefaults+Keys.swift */,
 				2448D4411FA8DB1E00DAB97E /* StudKit.h */,
+				2448D4131FA8DA2400DAB97E /* Assets.xcassets */,
 				249DD6FD1FC8B896006DA46E /* Localizable.strings */,
 				2448D4421FA8DB1E00DAB97E /* Info.plist */,
 			);
@@ -1481,10 +1484,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				24E60B641FC8C73F000EDD2A /* LaunchScreen.storyboard in Resources */,
-				2448D4141FA8DA2400DAB97E /* Assets.xcassets in Resources */,
 				24E60B661FC8C749000EDD2A /* Downloads.storyboard in Resources */,
 				24E60B621FC8C725000EDD2A /* Main.storyboard in Resources */,
 				24E60B681FC8C754000EDD2A /* Semesters.storyboard in Resources */,
+				24E60B701FC8CCE5000EDD2A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1507,6 +1510,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24E60B6A1FC8C76F000EDD2A /* SignIn.storyboard in Resources */,
+				24E60B6D1FC8CC9E000EDD2A /* Assets.xcassets in Resources */,
 				249DD6FB1FC8B896006DA46E /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
