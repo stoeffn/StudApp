@@ -24,7 +24,7 @@ extension FileResponse: CDConvertible {
         file.creationDate = creationDate
         file.modificationDate = modificationDate
         file.size = size ?? -1
-        file.numberOfDownloads = numberOfDownloads ?? -1
+        file.downloadCount = downloadCount ?? -1
         file.owner = try User.fetch(byId: ownerId, in: context)
         file.children = try children
             .flatMap { try $0.coreDataModel(in: context) as? File }

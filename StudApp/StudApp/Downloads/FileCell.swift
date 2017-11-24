@@ -22,7 +22,7 @@ final class FileCell: UITableViewCell {
             titleLabel?.text = file.title
             modificationDateLabel?.text = file.modificationDate.formatted(using: .shortDate)
             sizeLabel?.text = file.size.formattedAsByteCount
-            downloadCountLabel?.text = "%dx".localized(file.numberOfDownloads)
+            downloadCountLabel?.text = "%dx".localized(file.downloadCount)
             userLabel?.text = file.owner?.nameComponents.formatted()
         }
     }

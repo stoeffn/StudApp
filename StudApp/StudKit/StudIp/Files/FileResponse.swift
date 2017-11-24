@@ -20,7 +20,7 @@ struct FileResponse: Decodable {
     let creationDate: Date
     let modificationDate: Date
     let size: Int?
-    let numberOfDownloads: Int?
+    let downloadCount: Int?
     private let ownerPath: String?
 
     enum CodingKeys: String, CodingKey {
@@ -51,7 +51,7 @@ struct FileResponse: Decodable {
         self.creationDate = creationDate
         self.modificationDate = modificationDate
         self.size = size
-        self.numberOfDownloads = numberOfDownloads
+        self.downloadCount = numberOfDownloads
         self.ownerPath = ownerPath
     }
 
@@ -66,7 +66,7 @@ struct FileResponse: Decodable {
         creationDate = try values.decode(Date.self, forKey: .creationDate)
         modificationDate = try values.decode(Date.self, forKey: .modificationDate)
         size = try values.decodeIfPresent(Int.self, forKey: .size)
-        numberOfDownloads = try values.decodeIfPresent(Int.self, forKey: .numberOfDownloads)
+        downloadCount = try values.decodeIfPresent(Int.self, forKey: .numberOfDownloads)
         ownerPath = try values.decodeIfPresent(String.self, forKey: .ownerPath)
 
         if let childrenCollection = try? values.decodeIfPresent([String: FileResponse].self, forKey: .children),

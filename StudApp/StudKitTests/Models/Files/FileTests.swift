@@ -34,7 +34,7 @@ final class FileTests: XCTestCase {
         XCTAssertNotNil(document)
         XCTAssertEqual(document?.id, "1")
         XCTAssertEqual(document?.size, 42)
-        XCTAssertEqual(document?.numberOfDownloads, 142)
+        XCTAssertEqual(document?.downloadCount, 142)
         XCTAssertEqual(document?.owner?.id, "0")
         XCTAssertEqual(document?.course.id, "0")
         XCTAssertEqual(document?.parent?.id, "0")

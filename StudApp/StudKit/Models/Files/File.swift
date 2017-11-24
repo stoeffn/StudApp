@@ -18,7 +18,7 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
     @NSManaged public var typeIdentifier: String
     @NSManaged public var title: String
     @NSManaged public var size: Int
-    @NSManaged public var numberOfDownloads: Int
+    @NSManaged public var downloadCount: Int
 
     @NSManaged public var course: Course
     @NSManaged public var parent: File?
