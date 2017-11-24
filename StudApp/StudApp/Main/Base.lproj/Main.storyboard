@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B8u-Ro-L8Q">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main Controller-->
+        <scene sceneID="KQ9-7f-jGt">
+            <objects>
+                <tabBarController id="B8u-Ro-L8Q" customClass="MainController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fdR-xS-tZE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="2bU-cg-kHC" kind="presentation" identifier="signInSegue" animates="NO" id="g2F-HD-as5"/>
+                        <segue destination="KYP-jD-J4O" kind="relationship" relationship="viewControllers" id="bFd-ds-8U0"/>
+                        <segue destination="zRO-mA-Jtv" kind="relationship" relationship="viewControllers" id="9ED-Sa-84k"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l4I-wS-6ep" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-63" y="-102"/>
+        </scene>
+        <!--SignIn-->
+        <scene sceneID="ZlC-YF-5hX">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SignIn" bundleIdentifier="SteffenRyll.StudKit" id="2bU-cg-kHC" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fcI-cX-vXc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="591" y="-149"/>
+        </scene>
+        <!--Semesters-->
+        <scene sceneID="cKI-m3-wPi">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Semesters" id="zRO-mA-Jtv" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="sTW-13-Sh5"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aMz-AJ-THb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="612" y="-56"/>
+        </scene>
+        <!--Downloads-->
+        <scene sceneID="xGE-gW-7nZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Downloads" id="KYP-jD-J4O" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="5ug-Se-Jql"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pTP-vX-G4w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="614" y="-106"/>
+        </scene>
+    </scenes>
+</document>
