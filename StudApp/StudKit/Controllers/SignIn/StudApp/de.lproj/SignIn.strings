@@ -1,0 +1,14 @@
+/* Class = "UILabel"; text = "Leibniz University of Hanover"; ObjectID = "82M-7T-kaN"; */
+"82M-7T-kaN.text" = "Leibniz Universität Hannover";
+
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "Iao-Vh-FML"; */
+"Iao-Vh-FML.placeholder" = "Benutzername";
+
+/* Class = "UIButton"; normalTitle = "Sign In"; ObjectID = "cZS-9a-wlw"; */
+"cZS-9a-wlw.normalTitle" = "Anmelden";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "e25-tx-ryy"; */
+"e25-tx-ryy.placeholder" = "Passwort";
+
+/* Class = "UILabel"; text = "You may have mistyped your username or password"; ObjectID = "ffy-2R-Hqm"; */
+"ffy-2R-Hqm.text" = "Benutzername oder Passwort könnte falsch sein";
