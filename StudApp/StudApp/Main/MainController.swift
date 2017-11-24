@@ -43,9 +43,11 @@ final class MainController: UITabBarController {
             performSegue(withRoute: Segues.signIn)
         }
 
-        guard let barButtonItem = sender as? UIBarButtonItem else { return }
+        guard let barButtonItem = sender as? UIBarButtonItem,
+            let currentUser = viewModel.currentUser else { return }
 
-        let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let title = "Signed in as \(currentUser.nameComponents.formatted(style: .long))"
+        let controller = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
         controller.popoverPresentationController?.barButtonItem = barButtonItem
         controller.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: signOut))
         controller.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

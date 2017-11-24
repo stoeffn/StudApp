@@ -33,4 +33,10 @@ public final class MainViewModel {
             handler?(result)
         }
     }
+
+    /// Currently signed in user. This property performs a fetch every time it is accessed.
+    public var currentUser: User? {
+        guard let user = try? User.fetchCurrent(in: coreDataService.viewContext) else { return nil }
+        return user
+    }
 }
