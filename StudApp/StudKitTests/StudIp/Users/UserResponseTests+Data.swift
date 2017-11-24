@@ -1,5 +1,5 @@
 //
-//  UserModelTests+Data.swift
+//  UserResponseTests+Data.swift
 //  StudKitTests
 //
 //  Created by Steffen Ryll on 07.09.17.
@@ -8,9 +8,9 @@
 
 @testable import StudKit
 
-extension UserModelTests {
+extension UserResponseTests {
     static let user = UserResponse(id: "0", username: "username", givenName: "First Name", familyName: "Last Name",
-                                rawNamePrefix: "Prefix", rawNameSuffix: "Suffix")
+                                   rawNamePrefix: "Prefix", rawNameSuffix: "Suffix")
 
     static let userData = """
         {

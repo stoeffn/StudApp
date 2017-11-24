@@ -1,5 +1,5 @@
 //
-//  CourseModelTests.swift
+//  CourseResponseTests.swift
 //  StudKitTests
 //
 //  Created by Steffen Ryll on 24.07.17.
@@ -9,11 +9,11 @@
 import XCTest
 @testable import StudKit
 
-final class CourseModelTests: XCTestCase {
+final class CourseResponseTests: XCTestCase {
     let decoder = ServiceContainer.default[JSONDecoder.self]
 
     func testInit_CourseData_Course() {
-        let course = try! decoder.decode(CourseResponse.self, from: CourseModelTests.courseData)
+        let course = try! decoder.decode(CourseResponse.self, from: CourseResponseTests.courseData)
         XCTAssertEqual(course.id, "0")
         XCTAssertEqual(course.number, "10062")
         XCTAssertEqual(course.title, "Title")

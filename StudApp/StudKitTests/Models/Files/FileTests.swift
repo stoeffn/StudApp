@@ -24,7 +24,7 @@ final class FileTests: XCTestCase {
     }
 
     func testInit_FileModel_File() {
-        let folder = try! FileModelTests.folder.coreDataModel(in: context) as! File
+        let folder = try! FileResponseTests.folder.coreDataModel(in: context) as! File
         let document = folder.children.first
 
         XCTAssertEqual(folder.id, "0")

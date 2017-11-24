@@ -18,23 +18,23 @@ final class SemesterTests: XCTestCase {
         context = StudKitTestsServiceProvider(target: .tests).provideCoreDataService().viewContext
 
         try! SemesterResponse(id: "0", title: "0", beginDate: Date(timeIntervalSince1970: 0),
-                           endDate: Date(timeIntervalSince1970: 9), coursesBeginDate: .distantPast,
-                           coursesEndDate: .distantPast).coreDataModel(in: context)
+                              endDate: Date(timeIntervalSince1970: 9), coursesBeginDate: .distantPast,
+                              coursesEndDate: .distantPast).coreDataModel(in: context)
         try! SemesterResponse(id: "1", title: "1", beginDate: Date(timeIntervalSince1970: 10),
-                           endDate: Date(timeIntervalSince1970: 19), coursesBeginDate: .distantPast,
-                           coursesEndDate: .distantPast).coreDataModel(in: context)
+                              endDate: Date(timeIntervalSince1970: 19), coursesBeginDate: .distantPast,
+                              coursesEndDate: .distantPast).coreDataModel(in: context)
         try! SemesterResponse(id: "2", title: "2", beginDate: Date(timeIntervalSince1970: 20),
-                           endDate: Date(timeIntervalSince1970: 29), coursesBeginDate: .distantPast,
-                           coursesEndDate: .distantPast).coreDataModel(in: context)
+                              endDate: Date(timeIntervalSince1970: 29), coursesBeginDate: .distantPast,
+                              coursesEndDate: .distantPast).coreDataModel(in: context)
         try! SemesterResponse(id: "3", title: "3", beginDate: Date(timeIntervalSince1970: 30),
-                           endDate: Date(timeIntervalSince1970: 39), coursesBeginDate: .distantPast,
-                           coursesEndDate: .distantPast).coreDataModel(in: context)
+                              endDate: Date(timeIntervalSince1970: 39), coursesBeginDate: .distantPast,
+                              coursesEndDate: .distantPast).coreDataModel(in: context)
 
         try! CourseResponse(id: "0", title: "A", beginSemesterPath: "/2").coreDataModel(in: context)
     }
 
     func testInit_SemesterModel_Semester() {
-        let semester = try! SemesterModelTests.semester.coreDataModel(in: context) as! Semester
+        let semester = try! SemesterResponseTests.semester.coreDataModel(in: context) as! Semester
         XCTAssertEqual(semester.id, "0")
         XCTAssertEqual(semester.title, "Title")
         XCTAssertEqual(semester.beginDate, .distantPast)

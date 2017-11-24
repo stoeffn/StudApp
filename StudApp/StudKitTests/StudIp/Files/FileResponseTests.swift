@@ -11,7 +11,7 @@ import MobileCoreServices
 import XCTest
 @testable import StudKit
 
-final class FileModelTests: XCTestCase {
+final class FileResponseTests: XCTestCase {
     let decoder = ServiceContainer.default[JSONDecoder.self]
     var context: NSManagedObjectContext!
 
@@ -24,7 +24,7 @@ final class FileModelTests: XCTestCase {
     }
 
     func testInit_FolderData_Folder() {
-        let file = try! decoder.decode(FileResponse.self, from: FileModelTests.folderData)
+        let file = try! decoder.decode(FileResponse.self, from: FileResponseTests.folderData)
         XCTAssertEqual(file.typeIdentifier, kUTTypeFolder as String)
         XCTAssertEqual(file.id, "e894bd27b2c3f5b25e438932f14b60e1")
         XCTAssertEqual(file.name, "Title")
@@ -37,7 +37,7 @@ final class FileModelTests: XCTestCase {
     }
 
     func testInit_EmptyFolderData_Folder() {
-        let file = try! decoder.decode(FileResponse.self, from: FileModelTests.emptyFolderData)
+        let file = try! decoder.decode(FileResponse.self, from: FileResponseTests.emptyFolderData)
         XCTAssertEqual(file.typeIdentifier, kUTTypeFolder as String)
         XCTAssertEqual(file.id, "e894bd27b2c3f5b25e438932f14b60e1")
         XCTAssertEqual(file.name, "Title")
@@ -50,7 +50,7 @@ final class FileModelTests: XCTestCase {
     }
 
     func testInit_DocumentData_Document() {
-        let file = try! decoder.decode(FileResponse.self, from: FileModelTests.documentData)
+        let file = try! decoder.decode(FileResponse.self, from: FileResponseTests.documentData)
         XCTAssertEqual(file.typeIdentifier, kUTTypePDF as String)
         XCTAssertEqual(file.id, "e894bd27b2c3f5b25e438932f14b60e2")
         XCTAssertEqual(file.name, "file.pdf")
@@ -63,7 +63,7 @@ final class FileModelTests: XCTestCase {
     }
 
     func testInit_FolderAndChildData_FolderAndChild() {
-        let file = try! decoder.decode(FileResponse.self, from: FileModelTests.folderAndChildData)
+        let file = try! decoder.decode(FileResponse.self, from: FileResponseTests.folderAndChildData)
         XCTAssertEqual(file.typeIdentifier, kUTTypeFolder as String)
         XCTAssertEqual(file.children.count, 1)
         XCTAssertNotNil(file.children.first)
@@ -77,45 +77,45 @@ final class FileModelTests: XCTestCase {
     }
 
     func testId_Document_DocumentId() {
-        XCTAssertEqual(FileModelTests.document.id, "1")
+        XCTAssertEqual(FileResponseTests.document.id, "1")
     }
 
     func testId_Folder_FolderId() {
-        XCTAssertEqual(FileModelTests.folder.id, "0")
+        XCTAssertEqual(FileResponseTests.folder.id, "0")
     }
 
     func testCourseId_CoursePath_CourseId() {
-        XCTAssertEqual(FileModelTests.document.courseId, "0")
+        XCTAssertEqual(FileResponseTests.document.courseId, "0")
     }
 
     func testTypeIdentifier_Folder_FolderType() {
-        XCTAssertEqual(FileModelTests.folder.typeIdentifier, kUTTypeFolder as String)
+        XCTAssertEqual(FileResponseTests.folder.typeIdentifier, kUTTypeFolder as String)
     }
 
     func testTypeIdentifier_Document_PngType() {
-        XCTAssertEqual(FileModelTests.document.typeIdentifier, kUTTypePNG as String)
+        XCTAssertEqual(FileResponseTests.document.typeIdentifier, kUTTypePNG as String)
     }
 
     func testIsFolder_Document_False() {
-        XCTAssertFalse(FileModelTests.document.isFolder)
+        XCTAssertFalse(FileResponseTests.document.isFolder)
     }
 
     func testIsFolder_Folder_True() {
-        XCTAssertTrue(FileModelTests.folder.isFolder)
+        XCTAssertTrue(FileResponseTests.folder.isFolder)
     }
 
     func testFetchCourse_File_Course() {
-        let course = try! FileModelTests.document.fetchCourse(in: context)
+        let course = try! FileResponseTests.document.fetchCourse(in: context)
         XCTAssertEqual(course?.id, "0")
     }
 
     func testFetchParent_Folder_Nil() {
-        let file = try! FileModelTests.folder.fetchParent(in: context)
+        let file = try! FileResponseTests.folder.fetchParent(in: context)
         XCTAssertNil(file)
     }
 
     func testFetchParent_Document_Folder() {
-        let file = try! FileModelTests.document.fetchParent(in: context)
+        let file = try! FileResponseTests.document.fetchParent(in: context)
         XCTAssertNotNil(file)
         XCTAssertEqual(file?.id, "0")
     }

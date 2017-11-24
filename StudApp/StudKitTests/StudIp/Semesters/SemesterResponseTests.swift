@@ -1,5 +1,5 @@
 //
-//  SemesterModelTests.swift
+//  SemesterResponseTests.swift
 //  StudKitTests
 //
 //  Created by Steffen Ryll on 08.09.17.
@@ -10,11 +10,11 @@ import CoreData
 import XCTest
 @testable import StudKit
 
-final class SemesterModelTests: XCTestCase {
+final class SemesterResponseTests: XCTestCase {
     let decoder = ServiceContainer.default[JSONDecoder.self]
 
     func testInit_SemesterData_Semester() {
-        let semester = try! decoder.decode(SemesterResponse.self, from: SemesterModelTests.semesterData)
+        let semester = try! decoder.decode(SemesterResponse.self, from: SemesterResponseTests.semesterData)
         XCTAssertEqual(semester.id, "1")
         XCTAssertEqual(semester.title, "SS 2009")
         XCTAssertEqual(semester.beginDate.description, "2009-03-29 22:00:00 +0000")

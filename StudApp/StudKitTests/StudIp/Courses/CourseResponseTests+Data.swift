@@ -1,12 +1,12 @@
 //
-//  CourseModelTests+Data.swift
+//  CourseResponseTests+Data.swift
 //  StudKitTests
 //
 //  Created by Steffen Ryll on 25.07.17.
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-extension CourseModelTests {
+extension CourseResponseTests {
     static let courseData = """
         {
             "course_id": "0",

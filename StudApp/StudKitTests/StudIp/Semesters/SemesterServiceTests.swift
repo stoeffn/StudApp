@@ -18,7 +18,7 @@ final class SemesterServiceTests: XCTestCase {
         context = StudKitTestsServiceProvider(target: .tests).provideCoreDataService().viewContext
 
         try! SemesterResponse(id: "135de7259e0862cbcd3878e038253776", title: "Old title", beginDate: .distantFuture,
-                           endDate: .distantFuture, coursesBeginDate: .distantFuture, coursesEndDate: .distantFuture)
+                              endDate: .distantFuture, coursesBeginDate: .distantFuture, coursesEndDate: .distantFuture)
             .coreDataModel(in: context)
 
         try! context!.save()

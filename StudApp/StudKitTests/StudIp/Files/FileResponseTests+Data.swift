@@ -1,5 +1,5 @@
 //
-//  FileModelTests+Data.swift
+//  FileResponseTests+Data.swift
 //  StudKitTests
 //
 //  Created by Steffen Ryll on 25.07.17.
@@ -8,12 +8,13 @@
 
 @testable import StudKit
 
-extension FileModelTests {
-    static let folder = FileResponse(folderId: "0", coursePath: "\\/api.php\\/course\\/0", children: [FileModelTests.document],
-                                  title: "Folder", ownerPath: "\\/api.php\\/user\\/Array")
+extension FileResponseTests {
+    static let folder = FileResponse(folderId: "0", coursePath: "\\/api.php\\/course\\/0",
+                                     children: [FileResponseTests.document], title: "Folder",
+                                     ownerPath: "\\/api.php\\/user\\/Array")
 
     static let document = FileResponse(fileId: "1", name: "image.png", coursePath: "\\/api.php\\/course\\/0", parentId: "0",
-                                    title: "Document", size: 42, numberOfDownloads: 142, ownerPath: "\\/api.php\\/user\\/0")
+                                       title: "Document", size: 42, numberOfDownloads: 142, ownerPath: "\\/api.php\\/user\\/0")
 
     static let folderData = """
         {

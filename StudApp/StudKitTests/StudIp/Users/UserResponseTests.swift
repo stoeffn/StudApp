@@ -1,5 +1,5 @@
 //
-//  UserModelTests.swift
+//  UserResponseTests.swift
 //  StudKitTests
 //
 //  Created by Steffen Ryll on 07.09.17.
@@ -10,11 +10,11 @@ import CoreData
 import XCTest
 @testable import StudKit
 
-final class UserModelTests: XCTestCase {
+final class UserResponseTests: XCTestCase {
     let decoder = ServiceContainer.default[JSONDecoder.self]
 
     func testInit_UserData_User() {
-        let user = try! decoder.decode(UserResponse.self, from: UserModelTests.userData)
+        let user = try! decoder.decode(UserResponse.self, from: UserResponseTests.userData)
         XCTAssertEqual(user.id, "e894bd27b2c3f5b25e438932f14b60e1")
         XCTAssertEqual(user.username, "username")
         XCTAssertEqual(user.givenName, "First Name")
@@ -25,7 +25,7 @@ final class UserModelTests: XCTestCase {
     }
 
     func testInit_UserWithoutPrefixAndPictureData_UserWithNilPrefix() {
-        let user = try! decoder.decode(UserResponse.self, from: UserModelTests.userWithoutPrefixAndPictureData)
+        let user = try! decoder.decode(UserResponse.self, from: UserResponseTests.userWithoutPrefixAndPictureData)
         XCTAssertEqual(user.id, "e894bd27b2c3f5b25e438932f14b60e1")
         XCTAssertEqual(user.username, "username")
         XCTAssertEqual(user.givenName, "First Name")

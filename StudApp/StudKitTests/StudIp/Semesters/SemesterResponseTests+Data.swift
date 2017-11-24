@@ -1,5 +1,5 @@
 //
-//  SemesterModelTests+Data.swift
+//  SemesterResponseTests+Data.swift
 //  StudKitTests
 //
 //  Created by Steffen Ryll on 08.09.17.
@@ -8,10 +8,10 @@
 
 @testable import StudKit
 
-extension SemesterModelTests {
+extension SemesterResponseTests {
     static let semester = SemesterResponse(id: "0", title: "Title", beginDate: .distantPast,
-                                        endDate: .distantFuture, coursesBeginDate: .distantPast,
-                                        coursesEndDate: .distantFuture)
+                                           endDate: .distantFuture, coursesBeginDate: .distantPast,
+                                           coursesEndDate: .distantFuture)
 
     static let semesterData = """
         {
