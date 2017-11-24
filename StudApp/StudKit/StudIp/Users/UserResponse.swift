@@ -17,6 +17,7 @@ struct UserResponse: Decodable {
 
     enum CodingKeys: String, CodingKey {
         case id
+        case userId = "user_id"
         case name
         case pictureUrl = "avatar_normal"
     }
@@ -31,7 +32,9 @@ struct UserResponse: Decodable {
 
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        id = try values.decode(String.self, forKey: .id)
+
+        id = try values.decodeIfPresent(String.self, forKey: .id)
+            ?? values.decode(String.self, forKey: .userId)
         pictureUrl = try values.decodeIfPresent(URL.self, forKey: .pictureUrl)
 
         let name = try values.nestedContainer(keyedBy: NameKeys.self, forKey: .name)
