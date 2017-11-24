@@ -17,20 +17,20 @@ final class SemesterTests: XCTestCase {
     override func setUp() {
         context = StudKitTestsServiceProvider(target: .tests).provideCoreDataService().viewContext
 
-        try! SemesterModel(id: "0", title: "0", beginDate: Date(timeIntervalSince1970: 0),
+        try! SemesterResponse(id: "0", title: "0", beginDate: Date(timeIntervalSince1970: 0),
                            endDate: Date(timeIntervalSince1970: 9), coursesBeginDate: .distantPast,
                            coursesEndDate: .distantPast).coreDataModel(in: context)
-        try! SemesterModel(id: "1", title: "1", beginDate: Date(timeIntervalSince1970: 10),
+        try! SemesterResponse(id: "1", title: "1", beginDate: Date(timeIntervalSince1970: 10),
                            endDate: Date(timeIntervalSince1970: 19), coursesBeginDate: .distantPast,
                            coursesEndDate: .distantPast).coreDataModel(in: context)
-        try! SemesterModel(id: "2", title: "2", beginDate: Date(timeIntervalSince1970: 20),
+        try! SemesterResponse(id: "2", title: "2", beginDate: Date(timeIntervalSince1970: 20),
                            endDate: Date(timeIntervalSince1970: 29), coursesBeginDate: .distantPast,
                            coursesEndDate: .distantPast).coreDataModel(in: context)
-        try! SemesterModel(id: "3", title: "3", beginDate: Date(timeIntervalSince1970: 30),
+        try! SemesterResponse(id: "3", title: "3", beginDate: Date(timeIntervalSince1970: 30),
                            endDate: Date(timeIntervalSince1970: 39), coursesBeginDate: .distantPast,
                            coursesEndDate: .distantPast).coreDataModel(in: context)
 
-        try! CourseModel(id: "0", title: "A", beginSemesterPath: "/2").coreDataModel(in: context)
+        try! CourseResponse(id: "0", title: "A", beginSemesterPath: "/2").coreDataModel(in: context)
     }
 
     func testInit_SemesterModel_Semester() {

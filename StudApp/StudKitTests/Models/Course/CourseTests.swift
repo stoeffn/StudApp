@@ -16,26 +16,26 @@ final class CourseTests: XCTestCase {
     override func setUp() {
         context = StudKitTestsServiceProvider(target: .tests).provideCoreDataService().viewContext
 
-        try! SemesterModel(id: "0", title: "Semester", beginDate: Date(timeIntervalSince1970: 0),
+        try! SemesterResponse(id: "0", title: "Semester", beginDate: Date(timeIntervalSince1970: 0),
                            endDate: Date(timeIntervalSince1970: 9), coursesBeginDate: .distantPast,
                            coursesEndDate: .distantFuture).coreDataModel(in: context)
-        try! SemesterModel(id: "1", title: "Semester", beginDate: Date(timeIntervalSince1970: 10),
+        try! SemesterResponse(id: "1", title: "Semester", beginDate: Date(timeIntervalSince1970: 10),
                            endDate: Date(timeIntervalSince1970: 19), coursesBeginDate: .distantPast,
                            coursesEndDate: .distantFuture).coreDataModel(in: context)
 
-        try! CourseModel(id: "0", title: "A", beginSemesterPath: "/0", endSemesterPath: "/0").coreDataModel(in: context)
-        try! CourseModel(id: "1", title: "B", beginSemesterPath: "/0", endSemesterPath: "/0").coreDataModel(in: context)
-        try! CourseModel(id: "2", title: "C", beginSemesterPath: "/0", endSemesterPath: "/1").coreDataModel(in: context)
-        try! CourseModel(id: "3", title: "D", beginSemesterPath: "/1", endSemesterPath: "/1").coreDataModel(in: context)
+        try! CourseResponse(id: "0", title: "A", beginSemesterPath: "/0", endSemesterPath: "/0").coreDataModel(in: context)
+        try! CourseResponse(id: "1", title: "B", beginSemesterPath: "/0", endSemesterPath: "/0").coreDataModel(in: context)
+        try! CourseResponse(id: "2", title: "C", beginSemesterPath: "/0", endSemesterPath: "/1").coreDataModel(in: context)
+        try! CourseResponse(id: "3", title: "D", beginSemesterPath: "/1", endSemesterPath: "/1").coreDataModel(in: context)
 
-        try! FileModel(folderId: "0", coursePath: "/0", title: "A").coreDataModel(in: context)
-        try! FileModel(fileId: "1", name: "1", coursePath: "/0", title: "B").coreDataModel(in: context)
-        try! FileModel(fileId: "2", name: "2", coursePath: "/0", parentId: "0", title: "C").coreDataModel(in: context)
-        try! FileModel(fileId: "3", name: "3", coursePath: "/1", title: "D").coreDataModel(in: context)
+        try! FileResponse(folderId: "0", coursePath: "/0", title: "A").coreDataModel(in: context)
+        try! FileResponse(fileId: "1", name: "1", coursePath: "/0", title: "B").coreDataModel(in: context)
+        try! FileResponse(fileId: "2", name: "2", coursePath: "/0", parentId: "0", title: "C").coreDataModel(in: context)
+        try! FileResponse(fileId: "3", name: "3", coursePath: "/1", title: "D").coreDataModel(in: context)
     }
 
     func testInit_CourseModel_Course() {
-        let course = try! CourseModel(id: "0", rawNumber: " 123  ", title: "Title", subtitle: "Subtitle",
+        let course = try! CourseResponse(id: "0", rawNumber: " 123  ", title: "Title", subtitle: "Subtitle",
                                       location: "Location", rawSummary: "Summary<br> ",
                                       rawLecturers: ["abc": UserModelTests.user], beginSemesterPath: "/0",
                                       endSemesterPath: "/0")

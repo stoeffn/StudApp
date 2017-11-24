@@ -1,5 +1,5 @@
 //
-//  FileModel.swift
+//  FileResponse.swift
 //  StudKit
 //
 //  Created by Steffen Ryll on 22.07.17.
@@ -9,13 +9,13 @@
 import MobileCoreServices
 import CoreData
 
-struct FileModel: Decodable {
+struct FileResponse: Decodable {
     private let folderId: String?
     private let fileId: String?
     private let filename: String?
     private let coursePath: String
     private let parentId: String?
-    let children: [FileModel]
+    let children: [FileResponse]
     let title: String
     let creationDate: Date
     let modificationDate: Date
@@ -39,7 +39,7 @@ struct FileModel: Decodable {
     }
 
     init(folderId: String? = nil, fileId: String? = nil, name: String? = nil, coursePath: String,
-         parentId: String? = nil, children: [FileModel] = [], title: String, creationDate: Date = Date(),
+         parentId: String? = nil, children: [FileResponse] = [], title: String, creationDate: Date = Date(),
          modificationDate: Date = Date(), size: Int? = nil, numberOfDownloads: Int? = nil, ownerPath: String? = nil) {
         self.folderId = folderId
         self.fileId = fileId
@@ -69,7 +69,7 @@ struct FileModel: Decodable {
         numberOfDownloads = try values.decodeIfPresent(Int.self, forKey: .numberOfDownloads)
         ownerPath = try values.decodeIfPresent(String.self, forKey: .ownerPath)
 
-        if let childrenCollection = try? values.decodeIfPresent([String: FileModel].self, forKey: .children),
+        if let childrenCollection = try? values.decodeIfPresent([String: FileResponse].self, forKey: .children),
             let children = childrenCollection?.values {
             self.children = Array(children)
         } else {
@@ -80,7 +80,7 @@ struct FileModel: Decodable {
 
 // MARK: - Utilities
 
-extension FileModel {
+extension FileResponse {
     var id: String? {
         return isFolder ? folderId : fileId
     }

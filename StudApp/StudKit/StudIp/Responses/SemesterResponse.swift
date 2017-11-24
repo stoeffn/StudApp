@@ -1,12 +1,12 @@
 //
-//  SemesterModel.swift
+//  SemesterResponse.swift
 //  StudKit
 //
 //  Created by Steffen Ryll on 08.09.17.
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-struct SemesterModel: Decodable {
+struct SemesterResponse: Decodable {
     let id: String
     let title: String
     let beginDate: Date

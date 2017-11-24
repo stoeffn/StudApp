@@ -1,12 +1,12 @@
 //
-//  UserModel.swift
+//  UserResponse.swift
 //  StudKit
 //
 //  Created by Steffen Ryll on 07.09.17.
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-struct UserModel: Decodable {
+struct UserResponse: Decodable {
     let id: String
     let username: String
     let givenName: String
@@ -56,7 +56,7 @@ struct UserModel: Decodable {
 
 // MARK: - Utilities
 
-extension UserModel {
+extension UserResponse {
     var namePrefix: String? {
         return rawNamePrefix.nilWhenEmpty
     }

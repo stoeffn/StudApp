@@ -1,5 +1,5 @@
 //
-//  CourseModel.swift
+//  CourseResponse.swift
 //  StudKit
 //
 //  Created by Steffen Ryll on 17.07.17.
@@ -7,14 +7,14 @@
 //
 
 /// Represents a decoded course object as returned by the API.
-struct CourseModel: Decodable {
+struct CourseResponse: Decodable {
     let id: String
     private let rawNumber: String?
     let title: String
     let subtitle: String?
     let location: String?
     private let rawSummary: String?
-    private let rawLecturers: [String: UserModel]
+    private let rawLecturers: [String: UserResponse]
     private let beginSemesterPath: String
     private let endSemesterPath: String?
 
@@ -31,7 +31,7 @@ struct CourseModel: Decodable {
     }
 
     init(id: String, rawNumber: String? = nil, title: String, subtitle: String? = nil, location: String? = nil,
-         rawSummary: String? = nil, rawLecturers: [String: UserModel] = [:], beginSemesterPath: String = "",
+         rawSummary: String? = nil, rawLecturers: [String: UserResponse] = [:], beginSemesterPath: String = "",
          endSemesterPath: String? = nil) {
         self.id = id
         self.rawNumber = rawNumber
@@ -47,7 +47,7 @@ struct CourseModel: Decodable {
 
 // MARK: - Utilities
 
-extension CourseModel {
+extension CourseResponse {
     var number: String? {
         return StudIp.transformCourseNumber(rawNumber)
     }
@@ -56,7 +56,7 @@ extension CourseModel {
         return StudIp.transformCourseSummary(rawSummary)
     }
 
-    var lecturers: [UserModel] {
+    var lecturers: [UserResponse] {
         return Array(rawLecturers.values)
     }
 

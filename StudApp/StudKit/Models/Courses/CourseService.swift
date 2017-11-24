@@ -18,7 +18,7 @@ public final class CourseService {
 
     public func update(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Course]>) {
         // TODO: Use user id that is NOT hard-coded.
-        studIp.api.requestCompleteCollection(.courses(forUserId: userId)) { (result: Result<[CourseModel]>) in
+        studIp.api.requestCompleteCollection(.courses(forUserId: userId)) { (result: Result<[CourseResponse]>) in
             Course.update(using: result, in: context, handler: handler)
 
             guard let semesters = try? Semester.fetchNonHidden(in: context) else { return }

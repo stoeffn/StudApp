@@ -18,13 +18,13 @@ final class FileModelTests: XCTestCase {
     override func setUp() {
         context = StudKitTestsServiceProvider(target: .tests).provideCoreDataService().viewContext
 
-        try! CourseModel(id: "0", title: "A").coreDataModel(in: context)
+        try! CourseResponse(id: "0", title: "A").coreDataModel(in: context)
 
-        try! FileModel(folderId: "0", coursePath: "/0", title: "a").coreDataModel(in: context)
+        try! FileResponse(folderId: "0", coursePath: "/0", title: "a").coreDataModel(in: context)
     }
 
     func testInit_FolderData_Folder() {
-        let file = try! decoder.decode(FileModel.self, from: FileModelTests.folderData)
+        let file = try! decoder.decode(FileResponse.self, from: FileModelTests.folderData)
         XCTAssertEqual(file.typeIdentifier, kUTTypeFolder as String)
         XCTAssertEqual(file.id, "e894bd27b2c3f5b25e438932f14b60e1")
         XCTAssertEqual(file.name, "Title")
@@ -37,7 +37,7 @@ final class FileModelTests: XCTestCase {
     }
 
     func testInit_EmptyFolderData_Folder() {
-        let file = try! decoder.decode(FileModel.self, from: FileModelTests.emptyFolderData)
+        let file = try! decoder.decode(FileResponse.self, from: FileModelTests.emptyFolderData)
         XCTAssertEqual(file.typeIdentifier, kUTTypeFolder as String)
         XCTAssertEqual(file.id, "e894bd27b2c3f5b25e438932f14b60e1")
         XCTAssertEqual(file.name, "Title")
@@ -50,7 +50,7 @@ final class FileModelTests: XCTestCase {
     }
 
     func testInit_DocumentData_Document() {
-        let file = try! decoder.decode(FileModel.self, from: FileModelTests.documentData)
+        let file = try! decoder.decode(FileResponse.self, from: FileModelTests.documentData)
         XCTAssertEqual(file.typeIdentifier, kUTTypePDF as String)
         XCTAssertEqual(file.id, "e894bd27b2c3f5b25e438932f14b60e2")
         XCTAssertEqual(file.name, "file.pdf")
@@ -63,7 +63,7 @@ final class FileModelTests: XCTestCase {
     }
 
     func testInit_FolderAndChildData_FolderAndChild() {
-        let file = try! decoder.decode(FileModel.self, from: FileModelTests.folderAndChildData)
+        let file = try! decoder.decode(FileResponse.self, from: FileModelTests.folderAndChildData)
         XCTAssertEqual(file.typeIdentifier, kUTTypeFolder as String)
         XCTAssertEqual(file.children.count, 1)
         XCTAssertNotNil(file.children.first)
@@ -71,7 +71,7 @@ final class FileModelTests: XCTestCase {
     }
 
     func testInit_FileCollection_Files() {
-        let collection = try! decoder.decode(CollectionResponse<FileModel>.self, fromResource: "fileCollection")
+        let collection = try! decoder.decode(CollectionResponse<FileResponse>.self, fromResource: "fileCollection")
         XCTAssertEqual(collection.items.count, 6)
         XCTAssertEqual(collection.items.first?.children.count, 12)
     }

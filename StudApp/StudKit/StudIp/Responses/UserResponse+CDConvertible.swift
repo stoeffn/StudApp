@@ -1,5 +1,5 @@
 //
-//  UserModel+CDConvertible.swift
+//  UserResponse+CDConvertible.swift
 //  StudKit
 //
 //  Created by Steffen Ryll on 07.09.17.
@@ -8,7 +8,7 @@
 
 import CoreData
 
-extension UserModel: CDConvertible {
+extension UserResponse: CDConvertible {
     @discardableResult
     func coreDataModel(in context: NSManagedObjectContext) throws -> NSManagedObject {
         let (user, _) = try User.fetch(byId: id, orCreateIn: context)

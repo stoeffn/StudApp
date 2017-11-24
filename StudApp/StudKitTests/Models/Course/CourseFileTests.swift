@@ -18,12 +18,12 @@ final class FileServiceTests: XCTestCase {
     override func setUp() {
         context = StudKitTestsServiceProvider(target: .tests).provideCoreDataService().viewContext
 
-        course = try! CourseModel(id: "a2c88e905abf322d1868640859f13c99", title: "Course")
+        course = try! CourseResponse(id: "a2c88e905abf322d1868640859f13c99", title: "Course")
             .coreDataModel(in: context!) as! Course
 
-        try! FileModel(fileId: "123456784c20d3c1931649b979ecd73e", name: "f.pdf",
+        try! FileResponse(fileId: "123456784c20d3c1931649b979ecd73e", name: "f.pdf",
                        coursePath: "/a2c88e905abf322d1868640859f13c99", title: "Current").coreDataModel(in: context!)
-        try! FileModel(fileId: "d4a7bef74c20d3c1931649b979ecd73e", name: "file.pdf",
+        try! FileResponse(fileId: "d4a7bef74c20d3c1931649b979ecd73e", name: "file.pdf",
                        coursePath: "/a2c88e905abf322d1868640859f13c99", title: "Stale").coreDataModel(in: context!)
 
         try! context.save()

@@ -9,7 +9,7 @@
 @testable import StudKit
 
 extension SemesterModelTests {
-    static let semester = SemesterModel(id: "0", title: "Title", beginDate: .distantPast,
+    static let semester = SemesterResponse(id: "0", title: "Title", beginDate: .distantPast,
                                         endDate: .distantFuture, coursesBeginDate: .distantPast,
                                         coursesEndDate: .distantFuture)
 

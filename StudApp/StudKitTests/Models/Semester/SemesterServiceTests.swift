@@ -17,7 +17,7 @@ final class SemesterServiceTests: XCTestCase {
     override func setUp() {
         context = StudKitTestsServiceProvider(target: .tests).provideCoreDataService().viewContext
 
-        try! SemesterModel(id: "135de7259e0862cbcd3878e038253776", title: "Old title", beginDate: .distantFuture,
+        try! SemesterResponse(id: "135de7259e0862cbcd3878e038253776", title: "Old title", beginDate: .distantFuture,
                            endDate: .distantFuture, coursesBeginDate: .distantFuture, coursesEndDate: .distantFuture)
             .coreDataModel(in: context)
 

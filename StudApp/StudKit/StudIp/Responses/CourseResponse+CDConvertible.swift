@@ -1,5 +1,5 @@
 //
-//  CourseModel+CDConvertible.swift
+//  CourseResponse+CDConvertible.swift
 //  StudKit
 //
 //  Created by Steffen Ryll on 27.07.17.
@@ -8,7 +8,7 @@
 
 import CoreData
 
-extension CourseModel: CDConvertible {
+extension CourseResponse: CDConvertible {
     @discardableResult
     func coreDataModel(in context: NSManagedObjectContext) throws -> NSManagedObject {
         let (course, _) = try Course.fetch(byId: id, orCreateIn: context)

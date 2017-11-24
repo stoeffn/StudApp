@@ -1,5 +1,5 @@
 //
-//  SemesterModel+CDConvertible.swift
+//  SemesterResponse+CDConvertible.swift
 //  StudKit
 //
 //  Created by Steffen Ryll on 08.09.17.
@@ -8,7 +8,7 @@
 
 import CoreData
 
-extension SemesterModel: CDConvertible {
+extension SemesterResponse: CDConvertible {
     @discardableResult
     func coreDataModel(in context: NSManagedObjectContext) throws -> NSManagedObject {
         let (semester, isNew) = try Semester.fetch(byId: id, orCreateIn: context)

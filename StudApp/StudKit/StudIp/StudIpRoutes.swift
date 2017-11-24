@@ -53,10 +53,10 @@ public enum StudIpRoutes: ApiRoutes {
     var type: Decodable.Type? {
         switch self {
         case .discovery: return [String: [String: String]].self
-        case .semesters: return CollectionResponse<SemesterModel>.self
-        case .courses: return CollectionResponse<CourseModel>.self
-        case .filesInCourse: return CollectionResponse<FileModel>.self
-        case .file: return FileModel.self
+        case .semesters: return CollectionResponse<SemesterResponse>.self
+        case .courses: return CollectionResponse<CourseResponse>.self
+        case .filesInCourse: return CollectionResponse<FileResponse>.self
+        case .file: return FileResponse.self
         case .fileContents, .profilePicture: return nil
         }
     }

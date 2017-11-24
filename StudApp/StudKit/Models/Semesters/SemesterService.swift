@@ -16,7 +16,7 @@ public final class SemesterService {
     }
 
     public func update(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Semester]>) {
-        studIp.api.requestCompleteCollection(.semesters) { (result: Result<[SemesterModel]>) in
+        studIp.api.requestCompleteCollection(.semesters) { (result: Result<[SemesterResponse]>) in
             Semester.update(using: result, in: context, handler: handler)
 
             NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }

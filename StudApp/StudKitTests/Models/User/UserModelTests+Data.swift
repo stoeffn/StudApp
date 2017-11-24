@@ -9,7 +9,7 @@
 @testable import StudKit
 
 extension UserModelTests {
-    static let user = UserModel(id: "0", username: "username", givenName: "First Name", familyName: "Last Name",
+    static let user = UserResponse(id: "0", username: "username", givenName: "First Name", familyName: "Last Name",
                                 rawNamePrefix: "Prefix", rawNameSuffix: "Suffix")
 
     static let userData = """

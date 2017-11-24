@@ -1,5 +1,5 @@
 //
-//  FileModel+CDConvertible.swift
+//  FileResponse+CDConvertible.swift
 //  StudKit
 //
 //  Created by Steffen Ryll on 27.07.17.
@@ -8,7 +8,7 @@
 
 import CoreData
 
-extension FileModel: CDConvertible {
+extension FileResponse: CDConvertible {
     @discardableResult
     func coreDataModel(in context: NSManagedObjectContext) throws -> NSManagedObject {
         guard let id = id, let name = name, let course = try fetchCourse(in: context) else {

@@ -14,7 +14,7 @@ final class UserModelTests: XCTestCase {
     let decoder = ServiceContainer.default[JSONDecoder.self]
 
     func testInit_UserData_User() {
-        let user = try! decoder.decode(UserModel.self, from: UserModelTests.userData)
+        let user = try! decoder.decode(UserResponse.self, from: UserModelTests.userData)
         XCTAssertEqual(user.id, "e894bd27b2c3f5b25e438932f14b60e1")
         XCTAssertEqual(user.username, "username")
         XCTAssertEqual(user.givenName, "First Name")
@@ -25,7 +25,7 @@ final class UserModelTests: XCTestCase {
     }
 
     func testInit_UserWithoutPrefixAndPictureData_UserWithNilPrefix() {
-        let user = try! decoder.decode(UserModel.self, from: UserModelTests.userWithoutPrefixAndPictureData)
+        let user = try! decoder.decode(UserResponse.self, from: UserModelTests.userWithoutPrefixAndPictureData)
         XCTAssertEqual(user.id, "e894bd27b2c3f5b25e438932f14b60e1")
         XCTAssertEqual(user.username, "username")
         XCTAssertEqual(user.givenName, "First Name")

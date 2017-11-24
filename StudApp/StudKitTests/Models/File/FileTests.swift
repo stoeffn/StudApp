@@ -17,10 +17,10 @@ final class FileTests: XCTestCase {
     override func setUp() {
         context = StudKitTestsServiceProvider(target: .tests).provideCoreDataService().viewContext
 
-        try! CourseModel(id: "0", title: "A").coreDataModel(in: context)
-        try! CourseModel(id: "a2c88e905abf322d1868640859f13c99", title: "B").coreDataModel(in: context)
+        try! CourseResponse(id: "0", title: "A").coreDataModel(in: context)
+        try! CourseResponse(id: "a2c88e905abf322d1868640859f13c99", title: "B").coreDataModel(in: context)
 
-        try! UserModel(id: "0", username: "A", givenName: "Test", familyName: "User").coreDataModel(in: context)
+        try! UserResponse(id: "0", username: "A", givenName: "Test", familyName: "User").coreDataModel(in: context)
     }
 
     func testInit_FileModel_File() {
@@ -43,7 +43,7 @@ final class FileTests: XCTestCase {
     }
 
     func testInit_Collection_Files() {
-        let files = try! decoder.decode(CollectionResponse<FileModel>.self, fromResource: "fileCollection").items
+        let files = try! decoder.decode(CollectionResponse<FileResponse>.self, fromResource: "fileCollection").items
             .flatMap { try! $0.coreDataModel(in: context) as? File }
 
         XCTAssertEqual(files.count, 6)

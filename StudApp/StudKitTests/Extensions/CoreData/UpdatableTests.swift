@@ -16,16 +16,16 @@ final class UpdatableTests: XCTestCase {
     override func setUp() {
         context = StudKitTestsServiceProvider(target: .tests).provideCoreDataService().viewContext
 
-        try! CourseModel(id: "0", title: "A").coreDataModel(in: context)
-        try! CourseModel(id: "1", title: "Course 2").coreDataModel(in: context)
+        try! CourseResponse(id: "0", title: "A").coreDataModel(in: context)
+        try! CourseResponse(id: "1", title: "Course 2").coreDataModel(in: context)
 
-        try! FileModel(fileId: "0", name: "file.pdf", coursePath: "/1", title: "File").coreDataModel(in: context)
+        try! FileResponse(fileId: "0", name: "file.pdf", coursePath: "/1", title: "File").coreDataModel(in: context)
 
         try! context.save()
     }
 
     func testUpdate_Nil_Failure() {
-        let result = Result<[CourseModel]>.failure(nil)
+        let result = Result<[CourseResponse]>.failure(nil)
         Course.update(using: result, in: context) { courseResult in
             try! self.context.save()
             XCTAssertTrue(courseResult.isFailure)
@@ -36,7 +36,7 @@ final class UpdatableTests: XCTestCase {
     func testUpdate_Add_Added() {
         XCTAssertEqual(try! Course.fetch(in: context).count, 2)
 
-        let result = Result.success([CourseModel(id: "2", title: "C")])
+        let result = Result.success([CourseResponse(id: "2", title: "C")])
         Course.update(using: result, in: context) { courseResult in
             try! self.context.save()
 
@@ -46,9 +46,9 @@ final class UpdatableTests: XCTestCase {
     }
 
     func testMerge_Courses_Merged() {
-        try! CourseModel(id: "2", title: "Course").coreDataModel(in: context)
+        try! CourseResponse(id: "2", title: "Course").coreDataModel(in: context)
         try! context.save()
-        try! CourseModel(id: "2", title: "Updated Course").coreDataModel(in: context)
+        try! CourseResponse(id: "2", title: "Updated Course").coreDataModel(in: context)
         try! context.save()
 
         let course = try! Course.fetch(byId: "2", in: context)
@@ -58,7 +58,7 @@ final class UpdatableTests: XCTestCase {
     func testUpdate_Update_Updated() {
         XCTAssertEqual(try! Course.fetch(in: context).count, 2)
 
-        let result = Result.success([CourseModel(id: "1", title: "Updated Course 2")])
+        let result = Result.success([CourseResponse(id: "1", title: "Updated Course 2")])
         Course.update(using: result, in: context) { courseResult in
             try! self.context.save()
             let course2 = try! Course.fetch(byId: "1", in: self.context)
