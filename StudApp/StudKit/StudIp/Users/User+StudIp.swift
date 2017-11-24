@@ -9,6 +9,22 @@
 import CoreData
 
 extension User {
+    public var isCurrent: Bool {
+        let studIpService = ServiceContainer.default[StudIpService.self]
+        return id == studIpService.currentUserId
+    }
+
+    public func makeCurrent() {
+        let studIpService = ServiceContainer.default[StudIpService.self]
+        studIpService.currentUserId = id
+    }
+
+    static func fetchCurrent(in context: NSManagedObjectContext) throws -> User? {
+        let studIpService = ServiceContainer.default[StudIpService.self]
+        guard let currentUserId = studIpService.currentUserId else { return nil }
+        return try fetch(byId: currentUserId, in: context)
+    }
+
     static func updateCurrent(in context: NSManagedObjectContext, handler: @escaping ResultHandler<User>) {
         let studIp = ServiceContainer.default[StudIpService.self]
         studIp.api.requestDecoded(.currentUser) { (result: Result<UserResponse>) in

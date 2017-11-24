@@ -26,6 +26,17 @@ public final class StudIpService {
         return !(credential.user?.isEmpty ?? true)
     }
 
+    var currentUserId: String? {
+        get {
+            let storageService = ServiceContainer.default[StorageService.self]
+            return storageService.defaults.string(forKey: UserDefaults.currentUserIdKey)
+        }
+        set {
+            let storageService = ServiceContainer.default[StorageService.self]
+            storageService.defaults.set(newValue, forKey: UserDefaults.currentUserIdKey)
+        }
+    }
+
     /// Tries to sign into Stud.IP using the credentials provided.
     ///
     /// ## How it works
@@ -35,12 +46,13 @@ public final class StudIpService {
     ///  3. Remove session credential.
     ///  4. Abort if credential was rejected or another error occured during the request.
     ///  5. Create a permanent credential from the now validated username and password and save it as the default.
+    ///  6. Fetch the current user from the API and mark as the current user.
     ///
     /// - Parameters:
     ///   - username: Stud.IP username.
     ///   - password: Stud.IP password.
     ///   - handler: Completion handler that is called after *every* step finished.
-    func signIn(withUsername username: String, password: String, handler: @escaping ResultHandler<Void>) {
+    func signIn(withUsername username: String, password: String, handler: @escaping ResultHandler<User>) {
         let protectionSpace = api.protectionSpace
 
         if let credential = URLCredentialStorage.shared.defaultCredential(for: protectionSpace) {
@@ -53,14 +65,15 @@ public final class StudIpService {
         api.request(.discovery) { result in
             URLCredentialStorage.shared.remove(credential, for: protectionSpace)
 
-            guard result.isSuccess else {
-                return handler(result.replacingValue(()))
-            }
+            guard result.isSuccess else { return handler(result.replacingValue(nil)) }
 
             let validatedCredential = URLCredential(user: username, password: password, persistence: .synchronizable)
             URLCredentialStorage.shared.setDefaultCredential(validatedCredential, for: protectionSpace)
 
-            handler(result.replacingValue(()))
+            let coreDataService = ServiceContainer.default[CoreDataService.self]
+            User.updateCurrent(in: coreDataService.viewContext) { result in
+                handler(result.replacingValue(result.value))
+            }
         }
     }
 
