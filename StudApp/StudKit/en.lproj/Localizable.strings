@@ -1,1 +1,17 @@
+/* Formats */
+
+"%dx" = "%dx"; // Example: "11x" (eleven times)
+
+/* Actions */
+
+"Cancel" = "Cancel";
+"Share" = "Share";
+
+/* User Menu */
+
 "Signed in as %@" = "Signed in as %@";
+"Sign Out" = "Sign Out";
+
+/* Downloads */
+
+"Remove Download" = "Remove";

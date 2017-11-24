@@ -46,11 +46,11 @@ final class MainController: UITabBarController {
         guard let barButtonItem = sender as? UIBarButtonItem,
             let currentUser = viewModel.currentUser else { return }
 
-        let title = "Signed in as \(currentUser.nameComponents.formatted(style: .long))"
+        let title = "Signed in as %@".localized(currentUser.nameComponents.formatted(style: .long))
         let controller = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
         controller.popoverPresentationController?.barButtonItem = barButtonItem
-        controller.addAction(UIAlertAction(title: "Sign Out", style: .destructive, handler: signOut))
-        controller.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        controller.addAction(UIAlertAction(title: "Sign Out".localized, style: .destructive, handler: signOut))
+        controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
         present(controller, animated: true, completion: nil)
     }
 }

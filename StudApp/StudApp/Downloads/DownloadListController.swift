@@ -20,7 +20,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         viewModel.delegate = self
         viewModel.fetch()
 
-        let shareItem = UIMenuItem(title: "Share", action: #selector(FileCell.shareDocument(sender:)))
+        let shareItem = UIMenuItem(title: "Share".localized, action: #selector(FileCell.shareDocument(sender:)))
         UIMenuController.shared.menuItems = [shareItem]
         UIMenuController.shared.update()
 
@@ -66,7 +66,8 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
             handler(success)
         }
 
-        let removeDownloadAction = UIContextualAction(style: .destructive, title: "Remove", handler: removeDownloadHandler)
+        let removeDownloadAction = UIContextualAction(style: .destructive, title: "Remove Download".localized,
+                                                      handler: removeDownloadHandler)
         return UISwipeActionsConfiguration(actions: [removeDownloadAction])
     }
 
