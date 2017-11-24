@@ -85,6 +85,7 @@ public extension Date {
 
     /// Returns the difference to `date`, formatted as a localized string that includes the units w/o seconds.
     func formatted(asShortDifferenceFrom date: Date) -> String? {
-        return DateComponentsFormatter.short.string(from: self, to: date)
+        guard let differenceString = DateComponentsFormatter.short.string(from: self, to: date) else { return nil }
+        return "%@ ago".localized(differenceString)
     }
 }

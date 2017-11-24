@@ -1,6 +1,7 @@
 // MARK: Formats
 
 "%dx" = "%dx"; // Example: "11x" (eleven times)
+"%@ ago" = "vor %@"; // Example "two months ago"
 
 // MARK: Actions
 
