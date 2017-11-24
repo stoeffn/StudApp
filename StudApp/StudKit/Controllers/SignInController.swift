@@ -6,8 +6,6 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-import StudKit
-
 final class SignInController: UITableViewController, UITextFieldDelegate, Routable {
     private var viewModel: SignInViewModel!
 

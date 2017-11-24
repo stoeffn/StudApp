@@ -7,7 +7,7 @@
 //
 
 public enum Targets: String {
-    case app, fileProvider, tests
+    case app, fileProvider, fileProviderUI, tests
 
     public static let iOSTargets: [Targets] = [.app, .fileProvider]
 }

@@ -15,7 +15,7 @@ final class SignInNavigationController: UINavigationController {
     /// therefore blends with the background.
     let statusBarBackgroundView: UIVisualEffectView = {
         let view = UIVisualEffectView(effect: UIBlurEffect(style: .light))
-        view.frame = UIApplication.shared.statusBarFrame
+        // view.frame = UIApplication.shared.statusBarFrame
         return view
     }()
 
@@ -31,7 +31,7 @@ final class SignInNavigationController: UINavigationController {
     override func viewWillTransition(to _: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         /// Set the status bar background view, which makes for the blur effect, behind the status bar at all times.
         coordinator.animateAlongsideTransition(in: navigationController?.view, animation: { _ in
-            self.statusBarBackgroundView.frame = UIApplication.shared.statusBarFrame
+            // self.statusBarBackgroundView.frame = UIApplication.shared.statusBarFrame
         }, completion: nil)
     }
 }

@@ -8,15 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		241FD9651FA8FFAD00FBD750 /* UINavigationBar+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9641FA8FFAD00FBD750 /* UINavigationBar+Utils.swift */; };
-		241FD9671FA9022400FBD750 /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9661FA9022400FBD750 /* FilledButton.swift */; };
-		241FD9691FA9087900FBD750 /* GroupedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9681FA9087900FBD750 /* GroupedTextField.swift */; };
-		241FD96B1FA9090F00FBD750 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD96A1FA9090F00FBD750 /* UI.swift */; };
-		241FD96F1FA9191500FBD750 /* SignInNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD96E1FA9191500FBD750 /* SignInNavigationController.swift */; };
-		243014261FA8FE2800680253 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243014251FA8FE2800680253 /* SignInController.swift */; };
 		243817921FC76BDC004052D0 /* DocumentActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243817911FC76BDC004052D0 /* DocumentActionViewController.swift */; };
 		243817951FC76BDC004052D0 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 243817931FC76BDC004052D0 /* MainInterface.storyboard */; };
 		243817991FC76BDC004052D0 /* StudFileProviderUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2438179E1FC76D1E004052D0 /* ActionRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438179D1FC76D1E004052D0 /* ActionRoutes.swift */; };
 		243817A11FC86203004052D0 /* StudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2448D43F1FA8DB1E00DAB97E /* StudKit.framework */; };
+		243817A71FC88A49004052D0 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243014251FA8FE2800680253 /* SignInController.swift */; };
+		243817A81FC88A4C004052D0 /* SignInNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD96E1FA9191500FBD750 /* SignInNavigationController.swift */; };
+		243817A91FC88B0E004052D0 /* StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */; };
+		243817AA1FC88B11004052D0 /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */; };
+		243817AB1FC88B15004052D0 /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9661FA9022400FBD750 /* FilledButton.swift */; };
+		243817AC1FC88B18004052D0 /* GroupedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9681FA9087900FBD750 /* GroupedTextField.swift */; };
+		243817AF1FC88B2B004052D0 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD96A1FA9090F00FBD750 /* UI.swift */; };
+		243817B21FC88C1C004052D0 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 243817A21FC889DC004052D0 /* SignIn.storyboard */; };
 		2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */; };
 		2448D4121FA8DA2400DAB97E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2448D4101FA8DA2400DAB97E /* Main.storyboard */; };
 		2448D4141FA8DA2400DAB97E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2448D4131FA8DA2400DAB97E /* Assets.xcassets */; };
@@ -152,8 +156,6 @@
 		24D9EF561FB7559C006776B7 /* SemesterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9EF551FB7559C006776B7 /* SemesterListViewModel.swift */; };
 		24D9EF851FB75818006776B7 /* FileProviderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9EF841FB75818006776B7 /* FileProviderExtension.swift */; };
 		24D9EF9E1FB75819006776B7 /* StudFileProvider.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 24D9EF821FB75818006776B7 /* StudFileProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		24E626771FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */; };
-		24E626781FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */; };
 		24FD785A1FBF3F030072F860 /* HistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78591FBF3F030072F860 /* HistoryService.swift */; };
 		24FD785C1FBF45030072F860 /* Targets+NSPersistentHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */; };
 		24FD785E1FBF45B10072F860 /* Targets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785D1FBF45B10072F860 /* Targets.swift */; };
@@ -278,7 +280,9 @@
 		243817911FC76BDC004052D0 /* DocumentActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentActionViewController.swift; sourceTree = "<group>"; };
 		243817941FC76BDC004052D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		243817961FC76BDC004052D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2438179D1FC76D1E004052D0 /* ActionRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionRoutes.swift; sourceTree = "<group>"; };
 		2438179F1FC77226004052D0 /* StudFileProviderUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudFileProviderUI.entitlements; sourceTree = "<group>"; };
+		243817A31FC889DC004052D0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = StudApp/Base.lproj/SignIn.storyboard; sourceTree = "<group>"; };
 		2448D4091FA8DA2400DAB97E /* StudApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2448D4111FA8DA2400DAB97E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -522,6 +526,7 @@
 			isa = PBXGroup;
 			children = (
 				2438179F1FC77226004052D0 /* StudFileProviderUI.entitlements */,
+				2438179D1FC76D1E004052D0 /* ActionRoutes.swift */,
 				243817911FC76BDC004052D0 /* DocumentActionViewController.swift */,
 				243817931FC76BDC004052D0 /* MainInterface.storyboard */,
 				243817961FC76BDC004052D0 /* Info.plist */,
@@ -534,6 +539,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		243817A61FC88A36004052D0 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				243014251FA8FE2800680253 /* SignInController.swift */,
+				241FD96E1FA9191500FBD750 /* SignInNavigationController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		2448D4001FA8DA2400DAB97E = {
@@ -569,10 +583,8 @@
 			isa = PBXGroup;
 			children = (
 				24E626731FA920490040F9F7 /* Controllers */,
-				24E626721FA9203E0040F9F7 /* Views */,
 				2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */,
 				24CFB5D91FB2500900F30DEA /* Segues.swift */,
-				241FD96A1FA9090F00FBD750 /* UI.swift */,
 				2448D4151FA8DA2400DAB97E /* LaunchScreen.storyboard */,
 				2448D4101FA8DA2400DAB97E /* Main.storyboard */,
 				2448D4131FA8DA2400DAB97E /* Assets.xcassets */,
@@ -604,6 +616,7 @@
 			isa = PBXGroup;
 			children = (
 				2448D49C1FA8E07E00DAB97E /* Api */,
+				243817A61FC88A36004052D0 /* Controllers */,
 				246F3ABD1FAC877400A477FF /* DataSource */,
 				2448D45F1FA8DC1D00DAB97E /* Extensions */,
 				24D360BE1FAA585B00BBBAED /* Models */,
@@ -611,6 +624,7 @@
 				2448D4741FA8DE1700DAB97E /* Services */,
 				24D360EB1FAA5DA700BBBAED /* StudIp */,
 				24D361641FAA646200BBBAED /* ViewModels */,
+				24E626721FA9203E0040F9F7 /* Views */,
 				24712BE91FB8B48A0067E416 /* ByTypeNameIdentifiable.swift */,
 				24FE89E81FB7725100A4A3C6 /* ChangeCache.swift */,
 				24FE8A111FB7B0D100A4A3C6 /* RangeIterator.swift */,
@@ -618,8 +632,10 @@
 				2448D4941FA8DF6000DAB97E /* StorageService.swift */,
 				2448D4961FA8DFB200DAB97E /* StudKitServiceProvider.swift */,
 				24FD785D1FBF45B10072F860 /* Targets.swift */,
+				241FD96A1FA9090F00FBD750 /* UI.swift */,
 				24FD78711FC07C630072F860 /* UserDefaults+Keys.swift */,
 				2448D4411FA8DB1E00DAB97E /* StudKit.h */,
+				243817A21FC889DC004052D0 /* SignIn.storyboard */,
 				2448D4421FA8DB1E00DAB97E /* Info.plist */,
 			);
 			path = StudKit;
@@ -987,7 +1003,8 @@
 		24E626721FA9203E0040F9F7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				24E626741FA9206B0040F9F7 /* StudIpActivityIndicator */,
+				24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */,
+				24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */,
 				241FD9661FA9022400FBD750 /* FilledButton.swift */,
 				241FD9681FA9087900FBD750 /* GroupedTextField.swift */,
 			);
@@ -1002,19 +1019,8 @@
 				24CFB5D01FB24E2500F30DEA /* MainController.swift */,
 				24712BE71FB8B4420067E416 /* SemesterCell.swift */,
 				24712BE51FB8B0E20067E416 /* SemesterListController.swift */,
-				243014251FA8FE2800680253 /* SignInController.swift */,
-				241FD96E1FA9191500FBD750 /* SignInNavigationController.swift */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		24E626741FA9206B0040F9F7 /* StudIpActivityIndicator */ = {
-			isa = PBXGroup;
-			children = (
-				24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */,
-				24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */,
-			);
-			path = StudIpActivityIndicator;
 			sourceTree = "<group>";
 		};
 		24FE89D91FB7652200A4A3C6 /* Extensions */ = {
@@ -1372,6 +1378,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				243817B21FC88C1C004052D0 /* SignIn.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1419,6 +1426,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				243817921FC76BDC004052D0 /* DocumentActionViewController.swift in Sources */,
+				2438179E1FC76D1E004052D0 /* ActionRoutes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1426,20 +1434,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				241FD96F1FA9191500FBD750 /* SignInNavigationController.swift in Sources */,
-				241FD96B1FA9090F00FBD750 /* UI.swift in Sources */,
-				241FD9691FA9087900FBD750 /* GroupedTextField.swift in Sources */,
 				24712BE61FB8B0E20067E416 /* SemesterListController.swift in Sources */,
-				24E626771FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */,
 				24712BE81FB8B4420067E416 /* SemesterCell.swift in Sources */,
 				24FD786E1FBF81EA0072F860 /* DownloadListController.swift in Sources */,
 				24CFB5D11FB24E2500F30DEA /* MainController.swift in Sources */,
-				243014261FA8FE2800680253 /* SignInController.swift in Sources */,
 				24D7293D1FC736120097777F /* FileCell.swift in Sources */,
 				2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */,
 				24CFB5DA1FB2500900F30DEA /* Segues.swift in Sources */,
-				24E626781FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift in Sources */,
-				241FD9671FA9022400FBD750 /* FilledButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1469,10 +1470,12 @@
 				2448D4781FA8DE2A00DAB97E /* ServiceProvider.swift in Sources */,
 				24D360DA1FAA5D3800BBBAED /* String+Regex.swift in Sources */,
 				24712BEA1FB8B48A0067E416 /* ByTypeNameIdentifiable.swift in Sources */,
+				243817A91FC88B0E004052D0 /* StudIpActivityIndicatorView.swift in Sources */,
 				24D360EA1FAA5D7600BBBAED /* CourseModel+CDConvertible.swift in Sources */,
 				24712BF61FB8B80B0067E416 /* DateFormatter+Shared.swift in Sources */,
 				24D361061FAA5E2300BBBAED /* SemesterModel+CDConvertible.swift in Sources */,
 				24D360E71FAA5D7600BBBAED /* CourseService.swift in Sources */,
+				243817AB1FC88B15004052D0 /* FilledButton.swift in Sources */,
 				246F3AC71FAC879C00A477FF /* DataSourceDelegate+UITableViewController.swift in Sources */,
 				24D360C21FAA58A000BBBAED /* StudKit.xcdatamodeld in Sources */,
 				2448D4951FA8DF6000DAB97E /* StorageService.swift in Sources */,
@@ -1489,6 +1492,7 @@
 				24712BE41FB888E30067E416 /* WorkingSetViewModel.swift in Sources */,
 				24FD78701FBF826D0072F860 /* DownloadListViewModel.swift in Sources */,
 				24CFB5D71FB24F4D00F30DEA /* Routes.swift in Sources */,
+				243817AC1FC88B18004052D0 /* GroupedTextField.swift in Sources */,
 				24D360DE1FAA5D3800BBBAED /* String+Utils.swift in Sources */,
 				241FD9651FA8FFAD00FBD750 /* UINavigationBar+Utils.swift in Sources */,
 				2448D4A61FA8E07E00DAB97E /* ApiRoutes.swift in Sources */,
@@ -1502,6 +1506,7 @@
 				24FD78601FBF4D330072F860 /* NSPersistentHistoryToken+Utils.swift in Sources */,
 				24FD785E1FBF45B10072F860 /* Targets.swift in Sources */,
 				24D360CE1FAA5AFE00BBBAED /* CDConvertible.swift in Sources */,
+				243817A81FC88A4C004052D0 /* SignInNavigationController.swift in Sources */,
 				2448D48F1FA8DEE800DAB97E /* FileManager+Utils.swift in Sources */,
 				24D360CC1FAA5AFE00BBBAED /* CDIdentifiable.swift in Sources */,
 				2448D45E1FA8DBA300DAB97E /* Result.swift in Sources */,
@@ -1512,6 +1517,7 @@
 				24D360F71FAA5DE800BBBAED /* FileState.swift in Sources */,
 				24D360FE1FAA5E0800BBBAED /* UserModel+CDConvertible.swift in Sources */,
 				24FE8A161FB8527E00A4A3C6 /* FileListViewModel.swift in Sources */,
+				243817AF1FC88B2B004052D0 /* UI.swift in Sources */,
 				24D360FA1FAA5DE800BBBAED /* FileModel.swift in Sources */,
 				24D9EF561FB7559C006776B7 /* SemesterListViewModel.swift in Sources */,
 				24D3610E1FAA5ED600BBBAED /* CDColorable.swift in Sources */,
@@ -1530,6 +1536,7 @@
 				24D361111FAA5F0500BBBAED /* StudIpService.swift in Sources */,
 				246F3AC91FAC879C00A477FF /* DataSourceSection.swift in Sources */,
 				24D361151FAA5F0E00BBBAED /* CollectionResponse.swift in Sources */,
+				243817A71FC88A49004052D0 /* SignInController.swift in Sources */,
 				24D360ED1FAA5DC500BBBAED /* Transforms.swift in Sources */,
 				24CFB5D61FB24F4D00F30DEA /* Routable.swift in Sources */,
 				2448D4A51FA8E07E00DAB97E /* Result+Api.swift in Sources */,
@@ -1537,6 +1544,7 @@
 				24D360DF1FAA5D3800BBBAED /* String+HTML.swift in Sources */,
 				246F3ACA1FAC879C00A477FF /* DataSourceDelegate.swift in Sources */,
 				24D361071FAA5E2300BBBAED /* SemesterService.swift in Sources */,
+				243817AA1FC88B11004052D0 /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */,
 				24712BF51FB8B80B0067E416 /* Date+Formatting.swift in Sources */,
 				24712BDF1FB886940067E416 /* FileProviderItemConvertible.swift in Sources */,
 				24D361181FAA5F6200BBBAED /* CoreDataService.swift in Sources */,
@@ -1672,6 +1680,14 @@
 				243817941FC76BDC004052D0 /* Base */,
 			);
 			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+		243817A21FC889DC004052D0 /* SignIn.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				243817A31FC889DC004052D0 /* Base */,
+			);
+			name = SignIn.storyboard;
 			sourceTree = "<group>";
 		};
 		2448D4101FA8DA2400DAB97E /* Main.storyboard */ = {
