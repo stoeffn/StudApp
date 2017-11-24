@@ -14,7 +14,6 @@ import CoreData
 /// `delegate`.
 public final class DownloadListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
-    private let fileService = ServiceContainer.default[CourseService.self]
 
     public weak var delegate: DataSourceDelegate?
 

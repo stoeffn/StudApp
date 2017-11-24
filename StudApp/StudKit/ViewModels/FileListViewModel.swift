@@ -14,7 +14,6 @@ import CoreData
 /// `delegate`. This class also supports updating data from the server.
 public final class FileListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
-    private let fileService = ServiceContainer.default[FileService.self]
     private let course: Course
     private let parentFolder: File?
 
@@ -46,7 +45,7 @@ public final class FileListViewModel: NSObject {
     /// Updates data from the server. Please note that this method not only updates one folder but the course's whole file tree.
     public func update(handler: ResultHandler<Void>? = nil) {
         coreDataService.performBackgroundTask { context in
-            self.fileService.update(filesIn: self.course, in: context) { result in
+            self.course.updateFiles(in: context) { result in
                 try? context.saveWhenChanged()
                 handler?(result.replacingValue(()))
             }

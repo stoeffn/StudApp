@@ -37,8 +37,5 @@ public class StudKitServiceProvider: ServiceProvider {
         container[CoreDataService.self] = provideCoreDataService()
         container[HistoryService.self] = HistoryService(currentTarget: currentTarget)
         container[StudIpService.self] = provideStudIpService()
-        container[SemesterService.self] = SemesterService()
-        container[CourseService.self] = CourseService()
-        container[FileService.self] = FileService()
     }
 }

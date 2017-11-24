@@ -27,7 +27,6 @@ public final class SignInViewModel {
 
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]
-    private let semesterService = ServiceContainer.default[SemesterService.self]
 
     /// Current state of the sign-in process, which should be respected by the user interface.
     public var state: State = .idle {
@@ -60,7 +59,7 @@ public final class SignInViewModel {
 
     private func updateSemesters() {
         coreDataService.performBackgroundTask { context in
-            self.semesterService.update(in: context) { _ in
+            Semester.update(in: context) { _ in
                 try? context.saveWhenChanged()
             }
         }

@@ -1,5 +1,5 @@
 //
-//  SemesterService.swift
+//  Semester+StudIp.swift
 //  StudKit
 //
 //  Created by Steffen Ryll on 08.09.17.
@@ -8,14 +8,9 @@
 
 import CoreData
 
-public final class SemesterService {
-    private let studIp: StudIpService
-
-    init() {
-        studIp = ServiceContainer.default[StudIpService.self]
-    }
-
-    public func update(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Semester]>) {
+extension Semester {
+    public static func update(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Semester]>) {
+        let studIp = ServiceContainer.default[StudIpService.self]
         studIp.api.requestCompleteCollection(.semesters) { (result: Result<[SemesterResponse]>) in
             Semester.update(using: result, in: context, handler: handler)
 
@@ -24,9 +19,9 @@ public final class SemesterService {
         }
     }
 
-    public func setHidden(_ semester: Semester, hidden: Bool) {
-        semester.state.isHidden = hidden
-        try? semester.managedObjectContext?.saveWhenChanged()
+    public func setHidden(_ hidden: Bool) {
+        state.isHidden = hidden
+        try? managedObjectContext?.saveWhenChanged()
 
         NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
         NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }

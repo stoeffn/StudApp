@@ -11,7 +11,6 @@ import XCTest
 @testable import StudKit
 
 final class CourseServiceTests: XCTestCase {
-    let service = ServiceContainer.default[CourseService.self]
     var context: NSManagedObjectContext!
 
     override func setUp() {
@@ -30,7 +29,7 @@ final class CourseServiceTests: XCTestCase {
     }
 
     func testUpdate_CourseCollectionResponse_Success() {
-        service.update(in: context) { courseResult in
+        Course.update(in: context) { courseResult in
             try! self.context.save()
             let course = try! Course.fetch(byId: "e894bd27b2c3f5b25e438932f14b60e1", in: self.context)
 

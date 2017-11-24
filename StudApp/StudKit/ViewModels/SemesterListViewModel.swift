@@ -14,7 +14,6 @@ import CoreData
 /// `delegate`. This class also supports updating data from the server.
 public final class SemesterListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
-    private let semesterService = ServiceContainer.default[SemesterService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]
     private var fetchRequest: NSFetchRequest<SemesterState>
 
@@ -41,7 +40,7 @@ public final class SemesterListViewModel: NSObject {
     /// Updates data from the server.
     public func update(handler: ResultHandler<Void>? = nil) {
         coreDataService.performBackgroundTask { context in
-            self.semesterService.update(in: context) { result in
+            Semester.update(in: context) { result in
                 try? context.saveWhenChanged()
                 handler?(result.replacingValue(()))
             }

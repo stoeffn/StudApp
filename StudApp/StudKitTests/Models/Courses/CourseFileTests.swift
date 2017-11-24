@@ -11,7 +11,6 @@ import XCTest
 @testable import StudKit
 
 final class FileServiceTests: XCTestCase {
-    private let service = ServiceContainer.default[FileService.self]
     private var context: NSManagedObjectContext!
     private var course: Course!
 
@@ -30,7 +29,7 @@ final class FileServiceTests: XCTestCase {
     }
 
     func testUpdate_FileCollectionResponse_Success() {
-        service.update(filesIn: course, in: context) { fileResult in
+        course.updateFiles(in: context) { fileResult in
             try! self.context!.save()
             let course = try! Course.fetch(byId: "a2c88e905abf322d1868640859f13c99", in: self.context)
             let file = try! File.fetch(byId: "d4a7bef74c20d3c1931649b979ecd73e", in: self.context)

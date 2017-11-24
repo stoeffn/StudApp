@@ -69,18 +69,3 @@ public extension File {
             .appendingPathComponent(name, isDirectory: false)
     }
 }
-
-// TODO: Move to StudIp group
-extension File {
-    @discardableResult
-    public func download(handler: @escaping ResultHandler<URL>) -> URLSessionTask {
-        let studIp = ServiceContainer.default[StudIpService.self]
-        return studIp.api.download(.fileContents(forFileId: id), to: localUrl, handler: handler)
-    }
-
-    public func removeDownload() throws {
-        state.downloadDate = nil
-        try FileManager.default.removeItem(at: localUrl)
-        try managedObjectContext?.saveWhenChanged()
-    }
-}

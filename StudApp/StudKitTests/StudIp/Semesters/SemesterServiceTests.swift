@@ -11,7 +11,6 @@ import XCTest
 @testable import StudKit
 
 final class SemesterServiceTests: XCTestCase {
-    let service = ServiceContainer.default[SemesterService.self]
     var context: NSManagedObjectContext!
 
     override func setUp() {
@@ -25,7 +24,7 @@ final class SemesterServiceTests: XCTestCase {
     }
 
     func testUpdate_SemesterCollectionResponse_Success() {
-        service.update(in: context) { semesterResult in
+        Semester.update(in: context) { semesterResult in
             try! self.context.save()
             let semester = try! Semester.fetch(byId: "135de7259e0862cbcd3878e038253776", in: self.context)
 
