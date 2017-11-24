@@ -11,6 +11,8 @@
 
 "Signed in as %@" = "Angemeldet als %@";
 "Sign Out" = "Abmelden";
+"Please enter your Stud.IP credentials" = "Bitte gib Deine Stud.IP Anmeldedaten ein";
+"Please check your username and password" = "Bitte überprüfe Deine Anmeldedaten";
 
 /* Downloads */
 

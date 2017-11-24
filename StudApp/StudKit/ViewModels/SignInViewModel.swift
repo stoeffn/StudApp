@@ -41,7 +41,7 @@ public final class SignInViewModel {
     /// Attempts to sign a user into his/her Stud.IP account after performing basic form validation.
     public func attemptSignIn(withUsername username: String, password: String) {
         guard !username.isEmpty && !password.isEmpty else {
-            state = .failure("Please enter your Stud.IP credentials")
+            state = .failure("Please enter your Stud.IP credentials".localized)
             return
         }
 
@@ -52,7 +52,7 @@ public final class SignInViewModel {
                 self.state = .success
                 self.updateSemesters()
             case let .failure(error):
-                self.state = .failure(error?.localizedDescription ?? "Please check your username and password")
+                self.state = .failure(error?.localizedDescription ?? "Please check your username and password".localized)
             }
         }
     }

@@ -20,7 +20,7 @@ public final class StorageService {
         guard let appGroupUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: identifier) else {
             fatalError("Cannot create URL for app group directory with identifier '\(identifier)'.")
         }
-        return appGroupUrl.appendingPathComponent("Dcouments", isDirectory: true)
+        return appGroupUrl.appendingPathComponent("Documents", isDirectory: true)
     }()
 
     func removeAllDocuments() throws {

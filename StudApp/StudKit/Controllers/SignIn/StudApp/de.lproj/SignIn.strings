@@ -9,6 +9,3 @@
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "e25-tx-ryy"; */
 "e25-tx-ryy.placeholder" = "Passwort";
-
-/* Class = "UILabel"; text = "You may have mistyped your username or password"; ObjectID = "ffy-2R-Hqm"; */
-"ffy-2R-Hqm.text" = "Benutzername oder Passwort könnte falsch sein";

@@ -11,6 +11,8 @@
 
 "Signed in as %@" = "Signed in as %@";
 "Sign Out" = "Sign Out";
+"Please enter your Stud.IP credentials" = "Please enter your Stud.IP credentials";
+"Please check your username and password" = "Please check your username and password";
 
 /* Downloads */
 
