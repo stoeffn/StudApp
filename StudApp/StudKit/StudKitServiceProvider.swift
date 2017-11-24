@@ -7,6 +7,7 @@
 //
 
 public class StudKitServiceProvider: ServiceProvider {
+    static let kitBundle = Bundle(for: StudKitServiceProvider.self)
     static let studIpBaseUrl = URL(string: "https://studip.uni-hannover.de/api.php")!
     static let studIpRealm = "luh"
     static let appGroupIdentifier = "group.SteffenRyll.StudKit"

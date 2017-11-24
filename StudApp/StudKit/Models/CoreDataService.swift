@@ -15,8 +15,7 @@ public final class CoreDataService {
     private let storeDescription: NSPersistentStoreDescription
 
     init(modelName: String, appGroupIdentifier: String? = nil, inMemory: Bool = false) {
-        let bundle = Bundle(for: type(of: self))
-        guard let modelUrl = bundle.url(forResource: modelName, withExtension: "momd") else {
+        guard let modelUrl = StudKitServiceProvider.kitBundle.url(forResource: modelName, withExtension: "momd") else {
             fatalError("Failed to construct model URL for '\(modelName)'.")
         }
         let containerUrl: URL? = {

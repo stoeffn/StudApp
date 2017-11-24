@@ -78,6 +78,7 @@
 		2477936F1FC8939700090F4D /* ChangeCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E81FB7725100A4A3C6 /* ChangeCache.swift */; };
 		249DD6DE1FC8A3D4006DA46E /* User+StudIp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249DD6DD1FC8A3D4006DA46E /* User+StudIp.swift */; };
 		249DD6EC1FC8B436006DA46E /* Semesters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 249DD6EE1FC8B436006DA46E /* Semesters.storyboard */; };
+		249DD6FB1FC8B896006DA46E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 249DD6FD1FC8B896006DA46E /* Localizable.strings */; };
 		24CFB5D11FB24E2500F30DEA /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D01FB24E2500F30DEA /* MainController.swift */; };
 		24CFB5D61FB24F4D00F30DEA /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D31FB24F4C00F30DEA /* Routable.swift */; };
 		24CFB5D71FB24F4D00F30DEA /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D41FB24F4C00F30DEA /* Routes.swift */; };
@@ -352,6 +353,8 @@
 		249DD6E31FC8B26F006DA46E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		249DD6ED1FC8B436006DA46E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Semesters.storyboard; sourceTree = "<group>"; };
 		249DD6F21FC8B439006DA46E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Semesters.strings; sourceTree = "<group>"; };
+		249DD6FC1FC8B896006DA46E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		249DD6FE1FC8B89B006DA46E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		24CFB5D01FB24E2500F30DEA /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		24CFB5D31FB24F4C00F30DEA /* Routable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
 		24CFB5D41FB24F4C00F30DEA /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
@@ -643,6 +646,7 @@
 				241FD96A1FA9090F00FBD750 /* UI.swift */,
 				24FD78711FC07C630072F860 /* UserDefaults+Keys.swift */,
 				2448D4411FA8DB1E00DAB97E /* StudKit.h */,
+				249DD6FD1FC8B896006DA46E /* Localizable.strings */,
 				2448D4421FA8DB1E00DAB97E /* Info.plist */,
 			);
 			path = StudKit;
@@ -1509,6 +1513,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				243817B21FC88C1C004052D0 /* SignIn.storyboard in Resources */,
+				249DD6FB1FC8B896006DA46E /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1857,6 +1862,15 @@
 				249DD6F21FC8B439006DA46E /* de */,
 			);
 			name = Semesters.storyboard;
+			sourceTree = "<group>";
+		};
+		249DD6FD1FC8B896006DA46E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				249DD6FC1FC8B896006DA46E /* en */,
+				249DD6FE1FC8B89B006DA46E /* de */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

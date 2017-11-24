@@ -34,7 +34,7 @@
                 <viewControllerPlaceholder storyboardName="SignIn" bundleIdentifier="SteffenRyll.StudKit" id="2bU-cg-kHC" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fcI-cX-vXc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="591" y="-149"/>
+            <point key="canvasLocation" x="591" y="-166"/>
         </scene>
         <!--Semesters-->
         <scene sceneID="cKI-m3-wPi">
@@ -44,7 +44,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aMz-AJ-THb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="612" y="-56"/>
+            <point key="canvasLocation" x="612" y="-47"/>
         </scene>
         <!--Downloads-->
         <scene sceneID="xGE-gW-7nZ">
