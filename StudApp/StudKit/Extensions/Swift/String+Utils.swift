@@ -14,15 +14,21 @@ public extension String {
         return isEmpty ? nil : self
     }
 
+    /// Returns a localized string with this key and interpolated parameters.
+    ///
+    /// - Parameter arguments: Arguments to be interpolated into the localized string.
+    /// - Returns: Localized string with interpolated parameters.
+    public func localized(_ arguments: CVarArg...) -> String {
+        return String(format: localized, arguments: arguments)
+    }
+
     /// Returns a localized string with this key.
     ///
     /// - Parameters:
     ///   - comment: Optional comment describing the use case.
-    ///   - arguments: Arguments to be interpolated into the localized string.
     /// - Returns: Localized string with interpolated parameters.
-    public func localized(withComment comment: String = "", arguments: CVarArg...) -> String {
-        let localizedString = NSLocalizedString(self, tableName: nil, bundle: StudKitServiceProvider.kitBundle,
-                                                value: "###\(self)###", comment: comment)
-        return String(format: localizedString, arguments: arguments)
+    public var localized: String {
+        let bundle = StudKitServiceProvider.kitBundle
+        return NSLocalizedString(self, tableName: nil, bundle: bundle, value: "###\(self)###", comment: "")
     }
 }
