@@ -16,6 +16,7 @@
 		243817921FC76BDC004052D0 /* DocumentActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243817911FC76BDC004052D0 /* DocumentActionViewController.swift */; };
 		243817951FC76BDC004052D0 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 243817931FC76BDC004052D0 /* MainInterface.storyboard */; };
 		243817991FC76BDC004052D0 /* StudFileProviderUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		243817A11FC86203004052D0 /* StudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2448D43F1FA8DB1E00DAB97E /* StudKit.framework */; };
 		2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */; };
 		2448D4121FA8DA2400DAB97E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2448D4101FA8DA2400DAB97E /* Main.storyboard */; };
 		2448D4141FA8DA2400DAB97E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2448D4131FA8DA2400DAB97E /* Assets.xcassets */; };
@@ -458,6 +459,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				243817A11FC86203004052D0 /* StudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,6 +529,13 @@
 			path = StudFileProviderUI;
 			sourceTree = "<group>";
 		};
+		243817A01FC86203004052D0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		2448D4001FA8DA2400DAB97E = {
 			isa = PBXGroup;
 			children = (
@@ -538,6 +547,7 @@
 				24D9EF831FB75818006776B7 /* StudFileProvider */,
 				243817901FC76BDC004052D0 /* StudFileProviderUI */,
 				2448D40A1FA8DA2400DAB97E /* Products */,
+				243817A01FC86203004052D0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
