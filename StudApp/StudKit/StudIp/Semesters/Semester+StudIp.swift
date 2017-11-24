@@ -18,12 +18,4 @@ extension Semester {
             NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
         }
     }
-
-    public func setHidden(_ hidden: Bool) {
-        state.isHidden = hidden
-        try? managedObjectContext?.saveWhenChanged()
-
-        NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
-        NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
-    }
 }

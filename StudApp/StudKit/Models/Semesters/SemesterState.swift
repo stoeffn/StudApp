@@ -20,9 +20,26 @@ public final class SemesterState: NSManagedObject, CDCreatable {
 
     @NSManaged public var semester: Semester
 
+    var observations = [NSKeyValueObservation]()
+
+    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+
+        observations.append(observe(\.isHidden, options: [.old, .new], changeHandler: isHiddenChanged))
+    }
+
     public required convenience init(createIn context: NSManagedObjectContext) {
         self.init(context: context)
 
         favoriteRank = Int(NSFileProviderFavoriteRankUnranked)
+    }
+
+    private func isHiddenChanged(_: _KeyValueCodingAndObserving, change: NSKeyValueObservedChange<Bool>) {
+        guard let oldValue = change.oldValue, let newValue = change.newValue, newValue != oldValue else { return }
+
+        try? self.managedObjectContext?.saveWhenChanged()
+
+        NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
+        NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
     }
 }

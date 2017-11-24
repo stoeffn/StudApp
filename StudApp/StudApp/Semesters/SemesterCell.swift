@@ -31,6 +31,6 @@ final class SemesterCell: UITableViewCell {
 
     @IBAction
     func isHiddenSwitchValueChanged(_: Any) {
-        semester?.setHidden(!isHiddenSwitch.isOn)
+        semester?.state.isHidden = !isHiddenSwitch.isOn
     }
 }
