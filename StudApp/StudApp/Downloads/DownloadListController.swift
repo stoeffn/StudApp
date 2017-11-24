@@ -20,11 +20,13 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         viewModel.delegate = self
         viewModel.fetch()
 
+        navigationItem.title = "Downloads".localized
+
+        navigationController?.navigationBar.prefersLargeTitles = true
+
         let shareItem = UIMenuItem(title: "Share".localized, action: #selector(FileCell.shareDocument(sender:)))
         UIMenuController.shared.menuItems = [shareItem]
         UIMenuController.shared.update()
-
-        navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     // MARK: - Table View Data Source

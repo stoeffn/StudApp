@@ -1,19 +1,30 @@
-/* Formats */
+// MARK: Formats
 
 "%dx" = "%dx"; // Example: "11x" (eleven times)
 
-/* Actions */
+// MARK: Actions
 
 "Cancel" = "Cancel";
 "Share" = "Share";
 
-/* User Menu */
+// MARK: User Menu
 
 "Signed in as %@" = "Signed in as %@";
 "Sign Out" = "Sign Out";
+
+// MARK: Semesters
+
+"Semesters" = "Semesters";
+
+// MARK: Downloads
+
+"Downloads" = "Downloads";
+"Remove Download" = "Remove";
+
+// MARK: Signing In
+
+"Username" = "Username";
+"Password" = "Password";
+"Sign In" = "Sign In";
 "Please enter your Stud.IP credentials" = "Please enter your Stud.IP credentials";
 "Please check your username and password" = "Please check your username and password";
-
-/* Downloads */
-
-"Remove Download" = "Remove";

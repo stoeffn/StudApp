@@ -20,6 +20,13 @@ final class MainController: UITabBarController {
         viewModel.updateCurrentUser()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        tabBar.items?[0].title = "Downloads".localized
+        tabBar.items?[1].title = "Semesters".localized
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 

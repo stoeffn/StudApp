@@ -17,12 +17,16 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
         viewModel = SignInViewModel()
         viewModel.stateChanged = setState
 
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow),
-                                               name: .UIKeyboardDidShow, object: nil)
+        usernameField.placeholder = "Username".localized
+        passwordField.placeholder = "Password".localized
+        signInButton.titleLabel?.text = "Sign In".localized
+
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: .UIKeyboardDidShow,
+                                               object: nil)
     }
 
     func prepareDependencies(for _: Routes) {
-        // TODO:
+        // TODO: Implement
     }
 
     // MARK: - User Interface

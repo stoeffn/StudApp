@@ -21,6 +21,8 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
         viewModel.fetch()
         viewModel.update()
 
+        navigationItem.title = "Semesters".localized
+
         navigationController?.navigationBar.prefersLargeTitles = true
     }
 
