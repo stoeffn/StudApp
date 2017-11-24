@@ -17,6 +17,7 @@ final class MainController: UITabBarController {
         super.viewDidLoad()
 
         viewModel = MainViewModel()
+        viewModel.updateCurrentUser()
     }
 
     override func viewDidAppear(_ animated: Bool) {

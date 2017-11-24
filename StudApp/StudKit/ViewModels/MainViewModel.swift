@@ -8,6 +8,7 @@
 
 /// Manages applications main view.
 public final class MainViewModel {
+    private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]
 
     public init() {}
@@ -23,5 +24,13 @@ public final class MainViewModel {
     /// Sign user out of this app and the API.
     public func signOut() {
         studIpService.signOut()
+    }
+
+    /// Updates the current user if signed in.
+    public func updateCurrentUser(handler: (ResultHandler<User>)? = nil) {
+        User.updateCurrent(in: coreDataService.viewContext) { result in
+            try? self.coreDataService.viewContext.saveWhenChanged()
+            handler?(result)
+        }
     }
 }

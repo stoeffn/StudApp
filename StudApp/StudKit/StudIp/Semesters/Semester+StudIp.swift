@@ -10,8 +10,8 @@ import CoreData
 
 extension Semester {
     public static func update(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Semester]>) {
-        let studIp = ServiceContainer.default[StudIpService.self]
-        studIp.api.requestCompleteCollection(.semesters) { (result: Result<[SemesterResponse]>) in
+        let studIpService = ServiceContainer.default[StudIpService.self]
+        studIpService.api.requestCompleteCollection(.semesters) { (result: Result<[SemesterResponse]>) in
             Semester.update(using: result, in: context, handler: handler)
 
             NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }

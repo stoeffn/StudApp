@@ -11,8 +11,8 @@ import CoreData
 extension File {
     @discardableResult
     public func download(handler: @escaping ResultHandler<URL>) -> URLSessionTask {
-        let studIp = ServiceContainer.default[StudIpService.self]
-        return studIp.api.download(.fileContents(forFileId: id), to: localUrl, handler: handler)
+        let studIpService = ServiceContainer.default[StudIpService.self]
+        return studIpService.api.download(.fileContents(forFileId: id), to: localUrl, handler: handler)
     }
 
     public func removeDownload() throws {
@@ -22,8 +22,8 @@ extension File {
     }
 
     public func updateChildren(in context: NSManagedObjectContext, handler: @escaping ResultHandler<File>) {
-        let studIp = ServiceContainer.default[StudIpService.self]
-        studIp.api.requestDecoded(.file(withId: id)) { (result: Result<FileResponse>) in
+        let studIpService = ServiceContainer.default[StudIpService.self]
+        studIpService.api.requestDecoded(.file(withId: id)) { (result: Result<FileResponse>) in
             File.update(using: result, in: context, handler: handler)
 
             NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
