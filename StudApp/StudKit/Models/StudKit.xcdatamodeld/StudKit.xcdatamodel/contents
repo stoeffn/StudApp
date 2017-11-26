@@ -35,7 +35,7 @@
     </entity>
     <entity name="CourseState" representedClassName="CourseState" syncable="YES">
         <attribute name="favoriteRank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="lastUsedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lastUsedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="tagData" optional="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="color" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Color" inverseName="courseStates" inverseEntity="Color" syncable="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Course" inverseName="state" inverseEntity="Course" syncable="YES"/>
@@ -44,10 +44,10 @@
         </fetchIndex>
     </entity>
     <entity name="File" representedClassName="File" syncable="YES">
-        <attribute name="creationDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="downloadCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="String" minValueString="1" syncable="YES"/>
-        <attribute name="modificationDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="modifiedAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="size" attributeType="Integer 64" defaultValueString="-1" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
@@ -67,17 +67,17 @@
         </uniquenessConstraints>
     </entity>
     <entity name="FileState" representedClassName="FileState" syncable="YES">
-        <attribute name="downloadDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="downloadedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="favoriteRank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="lastUsedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lastUsedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="tagData" optional="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="file" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="File" inverseName="state" inverseEntity="File" syncable="YES"/>
     </entity>
     <entity name="Semester" representedClassName="Semester" syncable="YES">
-        <attribute name="beginDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="coursesBeginDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="coursesEndDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="endDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="beginsAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="coursesBeginAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="coursesEndAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="endsAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" attributeType="String" minValueString="1" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <relationship name="courses" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="semesters" inverseEntity="Course" syncable="YES"/>
@@ -94,7 +94,7 @@
     <entity name="SemesterState" representedClassName="SemesterState" syncable="YES">
         <attribute name="favoriteRank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isHidden" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="lastUsedDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="lastUsedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="tagData" optional="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="semester" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Semester" inverseName="state" inverseEntity="Semester" syncable="YES"/>
     </entity>
@@ -104,7 +104,7 @@
         <attribute name="id" attributeType="String" minValueString="1" syncable="YES"/>
         <attribute name="namePrefix" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nameSuffix" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="pictureModificationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="pictureModifiedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="username" attributeType="String" syncable="YES"/>
         <relationship name="files" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="owner" inverseEntity="File" syncable="YES"/>
         <relationship name="lecturedCourses" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="lecturers" inverseEntity="Course" syncable="YES"/>

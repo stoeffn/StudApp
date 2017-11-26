@@ -14,7 +14,7 @@ extension FileResponseTests {
                                      ownerPath: "\\/api.php\\/user\\/Array")
 
     static let document = FileResponse(fileId: "1", name: "image.png", coursePath: "\\/api.php\\/course\\/0", parentId: "0",
-                                       title: "Document", size: 42, numberOfDownloads: 142, ownerPath: "\\/api.php\\/user\\/0")
+                                       title: "Document", size: 42, downloadCount: 142, ownerPath: "\\/api.php\\/user\\/0")
 
     static let folderData = """
         {

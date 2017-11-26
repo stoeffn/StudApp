@@ -21,7 +21,7 @@ final class UserResponseTests: XCTestCase {
         XCTAssertEqual(user.familyName, "Last Name")
         XCTAssertEqual(user.namePrefix, "Prefix")
         XCTAssertEqual(user.nameSuffix, "Suffix")
-        XCTAssertEqual(user.pictureModificationDate?.description, "2015-08-27 13:59:08 +0000")
+        XCTAssertEqual(user.pictureModifiedAt?.description, "2015-08-27 13:59:08 +0000")
     }
 
     func testInit_UserWithoutPrefixAndPictureData_UserWithNilPrefix() {
@@ -32,6 +32,6 @@ final class UserResponseTests: XCTestCase {
         XCTAssertEqual(user.familyName, "Last Name")
         XCTAssertEqual(user.namePrefix, nil)
         XCTAssertEqual(user.nameSuffix, nil)
-        XCTAssertEqual(user.pictureModificationDate, nil)
+        XCTAssertEqual(user.pictureModifiedAt, nil)
     }
 }

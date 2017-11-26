@@ -25,7 +25,7 @@ extension FileProviderItemConvertible where Self: NSFetchRequestResult {
     /// Request fetching all objects of this type that are in the working set, which includes recently used items, tagged items,
     /// and items marked as favorite.
     public static var workingSetFetchRequest: NSFetchRequest<Self> {
-        let predicate = NSPredicate(format: "state.lastUsedDate != NIL OR state.tagData != NIL OR state.favoriteRank != %d",
+        let predicate = NSPredicate(format: "state.lastUsedAt != NIL OR state.tagData != NIL OR state.favoriteRank != %d",
                                     NSFileProviderFavoriteRankUnranked)
         return fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["state"])
     }

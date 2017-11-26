@@ -12,8 +12,8 @@ import CoreData
 @objc(File)
 public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable {
     @NSManaged public var id: String
-    @NSManaged public var creationDate: Date
-    @NSManaged public var modificationDate: Date
+    @NSManaged public var createdAt: Date
+    @NSManaged public var modifiedAt: Date
     @NSManaged public var name: String
     @NSManaged public var typeIdentifier: String
     @NSManaged public var title: String
@@ -36,7 +36,7 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
 
 extension File {
     public static var downloadedFetchRequest: NSFetchRequest<FileState> {
-        let predicate = NSPredicate(format: "downloadDate != NIL")
+        let predicate = NSPredicate(format: "downloadedAt != NIL")
         let sortDescriptors = [
             NSSortDescriptor(keyPath: \FileState.file.course.title, ascending: true),
             NSSortDescriptor(keyPath: \FileState.file.title, ascending: true),

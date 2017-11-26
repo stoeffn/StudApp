@@ -31,8 +31,8 @@ final class FileResponseTests: XCTestCase {
         XCTAssertEqual(file.size, nil)
         XCTAssertEqual(file.downloadCount, nil)
         XCTAssertEqual(file.title, "Title")
-        XCTAssertEqual(file.creationDate.debugDescription, "2016-07-07 12:55:55 +0000")
-        XCTAssertEqual(file.modificationDate.debugDescription, "2016-07-07 12:55:42 +0000")
+        XCTAssertEqual(file.createdAt.debugDescription, "2016-07-07 12:55:55 +0000")
+        XCTAssertEqual(file.modifiedAt.debugDescription, "2016-07-07 12:55:42 +0000")
         XCTAssertEqual(file.ownerId, "Array")
     }
 
@@ -44,8 +44,8 @@ final class FileResponseTests: XCTestCase {
         XCTAssertEqual(file.size, nil)
         XCTAssertEqual(file.downloadCount, nil)
         XCTAssertEqual(file.title, "Title")
-        XCTAssertEqual(file.creationDate.debugDescription, "2016-07-07 12:55:55 +0000")
-        XCTAssertEqual(file.modificationDate.debugDescription, "2016-07-07 12:55:42 +0000")
+        XCTAssertEqual(file.createdAt.debugDescription, "2016-07-07 12:55:55 +0000")
+        XCTAssertEqual(file.modifiedAt.debugDescription, "2016-07-07 12:55:42 +0000")
         XCTAssertEqual(file.ownerId, nil)
     }
 
@@ -57,8 +57,8 @@ final class FileResponseTests: XCTestCase {
         XCTAssertEqual(file.size, 42)
         XCTAssertEqual(file.downloadCount, 142)
         XCTAssertEqual(file.title, "Title")
-        XCTAssertEqual(file.creationDate.debugDescription, "2016-07-07 12:55:55 +0000")
-        XCTAssertEqual(file.modificationDate.debugDescription, "2016-07-07 12:55:42 +0000")
+        XCTAssertEqual(file.createdAt.debugDescription, "2016-07-07 12:55:55 +0000")
+        XCTAssertEqual(file.modifiedAt.debugDescription, "2016-07-07 12:55:42 +0000")
         XCTAssertEqual(file.ownerId, "1234bd27b2c3f5b25e438932f14b60e1")
     }
 

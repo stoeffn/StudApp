@@ -12,10 +12,10 @@ import CoreData
 public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable {
     @NSManaged public var id: String
     @NSManaged public var title: String
-    @NSManaged public var beginDate: Date
-    @NSManaged public var endDate: Date
-    @NSManaged public var coursesBeginDate: Date
-    @NSManaged public var coursesEndDate: Date
+    @NSManaged public var beginsAt: Date
+    @NSManaged public var endsAt: Date
+    @NSManaged public var coursesBeginAt: Date
+    @NSManaged public var coursesEndAt: Date
 
     @NSManaged public var courses: Set<Course>
     @NSManaged public var state: SemesterState
@@ -31,11 +31,11 @@ public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDUpd
 public extension Semester {
     public var isCurrent: Bool {
         let now = Date()
-        return now >= beginDate && now <= endDate
+        return now >= beginsAt && now <= endsAt
     }
 
     public var monthRange: String {
-        return "\(beginDate.formatted(using: .monthAndYear)) – \(endDate.formatted(using: .monthAndYear))"
+        return "\(beginsAt.formatted(using: .monthAndYear)) – \(endsAt.formatted(using: .monthAndYear))"
     }
 }
 
@@ -44,15 +44,15 @@ public extension Semester {
 extension Semester {
     public static func fetch(from beginSemester: Semester, to endSemester: Semester? = nil,
                              in context: NSManagedObjectContext) throws -> [Semester] {
-        let endDate = endSemester?.endDate ?? .distantFuture
-        let predicate = NSPredicate(format: "beginDate >= %@ AND endDate <= %@", beginSemester.beginDate as CVarArg,
-                                    endDate as CVarArg)
+        let endsAt = endSemester?.endsAt ?? .distantFuture
+        let predicate = NSPredicate(format: "beginsAt >= %@ AND endsAt <= %@",
+                                    beginSemester.beginsAt as CVarArg, endsAt as CVarArg)
         let request = fetchRequest(predicate: predicate, sortDescriptors: [])
         return try context.fetch(request)
     }
 
     public static var sortedFetchRequest: NSFetchRequest<SemesterState> {
-        let sortDescriptor = NSSortDescriptor(keyPath: \SemesterState.semester.beginDate, ascending: false)
+        let sortDescriptor = NSSortDescriptor(keyPath: \SemesterState.semester.beginsAt, ascending: false)
         return SemesterState.fetchRequest(predicate: NSPredicate(value: true), sortDescriptors: [sortDescriptor],
                                           relationshipKeyPathsForPrefetching: ["semester"])
     }

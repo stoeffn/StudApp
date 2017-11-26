@@ -9,17 +9,17 @@
 struct SemesterResponse: Decodable {
     let id: String
     let title: String
-    let beginDate: Date
-    let endDate: Date
-    let coursesBeginDate: Date
-    let coursesEndDate: Date
+    let beginsAt: Date
+    let endsAt: Date
+    let coursesBeginAt: Date
+    let coursesEndAt: Date
 
     enum CodingKeys: String, CodingKey {
         case id
         case title
-        case beginDate = "begin"
-        case endDate = "end"
-        case coursesBeginDate = "seminars_begin"
-        case coursesEndDate = "seminars_end"
+        case beginsAt = "begin"
+        case endsAt = "end"
+        case coursesBeginAt = "seminars_begin"
+        case coursesEndAt = "seminars_end"
     }
 }

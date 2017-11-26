@@ -18,7 +18,7 @@ extension UserResponse: CDConvertible {
         user.familyName = familyName
         user.namePrefix = namePrefix
         user.nameSuffix = nameSuffix
-        user.pictureModificationDate = pictureModificationDate
+        user.pictureModifiedAt = pictureModifiedAt
         return user
     }
 }

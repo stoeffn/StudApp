@@ -28,11 +28,11 @@ final class FileItem: NSObject, NSFileProviderItem {
 
         self.parentItemIdentifier = parentItemIdentifier
 
-        contentModificationDate = file.modificationDate
-        creationDate = file.creationDate
-        lastUsedDate = file.state.lastUsedDate
+        contentModificationDate = file.modifiedAt
+        creationDate = file.createdAt
+        lastUsedDate = file.state.lastUsedAt
 
-        versionIdentifier = file.state.downloadDate?.description.data(using: .utf8)
+        versionIdentifier = file.state.downloadedAt?.description.data(using: .utf8)
         isMostRecentVersionDownloaded = file.state.isMostRecentVersionDownloaded
 
         isDownloaded = file.state.isDownloaded

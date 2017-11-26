@@ -20,7 +20,7 @@ final class FileCell: UITableViewCell {
 
             iconView?.image = documentController?.icons.first
             titleLabel?.text = file.title
-            modificationDateLabel?.text = file.modificationDate.formattedAsShortDifferenceFromNow
+            modificationDateLabel?.text = file.modifiedAt.formattedAsShortDifferenceFromNow
             sizeLabel?.text = file.size.formattedAsByteCount
             downloadCountLabel?.text = "%dx".localized(file.downloadCount)
             userLabel?.text = file.owner?.nameComponents.formatted()

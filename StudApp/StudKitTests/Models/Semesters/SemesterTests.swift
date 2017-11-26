@@ -17,18 +17,18 @@ final class SemesterTests: XCTestCase {
     override func setUp() {
         context = StudKitTestsServiceProvider(target: .tests).provideCoreDataService().viewContext
 
-        try! SemesterResponse(id: "0", title: "0", beginDate: Date(timeIntervalSince1970: 0),
-                              endDate: Date(timeIntervalSince1970: 9), coursesBeginDate: .distantPast,
-                              coursesEndDate: .distantPast).coreDataModel(in: context)
-        try! SemesterResponse(id: "1", title: "1", beginDate: Date(timeIntervalSince1970: 10),
-                              endDate: Date(timeIntervalSince1970: 19), coursesBeginDate: .distantPast,
-                              coursesEndDate: .distantPast).coreDataModel(in: context)
-        try! SemesterResponse(id: "2", title: "2", beginDate: Date(timeIntervalSince1970: 20),
-                              endDate: Date(timeIntervalSince1970: 29), coursesBeginDate: .distantPast,
-                              coursesEndDate: .distantPast).coreDataModel(in: context)
-        try! SemesterResponse(id: "3", title: "3", beginDate: Date(timeIntervalSince1970: 30),
-                              endDate: Date(timeIntervalSince1970: 39), coursesBeginDate: .distantPast,
-                              coursesEndDate: .distantPast).coreDataModel(in: context)
+        try! SemesterResponse(id: "0", title: "0", beginsAt: Date(timeIntervalSince1970: 0),
+                              endsAt: Date(timeIntervalSince1970: 9), coursesBeginAt: .distantPast,
+                              coursesEndAt: .distantPast).coreDataModel(in: context)
+        try! SemesterResponse(id: "1", title: "1", beginsAt: Date(timeIntervalSince1970: 10),
+                              endsAt: Date(timeIntervalSince1970: 19), coursesBeginAt: .distantPast,
+                              coursesEndAt: .distantPast).coreDataModel(in: context)
+        try! SemesterResponse(id: "2", title: "2", beginsAt: Date(timeIntervalSince1970: 20),
+                              endsAt: Date(timeIntervalSince1970: 29), coursesBeginAt: .distantPast,
+                              coursesEndAt: .distantPast).coreDataModel(in: context)
+        try! SemesterResponse(id: "3", title: "3", beginsAt: Date(timeIntervalSince1970: 30),
+                              endsAt: Date(timeIntervalSince1970: 39), coursesBeginAt: .distantPast,
+                              coursesEndAt: .distantPast).coreDataModel(in: context)
 
         try! CourseResponse(id: "0", title: "A", beginSemesterPath: "/2").coreDataModel(in: context)
     }
@@ -37,10 +37,10 @@ final class SemesterTests: XCTestCase {
         let semester = try! SemesterResponseTests.semester.coreDataModel(in: context) as! Semester
         XCTAssertEqual(semester.id, "0")
         XCTAssertEqual(semester.title, "Title")
-        XCTAssertEqual(semester.beginDate, .distantPast)
-        XCTAssertEqual(semester.endDate, .distantFuture)
-        XCTAssertEqual(semester.coursesBeginDate, .distantPast)
-        XCTAssertEqual(semester.coursesEndDate, .distantFuture)
+        XCTAssertEqual(semester.beginsAt, .distantPast)
+        XCTAssertEqual(semester.endsAt, .distantFuture)
+        XCTAssertEqual(semester.coursesBeginAt, .distantPast)
+        XCTAssertEqual(semester.coursesEndAt, .distantFuture)
         XCTAssertNotNil(semester.state)
     }
 

@@ -21,7 +21,7 @@ final class CourseItem: NSObject, NSFileProviderItem {
 
         self.parentItemIdentifier = parentItemIdentifier
 
-        lastUsedDate = course.state.lastUsedDate
+        lastUsedDate = course.state.lastUsedAt
 
         ownerNameComponents = course.lecturers.first?.nameComponents
 

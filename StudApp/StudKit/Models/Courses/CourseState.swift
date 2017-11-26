@@ -11,7 +11,7 @@ import CoreData
 /// Represents the current state of a course.
 @objc(CourseState)
 public final class CourseState: NSManagedObject, CDCreatable, CDColorable {
-    @NSManaged public var lastUsedDate: Date?
+    @NSManaged public var lastUsedAt: Date?
 
     @NSManaged public var favoriteRank: Int
 

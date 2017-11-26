@@ -68,7 +68,7 @@ extension UserResponse {
         return rawNameSuffix.nilWhenEmpty
     }
 
-    var pictureModificationDate: Date? {
+    var pictureModifiedAt: Date? {
         guard let url = pictureUrl,
             !url.path.contains("/nobody_"),
             let components = URLComponents(url: url, resolvingAgainstBaseURL: false),

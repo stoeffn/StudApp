@@ -9,9 +9,8 @@
 @testable import StudKit
 
 extension SemesterResponseTests {
-    static let semester = SemesterResponse(id: "0", title: "Title", beginDate: .distantPast,
-                                           endDate: .distantFuture, coursesBeginDate: .distantPast,
-                                           coursesEndDate: .distantFuture)
+    static let semester = SemesterResponse(id: "0", title: "Title", beginsAt: .distantPast, endsAt: .distantFuture,
+                                           coursesBeginAt: .distantPast, coursesEndAt: .distantFuture)
 
     static let semesterData = """
         {

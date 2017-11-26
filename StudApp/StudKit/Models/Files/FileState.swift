@@ -10,11 +10,11 @@ import CoreData
 
 @objc(FileState)
 public final class FileState: NSManagedObject, CDCreatable {
-    @NSManaged public var lastUsedDate: Date?
+    @NSManaged public var lastUsedAt: Date?
     @NSManaged public var favoriteRank: Int
     @NSManaged public var tagData: Data?
 
-    @NSManaged public var downloadDate: Date?
+    @NSManaged public var downloadedAt: Date?
 
     @NSManaged public var file: File
 
@@ -29,11 +29,11 @@ public final class FileState: NSManagedObject, CDCreatable {
 
 public extension FileState {
     public var isDownloaded: Bool {
-        return downloadDate != nil
+        return downloadedAt != nil
     }
 
     public var isMostRecentVersionDownloaded: Bool {
-        guard let downloadDate = downloadDate else { return false }
-        return downloadDate >= file.modificationDate
+        guard let downloadedAt = downloadedAt else { return false }
+        return downloadedAt >= file.modifiedAt
     }
 }

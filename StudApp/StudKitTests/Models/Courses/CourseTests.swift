@@ -16,12 +16,12 @@ final class CourseTests: XCTestCase {
     override func setUp() {
         context = StudKitTestsServiceProvider(target: .tests).provideCoreDataService().viewContext
 
-        try! SemesterResponse(id: "0", title: "Semester", beginDate: Date(timeIntervalSince1970: 0),
-                              endDate: Date(timeIntervalSince1970: 9), coursesBeginDate: .distantPast,
-                              coursesEndDate: .distantFuture).coreDataModel(in: context)
-        try! SemesterResponse(id: "1", title: "Semester", beginDate: Date(timeIntervalSince1970: 10),
-                              endDate: Date(timeIntervalSince1970: 19), coursesBeginDate: .distantPast,
-                              coursesEndDate: .distantFuture).coreDataModel(in: context)
+        try! SemesterResponse(id: "0", title: "Semester", beginsAt: Date(timeIntervalSince1970: 0),
+                              endsAt: Date(timeIntervalSince1970: 9), coursesBeginAt: .distantPast,
+                              coursesEndAt: .distantFuture).coreDataModel(in: context)
+        try! SemesterResponse(id: "1", title: "Semester", beginsAt: Date(timeIntervalSince1970: 10),
+                              endsAt: Date(timeIntervalSince1970: 19), coursesBeginAt: .distantPast,
+                              coursesEndAt: .distantFuture).coreDataModel(in: context)
 
         try! CourseResponse(id: "0", title: "A", beginSemesterPath: "/0", endSemesterPath: "/0").coreDataModel(in: context)
         try! CourseResponse(id: "1", title: "B", beginSemesterPath: "/0", endSemesterPath: "/0").coreDataModel(in: context)
@@ -38,8 +38,7 @@ final class CourseTests: XCTestCase {
         let course = try! CourseResponse(id: "0", rawNumber: " 123  ", title: "Title", subtitle: "Subtitle",
                                          location: "Location", rawSummary: "Summary<br> ",
                                          rawLecturers: ["abc": UserResponseTests.user], beginSemesterPath: "/0",
-                                         endSemesterPath: "/0")
-            .coreDataModel(in: context) as! Course
+                                         endSemesterPath: "/0").coreDataModel(in: context) as! Course
 
         XCTAssertEqual(course.id, "0")
         XCTAssertEqual(course.number, "123")

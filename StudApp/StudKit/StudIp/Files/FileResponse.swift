@@ -17,8 +17,8 @@ struct FileResponse: Decodable {
     private let parentId: String?
     let children: [FileResponse]
     let title: String
-    let creationDate: Date
-    let modificationDate: Date
+    let createdAt: Date
+    let modifiedAt: Date
     let size: Int?
     let downloadCount: Int?
     private let ownerPath: String?
@@ -31,8 +31,8 @@ struct FileResponse: Decodable {
         case parentId = "range_id"
         case children = "documents"
         case title = "name"
-        case creationDate = "mkdate"
-        case modificationDate = "chdate"
+        case createdAt = "mkdate"
+        case modifiedAt = "chdate"
         case size = "filesize"
         case downloadCount = "downloads"
         case ownerPath = "author"
@@ -48,8 +48,8 @@ struct FileResponse: Decodable {
         self.parentId = parentId
         self.children = children
         self.title = title
-        self.creationDate = creationDate
-        self.modificationDate = modificationDate
+        createdAt = creationDate
+        modifiedAt = modificationDate
         self.size = size
         self.downloadCount = downloadCount
         self.ownerPath = ownerPath
@@ -63,8 +63,8 @@ struct FileResponse: Decodable {
         coursePath = try values.decode(String.self, forKey: .coursePath)
         parentId = try values.decodeIfPresent(String.self, forKey: .parentId)
         title = try values.decode(String.self, forKey: .title)
-        creationDate = try values.decode(Date.self, forKey: .creationDate)
-        modificationDate = try values.decode(Date.self, forKey: .modificationDate)
+        createdAt = try values.decode(Date.self, forKey: .createdAt)
+        modifiedAt = try values.decode(Date.self, forKey: .modifiedAt)
         size = try values.decodeIfPresent(Int.self, forKey: .size)
         downloadCount = try values.decodeIfPresent(Int.self, forKey: .downloadCount)
         ownerPath = try values.decodeIfPresent(String.self, forKey: .ownerPath)

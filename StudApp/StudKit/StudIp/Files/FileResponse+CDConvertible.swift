@@ -21,8 +21,8 @@ extension FileResponse: CDConvertible {
         file.parent = try fetchParent(in: context)
         file.title = title
         file.name = name
-        file.creationDate = creationDate
-        file.modificationDate = modificationDate
+        file.createdAt = createdAt
+        file.modifiedAt = modifiedAt
         file.size = size ?? -1
         file.downloadCount = downloadCount ?? -1
         file.owner = try User.fetch(byId: ownerId, in: context)

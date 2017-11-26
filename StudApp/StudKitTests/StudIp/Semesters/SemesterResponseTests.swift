@@ -17,9 +17,9 @@ final class SemesterResponseTests: XCTestCase {
         let semester = try! decoder.decode(SemesterResponse.self, from: SemesterResponseTests.semesterData)
         XCTAssertEqual(semester.id, "1")
         XCTAssertEqual(semester.title, "SS 2009")
-        XCTAssertEqual(semester.beginDate.description, "2009-03-29 22:00:00 +0000")
-        XCTAssertEqual(semester.endDate.description, "2009-09-30 21:59:59 +0000")
-        XCTAssertEqual(semester.coursesBeginDate.description, "2009-03-29 22:00:00 +0000")
-        XCTAssertEqual(semester.coursesEndDate.description, "2009-07-04 21:59:59 +0000")
+        XCTAssertEqual(semester.beginsAt.description, "2009-03-29 22:00:00 +0000")
+        XCTAssertEqual(semester.endsAt.description, "2009-09-30 21:59:59 +0000")
+        XCTAssertEqual(semester.coursesBeginAt.description, "2009-03-29 22:00:00 +0000")
+        XCTAssertEqual(semester.coursesEndAt.description, "2009-07-04 21:59:59 +0000")
     }
 }

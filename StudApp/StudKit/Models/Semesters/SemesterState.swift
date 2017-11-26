@@ -10,7 +10,7 @@ import CoreData
 
 @objc(SemesterState)
 public final class SemesterState: NSManagedObject, CDCreatable {
-    @NSManaged public var lastUsedDate: Date?
+    @NSManaged public var lastUsedAt: Date?
 
     @NSManaged public var favoriteRank: Int
 

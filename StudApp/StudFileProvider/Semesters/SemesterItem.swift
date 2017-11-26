@@ -22,7 +22,7 @@ final class SemesterItem: NSObject, NSFileProviderItem {
 
         self.parentItemIdentifier = parentItemIdentifier
 
-        lastUsedDate = semester.state.lastUsedDate
+        lastUsedDate = semester.state.lastUsedAt
 
         tagData = semester.state.tagData
         favoriteRank = !semester.state.isUnranked ? semester.state.favoriteRank as NSNumber : nil

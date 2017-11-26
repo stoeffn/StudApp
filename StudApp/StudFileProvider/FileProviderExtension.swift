@@ -129,7 +129,7 @@ final class FileProviderExtension: NSFileProviderExtension {
                 return
             }
 
-            file.state.downloadDate = downloadDate
+            file.state.downloadedAt = downloadDate
             try? file.managedObjectContext?.saveWhenChanged()
 
             do {
@@ -193,7 +193,7 @@ final class FileProviderExtension: NSFileProviderExtension {
     override func setLastUsedDate(_ lastUsedDate: Date?, forItemIdentifier itemIdentifier: NSFileProviderItemIdentifier,
                                   completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) {
         modifyItem(withIdentifier: itemIdentifier, completionHandler: completionHandler) { model in
-            model?.itemState.lastUsedDate = lastUsedDate
+            model?.itemState.lastUsedAt = lastUsedDate
         }
     }
 
