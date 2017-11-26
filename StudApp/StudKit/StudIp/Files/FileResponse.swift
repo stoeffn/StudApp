@@ -34,13 +34,13 @@ struct FileResponse: Decodable {
         case creationDate = "mkdate"
         case modificationDate = "chdate"
         case size = "filesize"
-        case numberOfDownloads = "downloads"
+        case downloadCount = "downloads"
         case ownerPath = "author"
     }
 
     init(folderId: String? = nil, fileId: String? = nil, name: String? = nil, coursePath: String,
          parentId: String? = nil, children: [FileResponse] = [], title: String, creationDate: Date = Date(),
-         modificationDate: Date = Date(), size: Int? = nil, numberOfDownloads: Int? = nil, ownerPath: String? = nil) {
+         modificationDate: Date = Date(), size: Int? = nil, downloadCount: Int? = nil, ownerPath: String? = nil) {
         self.folderId = folderId
         self.fileId = fileId
         filename = name
@@ -51,7 +51,7 @@ struct FileResponse: Decodable {
         self.creationDate = creationDate
         self.modificationDate = modificationDate
         self.size = size
-        self.downloadCount = numberOfDownloads
+        self.downloadCount = downloadCount
         self.ownerPath = ownerPath
     }
 
@@ -66,7 +66,7 @@ struct FileResponse: Decodable {
         creationDate = try values.decode(Date.self, forKey: .creationDate)
         modificationDate = try values.decode(Date.self, forKey: .modificationDate)
         size = try values.decodeIfPresent(Int.self, forKey: .size)
-        downloadCount = try values.decodeIfPresent(Int.self, forKey: .numberOfDownloads)
+        downloadCount = try values.decodeIfPresent(Int.self, forKey: .downloadCount)
         ownerPath = try values.decodeIfPresent(String.self, forKey: .ownerPath)
 
         if let childrenCollection = try? values.decodeIfPresent([String: FileResponse].self, forKey: .children),
