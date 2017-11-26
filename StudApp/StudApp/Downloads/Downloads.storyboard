@@ -169,6 +169,7 @@
                                     <outlet property="modificationDateLabel" destination="FmD-1v-GgI" id="1GH-w7-7SP"/>
                                     <outlet property="sizeLabel" destination="8BZ-7m-neU" id="K2f-PB-ZaS"/>
                                     <outlet property="titleLabel" destination="rpY-Q4-pSR" id="ZnL-pW-6RC"/>
+                                    <outlet property="userGlyph" destination="nHG-cC-ocN" id="a4g-FJ-hQH"/>
                                     <outlet property="userLabel" destination="L2C-Ga-Zb6" id="R7B-Xf-hRD"/>
                                 </connections>
                             </tableViewCell>

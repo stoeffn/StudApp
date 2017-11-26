@@ -23,6 +23,7 @@ final class FileCell: UITableViewCell {
             modificationDateLabel?.text = file.modifiedAt.formattedAsShortDifferenceFromNow
             sizeLabel?.text = file.size.formattedAsByteCount
             downloadCountLabel?.text = "%dx".localized(file.downloadCount)
+            userGlyph.isHidden = file.owner == nil
             userLabel?.text = file.owner?.nameComponents.formatted()
         }
     }
@@ -40,6 +41,8 @@ final class FileCell: UITableViewCell {
     @IBOutlet weak var sizeLabel: UILabel?
 
     @IBOutlet weak var downloadCountLabel: UILabel?
+
+    @IBOutlet weak var userGlyph: UIImageView!
 
     @IBOutlet weak var userLabel: UILabel?
 
