@@ -54,6 +54,7 @@
 		245B6AD61FCB327800302CD0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245B6AD51FCB327800302CD0 /* StoreKit.framework */; };
 		245B6ADA1FCB351F00302CD0 /* OrganizationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6AD91FCB351F00302CD0 /* OrganizationListController.swift */; };
 		245B6ADC1FCB355D00302CD0 /* OrganizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6ADB1FCB355D00302CD0 /* OrganizationCell.swift */; };
+		245B6ADE1FCB381B00302CD0 /* OrganizationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6ADD1FCB381B00302CD0 /* OrganizationListViewModel.swift */; };
 		245B6AE11FCB39BF00302CD0 /* OrganizationRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6AE01FCB39BF00302CD0 /* OrganizationRecord.swift */; };
 		246F3ABA1FAC7BEA00A477FF /* discovery.json in Resources */ = {isa = PBXBuildFile; fileRef = 246F3AB91FAC7BEA00A477FF /* discovery.json */; };
 		246F3AC51FAC879C00A477FF /* DataChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3ABE1FAC879C00A477FF /* DataChange.swift */; };
@@ -332,6 +333,7 @@
 		245B6AD51FCB327800302CD0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		245B6AD91FCB351F00302CD0 /* OrganizationListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationListController.swift; sourceTree = "<group>"; };
 		245B6ADB1FCB355D00302CD0 /* OrganizationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationCell.swift; sourceTree = "<group>"; };
+		245B6ADD1FCB381B00302CD0 /* OrganizationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationListViewModel.swift; sourceTree = "<group>"; };
 		245B6AE01FCB39BF00302CD0 /* OrganizationRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationRecord.swift; sourceTree = "<group>"; };
 		246F3AB91FAC7BEA00A477FF /* discovery.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = discovery.json; sourceTree = "<group>"; };
 		246F3ABE1FAC879C00A477FF /* DataChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataChange.swift; sourceTree = "<group>"; };
@@ -778,12 +780,12 @@
 			path = Api;
 			sourceTree = "<group>";
 		};
-		245B6ADF1FCB39AD00302CD0 /* Organization */ = {
+		245B6ADF1FCB39AD00302CD0 /* Organizations */ = {
 			isa = PBXGroup;
 			children = (
 				245B6AE01FCB39BF00302CD0 /* OrganizationRecord.swift */,
 			);
-			path = Organization;
+			path = Organizations;
 			sourceTree = "<group>";
 		};
 		246F3ABD1FAC877400A477FF /* DataSource */ = {
@@ -986,7 +988,7 @@
 		24D360BE1FAA585B00BBBAED /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				245B6ADF1FCB39AD00302CD0 /* Organization */,
+				245B6ADF1FCB39AD00302CD0 /* Organizations */,
 				2477936B1FC892DB00090F4D /* Colors */,
 				247793671FC892AE00090F4D /* Courses */,
 				247793681FC892B600090F4D /* Files */,
@@ -1132,6 +1134,7 @@
 				24FD786F1FBF826D0072F860 /* DownloadListViewModel.swift */,
 				24FE8A151FB8527D00A4A3C6 /* FileListViewModel.swift */,
 				24D178EA1FB606B200EC5F4A /* MainViewModel.swift */,
+				245B6ADD1FCB381B00302CD0 /* OrganizationListViewModel.swift */,
 				24D9EF551FB7559C006776B7 /* SemesterListViewModel.swift */,
 				24D361651FAA648B00BBBAED /* SignInViewModel.swift */,
 				24712BE31FB888E30067E416 /* WorkingSetViewModel.swift */,
@@ -1658,6 +1661,7 @@
 				24D360F81FAA5DE800BBBAED /* FileResponse+CDConvertible.swift in Sources */,
 				2448D4771FA8DE2A00DAB97E /* ServiceContainer.swift in Sources */,
 				24D729451FC74B600097777F /* PersonNameComponents+Formatting.swift in Sources */,
+				245B6ADE1FCB381B00302CD0 /* OrganizationListViewModel.swift in Sources */,
 				245B6ADA1FCB351F00302CD0 /* OrganizationListController.swift in Sources */,
 				24FE8A121FB7B0D100A4A3C6 /* RangeIterator.swift in Sources */,
 				2448D4971FA8DFB200DAB97E /* StudKitServiceProvider.swift in Sources */,

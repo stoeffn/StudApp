@@ -8,13 +8,25 @@
 
 import UIKit
 
-final class OrganizationListController: UITableViewController {
+final class OrganizationListController: UITableViewController, Routable {
+    private var viewModel: OrganizationListViewModel!
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        viewModel = OrganizationListViewModel()
+        viewModel.fetch { result in
+            self.tableView.reloadData()
+            print(result.error)
+        }
+
         navigationItem.title = "Choose Your Organization".localized
+    }
+
+    func prepareDependencies(for _: Routes) {
+        // TODO: Implement
     }
 
     // MARK: - Table View Data Source
@@ -24,12 +36,12 @@ final class OrganizationListController: UITableViewController {
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return 1
+        return viewModel.numberOfRows
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: OrganizationCell.typeIdentifier, for: indexPath)
-        (cell as? OrganizationCell)?.textLabel?.text = "Test"
+        (cell as? OrganizationCell)?.organization = viewModel[rowAt: indexPath.row]
         return cell
     }
 }

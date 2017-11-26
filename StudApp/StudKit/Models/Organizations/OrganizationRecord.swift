@@ -8,7 +8,9 @@
 
 import CloudKit
 
-public struct OrganizationRecord: ByTypeNameIdentifiable {
+public struct OrganizationRecord {
+    public static let recordType: String = "Organization"
+
     public let apiUrl: URL
 
     public let authenticationRealm: String
@@ -18,8 +20,9 @@ public struct OrganizationRecord: ByTypeNameIdentifiable {
 
 extension OrganizationRecord {
     init?(from record: CKRecord) {
-        guard record.recordType == OrganizationRecord.typeIdentifier,
-            let apiUrl = record["apiUrl"] as? URL,
+        guard record.recordType == OrganizationRecord.recordType,
+            let apiUrlString = record["apiUrl"] as? String,
+            let apiUrl = URL(string: apiUrlString),
             let authenticationRealm = record["authenticationRealm"] as? String,
             let title = record["title"] as? String else { return nil }
 

@@ -8,4 +8,12 @@
 
 import UIKit
 
-final class OrganizationCell: UITableViewCell {}
+final class OrganizationCell: UITableViewCell {
+    // MARK: - Life Cycle
+
+    var organization: OrganizationRecord? {
+        didSet {
+            textLabel?.text = organization?.title
+        }
+    }
+}
