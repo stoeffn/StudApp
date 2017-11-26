@@ -54,6 +54,7 @@
 		245B6AD61FCB327800302CD0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245B6AD51FCB327800302CD0 /* StoreKit.framework */; };
 		245B6ADA1FCB351F00302CD0 /* OrganizationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6AD91FCB351F00302CD0 /* OrganizationListController.swift */; };
 		245B6ADC1FCB355D00302CD0 /* OrganizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6ADB1FCB355D00302CD0 /* OrganizationCell.swift */; };
+		245B6AE11FCB39BF00302CD0 /* OrganizationRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6AE01FCB39BF00302CD0 /* OrganizationRecord.swift */; };
 		246F3ABA1FAC7BEA00A477FF /* discovery.json in Resources */ = {isa = PBXBuildFile; fileRef = 246F3AB91FAC7BEA00A477FF /* discovery.json */; };
 		246F3AC51FAC879C00A477FF /* DataChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3ABE1FAC879C00A477FF /* DataChange.swift */; };
 		246F3AC61FAC879C00A477FF /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3ABF1FAC879C00A477FF /* DataSource.swift */; };
@@ -331,6 +332,7 @@
 		245B6AD51FCB327800302CD0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		245B6AD91FCB351F00302CD0 /* OrganizationListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationListController.swift; sourceTree = "<group>"; };
 		245B6ADB1FCB355D00302CD0 /* OrganizationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationCell.swift; sourceTree = "<group>"; };
+		245B6AE01FCB39BF00302CD0 /* OrganizationRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationRecord.swift; sourceTree = "<group>"; };
 		246F3AB91FAC7BEA00A477FF /* discovery.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = discovery.json; sourceTree = "<group>"; };
 		246F3ABE1FAC879C00A477FF /* DataChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataChange.swift; sourceTree = "<group>"; };
 		246F3ABF1FAC879C00A477FF /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
@@ -776,6 +778,14 @@
 			path = Api;
 			sourceTree = "<group>";
 		};
+		245B6ADF1FCB39AD00302CD0 /* Organization */ = {
+			isa = PBXGroup;
+			children = (
+				245B6AE01FCB39BF00302CD0 /* OrganizationRecord.swift */,
+			);
+			path = Organization;
+			sourceTree = "<group>";
+		};
 		246F3ABD1FAC877400A477FF /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -976,6 +986,7 @@
 		24D360BE1FAA585B00BBBAED /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				245B6ADF1FCB39AD00302CD0 /* Organization */,
 				2477936B1FC892DB00090F4D /* Colors */,
 				247793671FC892AE00090F4D /* Courses */,
 				247793681FC892B600090F4D /* Files */,
@@ -1684,6 +1695,7 @@
 				24D360FA1FAA5DE800BBBAED /* FileResponse.swift in Sources */,
 				24D9EF561FB7559C006776B7 /* SemesterListViewModel.swift in Sources */,
 				24D3610E1FAA5ED600BBBAED /* CDColorable.swift in Sources */,
+				245B6AE11FCB39BF00302CD0 /* OrganizationRecord.swift in Sources */,
 				24D360F61FAA5DE800BBBAED /* File.swift in Sources */,
 				24D361661FAA648B00BBBAED /* SignInViewModel.swift in Sources */,
 				2448D4621FA8DC3900DAB97E /* String+Error.swift in Sources */,
