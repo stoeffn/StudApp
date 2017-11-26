@@ -34,6 +34,6 @@ public extension FileState {
 
     public var isMostRecentVersionDownloaded: Bool {
         guard let downloadDate = downloadDate else { return false }
-        return downloadDate <= file.modificationDate
+        return downloadDate >= file.modificationDate
     }
 }
