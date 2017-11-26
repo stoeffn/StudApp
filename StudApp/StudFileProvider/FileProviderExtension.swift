@@ -150,7 +150,7 @@ final class FileProviderExtension: NSFileProviderExtension {
                 completionHandler?(NSFileProviderError(.noSuchItem))
                 return
             }
-            if file.state.isDownloaded {
+            if file.state.isMostRecentVersionDownloaded {
                 try startProvidingDownloaded(file: file, completionHandler: completionHandler)
             } else {
                 try startProvidingRemote(file: file, completionHandler: completionHandler)
