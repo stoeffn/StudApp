@@ -22,6 +22,11 @@
 "Downloads" = "Downloads";
 "Remove Download" = "Remove";
 
+// MARK: Choosing an Organization
+
+"Choose Your Organization" = "Choose Your Organization";
+"Organizations" = "Organizations";
+
 // MARK: Signing In
 
 "Username" = "Username";
