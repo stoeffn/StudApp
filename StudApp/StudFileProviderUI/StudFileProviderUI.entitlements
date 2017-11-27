@@ -20,7 +20,7 @@
 	</array>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)SteffenRyll.StudApp</string>
+		<string>$(AppIdentifierPrefix)SteffenRyll.StudKit</string>
 	</array>
 </dict>
 </plist>
