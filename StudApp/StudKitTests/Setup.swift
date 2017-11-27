@@ -11,6 +11,6 @@
 @objc(Setup)
 final class Setup: NSObject {
     override init() {
-        ServiceContainer.default.register(providers: StudKitTestsServiceProvider(target: .tests))
+        ServiceContainer.default.register(providers: StudKitTestsServiceProvider(currentTarget: .tests))
     }
 }

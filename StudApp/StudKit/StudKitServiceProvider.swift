@@ -12,9 +12,11 @@ public class StudKitServiceProvider: ServiceProvider {
     static let iCloudContainerIdentifier = "iCloud.SteffenRyll.StudKit"
 
     private let currentTarget: Targets
+    private let extensionContext: NSExtensionContext?
 
-    public init(target: Targets) {
-        currentTarget = target
+    public init(currentTarget: Targets, extensionContext: NSExtensionContext? = nil) {
+        self.currentTarget = currentTarget
+        self.extensionContext = extensionContext
     }
 
     func provideJsonDecoder() -> JSONDecoder {
@@ -32,6 +34,7 @@ public class StudKitServiceProvider: ServiceProvider {
     }
 
     public func registerServices(in container: ServiceContainer) {
+        container[ContextService.self] = ContextService(currentTarget: currentTarget, extensionContext: extensionContext)
         container[JSONDecoder.self] = provideJsonDecoder()
         container[StorageService.self] = StorageService()
         container[CoreDataService.self] = provideCoreDataService()

@@ -15,7 +15,8 @@ final class DocumentActionViewController: FPUIActionExtensionViewController {
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
-        ServiceContainer.default.register(providers: StudKitServiceProvider(target: .fileProviderUI))
+        let provider = StudKitServiceProvider(currentTarget: .fileProviderUI, extensionContext: extensionContext)
+        ServiceContainer.default.register(providers: provider)
     }
 
     override func prepare(forAction actionIdentifier: String, itemIdentifiers: [NSFileProviderItemIdentifier]) {

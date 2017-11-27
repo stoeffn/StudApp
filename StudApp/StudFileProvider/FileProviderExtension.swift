@@ -17,7 +17,7 @@ final class FileProviderExtension: NSFileProviderExtension {
     // MARK: - Life Cycle
 
     override init() {
-        ServiceContainer.default.register(providers: StudKitServiceProvider(target: .fileProvider))
+        ServiceContainer.default.register(providers: StudKitServiceProvider(currentTarget: .fileProvider))
         coreDataService = ServiceContainer.default[CoreDataService.self]
         studIpService = ServiceContainer.default[StudIpService.self]
 
