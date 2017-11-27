@@ -7,12 +7,15 @@
 //
 
 final class SignInController: UITableViewController, UITextFieldDelegate, Routable {
+    private var contextService: ContextService!
     private var viewModel: SignInViewModel!
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        contextService = ServiceContainer.default[ContextService.self]
 
         usernameField.placeholder = "Username".localized
         passwordField.placeholder = "Password".localized
@@ -85,7 +88,15 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
         case .success:
             isLoading = false
             isErrorCellHidden = true
-            dismiss(animated: true, completion: nil)
+
+            switch contextService.currentTarget {
+            case .app:
+                dismiss(animated: true, completion: nil)
+            case .fileProviderUI:
+                contextService.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+            default:
+                break
+            }
         }
     }
 

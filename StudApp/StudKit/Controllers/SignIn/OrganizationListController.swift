@@ -6,15 +6,19 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import FileProviderUI
 import UIKit
 
 final class OrganizationListController: UITableViewController, Routable, DataSourceSectionDelegate {
+    private var contextService: ContextService!
     private var viewModel: OrganizationListViewModel!
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        contextService = ServiceContainer.default[ContextService.self]
 
         viewModel = OrganizationListViewModel()
         viewModel.delegate = self
@@ -25,6 +29,10 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         navigationItem.title = "Choose Your Organization".localized
         navigationItem.backBarButtonItem?.title = "Organizations".localized
         navigationItem.setActivityIndicatorHidden(false)
+
+        if contextService.currentTarget != .fileProviderUI {
+            navigationItem.leftBarButtonItem = nil
+        }
     }
 
     // MARK: - Table View Data Source
@@ -52,5 +60,15 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         default:
             prepareForRoute(using: segue, sender: sender)
         }
+    }
+
+    // MARK: - User Interface
+
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+
+    // MARK: - User Intercation
+
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        contextService.extensionContext?.cancelRequest(withError: "Canceled")
     }
 }

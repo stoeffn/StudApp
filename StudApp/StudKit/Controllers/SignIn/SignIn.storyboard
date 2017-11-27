@@ -247,7 +247,15 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Choose Your Organization" id="LTe-ZH-A1M">
                         <barButtonItem key="backBarButtonItem" title="Organization" id="nQF-Pa-JnJ"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="htM-Nw-MEZ">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="7Cl-OR-2Sy" id="bEL-m7-NB8"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="cancelButton" destination="htM-Nw-MEZ" id="hCd-LA-DiZ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zQK-c2-6aH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
