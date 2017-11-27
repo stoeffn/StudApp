@@ -78,6 +78,7 @@
 		2477936F1FC8939700090F4D /* ChangeCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E81FB7725100A4A3C6 /* ChangeCache.swift */; };
 		249DD6DE1FC8A3D4006DA46E /* User+StudIp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249DD6DD1FC8A3D4006DA46E /* User+StudIp.swift */; };
 		249DD6FB1FC8B896006DA46E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 249DD6FD1FC8B896006DA46E /* Localizable.strings */; };
+		24A8EDDC1FCCBA58007C1CCF /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		24CFB5D11FB24E2500F30DEA /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D01FB24E2500F30DEA /* MainController.swift */; };
 		24CFB5D61FB24F4D00F30DEA /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D31FB24F4C00F30DEA /* Routable.swift */; };
 		24CFB5D71FB24F4D00F30DEA /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D41FB24F4C00F30DEA /* Routes.swift */; };
@@ -480,6 +481,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				243817A11FC86203004052D0 /* StudKit.framework in Frameworks */,
+				24A8EDDC1FCCBA58007C1CCF /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1416,6 +1418,12 @@
 								enabled = 1;
 							};
 							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
 								enabled = 1;
 							};
 						};
