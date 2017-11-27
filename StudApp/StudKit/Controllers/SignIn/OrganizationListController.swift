@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class OrganizationListController: UITableViewController, Routable {
+final class OrganizationListController: UITableViewController, Routable, DataSourceSectionDelegate {
     private var viewModel: OrganizationListViewModel!
 
     // MARK: - Life Cycle
@@ -17,8 +17,8 @@ final class OrganizationListController: UITableViewController, Routable {
         super.viewDidLoad()
 
         viewModel = OrganizationListViewModel()
+        viewModel.delegate = self
         viewModel.fetch { result in
-            self.tableView.reloadData()
             print(result.error)
         }
 

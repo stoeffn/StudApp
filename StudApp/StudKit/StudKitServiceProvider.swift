@@ -11,6 +11,7 @@ public class StudKitServiceProvider: ServiceProvider {
     static let studIpBaseUrl = URL(string: "https://studip.uni-hannover.de/api.php")!
     static let studIpRealm = "luh"
     static let appGroupIdentifier = "group.SteffenRyll.StudKit"
+    static let iCloudContainerIdentifier = "iCloud.SteffenRyll.StudKit"
 
     private let currentTarget: Targets
 

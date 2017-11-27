@@ -14,18 +14,31 @@ public final class OrganizationListViewModel {
     public weak var delegate: DataSourceSectionDelegate?
 
     public func fetch(handler: @escaping ResultHandler<[OrganizationRecord]> = { _ in }) {
-        let database = CKContainer(identifier: "iCloud.SteffenRyll.StudKit").database(with: .public)
         let query = CKQuery(recordType: OrganizationRecord.recordType, predicate: NSPredicate(value: true))
 
-        database.perform(query, inZoneWith: nil) { (records, error) in
-            if let records = records {
-                self.organizations = records.flatMap { OrganizationRecord(from: $0) }
-            }
+        let operation = CKQueryOperation(query: query)
+        operation.qualityOfService = .userInitiated
+        operation.queryCompletionBlock = { (_, error) in
+            let result = Result(self.organizations, error: error)
 
             DispatchQueue.main.async {
-                handler(Result(self.organizations, error: error))
+                self.delegate?.dataDidChange(in: self)
+                handler(result)
             }
         }
+        operation.recordFetchedBlock = { record in
+            guard let organization = OrganizationRecord(from: record) else { return }
+            self.organizations.append(organization)
+
+            DispatchQueue.main.async {
+                self.delegate?.data(changedIn: organization, at: self.organizations.endIndex - 1, change: .insert, in: self)
+            }
+        }
+
+        let container = CKContainer(identifier: StudKitServiceProvider.iCloudContainerIdentifier)
+        container.database(with: .public).add(operation)
+
+        delegate?.dataWillChange(in: self)
     }
 }
 
