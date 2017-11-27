@@ -50,7 +50,8 @@ public final class StudIpService {
     ///  4. Abort if credential was rejected or another error occured during the request.
     ///  5. Create a permanent credential from the now validated username and password and save it as the default.
     ///  6. Save the API base `URL` and authentication realm.
-    ///  6. Fetch the current user from the API and mark as the current user.
+    ///  7. Fetch the current user from the API and mark as the current user.
+    ///  8. Signal the root container that there are updates
     ///
     /// - Parameters:
     ///   - username: Stud.IP username.
@@ -89,6 +90,8 @@ public final class StudIpService {
             User.updateCurrent(in: coreDataService.viewContext) { result in
                 handler(result.replacingValue(result.value))
             }
+
+            NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
         }
     }
 
@@ -108,6 +111,7 @@ public final class StudIpService {
 
         let coreDataService = ServiceContainer.default[CoreDataService.self]
         try? coreDataService.removeAllObjects(in: coreDataService.viewContext)
+        try? coreDataService.viewContext.saveWhenChanged()
 
         let storageService = ServiceContainer.default[StorageService.self]
         try? storageService.removeAllDocuments()
