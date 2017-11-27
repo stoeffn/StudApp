@@ -11,17 +11,17 @@ import CoreData
 extension User {
     public var isCurrent: Bool {
         let studIpService = ServiceContainer.default[StudIpService.self]
-        return id == studIpService.currentUserId
+        return id == studIpService.userId
     }
 
     public func makeCurrent() {
         let studIpService = ServiceContainer.default[StudIpService.self]
-        studIpService.currentUserId = id
+        studIpService.userId = id
     }
 
     static func fetchCurrent(in context: NSManagedObjectContext) throws -> User? {
         let studIpService = ServiceContainer.default[StudIpService.self]
-        guard let currentUserId = studIpService.currentUserId else { return nil }
+        guard let currentUserId = studIpService.userId else { return nil }
         return try fetch(byId: currentUserId, in: context)
     }
 

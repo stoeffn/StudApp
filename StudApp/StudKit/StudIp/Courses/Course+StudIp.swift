@@ -11,7 +11,7 @@ import CoreData
 extension Course {
     public static func update(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Course]>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
-        guard let userId = studIpService.currentUserId else { return }
+        guard let userId = studIpService.userId else { return }
 
         studIpService.api.requestCompleteCollection(.courses(forUserId: userId)) { (result: Result<[CourseResponse]>) in
             Course.update(using: result, in: context, handler: handler)

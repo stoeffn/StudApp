@@ -26,7 +26,6 @@ public final class SignInViewModel {
     }
 
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
-
     private let studIpService = ServiceContainer.default[StudIpService.self]
 
     public let organization: OrganizationRecord
@@ -51,7 +50,7 @@ public final class SignInViewModel {
         }
 
         state = .loading
-        studIpService.signIn(withUsername: username, password: password) { result in
+        studIpService.signIn(withUsername: username, password: password, into: organization) { result in
             switch result {
             case .success:
                 self.state = .success

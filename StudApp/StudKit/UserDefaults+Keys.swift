@@ -11,5 +11,9 @@ extension UserDefaults {
         return "lastHistoryTransactionTimestamp-\(target)"
     }
 
-    static let currentUserIdKey = "currentUserId"
+    static let apiUrl = "apiUrl"
+
+    static let authenticationRealm = "authenticationRealm"
+
+    static let userIdKey = "userId"
 }
