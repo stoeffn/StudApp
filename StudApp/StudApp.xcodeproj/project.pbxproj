@@ -59,8 +59,6 @@
 		246F3ABA1FAC7BEA00A477FF /* discovery.json in Resources */ = {isa = PBXBuildFile; fileRef = 246F3AB91FAC7BEA00A477FF /* discovery.json */; };
 		246F3AC51FAC879C00A477FF /* DataChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3ABE1FAC879C00A477FF /* DataChange.swift */; };
 		246F3AC61FAC879C00A477FF /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3ABF1FAC879C00A477FF /* DataSource.swift */; };
-		246F3AC71FAC879C00A477FF /* DataSourceDelegate+UITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3AC01FAC879C00A477FF /* DataSourceDelegate+UITableViewController.swift */; };
-		246F3AC81FAC879C00A477FF /* DataSourceSectionDelegate+UITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3AC11FAC879C00A477FF /* DataSourceSectionDelegate+UITableViewController.swift */; };
 		246F3AC91FAC879C00A477FF /* DataSourceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3AC21FAC879C00A477FF /* DataSourceSection.swift */; };
 		246F3ACA1FAC879C00A477FF /* DataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3AC31FAC879C00A477FF /* DataSourceDelegate.swift */; };
 		246F3ACB1FAC879C00A477FF /* DataSourceSectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3AC41FAC879C00A477FF /* DataSourceSectionDelegate.swift */; };
@@ -338,8 +336,6 @@
 		246F3AB91FAC7BEA00A477FF /* discovery.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = discovery.json; sourceTree = "<group>"; };
 		246F3ABE1FAC879C00A477FF /* DataChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataChange.swift; sourceTree = "<group>"; };
 		246F3ABF1FAC879C00A477FF /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
-		246F3AC01FAC879C00A477FF /* DataSourceDelegate+UITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataSourceDelegate+UITableViewController.swift"; sourceTree = "<group>"; };
-		246F3AC11FAC879C00A477FF /* DataSourceSectionDelegate+UITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataSourceSectionDelegate+UITableViewController.swift"; sourceTree = "<group>"; };
 		246F3AC21FAC879C00A477FF /* DataSourceSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceSection.swift; sourceTree = "<group>"; };
 		246F3AC31FAC879C00A477FF /* DataSourceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceDelegate.swift; sourceTree = "<group>"; };
 		246F3AC41FAC879C00A477FF /* DataSourceSectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSourceSectionDelegate.swift; sourceTree = "<group>"; };
@@ -795,10 +791,8 @@
 				246F3ABE1FAC879C00A477FF /* DataChange.swift */,
 				246F3ABF1FAC879C00A477FF /* DataSource.swift */,
 				246F3AC31FAC879C00A477FF /* DataSourceDelegate.swift */,
-				246F3AC01FAC879C00A477FF /* DataSourceDelegate+UITableViewController.swift */,
 				246F3AC21FAC879C00A477FF /* DataSourceSection.swift */,
 				246F3AC41FAC879C00A477FF /* DataSourceSectionDelegate.swift */,
-				246F3AC11FAC879C00A477FF /* DataSourceSectionDelegate+UITableViewController.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -1651,7 +1645,6 @@
 				24D361061FAA5E2300BBBAED /* SemesterResponse+CDConvertible.swift in Sources */,
 				24D360E71FAA5D7600BBBAED /* Course+StudIp.swift in Sources */,
 				243817AB1FC88B15004052D0 /* FilledButton.swift in Sources */,
-				246F3AC71FAC879C00A477FF /* DataSourceDelegate+UITableViewController.swift in Sources */,
 				24D360C21FAA58A000BBBAED /* StudKit.xcdatamodeld in Sources */,
 				245B6ADC1FCB355D00302CD0 /* OrganizationCell.swift in Sources */,
 				2448D4951FA8DF6000DAB97E /* StorageService.swift in Sources */,
@@ -1688,7 +1681,6 @@
 				2448D48F1FA8DEE800DAB97E /* FileManager+Utils.swift in Sources */,
 				24D360CC1FAA5AFE00BBBAED /* CDIdentifiable.swift in Sources */,
 				2448D45E1FA8DBA300DAB97E /* Result.swift in Sources */,
-				246F3AC81FAC879C00A477FF /* DataSourceSectionDelegate+UITableViewController.swift in Sources */,
 				24D360CD1FAA5AFE00BBBAED /* CDUpdatable.swift in Sources */,
 				24FD785A1FBF3F030072F860 /* HistoryService.swift in Sources */,
 				24712BD81FB858CC0067E416 /* File+StudIp.swift in Sources */,
