@@ -18,7 +18,7 @@ public final class OrganizationListViewModel {
 
         let operation = CKQueryOperation(query: query)
         operation.qualityOfService = .userInitiated
-        operation.queryCompletionBlock = { (_, error) in
+        operation.queryCompletionBlock = { _, error in
             let result = Result(self.organizations, error: error)
 
             DispatchQueue.main.async {

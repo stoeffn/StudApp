@@ -11,11 +11,19 @@ import CloudKit
 public struct OrganizationRecord {
     public static let recordType: String = "Organization"
 
-    public let apiUrl: URL
+    let apiUrl: URL
 
-    public let authenticationRealm: String
+    let authenticationRealm: String
 
     public let title: String
+
+    private let iconUrl: URL?
+
+    public lazy var icon: UIImage? = UIImage(contentsOfFile: iconUrl?.path ?? "")
+
+    private let iconThumbnailUrl: URL
+
+    public lazy var iconThumbnail: UIImage? = UIImage(contentsOfFile: iconThumbnailUrl.path)
 }
 
 extension OrganizationRecord {
@@ -24,10 +32,14 @@ extension OrganizationRecord {
             let apiUrlString = record["apiUrl"] as? String,
             let apiUrl = URL(string: apiUrlString),
             let authenticationRealm = record["authenticationRealm"] as? String,
-            let title = record["title"] as? String else { return nil }
+            let title = record["title"] as? String,
+            let iconThumbnailAsset = record["iconThumbnail"] as? CKAsset else { return nil }
+        let iconAsset = record["icon"] as? CKAsset
 
         self.apiUrl = apiUrl
         self.authenticationRealm = authenticationRealm
         self.title = title
+        iconUrl = iconAsset?.fileURL
+        iconThumbnailUrl = iconThumbnailAsset.fileURL
     }
 }
