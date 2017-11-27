@@ -26,7 +26,7 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
     }
 
     func prepareDependencies(for route: Routes) {
-        guard case let Segues.signIn(organization) = route else { fatalError() }
+        guard case let .signIn(organization) = route else { fatalError() }
 
         viewModel = SignInViewModel(organization: organization)
         viewModel.stateChanged = setState

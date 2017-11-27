@@ -12,7 +12,7 @@ public extension UIViewController {
     }
 
     public func prepareForRoute(using segue: UIStoryboardSegue, sender: Any?) {
-        guard let route = sender as? Segues else {
+        guard let route = sender as? Routes else {
             fatalError("Cannot get route from sender.")
         }
         prepare(for: route, destination: segue.destination)

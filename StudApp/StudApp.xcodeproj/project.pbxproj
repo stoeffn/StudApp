@@ -78,7 +78,6 @@
 		2477936F1FC8939700090F4D /* ChangeCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E81FB7725100A4A3C6 /* ChangeCache.swift */; };
 		249DD6DE1FC8A3D4006DA46E /* User+StudIp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249DD6DD1FC8A3D4006DA46E /* User+StudIp.swift */; };
 		249DD6FB1FC8B896006DA46E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 249DD6FD1FC8B896006DA46E /* Localizable.strings */; };
-		24A8EDDB1FCCA323007C1CCF /* Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D91FB2500900F30DEA /* Segues.swift */; };
 		24CFB5D11FB24E2500F30DEA /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D01FB24E2500F30DEA /* MainController.swift */; };
 		24CFB5D61FB24F4D00F30DEA /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D31FB24F4C00F30DEA /* Routable.swift */; };
 		24CFB5D71FB24F4D00F30DEA /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D41FB24F4C00F30DEA /* Routes.swift */; };
@@ -356,7 +355,6 @@
 		24CFB5D31FB24F4C00F30DEA /* Routable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
 		24CFB5D41FB24F4C00F30DEA /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		24CFB5D51FB24F4D00F30DEA /* UIViewController+Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Routes.swift"; sourceTree = "<group>"; };
-		24CFB5D91FB2500900F30DEA /* Segues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segues.swift; sourceTree = "<group>"; };
 		24D178EA1FB606B200EC5F4A /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		24D360C11FAA58A000BBBAED /* StudKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StudKit.xcdatamodel; sourceTree = "<group>"; };
 		24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDIdentifiable.swift; sourceTree = "<group>"; };
@@ -648,7 +646,6 @@
 				24D360EB1FAA5DA700BBBAED /* StudIp */,
 				24D361641FAA646200BBBAED /* ViewModels */,
 				24E626721FA9203E0040F9F7 /* Views */,
-				24CFB5D91FB2500900F30DEA /* Segues.swift */,
 				2448D4961FA8DFB200DAB97E /* StudKitServiceProvider.swift */,
 				24FD785D1FBF45B10072F860 /* Targets.swift */,
 				24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */,
@@ -1650,7 +1647,6 @@
 				24D361121FAA5F0500BBBAED /* StudIpRoutes.swift in Sources */,
 				2448D4A91FA8E07E00DAB97E /* HttpMethod.swift in Sources */,
 				24CFB5D81FB24F4D00F30DEA /* UIViewController+Routes.swift in Sources */,
-				24A8EDDB1FCCA323007C1CCF /* Segues.swift in Sources */,
 				24D360F81FAA5DE800BBBAED /* FileResponse+CDConvertible.swift in Sources */,
 				2448D4771FA8DE2A00DAB97E /* ServiceContainer.swift in Sources */,
 				24D729451FC74B600097777F /* PersonNameComponents+Formatting.swift in Sources */,
