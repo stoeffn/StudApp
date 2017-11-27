@@ -18,11 +18,13 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
 
         viewModel = OrganizationListViewModel()
         viewModel.delegate = self
-        viewModel.fetch { result in
-            print(result.error)
+        viewModel.fetch { _ in
+            self.navigationItem.setActivityIndicatorHidden(true)
         }
 
         navigationItem.title = "Choose Your Organization".localized
+        navigationItem.backBarButtonItem?.title = "Organizations".localized
+        navigationItem.setActivityIndicatorHidden(false)
     }
 
     func prepareDependencies(for _: Routes) {
