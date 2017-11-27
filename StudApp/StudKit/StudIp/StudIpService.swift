@@ -67,7 +67,7 @@ public final class StudIpService {
 
             guard result.isSuccess else { return handler(result.replacingValue(nil)) }
 
-            let validatedCredential = URLCredential(user: username, password: password, persistence: .synchronizable)
+            let validatedCredential = URLCredential(user: username, password: password, persistence: .permanent)
             URLCredentialStorage.shared.setDefaultCredential(validatedCredential, for: protectionSpace)
 
             let coreDataService = ServiceContainer.default[CoreDataService.self]
@@ -84,7 +84,7 @@ public final class StudIpService {
         guard let credential = URLCredentialStorage.shared.defaultCredential(for: protectionSpace) else { return }
         URLCredentialStorage.shared.remove(credential, for: protectionSpace)
 
-        let emptyCredential = URLCredential(user: "", password: "", persistence: .synchronizable)
+        let emptyCredential = URLCredential(user: "", password: "", persistence: .permanent)
         URLCredentialStorage.shared.setDefaultCredential(emptyCredential, for: protectionSpace)
 
         api.removeLastRouteAccesses()
