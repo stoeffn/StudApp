@@ -8,7 +8,7 @@
 
 public extension UIViewController {
     public func performSegue(withRoute route: Routes) {
-        performSegue(withIdentifier: route.identifier, sender: route)
+        performSegue(withIdentifier: route.segueIdentifier, sender: route)
     }
 
     public func prepareForRoute(using segue: UIStoryboardSegue, sender: Any?) {
@@ -27,7 +27,7 @@ public extension UIViewController {
         } else {
             let destinationDescription = String(describing: type(of: self))
             let errorMessage = """
-            Cannot use route with identifier '\(route.identifier)' with destination view controller
+            Cannot use route with identifier '\(route.segueIdentifier)' with destination view controller
             '\(destinationDescription)' as neither it nor its first child view controller conform to protocol Routable'.
             """
             fatalError(errorMessage)

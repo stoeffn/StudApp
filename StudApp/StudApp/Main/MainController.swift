@@ -31,7 +31,7 @@ final class MainController: UITabBarController {
         super.viewDidAppear(animated)
 
         if !viewModel.isSignedIn {
-            performSegue(withRoute: Segues.chooseOrganization)
+            performSegue(withRoute: .signIn)
         }
     }
 
@@ -47,7 +47,7 @@ final class MainController: UITabBarController {
     func userButtonTapped(_ sender: Any) {
         func signOut(_: UIAlertAction) {
             viewModel.signOut()
-            performSegue(withRoute: Segues.chooseOrganization)
+            performSegue(withRoute: .signIn)
         }
 
         guard let barButtonItem = sender as? UIBarButtonItem,

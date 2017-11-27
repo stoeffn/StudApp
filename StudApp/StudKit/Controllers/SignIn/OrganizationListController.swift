@@ -48,7 +48,7 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch sender {
         case let organizationCell as OrganizationCell:
-            prepare(for: .signIn(organizationCell.organization), destination: segue.destination)
+            prepare(for: .signInToOrganization(organizationCell.organization), destination: segue.destination)
         default:
             prepareForRoute(using: segue, sender: sender)
         }

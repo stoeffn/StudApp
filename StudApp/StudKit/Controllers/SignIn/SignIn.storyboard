@@ -236,7 +236,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="REk-SH-Xkn" kind="show" identifier="signIn" id="onR-s8-23m"/>
+                                    <segue destination="REk-SH-Xkn" kind="show" identifier="signIntoOrganization" id="onR-s8-23m"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -256,7 +256,7 @@
         <!--Borderless Navigation Controller-->
         <scene sceneID="6yh-zB-2Ps">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nJg-0c-dPm" customClass="BorderlessNavigationController" customModule="StudKit" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SignInNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="nJg-0c-dPm" customClass="BorderlessNavigationController" customModule="StudKit" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FQZ-8j-RNu">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

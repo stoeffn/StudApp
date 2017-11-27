@@ -7,14 +7,40 @@
 //
 
 public enum Routes {
-    case chooseOrganization
+    case signIn
 
-    case signIn(OrganizationRecord)
+    case signInToOrganization(OrganizationRecord)
 
-    public var identifier: String {
+    private var destinationStoryboard: UIStoryboard? {
         switch self {
-        case .chooseOrganization: return "chooseOrganization"
-        case .signIn: return "signIn"
+        case .signIn:
+            return UIStoryboard(name: "SignIn", bundle: StudKitServiceProvider.kitBundle)
+        default:
+            return nil
         }
+    }
+
+    private var destinationIdentifier: String? {
+        switch self {
+        case .signIn: return "SignInNavigationController"
+        default: return nil
+        }
+    }
+
+    public var segueIdentifier: String {
+        switch self {
+        case .signIn: return "signIn"
+        case .signInToOrganization: return "signInToOrganization"
+        }
+    }
+
+    public func instantiateViewController() -> UIViewController {
+        guard let storyboard = destinationStoryboard else {
+            fatalError("Cannot instantiate storyboard for route with identifier '\(segueIdentifier)'.")
+        }
+        guard let destinationIdentifier = destinationIdentifier else {
+            fatalError("Route with identifier '\(segueIdentifier)' has no destination view controller identifier.")
+        }
+        return storyboard.instantiateViewController(withIdentifier: destinationIdentifier)
     }
 }

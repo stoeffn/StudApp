@@ -19,28 +19,26 @@ final class DocumentActionViewController: FPUIActionExtensionViewController {
     }
 
     override func prepare(forAction actionIdentifier: String, itemIdentifiers: [NSFileProviderItemIdentifier]) {
-        guard let action = ActionRoutes(actionIdentifier: actionIdentifier, context: extensionContext,
-                                        itemIdentifiers: itemIdentifiers) else {
+        guard let route = Routes(actionIdentifier: actionIdentifier, itemIdentifiers: itemIdentifiers) else {
             fatalError("Cannot process unknown action with identifier '\(actionIdentifier)'.")
         }
-        setViewController(for: action, itemIdentifiers: itemIdentifiers)
+        setViewController(for: route, itemIdentifiers: itemIdentifiers)
     }
 
-    override func prepare(forError _: Error) {
-        setViewController(for: .authenticate(context: extensionContext))
+    override func prepare(forError error: Error) {
+        guard let route = Routes(error: error) else {
+            fatalError("Cannot process unknown error with description '\(error.localizedDescription)'.")
+        }
+        setViewController(for: route)
     }
 
     // MARK: - Helpers
 
-    private func setViewController(for action: ActionRoutes, itemIdentifiers _: [NSFileProviderItemIdentifier] = []) {
-        guard let controller = storyboard?.instantiateViewController(withIdentifier: action.identifier) else {
-            fatalError("Cannot instantiate view controller with identifier '\(action.identifier)'.")
-        }
-        guard let routableController = (controller as? UINavigationController)?.childViewControllers.first as? Routable else {
-            fatalError("View Controller does not conform to protocol '\(String(describing: Routable.self))'.")
-        }
-        routableController.prepareDependencies(for: action)
-        addChildViewController(controller)
-        containerView.addSubview(controller.view)
+    private func setViewController(for route: Routes, itemIdentifiers _: [NSFileProviderItemIdentifier] = []) {
+        let destinationController = route.instantiateViewController()
+        prepare(for: route, destination: destinationController)
+
+        addChildViewController(destinationController)
+        containerView.addSubview(destinationController.view)
     }
 }
