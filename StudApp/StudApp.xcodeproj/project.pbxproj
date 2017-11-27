@@ -13,7 +13,7 @@
 		2438179E1FC76D1E004052D0 /* ActionRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438179D1FC76D1E004052D0 /* ActionRoutes.swift */; };
 		243817A11FC86203004052D0 /* StudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2448D43F1FA8DB1E00DAB97E /* StudKit.framework */; };
 		243817A71FC88A49004052D0 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243014251FA8FE2800680253 /* SignInController.swift */; };
-		243817A81FC88A4C004052D0 /* SignInNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD96E1FA9191500FBD750 /* SignInNavigationController.swift */; };
+		243817A81FC88A4C004052D0 /* BorderlessNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD96E1FA9191500FBD750 /* BorderlessNavigationController.swift */; };
 		243817A91FC88B0E004052D0 /* StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */; };
 		243817AA1FC88B11004052D0 /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */; };
 		243817AB1FC88B15004052D0 /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9661FA9022400FBD750 /* FilledButton.swift */; };
@@ -285,7 +285,7 @@
 		241FD9661FA9022400FBD750 /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
 		241FD9681FA9087900FBD750 /* GroupedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedTextField.swift; sourceTree = "<group>"; };
 		241FD96A1FA9090F00FBD750 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
-		241FD96E1FA9191500FBD750 /* SignInNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInNavigationController.swift; sourceTree = "<group>"; };
+		241FD96E1FA9191500FBD750 /* BorderlessNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderlessNavigationController.swift; sourceTree = "<group>"; };
 		243014251FA8FE2800680253 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StudFileProviderUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		243817911FC76BDC004052D0 /* DocumentActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentActionViewController.swift; sourceTree = "<group>"; };
@@ -572,6 +572,7 @@
 			isa = PBXGroup;
 			children = (
 				2477935F1FC890C100090F4D /* SignIn */,
+				241FD96E1FA9191500FBD750 /* BorderlessNavigationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -818,7 +819,6 @@
 				245B6ADB1FCB355D00302CD0 /* OrganizationCell.swift */,
 				245B6AD91FCB351F00302CD0 /* OrganizationListController.swift */,
 				243014251FA8FE2800680253 /* SignInController.swift */,
-				241FD96E1FA9191500FBD750 /* SignInNavigationController.swift */,
 				24E60B691FC8C76F000EDD2A /* SignIn.storyboard */,
 			);
 			path = SignIn;
@@ -1684,7 +1684,7 @@
 				24FD78601FBF4D330072F860 /* NSPersistentHistoryToken+Utils.swift in Sources */,
 				24FD785E1FBF45B10072F860 /* Targets.swift in Sources */,
 				24D360CE1FAA5AFE00BBBAED /* CDConvertible.swift in Sources */,
-				243817A81FC88A4C004052D0 /* SignInNavigationController.swift in Sources */,
+				243817A81FC88A4C004052D0 /* BorderlessNavigationController.swift in Sources */,
 				2448D48F1FA8DEE800DAB97E /* FileManager+Utils.swift in Sources */,
 				24D360CC1FAA5AFE00BBBAED /* CDIdentifiable.swift in Sources */,
 				2448D45E1FA8DBA300DAB97E /* Result.swift in Sources */,
