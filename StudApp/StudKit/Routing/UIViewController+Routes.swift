@@ -11,6 +11,13 @@ public extension UIViewController {
         performSegue(withIdentifier: route.identifier, sender: route)
     }
 
+    public func prepareForRoute(using segue: UIStoryboardSegue, sender: Any?) {
+        guard let route = sender as? Segues else {
+            fatalError("Cannot get route from sender.")
+        }
+        prepare(for: route, destination: segue.destination)
+    }
+
     public func prepare(for route: Routes, destination: UIViewController) {
         if let controller = destination as? Routable {
             controller.prepareDependencies(for: route)

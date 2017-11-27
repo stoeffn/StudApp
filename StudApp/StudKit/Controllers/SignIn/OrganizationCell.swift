@@ -21,10 +21,10 @@ final class OrganizationCell: UITableViewCell {
         initUserInterface()
     }
 
-    var organization: OrganizationRecord? {
+    var organization: OrganizationRecord! {
         didSet {
-            textLabel?.text = organization?.title
-            imageView?.image = organization?.iconThumbnail
+            textLabel?.text = organization.title
+            imageView?.image = organization.iconThumbnail
         }
     }
 

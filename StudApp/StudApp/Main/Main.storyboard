@@ -19,7 +19,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="2bU-cg-kHC" kind="presentation" identifier="signInSegue" animates="NO" id="g2F-HD-as5"/>
+                        <segue destination="2bU-cg-kHC" kind="presentation" identifier="chooseOrganization" animates="NO" id="g2F-HD-as5"/>
                         <segue destination="KYP-jD-J4O" kind="relationship" relationship="viewControllers" id="bFd-ds-8U0"/>
                         <segue destination="zRO-mA-Jtv" kind="relationship" relationship="viewControllers" id="9ED-Sa-84k"/>
                     </connections>

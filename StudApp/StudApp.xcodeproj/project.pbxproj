@@ -78,11 +78,11 @@
 		2477936F1FC8939700090F4D /* ChangeCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E81FB7725100A4A3C6 /* ChangeCache.swift */; };
 		249DD6DE1FC8A3D4006DA46E /* User+StudIp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249DD6DD1FC8A3D4006DA46E /* User+StudIp.swift */; };
 		249DD6FB1FC8B896006DA46E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 249DD6FD1FC8B896006DA46E /* Localizable.strings */; };
+		24A8EDDB1FCCA323007C1CCF /* Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D91FB2500900F30DEA /* Segues.swift */; };
 		24CFB5D11FB24E2500F30DEA /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D01FB24E2500F30DEA /* MainController.swift */; };
 		24CFB5D61FB24F4D00F30DEA /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D31FB24F4C00F30DEA /* Routable.swift */; };
 		24CFB5D71FB24F4D00F30DEA /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D41FB24F4C00F30DEA /* Routes.swift */; };
 		24CFB5D81FB24F4D00F30DEA /* UIViewController+Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D51FB24F4D00F30DEA /* UIViewController+Routes.swift */; };
-		24CFB5DA1FB2500900F30DEA /* Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D91FB2500900F30DEA /* Segues.swift */; };
 		24D178EB1FB606B200EC5F4A /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D178EA1FB606B200EC5F4A /* MainViewModel.swift */; };
 		24D360C21FAA58A000BBBAED /* StudKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C01FAA58A000BBBAED /* StudKit.xcdatamodeld */; };
 		24D360CC1FAA5AFE00BBBAED /* CDIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */; };
@@ -609,7 +609,6 @@
 				24E626731FA920490040F9F7 /* Downloads */,
 				247793581FC8901E00090F4D /* Semesters */,
 				2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */,
-				24CFB5D91FB2500900F30DEA /* Segues.swift */,
 				24E60B631FC8C73F000EDD2A /* LaunchScreen.storyboard */,
 				2448D4131FA8DA2400DAB97E /* Assets.xcassets */,
 				24FE8A0F1FB78DBF00A4A3C6 /* StudApp.entitlements */,
@@ -649,6 +648,7 @@
 				24D360EB1FAA5DA700BBBAED /* StudIp */,
 				24D361641FAA646200BBBAED /* ViewModels */,
 				24E626721FA9203E0040F9F7 /* Views */,
+				24CFB5D91FB2500900F30DEA /* Segues.swift */,
 				2448D4961FA8DFB200DAB97E /* StudKitServiceProvider.swift */,
 				24FD785D1FBF45B10072F860 /* Targets.swift */,
 				24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */,
@@ -1608,7 +1608,6 @@
 				24CFB5D11FB24E2500F30DEA /* MainController.swift in Sources */,
 				24D7293D1FC736120097777F /* FileCell.swift in Sources */,
 				2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */,
-				24CFB5DA1FB2500900F30DEA /* Segues.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1651,6 +1650,7 @@
 				24D361121FAA5F0500BBBAED /* StudIpRoutes.swift in Sources */,
 				2448D4A91FA8E07E00DAB97E /* HttpMethod.swift in Sources */,
 				24CFB5D81FB24F4D00F30DEA /* UIViewController+Routes.swift in Sources */,
+				24A8EDDB1FCCA323007C1CCF /* Segues.swift in Sources */,
 				24D360F81FAA5DE800BBBAED /* FileResponse+CDConvertible.swift in Sources */,
 				2448D4771FA8DE2A00DAB97E /* ServiceContainer.swift in Sources */,
 				24D729451FC74B600097777F /* PersonNameComponents+Formatting.swift in Sources */,

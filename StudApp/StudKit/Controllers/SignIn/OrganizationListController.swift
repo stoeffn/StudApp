@@ -27,10 +27,6 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         navigationItem.setActivityIndicatorHidden(false)
     }
 
-    func prepareDependencies(for _: Routes) {
-        // TODO: Implement
-    }
-
     // MARK: - Table View Data Source
 
     override func numberOfSections(in _: UITableView) -> Int {
@@ -45,5 +41,16 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         let cell = tableView.dequeueReusableCell(withIdentifier: OrganizationCell.typeIdentifier, for: indexPath)
         (cell as? OrganizationCell)?.organization = viewModel[rowAt: indexPath.row]
         return cell
+    }
+
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch sender {
+        case let organizationCell as OrganizationCell:
+            prepare(for: Segues.signIn(organizationCell.organization), destination: segue.destination)
+        default:
+            prepareForRoute(using: segue, sender: sender)
+        }
     }
 }

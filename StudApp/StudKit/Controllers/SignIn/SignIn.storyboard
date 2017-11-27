@@ -196,6 +196,7 @@
                     <navigationItem key="navigationItem" id="QFU-Rk-uBU"/>
                     <connections>
                         <outlet property="errorLabel" destination="ffy-2R-Hqm" id="FE8-kL-iG1"/>
+                        <outlet property="iconView" destination="rxE-7e-LKe" id="GxT-ni-Nyg"/>
                         <outlet property="passwordField" destination="e25-tx-ryy" id="s1A-yt-fJr"/>
                         <outlet property="signInButton" destination="cZS-9a-wlw" id="C09-ot-fbn"/>
                         <outlet property="usernameField" destination="Iao-Vh-FML" id="ozU-Fe-273"/>
@@ -235,7 +236,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="REk-SH-Xkn" kind="show" id="onR-s8-23m"/>
+                                    <segue destination="REk-SH-Xkn" kind="show" identifier="signIn" id="onR-s8-23m"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

@@ -11,11 +11,11 @@ import StudKit
 final class SemesterCell: UITableViewCell {
     // MARK: - Life Cycle
 
-    var semester: Semester? {
+    var semester: Semester! {
         didSet {
-            titleLabel.text = semester?.title
-            monthRangeLabel.text = semester?.monthRange
-            isHiddenSwitch.isOn = !(semester?.state.isHidden ?? true)
+            titleLabel.text = semester.title
+            monthRangeLabel.text = semester.monthRange
+            isHiddenSwitch.isOn = !semester.state.isHidden
         }
     }
 

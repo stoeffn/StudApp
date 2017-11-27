@@ -9,3 +9,9 @@
 public protocol Routable: class {
     func prepareDependencies(for route: Routes)
 }
+
+// MARK: - Default Implementation
+
+extension Routable {
+    func prepareDependencies(for _: Routes) {}
+}

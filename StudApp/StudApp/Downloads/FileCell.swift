@@ -11,10 +11,8 @@ import StudKit
 final class FileCell: UITableViewCell {
     // MARK: - Life Cycle
 
-    var file: File? {
+    var file: File! {
         didSet {
-            guard let file = file else { return }
-
             documentController = UIDocumentInteractionController(url: file.localUrl)
             documentController?.name = file.title
 

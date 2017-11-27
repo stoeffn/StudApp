@@ -31,14 +31,14 @@ final class MainController: UITabBarController {
         super.viewDidAppear(animated)
 
         if !viewModel.isSignedIn {
-            performSegue(withRoute: Segues.signIn)
+            performSegue(withRoute: Segues.chooseOrganization)
         }
     }
 
     // MARK: - Navigation
 
-    override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
-        prepare(for: Segues.signIn, destination: segue.destination)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        prepareForRoute(using: segue, sender: sender)
     }
 
     // MARK: - User Interaction
@@ -47,7 +47,7 @@ final class MainController: UITabBarController {
     func userButtonTapped(_ sender: Any) {
         func signOut(_: UIAlertAction) {
             viewModel.signOut()
-            performSegue(withRoute: Segues.signIn)
+            performSegue(withRoute: Segues.chooseOrganization)
         }
 
         guard let barButtonItem = sender as? UIBarButtonItem,

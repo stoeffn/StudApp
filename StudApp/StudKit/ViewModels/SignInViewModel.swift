@@ -26,7 +26,10 @@ public final class SignInViewModel {
     }
 
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
+
     private let studIpService = ServiceContainer.default[StudIpService.self]
+
+    public let organization: OrganizationRecord
 
     /// Current state of the sign-in process, which should be respected by the user interface.
     public var state: State = .idle {
@@ -36,7 +39,9 @@ public final class SignInViewModel {
     /// This handler is called every time `state` changes.
     public var stateChanged: ((State) -> Void)?
 
-    public init() {}
+    public init(organization: OrganizationRecord) {
+        self.organization = organization
+    }
 
     /// Attempts to sign a user into his/her Stud.IP account after performing basic form validation.
     public func attemptSignIn(withUsername username: String, password: String) {

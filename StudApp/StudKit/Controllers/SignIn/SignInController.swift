@@ -14,22 +14,27 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewModel = SignInViewModel()
-        viewModel.stateChanged = setState
-
         usernameField.placeholder = "Username".localized
         passwordField.placeholder = "Password".localized
         signInButton.titleLabel?.text = "Sign In".localized
 
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardDidShow), name: .UIKeyboardDidShow,
-                                               object: nil)
+        var organization = viewModel.organization
+        iconView.image = organization.icon
+
+        NotificationCenter.default
+            .addObserver(self, selector: #selector(keyboardDidShow), name: .UIKeyboardDidShow, object: nil)
     }
 
-    func prepareDependencies(for _: Routes) {
-        // TODO: Implement
+    func prepareDependencies(for route: Routes) {
+        guard case let Segues.signIn(organization) = route else { fatalError() }
+
+        viewModel = SignInViewModel(organization: organization)
+        viewModel.stateChanged = setState
     }
 
     // MARK: - User Interface
+
+    @IBOutlet weak var iconView: UIImageView!
 
     @IBOutlet weak var usernameField: UITextField!
 
