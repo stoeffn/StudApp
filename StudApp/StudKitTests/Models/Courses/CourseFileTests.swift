@@ -15,7 +15,7 @@ final class FileServiceTests: XCTestCase {
     private var course: Course!
 
     override func setUp() {
-        context = StudKitTestsServiceProvider(target: .tests).provideCoreDataService().viewContext
+        context = StudKitTestsServiceProvider(currentTarget: .tests).provideCoreDataService().viewContext
 
         course = try! CourseResponse(id: "a2c88e905abf322d1868640859f13c99", title: "Course")
             .coreDataModel(in: context!) as! Course

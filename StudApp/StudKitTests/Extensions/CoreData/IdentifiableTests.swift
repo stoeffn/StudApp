@@ -14,7 +14,7 @@ final class IdentifiableTests: XCTestCase {
     var context: NSManagedObjectContext!
 
     override func setUp() {
-        context = StudKitTestsServiceProvider(target: .tests).provideCoreDataService().viewContext
+        context = StudKitTestsServiceProvider(currentTarget: .tests).provideCoreDataService().viewContext
 
         try! CourseResponse(id: "0", title: "A").coreDataModel(in: context)
         try! CourseResponse(id: "1", title: "B").coreDataModel(in: context)
