@@ -8,6 +8,8 @@
 
 import CoreGraphics
 
-enum UI {
-    static let defaultCornerRadius: CGFloat = 10
+public enum UI {
+    public static let defaultCornerRadius: CGFloat = 10
+
+    public static let greyTextColor = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
 }

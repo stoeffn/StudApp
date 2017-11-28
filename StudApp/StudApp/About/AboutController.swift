@@ -18,7 +18,7 @@ final class AboutController: UITableViewController, Routable {
 
         viewModel = AboutViewModel()
 
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: thanksCellIdentifier)
+        tableView.register(ThanksCell.self, forCellReuseIdentifier: ThanksCell.typeIdentifier)
     }
 
     // MARK: - User Intercation
@@ -29,8 +29,6 @@ final class AboutController: UITableViewController, Routable {
     }
 
     // MARK: - Table View Data Source
-
-    private let thanksCellIdentifier = "ThanksCell"
 
     private let thanksSectionIndex = 2
 
@@ -46,10 +44,8 @@ final class AboutController: UITableViewController, Routable {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case thanksSectionIndex:
-            let cell = tableView.dequeueReusableCell(withIdentifier: thanksCellIdentifier, for: indexPath)
-            let thanks = viewModel[rowAt: indexPath.row]
-            cell.textLabel?.text = thanks.title
-            cell.detailTextLabel?.text = thanks.description
+            let cell = tableView.dequeueReusableCell(withIdentifier: ThanksCell.typeIdentifier, for: indexPath)
+            (cell as? ThanksCell)?.thanks = viewModel[rowAt: indexPath.row]
             return cell
         default:
             return super.tableView(tableView, cellForRowAt: indexPath)
