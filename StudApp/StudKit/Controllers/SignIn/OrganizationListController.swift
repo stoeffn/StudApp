@@ -68,7 +68,7 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
 
     // MARK: - User Intercation
 
-    @IBAction func cancelButtonTapped(_ sender: Any) {
+    @IBAction func cancelButtonTapped(_: Any) {
         contextService.extensionContext?.cancelRequest(withError: "Canceled")
     }
 }

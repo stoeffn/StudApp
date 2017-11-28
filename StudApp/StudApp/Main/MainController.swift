@@ -45,6 +45,10 @@ final class MainController: UITabBarController {
 
     @IBAction
     func userButtonTapped(_ sender: Any) {
+        func showAboutView(_: UIAlertAction) {
+            performSegue(withRoute: .about)
+        }
+
         func signOut(_: UIAlertAction) {
             viewModel.signOut()
             performSegue(withRoute: .signIn)
@@ -56,6 +60,7 @@ final class MainController: UITabBarController {
         let title = "Signed in as %@".localized(currentUser.nameComponents.formatted(style: .long))
         let controller = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
         controller.popoverPresentationController?.barButtonItem = barButtonItem
+        controller.addAction(UIAlertAction(title: "About".localized, style: .default, handler: showAboutView))
         controller.addAction(UIAlertAction(title: "Sign Out".localized, style: .destructive, handler: signOut))
         controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
         present(controller, animated: true, completion: nil)

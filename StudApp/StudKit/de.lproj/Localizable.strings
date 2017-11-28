@@ -11,6 +11,7 @@
 // MARK: User Menu
 
 "Signed in as %@" = "Angemeldet als %@";
+"About" = "Über";
 "Sign Out" = "Abmelden";
 
 // MARK: Semesters

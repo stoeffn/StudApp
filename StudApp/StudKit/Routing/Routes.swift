@@ -7,6 +7,8 @@
 //
 
 public enum Routes {
+    case about
+
     case signIn
 
     case signInToOrganization(OrganizationRecord)
@@ -29,6 +31,7 @@ public enum Routes {
 
     public var segueIdentifier: String {
         switch self {
+        case .about: return "about"
         case .signIn: return "signIn"
         case .signInToOrganization: return "signInToOrganization"
         }

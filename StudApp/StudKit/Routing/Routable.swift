@@ -12,6 +12,6 @@ public protocol Routable: class {
 
 // MARK: - Default Implementation
 
-extension Routable {
+public extension Routable {
     func prepareDependencies(for _: Routes) {}
 }

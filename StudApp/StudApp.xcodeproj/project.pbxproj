@@ -166,6 +166,8 @@
 		24E60B681FC8C754000EDD2A /* Semesters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B671FC8C754000EDD2A /* Semesters.storyboard */; };
 		24E60B6A1FC8C76F000EDD2A /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B691FC8C76F000EDD2A /* SignIn.storyboard */; };
 		24E60B6C1FC8C77F000EDD2A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B6B1FC8C77F000EDD2A /* MainInterface.storyboard */; };
+		24EBC4361FCDCA3200181455 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24EBC4351FCDCA3200181455 /* About.storyboard */; };
+		24EBC4381FCDCA4300181455 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EBC4371FCDCA4300181455 /* AboutController.swift */; };
 		24FD785A1FBF3F030072F860 /* HistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78591FBF3F030072F860 /* HistoryService.swift */; };
 		24FD785C1FBF45030072F860 /* Targets+NSPersistentHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */; };
 		24FD785E1FBF45B10072F860 /* Targets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785D1FBF45B10072F860 /* Targets.swift */; };
@@ -444,6 +446,8 @@
 		24E60B6B1FC8C77F000EDD2A /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
 		24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+StudIpActivityIndicatorView.swift"; sourceTree = "<group>"; };
 		24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudIpActivityIndicatorView.swift; sourceTree = "<group>"; };
+		24EBC4351FCDCA3200181455 /* About.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
+		24EBC4371FCDCA4300181455 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		24FD78591FBF3F030072F860 /* HistoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryService.swift; sourceTree = "<group>"; };
 		24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Targets+NSPersistentHistory.swift"; sourceTree = "<group>"; };
 		24FD785D1FBF45B10072F860 /* Targets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Targets.swift; sourceTree = "<group>"; };
@@ -607,6 +611,7 @@
 		2448D40B1FA8DA2400DAB97E /* StudApp */ = {
 			isa = PBXGroup;
 			children = (
+				24EBC4341FCDCA0000181455 /* About */,
 				247793601FC890D100090F4D /* Main */,
 				24E626731FA920490040F9F7 /* Downloads */,
 				247793581FC8901E00090F4D /* Semesters */,
@@ -1175,6 +1180,15 @@
 			path = Downloads;
 			sourceTree = "<group>";
 		};
+		24EBC4341FCDCA0000181455 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				24EBC4371FCDCA4300181455 /* AboutController.swift */,
+				24EBC4351FCDCA3200181455 /* About.storyboard */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
 		24FE89D91FB7652200A4A3C6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1529,6 +1543,7 @@
 			files = (
 				24E60B641FC8C73F000EDD2A /* LaunchScreen.storyboard in Resources */,
 				2448D4141FA8DA2400DAB97E /* Assets.xcassets in Resources */,
+				24EBC4361FCDCA3200181455 /* About.storyboard in Resources */,
 				24E60B661FC8C749000EDD2A /* Downloads.storyboard in Resources */,
 				24E60B621FC8C725000EDD2A /* Main.storyboard in Resources */,
 				24E60B681FC8C754000EDD2A /* Semesters.storyboard in Resources */,
@@ -1615,6 +1630,7 @@
 				24FD786E1FBF81EA0072F860 /* DownloadListController.swift in Sources */,
 				24CFB5D11FB24E2500F30DEA /* MainController.swift in Sources */,
 				24D7293D1FC736120097777F /* FileCell.swift in Sources */,
+				24EBC4381FCDCA4300181455 /* AboutController.swift in Sources */,
 				2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
