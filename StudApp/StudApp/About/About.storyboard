@@ -128,6 +128,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="sendFeedbackCell" destination="2uk-r6-Psu" id="IuS-f6-FWs"/>
                         <outlet property="subtitleLabel" destination="DUJ-55-7Tc" id="pTO-pF-ugW"/>
                         <outlet property="titleLabel" destination="jQ0-8Q-JdH" id="GRw-OS-Wi9"/>
                     </connections>

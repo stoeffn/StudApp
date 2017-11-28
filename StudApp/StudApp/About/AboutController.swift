@@ -19,11 +19,15 @@ final class AboutController: UITableViewController, Routable {
 
         viewModel = AboutViewModel()
 
+        navigationItem.title = "About".localized
+
         tableView.register(ThanksNoteCell.self, forCellReuseIdentifier: ThanksNoteCell.typeIdentifier)
 
         if let appName = viewModel.appName, let appVersionName = viewModel.appVersionName {
             titleLabel.text = "\(appName) \(appVersionName)"
         }
+        subtitleLabel.text = "by %@".localized("Steffen Ryll")
+        sendFeedbackCell.textLabel?.text = "Send Feedback".localized
     }
 
     // MARK: - User Interface
@@ -31,6 +35,8 @@ final class AboutController: UITableViewController, Routable {
     @IBOutlet weak var titleLabel: UILabel!
 
     @IBOutlet weak var subtitleLabel: UILabel!
+
+    @IBOutlet weak var sendFeedbackCell: UITableViewCell!
 
     // MARK: - User Interaction
 
@@ -60,6 +66,20 @@ final class AboutController: UITableViewController, Routable {
             return cell
         default:
             return super.tableView(tableView, cellForRowAt: indexPath)
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case thanksSectionIndex: return "Thanks to".localized
+        default: return nil
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        switch section {
+        case thanksSectionIndex: return "Without you, this app could not exist. Thank you ❤️".localized
+        default: return nil
         }
     }
 

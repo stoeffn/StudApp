@@ -2,17 +2,24 @@
 
 "%dx" = "%dx"; // Example: "11x" (eleven times)
 "%@ ago" = "%@ ago"; // Example "two months ago"
+"by %@" = "by %@"; // Example: "by Steve Jobs"
 
 // MARK: Actions
 
 "Cancel" = "Cancel";
 "Share" = "Share";
+"Sign Out" = "Sign Out";
+"Send Feedback" = "Send Feedback";
+
+// MARK: About
+
+"About" = "About";
+"Thanks to" = "Thanks to";
+"Without you, this app could not exist. Thank you ❤️" = "Without you, this app could not exist. Thank you ❤️";
 
 // MARK: User Menu
 
 "Signed in as %@" = "Signed in as %@";
-"About" = "About";
-"Sign Out" = "Sign Out";
 
 // MARK: Semesters
 
