@@ -14,6 +14,9 @@
 // MARK: About
 
 "About" = "Über";
+"Feedback for %@" = "Feedback für %@";
+"Cannot Open Email Composer" = "E-Mail-Formular kann nicht geöffnet werden";
+"Please check whether you configured an email account." = "Bitte überprüfe, ob ein E-Mail-Account eingerichtet ist.";
 "Thanks to" = "Danke an";
 "Without you, this app could not exist. Thank you ❤️" = "Ohne Euch könnte diese App nicht existieren. Danke ❤️";
 

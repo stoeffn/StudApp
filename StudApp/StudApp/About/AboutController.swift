@@ -114,8 +114,37 @@ final class AboutController: UITableViewController, Routable {
             guard let url = viewModel[rowAt: indexPath.row].url else { return }
             let safariController = SFSafariViewController(url: url)
             present(safariController, animated: true, completion: nil)
-        case .app?, .feedback?, nil:
+        case .feedback?:
+            openFeedbackMailComposer()
+        case .app?, nil:
             break
         }
+    }
+
+    // MARK: - Helpers
+
+    private func openFeedbackMailComposer() {
+        let mailController = MFMailComposeViewController()
+        mailController.mailComposeDelegate = self
+        mailController.setToRecipients([App.feedbackMailAddress])
+        mailController.setSubject("Feedback for %@".localized(titleLabel.text ?? "App"))
+
+        if MFMailComposeViewController.canSendMail() {
+            present(mailController, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: "Cannot Open Email Composer".localized,
+                                          message: "Please check whether you configured an email account.".localized,
+                                          preferredStyle: .alert)
+            present(alert, animated: true, completion: nil)
+        }
+    }
+}
+
+// MARK: - Mail Composer
+
+extension AboutController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult,
+                               error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }

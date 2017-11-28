@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		241C67E51FCDD78100F4A099 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E41FCDD78100F4A099 /* AboutViewModel.swift */; };
 		241C67E81FCDEA3700F4A099 /* ThanksNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E71FCDEA3700F4A099 /* ThanksNoteCell.swift */; };
+		241C67EA1FCDFAC700F4A099 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E91FCDFAC700F4A099 /* App.swift */; };
 		241FD9651FA8FFAD00FBD750 /* UINavigationBar+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9641FA8FFAD00FBD750 /* UINavigationBar+Utils.swift */; };
 		243817921FC76BDC004052D0 /* DocumentActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243817911FC76BDC004052D0 /* DocumentActionViewController.swift */; };
 		243817991FC76BDC004052D0 /* StudFileProviderUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -286,6 +287,7 @@
 /* Begin PBXFileReference section */
 		241C67E41FCDD78100F4A099 /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
 		241C67E71FCDEA3700F4A099 /* ThanksNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThanksNoteCell.swift; sourceTree = "<group>"; };
+		241C67E91FCDFAC700F4A099 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		241FD9641FA8FFAD00FBD750 /* UINavigationBar+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Utils.swift"; sourceTree = "<group>"; };
 		241FD9661FA9022400FBD750 /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
 		241FD9681FA9087900FBD750 /* GroupedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedTextField.swift; sourceTree = "<group>"; };
@@ -659,6 +661,7 @@
 				24D360EB1FAA5DA700BBBAED /* StudIp */,
 				24D361641FAA646200BBBAED /* ViewModels */,
 				24E626721FA9203E0040F9F7 /* Views */,
+				241C67E91FCDFAC700F4A099 /* App.swift */,
 				24A8EDDD1FCCBC93007C1CCF /* ContextService.swift */,
 				2448D4961FA8DFB200DAB97E /* StudKitServiceProvider.swift */,
 				24FD785D1FBF45B10072F860 /* Targets.swift */,
@@ -1737,6 +1740,7 @@
 				24D361081FAA5E2300BBBAED /* SemesterResponse.swift in Sources */,
 				24712BE01FB886980067E416 /* FileProviderItemConvertibleState.swift in Sources */,
 				24D361001FAA5E0800BBBAED /* UserResponse.swift in Sources */,
+				241C67EA1FCDFAC700F4A099 /* App.swift in Sources */,
 				24D361111FAA5F0500BBBAED /* StudIpService.swift in Sources */,
 				246F3AC91FAC879C00A477FF /* DataSourceSection.swift in Sources */,
 				24D361151FAA5F0E00BBBAED /* CollectionResponse.swift in Sources */,

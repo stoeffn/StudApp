@@ -14,6 +14,9 @@
 // MARK: About
 
 "About" = "About";
+"Feedback for %@" = "Feedback for %@";
+"Cannot Open Email Composer" = "Cannot Open Email Composer";
+"Please check whether you configured an email account." = "Please check whether you configured an email account.";
 "Thanks to" = "Thanks to";
 "Without you, this app could not exist. Thank you ❤️" = "Without you, this app could not exist. Thank you ❤️";
 
