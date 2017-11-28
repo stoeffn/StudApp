@@ -23,6 +23,7 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
 
         var organization = viewModel.organization
         iconView.image = organization.icon
+        titleLabel.text = organization.title
 
         NotificationCenter.default
             .addObserver(self, selector: #selector(keyboardDidShow), name: .UIKeyboardDidShow, object: nil)
@@ -38,6 +39,8 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
     // MARK: - User Interface
 
     @IBOutlet weak var iconView: UIImageView!
+
+    @IBOutlet weak var titleLabel: UILabel!
 
     @IBOutlet weak var usernameField: UITextField!
 
@@ -119,6 +122,9 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
         case usernameField:
             passwordField.becomeFirstResponder()
             scrollToBottom()
+        case passwordField:
+            guard let username = usernameField.text, let password = passwordField.text else { return false }
+            viewModel.attemptSignIn(withUsername: username, password: password)
         default:
             break
         }
