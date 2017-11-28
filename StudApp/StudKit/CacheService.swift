@@ -6,7 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-final public class CacheService {
+public final class CacheService {
     private lazy var documentInteractionControllers = NSCache<NSURL, UIDocumentInteractionController>()
 
     public func documentInteractionController(forUrl url: URL, name: String,

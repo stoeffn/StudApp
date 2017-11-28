@@ -13,7 +13,7 @@ import UIKit
 public final class BorderlessNavigationController: UINavigationController {
     // MARK: - Life Cycle
 
-    override public func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationBar.removeBackground()
@@ -24,13 +24,13 @@ public final class BorderlessNavigationController: UINavigationController {
         updateNavigationBarBackgroundFrame()
     }
 
-    override public func viewDidAppear(_ animated: Bool) {
+    public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         updateNavigationBarBackgroundFrame()
     }
 
-    override public func viewWillTransition(to _: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    public override func viewWillTransition(to _: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         /// Set the status bar background view, which makes for the blur effect, behind the status bar at all times.
         coordinator.animateAlongsideTransition(in: navigationController?.view, animation: { _ in
             self.updateNavigationBarBackgroundFrame()
