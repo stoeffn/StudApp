@@ -14,16 +14,13 @@ final class FileCell: UITableViewCell {
     var file: File! {
         didSet {
             iconView?.image = nil
+            file.documentController { self.iconView?.image = $0.icons.first }
             titleLabel?.text = file.title
             modificationDateLabel?.text = file.modifiedAt.formattedAsShortDifferenceFromNow
             sizeLabel?.text = file.size.formattedAsByteCount
             downloadCountLabel?.text = "%dx".localized(file.downloadCount)
             userGlyph.isHidden = file.owner == nil
             userLabel?.text = file.owner?.nameComponents.formatted()
-
-            file.documentController { controller in
-                self.iconView?.image = controller.icons.first
-            }
         }
     }
 
@@ -47,8 +44,6 @@ final class FileCell: UITableViewCell {
 
     @objc
     func shareDocument(sender _: UIMenuController) {
-        file.documentController { controller in
-            controller.presentOptionsMenu(from: self.frame, in: self, animated: true)
-        }
+        file.documentController { $0.presentOptionsMenu(from: self.frame, in: self, animated: true) }
     }
 }

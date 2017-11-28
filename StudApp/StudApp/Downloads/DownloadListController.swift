@@ -78,6 +78,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? FileCell else { return }
+
         cell.file.documentController { controller in
             controller.delegate = self
             controller.presentPreview(animated: true)
