@@ -20,21 +20,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FileCell" rowHeight="64" id="klf-Oc-tXf" customClass="FileCell" customModule="StudApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="64"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FileCell" rowHeight="72" id="klf-Oc-tXf" customClass="FileCell" customModule="StudApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="klf-Oc-tXf" id="SFf-Fo-PsB">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="71.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="83U-43-ZHW">
-                                            <rect key="frame" x="16" y="11" width="343" height="42"/>
+                                            <rect key="frame" x="16" y="11" width="343" height="50"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LLj-t0-YJ3">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="42"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LLj-t0-YJ3">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="LLj-t0-YJ3" secondAttribute="height" multiplier="1:1" id="VcC-EE-GCZ"/>
+                                                        <constraint firstAttribute="width" constant="50" id="mvo-h6-Ap9"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="3xa-XZ-fFk">
-                                                    <rect key="frame" x="58" y="2" width="285" height="38.5"/>
+                                                    <rect key="frame" x="58" y="6" width="285" height="38.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Assignment 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rpY-Q4-pSR">
                                                             <rect key="frame" x="0.0" y="0.0" width="102.5" height="20.5"/>

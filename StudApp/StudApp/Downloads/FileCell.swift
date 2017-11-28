@@ -13,10 +13,7 @@ final class FileCell: UITableViewCell {
 
     var file: File! {
         didSet {
-            documentController = UIDocumentInteractionController(url: file.localUrl)
-            documentController?.name = file.title
-
-            iconView?.image = documentController?.icons.first
+            iconView?.image = file.documentController.icons.first
             titleLabel?.text = file.title
             modificationDateLabel?.text = file.modifiedAt.formattedAsShortDifferenceFromNow
             sizeLabel?.text = file.size.formattedAsByteCount
@@ -25,8 +22,6 @@ final class FileCell: UITableViewCell {
             userLabel?.text = file.owner?.nameComponents.formatted()
         }
     }
-
-    var documentController: UIDocumentInteractionController?
 
     // MARK: - User Interface
 
@@ -48,6 +43,6 @@ final class FileCell: UITableViewCell {
 
     @objc
     func shareDocument(sender _: UIMenuController) {
-        documentController?.presentOptionsMenu(from: frame, in: self, animated: true)
+        file.documentController.presentOptionsMenu(from: frame, in: self, animated: true)
     }
 }

@@ -30,6 +30,12 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
         self.init(context: context)
         state = FileState(createIn: context)
     }
+
+    public lazy var documentController: UIDocumentInteractionController = {
+        let controller = UIDocumentInteractionController(url: localUrl)
+        controller.name = title
+        return controller
+    }()
 }
 
 // MARK: - Core Data Operations
