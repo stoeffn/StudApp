@@ -8,9 +8,8 @@
 
 public protocol DataSource: Sequence {
     associatedtype Section
-    associatedtype Row
 
-    weak var delegate: DataSourceDelegate? { get set }
+    associatedtype Row
 
     var numberOfSections: Int { get }
 

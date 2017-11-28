@@ -9,8 +9,6 @@
 public protocol DataSourceSection: Sequence {
     associatedtype Row
 
-    weak var delegate: DataSourceSectionDelegate? { get set }
-
     var numberOfRows: Int { get }
 
     subscript(rowAt _: Int) -> Row { get }
