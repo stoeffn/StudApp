@@ -72,7 +72,7 @@ final class AboutController: UITableViewController, Routable {
         }
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch Sections(rawValue: section) {
         case .thanks?:
             return "Thanks to".localized
@@ -81,7 +81,7 @@ final class AboutController: UITableViewController, Routable {
         }
     }
 
-    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
         switch Sections(rawValue: section) {
         case .thanks?:
             return "Without you, this app could not exist. Thank you ❤️".localized
@@ -108,7 +108,7 @@ final class AboutController: UITableViewController, Routable {
         return UITableViewAutomaticDimension
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch Sections(rawValue: indexPath.section) {
         case .thanks?:
             guard let url = viewModel[rowAt: indexPath.row].url else { return }
@@ -143,8 +143,8 @@ final class AboutController: UITableViewController, Routable {
 // MARK: - Mail Composer
 
 extension AboutController: MFMailComposeViewControllerDelegate {
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult,
-                               error: Error?) {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith _: MFMailComposeResult,
+                               error _: Error?) {
         controller.dismiss(animated: true, completion: nil)
     }
 }

@@ -11,7 +11,7 @@ import StudKit
 final class ThanksNoteCell: UITableViewCell {
     // MARK: - Life Cycle
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style _: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: .value2, reuseIdentifier: reuseIdentifier)
         initUserInterface()
     }
