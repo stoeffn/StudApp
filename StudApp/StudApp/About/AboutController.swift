@@ -6,6 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import SafariServices
 import StudKit
 
 final class AboutController: UITableViewController, Routable {
@@ -45,7 +46,7 @@ final class AboutController: UITableViewController, Routable {
         switch indexPath.section {
         case thanksSectionIndex:
             let cell = tableView.dequeueReusableCell(withIdentifier: ThanksNoteCell.typeIdentifier, for: indexPath)
-            (cell as? ThanksNoteCell)?.thanks = viewModel[rowAt: indexPath.row]
+            (cell as? ThanksNoteCell)?.thanksNote = viewModel[rowAt: indexPath.row]
             return cell
         default:
             return super.tableView(tableView, cellForRowAt: indexPath)
@@ -68,5 +69,16 @@ final class AboutController: UITableViewController, Routable {
         // Needs to be overriden in order to activate dynamic row sizing. This value is not set in interface builder because it
         // would reset the rows' sizes to the default size in preview.
         return UITableViewAutomaticDimension
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case thanksSectionIndex:
+            guard let url = viewModel[rowAt: indexPath.row].url else { return }
+            let safariController = SFSafariViewController(url: url)
+            present(safariController, animated: true, completion: nil)
+        default:
+            break
+        }
     }
 }

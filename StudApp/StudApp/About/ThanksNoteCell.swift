@@ -21,10 +21,14 @@ final class ThanksNoteCell: UITableViewCell {
         initUserInterface()
     }
 
-    var thanks: ThanksNote! {
+    var thanksNote: ThanksNote! {
         didSet {
-            textLabel?.text = thanks.title
-            detailTextLabel?.text = thanks.description
+            textLabel?.text = thanksNote.title
+            detailTextLabel?.text = thanksNote.description
+
+            let hasLink = thanksNote.url != nil
+            selectionStyle = hasLink ? .default : .none
+            textLabel?.textColor = hasLink ? tintColor : .black
         }
     }
 
@@ -33,9 +37,11 @@ final class ThanksNoteCell: UITableViewCell {
     private func initUserInterface() {
         textLabel?.font = .preferredFont(forTextStyle: .footnote)
         textLabel?.adjustsFontForContentSizeCategory = true
+        textLabel?.numberOfLines = 2
 
         detailTextLabel?.font = .preferredFont(forTextStyle: .footnote)
         detailTextLabel?.adjustsFontForContentSizeCategory = true
         detailTextLabel?.textColor = UI.greyTextColor
+        detailTextLabel?.numberOfLines = 2
     }
 }
