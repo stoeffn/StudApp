@@ -87,7 +87,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Thanks to" footerTitle="Without you, this app could not exist. Thank you ❤️" id="sTE-d9-Eoz">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ThanksCell" textLabel="xhX-r9-UEg" detailTextLabel="FAB-Mo-ny4" style="IBUITableViewCellStyleValue2" id="Pre-A1-8QT" customClass="ThanksCell" customModule="StudApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ThanksCell" textLabel="xhX-r9-UEg" detailTextLabel="FAB-Mo-ny4" style="IBUITableViewCellStyleValue2" id="Pre-A1-8QT" customClass="ThanksNoteCell" customModule="StudApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="264.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pre-A1-8QT" id="L1v-9x-Ifh">

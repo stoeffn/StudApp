@@ -1,5 +1,5 @@
 //
-//  ThanksCell.swift
+//  ThanksNoteCell.swift
 //  StudApp
 //
 //  Created by Steffen Ryll on 28.11.17.
@@ -8,7 +8,7 @@
 
 import StudKit
 
-final class ThanksCell: UITableViewCell {
+final class ThanksNoteCell: UITableViewCell {
     // MARK: - Life Cycle
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -21,7 +21,7 @@ final class ThanksCell: UITableViewCell {
         initUserInterface()
     }
 
-    var thanks: Thanks! {
+    var thanks: ThanksNote! {
         didSet {
             textLabel?.text = thanks.title
             detailTextLabel?.text = thanks.description

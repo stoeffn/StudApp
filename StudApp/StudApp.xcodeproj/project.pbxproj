@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		241C67E51FCDD78100F4A099 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E41FCDD78100F4A099 /* AboutViewModel.swift */; };
-		241C67E81FCDEA3700F4A099 /* ThanksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E71FCDEA3700F4A099 /* ThanksCell.swift */; };
+		241C67E81FCDEA3700F4A099 /* ThanksNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E71FCDEA3700F4A099 /* ThanksNoteCell.swift */; };
 		241FD9651FA8FFAD00FBD750 /* UINavigationBar+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9641FA8FFAD00FBD750 /* UINavigationBar+Utils.swift */; };
 		243817921FC76BDC004052D0 /* DocumentActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243817911FC76BDC004052D0 /* DocumentActionViewController.swift */; };
 		243817991FC76BDC004052D0 /* StudFileProviderUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -285,7 +285,7 @@
 
 /* Begin PBXFileReference section */
 		241C67E41FCDD78100F4A099 /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
-		241C67E71FCDEA3700F4A099 /* ThanksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThanksCell.swift; sourceTree = "<group>"; };
+		241C67E71FCDEA3700F4A099 /* ThanksNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThanksNoteCell.swift; sourceTree = "<group>"; };
 		241FD9641FA8FFAD00FBD750 /* UINavigationBar+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Utils.swift"; sourceTree = "<group>"; };
 		241FD9661FA9022400FBD750 /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
 		241FD9681FA9087900FBD750 /* GroupedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedTextField.swift; sourceTree = "<group>"; };
@@ -1189,7 +1189,7 @@
 			isa = PBXGroup;
 			children = (
 				24EBC4371FCDCA4300181455 /* AboutController.swift */,
-				241C67E71FCDEA3700F4A099 /* ThanksCell.swift */,
+				241C67E71FCDEA3700F4A099 /* ThanksNoteCell.swift */,
 				24EBC4351FCDCA3200181455 /* About.storyboard */,
 			);
 			path = About;
@@ -1635,7 +1635,7 @@
 				24712BE81FB8B4420067E416 /* SemesterCell.swift in Sources */,
 				24FD786E1FBF81EA0072F860 /* DownloadListController.swift in Sources */,
 				24CFB5D11FB24E2500F30DEA /* MainController.swift in Sources */,
-				241C67E81FCDEA3700F4A099 /* ThanksCell.swift in Sources */,
+				241C67E81FCDEA3700F4A099 /* ThanksNoteCell.swift in Sources */,
 				24D7293D1FC736120097777F /* FileCell.swift in Sources */,
 				24EBC4381FCDCA4300181455 /* AboutController.swift in Sources */,
 				2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */,
