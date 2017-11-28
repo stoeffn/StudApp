@@ -121,6 +121,42 @@ final class AboutController: UITableViewController, Routable {
         }
     }
 
+    override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath,
+                            withSender _: Any?) -> Bool {
+        switch Sections(rawValue: indexPath.section) {
+        case .feedback?:
+            return action == #selector(copy(_:))
+        case .thanks?:
+            guard viewModel[rowAt: indexPath.row].url != nil else { return false }
+            return action == #selector(copy(_:))
+        case .app?, nil:
+            return false
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath,
+                            withSender _: Any?) {
+        switch Sections(rawValue: indexPath.section) {
+        case .feedback?:
+            UIPasteboard.general.string = App.feedbackMailAddress
+        case .thanks?:
+            UIPasteboard.general.url = viewModel[rowAt: indexPath.row].url
+        case .app?, nil:
+            break
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
+        switch Sections(rawValue: indexPath.section) {
+        case .feedback?:
+            return true
+        case .thanks?:
+            return viewModel[rowAt: indexPath.row].url != nil
+        case .app?, nil:
+            return false
+        }
+    }
+
     // MARK: - Helpers
 
     private func openFeedbackMailComposer() {
