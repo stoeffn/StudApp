@@ -90,7 +90,7 @@
         <!--Semesters-->
         <scene sceneID="1Rz-lA-yYv">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dbq-bM-eAu" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dbq-bM-eAu" customClass="BorderlessNavigationController" customModule="StudKit" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Semesters" image="SemestersTabBarGlyph" landscapeImage="SemestersTabBarLandscapeGlyph" id="7my-5k-oCp"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="j1E-Mk-AWe">

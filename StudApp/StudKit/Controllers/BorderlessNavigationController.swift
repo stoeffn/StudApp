@@ -10,10 +10,10 @@ import UIKit
 
 /// A custom navigation controller has a transparent and borderless navigation bar and handles keeping a light blur effect
 /// beneath the status and navigation bar in order to make it legible at all times.
-final class BorderlessNavigationController: UINavigationController {
+public final class BorderlessNavigationController: UINavigationController {
     // MARK: - Life Cycle
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
 
         navigationBar.removeBackground()
@@ -24,13 +24,13 @@ final class BorderlessNavigationController: UINavigationController {
         updateNavigationBarBackgroundFrame()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
+    override public func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         updateNavigationBarBackgroundFrame()
     }
 
-    override func viewWillTransition(to _: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    override public func viewWillTransition(to _: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         /// Set the status bar background view, which makes for the blur effect, behind the status bar at all times.
         coordinator.animateAlongsideTransition(in: navigationController?.view, animation: { _ in
             self.updateNavigationBarBackgroundFrame()
@@ -38,6 +38,11 @@ final class BorderlessNavigationController: UINavigationController {
     }
 
     // MARK: - User Interface
+
+    /// Any additional navigation bar height, e.g. due to a search bar.
+    public var additionalHeight: CGFloat = 0 {
+        didSet { updateNavigationBarBackgroundFrame() }
+    }
 
     /// View with a light blur effect to be placed beneath the status and navigation bar. With no content behind it, it appears
     /// white and therefore blends in with the background.
@@ -53,7 +58,7 @@ final class BorderlessNavigationController: UINavigationController {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
-        view.alpha = 0.4
+        view.alpha = 0.5
         return view
     }()
 
@@ -67,6 +72,7 @@ final class BorderlessNavigationController: UINavigationController {
     /// Update the navigation bar background views' frames. Needs to be called every time the layout changes.
     private func updateNavigationBarBackgroundFrame() {
         guard let frame = navigationBarBackgroundFrame else { return }
-        navigationBarBackgroundBlurView.frame = frame
+        let size = CGSize(width: frame.size.width, height: frame.size.height + additionalHeight)
+        navigationBarBackgroundBlurView.frame = CGRect(origin: frame.origin, size: size)
     }
 }
