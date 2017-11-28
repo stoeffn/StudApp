@@ -17,7 +17,8 @@ final class AboutController: UITableViewController, Routable {
 
     // MARK: - User Intercation
 
-    @IBAction func doneButtonTapped(_ sender: Any) {
+    @IBAction
+    func doneButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
 }
