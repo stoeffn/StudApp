@@ -23,21 +23,12 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items/>
                             </tabBar>
-                            <navigationBar contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MHQ-St-620">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
-                                <items>
-                                    <navigationItem id="jct-3u-xN6"/>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="qa2-ld-XDg" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="02E-Tg-bq4"/>
-                            <constraint firstItem="MHQ-St-620" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="C5d-Ew-yBq"/>
                             <constraint firstItem="qa2-ld-XDg" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Eli-sw-9Mc"/>
                             <constraint firstItem="qa2-ld-XDg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Jnp-Xj-heE"/>
-                            <constraint firstItem="MHQ-St-620" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="TXy-hU-PO5"/>
-                            <constraint firstItem="MHQ-St-620" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="lKQ-On-sGj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
