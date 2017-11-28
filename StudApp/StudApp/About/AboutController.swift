@@ -27,7 +27,7 @@ final class AboutController: UITableViewController, Routable {
         if let appName = viewModel.appName, let appVersionName = viewModel.appVersionName {
             titleLabel.text = "\(appName) \(appVersionName)"
         }
-        subtitleLabel.text = "by %@".localized("Steffen Ryll")
+        subtitleLabel.text = "by %@".localized(viewModel.appAuthorName)
         sendFeedbackCell.textLabel?.text = "Send Feedback".localized
     }
 
