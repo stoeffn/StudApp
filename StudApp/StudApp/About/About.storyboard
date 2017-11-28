@@ -34,6 +34,7 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="AppIcon-Big" translatesAutoresizingMaskIntoConstraints="NO" id="DJi-Yk-Aot">
                                                     <rect key="frame" x="16" y="11" width="64" height="64"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="128" id="KDK-qd-Tbk"/>
                                                         <constraint firstAttribute="width" secondItem="DJi-Yk-Aot" secondAttribute="height" multiplier="1:1" id="vA3-zO-BV1"/>
                                                     </constraints>
                                                 </imageView>
@@ -56,7 +57,7 @@
                                                 <constraint firstItem="DJi-Yk-Aot" firstAttribute="top" secondItem="YKI-T9-X1A" secondAttribute="topMargin" id="Z2l-ig-Rg1"/>
                                                 <constraint firstItem="DUJ-55-7Tc" firstAttribute="firstBaseline" secondItem="jQ0-8Q-JdH" secondAttribute="baseline" constant="24" symbolType="layoutAnchor" id="ccJ-KM-z2R"/>
                                                 <constraint firstItem="jQ0-8Q-JdH" firstAttribute="top" secondItem="YKI-T9-X1A" secondAttribute="topMargin" constant="8" id="iug-Q7-8eE"/>
-                                                <constraint firstItem="DJi-Yk-Aot" firstAttribute="bottom" secondItem="YKI-T9-X1A" secondAttribute="bottomMargin" id="jWi-BU-HVl"/>
+                                                <constraint firstItem="DJi-Yk-Aot" firstAttribute="bottom" secondItem="YKI-T9-X1A" secondAttribute="bottomMargin" priority="750" id="jWi-BU-HVl"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="DUJ-55-7Tc" secondAttribute="bottom" constant="8" id="kAE-Ks-i6h"/>
                                                 <constraint firstItem="DUJ-55-7Tc" firstAttribute="leading" secondItem="jQ0-8Q-JdH" secondAttribute="leading" id="uJh-BC-86f"/>
                                             </constraints>
@@ -149,6 +150,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AppIcon-Big" width="1024" height="1024"/>
+        <image name="AppIcon-Big" width="256" height="256"/>
     </resources>
 </document>
