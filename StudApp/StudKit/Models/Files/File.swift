@@ -35,13 +35,21 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
 // MARK: - Core Data Operations
 
 extension File {
+    public static func downloadedPredicate(forSearchTerm searchTerm: String? = nil) -> NSPredicate {
+        let downloadedPredicate = NSPredicate(format: "downloadedAt != NIL")
+        guard let searchTerm = searchTerm, !searchTerm.isEmpty else { return downloadedPredicate }
+
+        let trimmedSearchTerm = searchTerm.trimmingCharacters(in: .whitespacesAndNewlines)
+        let similarTitlePredicate = NSPredicate(format: "file.title CONTAINS[cd] %@", trimmedSearchTerm)
+        return NSCompoundPredicate(type: .and, subpredicates: [downloadedPredicate, similarTitlePredicate])
+    }
+
     public static var downloadedFetchRequest: NSFetchRequest<FileState> {
-        let predicate = NSPredicate(format: "downloadedAt != NIL")
         let sortDescriptors = [
             NSSortDescriptor(keyPath: \FileState.file.course.title, ascending: true),
             NSSortDescriptor(keyPath: \FileState.file.title, ascending: true),
         ]
-        return FileState.fetchRequest(predicate: predicate, sortDescriptors: sortDescriptors,
+        return FileState.fetchRequest(predicate: downloadedPredicate(), sortDescriptors: sortDescriptors,
                                       relationshipKeyPathsForPrefetching: ["file"])
     }
 

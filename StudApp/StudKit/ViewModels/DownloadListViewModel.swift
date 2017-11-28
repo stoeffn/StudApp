@@ -29,8 +29,9 @@ public final class DownloadListViewModel: NSObject {
                                      managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: "file.course.title",
                                      cacheName: nil)
 
-    /// Fetches initial data.
-    public func fetch() {
+    /// Fetches data matching the search term given. An `nil` or empty search term matches all items.
+    public func fetch(searchTerm: String? = nil) {
+        controller.fetchRequest.predicate = File.downloadedPredicate(forSearchTerm: searchTerm)
         try? controller.performFetch()
     }
 

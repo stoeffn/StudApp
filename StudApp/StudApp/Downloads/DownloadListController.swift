@@ -22,7 +22,8 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
         navigationItem.title = "Downloads".localized
         navigationItem.searchController = UISearchController(searchResultsController: nil)
-        navigationItem.searchController?.delegate = self
+        navigationItem.searchController?.dimsBackgroundDuringPresentation = false
+        navigationItem.searchController?.searchResultsUpdater = self
         navigationItem.hidesSearchBarWhenScrolling = false
 
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -119,6 +120,11 @@ extension DownloadListController: UIDocumentInteractionControllerDelegate {
     }
 }
 
-// MARK: - Search Controller Delegate
+// MARK: - Search Results Updating
 
-extension DownloadListController: UISearchControllerDelegate {}
+extension DownloadListController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        viewModel.fetch(searchTerm: searchController.searchBar.text)
+        tableView.reloadData()
+    }
+}
