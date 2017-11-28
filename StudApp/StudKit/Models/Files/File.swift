@@ -30,12 +30,6 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
         self.init(context: context)
         state = FileState(createIn: context)
     }
-
-    public lazy var documentController: UIDocumentInteractionController = {
-        let controller = UIDocumentInteractionController(url: localUrl)
-        controller.name = title
-        return controller
-    }()
 }
 
 // MARK: - Core Data Operations
@@ -91,5 +85,10 @@ public extension File {
     public var localUrl: URL {
         return File.localContainerUrl(forId: id)
             .appendingPathComponent(name, isDirectory: false)
+    }
+
+    public var documentController: UIDocumentInteractionController {
+        let cacheService = ServiceContainer.default[CacheService.self]
+        return cacheService.documentInteractionController(forUrl: localUrl, name: title)
     }
 }
