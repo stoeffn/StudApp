@@ -6,6 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import MessageUI
 import SafariServices
 import StudKit
 
@@ -47,39 +48,45 @@ final class AboutController: UITableViewController, Routable {
 
     // MARK: - Table View Data Source
 
-    private let thanksSectionIndex = 2
+    private enum Sections: Int {
+        case app, feedback, thanks
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case thanksSectionIndex:
+        switch Sections(rawValue: section) {
+        case .thanks?:
             return viewModel.numberOfRows
-        default:
+        case .app?, .feedback?, nil:
             return super.tableView(tableView, numberOfRowsInSection: section)
         }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case thanksSectionIndex:
+        switch Sections(rawValue: indexPath.section) {
+        case .thanks?:
             let cell = tableView.dequeueReusableCell(withIdentifier: ThanksNoteCell.typeIdentifier, for: indexPath)
             (cell as? ThanksNoteCell)?.thanksNote = viewModel[rowAt: indexPath.row]
             return cell
-        default:
+        case .app?, .feedback?, nil:
             return super.tableView(tableView, cellForRowAt: indexPath)
         }
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case thanksSectionIndex: return "Thanks to".localized
-        default: return nil
+        switch Sections(rawValue: section) {
+        case .thanks?:
+            return "Thanks to".localized
+        case .app?, .feedback?, nil:
+            return nil
         }
     }
 
     override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        switch section {
-        case thanksSectionIndex: return "Without you, this app could not exist. Thank you ❤️".localized
-        default: return nil
+        switch Sections(rawValue: section) {
+        case .thanks?:
+            return "Without you, this app could not exist. Thank you ❤️".localized
+        case .app?, .feedback?, nil:
+            return nil
         }
     }
 
@@ -87,8 +94,8 @@ final class AboutController: UITableViewController, Routable {
 
     override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
         // Needs to be overridden in order to avoid index-out-of-range-exceptions caused by static cells.
-        switch indexPath.section {
-        case thanksSectionIndex:
+        switch Sections(rawValue: indexPath.section) {
+        case .thanks?:
             return super.tableView(tableView, indentationLevelForRowAt: IndexPath(row: 0, section: indexPath.section))
         default:
             return super.tableView(tableView, indentationLevelForRowAt: indexPath)
@@ -102,12 +109,12 @@ final class AboutController: UITableViewController, Routable {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.section {
-        case thanksSectionIndex:
+        switch Sections(rawValue: indexPath.section) {
+        case .thanks?:
             guard let url = viewModel[rowAt: indexPath.row].url else { return }
             let safariController = SFSafariViewController(url: url)
             present(safariController, animated: true, completion: nil)
-        default:
+        case .app?, .feedback?, nil:
             break
         }
     }
