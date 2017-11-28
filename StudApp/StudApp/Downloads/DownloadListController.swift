@@ -21,6 +21,9 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         viewModel.fetch()
 
         navigationItem.title = "Downloads".localized
+        navigationItem.searchController = UISearchController(searchResultsController: nil)
+        navigationItem.searchController?.delegate = self
+        navigationItem.hidesSearchBarWhenScrolling = false
 
         navigationController?.navigationBar.prefersLargeTitles = true
 
@@ -92,8 +95,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         }
     }
 
-    override func tableView(_: UITableView, performAction _: Selector, forRowAt _: IndexPath, withSender _: Any?) {
-    }
+    override func tableView(_: UITableView, performAction _: Selector, forRowAt _: IndexPath, withSender _: Any?) {}
 
     // MARK: - User Interaction
 
@@ -116,3 +118,7 @@ extension DownloadListController: UIDocumentInteractionControllerDelegate {
         return cell.iconView
     }
 }
+
+// MARK: - Search Controller Delegate
+
+extension DownloadListController: UISearchControllerDelegate {}
