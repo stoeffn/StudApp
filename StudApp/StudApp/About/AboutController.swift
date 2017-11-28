@@ -20,7 +20,17 @@ final class AboutController: UITableViewController, Routable {
         viewModel = AboutViewModel()
 
         tableView.register(ThanksNoteCell.self, forCellReuseIdentifier: ThanksNoteCell.typeIdentifier)
+
+        if let appName = viewModel.appName, let appVersionName = viewModel.appVersionName {
+            titleLabel.text = "\(appName) \(appVersionName)"
+        }
     }
+
+    // MARK: - User Interface
+
+    @IBOutlet weak var titleLabel: UILabel!
+
+    @IBOutlet weak var subtitleLabel: UILabel!
 
     // MARK: - User Interaction
 

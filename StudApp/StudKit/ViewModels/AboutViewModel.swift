@@ -13,7 +13,11 @@ public final class AboutViewModel {
 
     public init() {}
 
-    // MARK: - Thanks Data
+    // MARK: - Data
+
+    public let appName = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String
+
+    public let appVersionName = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
 
     private let thanksNotes: [ThanksNote] = [
         (title: "Julian Lobe", description: "QA-Man", url: nil),

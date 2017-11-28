@@ -127,6 +127,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="subtitleLabel" destination="DUJ-55-7Tc" id="pTO-pF-ugW"/>
+                        <outlet property="titleLabel" destination="jQ0-8Q-JdH" id="GRw-OS-Wi9"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xpl-8r-1C4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
