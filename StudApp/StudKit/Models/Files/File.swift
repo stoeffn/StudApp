@@ -87,8 +87,8 @@ public extension File {
             .appendingPathComponent(name, isDirectory: false)
     }
 
-    public var documentController: UIDocumentInteractionController {
+    public func documentController(handler: @escaping (UIDocumentInteractionController) -> Void) {
         let cacheService = ServiceContainer.default[CacheService.self]
-        return cacheService.documentInteractionController(forUrl: localUrl, name: title)
+        return cacheService.documentInteractionController(forUrl: localUrl, name: title, handler: handler)
     }
 }

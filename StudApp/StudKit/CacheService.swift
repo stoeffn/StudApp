@@ -9,16 +9,22 @@
 final public class CacheService {
     private lazy var documentInteractionControllers = NSCache<NSURL, UIDocumentInteractionController>()
 
-    public func documentInteractionController(forUrl url: URL, name: String) -> UIDocumentInteractionController {
+    public func documentInteractionController(forUrl url: URL, name: String,
+                                              handler: @escaping (UIDocumentInteractionController) -> Void) {
         if let controller = documentInteractionControllers.object(forKey: url as NSURL) {
-            return controller
+            controller.name = name
+            return handler(controller)
         }
 
-        let controller = UIDocumentInteractionController(url: url)
-        controller.name = name
+        DispatchQueue.global(qos: .background).async {
+            let controller = UIDocumentInteractionController(url: url)
+            controller.name = name
 
-        documentInteractionControllers.setObject(controller, forKey: url as NSURL)
+            DispatchQueue.main.async {
+                self.documentInteractionControllers.setObject(controller, forKey: url as NSURL)
 
-        return controller
+                handler(controller)
+            }
+        }
     }
 }
