@@ -37,11 +37,21 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
 extension File {
     public static func downloadedPredicate(forSearchTerm searchTerm: String? = nil) -> NSPredicate {
         let downloadedPredicate = NSPredicate(format: "downloadedAt != NIL")
-        guard let searchTerm = searchTerm, !searchTerm.isEmpty else { return downloadedPredicate }
 
+        guard let searchTerm = searchTerm, !searchTerm.isEmpty else { return downloadedPredicate }
         let trimmedSearchTerm = searchTerm.trimmingCharacters(in: .whitespacesAndNewlines)
+
         let similarTitlePredicate = NSPredicate(format: "file.title CONTAINS[cd] %@", trimmedSearchTerm)
-        return NSCompoundPredicate(type: .and, subpredicates: [downloadedPredicate, similarTitlePredicate])
+        let similarCourseTitlePredicate = NSPredicate(format: "file.course.title CONTAINS[cd] %@", trimmedSearchTerm)
+        let similarOwnerFamilyNamePredicate = NSPredicate(format: "file.owner.familyName CONTAINS[cd] %@", trimmedSearchTerm)
+        let similarOwnerGivenNamePredicate = NSPredicate(format: "file.owner.givenName CONTAINS[cd] %@", trimmedSearchTerm)
+
+        return NSCompoundPredicate(type: .and, subpredicates: [
+            downloadedPredicate, NSCompoundPredicate(type: .or, subpredicates: [
+                similarTitlePredicate, similarCourseTitlePredicate, similarOwnerFamilyNamePredicate,
+                similarOwnerGivenNamePredicate,
+            ]),
+        ])
     }
 
     public static var downloadedFetchRequest: NSFetchRequest<FileState> {

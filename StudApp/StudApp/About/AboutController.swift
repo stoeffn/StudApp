@@ -146,7 +146,7 @@ final class AboutController: UITableViewController, Routable {
         }
     }
 
-    override func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
+    override func tableView(_: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
         switch Sections(rawValue: indexPath.section) {
         case .feedback?:
             return true
