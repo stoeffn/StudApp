@@ -22,7 +22,7 @@ final class AboutController: UITableViewController, Routable {
         tableView.register(ThanksNoteCell.self, forCellReuseIdentifier: ThanksNoteCell.typeIdentifier)
     }
 
-    // MARK: - User Intercation
+    // MARK: - User Interaction
 
     @IBAction
     func doneButtonTapped(_: Any) {
