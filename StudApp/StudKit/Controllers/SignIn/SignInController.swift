@@ -25,6 +25,12 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
         iconView.image = organization.iconThumbnail
         titleLabel.text = organization.title
 
+        viewModel.loadOrganizationIcon { icon in
+            UIView.transition(with: self.tableView, duration: 0.1, options: .transitionCrossDissolve, animations: {
+                self.iconView.image = icon.value
+            }, completion: nil)
+        }
+
         NotificationCenter.default
             .addObserver(self, selector: #selector(keyboardDidShow), name: .UIKeyboardDidShow, object: nil)
     }

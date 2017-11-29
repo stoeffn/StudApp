@@ -15,6 +15,8 @@ public struct OrganizationRecord {
 
     public static let recordType: String = "Organization"
 
+    let recordId: CKRecordID
+
     let apiUrl: URL
 
     let authenticationRealm: String
@@ -40,6 +42,7 @@ extension OrganizationRecord {
             let iconThumbnailAsset = record[Keys.iconThumbnail.rawValue] as? CKAsset else { return nil }
         let iconAsset = record[Keys.icon.rawValue] as? CKAsset
 
+        recordId = record.recordID
         self.apiUrl = apiUrl
         self.authenticationRealm = authenticationRealm
         self.title = title

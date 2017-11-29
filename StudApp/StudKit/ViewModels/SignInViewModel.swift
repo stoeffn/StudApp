@@ -6,6 +6,8 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import CloudKit
+
 /// Manages the sign-in view that allows a user to sign into his/her university's Stud.IP account.
 ///
 /// The user interface should provide text fields for the username and the password as well as a button for signing in.
@@ -57,6 +59,18 @@ public final class SignInViewModel {
                 self.updateSemesters()
             case let .failure(error):
                 self.state = .failure(error?.localizedDescription ?? "Please check your username and password".localized)
+            }
+        }
+    }
+
+    public func loadOrganizationIcon(handler: @escaping ResultHandler<UIImage>) {
+        let container = CKContainer(identifier: StudKitServiceProvider.iCloudContainerIdentifier)
+        container.database(with: .public).fetch(withRecordID: organization.recordId) { (record, error) in
+            DispatchQueue.main.async {
+                guard let record = record,
+                    var organization = OrganizationRecord(from: record),
+                    let icon = organization.icon else { return handler(.failure(error)) }
+                handler(.success(icon))
             }
         }
     }
