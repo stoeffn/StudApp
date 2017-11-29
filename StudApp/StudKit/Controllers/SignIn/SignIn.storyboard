@@ -210,6 +210,14 @@
             </objects>
             <point key="canvasLocation" x="1353" y="609"/>
         </scene>
+        <!--About-->
+        <scene sceneID="05I-eR-cld">
+            <objects>
+                <viewControllerPlaceholder storyboardName="About" id="RVa-94-5EL" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jm1-wZ-H8G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="646" y="999"/>
+        </scene>
         <!--Choose Your Organization-->
         <scene sceneID="yCO-3G-g8A">
             <objects>
@@ -348,6 +356,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cancelButton" destination="htM-Nw-MEZ" id="hCd-LA-DiZ"/>
+                        <segue destination="RVa-94-5EL" kind="presentation" identifier="about" modalPresentationStyle="formSheet" id="xKV-DX-Nra"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zQK-c2-6aH" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -88,7 +88,19 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     // MARK: - User Interaction
 
     @IBAction
-    func moreButtonTapped(_ sender: Any) {}
+    func moreButtonTapped(_ sender: Any) {
+        func showAboutView(_: UIAlertAction) {
+            performSegue(withRoute: .about)
+        }
+
+        let barButtonItem = sender as? UIBarButtonItem
+
+        let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        controller.popoverPresentationController?.barButtonItem = barButtonItem
+        controller.addAction(UIAlertAction(title: "About".localized, style: .default, handler: showAboutView))
+        controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
+        present(controller, animated: true, completion: nil)
+    }
 
     @IBAction
     func cancelButtonTapped(_: Any) {

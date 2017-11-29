@@ -54,10 +54,10 @@ final class MainController: UITabBarController {
             performSegue(withRoute: .signIn)
         }
 
-        guard let barButtonItem = sender as? UIBarButtonItem,
-            let currentUser = viewModel.currentUser else { return }
-
+        guard let currentUser = viewModel.currentUser else { return }
+        let barButtonItem = sender as? UIBarButtonItem
         let title = "Signed in as %@".localized(currentUser.nameComponents.formatted(style: .long))
+
         let controller = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
         controller.popoverPresentationController?.barButtonItem = barButtonItem
         controller.addAction(UIAlertAction(title: "About".localized, style: .default, handler: showAboutView))
