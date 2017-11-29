@@ -85,7 +85,10 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
 
     @IBOutlet weak var cancelButton: UIBarButtonItem!
 
-    // MARK: - User Intercation
+    // MARK: - User Interaction
+
+    @IBAction
+    func moreButtonTapped(_ sender: Any) {}
 
     @IBAction
     func cancelButtonTapped(_: Any) {

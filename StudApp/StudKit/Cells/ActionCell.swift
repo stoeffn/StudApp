@@ -28,7 +28,7 @@ public final class ActionCell: UITableViewCell {
     public var action: (() -> Void)?
 
     @objc
-    private func actionButtonTapped(sender: Any?) {
+    private func actionButtonTapped(sender _: Any?) {
         action?()
     }
 }

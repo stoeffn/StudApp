@@ -251,7 +251,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="MailTableGlyph" id="Bd6-rx-gNE">
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="MailTableViewGlyph" id="Bd6-rx-gNE">
                                             <rect key="frame" x="16" y="9" width="25" height="25"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
@@ -340,6 +340,11 @@
                                 <action selector="cancelButtonTapped:" destination="7Cl-OR-2Sy" id="bEL-m7-NB8"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="MoreBarButtonGlyph" id="2vw-Bw-gin">
+                            <connections>
+                                <action selector="moreButtonTapped:" destination="7Cl-OR-2Sy" id="Kbr-zf-yge"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="cancelButton" destination="htM-Nw-MEZ" id="hCd-LA-DiZ"/>
@@ -369,6 +374,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="MailTableGlyph" width="25" height="25"/>
+        <image name="MailTableViewGlyph" width="25" height="25"/>
+        <image name="MoreBarButtonGlyph" width="25" height="25"/>
     </resources>
 </document>
