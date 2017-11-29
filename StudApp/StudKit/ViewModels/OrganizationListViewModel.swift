@@ -41,9 +41,9 @@ public final class OrganizationListViewModel {
             case nil:
                 self.state = .success(organizations)
             case CKError.networkUnavailable?, CKError.networkUnavailable?:
-                self.state = .failure("There seems to be a problem with the internet connection.")
+                self.state = .failure("There seems to be a problem with the internet connection.".localized)
             default:
-                self.state = .failure("Unfortunately, there was an internal error.")
+                self.state = .failure("Unfortunately, there was an internal error.".localized)
             }
         }
         operation.recordFetchedBlock = { record in

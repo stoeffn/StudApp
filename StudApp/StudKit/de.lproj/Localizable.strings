@@ -4,12 +4,18 @@
 "%@ ago" = "vor %@"; // Example "two months ago"
 "by %@" = "by %@"; // Example: "by Steve Jobs"
 
-// MARK: Actions
+// MARK: Generic Actions
 
 "Cancel" = "Abbrechen";
 "Share" = "Teilen";
+"Retry" = "Nochmal probieren";
 "Sign Out" = "Abmelden";
 "Send Feedback" = "Feedback senden";
+
+// MARK: Generic Errors
+
+"There seems to be a problem with the internet connection." = "Es scheint ein Problem mit der Internetverbindung zu geben.";
+"Unfortunately, there was an internal error." = "Leider gab es einen internen Fehler. Bitte kontaktiere den App-Support, sollte dies öfter auftreten.";
 
 // MARK: About
 
@@ -33,10 +39,12 @@
 "Downloads" = "Downloads";
 "Remove Download" = "Entfernen";
 
-// MARK: Choosing an Organization
+// MARK: Organizations
 
-"Choose Your Organization" = "Wähle Deine Organisation";
 "Organizations" = "Organisationen";
+"Choose Your Organization" = "Wähle Deine Organisation";
+"Choose the organization, university, or company you would like to sign into." = "Wähle die Organisation, Hochschule oder Firma, bei der Du Dich anmelden möchtest.";
+"Error Loading Organizations" = "Fehler beim Laden der Organisationen";
 
 // MARK: Signing In
 

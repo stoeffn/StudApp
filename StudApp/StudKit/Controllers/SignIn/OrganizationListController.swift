@@ -58,7 +58,9 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         case let .failure(error):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ActionCell.typeIdentifier,
                                                            for: indexPath) as? ActionCell else { fatalError() }
+            cell.titleLabel.text = "Error Loading Organizations".localized
             cell.subtitleLabel.text = error
+            cell.actionButton.titleLabel?.text = "Retry".localized
             cell.action = { self.viewModel.fetch() }
             return cell
         case let .success(organizations):
@@ -87,6 +89,6 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
 
     @IBAction
     func cancelButtonTapped(_: Any) {
-        contextService.extensionContext?.cancelRequest(withError: "Canceled")
+        contextService.extensionContext?.cancelRequest(withError: "Cancel".localized)
     }
 }

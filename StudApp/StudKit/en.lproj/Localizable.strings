@@ -4,12 +4,18 @@
 "%@ ago" = "%@ ago"; // Example "two months ago"
 "by %@" = "by %@"; // Example: "by Steve Jobs"
 
-// MARK: Actions
+// MARK: Generic Actions
 
 "Cancel" = "Cancel";
 "Share" = "Share";
+"Retry" = "Retry";
 "Sign Out" = "Sign Out";
 "Send Feedback" = "Send Feedback";
+
+// MARK: Generic Errors
+
+"There seems to be a problem with the internet connection." = "There seems to be a problem with the internet connection.";
+"Unfortunately, there was an internal error." = "Unfortunately, there was an internal error. Please contact app support if this occurs repeatedly.";
 
 // MARK: About
 
@@ -33,10 +39,12 @@
 "Downloads" = "Downloads";
 "Remove Download" = "Remove";
 
-// MARK: Choosing an Organization
+// MARK: Organizations
 
-"Choose Your Organization" = "Choose Your Organization";
 "Organizations" = "Organizations";
+"Choose Your Organization" = "Choose Your Organization";
+"Choose the organization, university, or company you would like to sign into." = "Choose the organization, university, or company you would like to sign into.";
+"Error Loading Organizations" = "Error Loading Organizations";
 
 // MARK: Signing In
 
