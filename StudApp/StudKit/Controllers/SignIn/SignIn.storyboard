@@ -6,8 +6,11 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -230,7 +233,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="UserBarButtonGlyph" id="Bd6-rx-gNE">
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="MailTableGlyph" id="Bd6-rx-gNE">
                                             <rect key="frame" x="16" y="9" width="25" height="25"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
@@ -238,6 +241,72 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="REk-SH-Xkn" kind="show" identifier="signIntoOrganization" id="onR-s8-23m"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ActivityIndicatorCell" rowHeight="72" id="TWv-HA-864" customClass="ActivityIndicatorCell" customModule="StudKit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="99.5" width="375" height="72"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TWv-HA-864" id="xvn-ko-DqF">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="71.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y0D-Tk-4Es" customClass="StudIPActivityIndicatorView" customModule="StudKit" customModuleProvider="target">
+                                            <rect key="frame" x="170" y="19" width="34" height="34"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="y0D-Tk-4Es" secondAttribute="height" multiplier="1:1" id="g6z-67-0VR"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="zqw-Ik-1AE"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="y0D-Tk-4Es" firstAttribute="top" secondItem="xvn-ko-DqF" secondAttribute="topMargin" constant="8" id="HPP-Pu-cZo"/>
+                                        <constraint firstItem="y0D-Tk-4Es" firstAttribute="centerX" secondItem="xvn-ko-DqF" secondAttribute="centerX" id="KlP-fv-ON1"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="y0D-Tk-4Es" secondAttribute="bottom" constant="8" id="VzH-LR-h00"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ActionCell" rowHeight="125" id="SHW-lG-keo" customClass="ActionCell" customModule="StudKit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="171.5" width="375" height="125"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SHW-lG-keo" id="lMn-nc-ZTG">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Could Not Load Organizations" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BeU-G9-inE">
+                                            <rect key="frame" x="16" y="19" width="343" height="20.5"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detailed error message." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jdd-Q4-AeW">
+                                            <rect key="frame" x="16" y="44.5" width="343" height="18"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                            <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcA-Nb-ux4">
+                                            <rect key="frame" x="164.5" y="77.5" width="46" height="36"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                            <state key="normal" title="Retry"/>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="wcA-Nb-ux4" firstAttribute="firstBaseline" secondItem="Jdd-Q4-AeW" secondAttribute="baseline" multiplier="1.4" constant="20" symbolType="layoutAnchor" id="AB0-n1-Elx"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="wcA-Nb-ux4" secondAttribute="bottom" id="Ei7-aJ-fEF"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Jdd-Q4-AeW" secondAttribute="trailing" id="NHR-6L-dYD"/>
+                                        <constraint firstItem="BeU-G9-inE" firstAttribute="top" secondItem="lMn-nc-ZTG" secondAttribute="topMargin" constant="8" id="PC2-Kk-Qnc"/>
+                                        <constraint firstItem="Jdd-Q4-AeW" firstAttribute="firstBaseline" secondItem="BeU-G9-inE" secondAttribute="baseline" multiplier="1.1" constant="20" symbolType="layoutAnchor" id="geU-7C-XVd"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="BeU-G9-inE" secondAttribute="trailing" id="kY9-fL-XFl"/>
+                                        <constraint firstItem="wcA-Nb-ux4" firstAttribute="centerX" secondItem="lMn-nc-ZTG" secondAttribute="centerX" id="qsx-hP-ZM8"/>
+                                        <constraint firstItem="Jdd-Q4-AeW" firstAttribute="leading" secondItem="lMn-nc-ZTG" secondAttribute="leadingMargin" id="ugt-p6-qZZ"/>
+                                        <constraint firstItem="BeU-G9-inE" firstAttribute="leading" secondItem="lMn-nc-ZTG" secondAttribute="leadingMargin" id="xL1-Nw-Mf0"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="actionButton" destination="wcA-Nb-ux4" id="wt0-mG-ZbW"/>
+                                    <outlet property="subtitleLabel" destination="Jdd-Q4-AeW" id="mZM-TW-utz"/>
+                                    <outlet property="titleLabel" destination="BeU-G9-inE" id="vJY-FO-2A4"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -260,7 +329,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zQK-c2-6aH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="647" y="609"/>
+            <point key="canvasLocation" x="645.60000000000002" y="608.54572713643188"/>
         </scene>
         <!--Borderless Navigation Controller-->
         <scene sceneID="6yh-zB-2Ps">
@@ -282,6 +351,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="UserBarButtonGlyph" width="25" height="25"/>
+        <image name="MailTableGlyph" width="25" height="25"/>
     </resources>
 </document>

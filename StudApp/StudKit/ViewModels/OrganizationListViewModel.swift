@@ -9,49 +9,46 @@
 import CloudKit
 
 public final class OrganizationListViewModel {
-    private var organizations = [OrganizationRecord]()
+    public enum State {
+        case loading
+        case success([OrganizationRecord])
+        case failure(Error)
+    }
 
-    public weak var delegate: DataSourceSectionDelegate?
+    /// Current state of this view model, which should be respected by the user interface.
+    public var state: State = .loading {
+        didSet {
+            DispatchQueue.main.async {
+                self.stateChanged?(self.state)
+            }
+        }
+    }
 
-    public func fetch(handler: @escaping ResultHandler<[OrganizationRecord]> = { _ in }) {
+    /// This handler is called every time `state` changes.
+    public var stateChanged: ((State) -> Void)?
+
+    public func fetch() {
+        state = .loading
+
+        var organizations = [OrganizationRecord]()
+
         let query = CKQuery(recordType: OrganizationRecord.recordType, predicate: NSPredicate(value: true))
 
         let operation = CKQueryOperation(query: query)
         operation.qualityOfService = .userInitiated
         operation.queryCompletionBlock = { _, error in
-            let result = Result(self.organizations, error: error)
-
-            DispatchQueue.main.async {
-                self.delegate?.dataDidChange(in: self)
-                handler(result)
+            if let error = error {
+                self.state = .failure(error)
+            } else {
+                self.state = .success(organizations)
             }
         }
         operation.recordFetchedBlock = { record in
             guard let organization = OrganizationRecord(from: record) else { return }
-            self.organizations.append(organization)
-
-            DispatchQueue.main.async {
-                self.delegate?.data(changedIn: organization, at: self.organizations.endIndex - 1, change: .insert, in: self)
-            }
+            organizations.append(organization)
         }
 
         let container = CKContainer(identifier: StudKitServiceProvider.iCloudContainerIdentifier)
         container.database(with: .public).add(operation)
-
-        delegate?.dataWillChange(in: self)
-    }
-}
-
-// MARK: - Data Source Section
-
-extension OrganizationListViewModel: DataSourceSection {
-    public typealias Row = OrganizationRecord
-
-    public var numberOfRows: Int {
-        return organizations.count
-    }
-
-    public subscript(rowAt index: Int) -> OrganizationRecord {
-        return organizations[index]
     }
 }

@@ -21,14 +21,11 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         contextService = ServiceContainer.default[ContextService.self]
 
         viewModel = OrganizationListViewModel()
-        viewModel.delegate = self
-        viewModel.fetch { _ in
-            self.navigationItem.setActivityIndicatorHidden(true)
-        }
+        viewModel.stateChanged = { _ in self.tableView.reloadData() }
+        viewModel.fetch()
 
         navigationItem.title = "Choose Your Organization".localized
         navigationItem.backBarButtonItem?.title = "Organizations".localized
-        navigationItem.setActivityIndicatorHidden(false)
 
         if contextService.currentTarget != .fileProviderUI {
             navigationItem.leftBarButtonItem = nil
@@ -42,13 +39,29 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return viewModel.numberOfRows
+        switch viewModel.state {
+        case .loading, .failure:
+            return 1
+        case let .success(organizations):
+            return organizations.count
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: OrganizationCell.typeIdentifier, for: indexPath)
-        (cell as? OrganizationCell)?.organization = viewModel[rowAt: indexPath.row]
-        return cell
+        switch viewModel.state {
+        case .loading:
+            return tableView.dequeueReusableCell(withIdentifier: ActivityIndicatorCell.typeIdentifier, for: indexPath)
+        case let .failure(error):
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ActionCell.typeIdentifier,
+                                                           for: indexPath) as? ActionCell else { fatalError() }
+            cell.subtitleLabel.text = error.localizedDescription
+            cell.action = { self.viewModel.fetch() }
+            return cell
+        case let .success(organizations):
+            let cell = tableView.dequeueReusableCell(withIdentifier: OrganizationCell.typeIdentifier, for: indexPath)
+            (cell as? OrganizationCell)?.organization = organizations[indexPath.row]
+            return cell
+        }
     }
 
     // MARK: - Navigation
