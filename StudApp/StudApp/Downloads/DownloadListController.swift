@@ -28,6 +28,9 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
         navigationController?.navigationBar.prefersLargeTitles = true
 
+        tableView.dragInteractionEnabled = true
+        tableView.dragDelegate = self
+
         let shareItem = UIMenuItem(title: "Share".localized, action: #selector(FileCell.shareDocument(sender:)))
         UIMenuController.shared.menuItems = [shareItem]
         UIMenuController.shared.update()
@@ -129,5 +132,13 @@ extension DownloadListController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         viewModel.fetch(searchTerm: searchController.searchBar.text)
         tableView.reloadData()
+    }
+}
+
+extension DownloadListController: UITableViewDragDelegate {
+    func tableView(_: UITableView, itemsForBeginning _: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        let file = viewModel[rowAt: indexPath]
+        guard let itemProvider = NSItemProvider(contentsOf: file.localUrl) else { return [] }
+        return [UIDragItem(itemProvider: itemProvider)]
     }
 }

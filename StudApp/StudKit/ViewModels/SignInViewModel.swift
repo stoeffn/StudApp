@@ -65,7 +65,7 @@ public final class SignInViewModel {
 
     public func loadOrganizationIcon(handler: @escaping ResultHandler<UIImage>) {
         let container = CKContainer(identifier: StudKitServiceProvider.iCloudContainerIdentifier)
-        container.database(with: .public).fetch(withRecordID: organization.recordId) { (record, error) in
+        container.database(with: .public).fetch(withRecordID: organization.recordId) { record, error in
             DispatchQueue.main.async {
                 guard let record = record,
                     var organization = OrganizationRecord(from: record),
