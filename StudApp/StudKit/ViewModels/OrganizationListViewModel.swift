@@ -12,7 +12,7 @@ public final class OrganizationListViewModel {
     public enum State {
         case loading
         case success([OrganizationRecord])
-        case failure(Error)
+        case failure(String)
     }
 
     /// Current state of this view model, which should be respected by the user interface.
@@ -37,10 +37,13 @@ public final class OrganizationListViewModel {
         let operation = CKQueryOperation(query: query)
         operation.qualityOfService = .userInitiated
         operation.queryCompletionBlock = { _, error in
-            if let error = error {
-                self.state = .failure(error)
-            } else {
+            switch error {
+            case nil:
                 self.state = .success(organizations)
+            case CKError.networkUnavailable?, CKError.networkUnavailable?:
+                self.state = .failure("There seems to be a problem with the internet connection.")
+            default:
+                self.state = .failure("Unfortunately, there was an internal error.")
             }
         }
         operation.recordFetchedBlock = { record in

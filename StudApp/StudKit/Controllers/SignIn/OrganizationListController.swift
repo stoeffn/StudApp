@@ -54,7 +54,7 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         case let .failure(error):
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ActionCell.typeIdentifier,
                                                            for: indexPath) as? ActionCell else { fatalError() }
-            cell.subtitleLabel.text = error.localizedDescription
+            cell.subtitleLabel.text = error
             cell.action = { self.viewModel.fetch() }
             return cell
         case let .success(organizations):
