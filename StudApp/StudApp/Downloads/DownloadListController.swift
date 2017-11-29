@@ -95,14 +95,24 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt _: IndexPath,
                             withSender _: Any?) -> Bool {
         switch action {
-        case #selector(FileCell.shareDocument(sender:)):
+        case #selector(copy(_:)), #selector(FileCell.shareDocument(sender:)):
             return true
         default:
             return false
         }
     }
 
-    override func tableView(_: UITableView, performAction _: Selector, forRowAt _: IndexPath, withSender _: Any?) {}
+    override func tableView(_: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender _: Any?) {
+        let file = viewModel[rowAt: indexPath]
+
+        switch action {
+        case #selector(copy(_:)):
+            guard let data = try? Data(contentsOf: file.localUrl, options: .mappedIfSafe) else { return }
+            UIPasteboard.general.setData(data, forPasteboardType: file.typeIdentifier)
+        default:
+            break
+        }
+    }
 
     // MARK: - User Interaction
 
