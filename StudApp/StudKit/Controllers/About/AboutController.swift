@@ -8,7 +8,6 @@
 
 import MessageUI
 import SafariServices
-import StudKit
 
 final class AboutController: UITableViewController, Routable {
     private var viewModel: AboutViewModel!

@@ -50,7 +50,7 @@
         <!--About-->
         <scene sceneID="eSg-ig-br1">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="About" storyboardName="About" id="P8g-Nk-6wL" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="About" storyboardName="About" bundleIdentifier="SteffenRyll.StudKit" id="P8g-Nk-6wL" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zXO-Dm-wlW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="591" y="-13"/>

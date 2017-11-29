@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		241C67E51FCDD78100F4A099 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E41FCDD78100F4A099 /* AboutViewModel.swift */; };
-		241C67E81FCDEA3700F4A099 /* ThanksNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E71FCDEA3700F4A099 /* ThanksNoteCell.swift */; };
 		241C67EA1FCDFAC700F4A099 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E91FCDFAC700F4A099 /* App.swift */; };
 		241FD9651FA8FFAD00FBD750 /* UINavigationBar+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9641FA8FFAD00FBD750 /* UINavigationBar+Utils.swift */; };
 		243817921FC76BDC004052D0 /* DocumentActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243817911FC76BDC004052D0 /* DocumentActionViewController.swift */; };
@@ -64,6 +63,9 @@
 		2469EF6D1FCF4D19008A122B /* ActivityIndicatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469EF6C1FCF4D19008A122B /* ActivityIndicatorCell.swift */; };
 		2469EF6E1FCF5BC9008A122B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2448D4131FA8DA2400DAB97E /* Assets.xcassets */; };
 		2469EF6F1FCF5BCB008A122B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2448D4131FA8DA2400DAB97E /* Assets.xcassets */; };
+		2469EF701FCF5DF9008A122B /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EBC4371FCDCA4300181455 /* AboutController.swift */; };
+		2469EF711FCF5DFD008A122B /* ThanksNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E71FCDEA3700F4A099 /* ThanksNoteCell.swift */; };
+		2469EF721FCF5E02008A122B /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24EBC4351FCDCA3200181455 /* About.storyboard */; };
 		246F3ABA1FAC7BEA00A477FF /* discovery.json in Resources */ = {isa = PBXBuildFile; fileRef = 246F3AB91FAC7BEA00A477FF /* discovery.json */; };
 		246F3AC51FAC879C00A477FF /* DataChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3ABE1FAC879C00A477FF /* DataChange.swift */; };
 		246F3AC61FAC879C00A477FF /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3ABF1FAC879C00A477FF /* DataSource.swift */; };
@@ -174,8 +176,6 @@
 		24E60B681FC8C754000EDD2A /* Semesters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B671FC8C754000EDD2A /* Semesters.storyboard */; };
 		24E60B6A1FC8C76F000EDD2A /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B691FC8C76F000EDD2A /* SignIn.storyboard */; };
 		24E60B6C1FC8C77F000EDD2A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B6B1FC8C77F000EDD2A /* MainInterface.storyboard */; };
-		24EBC4361FCDCA3200181455 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24EBC4351FCDCA3200181455 /* About.storyboard */; };
-		24EBC4381FCDCA4300181455 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EBC4371FCDCA4300181455 /* AboutController.swift */; };
 		24FD785A1FBF3F030072F860 /* HistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78591FBF3F030072F860 /* HistoryService.swift */; };
 		24FD785C1FBF45030072F860 /* Targets+NSPersistentHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */; };
 		24FD785E1FBF45B10072F860 /* Targets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785D1FBF45B10072F860 /* Targets.swift */; };
@@ -587,6 +587,7 @@
 		243817A61FC88A36004052D0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				24EBC4341FCDCA0000181455 /* About */,
 				2477935F1FC890C100090F4D /* SignIn */,
 				241FD96E1FA9191500FBD750 /* BorderlessNavigationController.swift */,
 			);
@@ -626,7 +627,6 @@
 		2448D40B1FA8DA2400DAB97E /* StudApp */ = {
 			isa = PBXGroup;
 			children = (
-				24EBC4341FCDCA0000181455 /* About */,
 				247793601FC890D100090F4D /* Main */,
 				24E626731FA920490040F9F7 /* Downloads */,
 				247793581FC8901E00090F4D /* Semesters */,
@@ -1572,7 +1572,6 @@
 			files = (
 				24E60B641FC8C73F000EDD2A /* LaunchScreen.storyboard in Resources */,
 				2448D4141FA8DA2400DAB97E /* Assets.xcassets in Resources */,
-				24EBC4361FCDCA3200181455 /* About.storyboard in Resources */,
 				24E60B661FC8C749000EDD2A /* Downloads.storyboard in Resources */,
 				24E60B621FC8C725000EDD2A /* Main.storyboard in Resources */,
 				24E60B681FC8C754000EDD2A /* Semesters.storyboard in Resources */,
@@ -1599,6 +1598,7 @@
 			files = (
 				24E60B6A1FC8C76F000EDD2A /* SignIn.storyboard in Resources */,
 				2469EF6E1FCF5BC9008A122B /* Assets.xcassets in Resources */,
+				2469EF721FCF5E02008A122B /* About.storyboard in Resources */,
 				249DD6FB1FC8B896006DA46E /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1659,9 +1659,7 @@
 				24712BE81FB8B4420067E416 /* SemesterCell.swift in Sources */,
 				24FD786E1FBF81EA0072F860 /* DownloadListController.swift in Sources */,
 				24CFB5D11FB24E2500F30DEA /* MainController.swift in Sources */,
-				241C67E81FCDEA3700F4A099 /* ThanksNoteCell.swift in Sources */,
 				24D7293D1FC736120097777F /* FileCell.swift in Sources */,
-				24EBC4381FCDCA4300181455 /* AboutController.swift in Sources */,
 				2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1689,6 +1687,7 @@
 				24D360E91FAA5D7600BBBAED /* CourseResponse.swift in Sources */,
 				24D360D01FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift in Sources */,
 				2477936E1FC8939700090F4D /* CachingFileEnumerator.swift in Sources */,
+				2469EF711FCF5DFD008A122B /* ThanksNoteCell.swift in Sources */,
 				24D360DD1FAA5D3800BBBAED /* Set+Array.swift in Sources */,
 				2448D4781FA8DE2A00DAB97E /* ServiceProvider.swift in Sources */,
 				24D360DA1FAA5D3800BBBAED /* String+Regex.swift in Sources */,
@@ -1733,6 +1732,7 @@
 				2469EF681FCE1D1C008A122B /* CacheService.swift in Sources */,
 				24D3610A1FAA5E2300BBBAED /* SemesterState.swift in Sources */,
 				24FD78601FBF4D330072F860 /* NSPersistentHistoryToken+Utils.swift in Sources */,
+				2469EF701FCF5DF9008A122B /* AboutController.swift in Sources */,
 				24FD785E1FBF45B10072F860 /* Targets.swift in Sources */,
 				24D360CE1FAA5AFE00BBBAED /* CDConvertible.swift in Sources */,
 				243817A81FC88A4C004052D0 /* BorderlessNavigationController.swift in Sources */,
