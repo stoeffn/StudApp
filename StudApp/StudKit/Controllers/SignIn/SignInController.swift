@@ -22,7 +22,7 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
         signInButton.titleLabel?.text = "Sign In".localized
 
         var organization = viewModel.organization
-        iconView.image = organization.icon
+        iconView.image = organization.iconThumbnail
         titleLabel.text = organization.title
 
         NotificationCenter.default

@@ -9,6 +9,10 @@
 import CloudKit
 
 public struct OrganizationRecord {
+    enum Keys: String {
+        case apiUrl, authenticationRealm, title, iconThumbnail, icon
+    }
+
     public static let recordType: String = "Organization"
 
     let apiUrl: URL
@@ -29,12 +33,12 @@ public struct OrganizationRecord {
 extension OrganizationRecord {
     init?(from record: CKRecord) {
         guard record.recordType == OrganizationRecord.recordType,
-            let apiUrlString = record["apiUrl"] as? String,
+            let apiUrlString = record[Keys.apiUrl.rawValue] as? String,
             let apiUrl = URL(string: apiUrlString),
-            let authenticationRealm = record["authenticationRealm"] as? String,
-            let title = record["title"] as? String,
-            let iconThumbnailAsset = record["iconThumbnail"] as? CKAsset else { return nil }
-        let iconAsset = record["icon"] as? CKAsset
+            let authenticationRealm = record[Keys.authenticationRealm.rawValue] as? String,
+            let title = record[Keys.title.rawValue] as? String,
+            let iconThumbnailAsset = record[Keys.iconThumbnail.rawValue] as? CKAsset else { return nil }
+        let iconAsset = record[Keys.icon.rawValue] as? CKAsset
 
         self.apiUrl = apiUrl
         self.authenticationRealm = authenticationRealm
