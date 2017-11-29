@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "icons8-more-25.png",
+      "filename" : "icons8-more-25-2.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icons8-more-50.png",
+      "filename" : "icons8-more-50-2.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icons8-more-75.png",
+      "filename" : "icons8-more-75-2.png",
       "scale" : "3x"
     }
   ],
