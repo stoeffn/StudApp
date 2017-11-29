@@ -21,7 +21,11 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         contextService = ServiceContainer.default[ContextService.self]
 
         viewModel = OrganizationListViewModel()
-        viewModel.stateChanged = { _ in self.tableView.reloadData() }
+        viewModel.stateChanged = { _ in
+            UIView.transition(with: self.tableView, duration: 0.1, options: .transitionCrossDissolve, animations: {
+                self.tableView.reloadData()
+            }, completion: nil)
+        }
         viewModel.fetch()
 
         navigationItem.title = "Choose Your Organization".localized
