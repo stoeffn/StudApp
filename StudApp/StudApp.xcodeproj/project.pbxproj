@@ -60,6 +60,8 @@
 		245B6ADE1FCB381B00302CD0 /* OrganizationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6ADD1FCB381B00302CD0 /* OrganizationListViewModel.swift */; };
 		245B6AE11FCB39BF00302CD0 /* OrganizationRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6AE01FCB39BF00302CD0 /* OrganizationRecord.swift */; };
 		2469EF681FCE1D1C008A122B /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469EF671FCE1D1C008A122B /* CacheService.swift */; };
+		2469EF6B1FCF4D07008A122B /* ActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469EF6A1FCF4D07008A122B /* ActionCell.swift */; };
+		2469EF6D1FCF4D19008A122B /* ActivityIndicatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469EF6C1FCF4D19008A122B /* ActivityIndicatorCell.swift */; };
 		246F3ABA1FAC7BEA00A477FF /* discovery.json in Resources */ = {isa = PBXBuildFile; fileRef = 246F3AB91FAC7BEA00A477FF /* discovery.json */; };
 		246F3AC51FAC879C00A477FF /* DataChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3ABE1FAC879C00A477FF /* DataChange.swift */; };
 		246F3AC61FAC879C00A477FF /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3ABF1FAC879C00A477FF /* DataSource.swift */; };
@@ -344,6 +346,8 @@
 		245B6ADD1FCB381B00302CD0 /* OrganizationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationListViewModel.swift; sourceTree = "<group>"; };
 		245B6AE01FCB39BF00302CD0 /* OrganizationRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationRecord.swift; sourceTree = "<group>"; };
 		2469EF671FCE1D1C008A122B /* CacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
+		2469EF6A1FCF4D07008A122B /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
+		2469EF6C1FCF4D19008A122B /* ActivityIndicatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorCell.swift; sourceTree = "<group>"; };
 		246F3AB91FAC7BEA00A477FF /* discovery.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = discovery.json; sourceTree = "<group>"; };
 		246F3ABE1FAC879C00A477FF /* DataChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataChange.swift; sourceTree = "<group>"; };
 		246F3ABF1FAC879C00A477FF /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
@@ -653,6 +657,7 @@
 		2448D4401FA8DB1E00DAB97E /* StudKit */ = {
 			isa = PBXGroup;
 			children = (
+				2469EF691FCF4CDB008A122B /* Cells */,
 				2448D49C1FA8E07E00DAB97E /* Api */,
 				243817A61FC88A36004052D0 /* Controllers */,
 				2448D45F1FA8DC1D00DAB97E /* Extensions */,
@@ -800,6 +805,15 @@
 				245B6AE01FCB39BF00302CD0 /* OrganizationRecord.swift */,
 			);
 			path = Organizations;
+			sourceTree = "<group>";
+		};
+		2469EF691FCF4CDB008A122B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2469EF6A1FCF4D07008A122B /* ActionCell.swift */,
+				2469EF6C1FCF4D19008A122B /* ActivityIndicatorCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		246F3ABD1FAC877400A477FF /* DataSource */ = {
@@ -1695,6 +1709,7 @@
 				245B6ADA1FCB351F00302CD0 /* OrganizationListController.swift in Sources */,
 				24FE8A121FB7B0D100A4A3C6 /* RangeIterator.swift in Sources */,
 				2448D4971FA8DFB200DAB97E /* StudKitServiceProvider.swift in Sources */,
+				2469EF6D1FCF4D19008A122B /* ActivityIndicatorCell.swift in Sources */,
 				24712BF41FB8B80B0067E416 /* DateComponentsFormatter+Shared.swift in Sources */,
 				24712BE41FB888E30067E416 /* WorkingSetViewModel.swift in Sources */,
 				24FD78701FBF826D0072F860 /* DownloadListViewModel.swift in Sources */,
@@ -1764,6 +1779,7 @@
 				24D360CF1FAA5AFE00BBBAED /* CDCreatable.swift in Sources */,
 				24D361161FAA5F0E00BBBAED /* Api+CollectionResponse.swift in Sources */,
 				246F3AC51FAC879C00A477FF /* DataChange.swift in Sources */,
+				2469EF6B1FCF4D07008A122B /* ActionCell.swift in Sources */,
 				24FD78721FC07C630072F860 /* UserDefaults+Keys.swift in Sources */,
 				24FD78621FBF673B0072F860 /* Array+Algorithms.swift in Sources */,
 				24D178EB1FB606B200EC5F4A /* MainViewModel.swift in Sources */,
