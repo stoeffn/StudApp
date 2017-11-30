@@ -9,14 +9,16 @@
 import StudKit
 
 @UIApplicationMain
-final class AppDelegate: UIResponder, UIApplicationDelegate {
+final class AppDelegate: UIResponder {
     private var coreDataService: CoreDataService!
     private var historyService: HistoryService!
 
     var window: UIWindow?
+}
 
-    // MARK: - Life Cycle
+// MARK: - Application Delegate
 
+extension AppDelegate: UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         ServiceContainer.default.register(providers: StudKitServiceProvider(currentTarget: .app))
         coreDataService = ServiceContainer.default[CoreDataService.self]
