@@ -9,13 +9,15 @@
 import StoreKit
 
 final class StoreService: NSObject, SKPaymentTransactionObserver {
-    init(addAsObserver: Bool = true) {
+    private let subscriptionProductIdentifier = "SteffenRyll.StudApp.Subscriptions.Students.SixMonths"
+
+    init(addAsObserver _: Bool = true) {
         super.init()
 
         SKPaymentQueue.default().add(self)
     }
 
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+    func paymentQueue(_: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         print(transactions)
     }
 }
