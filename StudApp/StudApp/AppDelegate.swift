@@ -21,6 +21,7 @@ final class AppDelegate: UIResponder {
 extension AppDelegate: UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         ServiceContainer.default.register(providers: StudKitServiceProvider(currentTarget: .app))
+
         coreDataService = ServiceContainer.default[CoreDataService.self]
         historyService = ServiceContainer.default[HistoryService.self]
 
