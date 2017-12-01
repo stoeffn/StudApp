@@ -162,7 +162,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZS-9a-wlw" customClass="FilledButton" customModule="StudKit" customModuleProvider="target">
                                                     <rect key="frame" x="48" y="16" width="279" height="50"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.1647058824" green="0.2784313725" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="8Ow-TB-m5V"/>
                                                     </constraints>
@@ -298,7 +298,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="20I-iW-8ae" customClass="FilledButton" customModule="StudKit" customModuleProvider="target">
                                                     <rect key="frame" x="48" y="8" width="279" height="72"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.1647058824" green="0.2784313725" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="72" id="PpJ-Mq-h4q"/>
                                                     </constraints>
@@ -354,7 +354,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J94-G1-rVT" customClass="FilledButton" customModule="StudKit" customModuleProvider="target">
                                                     <rect key="frame" x="48" y="0.0" width="279" height="50"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.1647058824" green="0.2784313725" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="49V-U3-uGf"/>
                                                     </constraints>
@@ -633,4 +633,5 @@
         <image name="MailTableViewGlyph" width="25" height="25"/>
         <image name="MoreBarButtonGlyph" width="25" height="25"/>
     </resources>
+    <color key="tintColor" red="0.1647058824" green="0.2784313725" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

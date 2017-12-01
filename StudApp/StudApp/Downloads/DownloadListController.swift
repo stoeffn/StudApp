@@ -76,6 +76,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
         let removeDownloadAction = UIContextualAction(style: .destructive, title: "Remove Download".localized,
                                                       handler: removeDownloadHandler)
+        removeDownloadAction.backgroundColor = UI.Colors.studRed
         return UISwipeActionsConfiguration(actions: [removeDownloadAction])
     }
 
