@@ -62,6 +62,7 @@ final class MainController: UITabBarController {
         controller.popoverPresentationController?.barButtonItem = barButtonItem
         controller.addAction(UIAlertAction(title: "About".localized, style: .default, handler: showAboutView))
         controller.addAction(UIAlertAction(title: "Sign Out".localized, style: .destructive, handler: signOut))
+        controller.actions.last?.setValue(UI.Colors.studRed, forKey: "titleTextColor")
         controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
         present(controller, animated: true, completion: nil)
     }
