@@ -39,7 +39,7 @@ final class ThanksNoteCell: UITableViewCell {
 
         detailTextLabel?.font = .preferredFont(forTextStyle: .footnote)
         detailTextLabel?.adjustsFontForContentSizeCategory = true
-        detailTextLabel?.textColor = UI.greyTextColor
+        detailTextLabel?.textColor = UI.Colors.greyText
         detailTextLabel?.numberOfLines = 2
     }
 }

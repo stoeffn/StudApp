@@ -35,7 +35,7 @@ final class StudIPActivityIndicatorView: UIView {
         let circle = CAShapeLayer()
         circle.lineCap = kCALineCapButt
         circle.fillColor = UIColor.clear.cgColor
-        circle.strokeColor = outerCircleColor.cgColor
+        circle.strokeColor = UI.Colors.studBlue.cgColor
         circle.strokeStart = 0
         circle.strokeEnd = 0.75
         return circle
@@ -43,7 +43,7 @@ final class StudIPActivityIndicatorView: UIView {
 
     private lazy var innerCircle: CAShapeLayer = {
         let circle = CAShapeLayer()
-        circle.fillColor = innerCircleColor.cgColor
+        circle.fillColor = UI.Colors.studRed.cgColor
         circle.strokeColor = UIColor.clear.cgColor
         return circle
     }()
@@ -73,9 +73,6 @@ final class StudIPActivityIndicatorView: UIView {
     }()
 
     // MARK: - User Interface
-
-    private let outerCircleColor = UIColor(red: 0.165, green: 0.29, blue: 0.486, alpha: 1)
-    private let innerCircleColor = UIColor(red: 0.827, green: 0.0667, blue: 0.125, alpha: 1)
 
     override var frame: CGRect {
         didSet { applyStyles() }
