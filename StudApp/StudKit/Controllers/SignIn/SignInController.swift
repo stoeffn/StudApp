@@ -143,6 +143,21 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
         viewModel.attemptSignIn(withUsername: username, password: password)
     }
 
+    @IBAction
+    func moreButtonTapped(_ sender: Any) {
+        func showAboutView(_: UIAlertAction) {
+            performSegue(withRoute: .about)
+        }
+
+        let barButtonItem = sender as? UIBarButtonItem
+
+        let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        controller.popoverPresentationController?.barButtonItem = barButtonItem
+        controller.addAction(UIAlertAction(title: "About".localized, style: .default, handler: showAboutView))
+        controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
+        present(controller, animated: true, completion: nil)
+    }
+
     // MARK: - Table View Data Source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

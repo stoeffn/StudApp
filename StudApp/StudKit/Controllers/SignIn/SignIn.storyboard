@@ -200,7 +200,7 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="8v4-2O-DoM"/>
                         <barButtonItem key="rightBarButtonItem" image="MoreBarButtonGlyph" id="caj-la-tPr">
                             <connections>
-                                <action selector="moreButtonTapped:" destination="7Cl-OR-2Sy" id="3y1-5j-6Z4"/>
+                                <action selector="moreButtonTapped:" destination="REk-SH-Xkn" id="qKG-wX-V0r"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -212,6 +212,7 @@
                         <outlet property="titleLabel" destination="82M-7T-kaN" id="ZRe-T6-bp3"/>
                         <outlet property="usernameField" destination="Iao-Vh-FML" id="ozU-Fe-273"/>
                         <segue destination="NWf-sZ-PHj" kind="show" identifier="store" id="v9x-jj-O8i"/>
+                        <segue destination="myS-Lb-AhU" kind="presentation" identifier="about" modalPresentationStyle="formSheet" id="5FT-PL-R7g"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j0T-rI-XDo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -523,7 +524,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y0D-Tk-4Es" customClass="StudIPActivityIndicatorView" customModule="StudKit" customModuleProvider="target">
-                                            <rect key="frame" x="170" y="19" width="34" height="34"/>
+                                            <rect key="frame" x="170.5" y="19" width="34" height="34"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="y0D-Tk-4Es" secondAttribute="height" multiplier="1:1" id="g6z-67-0VR"/>
@@ -626,6 +627,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F1D-h0-Y5T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-73" y="609"/>
+        </scene>
+        <!--About-->
+        <scene sceneID="ZjC-5e-NoS">
+            <objects>
+                <viewControllerPlaceholder storyboardName="About" id="myS-Lb-AhU" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nBC-me-csl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1353" y="999"/>
         </scene>
     </scenes>
     <resources>
