@@ -142,7 +142,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         tableView.separatorStyle = viewModel.isEmpty ? .none : .singleLine
 
         if let navigationBarHeight = navigationController?.navigationBar.bounds.size.height {
-            emptyViewTopConstraint.constant = navigationBarHeight * 2.5
+            emptyViewTopConstraint.constant = navigationBarHeight * 2 + 48
         }
     }
 
