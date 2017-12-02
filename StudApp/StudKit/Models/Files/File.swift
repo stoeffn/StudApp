@@ -72,9 +72,10 @@ extension File {
 // MARK: - Utilities
 
 public extension File {
-    public static func localContainerUrl(forId id: String) -> URL {
+    public static func containerUrl(forId id: String, in directory: URL? = nil) -> URL {
         let storageService = ServiceContainer.default[StorageService.self]
-        return storageService.documentsUrl
+        let documentsUrl = directory ?? storageService.documentsUrl
+        return documentsUrl
             .appendingPathComponent(id, isDirectory: true)
     }
 
@@ -82,13 +83,18 @@ public extension File {
         return typeIdentifier == kUTTypeFolder as String
     }
 
-    public var localUrl: URL {
-        return File.localContainerUrl(forId: id)
+    public var documentUrl: URL {
+        return File.containerUrl(forId: id)
+            .appendingPathComponent(name, isDirectory: false)
+    }
+
+    public var providedDocumentUrl: URL {
+        return File.containerUrl(forId: id, in: NSFileProviderManager.default.documentStorageURL)
             .appendingPathComponent(name, isDirectory: false)
     }
 
     public func documentController(handler: @escaping (UIDocumentInteractionController) -> Void) {
         let cacheService = ServiceContainer.default[CacheService.self]
-        return cacheService.documentInteractionController(forUrl: localUrl, name: title, handler: handler)
+        return cacheService.documentInteractionController(forUrl: providedDocumentUrl, name: title, handler: handler)
     }
 }

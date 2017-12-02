@@ -12,12 +12,12 @@ extension File {
     @discardableResult
     public func download(handler: @escaping ResultHandler<URL>) -> URLSessionTask? {
         let studIpService = ServiceContainer.default[StudIpService.self]
-        return studIpService.api.download(.fileContents(forFileId: id), to: localUrl, handler: handler)
+        return studIpService.api.download(.fileContents(forFileId: id), to: documentUrl, handler: handler)
     }
 
     public func removeDownload() throws {
         state.downloadedAt = nil
-        try? FileManager.default.removeItem(at: localUrl)
+        try? FileManager.default.removeItem(at: documentUrl)
         try managedObjectContext?.saveWhenChanged()
     }
 
