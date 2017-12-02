@@ -39,7 +39,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         updateEmptyView()
     }
 
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewWillTransition(to _: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animate(alongsideTransition: { _ in
             self.updateEmptyView()
         }, completion: nil)
@@ -117,7 +117,8 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
         switch action {
         case #selector(copy(_:)):
-            guard let data = try? Data(contentsOf: file.documentUrl, options: .mappedIfSafe) else { return }
+            let documentUrl = file.documentUrl(inProviderDirectory: true)
+            guard let data = try? Data(contentsOf: documentUrl, options: .mappedIfSafe) else { return }
             UIPasteboard.general.setData(data, forPasteboardType: file.typeIdentifier)
         default:
             break
@@ -181,7 +182,7 @@ extension DownloadListController: UISearchResultsUpdating {
 extension DownloadListController: UITableViewDragDelegate {
     private func items(forIndexPath indexPath: IndexPath) -> [UIDragItem] {
         let file = viewModel[rowAt: indexPath]
-        guard let itemProvider = NSItemProvider(contentsOf: file.documentUrl) else { return [] }
+        guard let itemProvider = NSItemProvider(contentsOf: file.documentUrl(inProviderDirectory: true)) else { return [] }
         return [UIDragItem(itemProvider: itemProvider)]
     }
 

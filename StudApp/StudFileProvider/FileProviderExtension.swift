@@ -117,7 +117,7 @@ final class FileProviderExtension: NSFileProviderExtension {
     func startProvidingDownloaded(file: File, completionHandler: ((_ error: Error?) -> Void)?) throws {
         let destination = urlForItem(withPersistentIdentifier: file.itemIdentifier)!
         try? FileManager.default.removeItem(at: destination)
-        try FileManager.default.copyItem(at: file.documentUrl, to: destination)
+        try FileManager.default.copyItem(at: file.documentUrl(), to: destination)
         completionHandler?(nil)
     }
 
