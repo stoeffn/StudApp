@@ -242,6 +242,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="emptyView" destination="X0M-6M-fk1" id="z1C-s0-Ikk"/>
+                        <outlet property="emptyViewSubtitleLabel" destination="TMm-hn-B4O" id="Mya-7l-rEK"/>
+                        <outlet property="emptyViewTitleLabel" destination="fyl-2h-SyR" id="Obn-Ym-bSR"/>
                         <outlet property="emptyViewTopConstraint" destination="dWU-1Q-IB5" id="emF-Gd-glY"/>
                     </connections>
                 </tableViewController>

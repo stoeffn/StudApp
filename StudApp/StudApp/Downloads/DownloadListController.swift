@@ -138,7 +138,14 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
     @IBOutlet var emptyViewTopConstraint: NSLayoutConstraint!
 
+    @IBOutlet weak var emptyViewTitleLabel: UILabel!
+
+    @IBOutlet weak var emptyViewSubtitleLabel: UILabel!
+
     private func updateEmptyView() {
+        emptyViewTitleLabel.text = "It Looks Like There Are No Downloads Yet".localized
+        emptyViewSubtitleLabel.text = "Open the app \"Files\" to get started.".localized
+
         tableView.backgroundView = viewModel.isEmpty ? emptyView : nil
         tableView.separatorStyle = viewModel.isEmpty ? .none : .singleLine
         tableView.bounces = !viewModel.isEmpty
