@@ -42,6 +42,7 @@ public final class SemesterListViewModel: NSObject {
         coreDataService.performBackgroundTask { context in
             Semester.update(in: context, enforce: enforce) { result in
                 try? context.saveWhenChanged()
+                try? self.coreDataService.viewContext.saveWhenChanged()
                 handler?(result.replacingValue(()))
             }
         }

@@ -47,6 +47,7 @@ public final class FileListViewModel: NSObject {
         coreDataService.performBackgroundTask { context in
             self.course.updateFiles(in: context) { result in
                 try? context.saveWhenChanged()
+                try? self.coreDataService.viewContext.saveWhenChanged()
                 handler?(result.replacingValue(()))
             }
         }
