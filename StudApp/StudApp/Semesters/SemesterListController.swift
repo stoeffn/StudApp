@@ -84,7 +84,7 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
         tableView.bounces = !viewModel.isEmpty
 
         if let navigationBarHeight = navigationController?.navigationBar.bounds.size.height {
-            emptyViewTopConstraint.constant = navigationBarHeight * 2
+            emptyViewTopConstraint.constant = navigationBarHeight * 2 + 32
         }
     }
 

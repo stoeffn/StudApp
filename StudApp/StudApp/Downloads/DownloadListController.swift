@@ -155,8 +155,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         tableView.bounces = !viewModel.isEmpty
 
         if let navigationBarHeight = navigationController?.navigationBar.bounds.size.height {
-            let searchBarHeight = navigationItem.searchController?.searchBar.bounds.size.height ?? 0
-            emptyViewTopConstraint.constant = navigationBarHeight * 2 + searchBarHeight
+            emptyViewTopConstraint.constant = navigationBarHeight * 2 + 32
         }
     }
 
