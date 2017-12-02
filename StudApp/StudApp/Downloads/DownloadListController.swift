@@ -30,6 +30,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
         tableView.dragInteractionEnabled = true
         tableView.dragDelegate = self
+        tableView.tableHeaderView = nil
 
         let shareItem = UIMenuItem(title: "Share".localized, action: #selector(FileCell.shareDocument(sender:)))
         UIMenuController.shared.menuItems = [shareItem]
@@ -114,6 +115,19 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
             break
         }
     }
+
+    // MARK: - Data Source Delegate
+
+    func dataDidChange<Source>(in _: Source) {
+        tableView.endUpdates()
+
+        tableView.backgroundView = viewModel.isEmpty ? emptyView : nil
+        tableView.separatorStyle = viewModel.isEmpty ? .none : .singleLine
+    }
+
+    // MARK: - User Interface
+
+    @IBOutlet weak var emptyView: UIView!
 
     // MARK: - User Interaction
 

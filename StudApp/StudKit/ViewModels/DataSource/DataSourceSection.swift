@@ -14,6 +14,14 @@ public protocol DataSourceSection: Sequence {
     subscript(rowAt _: Int) -> Row { get }
 }
 
+// MARK: - Utilities
+
+public extension DataSourceSection {
+    public var isEmpty: Bool {
+        return numberOfRows == 0
+    }
+}
+
 // MARK: - Iterating
 
 extension DataSourceSection {

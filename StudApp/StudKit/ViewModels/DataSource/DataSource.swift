@@ -36,6 +36,14 @@ extension DataSource {
     }
 }
 
+// MARK: - Utilities
+
+public extension DataSource {
+    public var isEmpty: Bool {
+        return numberOfSections == 0
+    }
+}
+
 // MARK: - Iterating
 
 extension DataSource {
