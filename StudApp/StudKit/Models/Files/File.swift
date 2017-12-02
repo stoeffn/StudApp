@@ -6,8 +6,9 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-import MobileCoreServices
 import CoreData
+import MobileCoreServices
+import QuickLook
 
 @objc(File)
 public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable {
@@ -93,5 +94,13 @@ public extension File {
         let cacheService = ServiceContainer.default[CacheService.self]
         return cacheService.documentInteractionController(forUrl: documentUrl(inProviderDirectory: true), name: title,
                                                           handler: handler)
+    }
+}
+
+// MARK: - QuickLook Preview Item
+
+extension File: QLPreviewItem {
+    public var previewItemURL: URL? {
+        return documentUrl(inProviderDirectory: true)
     }
 }
