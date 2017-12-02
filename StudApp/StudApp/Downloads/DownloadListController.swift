@@ -92,14 +92,6 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         return UISwipeActionsConfiguration(actions: [removeDownloadAction])
     }
 
-    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? FileCell else { return }
-
-        let controller = PreviewController()
-        controller.file = cell.file
-        present(controller, animated: true, completion: nil)
-    }
-
     override func tableView(_: UITableView, shouldShowMenuForRowAt _: IndexPath) -> Bool {
         return true
     }
@@ -134,6 +126,17 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         updateEmptyView()
     }
 
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch sender {
+        case let fileCell as FileCell:
+            prepare(for: .preview(fileCell.file), destination: segue.destination)
+        default:
+            prepareForRoute(using: segue, sender: sender)
+        }
+    }
+
     // MARK: - User Interface
 
     @IBOutlet var emptyView: UIView!
@@ -164,20 +167,6 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     @IBAction
     func userButtonTapped(_ sender: Any) {
         (tabBarController as? MainController)?.userButtonTapped(sender)
-    }
-}
-
-// MARK: - Document Interaction Controller Conformance
-
-extension DownloadListController: UIDocumentInteractionControllerDelegate {
-    func documentInteractionControllerViewControllerForPreview(_: UIDocumentInteractionController) -> UIViewController {
-        return self
-    }
-
-    func documentInteractionControllerViewForPreview(_: UIDocumentInteractionController) -> UIView? {
-        guard let indexPath = tableView.indexPathForSelectedRow,
-            let cell = tableView.cellForRow(at: indexPath) as? FileCell else { return nil }
-        return cell.iconView
     }
 }
 

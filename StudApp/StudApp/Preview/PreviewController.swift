@@ -9,22 +9,54 @@
 import QuickLook
 import StudKit
 
-final class PreviewController: UIViewController {
+final class PreviewController: UIViewController, Routable {
     // MARK: - Life Cycle
+
+    private var file: File!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let previewController = QLPreviewController()
+        navigationItem.title = file.title
+
         previewController.dataSource = self
         addChildViewController(previewController)
 
-        view.addSubview(previewController.view)
-        previewController.view.frame = view.bounds
         previewController.didMove(toParentViewController: self)
+        previewController.view.frame = view.bounds
+        view.addSubview(previewController.view)
     }
 
-    var file: File!
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        previewController.viewSafeAreaInsetsDidChange()
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: { _ in
+            self.previewController.view.frame = self.view.bounds
+        }, completion: nil)
+    }
+
+    func prepareDependencies(for route: Routes) {
+        guard case let .preview(file) = route else { fatalError() }
+
+        self.file = file
+    }
+
+    // MARK: - User Interface
+
+    private let previewController = QLPreviewController()
+
+    // MARK: - User Interaction
+
+    @IBAction
+    func doneButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 extension PreviewController: QLPreviewControllerDataSource {
