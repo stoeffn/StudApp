@@ -31,6 +31,8 @@
 // MARK: Semesters
 
 "Semesters" = "Semester";
+"It Looks Like There Are No Semester" = "Es scheint, als gäbe es keine Semester";
+"You can try to reload the semesters from Stud.IP." = "Du kannst versuchen, die Semester erneut aus Stud.IP zu laden.";
 
 // MARK: Downloads
 

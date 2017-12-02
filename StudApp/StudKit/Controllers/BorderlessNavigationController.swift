@@ -30,7 +30,9 @@ public final class BorderlessNavigationController: UINavigationController {
         updateNavigationBarBackgroundFrame()
     }
 
-    public override func viewWillTransition(to _: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
         /// Set the status bar background view, which makes for the blur effect, behind the status bar at all times.
         coordinator.animateAlongsideTransition(in: navigationController?.view, animation: { _ in
             self.updateNavigationBarBackgroundFrame()

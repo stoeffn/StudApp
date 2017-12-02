@@ -24,6 +24,18 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
         navigationItem.title = "Semesters".localized
 
         navigationController?.navigationBar.prefersLargeTitles = true
+
+        tableView.tableHeaderView = nil
+
+        updateEmptyView()
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: { _ in
+            self.updateEmptyView()
+        }, completion: nil)
     }
 
     // MARK: Table View Data Source
@@ -42,10 +54,49 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
         return cell
     }
 
+    // MARK: - Data Source Delegate
+
+    func dataDidChange<Source>(in _: Source) {
+        tableView.endUpdates()
+        updateEmptyView()
+    }
+
+    // MARK: - User Interface
+
+    @IBOutlet var emptyView: UIView!
+
+    @IBOutlet var emptyViewTopConstraint: NSLayoutConstraint!
+
+    @IBOutlet weak var emptyViewTitleLabel: UILabel!
+
+    @IBOutlet weak var emptyViewSubtitleLabel: UILabel!
+
+    @IBOutlet weak var emptyViewActionButton: UIButton!
+
+    private func updateEmptyView() {
+        guard view != nil else { return }
+
+        emptyViewTitleLabel.text = "It Looks Like There Are No Semester".localized
+        emptyViewSubtitleLabel.text = "You can try to reload the semesters from Stud.IP.".localized
+
+        tableView.backgroundView = viewModel.isEmpty ? emptyView : nil
+        tableView.separatorStyle = viewModel.isEmpty ? .none : .singleLine
+        tableView.bounces = !viewModel.isEmpty
+
+        if let navigationBarHeight = navigationController?.navigationBar.bounds.size.height {
+            emptyViewTopConstraint.constant = navigationBarHeight * 2
+        }
+    }
+
     // MARK: - User Interaction
 
     @IBAction
     func userButtonTapped(_ sender: Any) {
         (tabBarController as? MainController)?.userButtonTapped(sender)
+    }
+
+    @IBAction
+    func emptyViewActionButtonTapped(_: Any) {
+        viewModel.update(enforce: true)
     }
 }

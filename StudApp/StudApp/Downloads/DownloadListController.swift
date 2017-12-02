@@ -39,7 +39,9 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         updateEmptyView()
     }
 
-    override func viewWillTransition(to _: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
         coordinator.animate(alongsideTransition: { _ in
             self.updateEmptyView()
         }, completion: nil)
@@ -143,6 +145,8 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     @IBOutlet weak var emptyViewSubtitleLabel: UILabel!
 
     private func updateEmptyView() {
+        guard view != nil else { return }
+
         emptyViewTitleLabel.text = "It Looks Like There Are No Downloads Yet".localized
         emptyViewSubtitleLabel.text = "Open the app \"Files\" to get started.".localized
 
@@ -151,7 +155,8 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         tableView.bounces = !viewModel.isEmpty
 
         if let navigationBarHeight = navigationController?.navigationBar.bounds.size.height {
-            emptyViewTopConstraint.constant = navigationBarHeight * 2 + 48
+            let searchBarHeight = navigationItem.searchController?.searchBar.bounds.size.height ?? 0
+            emptyViewTopConstraint.constant = navigationBarHeight * 2 + searchBarHeight
         }
     }
 

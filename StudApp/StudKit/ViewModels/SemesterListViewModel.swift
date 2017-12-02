@@ -38,9 +38,9 @@ public final class SemesterListViewModel: NSObject {
     }
 
     /// Updates data from the server.
-    public func update(handler: ResultHandler<Void>? = nil) {
+    public func update(enforce: Bool = false, handler: ResultHandler<Void>? = nil) {
         coreDataService.performBackgroundTask { context in
-            Semester.update(in: context) { result in
+            Semester.update(in: context, enforce: enforce) { result in
                 try? context.saveWhenChanged()
                 handler?(result.replacingValue(()))
             }
