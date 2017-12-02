@@ -19,6 +19,8 @@ public final class CourseState: NSManagedObject, CDCreatable, CDColorable {
 
     @NSManaged public var color: Color?
 
+    @NSManaged public var areFilesFetchedFromRemote: Bool
+
     @NSManaged public var course: Course
 
     // MARK: Life Cycle

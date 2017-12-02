@@ -13,11 +13,11 @@ import StudKit
 final class CourseItem: NSObject, NSFileProviderItem {
     // MARK: - Life Cycle
 
-    init(from course: Course, childItemCount: Int, parentItemIdentifier: NSFileProviderItemIdentifier = .rootContainer) {
+    init(from course: Course, childItemCount: Int?, parentItemIdentifier: NSFileProviderItemIdentifier = .rootContainer) {
         itemIdentifier = course.itemIdentifier
         filename = course.title
 
-        self.childItemCount = childItemCount as NSNumber
+        self.childItemCount = childItemCount as NSNumber?
 
         self.parentItemIdentifier = parentItemIdentifier
 
@@ -26,12 +26,16 @@ final class CourseItem: NSObject, NSFileProviderItem {
         ownerNameComponents = course.lecturers.first?.nameComponents
 
         tagData = course.state.tagData
-        favoriteRank = !course.state.isUnranked ? course.state.favoriteRank as NSNumber : nil
+        favoriteRank = !course.state.isUnranked
+            ? course.state.favoriteRank as NSNumber
+            : nil
     }
 
     convenience init(from course: Course, context: NSManagedObjectContext) throws {
         guard let parentItemIdentifier = course.semesters.first?.itemIdentifier else { throw NSFileProviderError(.noSuchItem) }
-        let childItemCount = try context.count(for: course.rootFilesFetchRequest)
+        let childItemCount = course.state.areFilesFetchedFromRemote
+            ? try context.count(for: course.rootFilesFetchRequest)
+            : nil
         self.init(from: course, childItemCount: childItemCount, parentItemIdentifier: parentItemIdentifier)
     }
 

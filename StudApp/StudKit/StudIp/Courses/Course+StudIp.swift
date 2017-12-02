@@ -17,9 +17,13 @@ extension Course {
             Course.update(using: result, in: context, handler: handler)
 
             guard let semesters = try? Semester.fetchNonHidden(in: context) else { return }
+
             for semester in semesters {
+                semester.state.areCoursesFetchedFromRemote = true
                 NSFileProviderManager.default.signalEnumerator(for: semester.itemIdentifier) { _ in }
             }
+
+            NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
             NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
         }
     }
@@ -28,6 +32,8 @@ extension Course {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestCompleteCollection(.filesInCourse(withId: id)) { (result: Result<[FileResponse]>) in
             File.update(using: result, in: context, handler: handler)
+
+            self.state.areFilesFetchedFromRemote = true
 
             NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
             NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }

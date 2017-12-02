@@ -14,22 +14,26 @@ import StudKit
 final class SemesterItem: NSObject, NSFileProviderItem {
     // MARK: - Life Cycle
 
-    init(from semester: Semester, childItemCount: Int, parentItemIdentifier: NSFileProviderItemIdentifier = .rootContainer) {
+    init(from semester: Semester, childItemCount: Int?, parentItemIdentifier: NSFileProviderItemIdentifier = .rootContainer) {
         itemIdentifier = semester.itemIdentifier
         filename = semester.title
 
-        self.childItemCount = childItemCount as NSNumber
+        self.childItemCount = childItemCount as NSNumber?
 
         self.parentItemIdentifier = parentItemIdentifier
 
         lastUsedDate = semester.state.lastUsedAt
 
         tagData = semester.state.tagData
-        favoriteRank = !semester.state.isUnranked ? semester.state.favoriteRank as NSNumber : nil
+        favoriteRank = !semester.state.isUnranked
+            ? semester.state.favoriteRank as NSNumber
+            : nil
     }
 
     convenience init(from semester: Semester) throws {
-        let childItemCount = semester.courses.count
+        let childItemCount = semester.state.areCoursesFetchedFromRemote
+            ? semester.courses.count
+            : nil
         self.init(from: semester, childItemCount: childItemCount, parentItemIdentifier: .rootContainer)
     }
 

@@ -20,6 +20,8 @@ public final class SemesterState: NSManagedObject, CDCreatable {
 
     @NSManaged public var semester: Semester
 
+    @NSManaged public var areCoursesFetchedFromRemote: Bool
+
     var observations = [NSKeyValueObservation]()
 
     public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
