@@ -233,6 +233,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="emptyView" destination="X0M-6M-fk1" id="z1C-s0-Ikk"/>
+                        <outlet property="emptyViewTopConstraint" destination="dWU-1Q-IB5" id="emF-Gd-glY"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CSS-mK-hmm" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -35,6 +35,14 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         let shareItem = UIMenuItem(title: "Share".localized, action: #selector(FileCell.shareDocument(sender:)))
         UIMenuController.shared.menuItems = [shareItem]
         UIMenuController.shared.update()
+
+        updateEmptyView()
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { _ in
+            self.updateEmptyView()
+        }, completion: nil)
     }
 
     // MARK: - Table View Data Source
@@ -120,14 +128,23 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
     func dataDidChange<Source>(in _: Source) {
         tableView.endUpdates()
-
-        tableView.backgroundView = viewModel.isEmpty ? emptyView : nil
-        tableView.separatorStyle = viewModel.isEmpty ? .none : .singleLine
+        updateEmptyView()
     }
 
     // MARK: - User Interface
 
-    @IBOutlet weak var emptyView: UIView!
+    @IBOutlet var emptyView: UIView!
+
+    @IBOutlet var emptyViewTopConstraint: NSLayoutConstraint!
+
+    private func updateEmptyView() {
+        tableView.backgroundView = viewModel.isEmpty ? emptyView : nil
+        tableView.separatorStyle = viewModel.isEmpty ? .none : .singleLine
+
+        if let navigationBarHeight = navigationController?.navigationBar.bounds.size.height {
+            emptyViewTopConstraint.constant = navigationBarHeight * 2.5
+        }
+    }
 
     // MARK: - User Interaction
 
