@@ -28,7 +28,6 @@ public extension String {
     ///   - comment: Optional comment describing the use case.
     /// - Returns: Localized string with interpolated parameters.
     public var localized: String {
-        let bundle = StudKitServiceProvider.kitBundle
-        return NSLocalizedString(self, tableName: nil, bundle: bundle, value: "###\(self)###", comment: "")
+        return StudKitServiceProvider.kitBundle.localizedString(forKey: self, value: "###\(self)###", table: nil)
     }
 }
