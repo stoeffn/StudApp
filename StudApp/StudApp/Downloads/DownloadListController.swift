@@ -140,6 +140,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     private func updateEmptyView() {
         tableView.backgroundView = viewModel.isEmpty ? emptyView : nil
         tableView.separatorStyle = viewModel.isEmpty ? .none : .singleLine
+        tableView.bounces = !viewModel.isEmpty
 
         if let navigationBarHeight = navigationController?.navigationBar.bounds.size.height {
             emptyViewTopConstraint.constant = navigationBarHeight * 2 + 48
