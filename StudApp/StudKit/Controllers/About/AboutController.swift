@@ -115,6 +115,7 @@ final class AboutController: UITableViewController, Routable {
             present(safariController, animated: true, completion: nil)
         case .feedback?:
             openFeedbackMailComposer()
+            tableView.deselectRow(at: indexPath, animated: true)
         case .app?, nil:
             break
         }
@@ -166,11 +167,6 @@ final class AboutController: UITableViewController, Routable {
 
         if MFMailComposeViewController.canSendMail() {
             present(mailController, animated: true, completion: nil)
-        } else {
-            let alert = UIAlertController(title: "Cannot Open Email Composer".localized,
-                                          message: "Please check whether you configured an email account.".localized,
-                                          preferredStyle: .alert)
-            present(alert, animated: true, completion: nil)
         }
     }
 }
