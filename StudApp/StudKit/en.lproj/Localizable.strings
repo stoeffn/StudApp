@@ -6,6 +6,7 @@
 
 // MARK: Generic Actions
 
+"Okay" = "Okay";
 "Cancel" = "Cancel";
 "Share" = "Share";
 "Retry" = "Retry";
@@ -21,6 +22,10 @@
 
 "About" = "About";
 "Feedback for %@" = "Feedback for %@";
+"Rate StudApp" = "Rate StudApp";
+"We would appreciate your review on the App Store!" = "We would appreciate your review on the App Store!";
+"Could not launch App Store" = "Could not launch App Store";
+"It would be kind if you rated StudApp anyway by opening the App Store manually." = "It would be kind if you rated StudApp anyway by opening the App Store manually.";
 "Thanks to" = "Thanks to";
 "Without you, this app could not exist. Thank you ❤️" = "Without you, this app could not exist. Thank you ❤️";
 

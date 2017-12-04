@@ -7,5 +7,7 @@
 //
 
 public enum App {
+    public static let id = "1317593772"
+
     public static let feedbackMailAddress = "studapp@stoeffn.de"
 }

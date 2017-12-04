@@ -10,6 +10,7 @@ import MessageUI
 import SafariServices
 
 final class AboutController: UITableViewController, Routable {
+    private let contextService = ServiceContainer.default[ContextService.self]
     private var viewModel: AboutViewModel!
 
     // MARK: - Life Cycle
@@ -28,6 +29,7 @@ final class AboutController: UITableViewController, Routable {
         }
         subtitleLabel.text = "by %@".localized(viewModel.appAuthorName)
         sendFeedbackCell.textLabel?.text = "Send Feedback".localized
+        rateAppCell.textLabel?.text = "Rate StudApp".localized
     }
 
     // MARK: - User Interface
@@ -37,6 +39,8 @@ final class AboutController: UITableViewController, Routable {
     @IBOutlet weak var subtitleLabel: UILabel!
 
     @IBOutlet weak var sendFeedbackCell: UITableViewCell!
+
+    @IBOutlet weak var rateAppCell: UITableViewCell!
 
     // MARK: - User Interaction
 
@@ -82,9 +86,11 @@ final class AboutController: UITableViewController, Routable {
 
     override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
         switch Sections(rawValue: section) {
+        case .feedback?:
+            return "We would appreciate your review on the App Store!".localized
         case .thanks?:
             return "Without you, this app could not exist. Thank you ❤️".localized
-        case .app?, .feedback?, nil:
+        case .app?, nil:
             return nil
         }
     }
@@ -108,51 +114,62 @@ final class AboutController: UITableViewController, Routable {
     }
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+
         switch Sections(rawValue: indexPath.section) {
         case .thanks?:
             guard let url = viewModel[rowAt: indexPath.row].url else { return }
             let safariController = SFSafariViewController(url: url)
             present(safariController, animated: true, completion: nil)
-        case .feedback?:
+        case .feedback? where cell === sendFeedbackCell:
             openFeedbackMailComposer()
             tableView.deselectRow(at: indexPath, animated: true)
-        case .app?, nil:
+        case .feedback? where cell === rateAppCell:
+            openAppStoreReviewPage()
+            tableView.deselectRow(at: indexPath, animated: true)
+        default:
             break
         }
     }
 
     override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath,
                             withSender _: Any?) -> Bool {
+        let cell = tableView.cellForRow(at: indexPath)
+
         switch Sections(rawValue: indexPath.section) {
-        case .feedback?:
+        case .feedback? where cell === sendFeedbackCell:
             return action == #selector(copy(_:))
         case .thanks?:
             guard viewModel[rowAt: indexPath.row].url != nil else { return false }
             return action == #selector(copy(_:))
-        case .app?, nil:
+        default:
             return false
         }
     }
 
     override func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath,
                             withSender _: Any?) {
+        let cell = tableView.cellForRow(at: indexPath)
+
         switch Sections(rawValue: indexPath.section) {
-        case .feedback?:
+        case .feedback? where cell === sendFeedbackCell:
             UIPasteboard.general.string = App.feedbackMailAddress
         case .thanks?:
             UIPasteboard.general.url = viewModel[rowAt: indexPath.row].url
-        case .app?, nil:
+        default:
             break
         }
     }
 
     override func tableView(_: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
+        let cell = tableView.cellForRow(at: indexPath)
+
         switch Sections(rawValue: indexPath.section) {
-        case .feedback?:
+        case .feedback? where cell === sendFeedbackCell:
             return true
         case .thanks?:
             return viewModel[rowAt: indexPath.row].url != nil
-        case .app?, nil:
+        default:
             return false
         }
     }
@@ -167,6 +184,20 @@ final class AboutController: UITableViewController, Routable {
 
         if MFMailComposeViewController.canSendMail() {
             present(mailController, animated: true, completion: nil)
+        }
+    }
+
+    private func openAppStoreReviewPage() {
+        guard let openUrl = contextService.openUrl, let reviewUrl = viewModel.appReviewUrl else { return }
+
+        openUrl(reviewUrl) { success in
+            guard !success else { return }
+
+            let title = "Could not launch App Store".localized
+            let message = "It would be kind if you rated StudApp anyway by opening the App Store manually.".localized
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay".localized, style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
 }
