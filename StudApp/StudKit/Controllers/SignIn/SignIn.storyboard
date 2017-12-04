@@ -34,7 +34,7 @@
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppIcon-Big" translatesAutoresizingMaskIntoConstraints="NO" id="rxE-7e-LKe">
                                                     <rect key="frame" x="91.5" y="32" width="192" height="192"/>
-                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="192" id="atr-9e-1ql"/>
                                                         <constraint firstAttribute="width" secondItem="rxE-7e-LKe" secondAttribute="height" multiplier="1:1" id="yU5-ll-bK4"/>
@@ -162,7 +162,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZS-9a-wlw" customClass="FilledButton" customModule="StudKit" customModuleProvider="target">
                                                     <rect key="frame" x="48" y="16" width="279" height="50"/>
-                                                    <color key="backgroundColor" red="0.1647058824" green="0.2784313725" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="8Ow-TB-m5V"/>
                                                     </constraints>
@@ -239,7 +239,7 @@
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppIcon-Big" translatesAutoresizingMaskIntoConstraints="NO" id="5zw-GD-CKT">
                                                     <rect key="frame" x="123.5" y="8" width="128" height="128"/>
-                                                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="128" id="Goz-kf-r48"/>
                                                         <constraint firstAttribute="width" secondItem="5zw-GD-CKT" secondAttribute="height" multiplier="1:1" id="Usd-sW-0l5"/>
@@ -299,7 +299,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="20I-iW-8ae" customClass="FilledButton" customModule="StudKit" customModuleProvider="target">
                                                     <rect key="frame" x="48" y="8" width="279" height="72"/>
-                                                    <color key="backgroundColor" red="0.1647058824" green="0.2784313725" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="72" id="PpJ-Mq-h4q"/>
                                                     </constraints>
@@ -333,7 +333,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="——— or ———" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XXn-ia-yTS">
-                                                    <rect key="frame" x="138" y="12" width="98" height="18"/>
+                                                    <rect key="frame" x="138.5" y="12" width="98" height="18"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                     <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -355,7 +355,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J94-G1-rVT" customClass="FilledButton" customModule="StudKit" customModuleProvider="target">
                                                     <rect key="frame" x="48" y="0.0" width="279" height="50"/>
-                                                    <color key="backgroundColor" red="0.1647058824" green="0.2784313725" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="49V-U3-uGf"/>
                                                     </constraints>
@@ -638,9 +638,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AppIcon-Big" width="256" height="256"/>
+        <image name="AppIcon-Big" width="1024" height="1024"/>
         <image name="MailTableViewGlyph" width="25" height="25"/>
         <image name="MoreBarButtonGlyph" width="25" height="25"/>
     </resources>
-    <color key="tintColor" red="0.1647058824" green="0.2784313725" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+    <color key="tintColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

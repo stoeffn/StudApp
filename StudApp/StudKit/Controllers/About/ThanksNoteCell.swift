@@ -26,7 +26,7 @@ final class ThanksNoteCell: UITableViewCell {
 
             let hasLink = thanksNote.url != nil
             selectionStyle = hasLink ? .default : .none
-            textLabel?.textColor = hasLink ? UI.Colors.studBlue : .black
+            textLabel?.textColor = hasLink ? UI.Colors.tint : .black
         }
     }
 

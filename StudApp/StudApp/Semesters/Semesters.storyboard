@@ -33,7 +33,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SIU-nC-NyK">
-                                    <rect key="frame" x="137" y="32" width="100" height="100"/>
+                                    <rect key="frame" x="137.5" y="32" width="100" height="100"/>
                                     <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="SIU-nC-NyK" secondAttribute="height" multiplier="1:1" id="58e-ro-uPa"/>
@@ -54,7 +54,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="21M-Rg-kwj">
-                                    <rect key="frame" x="162" y="188.5" width="50" height="32"/>
+                                    <rect key="frame" x="162.5" y="189" width="50" height="32"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <state key="normal" title="Reload"/>
                                     <connections>
@@ -178,5 +178,5 @@
         <image name="SemestersTabBarLandscapeGlyph" width="17" height="17"/>
         <image name="UserBarButtonGlyph" width="25" height="25"/>
     </resources>
-    <color key="tintColor" red="0.1647058824" green="0.2784313725" blue="0.46666666670000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+    <color key="tintColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

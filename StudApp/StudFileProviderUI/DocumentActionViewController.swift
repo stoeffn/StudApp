@@ -18,7 +18,7 @@ final class DocumentActionViewController: FPUIActionExtensionViewController {
         let provider = StudKitServiceProvider(currentTarget: .fileProviderUI, extensionContext: extensionContext)
         ServiceContainer.default.register(providers: provider)
 
-        view.tintColor = UI.Colors.studBlue
+        view.tintColor = UI.Colors.tint
     }
 
     override func prepare(forAction actionIdentifier: String, itemIdentifiers: [NSFileProviderItemIdentifier]) {

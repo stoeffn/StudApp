@@ -28,7 +28,7 @@ extension AppDelegate: UIApplicationDelegate {
         try? historyService.mergeHistory(into: coreDataService.viewContext)
         try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
 
-        window?.tintColor = UI.Colors.studBlue
+        window?.tintColor = UI.Colors.tint
 
         return true
     }
