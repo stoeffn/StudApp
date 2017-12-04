@@ -9,9 +9,11 @@
 public final class ContextService {
     public let currentTarget: Targets
     public let extensionContext: NSExtensionContext?
+    public let openUrl: ((URL, ((Bool) -> Void)?) -> Void)?
 
-    init(currentTarget: Targets, extensionContext: NSExtensionContext?) {
+    init(currentTarget: Targets, extensionContext: NSExtensionContext?, openUrl: ((URL, ((Bool) -> Void)?) -> Void)?) {
         self.currentTarget = currentTarget
         self.extensionContext = extensionContext
+        self.openUrl = openUrl ?? { extensionContext?.open($0, completionHandler: $1) }
     }
 }

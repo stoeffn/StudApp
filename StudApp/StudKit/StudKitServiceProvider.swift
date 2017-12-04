@@ -13,10 +13,17 @@ public class StudKitServiceProvider: ServiceProvider {
 
     private let currentTarget: Targets
     private let extensionContext: NSExtensionContext?
+    private let openUrl: ((URL, ((Bool) -> Void)?) -> Void)?
 
-    public init(currentTarget: Targets, extensionContext: NSExtensionContext? = nil) {
+    public init(currentTarget: Targets, extensionContext: NSExtensionContext? = nil,
+                openUrl: ((URL, ((Bool) -> Void)?) -> Void)? = nil) {
         self.currentTarget = currentTarget
         self.extensionContext = extensionContext
+        self.openUrl = openUrl
+    }
+
+    func provideContextService() -> ContextService {
+        return ContextService(currentTarget: currentTarget, extensionContext: extensionContext, openUrl: openUrl)
     }
 
     func provideJsonDecoder() -> JSONDecoder {
@@ -34,7 +41,7 @@ public class StudKitServiceProvider: ServiceProvider {
     }
 
     public func registerServices(in container: ServiceContainer) {
-        container[ContextService.self] = ContextService(currentTarget: currentTarget, extensionContext: extensionContext)
+        container[ContextService.self] = provideContextService()
         container[CacheService.self] = CacheService()
         container[StoreService.self] = StoreService()
         container[JSONDecoder.self] = provideJsonDecoder()

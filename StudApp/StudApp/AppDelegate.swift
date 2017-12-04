@@ -10,6 +10,8 @@ import StudKit
 
 @UIApplicationMain
 final class AppDelegate: UIResponder {
+    private let openUrl = { UIApplication.shared.open($0, options: [:], completionHandler: $1) }
+
     private var coreDataService: CoreDataService!
     private var historyService: HistoryService!
 
@@ -20,7 +22,7 @@ final class AppDelegate: UIResponder {
 
 extension AppDelegate: UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        ServiceContainer.default.register(providers: StudKitServiceProvider(currentTarget: .app))
+        ServiceContainer.default.register(providers: StudKitServiceProvider(currentTarget: .app, openUrl: openUrl))
 
         coreDataService = ServiceContainer.default[CoreDataService.self]
         historyService = ServiceContainer.default[HistoryService.self]
