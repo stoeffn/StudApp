@@ -119,6 +119,13 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         }
     }
 
+    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let file = viewModel[rowAt: indexPath]
+        let previewController = PreviewController()
+        previewController.prepareDependencies(for: .preview(file))
+        present(previewController, animated: true, completion: nil)
+    }
+
     // MARK: - Data Source Delegate
 
     func dataDidChange<Source>(in _: Source) {
@@ -129,12 +136,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch sender {
-        case let fileCell as FileCell:
-            prepare(for: .preview(fileCell.file), destination: segue.destination)
-        default:
-            prepareForRoute(using: segue, sender: sender)
-        }
+        prepareForRoute(using: segue, sender: sender)
     }
 
     // MARK: - User Interface
@@ -192,7 +194,7 @@ extension DownloadListController: UITableViewDragDelegate {
         return items(forIndexPath: indexPath)
     }
 
-    func tableView(_: UITableView, itemsForAddingTo session: UIDragSession, at indexPath: IndexPath,
+    func tableView(_: UITableView, itemsForAddingTo _: UIDragSession, at indexPath: IndexPath,
                    point _: CGPoint) -> [UIDragItem] {
         return items(forIndexPath: indexPath)
     }

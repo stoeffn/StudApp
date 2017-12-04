@@ -227,7 +227,6 @@
                                     <outlet property="titleLabel" destination="rpY-Q4-pSR" id="ZnL-pW-6RC"/>
                                     <outlet property="userGlyph" destination="nHG-cC-ocN" id="a4g-FJ-hQH"/>
                                     <outlet property="userLabel" destination="L2C-Ga-Zb6" id="R7B-Xf-hRD"/>
-                                    <segue destination="DN0-Lk-tpW" kind="presentation" identifier="preview" modalPresentationStyle="fullScreen" id="AMl-7v-OQn"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -272,14 +271,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XsK-Rg-4gj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="686" y="-819"/>
-        </scene>
-        <!--Preview-->
-        <scene sceneID="1gi-om-Zm0">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Preview" id="DN0-Lk-tpW" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9KT-JA-d4t" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1923" y="-819"/>
         </scene>
     </scenes>
     <resources>
