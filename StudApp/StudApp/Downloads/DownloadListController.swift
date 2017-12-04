@@ -29,9 +29,11 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
         navigationController?.navigationBar.prefersLargeTitles = true
 
-        tableView.dragInteractionEnabled = true
         tableView.dragDelegate = self
+        tableView.dragInteractionEnabled = true
         tableView.tableHeaderView = nil
+
+        registerForPreviewing(with: self, sourceView: tableView)
 
         let shareItem = UIMenuItem(title: "Share".localized, action: #selector(FileCell.shareDocument(sender:)))
         UIMenuController.shared.menuItems = [shareItem]
@@ -197,5 +199,21 @@ extension DownloadListController: UITableViewDragDelegate {
     func tableView(_: UITableView, itemsForAddingTo _: UIDragSession, at indexPath: IndexPath,
                    point _: CGPoint) -> [UIDragItem] {
         return items(forIndexPath: indexPath)
+    }
+}
+
+// MARK: - Document Previewing
+
+extension DownloadListController: UIViewControllerPreviewingDelegate {
+    func previewingContext(_: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
+        let file = viewModel[rowAt: indexPath]
+        let previewController = PreviewController()
+        previewController.prepareDependencies(for: .preview(file))
+        return previewController
+    }
+
+    func previewingContext(_: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        present(viewControllerToCommit, animated: true, completion: nil)
     }
 }
