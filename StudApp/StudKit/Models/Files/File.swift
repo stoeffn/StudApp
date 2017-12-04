@@ -103,4 +103,8 @@ extension File: QLPreviewItem {
     public var previewItemURL: URL? {
         return documentUrl(inProviderDirectory: true)
     }
+
+    public var previewItemTitle: String? {
+        return title
+    }
 }
