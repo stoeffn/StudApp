@@ -6,6 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import QuickLook
 import StudKit
 
 final class DownloadListController: UITableViewController, DataSourceDelegate {
@@ -28,9 +29,11 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
         navigationController?.navigationBar.prefersLargeTitles = true
 
-        tableView.dragInteractionEnabled = true
         tableView.dragDelegate = self
+        tableView.dragInteractionEnabled = true
         tableView.tableHeaderView = nil
+
+        registerForPreviewing(with: self, sourceView: tableView)
 
         let shareItem = UIMenuItem(title: "Share".localized, action: #selector(FileCell.shareDocument(sender:)))
         UIMenuController.shared.menuItems = [shareItem]
@@ -91,15 +94,6 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         return UISwipeActionsConfiguration(actions: [removeDownloadAction])
     }
 
-    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? FileCell else { return }
-
-        cell.file.documentController { controller in
-            controller.delegate = self
-            controller.presentPreview(animated: true)
-        }
-    }
-
     override func tableView(_: UITableView, shouldShowMenuForRowAt _: IndexPath) -> Bool {
         return true
     }
@@ -127,11 +121,24 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         }
     }
 
+    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let file = viewModel[rowAt: indexPath]
+        let previewController = PreviewController()
+        previewController.prepareDependencies(for: .preview(file))
+        present(previewController, animated: true, completion: nil)
+    }
+
     // MARK: - Data Source Delegate
 
     func dataDidChange<Source>(in _: Source) {
         tableView.endUpdates()
         updateEmptyView()
+    }
+
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        prepareForRoute(using: segue, sender: sender)
     }
 
     // MARK: - User Interface
@@ -167,20 +174,6 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     }
 }
 
-// MARK: - Document Interaction Controller Conformance
-
-extension DownloadListController: UIDocumentInteractionControllerDelegate {
-    func documentInteractionControllerViewControllerForPreview(_: UIDocumentInteractionController) -> UIViewController {
-        return self
-    }
-
-    func documentInteractionControllerViewForPreview(_: UIDocumentInteractionController) -> UIView? {
-        guard let indexPath = tableView.indexPathForSelectedRow,
-            let cell = tableView.cellForRow(at: indexPath) as? FileCell else { return nil }
-        return cell.iconView
-    }
-}
-
 // MARK: - Search Results Updating
 
 extension DownloadListController: UISearchResultsUpdating {
@@ -189,6 +182,8 @@ extension DownloadListController: UISearchResultsUpdating {
         tableView.reloadData()
     }
 }
+
+// MARK: - Table View Drag Delegate
 
 extension DownloadListController: UITableViewDragDelegate {
     private func items(forIndexPath indexPath: IndexPath) -> [UIDragItem] {
@@ -201,8 +196,24 @@ extension DownloadListController: UITableViewDragDelegate {
         return items(forIndexPath: indexPath)
     }
 
-    func tableView(_: UITableView, itemsForAddingTo session: UIDragSession, at indexPath: IndexPath,
+    func tableView(_: UITableView, itemsForAddingTo _: UIDragSession, at indexPath: IndexPath,
                    point _: CGPoint) -> [UIDragItem] {
         return items(forIndexPath: indexPath)
+    }
+}
+
+// MARK: - Document Previewing
+
+extension DownloadListController: UIViewControllerPreviewingDelegate {
+    func previewingContext(_: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
+        let file = viewModel[rowAt: indexPath]
+        let previewController = PreviewController()
+        previewController.prepareDependencies(for: .preview(file))
+        return previewController
+    }
+
+    func previewingContext(_: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        present(viewControllerToCommit, animated: true, completion: nil)
     }
 }

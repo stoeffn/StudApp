@@ -11,7 +11,9 @@ public enum Routes {
 
     case signIn
 
-    case signInToOrganization(OrganizationRecord)
+    case signIntoOrganization(OrganizationRecord)
+
+    case preview(File)
 
     private var destinationStoryboard: UIStoryboard? {
         switch self {
@@ -33,7 +35,8 @@ public enum Routes {
         switch self {
         case .about: return "about"
         case .signIn: return "signIn"
-        case .signInToOrganization: return "signInToOrganization"
+        case .signIntoOrganization: return "signIntoOrganization"
+        case .preview: return "preview"
         }
     }
 
