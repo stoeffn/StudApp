@@ -21,6 +21,8 @@ public final class AboutViewModel {
 
     public let appAuthorName = "Steffen Ryll"
 
+    public let appUrl = URL(string: "https://itunes.apple.com/de/app/\(App.id)")
+
     public let appReviewUrl = URL(string: "itms-apps://itunes.apple.com/de/app/\(App.id)?action=write-review")
 
     private let thanksNotes: [ThanksNote] = [

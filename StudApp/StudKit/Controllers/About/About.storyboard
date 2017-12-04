@@ -146,9 +146,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="About" id="vLm-Gs-WnM">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="0Uh-Nq-xL7">
+                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="done" id="0Uh-Nq-xL7">
                             <connections>
                                 <action selector="doneButtonTapped:" destination="QMe-kD-TIZ" id="des-QJ-fJm"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="4Cl-De-91t">
+                            <connections>
+                                <action selector="shareButtonTapped:" destination="QMe-kD-TIZ" id="lfN-vB-z4v"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

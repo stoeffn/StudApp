@@ -49,6 +49,15 @@ final class AboutController: UITableViewController, Routable {
         dismiss(animated: true, completion: nil)
     }
 
+    @IBAction
+    func shareButtonTapped(_: Any) {
+        guard let appUrl = viewModel.appUrl else { return }
+
+        let activityController = UIActivityViewController(activityItems: [appUrl], applicationActivities: nil)
+        activityController.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(activityController, animated: true, completion: nil)
+    }
+
     // MARK: - Table View Data Source
 
     private enum Sections: Int {
