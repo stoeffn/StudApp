@@ -53,7 +53,7 @@ public final class OrganizationListViewModel {
             organizations.append(organization)
         }
 
-        let container = CKContainer(identifier: StudKitServiceProvider.iCloudContainerIdentifier)
+        let container = CKContainer(identifier: App.iCloudContainerIdentifier)
         container.database(with: .public).add(operation)
     }
 }

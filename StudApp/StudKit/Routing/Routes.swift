@@ -18,7 +18,7 @@ public enum Routes {
     private var destinationStoryboard: UIStoryboard? {
         switch self {
         case .signIn:
-            return UIStoryboard(name: "SignIn", bundle: StudKitServiceProvider.kitBundle)
+            return UIStoryboard(name: "SignIn", bundle: App.kitBundle)
         default:
             return nil
         }

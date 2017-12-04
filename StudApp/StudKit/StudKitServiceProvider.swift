@@ -7,10 +7,6 @@
 //
 
 public class StudKitServiceProvider: ServiceProvider {
-    static let kitBundle = Bundle(for: StudKitServiceProvider.self)
-    static let appGroupIdentifier = "group.SteffenRyll.StudKit"
-    static let iCloudContainerIdentifier = "iCloud.SteffenRyll.StudKit"
-
     private let currentTarget: Targets
     private let extensionContext: NSExtensionContext?
     private let openUrl: ((URL, ((Bool) -> Void)?) -> Void)?
@@ -33,7 +29,7 @@ public class StudKitServiceProvider: ServiceProvider {
     }
 
     func provideCoreDataService() -> CoreDataService {
-        return CoreDataService(modelName: "StudKit", appGroupIdentifier: StudKitServiceProvider.appGroupIdentifier)
+        return CoreDataService(modelName: "StudKit", appGroupIdentifier: App.groupIdentifier)
     }
 
     func provideStudIpService() -> StudIpService {

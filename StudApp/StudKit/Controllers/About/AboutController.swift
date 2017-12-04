@@ -24,10 +24,10 @@ final class AboutController: UITableViewController, Routable {
 
         tableView.register(ThanksNoteCell.self, forCellReuseIdentifier: ThanksNoteCell.typeIdentifier)
 
-        if let appName = viewModel.appName, let appVersionName = viewModel.appVersionName {
+        if let appName = App.name, let appVersionName = App.versionName {
             titleLabel.text = "\(appName) \(appVersionName)"
         }
-        subtitleLabel.text = "by %@".localized(viewModel.appAuthorName)
+        subtitleLabel.text = "by %@".localized(App.authorName)
         sendFeedbackCell.textLabel?.text = "Send Feedback".localized
         rateAppCell.textLabel?.text = "Rate StudApp".localized
     }
@@ -51,7 +51,7 @@ final class AboutController: UITableViewController, Routable {
 
     @IBAction
     func shareButtonTapped(_: Any) {
-        guard let appUrl = viewModel.appUrl else { return }
+        guard let appUrl = App.url else { return }
 
         let activityController = UIActivityViewController(activityItems: [appUrl], applicationActivities: nil)
         activityController.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
@@ -197,7 +197,7 @@ final class AboutController: UITableViewController, Routable {
     }
 
     private func openAppStoreReviewPage() {
-        guard let openUrl = contextService.openUrl, let reviewUrl = viewModel.appReviewUrl else { return }
+        guard let openUrl = contextService.openUrl, let reviewUrl = App.reviewUrl else { return }
 
         openUrl(reviewUrl) { success in
             guard !success else { return }
