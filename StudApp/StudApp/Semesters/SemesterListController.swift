@@ -91,8 +91,8 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
     // MARK: - User Interaction
 
     @IBAction
-    func userButtonTapped(_ sender: Any) {
-        (tabBarController as? MainController)?.userButtonTapped(sender)
+    func doneButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
 
     @IBAction

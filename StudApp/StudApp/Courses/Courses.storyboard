@@ -32,11 +32,25 @@
                             <outlet property="delegate" destination="24U-Co-VfF" id="Xud-pR-GFv"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Courses" id="JrY-VB-OIX"/>
+                    <navigationItem key="navigationItem" title="Courses" id="JrY-VB-OIX">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="twc-Ub-WdZ">
+                            <connections>
+                                <segue destination="rJs-oV-VCc" kind="presentation" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="O49-dN-c8y"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Grr-wn-BU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="270" y="132"/>
+        </scene>
+        <!--Semesters-->
+        <scene sceneID="UXO-ER-iwK">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Semesters" id="rJs-oV-VCc" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5uP-hd-nkt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="814" y="131"/>
         </scene>
         <!--Courses-->
         <scene sceneID="X1J-Up-CLu">

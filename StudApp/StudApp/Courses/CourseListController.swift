@@ -13,8 +13,6 @@ final class CourseListController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     // MARK: - Table View Data Source
