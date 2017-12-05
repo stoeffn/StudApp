@@ -10,14 +10,12 @@ import CoreData
 
 /// Represents the current state of a course.
 @objc(CourseState)
-public final class CourseState: NSManagedObject, CDCreatable, CDColorable {
+public final class CourseState: NSManagedObject, CDCreatable {
     @NSManaged public var lastUsedAt: Date?
 
     @NSManaged public var favoriteRank: Int
 
     @NSManaged public var tagData: Data?
-
-    @NSManaged public var color: Color?
 
     @NSManaged public var areFilesFetchedFromRemote: Bool
 
@@ -29,8 +27,5 @@ public final class CourseState: NSManagedObject, CDCreatable, CDColorable {
         self.init(context: context)
 
         favoriteRank = Int(NSFileProviderFavoriteRankUnranked)
-        if let color = try? Color.default(in: context) {
-            self.color = color
-        }
     }
 }

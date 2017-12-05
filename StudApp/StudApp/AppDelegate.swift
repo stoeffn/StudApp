@@ -30,9 +30,6 @@ extension AppDelegate: UIApplicationDelegate {
         try? historyService.mergeHistory(into: coreDataService.viewContext)
         try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
 
-        // Improve creation of default colors
-        Color.createNewColorsWhenNeeded(in: coreDataService.viewContext)
-
         window?.tintColor = UI.Colors.tint
 
         return true

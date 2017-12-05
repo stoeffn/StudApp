@@ -15,7 +15,7 @@ public enum Routes {
 
     case preview(File)
 
-    case colorPicker((Color) -> Void)
+    case colorPicker((String) -> Void)
 
     private var destinationStoryboard: UIStoryboard? {
         switch self {

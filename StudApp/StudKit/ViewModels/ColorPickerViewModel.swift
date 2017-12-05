@@ -7,20 +7,12 @@
 //
 
 public final class ColorPickerViewModel {
-    private let coreData = ServiceContainer.default[CoreDataService.self]
+    public var handler: (String) -> Void
 
-    public let colors: [Color]
-
-    public var handler: (Color) -> Void
-
-    public init(handler: @escaping (Color) -> Void) {
+    public init(handler: @escaping (String) -> Void) {
         self.handler = handler
-
-        let orderIdSortDescriptor = NSSortDescriptor(keyPath: \Color.orderId, ascending: true)
-        colors = (try? Color.fetch(in: coreData.viewContext, sortDescriptors: [orderIdSortDescriptor])) ?? []
     }
 
     public func didSelectColor(atIndex index: Int) {
-        handler(colors[index])
     }
 }

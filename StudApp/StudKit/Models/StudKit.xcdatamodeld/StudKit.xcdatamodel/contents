@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17B1003" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Color" representedClassName="Color" syncable="YES">
-        <attribute name="orderId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="uiColor" attributeType="Transformable" customClassName="UIColor" syncable="YES"/>
-        <relationship name="courseStates" toMany="YES" deletionRule="Nullify" destinationEntity="CourseState" inverseName="color" inverseEntity="CourseState" syncable="YES"/>
-        <fetchIndex name="byOrderId">
-            <fetchIndexElement property="orderId" type="Binary" order="ascending"/>
-        </fetchIndex>
-        <uniquenessConstraints>
-            <uniquenessConstraint>
-                <constraint value="orderId"/>
-            </uniquenessConstraint>
-        </uniquenessConstraints>
-    </entity>
     <entity name="Course" representedClassName="Course" syncable="YES">
         <attribute name="id" attributeType="String" minValueString="1" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
@@ -38,11 +25,7 @@
         <attribute name="favoriteRank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lastUsedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="tagData" optional="YES" attributeType="Binary" syncable="YES"/>
-        <relationship name="color" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Color" inverseName="courseStates" inverseEntity="Color" syncable="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Course" inverseName="state" inverseEntity="Course" syncable="YES"/>
-        <fetchIndex name="byFavoriteRank">
-            <fetchIndexElement property="favoriteRank" type="Binary" order="ascending"/>
-        </fetchIndex>
     </entity>
     <entity name="File" representedClassName="File" syncable="YES">
         <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -121,9 +104,8 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Color" positionX="-8181" positionY="-2124" width="128" height="90"/>
         <element name="Course" positionX="-8568" positionY="-2218" width="128" height="195"/>
-        <element name="CourseState" positionX="-8354" positionY="-2142" width="128" height="135"/>
+        <element name="CourseState" positionX="-8354" positionY="-2142" width="128" height="120"/>
         <element name="File" positionX="-8381" positionY="-1971" width="128" height="240"/>
         <element name="FileState" positionX="-8199" positionY="-1836" width="128" height="120"/>
         <element name="Semester" positionX="-8748" positionY="-2188" width="128" height="165"/>
