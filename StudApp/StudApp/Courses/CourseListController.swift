@@ -68,4 +68,45 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         updateCourseViewModels()
         tableView.endUpdates()
     }
+
+    func data<Section: DataSourceSection>(changedIn row: Section.Row, at index: Int, change: DataChange<Section.Row, Int>,
+                                          in section: Section) {
+        if let semester = row as? Semester, let change = change as? DataChange<Semester, Int> {
+            data(changedInSemester: semester, at: index, change: change)
+        } else if let course = row as? Course, let change = change as? DataChange<Course, Int> {
+            data(changedInCourse: course, at: index, change: change, in: section)
+        }
+    }
+
+    func data(changedInSemester _: Semester, at index: Int, change: DataChange<Semester, Int>) {
+        switch change {
+        case .insert:
+            tableView.insertSections(IndexSet(integer: index), with: .automatic)
+        case .delete:
+            tableView.deleteSections(IndexSet(integer: index), with: .automatic)
+        case .update:
+            tableView.reloadSections(IndexSet(integer: index), with: .automatic)
+        case let .move(newIndex):
+            tableView.moveSection(index, toSection: newIndex)
+        }
+    }
+
+    func data<Section: DataSourceSection>(changedInCourse _: Course, at index: Int, change: DataChange<Course, Int>,
+                                          in section: Section) {
+        guard let courseListViewModel = section as? CourseListViewModel,
+            let sectionIndex = courseViewModels.index(of: courseListViewModel) else { return }
+        let indexPath = IndexPath(row: index, section: sectionIndex)
+
+        switch change {
+        case .insert:
+            tableView.insertRows(at: [indexPath], with: .automatic)
+        case .delete:
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        case .update:
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+        case let .move(newIndex):
+            let newIndexPath = IndexPath(row: newIndex, section: sectionIndex)
+            tableView.moveRow(at: indexPath, to: newIndexPath)
+        }
+    }
 }
