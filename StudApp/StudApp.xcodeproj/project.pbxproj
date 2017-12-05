@@ -11,6 +11,10 @@
 		241C67EA1FCDFAC700F4A099 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E91FCDFAC700F4A099 /* App.swift */; };
 		241FD9651FA8FFAD00FBD750 /* UINavigationBar+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9641FA8FFAD00FBD750 /* UINavigationBar+Utils.swift */; };
 		242B035B1FD71AB700863B08 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B035A1FD71AB700863B08 /* CourseCell.swift */; };
+		242B035D1FD7213700863B08 /* SemesterHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B035C1FD7213700863B08 /* SemesterHeader.swift */; };
+		242B035F1FD7220800863B08 /* UIFont+Mutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B035E1FD7220800863B08 /* UIFont+Mutations.swift */; };
+		242B03611FD7220F00863B08 /* UIColor+Adjustments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B03601FD7220F00863B08 /* UIColor+Adjustments.swift */; };
+		242B03631FD7221900863B08 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B03621FD7221900863B08 /* UIColor+Utils.swift */; };
 		243817921FC76BDC004052D0 /* DocumentActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243817911FC76BDC004052D0 /* DocumentActionViewController.swift */; };
 		243817991FC76BDC004052D0 /* StudFileProviderUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2438179E1FC76D1E004052D0 /* Routes+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438179D1FC76D1E004052D0 /* Routes+Utils.swift */; };
@@ -305,6 +309,10 @@
 		241FD96A1FA9090F00FBD750 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
 		241FD96E1FA9191500FBD750 /* BorderlessNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderlessNavigationController.swift; sourceTree = "<group>"; };
 		242B035A1FD71AB700863B08 /* CourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
+		242B035C1FD7213700863B08 /* SemesterHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterHeader.swift; sourceTree = "<group>"; };
+		242B035E1FD7220800863B08 /* UIFont+Mutations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Mutations.swift"; sourceTree = "<group>"; };
+		242B03601FD7220F00863B08 /* UIColor+Adjustments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Adjustments.swift"; sourceTree = "<group>"; };
+		242B03621FD7221900863B08 /* UIColor+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
 		243014251FA8FE2800680253 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StudFileProviderUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		243817911FC76BDC004052D0 /* DocumentActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentActionViewController.swift; sourceTree = "<group>"; };
@@ -578,6 +586,9 @@
 		241FD9631FA8FF8A00FBD750 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				242B03601FD7220F00863B08 /* UIColor+Adjustments.swift */,
+				242B03621FD7221900863B08 /* UIColor+Utils.swift */,
+				242B035E1FD7220800863B08 /* UIFont+Mutations.swift */,
 				241FD9641FA8FFAD00FBD750 /* UINavigationBar+Utils.swift */,
 			);
 			path = UIKit;
@@ -1031,6 +1042,7 @@
 				24ABFC491FD714EF00CD1646 /* CourseListController.swift */,
 				242B035A1FD71AB700863B08 /* CourseCell.swift */,
 				24ABFC471FD714AF00CD1646 /* Courses.storyboard */,
+				242B035C1FD7213700863B08 /* SemesterHeader.swift */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
@@ -1696,6 +1708,7 @@
 				242B035B1FD71AB700863B08 /* CourseCell.swift in Sources */,
 				24FD786E1FBF81EA0072F860 /* DownloadListController.swift in Sources */,
 				24CFB5D11FB24E2500F30DEA /* MainController.swift in Sources */,
+				242B035D1FD7213700863B08 /* SemesterHeader.swift in Sources */,
 				24D7293D1FC736120097777F /* FileCell.swift in Sources */,
 				24ABFC4A1FD714EF00CD1646 /* CourseListController.swift in Sources */,
 				2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */,
@@ -1724,6 +1737,7 @@
 			files = (
 				24D360E91FAA5D7600BBBAED /* CourseResponse.swift in Sources */,
 				24D360D01FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift in Sources */,
+				242B03611FD7220F00863B08 /* UIColor+Adjustments.swift in Sources */,
 				2477936E1FC8939700090F4D /* CachingFileEnumerator.swift in Sources */,
 				2469EF711FCF5DFD008A122B /* ThanksNoteCell.swift in Sources */,
 				24D360DD1FAA5D3800BBBAED /* Set+Array.swift in Sources */,
@@ -1777,6 +1791,7 @@
 				24D360CE1FAA5AFE00BBBAED /* CDConvertible.swift in Sources */,
 				243817A81FC88A4C004052D0 /* BorderlessNavigationController.swift in Sources */,
 				2448D48F1FA8DEE800DAB97E /* FileManager+Utils.swift in Sources */,
+				242B035F1FD7220800863B08 /* UIFont+Mutations.swift in Sources */,
 				24D360CC1FAA5AFE00BBBAED /* CDIdentifiable.swift in Sources */,
 				2448D45E1FA8DBA300DAB97E /* Result.swift in Sources */,
 				24D360CD1FAA5AFE00BBBAED /* CDUpdatable.swift in Sources */,
@@ -1819,6 +1834,7 @@
 				24712BF51FB8B80B0067E416 /* Date+Formatting.swift in Sources */,
 				24712BDF1FB886940067E416 /* FileProviderItemConvertible.swift in Sources */,
 				24D361181FAA5F6200BBBAED /* CoreDataService.swift in Sources */,
+				242B03631FD7221900863B08 /* UIColor+Utils.swift in Sources */,
 				246F3AC61FAC879C00A477FF /* DataSource.swift in Sources */,
 				24D360CF1FAA5AFE00BBBAED /* CDCreatable.swift in Sources */,
 				24D361161FAA5F0E00BBBAED /* Api+CollectionResponse.swift in Sources */,

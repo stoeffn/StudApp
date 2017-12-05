@@ -22,3 +22,5 @@ public extension ByTypeNameIdentifiable {
 // MARK: - Conformances
 
 extension UITableViewCell: ByTypeNameIdentifiable {}
+
+extension UITableViewHeaderFooterView: ByTypeNameIdentifiable {}
