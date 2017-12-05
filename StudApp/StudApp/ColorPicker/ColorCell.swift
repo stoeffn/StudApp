@@ -28,7 +28,7 @@ final class ColorCell: UICollectionViewCell {
 
     var color: UIColor? {
         didSet {
-            //glowView.color = color
+            glowView.color = color
         }
     }
 
