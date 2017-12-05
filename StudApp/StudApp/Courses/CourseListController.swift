@@ -13,6 +13,8 @@ final class CourseListController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationItem.title = "Courses".localized
     }
 
     // MARK: - Table View Data Source

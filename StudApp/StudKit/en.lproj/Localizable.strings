@@ -33,6 +33,10 @@
 
 "Signed in as %@" = "Signed in as %@";
 
+// MARK: Courses
+
+"Courses" = "Courses";
+
 // MARK: Semesters
 
 "Semesters" = "Semesters";
