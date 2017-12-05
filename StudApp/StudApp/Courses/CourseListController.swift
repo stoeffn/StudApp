@@ -69,9 +69,10 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     override func tableView(_: UITableView,
                             leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let course = courseListViewModels[indexPath.section][rowAt: indexPath.row]
+        guard let cell = tableView.cellForRow(at: indexPath) as? CourseCell else { return nil }
+
         return UISwipeActionsConfiguration(actions: [
-            colorAction(forCourse: course, at: indexPath),
+            colorAction(for: cell, at: indexPath),
         ])
     }
 
@@ -124,11 +125,12 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     // MARK: - User Interface
 
-    private func colorAction(forCourse course: Course, at indexPath: IndexPath) -> UIContextualAction {
+    private func colorAction(for cell: CourseCell, at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Color") { _, _, success in
-            self.colorActionActivated(withCourse: course, at: indexPath)
+            self.colorActionActivated(withCourse: cell.course, at: indexPath)
             success(true)
         }
+        action.backgroundColor = cell.colorView.backgroundColor
         action.image = #imageLiteral(resourceName: "ColorActionGlyph")
         return action
     }
