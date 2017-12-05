@@ -135,7 +135,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Semesters" id="vkk-T4-jfp">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="FIO-1D-Wpn">
+                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="done" id="FIO-1D-Wpn">
                             <connections>
                                 <action selector="doneButtonTapped:" destination="fag-gD-kkk" id="zYs-Ua-sSd"/>
                             </connections>

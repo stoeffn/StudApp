@@ -112,9 +112,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Courses" id="JrY-VB-OIX">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="twc-Ub-WdZ">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="twc-Ub-WdZ">
                             <connections>
                                 <segue destination="rJs-oV-VCc" kind="presentation" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="O49-dN-c8y"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="UserBarButtonGlyph" id="SaT-DE-cnK">
+                            <connections>
+                                <action selector="userButtonTapped:" destination="24U-Co-VfF" id="xU1-8h-IIQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -152,6 +157,7 @@
     </scenes>
     <resources>
         <image name="CoursesTabBarGlyph" width="23" height="23"/>
+        <image name="UserBarButtonGlyph" width="25" height="25"/>
         <image name="UserSubtitleGlyph" width="16" height="16"/>
     </resources>
 </document>

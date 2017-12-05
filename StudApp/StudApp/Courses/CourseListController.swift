@@ -111,4 +111,11 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
             tableView.moveRow(at: indexPath, to: newIndexPath)
         }
     }
+
+    // MARK: - User Interaction
+
+    @IBAction
+    func userButtonTapped(_ sender: Any) {
+        (tabBarController as? MainController)?.userButtonTapped(sender)
+    }
 }
