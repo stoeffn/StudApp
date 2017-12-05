@@ -124,7 +124,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="fEh-y0-dhM" kind="presentation" identifier="colorPicker" id="S1u-q0-dDD"/>
+                        <segue destination="fEh-y0-dhM" kind="presentation" identifier="colorPicker" modalPresentationStyle="overFullScreen" id="S1u-q0-dDD"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Grr-wn-BU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
