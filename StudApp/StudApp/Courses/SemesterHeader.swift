@@ -23,13 +23,15 @@ final class SemesterHeader: UITableViewHeaderFooterView {
         initUserInterface()
     }
 
-    var semester: Semester? {
+    var semester: Semester! {
         didSet {
-            guard let semester = semester else { return }
+            isCollapsed = semester.state.isCollapsed
             titleLabel.text = semester.title
             titleLabel.textColor = semester.isCurrent ? UI.Colors.studBlue : .black
         }
     }
+
+    weak var courseListViewModel: CourseListViewModel?
 
     // MARK: - User Interface
 
@@ -114,7 +116,8 @@ final class SemesterHeader: UITableViewHeaderFooterView {
 
     @objc
     private func didTap(_: UITapGestureRecognizer) {
-        guard let state = semester?.state else { return }
-        state.isCollapsed = !state.isCollapsed
+        semester.state.isCollapsed = !semester.state.isCollapsed
+        courseListViewModel?.isCollapsed = semester.state.isCollapsed
+        isCollapsed = semester.state.isCollapsed
     }
 }

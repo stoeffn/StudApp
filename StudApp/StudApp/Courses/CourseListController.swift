@@ -10,7 +10,7 @@ import StudKit
 
 final class CourseListController: UITableViewController, DataSourceSectionDelegate {
     private var viewModel: SemesterListViewModel!
-    private var courseViewModels: [CourseListViewModel]!
+    private var courseListViewModels: [CourseListViewModel]!
 
     // MARK: - Life Cycle
 
@@ -22,7 +22,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         viewModel.fetch()
         viewModel.update()
 
-        updateCourseViewModels()
+        courseListViewModels = viewModel.map(courseListViewModel)
 
         navigationItem.title = "Courses".localized
 
@@ -38,7 +38,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return courseViewModels[section].numberOfRows
+        return courseListViewModels[section].numberOfRows
     }
 
     override func tableView(_: UITableView, heightForHeaderInSection _: Int) -> CGFloat {
@@ -48,26 +48,24 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SemesterHeader.typeIdentifier)
         (header as? SemesterHeader)?.semester = viewModel[rowAt: section]
+        (header as? SemesterHeader)?.courseListViewModel = courseListViewModels[section]
         return header
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CourseCell.typeIdentifier, for: indexPath)
-        (cell as? CourseCell)?.course = courseViewModels[indexPath.section][rowAt: indexPath.row]
+        (cell as? CourseCell)?.course = courseListViewModels[indexPath.section][rowAt: indexPath.row]
         return cell
     }
 
-    private func updateCourseViewModels() {
-        courseViewModels = viewModel.map { CourseListViewModel(semester: $0) }
-        courseViewModels.forEach { $0.fetch() }
+    private func courseListViewModel(for semester: Semester) -> CourseListViewModel {
+        let viewModel = CourseListViewModel(semester: semester)
+        viewModel.delegate = self
+        viewModel.fetch()
+        return viewModel
     }
 
     // MARK: - Responding to Changed Data
-
-    func dataDidChange<Section: DataSourceSection>(in _: Section) {
-        updateCourseViewModels()
-        tableView.endUpdates()
-    }
 
     func data<Section: DataSourceSection>(changedIn row: Section.Row, at index: Int, change: DataChange<Section.Row, Int>,
                                           in section: Section) {
@@ -78,15 +76,19 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         }
     }
 
-    func data(changedInSemester _: Semester, at index: Int, change: DataChange<Semester, Int>) {
+    func data(changedInSemester semester: Semester, at index: Int, change: DataChange<Semester, Int>) {
         switch change {
         case .insert:
+            courseListViewModels.insert(courseListViewModel(for: semester), at: index)
             tableView.insertSections(IndexSet(integer: index), with: .automatic)
         case .delete:
-            tableView.deleteSections(IndexSet(integer: index), with: .automatic)
+            courseListViewModels.remove(at: index)
+            tableView.deleteSections(IndexSet(integer: index), with: .fade)
         case .update:
-            tableView.reloadSections(IndexSet(integer: index), with: .automatic)
+            break
         case let .move(newIndex):
+            let courseListViewModel = courseListViewModels.remove(at: index)
+            courseListViewModels.insert(courseListViewModel, at: newIndex)
             tableView.moveSection(index, toSection: newIndex)
         }
     }
@@ -94,7 +96,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     func data<Section: DataSourceSection>(changedInCourse _: Course, at index: Int, change: DataChange<Course, Int>,
                                           in section: Section) {
         guard let courseListViewModel = section as? CourseListViewModel,
-            let sectionIndex = courseViewModels.index(of: courseListViewModel) else { return }
+            let sectionIndex = courseListViewModels.index(of: courseListViewModel) else { return }
         let indexPath = IndexPath(row: index, section: sectionIndex)
 
         switch change {

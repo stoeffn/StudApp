@@ -33,6 +33,9 @@ public final class CourseListViewModel: NSObject {
 
     /// Fetches initial data.
     public func fetch() {
+        controller.fetchRequest.predicate = isCollapsed
+            ? NSPredicate(value: false)
+            : semester.coursesFetchRequest.predicate
         try? controller.performFetch()
     }
 
@@ -50,7 +53,6 @@ public final class CourseListViewModel: NSObject {
     public var isCollapsed: Bool {
         didSet {
             guard isCollapsed != oldValue else { return }
-            semester.state.isCollapsed = isCollapsed
 
             delegate?.dataWillChange(in: self)
             for (index, row) in enumerated() {
