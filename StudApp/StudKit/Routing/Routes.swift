@@ -15,6 +15,8 @@ public enum Routes {
 
     case preview(File)
 
+    case colorPicker(CDColorable, ((CDColorable) -> Void)?)
+
     private var destinationStoryboard: UIStoryboard? {
         switch self {
         case .signIn:
@@ -37,6 +39,7 @@ public enum Routes {
         case .signIn: return "signIn"
         case .signIntoOrganization: return "signIntoOrganization"
         case .preview: return "preview"
+        case .colorPicker: return "colorPicker"
         }
     }
 

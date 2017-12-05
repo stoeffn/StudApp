@@ -24,3 +24,5 @@ public extension ByTypeNameIdentifiable {
 extension UITableViewCell: ByTypeNameIdentifiable {}
 
 extension UITableViewHeaderFooterView: ByTypeNameIdentifiable {}
+
+extension UICollectionViewCell: ByTypeNameIdentifiable {}

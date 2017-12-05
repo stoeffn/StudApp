@@ -15,6 +15,12 @@
 		242B035F1FD7220800863B08 /* UIFont+Mutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B035E1FD7220800863B08 /* UIFont+Mutations.swift */; };
 		242B03611FD7220F00863B08 /* UIColor+Adjustments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B03601FD7220F00863B08 /* UIColor+Adjustments.swift */; };
 		242B03631FD7221900863B08 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B03621FD7221900863B08 /* UIColor+Utils.swift */; };
+		242B036A1FD745E800863B08 /* ColorPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B03661FD745E600863B08 /* ColorPickerController.swift */; };
+		242B036E1FD7462E00863B08 /* ColorPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 242B036D1FD7462E00863B08 /* ColorPicker.storyboard */; };
+		242B03701FD7464C00863B08 /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B036F1FD7464C00863B08 /* ColorCell.swift */; };
+		242B03721FD7467D00863B08 /* GlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B03711FD7467D00863B08 /* GlowView.swift */; };
+		242B03741FD7470200863B08 /* ColorPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B03731FD7470200863B08 /* ColorPickerViewModel.swift */; };
+		242B03761FD7471D00863B08 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B03751FD7471D00863B08 /* UIViewController+Utils.swift */; };
 		243817921FC76BDC004052D0 /* DocumentActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243817911FC76BDC004052D0 /* DocumentActionViewController.swift */; };
 		243817991FC76BDC004052D0 /* StudFileProviderUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2438179E1FC76D1E004052D0 /* Routes+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438179D1FC76D1E004052D0 /* Routes+Utils.swift */; };
@@ -313,6 +319,12 @@
 		242B035E1FD7220800863B08 /* UIFont+Mutations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Mutations.swift"; sourceTree = "<group>"; };
 		242B03601FD7220F00863B08 /* UIColor+Adjustments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Adjustments.swift"; sourceTree = "<group>"; };
 		242B03621FD7221900863B08 /* UIColor+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
+		242B03661FD745E600863B08 /* ColorPickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerController.swift; sourceTree = "<group>"; };
+		242B036D1FD7462E00863B08 /* ColorPicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ColorPicker.storyboard; sourceTree = "<group>"; };
+		242B036F1FD7464C00863B08 /* ColorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
+		242B03711FD7467D00863B08 /* GlowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlowView.swift; sourceTree = "<group>"; };
+		242B03731FD7470200863B08 /* ColorPickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewModel.swift; sourceTree = "<group>"; };
+		242B03751FD7471D00863B08 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
 		243014251FA8FE2800680253 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StudFileProviderUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		243817911FC76BDC004052D0 /* DocumentActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentActionViewController.swift; sourceTree = "<group>"; };
@@ -590,8 +602,20 @@
 				242B03621FD7221900863B08 /* UIColor+Utils.swift */,
 				242B035E1FD7220800863B08 /* UIFont+Mutations.swift */,
 				241FD9641FA8FFAD00FBD750 /* UINavigationBar+Utils.swift */,
+				242B03751FD7471D00863B08 /* UIViewController+Utils.swift */,
 			);
 			path = UIKit;
+			sourceTree = "<group>";
+		};
+		242B03641FD745E600863B08 /* ColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				242B03711FD7467D00863B08 /* GlowView.swift */,
+				242B036F1FD7464C00863B08 /* ColorCell.swift */,
+				242B03661FD745E600863B08 /* ColorPickerController.swift */,
+				242B036D1FD7462E00863B08 /* ColorPicker.storyboard */,
+			);
+			path = ColorPicker;
 			sourceTree = "<group>";
 		};
 		243817901FC76BDC004052D0 /* StudFileProviderUI */ = {
@@ -659,6 +683,7 @@
 			isa = PBXGroup;
 			children = (
 				247793601FC890D100090F4D /* Main */,
+				242B03641FD745E600863B08 /* ColorPicker */,
 				24ABFC461FD7141800CD1646 /* Courses */,
 				24E626731FA920490040F9F7 /* Downloads */,
 				241412E91FD30C8100DEE0AF /* Preview */,
@@ -1203,6 +1228,7 @@
 			children = (
 				246F3ABD1FAC877400A477FF /* DataSource */,
 				241C67E41FCDD78100F4A099 /* AboutViewModel.swift */,
+				242B03731FD7470200863B08 /* ColorPickerViewModel.swift */,
 				246F3ACC1FAC881100A477FF /* CourseListViewModel.swift */,
 				24FD786F1FBF826D0072F860 /* DownloadListViewModel.swift */,
 				24FE8A151FB8527D00A4A3C6 /* FileListViewModel.swift */,
@@ -1619,6 +1645,7 @@
 				24E60B641FC8C73F000EDD2A /* LaunchScreen.storyboard in Resources */,
 				2448D4141FA8DA2400DAB97E /* Assets.xcassets in Resources */,
 				24E60B661FC8C749000EDD2A /* Downloads.storyboard in Resources */,
+				242B036E1FD7462E00863B08 /* ColorPicker.storyboard in Resources */,
 				24ABFC481FD714AF00CD1646 /* Courses.storyboard in Resources */,
 				24E60B621FC8C725000EDD2A /* Main.storyboard in Resources */,
 				24E60B681FC8C754000EDD2A /* Semesters.storyboard in Resources */,
@@ -1704,10 +1731,13 @@
 			files = (
 				2467A8BC1FD307CE00F25720 /* PreviewController.swift in Sources */,
 				24712BE61FB8B0E20067E416 /* SemesterListController.swift in Sources */,
+				242B03721FD7467D00863B08 /* GlowView.swift in Sources */,
 				24712BE81FB8B4420067E416 /* SemesterCell.swift in Sources */,
 				242B035B1FD71AB700863B08 /* CourseCell.swift in Sources */,
 				24FD786E1FBF81EA0072F860 /* DownloadListController.swift in Sources */,
+				242B03701FD7464C00863B08 /* ColorCell.swift in Sources */,
 				24CFB5D11FB24E2500F30DEA /* MainController.swift in Sources */,
+				242B036A1FD745E800863B08 /* ColorPickerController.swift in Sources */,
 				242B035D1FD7213700863B08 /* SemesterHeader.swift in Sources */,
 				24D7293D1FC736120097777F /* FileCell.swift in Sources */,
 				24ABFC4A1FD714EF00CD1646 /* CourseListController.swift in Sources */,
@@ -1811,6 +1841,7 @@
 				24D360E81FAA5D7600BBBAED /* Course.swift in Sources */,
 				24D360DC1FAA5D3800BBBAED /* Array+Set.swift in Sources */,
 				2477936F1FC8939700090F4D /* ChangeCache.swift in Sources */,
+				242B03741FD7470200863B08 /* ColorPickerViewModel.swift in Sources */,
 				2448D4AB1FA8E07E00DAB97E /* Api.swift in Sources */,
 				246F3ACD1FAC881100A477FF /* CourseListViewModel.swift in Sources */,
 				24D361091FAA5E2300BBBAED /* Semester.swift in Sources */,
@@ -1828,6 +1859,7 @@
 				2448D4A51FA8E07E00DAB97E /* Result+Api.swift in Sources */,
 				24D360D31FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift in Sources */,
 				24D360DF1FAA5D3800BBBAED /* String+HTML.swift in Sources */,
+				242B03761FD7471D00863B08 /* UIViewController+Utils.swift in Sources */,
 				246F3ACA1FAC879C00A477FF /* DataSourceDelegate.swift in Sources */,
 				24D361071FAA5E2300BBBAED /* Semester+StudIp.swift in Sources */,
 				243817AA1FC88B11004052D0 /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */,
