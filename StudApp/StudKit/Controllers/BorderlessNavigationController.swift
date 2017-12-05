@@ -39,6 +39,13 @@ public final class BorderlessNavigationController: UINavigationController {
         }, completion: nil)
     }
 
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        // Oddly, you have to update the navigation bar background frame manually here when utilizing readable layout guide.
+        updateNavigationBarBackgroundFrame()
+    }
+
     // MARK: - User Interface
 
     /// Any additional navigation bar height, e.g. due to a search bar.
