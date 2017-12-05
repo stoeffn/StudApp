@@ -114,6 +114,7 @@ final class SemesterHeader: UITableViewHeaderFooterView {
 
     @objc
     private func didTap(_: UITapGestureRecognizer) {
-        // TODO:
+        guard let state = semester?.state else { return }
+        state.isCollapsed = !state.isCollapsed
     }
 }

@@ -21,6 +21,7 @@ public final class CourseListViewModel: NSObject {
     /// Creates a new course list view model managing the given semester's courses.
     public init(semester: Semester) {
         self.semester = semester
+        isCollapsed = semester.state.isCollapsed
         super.init()
 
         controller.delegate = self
@@ -43,6 +44,23 @@ public final class CourseListViewModel: NSObject {
                 try? self.coreDataService.viewContext.saveWhenChanged()
                 handler?(result.replacingValue(()))
             }
+        }
+    }
+
+    public var isCollapsed: Bool {
+        didSet {
+            guard isCollapsed != oldValue else { return }
+            semester.state.isCollapsed = isCollapsed
+
+            delegate?.dataWillChange(in: self)
+            for (index, row) in enumerated() {
+                delegate?.data(changedIn: row, at: index, change: .delete, in: self)
+            }
+            fetch()
+            for (index, row) in enumerated() {
+                delegate?.data(changedIn: row, at: index, change: .insert, in: self)
+            }
+            delegate?.dataDidChange(in: self)
         }
     }
 }
