@@ -24,7 +24,8 @@ final class MainController: UITabBarController {
         super.viewWillAppear(animated)
 
         tabBar.items?[0].title = "Downloads".localized
-        tabBar.items?[1].title = "Semesters".localized
+        tabBar.items?[1].title = "Courses".localized
+        tabBar.items?[2].title = "Semesters".localized
     }
 
     override func viewDidAppear(_ animated: Bool) {

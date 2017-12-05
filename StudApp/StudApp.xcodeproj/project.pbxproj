@@ -91,6 +91,8 @@
 		249DD6FB1FC8B896006DA46E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 249DD6FD1FC8B896006DA46E /* Localizable.strings */; };
 		24A8EDDC1FCCBA58007C1CCF /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		24A8EDDE1FCCBC93007C1CCF /* ContextService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A8EDDD1FCCBC93007C1CCF /* ContextService.swift */; };
+		24ABFC481FD714AF00CD1646 /* Courses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24ABFC471FD714AF00CD1646 /* Courses.storyboard */; };
+		24ABFC4A1FD714EF00CD1646 /* CourseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABFC491FD714EF00CD1646 /* CourseListController.swift */; };
 		24CFB5D11FB24E2500F30DEA /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D01FB24E2500F30DEA /* MainController.swift */; };
 		24CFB5D61FB24F4D00F30DEA /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D31FB24F4C00F30DEA /* Routable.swift */; };
 		24CFB5D71FB24F4D00F30DEA /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D41FB24F4C00F30DEA /* Routes.swift */; };
@@ -374,6 +376,8 @@
 		249DD6FC1FC8B896006DA46E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		249DD6FE1FC8B89B006DA46E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		24A8EDDD1FCCBC93007C1CCF /* ContextService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextService.swift; sourceTree = "<group>"; };
+		24ABFC471FD714AF00CD1646 /* Courses.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Courses.storyboard; sourceTree = "<group>"; };
+		24ABFC491FD714EF00CD1646 /* CourseListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListController.swift; sourceTree = "<group>"; };
 		24CFB5D01FB24E2500F30DEA /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		24CFB5D31FB24F4C00F30DEA /* Routable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
 		24CFB5D41FB24F4C00F30DEA /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
@@ -642,6 +646,7 @@
 			isa = PBXGroup;
 			children = (
 				247793601FC890D100090F4D /* Main */,
+				24ABFC461FD7141800CD1646 /* Courses */,
 				24E626731FA920490040F9F7 /* Downloads */,
 				241412E91FD30C8100DEE0AF /* Preview */,
 				247793581FC8901E00090F4D /* Semesters */,
@@ -1016,6 +1021,15 @@
 				2448D44E1FA8DB1E00DAB97E /* ResultTests.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		24ABFC461FD7141800CD1646 /* Courses */ = {
+			isa = PBXGroup;
+			children = (
+				24ABFC491FD714EF00CD1646 /* CourseListController.swift */,
+				24ABFC471FD714AF00CD1646 /* Courses.storyboard */,
+			);
+			path = Courses;
 			sourceTree = "<group>";
 		};
 		24CFB5D21FB24F2700F30DEA /* Routing */ = {
@@ -1590,6 +1604,7 @@
 				24E60B641FC8C73F000EDD2A /* LaunchScreen.storyboard in Resources */,
 				2448D4141FA8DA2400DAB97E /* Assets.xcassets in Resources */,
 				24E60B661FC8C749000EDD2A /* Downloads.storyboard in Resources */,
+				24ABFC481FD714AF00CD1646 /* Courses.storyboard in Resources */,
 				24E60B621FC8C725000EDD2A /* Main.storyboard in Resources */,
 				24E60B681FC8C754000EDD2A /* Semesters.storyboard in Resources */,
 			);
@@ -1678,6 +1693,7 @@
 				24FD786E1FBF81EA0072F860 /* DownloadListController.swift in Sources */,
 				24CFB5D11FB24E2500F30DEA /* MainController.swift in Sources */,
 				24D7293D1FC736120097777F /* FileCell.swift in Sources */,
+				24ABFC4A1FD714EF00CD1646 /* CourseListController.swift in Sources */,
 				2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
