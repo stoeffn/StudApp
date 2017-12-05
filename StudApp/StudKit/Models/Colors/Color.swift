@@ -31,7 +31,12 @@ extension Color {
     }
 
     @discardableResult
-    public static func createNewColorsWhenNeeded(in _: NSManagedObjectContext) -> [Color] {
-        fatalError("Not implemented.")
+    public static func createNewColorsWhenNeeded(in context: NSManagedObjectContext) -> [Color] {
+        guard let currentNumberOfColors = try? context.count(for: fetchRequest()),
+            currentNumberOfColors < UI.Colors.pickerColors.count else { return [] }
+
+        return UI.Colors.pickerColors.enumerated()
+            .dropFirst(currentNumberOfColors)
+            .map { Color(createIn: context, orderId: $0.offset, uiColor: $0.element) }
     }
 }
