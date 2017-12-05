@@ -22,7 +22,7 @@ public enum UI {
 
         public static let pickerColors = [
             0: UI.Colors.studBlue,
-            1: UI.Colors.studRed
+            1: UI.Colors.studRed,
         ]
     }
 }

@@ -13,7 +13,7 @@ final class CourseCell: UITableViewCell {
 
     var course: Course! {
         didSet {
-            //colorView.backgroundColor = course.state.color?.uiColor ?? UI.Colors.studBlue
+            colorView.backgroundColor = UI.Colors.pickerColors[course.state.colorId] ?? UI.Colors.studBlue
             titleLabel.text = course.title
             lecturersLabel.text = course.lecturers
                 .map { $0.nameComponents.formatted() }
@@ -33,11 +33,11 @@ final class CourseCell: UITableViewCell {
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
-        //colorView.backgroundColor = course.state.color?.uiColor ?? UI.Colors.studBlue
+        colorView.backgroundColor = UI.Colors.pickerColors[course.state.colorId] ?? UI.Colors.studBlue
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        //colorView.backgroundColor = course.state.color?.uiColor ?? UI.Colors.studBlue
+        colorView.backgroundColor = UI.Colors.pickerColors[course.state.colorId] ?? UI.Colors.studBlue
     }
 }

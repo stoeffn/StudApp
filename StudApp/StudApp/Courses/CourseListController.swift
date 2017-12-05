@@ -67,11 +67,11 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     // MARK: - Table View Delegate
 
-    override func tableView(_ tableView: UITableView,
+    override func tableView(_: UITableView,
                             leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let course = courseListViewModels[indexPath.section][rowAt: indexPath.row]
         return UISwipeActionsConfiguration(actions: [
-            colorAction(forCourse: course, at: indexPath)
+            colorAction(forCourse: course, at: indexPath),
         ])
     }
 
@@ -125,7 +125,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     // MARK: - User Interface
 
     private func colorAction(forCourse course: Course, at indexPath: IndexPath) -> UIContextualAction {
-        let action = UIContextualAction(style: .normal, title: "Color") { (_, _, success) in
+        let action = UIContextualAction(style: .normal, title: "Color") { _, _, success in
             self.colorActionActivated(withCourse: course, at: indexPath)
             success(true)
         }
@@ -141,9 +141,9 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     }
 
     private func colorActionActivated(withCourse course: Course, at indexPath: IndexPath) {
-        //let course = courseListViewModels[indexPath.section][rowAt: indexPath.row]
-        let route = Routes.colorPicker { (id, color) in
-            //course.state.color = color
+        let course = courseListViewModels[indexPath.section][rowAt: indexPath.row]
+        let route = Routes.colorPicker { id, _ in
+            course.state.colorId = id
         }
         performSegue(withRoute: route)
     }
