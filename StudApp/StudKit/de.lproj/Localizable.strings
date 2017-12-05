@@ -64,3 +64,7 @@
 "Sign In" = "Anmelden";
 "Please enter your Stud.IP credentials" = "Bitte gib Deine Stud.IP Anmeldedaten ein";
 "Please check your username and password" = "Bitte überprüfe Deine Anmeldedaten";
+
+// MARK: Color Picker
+
+"Choose Color" = "Farbe wählen";
