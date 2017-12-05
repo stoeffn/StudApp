@@ -18,9 +18,11 @@ public final class SemesterState: NSManagedObject, CDCreatable {
 
     @NSManaged public var isHidden: Bool
 
-    @NSManaged public var semester: Semester
+    @NSManaged public var isCollapsed: Bool
 
     @NSManaged public var areCoursesFetchedFromRemote: Bool
+
+    @NSManaged public var semester: Semester
 
     var observations = [NSKeyValueObservation]()
 

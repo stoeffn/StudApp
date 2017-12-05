@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="17B1003" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17B1003" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Color" representedClassName="Color" syncable="YES">
         <attribute name="orderId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="uiColor" attributeType="Transformable" customClassName="UIColor" syncable="YES"/>
@@ -95,6 +95,7 @@
     <entity name="SemesterState" representedClassName="SemesterState" syncable="YES">
         <attribute name="areCoursesFetchedFromRemote" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="favoriteRank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isCollapsed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isHidden" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lastUsedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="tagData" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -126,7 +127,7 @@
         <element name="File" positionX="-8381" positionY="-1971" width="128" height="240"/>
         <element name="FileState" positionX="-8199" positionY="-1836" width="128" height="120"/>
         <element name="Semester" positionX="-8748" positionY="-2188" width="128" height="165"/>
-        <element name="SemesterState" positionX="-8910" positionY="-2121" width="128" height="135"/>
+        <element name="SemesterState" positionX="-8910" positionY="-2121" width="128" height="150"/>
         <element name="User" positionX="-8748" positionY="-1924" width="128" height="180"/>
     </elements>
 </model>
