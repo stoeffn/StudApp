@@ -17,6 +17,8 @@ public final class CourseState: NSManagedObject, CDCreatable {
 
     @NSManaged public var tagData: Data?
 
+    @NSManaged public var colorId: Int
+
     @NSManaged public var areFilesFetchedFromRemote: Bool
 
     @NSManaged public var course: Course

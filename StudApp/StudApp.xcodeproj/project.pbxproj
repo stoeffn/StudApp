@@ -100,6 +100,7 @@
 		2477936F1FC8939700090F4D /* ChangeCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E81FB7725100A4A3C6 /* ChangeCache.swift */; };
 		249DD6DE1FC8A3D4006DA46E /* User+StudIp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249DD6DD1FC8A3D4006DA46E /* User+StudIp.swift */; };
 		249DD6FB1FC8B896006DA46E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 249DD6FD1FC8B896006DA46E /* Localizable.strings */; };
+		24A6C14B1FD75A0A004BBEA5 /* StudKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24A6C1491FD75A0A004BBEA5 /* StudKit.xcdatamodeld */; };
 		24A8EDDC1FCCBA58007C1CCF /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		24A8EDDE1FCCBC93007C1CCF /* ContextService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A8EDDD1FCCBC93007C1CCF /* ContextService.swift */; };
 		24ABFC481FD714AF00CD1646 /* Courses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24ABFC471FD714AF00CD1646 /* Courses.storyboard */; };
@@ -394,6 +395,7 @@
 		249DD6DD1FC8A3D4006DA46E /* User+StudIp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+StudIp.swift"; sourceTree = "<group>"; };
 		249DD6FC1FC8B896006DA46E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		249DD6FE1FC8B89B006DA46E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		24A6C14A1FD75A0A004BBEA5 /* StudKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StudKit.xcdatamodel; sourceTree = "<group>"; };
 		24A8EDDD1FCCBC93007C1CCF /* ContextService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextService.swift; sourceTree = "<group>"; };
 		24ABFC471FD714AF00CD1646 /* Courses.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Courses.storyboard; sourceTree = "<group>"; };
 		24ABFC491FD714EF00CD1646 /* CourseListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListController.swift; sourceTree = "<group>"; };
@@ -1079,6 +1081,7 @@
 				24D361171FAA5F6200BBBAED /* CoreDataService.swift */,
 				24FD78591FBF3F030072F860 /* HistoryService.swift */,
 				2448D4941FA8DF6000DAB97E /* StorageService.swift */,
+				24A6C1491FD75A0A004BBEA5 /* StudKit.xcdatamodeld */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1804,6 +1807,7 @@
 				2448D48F1FA8DEE800DAB97E /* FileManager+Utils.swift in Sources */,
 				242B035F1FD7220800863B08 /* UIFont+Mutations.swift in Sources */,
 				24D360CC1FAA5AFE00BBBAED /* CDIdentifiable.swift in Sources */,
+				24A6C14B1FD75A0A004BBEA5 /* StudKit.xcdatamodeld in Sources */,
 				2448D45E1FA8DBA300DAB97E /* Result.swift in Sources */,
 				24D360CD1FAA5AFE00BBBAED /* CDUpdatable.swift in Sources */,
 				24FD785A1FBF3F030072F860 /* HistoryService.swift in Sources */,
@@ -2437,6 +2441,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		24A6C1491FD75A0A004BBEA5 /* StudKit.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				24A6C14A1FD75A0A004BBEA5 /* StudKit.xcdatamodel */,
+			);
+			currentVersion = 24A6C14A1FD75A0A004BBEA5 /* StudKit.xcdatamodel */;
+			path = StudKit.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2448D4011FA8DA2400DAB97E /* Project object */;
 }
