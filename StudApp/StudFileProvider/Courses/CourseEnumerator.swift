@@ -28,7 +28,7 @@ final class CourseEnumerator: CachingFileEnumerator {
             fatalError("Cannot find semester with identifier '\(itemIdentifier)'.")
         }
 
-        viewModel = CourseListViewModel(fetchRequest: unwrappedSemester.coursesFetchRequest)
+        viewModel = CourseListViewModel(semester: unwrappedSemester)
 
         super.init()
 

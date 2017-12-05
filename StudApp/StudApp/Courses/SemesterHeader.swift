@@ -28,7 +28,6 @@ final class SemesterHeader: UITableViewHeaderFooterView {
             guard let semester = semester else { return }
             titleLabel.text = semester.title
             titleLabel.textColor = semester.isCurrent ? UI.Colors.studBlue : .black
-            isCollapsed = semester.state.isCollapsed
         }
     }
 
@@ -115,7 +114,6 @@ final class SemesterHeader: UITableViewHeaderFooterView {
 
     @objc
     private func didTap(_: UITapGestureRecognizer) {
-        guard let state = semester?.state else { return }
-        state.isCollapsed = !state.isCollapsed
+        // TODO:
     }
 }

@@ -14,21 +14,21 @@ import CoreData
 /// `delegate`. This class also supports updating data from the server.
 public final class CourseListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
-    private let fetchRequest: NSFetchRequest<CourseState>
+    private let semester: Semester
 
     public weak var delegate: DataSourceSectionDelegate?
 
     /// Creates a new course list view model managing the given semester's courses.
-    public init(fetchRequest: NSFetchRequest<CourseState>) {
-        self.fetchRequest = fetchRequest
+    public init(semester: Semester) {
+        self.semester = semester
         super.init()
 
         controller.delegate = self
     }
 
     private(set) lazy var controller: NSFetchedResultsController<CourseState>
-        = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: coreDataService.viewContext,
-                                     sectionNameKeyPath: nil, cacheName: nil)
+        = NSFetchedResultsController(fetchRequest: semester.coursesFetchRequest,
+                                     managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
 
     /// Fetches initial data.
     public func fetch() {

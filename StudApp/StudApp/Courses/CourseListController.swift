@@ -58,7 +58,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     }
 
     private func updateCourseViewModels() {
-        courseViewModels = viewModel.map { CourseListViewModel(fetchRequest: $0.coursesFetchRequest) }
+        courseViewModels = viewModel.map { CourseListViewModel(semester: $0) }
         courseViewModels.forEach { $0.fetch() }
     }
 
