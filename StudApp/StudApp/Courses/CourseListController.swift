@@ -141,8 +141,8 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     }
 
     private func colorActionActivated(withCourse course: Course, at indexPath: IndexPath) {
-        let course = courseListViewModels[indexPath.section][rowAt: indexPath.row]
-        let route = Routes.colorPicker { color in
+        //let course = courseListViewModels[indexPath.section][rowAt: indexPath.row]
+        let route = Routes.colorPicker { (id, color) in
             //course.state.color = color
         }
         performSegue(withRoute: route)

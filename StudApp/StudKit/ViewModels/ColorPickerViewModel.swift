@@ -7,12 +7,27 @@
 //
 
 public final class ColorPickerViewModel {
-    public var handler: (String) -> Void
+    private let colors = Array(UI.Colors.pickerColors.enumerated().map { $1 })
 
-    public init(handler: @escaping (String) -> Void) {
+    public var handler: (Int, UIColor) -> Void
+
+    public init(handler: @escaping (Int, UIColor) -> Void) {
         self.handler = handler
     }
 
     public func didSelectColor(atIndex index: Int) {
+        handler(colors[index].key, colors[index].value)
+    }
+}
+
+extension ColorPickerViewModel: DataSourceSection {
+    public typealias Row = (Int, UIColor)
+
+    public var numberOfRows: Int {
+        return colors.count
+    }
+
+    public subscript(rowAt index: Int) -> (Int, UIColor) {
+        return colors[index]
     }
 }

@@ -21,8 +21,8 @@ public enum UI {
         public static let studRed = UIColor(red: 0.827, green: 0.0667, blue: 0.125, alpha: 1)
 
         public static let pickerColors = [
-            UI.Colors.studBlue,
-            UI.Colors.studRed
+            0: UI.Colors.studBlue,
+            1: UI.Colors.studRed
         ]
     }
 }
