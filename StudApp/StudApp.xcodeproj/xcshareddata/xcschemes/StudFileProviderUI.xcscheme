@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0910"
+   LastUpgradeVersion = "0920"
    wasCreatedForAppExtension = "YES"
    version = "2.0">
    <BuildAction
@@ -15,7 +15,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "24D9EF8F1FB75819006776B7"
+               BlueprintIdentifier = "2438178E1FC76BDC004052D0"
                BuildableName = "StudFileProviderUI.appex"
                BlueprintName = "StudFileProviderUI"
                ReferencedContainer = "container:StudApp.xcodeproj">
@@ -48,7 +48,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "24D9EF8F1FB75819006776B7"
+            BlueprintIdentifier = "2438178E1FC76BDC004052D0"
             BuildableName = "StudFileProviderUI.appex"
             BlueprintName = "StudFileProviderUI"
             ReferencedContainer = "container:StudApp.xcodeproj">
