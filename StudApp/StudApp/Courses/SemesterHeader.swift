@@ -38,7 +38,7 @@ final class SemesterHeader: UITableViewHeaderFooterView {
 
     var isHightlighted: Bool = false {
         didSet {
-            backgroundView?.backgroundColor = isHightlighted ? highlightedBackgroundColor : .clear
+            backgroundView?.backgroundColor = isHightlighted ? highlightedBackgroundColor : .white
         }
     }
 
@@ -49,7 +49,7 @@ final class SemesterHeader: UITableViewHeaderFooterView {
         }
     }
 
-    lazy var titleLabel: UILabel = {
+    lazy private(set) var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(forTextStyle: .title2).bold
@@ -57,21 +57,25 @@ final class SemesterHeader: UITableViewHeaderFooterView {
         return label
     }()
 
-    lazy var glyphImageView: UIImageView = {
-        let view = UIImageView(image: #imageLiteral(resourceName: "Expand"))
+    lazy private(set) var glyphImageView: UIImageView = {
+        let view = UIImageView(image: #imageLiteral(resourceName: "Image"))
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = .lightGray
         return view
     }()
 
     private func initUserInterface() {
+        backgroundView?.backgroundColor = .white
+
         addSubview(titleLabel)
         titleLabel.leadingAnchor.constraint(equalTo: readableContentGuide.leadingAnchor).isActive = true
         titleLabel.centerYAnchor.constraint(equalTo: readableContentGuide.centerYAnchor).isActive = true
 
         addSubview(glyphImageView)
         glyphImageView.trailingAnchor.constraint(equalTo: readableContentGuide.trailingAnchor).isActive = true
-        glyphImageView.centerYAnchor.constraint(equalTo: readableContentGuide.centerYAnchor).isActive = true
+        glyphImageView.topAnchor.constraint(equalTo: readableContentGuide.topAnchor).isActive = true
+        glyphImageView.bottomAnchor.constraint(equalTo: readableContentGuide.bottomAnchor).isActive = true
+        glyphImageView.widthAnchor.constraint(equalTo: glyphImageView.heightAnchor).isActive = true
 
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTap(_:))))
     }
