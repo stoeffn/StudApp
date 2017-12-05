@@ -15,7 +15,7 @@
         <scene sceneID="Wii-PA-oeP">
             <objects>
                 <tableViewController id="24U-Co-VfF" customClass="CourseListController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="m4z-J1-SuS">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="m4z-J1-SuS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -129,7 +129,7 @@
         <!--Courses-->
         <scene sceneID="X1J-Up-CLu">
             <objects>
-                <navigationController id="EOg-85-93W" sceneMemberID="viewController">
+                <navigationController id="EOg-85-93W" customClass="BorderlessNavigationController" customModule="StudKit" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Courses" id="dLT-Hn-vzN"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lRn-2f-8Mu">
