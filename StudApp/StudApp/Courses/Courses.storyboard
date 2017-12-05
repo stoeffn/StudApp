@@ -130,7 +130,7 @@
         <scene sceneID="X1J-Up-CLu">
             <objects>
                 <navigationController id="EOg-85-93W" customClass="BorderlessNavigationController" customModule="StudKit" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Courses" id="dLT-Hn-vzN"/>
+                    <tabBarItem key="tabBarItem" title="Courses" image="CoursesTabBarGlyph" landscapeImage="CoursesTabBarGlyph" largeContentSizeImage="CoursesTabBarGlyph" id="dLT-Hn-vzN"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lRn-2f-8Mu">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -146,6 +146,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="CoursesTabBarGlyph" width="23" height="23"/>
         <image name="UserSubtitleGlyph" width="16" height="16"/>
     </resources>
 </document>
