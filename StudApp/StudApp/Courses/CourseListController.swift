@@ -125,10 +125,12 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     // MARK: - User Interface
 
     private func colorAction(forCourse course: Course, at indexPath: IndexPath) -> UIContextualAction {
-        return UIContextualAction(style: .normal, title: "Color") { (_, _, success) in
+        let action = UIContextualAction(style: .normal, title: "Color") { (_, _, success) in
             self.colorActionActivated(withCourse: course, at: indexPath)
             success(true)
         }
+        action.image = #imageLiteral(resourceName: "ColorActionGlyph")
+        return action
     }
 
     // MARK: - User Interaction
