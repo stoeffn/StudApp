@@ -11,19 +11,16 @@ public final class ColorPickerViewModel {
 
     public let colors: [Color]
 
-    public var colorable: CDColorable
+    public var handler: (Color) -> Void
 
-    public var completionHandler: ((CDColorable) -> Void)?
-
-    public init(colorable: CDColorable) {
-        self.colorable = colorable
+    public init(handler: @escaping (Color) -> Void) {
+        self.handler = handler
 
         let orderIdSortDescriptor = NSSortDescriptor(keyPath: \Color.orderId, ascending: true)
         colors = (try? Color.fetch(in: coreData.viewContext, sortDescriptors: [orderIdSortDescriptor])) ?? []
     }
 
     public func didSelectColor(atIndex index: Int) {
-        colorable.color = colors[index]
-        completionHandler?(colorable)
+        handler(colors[index])
     }
 }

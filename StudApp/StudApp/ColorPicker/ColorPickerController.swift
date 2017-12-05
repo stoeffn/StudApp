@@ -21,10 +21,9 @@ final class ColorPickerController: UICollectionViewController, Routable {
     }
 
     func prepareDependencies(for route: Routes) {
-        guard case let .colorPicker(colorable, completionHandler) = route else { fatalError() }
+        guard case let .colorPicker(handler) = route else { fatalError() }
 
-        viewModel = ColorPickerViewModel(colorable: colorable)
-        viewModel.completionHandler = completionHandler
+        viewModel = ColorPickerViewModel(handler: handler)
     }
 
     // MARK: - Collection View Data Source
