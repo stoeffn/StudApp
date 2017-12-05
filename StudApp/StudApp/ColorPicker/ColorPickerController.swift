@@ -17,7 +17,7 @@ final class ColorPickerController: UICollectionViewController, Routable {
         super.viewDidLoad()
 
         navigationController?.navigationBar.removeBackground()
-        addBackgroundView(withEffect: UIBlurEffect(style: .extraLight))
+        addBackgroundView(withEffect: UIBlurEffect(style: .light))
     }
 
     func prepareDependencies(for route: Routes) {
