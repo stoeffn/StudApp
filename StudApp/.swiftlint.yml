@@ -5,6 +5,7 @@ disabled_rules:
   - force_try
   - force_cast
   - trailing_comma
+  - large_tuple
 
 excluded:
   - StudKit/Vendors
