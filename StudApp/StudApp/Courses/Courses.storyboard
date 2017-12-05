@@ -15,13 +15,13 @@
         <scene sceneID="Wii-PA-oeP">
             <objects>
                 <tableViewController id="24U-Co-VfF" customClass="CourseListController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="m4z-J1-SuS">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="m4z-J1-SuS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CourseCell" rowHeight="72" id="1sW-Aa-9YJ" customClass="CourseCell" customModule="StudApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="72"/>
+                                <rect key="frame" x="0.0" y="55.333333333333336" width="375" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1sW-Aa-9YJ" id="sfO-5F-cwN">
                                     <rect key="frame" x="0.0" y="0.0" width="341" height="71.666666666666671"/>
@@ -80,6 +80,10 @@
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ml3-Ny-cBL" firstAttribute="top" secondItem="uGE-W8-6g2" secondAttribute="top" id="7J2-4F-EPR"/>
+                                                <constraint firstAttribute="bottom" secondItem="ml3-Ny-cBL" secondAttribute="bottom" id="ukq-3d-0Oa"/>
+                                            </constraints>
                                         </stackView>
                                     </subviews>
                                     <constraints>
