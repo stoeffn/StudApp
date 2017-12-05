@@ -65,8 +65,6 @@ final class SemesterHeader: UITableViewHeaderFooterView {
     }()
 
     private func initUserInterface() {
-        backgroundView?.backgroundColor = .white
-
         addSubview(titleLabel)
         titleLabel.leadingAnchor.constraint(equalTo: readableContentGuide.leadingAnchor).isActive = true
         titleLabel.centerYAnchor.constraint(equalTo: readableContentGuide.centerYAnchor).isActive = true

@@ -24,6 +24,10 @@ public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDUpd
         self.init(context: context)
         state = SemesterState(createIn: context)
     }
+
+    static let defaultSortDescriptors = [
+        NSSortDescriptor(keyPath: \SemesterState.semester.beginsAt, ascending: false)
+    ]
 }
 
 // MARK: - Utilities
@@ -52,14 +56,14 @@ extension Semester {
     }
 
     public static var sortedFetchRequest: NSFetchRequest<SemesterState> {
-        let sortDescriptor = NSSortDescriptor(keyPath: \SemesterState.semester.beginsAt, ascending: false)
-        return SemesterState.fetchRequest(predicate: NSPredicate(value: true), sortDescriptors: [sortDescriptor],
+        return SemesterState.fetchRequest(predicate: NSPredicate(value: true), sortDescriptors: defaultSortDescriptors,
                                           relationshipKeyPathsForPrefetching: ["semester"])
     }
 
     public static var nonHiddenFetchRequest: NSFetchRequest<SemesterState> {
         let predicate = NSPredicate(format: "isHidden == NO")
-        return SemesterState.fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["semester"])
+        return SemesterState.fetchRequest(predicate: predicate, sortDescriptors: defaultSortDescriptors,
+                                          relationshipKeyPathsForPrefetching: ["semester"])
     }
 
     public static func fetchNonHidden(in context: NSManagedObjectContext) throws -> [Semester] {
