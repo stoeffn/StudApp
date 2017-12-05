@@ -123,6 +123,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="fEh-y0-dhM" kind="presentation" identifier="colorPicker" id="S1u-q0-dDD"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Grr-wn-BU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -134,7 +137,15 @@
                 <viewControllerPlaceholder storyboardName="Semesters" id="rJs-oV-VCc" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5uP-hd-nkt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="814" y="131"/>
+            <point key="canvasLocation" x="993" y="112"/>
+        </scene>
+        <!--ColorPicker-->
+        <scene sceneID="jpa-Ds-ngQ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ColorPicker" id="fEh-y0-dhM" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lni-bB-GYT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="998" y="151"/>
         </scene>
         <!--Courses-->
         <scene sceneID="X1J-Up-CLu">

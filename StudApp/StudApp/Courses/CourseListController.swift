@@ -65,6 +65,16 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         return viewModel
     }
 
+    // MARK: - Table View Delegate
+
+    override func tableView(_ tableView: UITableView,
+                            leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let course = courseListViewModels[indexPath.section][rowAt: indexPath.row]
+        return UISwipeActionsConfiguration(actions: [
+            colorAction(forCourse: course, at: indexPath)
+        ])
+    }
+
     // MARK: - Responding to Changed Data
 
     func data<Section: DataSourceSection>(changedIn row: Section.Row, at index: Int, change: DataChange<Section.Row, Int>,
@@ -112,10 +122,33 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         }
     }
 
+    // MARK: - User Interface
+
+    private func colorAction(forCourse course: Course, at indexPath: IndexPath) -> UIContextualAction {
+        return UIContextualAction(style: .normal, title: "Color") { (_, _, success) in
+            self.colorActionActivated(withCourse: course, at: indexPath)
+            success(true)
+        }
+    }
+
     // MARK: - User Interaction
 
     @IBAction
     func userButtonTapped(_ sender: Any) {
         (tabBarController as? MainController)?.userButtonTapped(sender)
+    }
+
+    private func colorActionActivated(withCourse course: Course, at indexPath: IndexPath) {
+        let route = Routes.colorPicker(course.state) { _ in
+            // TODO
+        }
+        performSegue(withRoute: route)
+    }
+
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        prepareForRoute(using: segue, sender: sender)
     }
 }

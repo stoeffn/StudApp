@@ -1,6 +1,6 @@
 //
 //  ColorPickerController.swift
-//  StudSync
+//  StudApp
 //
 //  Created by Steffen Ryll on 11.09.17.
 //  Copyright © 2017 Steffen Ryll. All rights reserved.

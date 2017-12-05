@@ -31,7 +31,7 @@
         <!--Choose Color-->
         <scene sceneID="LMo-8w-jo2">
             <objects>
-                <collectionViewController id="Sfj-SO-oeP" customClass="ColorPickerController" sceneMemberID="viewController">
+                <collectionViewController id="Sfj-SO-oeP" customClass="ColorPickerController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" dataMode="prototypes" id="bqd-X8-m82">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -50,7 +50,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CLB-eg-6SP" customClass="GlowView" customModule="StudSync" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CLB-eg-6SP" customClass="GlowView">
                                             <rect key="frame" x="8" y="8" width="48" height="48"/>
                                             <color key="backgroundColor" red="0.1647058824" green="0.29803921570000003" blue="0.49803921569999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
