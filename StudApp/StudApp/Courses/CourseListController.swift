@@ -10,6 +10,7 @@ import StudKit
 
 final class CourseListController: UITableViewController, DataSourceSectionDelegate {
     private var viewModel: SemesterListViewModel!
+    private var courseViewModels: [CourseListViewModel]!
 
     // MARK: - Life Cycle
 
@@ -21,6 +22,8 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         viewModel.fetch()
         viewModel.update()
 
+        updateCourseViewModels()
+
         navigationItem.title = "Courses".localized
 
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -30,15 +33,15 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     // MARK: - Table View Data Source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in _: UITableView) -> Int {
         return viewModel.numberOfRows
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return courseViewModels[section].numberOfRows
     }
 
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_: UITableView, heightForHeaderInSection _: Int) -> CGFloat {
         return SemesterHeader.height
     }
 
@@ -46,5 +49,23 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SemesterHeader.typeIdentifier)
         (header as? SemesterHeader)?.semester = viewModel[rowAt: section]
         return header
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CourseCell.typeIdentifier, for: indexPath)
+        (cell as? CourseCell)?.course = courseViewModels[indexPath.section][rowAt: indexPath.row]
+        return cell
+    }
+
+    private func updateCourseViewModels() {
+        courseViewModels = viewModel.map { CourseListViewModel(semester: $0) }
+        courseViewModels.forEach { $0.fetch() }
+    }
+
+    // MARK: - Responding to Changed Data
+
+    func dataDidChange<Section: DataSourceSection>(in _: Section) {
+        updateCourseViewModels()
+        tableView.endUpdates()
     }
 }

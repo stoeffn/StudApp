@@ -26,7 +26,7 @@ public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDUpd
     }
 
     static let defaultSortDescriptors = [
-        NSSortDescriptor(keyPath: \SemesterState.semester.beginsAt, ascending: false)
+        NSSortDescriptor(keyPath: \SemesterState.semester.beginsAt, ascending: false),
     ]
 }
 

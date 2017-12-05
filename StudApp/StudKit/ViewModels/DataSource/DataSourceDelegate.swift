@@ -11,11 +11,11 @@ public protocol DataSourceDelegate: class {
 
     func dataDidChange<Source: DataSource>(in source: Source)
 
-    func data<Source: DataSource>(changedIn row: Source.Row, at index: IndexPath,
-                                  change: DataChange<Source.Row, IndexPath>, in source: Source)
+    func data<Source: DataSource>(changedIn row: Source.Row, at index: IndexPath, change: DataChange<Source.Row, IndexPath>,
+                                  in source: Source)
 
-    func data<Source: DataSource>(changedIn section: Source.Section, at index: Int,
-                                  change: DataChange<Source.Section, Int>, in source: Source)
+    func data<Source: DataSource>(changedIn section: Source.Section, at index: Int, change: DataChange<Source.Section, Int>,
+                                  in source: Source)
 }
 
 // MARK: - Default Implementation
@@ -43,8 +43,8 @@ public extension DataSourceDelegate where Self: UITableViewController {
         tableView.endUpdates()
     }
 
-    func data<Source: DataSource>(changedIn _: Source.Row, at indexPath: IndexPath,
-                                  change: DataChange<Source.Row, IndexPath>, in _: Source) {
+    func data<Source: DataSource>(changedIn _: Source.Row, at indexPath: IndexPath, change: DataChange<Source.Row, IndexPath>,
+                                  in _: Source) {
         switch change {
         case .insert:
             tableView.insertRows(at: [indexPath], with: .automatic)
@@ -57,8 +57,8 @@ public extension DataSourceDelegate where Self: UITableViewController {
         }
     }
 
-    func data<Source: DataSource>(changedIn _: Source.Section, at index: Int,
-                                  change: DataChange<Source.Section, Int>, in _: Source) {
+    func data<Source: DataSource>(changedIn _: Source.Section, at index: Int, change: DataChange<Source.Section, Int>,
+                                  in _: Source) {
         let indexSet = IndexSet(integer: index)
         switch change {
         case .insert:

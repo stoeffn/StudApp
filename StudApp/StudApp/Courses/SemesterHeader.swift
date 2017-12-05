@@ -49,7 +49,7 @@ final class SemesterHeader: UITableViewHeaderFooterView {
         }
     }
 
-    lazy private(set) var titleLabel: UILabel = {
+    private(set) lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(forTextStyle: .title2).bold
@@ -57,7 +57,7 @@ final class SemesterHeader: UITableViewHeaderFooterView {
         return label
     }()
 
-    lazy private(set) var glyphImageView: UIImageView = {
+    private(set) lazy var glyphImageView: UIImageView = {
         let view = UIImageView(image: #imageLiteral(resourceName: "Image"))
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = .lightGray
@@ -113,7 +113,7 @@ final class SemesterHeader: UITableViewHeaderFooterView {
     }
 
     @objc
-    private func didTap(_ sender: UITapGestureRecognizer) {
-        // TODO
+    private func didTap(_: UITapGestureRecognizer) {
+        // TODO:
     }
 }

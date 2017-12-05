@@ -11,8 +11,8 @@ public protocol DataSourceSectionDelegate: class {
 
     func dataDidChange<Section: DataSourceSection>(in section: Section)
 
-    func data<Section: DataSourceSection>(changedIn row: Section.Row, at index: Int,
-                                          change: DataChange<Section.Row, Int>, in section: Section)
+    func data<Section: DataSourceSection>(changedIn row: Section.Row, at index: Int, change: DataChange<Section.Row, Int>,
+                                          in section: Section)
 }
 
 // MARK: - Default Implementation
@@ -37,8 +37,8 @@ public extension DataSourceSectionDelegate where Self: UITableViewController {
         tableView.endUpdates()
     }
 
-    func data<Section: DataSourceSection>(changedIn _: Section.Row, at index: Int,
-                                          change: DataChange<Section.Row, Int>, in _: Section) {
+    func data<Section: DataSourceSection>(changedIn _: Section.Row, at index: Int, change: DataChange<Section.Row, Int>,
+                                          in _: Section) {
         let indexPath = IndexPath(row: index, section: 0)
         switch change {
         case .insert:

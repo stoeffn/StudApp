@@ -1041,8 +1041,8 @@
 			children = (
 				24ABFC491FD714EF00CD1646 /* CourseListController.swift */,
 				242B035A1FD71AB700863B08 /* CourseCell.swift */,
-				24ABFC471FD714AF00CD1646 /* Courses.storyboard */,
 				242B035C1FD7213700863B08 /* SemesterHeader.swift */,
+				24ABFC471FD714AF00CD1646 /* Courses.storyboard */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
