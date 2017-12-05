@@ -29,4 +29,14 @@ final class CourseCell: UITableViewCell {
     @IBOutlet weak var lecturersGlyph: UIImageView!
 
     @IBOutlet weak var lecturersLabel: UILabel!
+
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+        colorView.backgroundColor = UI.Colors.studBlue
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        colorView.backgroundColor = UI.Colors.studBlue
+    }
 }
