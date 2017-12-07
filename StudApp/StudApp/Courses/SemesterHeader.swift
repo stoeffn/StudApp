@@ -46,7 +46,6 @@ final class SemesterHeader: UITableViewHeaderFooterView {
 
     var isCollapsed: Bool = false {
         didSet {
-            guard isCollapsed != oldValue else { return }
             setGlyphRotation(isCollapsed: isCollapsed, animated: true)
         }
     }
