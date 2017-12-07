@@ -12,6 +12,8 @@ public enum UI {
     public static let defaultCornerRadius: CGFloat = 10
 
     public enum Colors {
+        public static let greyGlyph = UIColor(red: 0.78, green: 0.78, blue: 0.8, alpha: 1)
+
         public static let greyText = UIColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
 
         public static let tint = UIColor(red: 0.165, green: 0.427, blue: 0.62, alpha: 1)

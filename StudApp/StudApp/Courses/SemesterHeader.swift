@@ -60,9 +60,10 @@ final class SemesterHeader: UITableViewHeaderFooterView {
     }()
 
     private(set) lazy var glyphImageView: UIImageView = {
-        let view = UIImageView(image: #imageLiteral(resourceName: "ExpandGlyph"))
+        let view = UIImageView(image: #imageLiteral(resourceName: "DisclosureGlyph"))
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.tintColor = .lightGray
+        view.adjustsImageSizeForAccessibilityContentSizeCategory = true
+        view.tintColor = UI.Colors.greyGlyph
         return view
     }()
 
@@ -73,9 +74,7 @@ final class SemesterHeader: UITableViewHeaderFooterView {
 
         addSubview(glyphImageView)
         glyphImageView.trailingAnchor.constraint(equalTo: readableContentGuide.trailingAnchor).isActive = true
-        glyphImageView.topAnchor.constraint(equalTo: readableContentGuide.topAnchor).isActive = true
-        glyphImageView.bottomAnchor.constraint(equalTo: readableContentGuide.bottomAnchor).isActive = true
-        glyphImageView.widthAnchor.constraint(equalTo: glyphImageView.heightAnchor).isActive = true
+        glyphImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
 
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTap(_:))))
     }
@@ -83,7 +82,7 @@ final class SemesterHeader: UITableViewHeaderFooterView {
     private func setGlyphRotation(isCollapsed: Bool, animated: Bool = true) {
         let duration = animated ? 0.3 : 0
         let animator = UIViewPropertyAnimator(duration: duration, curve: .easeInOut) {
-            self.glyphImageView.transform = CGAffineTransform(rotationAngle: isCollapsed ? .pi : -.pi / 2)
+            self.glyphImageView.transform = CGAffineTransform(rotationAngle: isCollapsed ? 0 : .pi / 2)
         }
         animator.startAnimation()
     }
