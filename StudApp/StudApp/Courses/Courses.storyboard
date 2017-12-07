@@ -56,8 +56,8 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="1" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TRm-RN-bdp">
-                                                            <rect key="frame" x="0.0" y="22.333333333333336" width="84" height="16"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="2" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TRm-RN-bdp">
+                                                            <rect key="frame" x="0.0" y="22.333333333333336" width="85" height="16"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserSubtitleGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="vdC-gl-GMx">
                                                                     <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
@@ -72,7 +72,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Steve Jobs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWd-9x-Zou">
-                                                                    <rect key="frame" x="17" y="0.0" width="67" height="15.666666666666666"/>
+                                                                    <rect key="frame" x="18" y="0.0" width="67" height="15.666666666666666"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                     <color key="textColor" white="0.60494791670000003" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>

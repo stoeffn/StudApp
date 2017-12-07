@@ -94,8 +94,8 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="1" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hoA-MM-Mjf">
-                                                            <rect key="frame" x="0.0" y="22.5" width="166" height="16"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="2" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hoA-MM-Mjf">
+                                                            <rect key="frame" x="0.0" y="22.5" width="170" height="16"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TimeSubtitleGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="V56-Rv-kVH">
                                                                     <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
@@ -110,13 +110,13 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Yesterday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FmD-1v-GgI">
-                                                                    <rect key="frame" x="17" y="0.0" width="60" height="16"/>
+                                                                    <rect key="frame" x="18" y="0.0" width="60" height="16"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                     <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ggZ-gv-b6Q">
-                                                                    <rect key="frame" x="77.5" y="7.5" width="3" height="1"/>
+                                                                    <rect key="frame" x="79" y="7.5" width="3" height="1"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="3" id="MOC-o0-Wey"/>
@@ -125,7 +125,7 @@
                                                                     <variation key="widthClass=compact" hidden="YES"/>
                                                                 </view>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SizeSubtitleGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="N6i-5P-pIM">
-                                                                    <rect key="frame" x="77.5" y="8" width="0.0" height="0.0"/>
+                                                                    <rect key="frame" x="79" y="8" width="0.0" height="0.0"/>
                                                                     <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="N6i-5P-pIM" secondAttribute="height" multiplier="1:1" id="SLf-ZI-g9o"/>
@@ -138,14 +138,14 @@
                                                                     <variation key="widthClass=compact" hidden="YES"/>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="123 KB" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8BZ-7m-neU">
-                                                                    <rect key="frame" x="77.5" y="0.0" width="0.0" height="16"/>
+                                                                    <rect key="frame" x="79" y="0.0" width="0.0" height="16"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                     <color key="textColor" white="0.60419456845238095" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <variation key="widthClass=compact" hidden="YES"/>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m8B-5U-sbm">
-                                                                    <rect key="frame" x="77.5" y="7.5" width="3" height="1"/>
+                                                                    <rect key="frame" x="79" y="7.5" width="3" height="1"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="1" id="I2B-bR-09P"/>
@@ -153,7 +153,7 @@
                                                                     <variation key="widthClass=compact" hidden="YES"/>
                                                                 </view>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownloadCountSubtitleGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="h0Q-Ko-WEb">
-                                                                    <rect key="frame" x="77.5" y="8" width="0.0" height="0.0"/>
+                                                                    <rect key="frame" x="79" y="8" width="0.0" height="0.0"/>
                                                                     <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="h0Q-Ko-WEb" secondAttribute="height" multiplier="1:1" id="xHo-fd-0fg"/>
@@ -166,21 +166,21 @@
                                                                     <variation key="widthClass=compact" hidden="YES"/>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="42x" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pjy-iB-tdf">
-                                                                    <rect key="frame" x="77.5" y="0.0" width="0.0" height="16"/>
+                                                                    <rect key="frame" x="79" y="0.0" width="0.0" height="16"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                     <color key="textColor" white="0.59576822916666661" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <variation key="widthClass=compact" hidden="YES"/>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ivd-KC-NjC">
-                                                                    <rect key="frame" x="78" y="7.5" width="3" height="1"/>
+                                                                    <rect key="frame" x="80" y="7.5" width="3" height="1"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="1" id="0Ea-6V-EBd"/>
                                                                     </constraints>
                                                                 </view>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserSubtitleGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="nHG-cC-ocN">
-                                                                    <rect key="frame" x="82" y="0.0" width="16" height="16"/>
+                                                                    <rect key="frame" x="85" y="0.0" width="16" height="16"/>
                                                                     <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" secondItem="nHG-cC-ocN" secondAttribute="height" multiplier="1:1" id="Xtg-NV-q3X"/>
@@ -192,7 +192,7 @@
                                                                     </userDefinedRuntimeAttributes>
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Steve Jobs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L2C-Ga-Zb6">
-                                                                    <rect key="frame" x="99" y="0.0" width="67" height="16"/>
+                                                                    <rect key="frame" x="103" y="0.0" width="67" height="16"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                     <color key="textColor" white="0.60494791666666659" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
