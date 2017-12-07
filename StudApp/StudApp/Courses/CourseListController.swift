@@ -31,6 +31,14 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         tableView.register(SemesterHeader.self, forHeaderFooterViewReuseIdentifier: SemesterHeader.typeIdentifier)
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: { _ in
+            self.tableView.visibleCells.forEach { $0.setDisclosureIndicatorHidden(for: self.splitViewController) }
+        }, completion: nil)
+    }
+
     // MARK: - Table View Data Source
 
     override func numberOfSections(in _: UITableView) -> Int {
@@ -54,6 +62,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CourseCell.typeIdentifier, for: indexPath)
+        cell.setDisclosureIndicatorHidden(for: splitViewController)
         (cell as? CourseCell)?.course = courseListViewModels[indexPath.section][rowAt: indexPath.row]
         return cell
     }
