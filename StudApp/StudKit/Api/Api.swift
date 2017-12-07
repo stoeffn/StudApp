@@ -178,11 +178,13 @@ class Api<Routes: ApiRoutes> {
     /// - Parameters:
     ///   - route: Route to request data from.
     ///   - parameters: Optional query parameters.
+    ///   - startsResumed: Whether the URL task returned starts in its resumed state.
     ///   - handler: Completion handler a URL pointing to the dowloaded file.
     /// - Returns: URL task in its resumed state or `nil` if building the request failed.
     /// - Remark: There is no `queue` parameter on this method because the file must be read or moved synchronously.
     @discardableResult
-    func download(_ route: Routes, parameters: [URLQueryItem] = [], handler: @escaping ResultHandler<URL>) -> URLSessionTask? {
+    func download(_ route: Routes, parameters: [URLQueryItem] = [], startsResumed: Bool = true,
+                  handler: @escaping ResultHandler<URL>) -> URLSessionTask? {
         guard let url = self.url(for: route, parameters: parameters) else {
             handler(.failure(nil))
             return nil
@@ -194,7 +196,11 @@ class Api<Routes: ApiRoutes> {
             let result = Result(url, error: error, statusCode: response?.statusCode)
             handler(result)
         }
-        task.resume()
+
+        if startsResumed {
+            task.resume()
+        }
+
         return task
     }
 
@@ -204,14 +210,15 @@ class Api<Routes: ApiRoutes> {
     ///   - route: Route to request data from.
     ///   - destination: Destination `URL` to move the file to after the download completes successfully.
     ///   - parameters: Optional query parameters.
+    ///   - startsResumed: Whether the URL task returned starts in its resumed state.
     ///   - queue: Dispatch queue to execute the completion handler on. Defaults to the main queue.
     ///   - handler: Completion handler receiving a result with an URL pointing to the dowloaded file.
     /// - Returns: URL task in its resumed state or `nil` if building the request failed.
     /// - Remark: The downloaded document overrides any existing file at `destination`.
     @discardableResult
-    func download(_ route: Routes, to destination: URL, parameters: [URLQueryItem] = [],
+    func download(_ route: Routes, to destination: URL, parameters: [URLQueryItem] = [], startsResumed: Bool = true,
                   queue: DispatchQueue = .main, handler: @escaping ResultHandler<URL>) -> URLSessionTask? {
-        return download(route, parameters: parameters) { result in
+        return download(route, parameters: parameters, startsResumed: startsResumed) { result in
             guard let url = result.value, result.isSuccess else { return handler(result) }
             do {
                 try FileManager.default.createIntermediateDirectories(forFileAt: destination)

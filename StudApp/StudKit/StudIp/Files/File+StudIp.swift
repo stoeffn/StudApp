@@ -10,9 +10,10 @@ import CoreData
 
 extension File {
     @discardableResult
-    public func download(handler: @escaping ResultHandler<URL>) -> URLSessionTask? {
+    public func download(startsResumed: Bool = true, handler: @escaping ResultHandler<URL>) -> URLSessionTask? {
         let studIpService = ServiceContainer.default[StudIpService.self]
-        return studIpService.api.download(.fileContents(forFileId: id), to: documentUrl(), handler: handler)
+        return studIpService.api.download(.fileContents(forFileId: id), to: documentUrl(), startsResumed: startsResumed,
+                                          handler: handler)
     }
 
     public func removeDownload() throws {

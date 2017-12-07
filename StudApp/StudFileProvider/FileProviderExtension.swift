@@ -123,7 +123,7 @@ final class FileProviderExtension: NSFileProviderExtension {
 
     func startProvidingRemote(file: File, completionHandler: ((_ error: Error?) -> Void)?) throws {
         let downloadDate = Date()
-        file.download { result in
+        let task = file.download(startsResumed: false) { result in
             guard result.isSuccess else {
                 completionHandler?(NSFileProviderError(.serverUnreachable))
                 return
@@ -137,6 +137,15 @@ final class FileProviderExtension: NSFileProviderExtension {
             } catch {
                 completionHandler?(error)
             }
+        }
+
+        guard let downloadTask = task else {
+            completionHandler?(NSFileProviderError(.serverUnreachable))
+            return
+        }
+
+        NSFileProviderManager.default.register(downloadTask, forItemWithIdentifier: file.itemIdentifier) { _ in
+            downloadTask.resume()
         }
     }
 
