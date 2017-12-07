@@ -43,16 +43,20 @@ extension CachingFileEnumerator: NSFileProviderEnumerator {
     public func invalidate() {}
 
     public func enumerateItems(for observer: NSFileProviderEnumerationObserver, startingAt _: NSFileProviderPage) {
-        try? historyService.mergeHistory(into: coreDataService.viewContext)
-        try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
+        coreDataService.viewContext.performAndWait {
+            try? historyService.mergeHistory(into: coreDataService.viewContext)
+            try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
+        }
 
         observer.didEnumerate(items)
         observer.finishEnumerating(upTo: nil)
     }
 
     public func enumerateChanges(for observer: NSFileProviderChangeObserver, from _: NSFileProviderSyncAnchor) {
-        try? historyService.mergeHistory(into: coreDataService.viewContext)
-        try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
+        coreDataService.viewContext.performAndWait {
+            try? historyService.mergeHistory(into: coreDataService.viewContext)
+            try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
+        }
 
         let updatedItems = cache.updatedItems
             .flatMap { try? $0.fileProviderItem(context: self.coreDataService.viewContext) }
