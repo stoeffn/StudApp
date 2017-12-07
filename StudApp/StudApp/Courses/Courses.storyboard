@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EOg-85-93W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UEc-k0-HPc">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -104,9 +104,9 @@
                                     <outlet property="lecturersGlyph" destination="vdC-gl-GMx" id="A9C-pB-GDy"/>
                                     <outlet property="lecturersLabel" destination="aWd-9x-Zou" id="bff-Fc-WB8"/>
                                     <outlet property="titleLabel" destination="4ty-MF-qcd" id="ddB-iw-tDP"/>
-                                    <segue destination="9OB-lI-obx" kind="show" identifier="courseDetails" id="j2V-IA-5n6">
-                                        <segue key="commit" inheritsFrom="parent" id="a5j-Se-1Sq"/>
-                                        <segue key="preview" inheritsFrom="commit" id="ymR-uL-auB"/>
+                                    <segue destination="h1S-Q9-gut" kind="showDetail" id="4Tp-c5-wvM">
+                                        <segue key="commit" inheritsFrom="parent" id="YbJ-gI-lg3"/>
+                                        <segue key="preview" inheritsFrom="commit" id="OwR-FU-EWV"/>
                                     </segue>
                                 </connections>
                             </tableViewCell>
@@ -136,11 +136,25 @@
             </objects>
             <point key="canvasLocation" x="269.60000000000002" y="131.78410794602701"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Courses-->
+        <scene sceneID="the-Ic-6pe">
+            <objects>
+                <splitViewController id="UEc-k0-HPc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Courses" image="CoursesTabBarGlyph" landscapeImage="CoursesTabBarGlyph" largeContentSizeImage="CoursesTabBarGlyph" id="dLT-Hn-vzN"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="EOg-85-93W" kind="relationship" relationship="masterViewController" id="g8D-uS-kW0"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Aj9-As-eDh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1366" y="132"/>
+        </scene>
+        <!--Course-->
         <scene sceneID="qSR-Bp-pvx">
             <objects>
                 <tableViewController id="9OB-lI-obx" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="mgn-yI-9lV">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="mgn-yI-9lV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -148,7 +162,7 @@
                             <tableViewSection id="xhk-p8-TMW">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Pe3-Dc-UMn">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="35" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pe3-Dc-UMn" id="Vcj-NJ-GCr">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
@@ -156,7 +170,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="UBo-OS-wLp">
-                                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="79" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UBo-OS-wLp" id="cJN-sz-R5d">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
@@ -164,7 +178,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Rzf-7F-4nb">
-                                        <rect key="frame" x="0.0" y="88" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="123" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rzf-7F-4nb" id="Ref-ed-kkU">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
@@ -179,10 +193,11 @@
                             <outlet property="delegate" destination="9OB-lI-obx" id="MOn-Pn-eDU"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Course" id="daU-Ql-AHc"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PtY-OR-DU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1111" y="132"/>
+            <point key="canvasLocation" x="1870" y="132"/>
         </scene>
         <!--Semesters-->
         <scene sceneID="UXO-ER-iwK">
@@ -200,12 +215,26 @@
             </objects>
             <point key="canvasLocation" x="364" y="598"/>
         </scene>
-        <!--Courses-->
+        <!--Navigation Controller-->
+        <scene sceneID="CXE-8f-Hlg">
+            <objects>
+                <navigationController id="h1S-Q9-gut" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3Id-sg-4ch">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="9OB-lI-obx" kind="relationship" relationship="rootViewController" id="ZhP-go-KlN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gJf-mc-6Ps" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1078" y="132"/>
+        </scene>
+        <!--Borderless Navigation Controller-->
         <scene sceneID="X1J-Up-CLu">
             <objects>
                 <navigationController id="EOg-85-93W" customClass="BorderlessNavigationController" customModule="StudKit" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Courses" image="CoursesTabBarGlyph" landscapeImage="CoursesTabBarGlyph" largeContentSizeImage="CoursesTabBarGlyph" id="dLT-Hn-vzN"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lRn-2f-8Mu">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -225,6 +254,6 @@
         <image name="UserSubtitleGlyph" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="j2V-IA-5n6"/>
+        <segue reference="4Tp-c5-wvM"/>
     </inferredMetricsTieBreakers>
 </document>
