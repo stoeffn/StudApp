@@ -15,12 +15,14 @@ import CoreData
 public final class CourseListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let semester: Semester
+    private let respectsCollapsedState: Bool
 
     public weak var delegate: DataSourceSectionDelegate?
 
     /// Creates a new course list view model managing the given semester's courses.
-    public init(semester: Semester) {
+    public init(semester: Semester, respectsCollapsedState: Bool = false) {
         self.semester = semester
+        self.respectsCollapsedState = respectsCollapsedState
         isCollapsed = semester.state.isCollapsed
         super.init()
 
@@ -33,7 +35,7 @@ public final class CourseListViewModel: NSObject {
 
     /// Fetches initial data.
     public func fetch() {
-        controller.fetchRequest.predicate = isCollapsed
+        controller.fetchRequest.predicate = isCollapsed && respectsCollapsedState
             ? NSPredicate(value: false)
             : semester.coursesFetchRequest.predicate
         try? controller.performFetch()
