@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -103,6 +104,10 @@
                                     <outlet property="lecturersGlyph" destination="vdC-gl-GMx" id="A9C-pB-GDy"/>
                                     <outlet property="lecturersLabel" destination="aWd-9x-Zou" id="bff-Fc-WB8"/>
                                     <outlet property="titleLabel" destination="4ty-MF-qcd" id="ddB-iw-tDP"/>
+                                    <segue destination="9OB-lI-obx" kind="show" identifier="courseDetails" id="j2V-IA-5n6">
+                                        <segue key="commit" inheritsFrom="parent" id="a5j-Se-1Sq"/>
+                                        <segue key="preview" inheritsFrom="commit" id="ymR-uL-auB"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -131,13 +136,61 @@
             </objects>
             <point key="canvasLocation" x="269.60000000000002" y="131.78410794602701"/>
         </scene>
+        <!--Table View Controller-->
+        <scene sceneID="qSR-Bp-pvx">
+            <objects>
+                <tableViewController id="9OB-lI-obx" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="mgn-yI-9lV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <sections>
+                            <tableViewSection id="xhk-p8-TMW">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Pe3-Dc-UMn">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pe3-Dc-UMn" id="Vcj-NJ-GCr">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="UBo-OS-wLp">
+                                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UBo-OS-wLp" id="cJN-sz-R5d">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Rzf-7F-4nb">
+                                        <rect key="frame" x="0.0" y="88" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rzf-7F-4nb" id="Ref-ed-kkU">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="9OB-lI-obx" id="MEe-tT-q29"/>
+                            <outlet property="delegate" destination="9OB-lI-obx" id="MOn-Pn-eDU"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PtY-OR-DU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1111" y="132"/>
+        </scene>
         <!--Semesters-->
         <scene sceneID="UXO-ER-iwK">
             <objects>
                 <viewControllerPlaceholder storyboardName="Semesters" id="rJs-oV-VCc" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5uP-hd-nkt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="993" y="112"/>
+            <point key="canvasLocation" x="169" y="598"/>
         </scene>
         <!--ColorPicker-->
         <scene sceneID="jpa-Ds-ngQ">
@@ -145,7 +198,7 @@
                 <viewControllerPlaceholder storyboardName="ColorPicker" id="fEh-y0-dhM" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lni-bB-GYT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="998" y="151"/>
+            <point key="canvasLocation" x="364" y="598"/>
         </scene>
         <!--Courses-->
         <scene sceneID="X1J-Up-CLu">
@@ -171,4 +224,7 @@
         <image name="UserBarButtonGlyph" width="25" height="25"/>
         <image name="UserSubtitleGlyph" width="16" height="16"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="j2V-IA-5n6"/>
+    </inferredMetricsTieBreakers>
 </document>
