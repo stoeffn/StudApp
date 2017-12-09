@@ -36,6 +36,8 @@
 // MARK: Courses
 
 "Courses" = "Veranstaltungen";
+"Course Number" = "Veranstaltungsnr.";
+"Location" = "Ort";
 
 // MARK: Semesters
 
