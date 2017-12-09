@@ -32,7 +32,7 @@ extension File {
         let studIpService = ServiceContainer.default[StudIpService.self]
         let task = studIpService.api.download(.fileContents(forFileId: id), to: documentUrl(), startsResumed: false) { result in
             guard result.isSuccess else {
-                return handler(.failure(result.error))
+                return handler(.failure(result.error ?? "Something went wrong downloading this document".localized))
             }
 
             self.state.downloadedAt = downloadDate
