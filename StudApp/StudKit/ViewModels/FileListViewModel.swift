@@ -52,6 +52,10 @@ public final class FileListViewModel: NSObject {
             }
         }
     }
+
+    public var title: String {
+        return parentFolder?.title ?? course.title
+    }
 }
 
 // MARK: - Data Source Section

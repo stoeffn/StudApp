@@ -64,6 +64,8 @@
 		2448D4BB1FA8E0AB00DAB97E /* ApiRoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4B31FA8E0AB00DAB97E /* ApiRoutesTests.swift */; };
 		2448D4BD1FA8E0AB00DAB97E /* TestableApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4B51FA8E0AB00DAB97E /* TestableApiRoutes.swift */; };
 		2450AC6D1FDC1582004F1267 /* CourseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC6C1FDC1582004F1267 /* CourseViewModel.swift */; };
+		2450AC711FDC405E004F1267 /* Documents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2450AC701FDC405E004F1267 /* Documents.storyboard */; };
+		2450AC731FDC406F004F1267 /* FolderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC721FDC406F004F1267 /* FolderController.swift */; };
 		245B6AD61FCB327800302CD0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245B6AD51FCB327800302CD0 /* StoreKit.framework */; };
 		245B6ADA1FCB351F00302CD0 /* OrganizationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6AD91FCB351F00302CD0 /* OrganizationListController.swift */; };
 		245B6ADC1FCB355D00302CD0 /* OrganizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6ADB1FCB355D00302CD0 /* OrganizationCell.swift */; };
@@ -370,6 +372,8 @@
 		2448D4B31FA8E0AB00DAB97E /* ApiRoutesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRoutesTests.swift; sourceTree = "<group>"; };
 		2448D4B51FA8E0AB00DAB97E /* TestableApiRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestableApiRoutes.swift; sourceTree = "<group>"; };
 		2450AC6C1FDC1582004F1267 /* CourseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewModel.swift; sourceTree = "<group>"; };
+		2450AC701FDC405E004F1267 /* Documents.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Documents.storyboard; sourceTree = "<group>"; };
+		2450AC721FDC406F004F1267 /* FolderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderController.swift; sourceTree = "<group>"; };
 		245B6AD51FCB327800302CD0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		245B6AD91FCB351F00302CD0 /* OrganizationListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationListController.swift; sourceTree = "<group>"; };
 		245B6ADB1FCB355D00302CD0 /* OrganizationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationCell.swift; sourceTree = "<group>"; };
@@ -689,6 +693,7 @@
 				247793601FC890D100090F4D /* Main */,
 				242B03641FD745E600863B08 /* ColorPicker */,
 				24ABFC461FD7141800CD1646 /* Courses */,
+				2450AC6F1FDC4036004F1267 /* Documents */,
 				24E626731FA920490040F9F7 /* Downloads */,
 				241412E91FD30C8100DEE0AF /* Preview */,
 				247793581FC8901E00090F4D /* Semesters */,
@@ -870,6 +875,15 @@
 				24D7293C1FC736120097777F /* FileCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		2450AC6F1FDC4036004F1267 /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				2450AC721FDC406F004F1267 /* FolderController.swift */,
+				2450AC701FDC405E004F1267 /* Documents.storyboard */,
+			);
+			path = Documents;
 			sourceTree = "<group>";
 		};
 		245B6ADF1FCB39AD00302CD0 /* Organizations */ = {
@@ -1650,6 +1664,7 @@
 				24E60B661FC8C749000EDD2A /* Downloads.storyboard in Resources */,
 				24A6C14D1FD75C56004BBEA5 /* ColorPicker.storyboard in Resources */,
 				24ABFC481FD714AF00CD1646 /* Courses.storyboard in Resources */,
+				2450AC711FDC405E004F1267 /* Documents.storyboard in Resources */,
 				24E60B621FC8C725000EDD2A /* Main.storyboard in Resources */,
 				24E60B681FC8C754000EDD2A /* Semesters.storyboard in Resources */,
 			);
@@ -1733,6 +1748,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2467A8BC1FD307CE00F25720 /* PreviewController.swift in Sources */,
+				2450AC731FDC406F004F1267 /* FolderController.swift in Sources */,
 				24712BE61FB8B0E20067E416 /* SemesterListController.swift in Sources */,
 				242B03721FD7467D00863B08 /* GlowView.swift in Sources */,
 				24712BE81FB8B4420067E416 /* SemesterCell.swift in Sources */,

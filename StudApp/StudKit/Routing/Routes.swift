@@ -17,6 +17,8 @@ public enum Routes {
 
     case course(Course)
 
+    case folder(File)
+
     case colorPicker((Int, UIColor) -> Void)
 
     private var destinationStoryboard: UIStoryboard? {
@@ -42,6 +44,7 @@ public enum Routes {
         case .signIntoOrganization: return "signIntoOrganization"
         case .preview: return "preview"
         case .course: return "course"
+        case .folder: return "folder"
         case .colorPicker: return "colorPicker"
         }
     }
