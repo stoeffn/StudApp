@@ -114,58 +114,26 @@ final class FileProviderExtension: NSFileProviderExtension {
         }
     }
 
-    func startProvidingDownloaded(file: File, completionHandler: ((_ error: Error?) -> Void)?) throws {
-        let destination = urlForItem(withPersistentIdentifier: file.itemIdentifier)!
-        try? FileManager.default.removeItem(at: destination)
-        try FileManager.default.copyItem(at: file.documentUrl(), to: destination)
-        completionHandler?(nil)
-    }
+    override func startProvidingItem(at url: URL, completionHandler: ((_ error: Error?) -> Void)?) {
+        guard
+            let itemIdentifier = persistentIdentifierForItem(at: url),
+            let optionalFile = try? File.fetch(byId: itemIdentifier.id, in: coreDataService.viewContext),
+            let file = optionalFile,
+            let itemUrl = self.urlForItem(withPersistentIdentifier: file.itemIdentifier)
+        else {
+            completionHandler?(NSFileProviderError(.noSuchItem))
+            return
+        }
 
-    func startProvidingRemote(file: File, completionHandler: ((_ error: Error?) -> Void)?) throws {
-        let downloadDate = Date()
-        let task = file.download(startsResumed: false) { result in
+        file.download { result in
             guard result.isSuccess else {
                 completionHandler?(NSFileProviderError(.serverUnreachable))
                 return
             }
 
-            file.state.downloadedAt = downloadDate
-            try? file.managedObjectContext?.saveWhenChanged()
-
-            do {
-                try self.startProvidingDownloaded(file: file, completionHandler: completionHandler)
-            } catch {
-                completionHandler?(error)
-            }
-        }
-
-        guard let downloadTask = task else {
-            completionHandler?(NSFileProviderError(.serverUnreachable))
-            return
-        }
-
-        NSFileProviderManager.default.register(downloadTask, forItemWithIdentifier: file.itemIdentifier) { _ in
-            downloadTask.resume()
-        }
-    }
-
-    override func startProvidingItem(at url: URL, completionHandler: ((_ error: Error?) -> Void)?) {
-        guard let itemIdentifier = persistentIdentifierForItem(at: url) else {
-            completionHandler?(NSFileProviderError(.noSuchItem))
-            return
-        }
-        do {
-            guard let file = try File.fetch(byId: itemIdentifier.id, in: coreDataService.viewContext) else {
-                completionHandler?(NSFileProviderError(.noSuchItem))
-                return
-            }
-            if file.state.isMostRecentVersionDownloaded {
-                try startProvidingDownloaded(file: file, completionHandler: completionHandler)
-            } else {
-                try startProvidingRemote(file: file, completionHandler: completionHandler)
-            }
-        } catch {
-            completionHandler?(error)
+            try? FileManager.default.removeItem(at: itemUrl)
+            try? FileManager.default.copyItem(at: file.documentUrl(), to: itemUrl)
+            completionHandler?(nil)
         }
     }
 
