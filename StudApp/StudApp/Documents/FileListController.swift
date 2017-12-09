@@ -46,7 +46,10 @@ final class FileListController: UITableViewController, DataSourceSectionDelegate
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? FileCell else { return }
+        guard
+            let cell = tableView.cellForRow(at: indexPath) as? FileCell,
+            !cell.file.isFolder
+        else { return }
 
         preview(cell.file)
         tableView.deselectRow(at: indexPath, animated: true)
