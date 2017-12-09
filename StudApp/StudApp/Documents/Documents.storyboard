@@ -39,7 +39,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="NZQ-WI-0Ho">
-                                                    <rect key="frame" x="58" y="6" width="196" height="38.333333333333336"/>
+                                                    <rect key="frame" x="58" y="6" width="198" height="38.333333333333336"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Assignment 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7BS-La-ljQ">
                                                             <rect key="frame" x="0.0" y="0.0" width="102.33333333333333" height="20.333333333333332"/>
@@ -163,15 +163,15 @@
                                                     </subviews>
                                                 </stackView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Msw-0L-dhw" customClass="StudIpActivityIndicatorView" customModule="StudKit">
-                                                    <rect key="frame" x="262" y="13" width="24" height="24"/>
+                                                    <rect key="frame" x="264" y="15" width="20" height="20"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="24" id="sh5-eF-uaz"/>
+                                                        <constraint firstAttribute="width" constant="20" id="sh5-eF-uaz"/>
                                                         <constraint firstAttribute="width" secondItem="Msw-0L-dhw" secondAttribute="height" multiplier="1:1" id="wbX-4Z-lCH"/>
                                                     </constraints>
                                                 </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownloadsTabBarGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="akA-3z-yfC">
-                                                    <rect key="frame" x="294" y="13.666666666666668" width="23" height="23.000000000000004"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownloadBarButtonGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="akA-3z-yfC">
+                                                    <rect key="frame" x="292" y="12.666666666666668" width="25" height="25.000000000000004"/>
                                                 </imageView>
                                             </subviews>
                                         </stackView>
@@ -222,8 +222,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="DownloadBarButtonGlyph" width="25" height="25"/>
         <image name="DownloadCountSubtitleGlyph" width="16" height="16"/>
-        <image name="DownloadsTabBarGlyph" width="23" height="23"/>
         <image name="SizeSubtitleGlyph" width="16" height="16"/>
         <image name="TimeSubtitleGlyph" width="16" height="16"/>
         <image name="UserSubtitleGlyph" width="16" height="16"/>
