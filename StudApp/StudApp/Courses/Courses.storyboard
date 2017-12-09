@@ -374,7 +374,13 @@
                             <outlet property="delegate" destination="9OB-lI-obx" id="MOn-Pn-eDU"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="daU-Ql-AHc"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="daU-Ql-AHc">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="7SC-dN-xvy">
+                            <connections>
+                                <action selector="actionButtonTapped:" destination="9OB-lI-obx" id="5FG-e5-3yx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="subtitleLabel" destination="2df-sD-bEW" id="zRB-Qh-vaa"/>
                     </connections>

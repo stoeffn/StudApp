@@ -41,10 +41,6 @@ final class CourseController: UITableViewController, Routable {
         filesViewModel = FileListViewModel(course: course)
     }
 
-    // MARK: - User Interface
-
-    @IBOutlet weak var subtitleLabel: UILabel!
-
     // MARK: - Table View Data Source
 
     private enum Sections: Int {
@@ -168,6 +164,8 @@ final class CourseController: UITableViewController, Routable {
 
     // MARK: - User Interface
 
+    @IBOutlet weak var subtitleLabel: UILabel!
+
     private func preview(_ file: File) {
         file.download { result in
             guard result.isSuccess else {
@@ -181,6 +179,17 @@ final class CourseController: UITableViewController, Routable {
             previewController.prepareDependencies(for: .preview(file))
             self.present(previewController, animated: true, completion: nil)
         }
+    }
+
+    // MARK: - User Interaction
+
+    @IBAction
+    func actionButtonTapped(_ sender: Any) {
+        guard let courseUrl = viewModel.course.url else { return }
+
+        let activityController = UIActivityViewController(activityItems: [courseUrl], applicationActivities: nil)
+        activityController.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(activityController, animated: true, completion: nil)
     }
 
     // MARK: - Navigation

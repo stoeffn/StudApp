@@ -46,4 +46,13 @@ extension Course {
             }
         }
     }
+
+    public var url: URL? {
+        let studIpService = ServiceContainer.default[StudIpService.self]
+        guard
+            let baseUrl = studIpService.api.baseUrl?.deletingLastPathComponent(),
+            let url = URL(string: "\(baseUrl)/dispatch.php/course/overview?cid=\(id)")
+        else { return nil }
+        return url
+    }
 }
