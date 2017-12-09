@@ -48,4 +48,9 @@ final class FileCell: UITableViewCell {
     func share(_: Any?) {
         file.documentController { $0.presentOptionsMenu(from: self.frame, in: self, animated: true) }
     }
+
+    @objc
+    func remove(_: Any?) {
+        try? file.removeDownload()
+    }
 }

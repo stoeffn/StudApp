@@ -87,16 +87,16 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     @available(iOS 11.0, *)
     override func tableView(_: UITableView,
                             trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        func removeDownloadHandler(action _: UIContextualAction, view _: UIView, handler: @escaping (Bool) -> Void) {
+        func removeHandler(action _: UIContextualAction, view _: UIView, handler: @escaping (Bool) -> Void) {
             let file = viewModel[rowAt: indexPath]
             let success = viewModel.removeDownload(file)
             handler(success)
         }
 
-        let removeDownloadAction = UIContextualAction(style: .destructive, title: "Remove Download".localized,
-                                                      handler: removeDownloadHandler)
-        removeDownloadAction.backgroundColor = UI.Colors.studRed
-        return UISwipeActionsConfiguration(actions: [removeDownloadAction])
+        let removeAction = UIContextualAction(style: .destructive, title: "Remove".localized, handler: removeHandler)
+        removeAction.backgroundColor = UI.Colors.studRed
+
+        return UISwipeActionsConfiguration(actions: [removeAction])
     }
 
     override func tableView(_: UITableView, shouldShowMenuForRowAt _: IndexPath) -> Bool {
@@ -106,7 +106,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt _: IndexPath,
                             withSender _: Any?) -> Bool {
         switch action {
-        case #selector(copy(_:)), #selector(CustomMenuItems.share(_:)):
+        case #selector(copy(_:)), #selector(CustomMenuItems.share(_:)), #selector(CustomMenuItems.remove(_:)):
             return true
         default:
             return false

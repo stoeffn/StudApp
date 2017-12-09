@@ -10,6 +10,7 @@
 "Cancel" = "Cancel";
 "Share" = "Share";
 "Retry" = "Retry";
+"Remove" = "Remove";
 "Sign Out" = "Sign Out";
 "Send Feedback" = "Send Feedback";
 
@@ -52,7 +53,6 @@
 // MARK: Downloads
 
 "Downloads" = "Downloads";
-"Remove Download" = "Remove";
 "It Looks Like There Are No Downloads Yet" = "It Looks Like There Are No Downloads Yet";
 "Open the app \"Files\" to get started." = "Open the app \"Files\" to get started.";
 
