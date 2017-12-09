@@ -21,9 +21,16 @@ final class CourseController: UITableViewController, Routable {
         filesViewModel.fetch()
         filesViewModel.update()
 
+        registerForPreviewing(with: self, sourceView: tableView)
+
         navigationItem.title = viewModel.course.title
 
         subtitleLabel.text = viewModel.course.subtitle
+
+        if #available(iOS 11.0, *) {
+            tableView.dragDelegate = self
+            tableView.dragInteractionEnabled = true
+        }
     }
 
     func prepareDependencies(for route: Routes) {
@@ -53,7 +60,7 @@ final class CourseController: UITableViewController, Routable {
             return viewModel.numberOfRows
         case .documents?:
             return filesViewModel.numberOfRows
-        default:
+        case nil:
             fatalError()
         }
     }
@@ -70,7 +77,7 @@ final class CourseController: UITableViewController, Routable {
             let cell = tableView.dequeueReusableCell(withIdentifier: FileCell.typeIdentifier, for: indexPath)
             (cell as? FileCell)?.file = filesViewModel[rowAt: indexPath.row]
             return cell
-        default:
+        case nil:
             fatalError()
         }
     }
@@ -79,7 +86,43 @@ final class CourseController: UITableViewController, Routable {
         switch Sections(rawValue: section) {
         case .info?: return nil
         case .documents?: return "Documents".localized
-        default: fatalError()
+        case nil: fatalError()
+        }
+    }
+
+    // MARK: - Table View Delegate
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch Sections(rawValue: indexPath.section) {
+        case .info?:
+            break
+        case .documents?:
+            guard
+                let cell = tableView.cellForRow(at: indexPath) as? FileCell,
+                !cell.file.isFolder
+                else { return }
+
+            preview(cell.file)
+            tableView.deselectRow(at: indexPath, animated: true)
+        case nil:
+            fatalError()
+        }
+    }
+
+    // MARK: - User Interface
+
+    private func preview(_ file: File) {
+        file.download { result in
+            guard result.isSuccess else {
+                let alert = UIAlertController(title: result.error?.localizedDescription, message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+
+            let previewController = PreviewController()
+            previewController.prepareDependencies(for: .preview(file))
+            self.present(previewController, animated: true, completion: nil)
         }
     }
 
@@ -104,6 +147,8 @@ final class CourseController: UITableViewController, Routable {
     }
 }
 
+// MARK: - Data Section Delegate
+
 extension CourseController: DataSourceSectionDelegate {
     public func data<Section: DataSourceSection>(changedIn _: Section.Row, at index: Int, change: DataChange<Section.Row, Int>,
                                                  in _: Section) {
@@ -119,5 +164,42 @@ extension CourseController: DataSourceSectionDelegate {
             let newIndexPath = IndexPath(row: newIndex, section: Sections.documents.rawValue)
             tableView.moveRow(at: indexPath, to: newIndexPath)
         }
+    }
+}
+
+// MARK: - Table View Drag Delegate
+
+@available(iOS 11.0, *)
+extension CourseController: UITableViewDragDelegate {
+    private func items(forIndexPath indexPath: IndexPath) -> [UIDragItem] {
+        let file = filesViewModel[rowAt: indexPath.row]
+        guard let itemProvider = NSItemProvider(contentsOf: file.documentUrl(inProviderDirectory: true)) else { return [] }
+        return [UIDragItem(itemProvider: itemProvider)]
+    }
+
+    func tableView(_: UITableView, itemsForBeginning _: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        return items(forIndexPath: indexPath)
+    }
+
+    func tableView(_: UITableView, itemsForAddingTo _: UIDragSession, at indexPath: IndexPath,
+                   point _: CGPoint) -> [UIDragItem] {
+        return items(forIndexPath: indexPath)
+    }
+}
+
+// MARK: - Document Previewing
+
+extension CourseController: UIViewControllerPreviewingDelegate {
+    func previewingContext(_: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
+        let file = filesViewModel[rowAt: indexPath.row]
+        guard !file.isFolder else { return nil }
+        let previewController = PreviewController()
+        previewController.prepareDependencies(for: .preview(file))
+        return previewController
+    }
+
+    func previewingContext(_: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        present(viewControllerToCommit, animated: true, completion: nil)
     }
 }
