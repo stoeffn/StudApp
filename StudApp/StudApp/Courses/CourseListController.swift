@@ -163,6 +163,12 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        prepareForRoute(using: segue, sender: sender)
+
+        switch sender {
+        case let cell as CourseCell:
+            prepare(for: .course(cell.course), destination: segue.destination)
+        default:
+            prepareForRoute(using: segue, sender: sender)
+        }
     }
 }
