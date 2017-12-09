@@ -15,9 +15,9 @@ extension String {
     ///               `$0`, `$1`, ... in the template string
     /// - Returns: A new, modified string
     func replacingMatches(_ pattern: String, with template: String) -> String {
-        let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+        guard let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) else { return self }
         let range = NSRange(location: 0, length: count)
-        return regex?.stringByReplacingMatches(in: self, options: [], range: range, withTemplate: template) ?? self
+        return regex.stringByReplacingMatches(in: self, options: [], range: range, withTemplate: template)
     }
 
     /// Apply a regular expression pattern to this string.

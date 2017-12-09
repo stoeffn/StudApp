@@ -13,7 +13,24 @@ public final class CourseViewModel {
         self.course = course
     }
 
-    public var infoFields: [String?] {
+    private var infoFields: [String?] {
         return [course.number, course.location, course.summary]
+    }
+
+    public var numberOfInfoFields: Int {
+        return infoFields
+            .flatMap { $0 }
+            .count
+    }
+
+    public func adjustedIndexForInfoField(at index: Int) -> Int {
+        let fieldIndex = infoFields.enumerated()
+            .filter { $1 != nil }
+            .dropFirst(index)
+            .first?.offset ?? 0
+        let nilFieldsCount = infoFields[0...fieldIndex]
+            .filter { $0 == nil }
+            .count
+        return index + nilFieldsCount
     }
 }

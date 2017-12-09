@@ -71,6 +71,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         let viewModel = CourseListViewModel(semester: semester, respectsCollapsedState: true)
         viewModel.delegate = self
         viewModel.fetch()
+        viewModel.update()
         return viewModel
     }
 

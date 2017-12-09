@@ -62,9 +62,7 @@ final class CourseController: UITableViewController, Routable {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch Sections(rawValue: section) {
         case .info?:
-            return viewModel.infoFields
-                .flatMap { $0 }
-                .count
+            return viewModel.numberOfInfoFields
         default:
             return super.tableView(tableView, numberOfRowsInSection: section)
         }
@@ -73,11 +71,8 @@ final class CourseController: UITableViewController, Routable {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch Sections(rawValue: indexPath.section) {
         case .info?:
-            let numberOfNonNilFields = viewModel.infoFields[0...indexPath.row]
-                .flatMap { $0 }
-                .count
-            let offset = indexPath.row + 1 - numberOfNonNilFields
-            let adjustedIndexPath = IndexPath(row: indexPath.row + offset, section: indexPath.section)
+            let adjustedIndexPath = IndexPath(row: viewModel.adjustedIndexForInfoField(at: indexPath.row),
+                                              section: indexPath.section)
             return super.tableView(tableView, cellForRowAt: adjustedIndexPath)
         default:
             return super.tableView(tableView, cellForRowAt: indexPath)
