@@ -15,6 +15,7 @@ public final class FileState: NSManagedObject, CDCreatable {
     @NSManaged public var tagData: Data?
 
     @NSManaged public var downloadedAt: Date?
+    @NSManaged public var isDownloading: Bool
 
     @NSManaged public var file: File
 

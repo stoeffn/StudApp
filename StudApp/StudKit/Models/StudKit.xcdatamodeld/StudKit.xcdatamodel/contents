@@ -54,6 +54,7 @@
     <entity name="FileState" representedClassName="FileState" syncable="YES">
         <attribute name="downloadedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="favoriteRank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isDownloading" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lastUsedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="tagData" optional="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="file" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="File" inverseName="state" inverseEntity="File" syncable="YES"/>
@@ -108,7 +109,7 @@
         <element name="Course" positionX="-8568" positionY="-2218" width="128" height="195"/>
         <element name="CourseState" positionX="-8354" positionY="-2142" width="128" height="135"/>
         <element name="File" positionX="-8381" positionY="-1971" width="128" height="240"/>
-        <element name="FileState" positionX="-8199" positionY="-1836" width="128" height="120"/>
+        <element name="FileState" positionX="-8199" positionY="-1836" width="128" height="135"/>
         <element name="Semester" positionX="-8748" positionY="-2188" width="128" height="165"/>
         <element name="SemesterState" positionX="-8910" positionY="-2121" width="128" height="150"/>
         <element name="User" positionX="-8748" positionY="-1924" width="128" height="180"/>
