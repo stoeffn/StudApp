@@ -107,6 +107,7 @@ final class FileProviderExtension: NSFileProviderExtension {
         guard let identifier = persistentIdentifierForItem(at: url) else {
             return completionHandler(NSFileProviderError(.noSuchItem))
         }
+
         do {
             let placeholderUrl = NSFileProviderManager.placeholderURL(for: url)
             try FileManager.default.createIntermediateDirectories(forFileAt: placeholderUrl)
@@ -134,10 +135,14 @@ final class FileProviderExtension: NSFileProviderExtension {
                 return
             }
 
-            try? FileManager.default.removeItem(at: itemUrl)
-            try? FileManager.default.createIntermediateDirectories(forFileAt: itemUrl)
-            try? FileManager.default.copyItem(at: file.localUrl(), to: itemUrl)
-            completionHandler?(nil)
+            do {
+                try FileManager.default.removeItem(at: itemUrl)
+                try? FileManager.default.createIntermediateDirectories(forFileAt: itemUrl)
+                try? FileManager.default.copyItem(at: file.localUrl(), to: itemUrl)
+                completionHandler?(nil)
+            } catch {
+                completionHandler?(error)
+            }
         }
     }
 
