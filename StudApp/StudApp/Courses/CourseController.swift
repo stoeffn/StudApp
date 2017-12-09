@@ -10,13 +10,20 @@ import StudKit
 
 final class CourseController: UITableViewController, Routable {
     private var viewModel: CourseViewModel!
+    private var filesViewModel: FileListViewModel!
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        filesViewModel.delegate = self
+        filesViewModel.fetch()
+        filesViewModel.update()
+
         navigationItem.title = viewModel.course.title
+
+        tableView.register(FileCell.self, forCellReuseIdentifier: FileCell.typeIdentifier)
 
         initUserInterface()
     }
@@ -25,6 +32,7 @@ final class CourseController: UITableViewController, Routable {
         guard case let .course(course) = route else { fatalError() }
 
         viewModel = CourseViewModel(course: course)
+        filesViewModel = FileListViewModel(course: course)
     }
 
     // MARK: - User Interface
@@ -63,6 +71,8 @@ final class CourseController: UITableViewController, Routable {
         switch Sections(rawValue: section) {
         case .info?:
             return viewModel.numberOfInfoFields
+        case .documents?:
+            return filesViewModel.numberOfRows
         default:
             return super.tableView(tableView, numberOfRowsInSection: section)
         }
@@ -74,6 +84,10 @@ final class CourseController: UITableViewController, Routable {
             let adjustedIndexPath = IndexPath(row: viewModel.adjustedIndexForInfoField(at: indexPath.row),
                                               section: indexPath.section)
             return super.tableView(tableView, cellForRowAt: adjustedIndexPath)
+        case .documents?:
+            let cell = tableView.dequeueReusableCell(withIdentifier: FileCell.typeIdentifier, for: indexPath)
+            (cell as? FileCell)?.file = filesViewModel[rowAt: indexPath.row]
+            return cell
         default:
             return super.tableView(tableView, cellForRowAt: indexPath)
         }
@@ -81,5 +95,35 @@ final class CourseController: UITableViewController, Routable {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+
+    // MARK: - Table View Delegate
+
+    override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
+        // Needs to be overridden in order to avoid index-out-of-range-exceptions caused by static cells.
+        switch Sections(rawValue: indexPath.section) {
+        case .documents?:
+            return super.tableView(tableView, indentationLevelForRowAt: IndexPath(row: 0, section: indexPath.section))
+        default:
+            return super.tableView(tableView, indentationLevelForRowAt: indexPath)
+        }
+    }
+}
+
+extension CourseController: DataSourceSectionDelegate {
+    public func data<Section: DataSourceSection>(changedIn _: Section.Row, at index: Int, change: DataChange<Section.Row, Int>,
+                                                 in _: Section) {
+        let indexPath = IndexPath(row: index, section: Sections.documents.rawValue)
+        switch change {
+        case .insert:
+            tableView.insertRows(at: [indexPath], with: .automatic)
+        case .delete:
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        case .update:
+            tableView.reloadRows(at: [indexPath], with: .automatic)
+        case let .move(newIndex):
+            let newIndexPath = IndexPath(row: newIndex, section: Sections.documents.rawValue)
+            tableView.moveRow(at: indexPath, to: newIndexPath)
+        }
     }
 }
