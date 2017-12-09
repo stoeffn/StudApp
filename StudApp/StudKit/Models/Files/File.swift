@@ -69,8 +69,10 @@ extension File {
     }
 
     public var childrenFetchRequest: NSFetchRequest<FileState> {
+        let sortDescriptor = NSSortDescriptor(keyPath: \FileState.file.title, ascending: true)
         let predicate = NSPredicate(format: "file.parent == %@", self)
-        return FileState.fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["file"])
+        return FileState.fetchRequest(predicate: predicate, sortDescriptors: [sortDescriptor],
+                                      relationshipKeyPathsForPrefetching: ["file"])
     }
 }
 
