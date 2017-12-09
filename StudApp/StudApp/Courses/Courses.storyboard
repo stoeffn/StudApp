@@ -220,7 +220,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="NZQ-WI-0Ho">
-                                                    <rect key="frame" x="58" y="6" width="259" height="38.333333333333336"/>
+                                                    <rect key="frame" x="58" y="6" width="198" height="38.333333333333336"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Assignment 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7BS-La-ljQ">
                                                             <rect key="frame" x="0.0" y="0.0" width="102.33333333333333" height="20.333333333333332"/>
@@ -343,6 +343,17 @@
                                                         </stackView>
                                                     </subviews>
                                                 </stackView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Bc-Ro-1Vl" customClass="StudIpActivityIndicatorView" customModule="StudKit">
+                                                    <rect key="frame" x="264" y="15" width="20" height="20"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="8FN-S6-0vx"/>
+                                                        <constraint firstAttribute="width" secondItem="7Bc-Ro-1Vl" secondAttribute="height" multiplier="1:1" id="ORa-aQ-Pis"/>
+                                                    </constraints>
+                                                </view>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownloadBarButtonGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="7ag-pv-zJc">
+                                                    <rect key="frame" x="292" y="12.666666666666668" width="25" height="25.000000000000004"/>
+                                                </imageView>
                                             </subviews>
                                         </stackView>
                                     </subviews>
@@ -354,7 +365,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="activityIndicator" destination="7Bc-Ro-1Vl" id="YMg-it-WrF"/>
                                     <outlet property="downloadCountLabel" destination="Ech-X1-pG7" id="OuF-9h-joh"/>
+                                    <outlet property="downloadGlyph" destination="7ag-pv-zJc" id="AXn-lT-a2n"/>
                                     <outlet property="iconView" destination="NDK-C4-aKK" id="luy-hq-iuc"/>
                                     <outlet property="modificationDateLabel" destination="wvx-4e-eir" id="xj1-Je-Ui0"/>
                                     <outlet property="sizeLabel" destination="HRU-4D-L84" id="sra-eE-Mit"/>
@@ -450,6 +463,7 @@
     </scenes>
     <resources>
         <image name="CoursesTabBarGlyph" width="25" height="25"/>
+        <image name="DownloadBarButtonGlyph" width="25" height="25"/>
         <image name="DownloadCountSubtitleGlyph" width="16" height="16"/>
         <image name="SizeSubtitleGlyph" width="16" height="16"/>
         <image name="TimeSubtitleGlyph" width="16" height="16"/>
