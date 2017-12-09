@@ -39,6 +39,10 @@
 "Course Number" = "Course Number";
 "Location" = "Location";
 
+// MARK: Documents
+
+"Documents" = "Dokumente";
+
 // MARK: Semesters
 
 "Semesters" = "Semesters";

@@ -54,7 +54,7 @@ final class CourseController: UITableViewController, Routable {
         case .documents?:
             return filesViewModel.numberOfRows
         default:
-            return super.tableView(tableView, numberOfRowsInSection: section)
+            fatalError()
         }
     }
 
@@ -72,6 +72,14 @@ final class CourseController: UITableViewController, Routable {
             return cell
         default:
             fatalError()
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch Sections(rawValue: section) {
+        case .info?: return nil
+        case .documents?: return "Documents".localized
+        default: fatalError()
         }
     }
 }
