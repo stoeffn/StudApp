@@ -1,5 +1,5 @@
 //
-//  UINavigationItem+StudIPActivityIndicatorView.swift
+//  UINavigationItem+StudIpActivityIndicatorView.swift
 //  StudApp
 //
 //  Created by Steffen Ryll on 30.03.16.
@@ -29,7 +29,7 @@ extension UINavigationItem {
         if !hidden {
             cachedRightBarButtonItem = rightBarButtonItem
             let frame = CGRect(x: 0, y: 0, width: 32, height: 32)
-            let activityIndicator = StudIPActivityIndicatorView(frame: frame)
+            let activityIndicator = StudIpActivityIndicatorView(frame: frame)
             rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
         } else {
             rightBarButtonItem = cachedRightBarButtonItem

@@ -7,7 +7,7 @@
 //
 
 @IBDesignable
-public final class StudIPActivityButton: UIButton {
+public final class StudIpActivityButton: UIButton {
     public enum ActivityState {
         case idle, inProgress
     }
@@ -34,7 +34,7 @@ public final class StudIPActivityButton: UIButton {
 
     private let animationDuration = 0.3
     private let disabledTransform = CGAffineTransform(scaleX: 0.01, y: 0.01)
-    private let activityIndicator = StudIPActivityIndicatorView()
+    private let activityIndicator = StudIpActivityIndicatorView()
 
     private func initUserInterface() {
         addSubview(activityIndicator)

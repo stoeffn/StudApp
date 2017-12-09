@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-final class StudIPActivityIndicatorView: UIView {
+final class StudIpActivityIndicatorView: UIView {
     // MARK: - Life Cycle
 
     public override init(frame: CGRect) {
