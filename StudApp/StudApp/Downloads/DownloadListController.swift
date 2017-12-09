@@ -43,10 +43,6 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
             tableView.tableHeaderView = searchController.searchBar
         }
 
-        let shareItem = UIMenuItem(title: "Share".localized, action: #selector(FileCell.shareDocument(sender:)))
-        UIMenuController.shared.menuItems = [shareItem]
-        UIMenuController.shared.update()
-
         updateEmptyView()
     }
 
@@ -110,7 +106,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt _: IndexPath,
                             withSender _: Any?) -> Bool {
         switch action {
-        case #selector(copy(_:)), #selector(FileCell.shareDocument(sender:)):
+        case #selector(copy(_:)), #selector(CustomMenuItems.share(_:)):
             return true
         default:
             return false

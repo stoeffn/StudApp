@@ -45,7 +45,7 @@ final class FileCell: UITableViewCell {
     // MARK: - User Interaction
 
     @objc
-    func shareDocument(sender _: UIMenuController) {
+    func share(_: Any?) {
         file.documentController { $0.presentOptionsMenu(from: self.frame, in: self, animated: true) }
     }
 }

@@ -67,6 +67,7 @@
 		2450AC711FDC405E004F1267 /* Documents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2450AC701FDC405E004F1267 /* Documents.storyboard */; };
 		2450AC731FDC406F004F1267 /* FileListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC721FDC406F004F1267 /* FileListController.swift */; };
 		2450AC751FDC4FBC004F1267 /* UITableView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC741FDC4FBC004F1267 /* UITableView+Utils.swift */; };
+		2450AC771FDC6973004F1267 /* CustomMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC761FDC6973004F1267 /* CustomMenuItems.swift */; };
 		245B6AD61FCB327800302CD0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245B6AD51FCB327800302CD0 /* StoreKit.framework */; };
 		245B6ADA1FCB351F00302CD0 /* OrganizationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6AD91FCB351F00302CD0 /* OrganizationListController.swift */; };
 		245B6ADC1FCB355D00302CD0 /* OrganizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6ADB1FCB355D00302CD0 /* OrganizationCell.swift */; };
@@ -376,6 +377,7 @@
 		2450AC701FDC405E004F1267 /* Documents.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Documents.storyboard; sourceTree = "<group>"; };
 		2450AC721FDC406F004F1267 /* FileListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileListController.swift; sourceTree = "<group>"; };
 		2450AC741FDC4FBC004F1267 /* UITableView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Utils.swift"; sourceTree = "<group>"; };
+		2450AC761FDC6973004F1267 /* CustomMenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenuItems.swift; sourceTree = "<group>"; };
 		245B6AD51FCB327800302CD0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		245B6AD91FCB351F00302CD0 /* OrganizationListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationListController.swift; sourceTree = "<group>"; };
 		245B6ADB1FCB355D00302CD0 /* OrganizationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationCell.swift; sourceTree = "<group>"; };
@@ -701,6 +703,7 @@
 				241412E91FD30C8100DEE0AF /* Preview */,
 				247793581FC8901E00090F4D /* Semesters */,
 				2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */,
+				2450AC761FDC6973004F1267 /* CustomMenuItems.swift */,
 				24E60B631FC8C73F000EDD2A /* LaunchScreen.storyboard */,
 				24FE8A0F1FB78DBF00A4A3C6 /* StudApp.entitlements */,
 				2448D4181FA8DA2400DAB97E /* Info.plist */,
@@ -1752,6 +1755,7 @@
 			files = (
 				2467A8BC1FD307CE00F25720 /* PreviewController.swift in Sources */,
 				2450AC731FDC406F004F1267 /* FileListController.swift in Sources */,
+				2450AC771FDC6973004F1267 /* CustomMenuItems.swift in Sources */,
 				24712BE61FB8B0E20067E416 /* SemesterListController.swift in Sources */,
 				242B03721FD7467D00863B08 /* GlowView.swift in Sources */,
 				24712BE81FB8B4420067E416 /* SemesterCell.swift in Sources */,

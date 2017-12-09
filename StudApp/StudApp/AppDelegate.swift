@@ -32,6 +32,8 @@ extension AppDelegate: UIApplicationDelegate {
 
         window?.tintColor = UI.Colors.tint
 
+        addCustomMenuItems(to: UIMenuController.shared)
+
         return true
     }
 
