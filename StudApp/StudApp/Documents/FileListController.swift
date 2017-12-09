@@ -8,7 +8,7 @@
 
 import StudKit
 
-final class FolderController: UITableViewController, DataSourceSectionDelegate, Routable {
+final class FileListController: UITableViewController, DataSourceSectionDelegate, Routable {
     private var viewModel: FileListViewModel!
 
     // MARK: - Life Cycle
