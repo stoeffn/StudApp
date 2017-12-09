@@ -30,6 +30,11 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
     public required convenience init(createIn context: NSManagedObjectContext) {
         self.init(context: context)
         state = FileState(createIn: context)
+
+        if isFolder {
+            try? FileManager.default.createDirectory(at: documentUrl(inProviderDirectory: true),
+                                                     withIntermediateDirectories: true, attributes: [:])
+        }
     }
 }
 
@@ -84,7 +89,8 @@ public extension File {
     }
 
     public static func documentContainerUrl(forId id: String, in directory: URL) -> URL {
-        return directory.appendingPathComponent(id, isDirectory: true)
+        let containerUrl = directory.appendingPathComponent(id, isDirectory: true)
+        return containerUrl
     }
 
     public static func documentContainerUrl(forId id: String, inProviderDirectory: Bool = false) -> URL {
@@ -95,9 +101,8 @@ public extension File {
     }
 
     public func documentUrl(inProviderDirectory: Bool = false) -> URL {
-        let documentContainerUrl = File.documentContainerUrl(forId: id, inProviderDirectory: inProviderDirectory)
-        guard !isFolder else { return documentContainerUrl }
-        return documentContainerUrl.appendingPathComponent(name, isDirectory: false)
+        return File.documentContainerUrl(forId: id, inProviderDirectory: inProviderDirectory)
+            .appendingPathComponent(name, isDirectory: isFolder)
     }
 
     public func documentController(handler: @escaping (UIDocumentInteractionController) -> Void) {
