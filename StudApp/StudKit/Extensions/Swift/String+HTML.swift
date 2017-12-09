@@ -275,8 +275,10 @@ extension String {
         ///    decodeNumeric("64", 10)   --> "@"
         ///    decodeNumeric("20ac", 16) --> "€"
         func decodeNumeric(_ string: String, base: Int) -> Character? {
-            guard let code = UInt32(string, radix: base),
-                let uniScalar = UnicodeScalar(code) else { return nil }
+            guard
+                let code = UInt32(string, radix: base),
+                let uniScalar = UnicodeScalar(code)
+            else { return nil }
             return Character(uniScalar)
         }
 

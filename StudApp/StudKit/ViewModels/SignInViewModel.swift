@@ -67,9 +67,12 @@ public final class SignInViewModel {
         let container = CKContainer(identifier: App.iCloudContainerIdentifier)
         container.database(with: .public).fetch(withRecordID: organization.recordId) { record, error in
             DispatchQueue.main.async {
-                guard let record = record,
+                guard
+                    let record = record,
                     var organization = OrganizationRecord(from: record),
-                    let icon = organization.icon else { return handler(.failure(error)) }
+                    let icon = organization.icon
+                else { return handler(.failure(error)) }
+
                 handler(.success(icon))
             }
         }

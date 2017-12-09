@@ -197,7 +197,10 @@ final class AboutController: UITableViewController, Routable {
     }
 
     private func openAppStoreReviewPage() {
-        guard let openUrl = contextService.openUrl, let reviewUrl = App.reviewUrl else { return }
+        guard
+            let openUrl = contextService.openUrl,
+            let reviewUrl = App.reviewUrl
+        else { return }
 
         openUrl(reviewUrl) { success in
             guard !success else { return }

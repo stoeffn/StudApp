@@ -42,9 +42,12 @@ final class FileProviderExtension: NSFileProviderExtension {
     }
 
     override func urlForItem(withPersistentIdentifier identifier: NSFileProviderItemIdentifier) -> URL? {
-        guard let item = try? item(for: identifier),
+        guard
+            let item = try? item(for: identifier),
             let fileItem = item as? FileItem,
-            let filename = fileItem.realFilename else { return nil }
+            let filename = fileItem.realFilename
+        else { return nil }
+
         return containerUrlForItem(withPersistentIdentifier: identifier)
             .appendingPathComponent(filename, isDirectory: false)
     }

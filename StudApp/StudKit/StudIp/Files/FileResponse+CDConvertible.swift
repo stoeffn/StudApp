@@ -11,9 +11,14 @@ import CoreData
 extension FileResponse: CDConvertible {
     @discardableResult
     func coreDataModel(in context: NSManagedObjectContext) throws -> NSManagedObject {
-        guard let id = id, let name = name, let course = try fetchCourse(in: context) else {
+        guard
+            let id = id,
+            let name = name,
+            let course = try fetchCourse(in: context)
+        else {
             throw "Cannot create file core data model from invalid file model."
         }
+
         let (file, _) = try File.fetch(byId: id, orCreateIn: context)
         file.id = id
         file.typeIdentifier = typeIdentifier

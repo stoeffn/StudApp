@@ -39,7 +39,11 @@ extension File {
     public static func downloadedPredicate(forSearchTerm searchTerm: String? = nil) -> NSPredicate {
         let downloadedPredicate = NSPredicate(format: "downloadedAt != NIL")
 
-        guard let searchTerm = searchTerm, !searchTerm.isEmpty else { return downloadedPredicate }
+        guard
+            let searchTerm = searchTerm,
+            !searchTerm.isEmpty
+        else { return downloadedPredicate }
+
         let trimmedSearchTerm = searchTerm.trimmingCharacters(in: .whitespacesAndNewlines)
 
         let similarTitlePredicate = NSPredicate(format: "file.title CONTAINS[cd] %@", trimmedSearchTerm)

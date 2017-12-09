@@ -129,7 +129,11 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
             passwordField.becomeFirstResponder()
             scrollToBottom()
         case passwordField:
-            guard let username = usernameField.text, let password = passwordField.text else { return false }
+            guard
+                let username = usernameField.text,
+                let password = passwordField.text
+            else { return false }
+
             viewModel.attemptSignIn(withUsername: username, password: password)
         default:
             break
@@ -139,7 +143,11 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
 
     @IBAction
     private func signInButtonTapped(_: Any) {
-        guard let username = usernameField.text, let password = passwordField.text else { return }
+        guard
+            let username = usernameField.text,
+            let password = passwordField.text
+        else { return }
+
         viewModel.attemptSignIn(withUsername: username, password: password)
     }
 

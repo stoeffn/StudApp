@@ -24,7 +24,8 @@ public final class StudIpService {
     public var isSignedIn: Bool {
         guard let protectionSpace = api.protectionSpace,
             let credential = URLCredentialStorage.shared.defaultCredential(for: protectionSpace),
-            let user = credential.user else { return false }
+            let user = credential.user
+        else { return false }
         return !user.isEmpty
     }
 

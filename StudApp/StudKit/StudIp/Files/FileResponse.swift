@@ -111,12 +111,17 @@ extension FileResponse {
     }
 
     func fetchCourse(in context: NSManagedObjectContext) throws -> Course? {
-        guard let courseId = courseId, let course = try Course.fetch(byId: courseId, in: context) else { return nil }
+        guard
+            let courseId = courseId,
+            let course = try Course.fetch(byId: courseId, in: context)
+        else { return nil }
         return course
     }
 
     func fetchParent(in context: NSManagedObjectContext) throws -> File? {
-        guard let parentId = parentId, let file = try File.fetch(byId: parentId, in: context) else { return nil }
+        guard let parentId = parentId,
+            let file = try File.fetch(byId: parentId, in: context)
+        else { return nil }
         return file
     }
 }

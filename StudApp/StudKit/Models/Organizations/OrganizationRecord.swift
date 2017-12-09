@@ -39,7 +39,9 @@ extension OrganizationRecord {
             let apiUrl = URL(string: apiUrlString),
             let authenticationRealm = record[Keys.authenticationRealm.rawValue] as? String,
             let title = record[Keys.title.rawValue] as? String,
-            let iconThumbnailAsset = record[Keys.iconThumbnail.rawValue] as? CKAsset else { return nil }
+            let iconThumbnailAsset = record[Keys.iconThumbnail.rawValue] as? CKAsset
+        else { return nil }
+
         let iconAsset = record[Keys.icon.rawValue] as? CKAsset
 
         recordId = record.recordID

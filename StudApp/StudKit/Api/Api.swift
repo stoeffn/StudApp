@@ -57,7 +57,11 @@ class Api<Routes: ApiRoutes> {
     ///
     /// - Remark: If the base URL does not include an explicit port, the default HTTPS port will be used.
     var protectionSpace: URLProtectionSpace? {
-        guard let host = baseUrl?.host, let scheme = baseUrl?.scheme else { return nil }
+        guard
+            let host = baseUrl?.host,
+            let scheme = baseUrl?.scheme
+        else { return nil }
+
         return URLProtectionSpace(host: host, port: baseUrl?.port ?? defaultPort, protocol: scheme,
                                   realm: realm, authenticationMethod: authenticationMethod)
     }
@@ -120,7 +124,10 @@ class Api<Routes: ApiRoutes> {
     @discardableResult
     func request(_ route: Routes, parameters: [URLQueryItem] = [], ignoreLastAccess: Bool = false, queue: DispatchQueue = .main,
                  handler: @escaping ResultHandler<Data>) -> URLSessionTask? {
-        guard ignoreLastAccess || isRouteExpired(route), let url = self.url(for: route, parameters: parameters) else {
+        guard
+            ignoreLastAccess || isRouteExpired(route),
+            let url = self.url(for: route, parameters: parameters)
+        else {
             handler(.failure(nil))
             return nil
         }
