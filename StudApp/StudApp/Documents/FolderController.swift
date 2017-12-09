@@ -47,9 +47,16 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
 
     // MARK: - Navigation
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
+    override func shouldPerformSegue(withIdentifier _: String, sender: Any?) -> Bool {
+        switch sender {
+        case let cell as FileCell where !cell.file.isFolder:
+            return false
+        default:
+            return true
+        }
+    }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch sender {
         case let cell as FileCell:
             prepare(for: .folder(cell.file), destination: segue.destination)
