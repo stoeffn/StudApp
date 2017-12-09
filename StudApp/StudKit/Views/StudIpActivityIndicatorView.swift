@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-final class StudIpActivityIndicatorView: UIView {
+final public class StudIpActivityIndicatorView: UIView {
     // MARK: - Life Cycle
 
     public override init(frame: CGRect) {
@@ -24,7 +24,7 @@ final class StudIpActivityIndicatorView: UIView {
         applyAnimations()
     }
 
-    override func prepareForInterfaceBuilder() {
+    override public func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         applyStyles()
     }
@@ -74,7 +74,7 @@ final class StudIpActivityIndicatorView: UIView {
 
     // MARK: - User Interface
 
-    override var frame: CGRect {
+    override public var frame: CGRect {
         didSet { applyStyles() }
     }
 

@@ -17,12 +17,17 @@ final class FileCell: UITableViewCell {
 
             iconView.image = nil
             file.documentController { self.iconView?.image = $0.icons.first }
+
             titleLabel.text = file.title
+
             modificationDateLabel?.text = file.modifiedAt.formattedAsShortDifferenceFromNow
             sizeLabel.text = file.size.formattedAsByteCount
             downloadCountLabel.text = "%dx".localized(file.downloadCount)
             userGlyph.isHidden = file.owner == nil
             userLabel.text = file.owner?.nameComponents.formatted()
+
+            activityIndicator?.isHidden = !file.state.isDownloading
+            downloadGlyph?.isHidden = file.state.isMostRecentVersionDownloaded || file.state.isDownloading
         }
     }
 
@@ -41,6 +46,10 @@ final class FileCell: UITableViewCell {
     @IBOutlet weak var userGlyph: UIImageView!
 
     @IBOutlet weak var userLabel: UILabel!
+
+    @IBOutlet weak var activityIndicator: StudIpActivityIndicatorView?
+
+    @IBOutlet weak var downloadGlyph: UIImageView?
 
     // MARK: - User Interaction
 

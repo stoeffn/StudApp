@@ -39,7 +39,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="NZQ-WI-0Ho">
-                                                    <rect key="frame" x="58" y="6" width="259" height="38.333333333333336"/>
+                                                    <rect key="frame" x="58" y="6" width="196" height="38.333333333333336"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Assignment 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7BS-La-ljQ">
                                                             <rect key="frame" x="0.0" y="0.0" width="102.33333333333333" height="20.333333333333332"/>
@@ -162,6 +162,17 @@
                                                         </stackView>
                                                     </subviews>
                                                 </stackView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Msw-0L-dhw" customClass="StudIpActivityIndicatorView" customModule="StudKit">
+                                                    <rect key="frame" x="262" y="13" width="24" height="24"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="sh5-eF-uaz"/>
+                                                        <constraint firstAttribute="width" secondItem="Msw-0L-dhw" secondAttribute="height" multiplier="1:1" id="wbX-4Z-lCH"/>
+                                                    </constraints>
+                                                </view>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownloadsTabBarGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="akA-3z-yfC">
+                                                    <rect key="frame" x="294" y="13.666666666666668" width="23" height="23.000000000000004"/>
+                                                </imageView>
                                             </subviews>
                                         </stackView>
                                     </subviews>
@@ -173,7 +184,9 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="activityIndicator" destination="Msw-0L-dhw" id="wZc-W6-vx2"/>
                                     <outlet property="downloadCountLabel" destination="Ech-X1-pG7" id="OuF-9h-joh"/>
+                                    <outlet property="downloadGlyph" destination="akA-3z-yfC" id="H9y-4K-Mhl"/>
                                     <outlet property="iconView" destination="NDK-C4-aKK" id="luy-hq-iuc"/>
                                     <outlet property="modificationDateLabel" destination="wvx-4e-eir" id="xj1-Je-Ui0"/>
                                     <outlet property="sizeLabel" destination="HRU-4D-L84" id="sra-eE-Mit"/>
@@ -210,8 +223,10 @@
     </scenes>
     <resources>
         <image name="DownloadCountSubtitleGlyph" width="16" height="16"/>
+        <image name="DownloadsTabBarGlyph" width="23" height="23"/>
         <image name="SizeSubtitleGlyph" width="16" height="16"/>
         <image name="TimeSubtitleGlyph" width="16" height="16"/>
         <image name="UserSubtitleGlyph" width="16" height="16"/>
     </resources>
+    <color key="tintColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
