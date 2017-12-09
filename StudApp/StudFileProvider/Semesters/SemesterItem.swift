@@ -22,6 +22,8 @@ final class SemesterItem: NSObject, NSFileProviderItem {
 
         self.parentItemIdentifier = parentItemIdentifier
 
+        contentModificationDate = semester.beginsAt
+        creationDate = semester.beginsAt
         lastUsedDate = semester.state.lastUsedAt
 
         tagData = semester.state.tagData
@@ -58,6 +60,10 @@ final class SemesterItem: NSObject, NSFileProviderItem {
     let parentItemIdentifier: NSFileProviderItemIdentifier
 
     // MARK: Tracking Usage
+
+    let contentModificationDate: Date?
+
+    let creationDate: Date?
 
     let lastUsedDate: Date?
 
