@@ -20,6 +20,6 @@ public protocol CustomMenuItems: NSObjectProtocol {
 func addCustomMenuItems(to menuController: UIMenuController) {
     menuController.menuItems = [
         UIMenuItem(title: "Share".localized, action: #selector(CustomMenuItems.share(_:))),
-        UIMenuItem(title: "Remove".localized, action: #selector(CustomMenuItems.remove(_:)))
+        UIMenuItem(title: "Remove".localized, action: #selector(CustomMenuItems.remove(_:))),
     ]
 }

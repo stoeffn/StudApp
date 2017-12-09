@@ -52,6 +52,39 @@ final class FileListController: UITableViewController, DataSourceSectionDelegate
         return cell
     }
 
+    // MARK: - Table View Delegate
+
+    override func tableView(_: UITableView, shouldShowMenuForRowAt _: IndexPath) -> Bool {
+        return true
+    }
+
+    override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath,
+                            withSender _: Any?) -> Bool {
+        let file = viewModel[rowAt: indexPath.row]
+
+        switch action {
+        case #selector(copy(_:)), #selector(CustomMenuItems.share(_:)):
+            return true
+        case #selector(CustomMenuItems.remove(_:)):
+            return file.state.isDownloaded
+        default:
+            return false
+        }
+    }
+
+    override func tableView(_: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender _: Any?) {
+        let file = viewModel[rowAt: indexPath.row]
+
+        switch action {
+        case #selector(copy(_:)):
+            let documentUrl = file.documentUrl(inProviderDirectory: true)
+            guard let data = try? Data(contentsOf: documentUrl, options: .mappedIfSafe) else { return }
+            UIPasteboard.general.setData(data, forPasteboardType: file.typeIdentifier)
+        default:
+            break
+        }
+    }
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard
             let cell = tableView.cellForRow(at: indexPath) as? FileCell,

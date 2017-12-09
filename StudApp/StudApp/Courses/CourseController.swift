@@ -92,6 +92,58 @@ final class CourseController: UITableViewController, Routable {
 
     // MARK: - Table View Delegate
 
+    override func tableView(_: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
+        switch Sections(rawValue: indexPath.section) {
+        case .info?:
+            return false
+        case .documents?:
+            return true
+        case nil:
+            fatalError()
+        }
+    }
+
+    override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath,
+                            withSender _: Any?) -> Bool {
+        switch Sections(rawValue: indexPath.section) {
+        case .info?:
+            return false
+        case .documents?:
+            let file = filesViewModel[rowAt: indexPath.row]
+
+            switch action {
+            case #selector(copy(_:)), #selector(CustomMenuItems.share(_:)):
+                return true
+            case #selector(CustomMenuItems.remove(_:)):
+                return file.state.isDownloaded
+            default:
+                return false
+            }
+        case nil:
+            fatalError()
+        }
+    }
+
+    override func tableView(_: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender _: Any?) {
+        switch Sections(rawValue: indexPath.section) {
+        case .info?:
+            break
+        case .documents?:
+            let file = filesViewModel[rowAt: indexPath.row]
+
+            switch action {
+            case #selector(copy(_:)):
+                let documentUrl = file.documentUrl(inProviderDirectory: true)
+                guard let data = try? Data(contentsOf: documentUrl, options: .mappedIfSafe) else { return }
+                UIPasteboard.general.setData(data, forPasteboardType: file.typeIdentifier)
+            default:
+                break
+            }
+        case nil:
+            fatalError()
+        }
+    }
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch Sections(rawValue: indexPath.section) {
         case .info?:
@@ -100,7 +152,7 @@ final class CourseController: UITableViewController, Routable {
             guard
                 let cell = tableView.cellForRow(at: indexPath) as? FileCell,
                 !cell.file.isFolder
-                else { return }
+            else { return }
 
             preview(cell.file)
             tableView.deselectRow(at: indexPath, animated: true)
