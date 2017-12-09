@@ -116,7 +116,7 @@ final class FileListController: UITableViewController, DataSourceSectionDelegate
 
     @IBAction
     func actionButtonTapped(_: Any) {
-        guard let url = viewModel.folder?.localUrl else { return }
+        guard let url = viewModel.folder?.localUrl(inProviderDirectory: true) else { return }
 
         let controller = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         controller.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
