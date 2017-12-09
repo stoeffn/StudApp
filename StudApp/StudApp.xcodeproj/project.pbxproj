@@ -63,6 +63,7 @@
 		2448D4BA1FA8E0AB00DAB97E /* TestRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4B21FA8E0AB00DAB97E /* TestRoutes.swift */; };
 		2448D4BB1FA8E0AB00DAB97E /* ApiRoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4B31FA8E0AB00DAB97E /* ApiRoutesTests.swift */; };
 		2448D4BD1FA8E0AB00DAB97E /* TestableApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4B51FA8E0AB00DAB97E /* TestableApiRoutes.swift */; };
+		2450AC6D1FDC1582004F1267 /* CourseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC6C1FDC1582004F1267 /* CourseViewModel.swift */; };
 		245B6AD61FCB327800302CD0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245B6AD51FCB327800302CD0 /* StoreKit.framework */; };
 		245B6ADA1FCB351F00302CD0 /* OrganizationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6AD91FCB351F00302CD0 /* OrganizationListController.swift */; };
 		245B6ADC1FCB355D00302CD0 /* OrganizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6ADB1FCB355D00302CD0 /* OrganizationCell.swift */; };
@@ -368,6 +369,7 @@
 		2448D4B21FA8E0AB00DAB97E /* TestRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRoutes.swift; sourceTree = "<group>"; };
 		2448D4B31FA8E0AB00DAB97E /* ApiRoutesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRoutesTests.swift; sourceTree = "<group>"; };
 		2448D4B51FA8E0AB00DAB97E /* TestableApiRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestableApiRoutes.swift; sourceTree = "<group>"; };
+		2450AC6C1FDC1582004F1267 /* CourseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewModel.swift; sourceTree = "<group>"; };
 		245B6AD51FCB327800302CD0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		245B6AD91FCB351F00302CD0 /* OrganizationListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationListController.swift; sourceTree = "<group>"; };
 		245B6ADB1FCB355D00302CD0 /* OrganizationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationCell.swift; sourceTree = "<group>"; };
@@ -1221,6 +1223,7 @@
 				246F3ABD1FAC877400A477FF /* DataSource */,
 				241C67E41FCDD78100F4A099 /* AboutViewModel.swift */,
 				242B03731FD7470200863B08 /* ColorPickerViewModel.swift */,
+				2450AC6C1FDC1582004F1267 /* CourseViewModel.swift */,
 				246F3ACC1FAC881100A477FF /* CourseListViewModel.swift */,
 				24FD786F1FBF826D0072F860 /* DownloadListViewModel.swift */,
 				24FE8A151FB8527D00A4A3C6 /* FileListViewModel.swift */,
@@ -1835,6 +1838,7 @@
 				2477936F1FC8939700090F4D /* ChangeCache.swift in Sources */,
 				242B03741FD7470200863B08 /* ColorPickerViewModel.swift in Sources */,
 				2448D4AB1FA8E07E00DAB97E /* Api.swift in Sources */,
+				2450AC6D1FDC1582004F1267 /* CourseViewModel.swift in Sources */,
 				246F3ACD1FAC881100A477FF /* CourseListViewModel.swift in Sources */,
 				24D361091FAA5E2300BBBAED /* Semester.swift in Sources */,
 				24FD785C1FBF45030072F860 /* Targets+NSPersistentHistory.swift in Sources */,

@@ -9,14 +9,14 @@
 import StudKit
 
 final class CourseController: UITableViewController, Routable {
-    private var course: Course!
+    private var viewModel: CourseViewModel!
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = course.title
+        navigationItem.title = viewModel.course.title
 
         initUserInterface()
     }
@@ -24,7 +24,7 @@ final class CourseController: UITableViewController, Routable {
     func prepareDependencies(for route: Routes) {
         guard case let .course(course) = route else { fatalError() }
 
-        self.course = course
+        viewModel = CourseViewModel(course: course)
     }
 
     // MARK: - User Interface
@@ -40,15 +40,15 @@ final class CourseController: UITableViewController, Routable {
     @IBOutlet weak var summaryLabel: UILabel!
 
     private func initUserInterface() {
-        subtitleLabel.text = course.subtitle
+        subtitleLabel.text = viewModel.course.subtitle
 
         courseNumberCell.textLabel?.text = "Course Number".localized
-        courseNumberCell.detailTextLabel?.text = course.number
+        courseNumberCell.detailTextLabel?.text = viewModel.course.number
 
         locationCell.textLabel?.text = "Location".localized
-        locationCell.detailTextLabel?.text = course.location
+        locationCell.detailTextLabel?.text = viewModel.course.location
 
-        summaryLabel.text = course.summary
+        summaryLabel.text = viewModel.course.summary
     }
 
     // MARK: - Table View Data Source
