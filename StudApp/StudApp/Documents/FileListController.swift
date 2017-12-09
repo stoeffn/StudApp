@@ -45,11 +45,25 @@ final class FileListController: UITableViewController, DataSourceSectionDelegate
         return cell
     }
 
+    private func preview(_ file: File) {
+        file.download { result in
+            guard result.isSuccess else {
+                // TODO: Display error
+                return
+            }
+
+            let previewController = PreviewController()
+            previewController.prepareDependencies(for: .preview(file))
+            self.present(previewController, animated: true, completion: nil)
+        }
+    }
+
     // MARK: - Navigation
 
     override func shouldPerformSegue(withIdentifier _: String, sender: Any?) -> Bool {
         switch sender {
         case let cell as FileCell where !cell.file.isFolder:
+            preview(cell.file)
             return false
         default:
             return true
