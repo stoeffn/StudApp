@@ -93,8 +93,9 @@ public extension File {
     }
 
     public func documentUrl(inProviderDirectory: Bool = false) -> URL {
-        return File.documentContainerUrl(forId: id, inProviderDirectory: inProviderDirectory)
-            .appendingPathComponent(name, isDirectory: false)
+        let documentContainerUrl = File.documentContainerUrl(forId: id, inProviderDirectory: inProviderDirectory)
+        guard !isFolder else { return documentContainerUrl }
+        return documentContainerUrl.appendingPathComponent(name, isDirectory: false)
     }
 
     public func documentController(handler: @escaping (UIDocumentInteractionController) -> Void) {
