@@ -38,10 +38,12 @@ public extension NSFileProviderItemIdentifier {
 
     /// Type of model that this item identifier describes.
     public var model: Models {
-        if self == .workingSet {
-            return .workingSet
-        } else if self == .rootContainer {
-            return .root
+        if #available(iOSApplicationExtension 11.0, *) {
+            if self == .workingSet {
+                return .workingSet
+            } else if self == .rootContainer {
+                return .root
+            }
         }
 
         switch parts.first {

@@ -22,18 +22,26 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         viewModel.fetch()
 
         navigationItem.title = "Downloads".localized
-        navigationItem.searchController = UISearchController(searchResultsController: nil)
-        navigationItem.searchController?.dimsBackgroundDuringPresentation = false
-        navigationItem.searchController?.searchResultsUpdater = self
-        navigationItem.hidesSearchBarWhenScrolling = false
 
-        navigationController?.navigationBar.prefersLargeTitles = true
-
-        tableView.dragDelegate = self
-        tableView.dragInteractionEnabled = true
         tableView.tableHeaderView = nil
 
         registerForPreviewing(with: self, sourceView: tableView)
+
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchResultsUpdater = self
+
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+
+            navigationItem.searchController = searchController
+            navigationItem.hidesSearchBarWhenScrolling = false
+
+            tableView.dragDelegate = self
+            tableView.dragInteractionEnabled = true
+        } else {
+            tableView.tableHeaderView = searchController.searchBar
+        }
 
         let shareItem = UIMenuItem(title: "Share".localized, action: #selector(FileCell.shareDocument(sender:)))
         UIMenuController.shared.menuItems = [shareItem]
@@ -80,6 +88,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
     // MARK: - Table View Delegate
 
+    @available(iOS 11.0, *)
     override func tableView(_: UITableView,
                             trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         func removeDownloadHandler(action _: UIContextualAction, view _: UIView, handler: @escaping (Bool) -> Void) {
@@ -185,6 +194,7 @@ extension DownloadListController: UISearchResultsUpdating {
 
 // MARK: - Table View Drag Delegate
 
+@available(iOS 11.0, *)
 extension DownloadListController: UITableViewDragDelegate {
     private func items(forIndexPath indexPath: IndexPath) -> [UIDragItem] {
         let file = viewModel[rowAt: indexPath]

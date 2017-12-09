@@ -39,7 +39,11 @@ public final class CoreDataService {
         description.type = NSSQLiteStoreType
         description.shouldMigrateStoreAutomatically = true
         description.shouldInferMappingModelAutomatically = true
-        description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+
+        if #available(iOSApplicationExtension 11.0, *) {
+            description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+        }
+
         return description
     }
 

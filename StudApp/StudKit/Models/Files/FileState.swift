@@ -21,7 +21,7 @@ public final class FileState: NSManagedObject, CDCreatable {
     public required convenience init(createIn context: NSManagedObjectContext) {
         self.init(context: context)
 
-        favoriteRank = Int(NSFileProviderFavoriteRankUnranked)
+        favoriteRank = defaultFavoriteRank
     }
 }
 

@@ -91,7 +91,9 @@ public final class StudIpService {
                 handler(result.replacingValue(result.value))
             }
 
-            NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
+            if #available(iOSApplicationExtension 11.0, *) {
+                NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
+            }
         }
     }
 
@@ -116,7 +118,9 @@ public final class StudIpService {
         let storageService = ServiceContainer.default[StorageService.self]
         try? storageService.removeAllDocuments()
 
-        NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
-        NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+        if #available(iOSApplicationExtension 11.0, *) {
+            NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
+            NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+        }
     }
 }

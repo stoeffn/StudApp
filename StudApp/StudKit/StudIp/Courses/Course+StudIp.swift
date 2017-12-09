@@ -20,11 +20,16 @@ extension Course {
 
             for semester in semesters {
                 semester.state.areCoursesFetchedFromRemote = true
-                NSFileProviderManager.default.signalEnumerator(for: semester.itemIdentifier) { _ in }
+
+                if #available(iOSApplicationExtension 11.0, *) {
+                    NSFileProviderManager.default.signalEnumerator(for: semester.itemIdentifier) { _ in }
+                }
             }
 
-            NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
-            NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+            if #available(iOSApplicationExtension 11.0, *) {
+                NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
+                NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+            }
         }
     }
 
@@ -35,8 +40,10 @@ extension Course {
 
             self.state.areFilesFetchedFromRemote = true
 
-            NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
-            NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+            if #available(iOSApplicationExtension 11.0, *) {
+                NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
+                NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+            }
         }
     }
 }

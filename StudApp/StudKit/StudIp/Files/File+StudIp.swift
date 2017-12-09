@@ -27,8 +27,10 @@ extension File {
         studIpService.api.requestDecoded(.file(withId: id)) { (result: Result<FileResponse>) in
             File.update(using: result, in: context, handler: handler)
 
-            NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
-            NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+            if #available(iOSApplicationExtension 11.0, *) {
+                NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
+                NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+            }
         }
     }
 }

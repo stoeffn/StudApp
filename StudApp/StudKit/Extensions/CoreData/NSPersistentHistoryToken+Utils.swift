@@ -8,6 +8,7 @@
 
 import CoreData
 
+@available(iOSApplicationExtension 11.0, *)
 extension NSPersistentHistoryToken {
     /// Tries to decode a persistent history token from the data given.
     static func from(data: Data) -> NSPersistentHistoryToken? {

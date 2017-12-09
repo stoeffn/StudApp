@@ -26,7 +26,7 @@ extension FileProviderItemConvertible where Self: NSFetchRequestResult {
     /// and items marked as favorite.
     public static var workingSetFetchRequest: NSFetchRequest<Self> {
         let predicate = NSPredicate(format: "state.lastUsedAt != NIL OR state.tagData != NIL OR state.favoriteRank != %d",
-                                    NSFileProviderFavoriteRankUnranked)
+                                    defaultFavoriteRank)
         return fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["state"])
     }
 

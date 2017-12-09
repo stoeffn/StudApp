@@ -35,6 +35,8 @@ public final class HistoryService {
     /// Delete persistent history that was successfully merged in _all_ of the targets provided. Call this method each time
     /// after merging persistent history.
     public func deleteHistory(mergedInto targets: [Targets], in context: NSManagedObjectContext) throws {
+        guard #available(iOSApplicationExtension 11.0, *) else { return }
+
         guard let timestamp = lastCommonTransactionTimestamp(in: targets) else { return }
         let deleteHistoryRequest = NSPersistentHistoryChangeRequest.deleteHistory(before: timestamp)
         try context.execute(deleteHistoryRequest)
@@ -47,6 +49,8 @@ public final class HistoryService {
     ///                      view context.
     /// - Postcondition: The current target's last history transaction timestamp is set to the last transaction timestamp.
     public func mergeHistory(into context: NSManagedObjectContext) throws {
+        guard #available(iOSApplicationExtension 11.0, *) else { return }
+
         let historyFetchRequest = NSPersistentHistoryChangeRequest
             .fetchHistory(after: currentTarget.lastHistoryTransactionTimestamp ?? .distantPast)
         guard let historyResult = try context.execute(historyFetchRequest) as? NSPersistentHistoryResult,

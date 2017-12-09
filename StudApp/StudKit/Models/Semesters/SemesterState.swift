@@ -35,7 +35,7 @@ public final class SemesterState: NSManagedObject, CDCreatable {
     public required convenience init(createIn context: NSManagedObjectContext) {
         self.init(context: context)
 
-        favoriteRank = Int(NSFileProviderFavoriteRankUnranked)
+        favoriteRank = defaultFavoriteRank
     }
 
     private func isHiddenChanged(_: _KeyValueCodingAndObserving, change: NSKeyValueObservedChange<Bool>) {
@@ -43,7 +43,9 @@ public final class SemesterState: NSManagedObject, CDCreatable {
 
         try? managedObjectContext?.saveWhenChanged()
 
-        NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
-        NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+        if #available(iOSApplicationExtension 11.0, *) {
+            NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
+            NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+        }
     }
 }

@@ -23,7 +23,9 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
 
         navigationItem.title = "Semesters".localized
 
-        navigationController?.navigationBar.prefersLargeTitles = true
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
 
         tableView.tableHeaderView = nil
 

@@ -77,12 +77,15 @@ public extension File {
         return typeIdentifier == kUTTypeFolder as String
     }
 
+    public static func documentContainerUrl(forId id: String, in directory: URL) -> URL {
+        return directory.appendingPathComponent(id, isDirectory: true)
+    }
+
     public static func documentContainerUrl(forId id: String, inProviderDirectory: Bool = false) -> URL {
-        let documentsDirectory = inProviderDirectory
-            ? NSFileProviderManager.default.documentStorageURL
-            : ServiceContainer.default[StorageService.self].documentsUrl
-        return documentsDirectory
-            .appendingPathComponent(id, isDirectory: true)
+        guard #available(iOSApplicationExtension 11.0, *), inProviderDirectory else {
+            return documentContainerUrl(forId: id, in: ServiceContainer.default[StorageService.self].documentsUrl)
+        }
+        return documentContainerUrl(forId: id, in: NSFileProviderManager.default.documentStorageURL)
     }
 
     public func documentUrl(inProviderDirectory: Bool = false) -> URL {

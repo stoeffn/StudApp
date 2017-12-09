@@ -26,7 +26,9 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
         navigationItem.title = "Courses".localized
 
-        navigationController?.navigationBar.prefersLargeTitles = true
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        }
 
         tableView.register(SemesterHeader.self, forHeaderFooterViewReuseIdentifier: SemesterHeader.typeIdentifier)
     }
@@ -77,6 +79,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     // MARK: - Table View Delegate
 
+    @available(iOS 11.0, *)
     override func tableView(_: UITableView,
                             leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let cell = tableView.cellForRow(at: indexPath) as? CourseCell else { return nil }
@@ -135,6 +138,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     // MARK: - User Interface
 
+    @available(iOS 11.0, *)
     private func colorAction(for cell: CourseCell, at indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Color") { _, _, success in
             self.colorActionActivated(withCourse: cell.course, at: indexPath)

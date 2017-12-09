@@ -61,7 +61,6 @@ final class SemesterHeader: UITableViewHeaderFooterView {
     private(set) lazy var glyphImageView: UIImageView = {
         let view = UIImageView(image: #imageLiteral(resourceName: "DisclosureGlyph"))
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.adjustsImageSizeForAccessibilityContentSizeCategory = true
         view.tintColor = UI.Colors.greyGlyph
         return view
     }()
