@@ -35,6 +35,7 @@ final class FileItem: NSObject, NSFileProviderItem {
         versionIdentifier = file.state.downloadedAt?.description.data(using: .utf8)
         isMostRecentVersionDownloaded = file.state.isMostRecentVersionDownloaded
 
+        isDownloading = file.state.isDownloading
         isDownloaded = file.state.isDownloaded
 
         ownerNameComponents = file.owner?.nameComponents
@@ -94,6 +95,8 @@ final class FileItem: NSObject, NSFileProviderItem {
     // MARK: Monitoring File Transfers
 
     let isUploaded = true
+
+    let isDownloading: Bool
 
     let isDownloaded: Bool
 
