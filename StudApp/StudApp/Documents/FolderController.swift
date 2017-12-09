@@ -44,4 +44,17 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
         (cell as? FileCell)?.file = viewModel[rowAt: indexPath.row]
         return cell
     }
+
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+
+        switch sender {
+        case let cell as FileCell:
+            prepare(for: .folder(cell.file), destination: segue.destination)
+        default:
+            prepareForRoute(using: segue, sender: sender)
+        }
+    }
 }
