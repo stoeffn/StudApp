@@ -68,6 +68,7 @@
 		2450AC731FDC406F004F1267 /* FileListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC721FDC406F004F1267 /* FileListController.swift */; };
 		2450AC751FDC4FBC004F1267 /* UITableView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC741FDC4FBC004F1267 /* UITableView+Utils.swift */; };
 		2450AC771FDC6973004F1267 /* CustomMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC761FDC6973004F1267 /* CustomMenuItems.swift */; };
+		2450AC7A1FDC79B6004F1267 /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC791FDC79B6004F1267 /* SafariActivity.swift */; };
 		245B6AD61FCB327800302CD0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245B6AD51FCB327800302CD0 /* StoreKit.framework */; };
 		245B6ADA1FCB351F00302CD0 /* OrganizationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6AD91FCB351F00302CD0 /* OrganizationListController.swift */; };
 		245B6ADC1FCB355D00302CD0 /* OrganizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6ADB1FCB355D00302CD0 /* OrganizationCell.swift */; };
@@ -378,6 +379,7 @@
 		2450AC721FDC406F004F1267 /* FileListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileListController.swift; sourceTree = "<group>"; };
 		2450AC741FDC4FBC004F1267 /* UITableView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Utils.swift"; sourceTree = "<group>"; };
 		2450AC761FDC6973004F1267 /* CustomMenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenuItems.swift; sourceTree = "<group>"; };
+		2450AC791FDC79B6004F1267 /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
 		245B6AD51FCB327800302CD0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		245B6AD91FCB351F00302CD0 /* OrganizationListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationListController.swift; sourceTree = "<group>"; };
 		245B6ADB1FCB355D00302CD0 /* OrganizationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationCell.swift; sourceTree = "<group>"; };
@@ -694,6 +696,7 @@
 		2448D40B1FA8DA2400DAB97E /* StudApp */ = {
 			isa = PBXGroup;
 			children = (
+				2450AC781FDC79A5004F1267 /* Activities */,
 				2450AC6E1FDC2F21004F1267 /* Cells */,
 				247793601FC890D100090F4D /* Main */,
 				242B03641FD745E600863B08 /* ColorPicker */,
@@ -890,6 +893,14 @@
 				2450AC701FDC405E004F1267 /* Documents.storyboard */,
 			);
 			path = Documents;
+			sourceTree = "<group>";
+		};
+		2450AC781FDC79A5004F1267 /* Activities */ = {
+			isa = PBXGroup;
+			children = (
+				2450AC791FDC79B6004F1267 /* SafariActivity.swift */,
+			);
+			path = Activities;
 			sourceTree = "<group>";
 		};
 		245B6ADF1FCB39AD00302CD0 /* Organizations */ = {
@@ -1758,6 +1769,7 @@
 				2450AC771FDC6973004F1267 /* CustomMenuItems.swift in Sources */,
 				24712BE61FB8B0E20067E416 /* SemesterListController.swift in Sources */,
 				242B03721FD7467D00863B08 /* GlowView.swift in Sources */,
+				2450AC7A1FDC79B6004F1267 /* SafariActivity.swift in Sources */,
 				24712BE81FB8B4420067E416 /* SemesterCell.swift in Sources */,
 				242B035B1FD71AB700863B08 /* CourseCell.swift in Sources */,
 				24FD786E1FBF81EA0072F860 /* DownloadListController.swift in Sources */,
