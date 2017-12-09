@@ -155,9 +155,7 @@ final class CourseController: UITableViewController, Routable {
                 !cell.file.isFolder
             else { return }
 
-            let previewController = PreviewController()
-            previewController.prepareDependencies(for: .preview(cell.file))
-            present(previewController, animated: true, completion: nil)
+            preview(cell.file)
             tableView.deselectRow(at: indexPath, animated: true)
         case nil:
             fatalError()
@@ -167,6 +165,21 @@ final class CourseController: UITableViewController, Routable {
     // MARK: - User Interface
 
     @IBOutlet weak var subtitleLabel: UILabel!
+
+    private func preview(_ file: File) {
+        file.download { result in
+            guard result.isSuccess else {
+                let alert = UIAlertController(title: result.error?.localizedDescription, message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+
+            let previewController = PreviewController()
+            previewController.prepareDependencies(for: .preview(file))
+            self.present(previewController, animated: true, completion: nil)
+        }
+    }
 
     // MARK: - User Interaction
 

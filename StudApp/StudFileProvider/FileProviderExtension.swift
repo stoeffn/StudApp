@@ -135,14 +135,9 @@ final class FileProviderExtension: NSFileProviderExtension {
             }
 
             try? FileManager.default.removeItem(at: itemUrl)
-
-            do {
-                try FileManager.default.createIntermediateDirectories(forFileAt: itemUrl)
-                try FileManager.default.copyItem(at: file.localUrl(), to: itemUrl)
-                completionHandler?(nil)
-            } catch {
-                completionHandler?(error)
-            }
+            try? FileManager.default.createIntermediateDirectories(forFileAt: itemUrl)
+            try? FileManager.default.copyItem(at: file.localUrl(), to: itemUrl)
+            completionHandler?(nil)
         }
     }
 
