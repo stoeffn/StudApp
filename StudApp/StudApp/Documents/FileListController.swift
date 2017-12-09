@@ -77,7 +77,7 @@ final class FileListController: UITableViewController, DataSourceSectionDelegate
 
         switch action {
         case #selector(copy(_:)):
-            let documentUrl = file.documentUrl(inProviderDirectory: true)
+            let documentUrl = file.localUrl(inProviderDirectory: true)
             guard let data = try? Data(contentsOf: documentUrl, options: .mappedIfSafe) else { return }
             UIPasteboard.general.setData(data, forPasteboardType: file.typeIdentifier)
         default:
@@ -116,7 +116,7 @@ final class FileListController: UITableViewController, DataSourceSectionDelegate
 
     @IBAction
     func actionButtonTapped(_: Any) {
-        guard let url = viewModel.folder?.documentUrl else { return }
+        guard let url = viewModel.folder?.localUrl else { return }
 
         let controller = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         controller.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
@@ -150,7 +150,7 @@ final class FileListController: UITableViewController, DataSourceSectionDelegate
 extension FileListController: UITableViewDragDelegate {
     private func items(forIndexPath indexPath: IndexPath) -> [UIDragItem] {
         let file = viewModel[rowAt: indexPath.row]
-        guard let itemProvider = NSItemProvider(contentsOf: file.documentUrl(inProviderDirectory: true)) else { return [] }
+        guard let itemProvider = NSItemProvider(contentsOf: file.localUrl(inProviderDirectory: true)) else { return [] }
         return [UIDragItem(itemProvider: itemProvider)]
     }
 

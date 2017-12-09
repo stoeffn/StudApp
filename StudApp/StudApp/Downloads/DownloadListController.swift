@@ -118,7 +118,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
         switch action {
         case #selector(copy(_:)):
-            let documentUrl = file.documentUrl(inProviderDirectory: true)
+            let documentUrl = file.localUrl(inProviderDirectory: true)
             guard let data = try? Data(contentsOf: documentUrl, options: .mappedIfSafe) else { return }
             UIPasteboard.general.setData(data, forPasteboardType: file.typeIdentifier)
         default:
@@ -194,7 +194,7 @@ extension DownloadListController: UISearchResultsUpdating {
 extension DownloadListController: UITableViewDragDelegate {
     private func items(forIndexPath indexPath: IndexPath) -> [UIDragItem] {
         let file = viewModel[rowAt: indexPath]
-        guard let itemProvider = NSItemProvider(contentsOf: file.documentUrl(inProviderDirectory: true)) else { return [] }
+        guard let itemProvider = NSItemProvider(contentsOf: file.localUrl(inProviderDirectory: true)) else { return [] }
         return [UIDragItem(itemProvider: itemProvider)]
     }
 

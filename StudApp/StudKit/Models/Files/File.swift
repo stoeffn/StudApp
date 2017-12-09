@@ -32,7 +32,7 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
         state = FileState(createIn: context)
 
         if isFolder {
-            try? FileManager.default.createDirectory(at: documentUrl(inProviderDirectory: true),
+            try? FileManager.default.createDirectory(at: localUrl(inProviderDirectory: true),
                                                      withIntermediateDirectories: true, attributes: [:])
         }
     }
@@ -57,7 +57,8 @@ extension File {
         let similarOwnerGivenNamePredicate = NSPredicate(format: "file.owner.givenName CONTAINS[cd] %@", trimmedSearchTerm)
 
         return NSCompoundPredicate(type: .and, subpredicates: [
-            downloadedPredicate, NSCompoundPredicate(type: .or, subpredicates: [
+            downloadedPredicate,
+            NSCompoundPredicate(type: .or, subpredicates: [
                 similarTitlePredicate, similarCourseTitlePredicate, similarOwnerFamilyNamePredicate,
                 similarOwnerGivenNamePredicate,
             ]),
@@ -88,26 +89,26 @@ public extension File {
         return typeIdentifier == kUTTypeFolder as String
     }
 
-    public static func documentContainerUrl(forId id: String, in directory: URL) -> URL {
+    public static func localContainerUrl(forId id: String, in directory: URL) -> URL {
         let containerUrl = directory.appendingPathComponent(id, isDirectory: true)
         return containerUrl
     }
 
     public static func documentContainerUrl(forId id: String, inProviderDirectory: Bool = false) -> URL {
         guard #available(iOSApplicationExtension 11.0, *), inProviderDirectory else {
-            return documentContainerUrl(forId: id, in: ServiceContainer.default[StorageService.self].documentsUrl)
+            return localContainerUrl(forId: id, in: ServiceContainer.default[StorageService.self].documentsUrl)
         }
-        return documentContainerUrl(forId: id, in: NSFileProviderManager.default.documentStorageURL)
+        return localContainerUrl(forId: id, in: NSFileProviderManager.default.documentStorageURL)
     }
 
-    public func documentUrl(inProviderDirectory: Bool = false) -> URL {
+    public func localUrl(inProviderDirectory: Bool = false) -> URL {
         return File.documentContainerUrl(forId: id, inProviderDirectory: inProviderDirectory)
             .appendingPathComponent(name, isDirectory: isFolder)
     }
 
     public func documentController(handler: @escaping (UIDocumentInteractionController) -> Void) {
         let cacheService = ServiceContainer.default[CacheService.self]
-        return cacheService.documentInteractionController(forUrl: documentUrl(inProviderDirectory: true), name: title,
+        return cacheService.documentInteractionController(forUrl: localUrl(inProviderDirectory: true), name: title,
                                                           handler: handler)
     }
 }
@@ -116,7 +117,7 @@ public extension File {
 
 extension File: QLPreviewItem {
     public var previewItemURL: URL? {
-        return documentUrl(inProviderDirectory: true)
+        return localUrl(inProviderDirectory: true)
     }
 
     public var previewItemTitle: String? {

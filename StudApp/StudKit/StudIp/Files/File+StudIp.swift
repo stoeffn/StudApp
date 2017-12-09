@@ -24,7 +24,7 @@ extension File {
     @discardableResult
     public func download(handler: @escaping ResultHandler<URL>) -> Progress? {
         guard !state.isMostRecentVersionDownloaded else {
-            handler(.success(documentUrl(inProviderDirectory: true)))
+            handler(.success(localUrl(inProviderDirectory: true)))
             return nil
         }
 
@@ -32,7 +32,7 @@ extension File {
         state.isDownloading = true
 
         let studIpService = ServiceContainer.default[StudIpService.self]
-        let task = studIpService.api.download(.fileContents(forFileId: id), to: documentUrl(), startsResumed: false) { result in
+        let task = studIpService.api.download(.fileContents(forFileId: id), to: localUrl(), startsResumed: false) { result in
             self.state.isDownloading = false
 
             guard result.isSuccess else {
@@ -42,7 +42,7 @@ extension File {
             self.state.downloadedAt = downloadDate
             try? self.managedObjectContext?.saveWhenChanged()
 
-            return handler(.success(self.documentUrl(inProviderDirectory: true)))
+            return handler(.success(self.localUrl(inProviderDirectory: true)))
         }
 
         guard let downloadTask = task else { return nil }
@@ -60,7 +60,7 @@ extension File {
 
     public func removeDownload() throws {
         state.downloadedAt = nil
-        try? FileManager.default.removeItem(at: documentUrl())
+        try? FileManager.default.removeItem(at: localUrl())
         try managedObjectContext?.saveWhenChanged()
     }
 }
