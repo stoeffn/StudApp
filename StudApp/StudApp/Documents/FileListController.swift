@@ -20,6 +20,8 @@ final class FileListController: UITableViewController, DataSourceSectionDelegate
         viewModel.fetch()
         viewModel.update()
 
+        registerForPreviewing(with: self, sourceView: tableView)
+
         navigationItem.title = viewModel.title
     }
 
@@ -90,5 +92,22 @@ final class FileListController: UITableViewController, DataSourceSectionDelegate
         default:
             prepareForRoute(using: segue, sender: sender)
         }
+    }
+}
+
+// MARK: - Document Previewing
+
+extension FileListController: UIViewControllerPreviewingDelegate {
+    func previewingContext(_: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
+        let file = viewModel[rowAt: indexPath.row]
+        guard !file.isFolder else { return nil }
+        let previewController = PreviewController()
+        previewController.prepareDependencies(for: .preview(file))
+        return previewController
+    }
+
+    func previewingContext(_: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        present(viewControllerToCommit, animated: true, completion: nil)
     }
 }

@@ -21,11 +21,11 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         viewModel.delegate = self
         viewModel.fetch()
 
+        registerForPreviewing(with: self, sourceView: tableView)
+
         navigationItem.title = "Downloads".localized
 
         tableView.tableHeaderView = nil
-
-        registerForPreviewing(with: self, sourceView: tableView)
 
         let searchController = UISearchController(searchResultsController: nil)
         searchController.dimsBackgroundDuringPresentation = false
