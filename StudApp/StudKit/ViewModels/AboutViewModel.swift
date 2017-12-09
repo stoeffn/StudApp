@@ -19,7 +19,7 @@ public final class AboutViewModel {
         (title: "Julian Lobe", description: "Beta-Tester, QA-Man, and Friend", url: nil),
         (title: "Cornelius Kater", description: "Support and Communication", url: URL(string: "http://ckater.de/")),
         (title: "Stud.IP e.V.", description: "Development of APIs", url: URL(string: "http://studip.de/")),
-        (title: "icons8", description: "Icons and Glyphs", url: URL(string: "https://icons8.com/")),
+        (title: "icons8", description: "Glyphs", url: URL(string: "https://icons8.com/")),
     ]
 }
 
