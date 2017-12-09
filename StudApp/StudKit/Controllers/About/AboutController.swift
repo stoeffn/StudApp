@@ -50,7 +50,7 @@ final class AboutController: UITableViewController, Routable {
     }
 
     @IBAction
-    func shareButtonTapped(_: Any) {
+    func actionButtonTapped(_: Any) {
         guard let appUrl = App.url else { return }
 
         let activityController = UIActivityViewController(activityItems: [appUrl], applicationActivities: nil)

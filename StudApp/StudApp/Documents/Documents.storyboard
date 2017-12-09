@@ -193,7 +193,13 @@
                             <outlet property="delegate" destination="9OB-lI-obx" id="MOn-Pn-eDU"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Folder" id="9SH-3S-wkD"/>
+                    <navigationItem key="navigationItem" title="Folder" id="9SH-3S-wkD">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="QgF-UI-ZuV">
+                            <connections>
+                                <action selector="actionButtonTapped:" destination="9OB-lI-obx" id="abf-7u-za8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>

@@ -14,8 +14,10 @@ import CoreData
 /// `delegate`. This class also supports updating data from the server.
 public final class FileListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
-    private let course: Course
-    private let folder: File?
+
+    public let course: Course
+
+    public let folder: File?
 
     public weak var delegate: DataSourceSectionDelegate?
 

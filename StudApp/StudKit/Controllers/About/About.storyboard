@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Tv5-Vz-jtS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Tv5-Vz-jtS">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
@@ -153,7 +153,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="4Cl-De-91t">
                             <connections>
-                                <action selector="shareButtonTapped:" destination="QMe-kD-TIZ" id="lfN-vB-z4v"/>
+                                <action selector="actionButtonTapped:" destination="QMe-kD-TIZ" id="YQl-ik-2sn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

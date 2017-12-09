@@ -112,6 +112,17 @@ final class FileListController: UITableViewController, DataSourceSectionDelegate
         }
     }
 
+    // MARK: - User Interaction
+
+    @IBAction
+    func actionButtonTapped(_: Any) {
+        guard let url = viewModel.folder?.documentUrl else { return }
+
+        let activityController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        activityController.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(activityController, animated: true, completion: nil)
+    }
+
     // MARK: - Navigation
 
     override func shouldPerformSegue(withIdentifier _: String, sender: Any?) -> Bool {
