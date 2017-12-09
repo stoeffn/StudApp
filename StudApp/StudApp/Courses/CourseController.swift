@@ -6,6 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import MobileCoreServices
 import StudKit
 
 final class CourseController: UITableViewController, Routable {
@@ -228,9 +229,19 @@ extension CourseController: DataSourceSectionDelegate {
 @available(iOS 11.0, *)
 extension CourseController: UITableViewDragDelegate {
     private func items(forIndexPath indexPath: IndexPath) -> [UIDragItem] {
-        let file = filesViewModel[rowAt: indexPath.row]
-        guard let itemProvider = NSItemProvider(contentsOf: file.documentUrl(inProviderDirectory: true)) else { return [] }
-        return [UIDragItem(itemProvider: itemProvider)]
+        switch Sections(rawValue: indexPath.section) {
+        case .info?:
+            let titleAndValue = viewModel[rowAt: indexPath.row]
+            let itemProvider = NSItemProvider(item: titleAndValue.value as NSSecureCoding?,
+                                              typeIdentifier: kUTTypePlainText as String)
+            return [UIDragItem(itemProvider: itemProvider)]
+        case .documents?:
+            let file = filesViewModel[rowAt: indexPath.row]
+            guard let itemProvider = NSItemProvider(contentsOf: file.documentUrl(inProviderDirectory: true)) else { return [] }
+            return [UIDragItem(itemProvider: itemProvider)]
+        case nil:
+            fatalError()
+        }
     }
 
     func tableView(_: UITableView, itemsForBeginning _: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
@@ -248,11 +259,19 @@ extension CourseController: UITableViewDragDelegate {
 extension CourseController: UIViewControllerPreviewingDelegate {
     func previewingContext(_: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
-        let file = filesViewModel[rowAt: indexPath.row]
-        guard !file.isFolder else { return nil }
-        let previewController = PreviewController()
-        previewController.prepareDependencies(for: .preview(file))
-        return previewController
+
+        switch Sections(rawValue: indexPath.section) {
+        case .info?:
+            return nil
+        case .documents?:
+            let file = filesViewModel[rowAt: indexPath.row]
+            guard !file.isFolder else { return nil }
+            let previewController = PreviewController()
+            previewController.prepareDependencies(for: .preview(file))
+            return previewController
+        case nil:
+            fatalError()
+        }
     }
 
     func previewingContext(_: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
