@@ -94,9 +94,7 @@ final class CourseController: UITableViewController, Routable {
 
     override func tableView(_: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
         switch Sections(rawValue: indexPath.section) {
-        case .info?:
-            return false
-        case .documents?:
+        case .info?, .documents?:
             return true
         case nil:
             fatalError()
@@ -107,7 +105,7 @@ final class CourseController: UITableViewController, Routable {
                             withSender _: Any?) -> Bool {
         switch Sections(rawValue: indexPath.section) {
         case .info?:
-            return false
+            return action == #selector(copy(_:))
         case .documents?:
             let file = filesViewModel[rowAt: indexPath.row]
 
@@ -127,7 +125,13 @@ final class CourseController: UITableViewController, Routable {
     override func tableView(_: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender _: Any?) {
         switch Sections(rawValue: indexPath.section) {
         case .info?:
-            break
+            switch action {
+            case #selector(copy(_:)):
+                let titleAndValue = viewModel[rowAt: indexPath.row]
+                UIPasteboard.general.string = titleAndValue.value
+            default:
+                break
+            }
         case .documents?:
             let file = filesViewModel[rowAt: indexPath.row]
 
