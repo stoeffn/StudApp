@@ -6,6 +6,8 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+public typealias TitleAndValue<Value> = (title: String, value: Value)
+
 public final class CourseViewModel {
     public let course: Course
 
@@ -13,24 +15,31 @@ public final class CourseViewModel {
         self.course = course
     }
 
-    private var infoFields: [String?] {
-        return [course.number, course.location, course.summary]
+    private var rows: [TitleAndValue<String?>] {
+        return [
+            ("Course Number".localized, course.number),
+            ("Location".localized, course.location),
+        ]
     }
+}
 
-    public var numberOfInfoFields: Int {
-        return infoFields
-            .flatMap { $0 }
+extension CourseViewModel: DataSourceSection {
+    public typealias Row = TitleAndValue<String?>
+
+    public var numberOfRows: Int {
+        return rows
+            .flatMap { $0.value }
             .count
     }
 
-    public func adjustedIndexForInfoField(at index: Int) -> Int {
-        let fieldIndex = infoFields.enumerated()
-            .filter { $1 != nil }
+    public subscript(rowAt index: Int) -> TitleAndValue<String?> {
+        let fieldIndex = rows.enumerated()
+            .filter { $1.value != nil }
             .dropFirst(index)
             .first?.offset ?? 0
-        let nilFieldsCount = infoFields[0...fieldIndex]
-            .filter { $0 == nil }
+        let nilFieldsCount = rows[0...fieldIndex]
+            .filter { $0.value == nil }
             .count
-        return index + nilFieldsCount
+        return rows[index + nilFieldsCount]
     }
 }

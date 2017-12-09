@@ -23,9 +23,7 @@ final class CourseController: UITableViewController, Routable {
 
         navigationItem.title = viewModel.course.title
 
-        tableView.register(FileCell.self, forCellReuseIdentifier: FileCell.typeIdentifier)
-
-        initUserInterface()
+        subtitleLabel.text = viewModel.course.subtitle
     }
 
     func prepareDependencies(for route: Routes) {
@@ -39,38 +37,20 @@ final class CourseController: UITableViewController, Routable {
 
     @IBOutlet weak var subtitleLabel: UILabel!
 
-    @IBOutlet weak var courseNumberCell: UITableViewCell!
-
-    @IBOutlet weak var locationCell: UITableViewCell!
-
-    @IBOutlet weak var summaryCell: UITableViewCell!
-
-    @IBOutlet weak var summaryLabel: UILabel!
-
-    private func initUserInterface() {
-        subtitleLabel.text = viewModel.course.subtitle
-
-        courseNumberCell.textLabel?.text = "Course Number".localized
-        courseNumberCell.detailTextLabel?.text = viewModel.course.number
-
-        locationCell.textLabel?.text = "Location".localized
-        locationCell.detailTextLabel?.text = viewModel.course.location
-
-        summaryLabel.text = viewModel.course.summary
-
-        tableView.reloadData()
-    }
-
     // MARK: - Table View Data Source
 
     private enum Sections: Int {
         case info, documents
     }
 
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch Sections(rawValue: section) {
         case .info?:
-            return viewModel.numberOfInfoFields
+            return viewModel.numberOfRows
         case .documents?:
             return filesViewModel.numberOfRows
         default:
@@ -81,31 +61,17 @@ final class CourseController: UITableViewController, Routable {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch Sections(rawValue: indexPath.section) {
         case .info?:
-            let adjustedIndexPath = IndexPath(row: viewModel.adjustedIndexForInfoField(at: indexPath.row),
-                                              section: indexPath.section)
-            return super.tableView(tableView, cellForRowAt: adjustedIndexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.typeIdentifier, for: indexPath)
+            let titleAndValue = viewModel[rowAt: indexPath.row]
+            cell.textLabel?.text = titleAndValue.title
+            cell.detailTextLabel?.text = titleAndValue.value
+            return cell
         case .documents?:
             let cell = tableView.dequeueReusableCell(withIdentifier: FileCell.typeIdentifier, for: indexPath)
             (cell as? FileCell)?.file = filesViewModel[rowAt: indexPath.row]
             return cell
         default:
-            return super.tableView(tableView, cellForRowAt: indexPath)
-        }
-    }
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-
-    // MARK: - Table View Delegate
-
-    override func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
-        // Needs to be overridden in order to avoid index-out-of-range-exceptions caused by static cells.
-        switch Sections(rawValue: indexPath.section) {
-        case .documents?:
-            return super.tableView(tableView, indentationLevelForRowAt: IndexPath(row: 0, section: indexPath.section))
-        default:
-            return super.tableView(tableView, indentationLevelForRowAt: indexPath)
+            fatalError()
         }
     }
 }
