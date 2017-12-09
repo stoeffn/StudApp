@@ -361,6 +361,10 @@
                                     <outlet property="titleLabel" destination="7BS-La-ljQ" id="3Dm-9s-rUD"/>
                                     <outlet property="userGlyph" destination="tYl-F4-n4C" id="Mu4-8I-f3S"/>
                                     <outlet property="userLabel" destination="Yo8-c8-M0J" id="Ca4-el-tLl"/>
+                                    <segue destination="dqA-Lf-eop" kind="show" id="BCO-wr-oP7">
+                                        <segue key="commit" inheritsFrom="parent" id="8S7-ou-Vvh"/>
+                                        <segue key="preview" inheritsFrom="commit" id="mcM-oK-FKO"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -378,6 +382,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PtY-OR-DU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1869.5999999999999" y="131.52709359605913"/>
+        </scene>
+        <!--Documents-->
+        <scene sceneID="Yim-PB-jaZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Documents" id="dqA-Lf-eop" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hnO-EO-Wa2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2425" y="132"/>
         </scene>
         <!--Semesters-->
         <scene sceneID="UXO-ER-iwK">
@@ -440,5 +452,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="4Tp-c5-wvM"/>
+        <segue reference="BCO-wr-oP7"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -15,26 +15,30 @@ import CoreData
 public final class FileListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let course: Course
-    private let parentFolder: File?
+    private let folder: File?
 
     public weak var delegate: DataSourceSectionDelegate?
 
-    /// Creates a new file list view model.
-    ///
-    /// - Parameters:
-    ///   - course: Course of the files to manage.
-    ///   - parentFolder: If non-nil, this class manages this folder's children. Otherwise, it manages the root files of
-    ///                   `course`.
-    public init(course: Course, parentFolder: File? = nil) {
+    /// Creates a new file list view model for the given course's root files.
+    public init(course: Course) {
         self.course = course
-        self.parentFolder = parentFolder
+        folder = nil
+        super.init()
+
+        controller.delegate = self
+    }
+
+    /// Creates a new file list view model for the given folder's contents.
+    public init(folder: File) {
+        course = folder.course
+        self.folder = folder
         super.init()
 
         controller.delegate = self
     }
 
     private(set) lazy var controller: NSFetchedResultsController<FileState>
-        = NSFetchedResultsController(fetchRequest: parentFolder?.childrenFetchRequest ?? course.rootFilesFetchRequest,
+        = NSFetchedResultsController(fetchRequest: folder?.childrenFetchRequest ?? course.rootFilesFetchRequest,
                                      managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
 
     /// Fetches initial data.
@@ -54,7 +58,7 @@ public final class FileListViewModel: NSObject {
     }
 
     public var title: String {
-        return parentFolder?.title ?? course.title
+        return folder?.title ?? course.title
     }
 }
 

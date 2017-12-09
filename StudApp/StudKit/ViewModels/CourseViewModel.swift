@@ -37,7 +37,7 @@ extension CourseViewModel: DataSourceSection {
             .filter { $1.value != nil }
             .dropFirst(index)
             .first?.offset ?? 0
-        let nilFieldsCount = rows[0...fieldIndex]
+        let nilFieldsCount = rows[0 ... fieldIndex]
             .filter { $0.value == nil }
             .count
         return rows[index + nilFieldsCount]

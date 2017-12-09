@@ -43,11 +43,11 @@ final class CourseController: UITableViewController, Routable {
         case info, documents
     }
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in _: UITableView) -> Int {
         return 2
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch Sections(rawValue: section) {
         case .info?:
             return viewModel.numberOfRows
@@ -75,11 +75,24 @@ final class CourseController: UITableViewController, Routable {
         }
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch Sections(rawValue: section) {
         case .info?: return nil
         case .documents?: return "Documents".localized
         default: fatalError()
+        }
+    }
+
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+
+        switch sender {
+        case let cell as FileCell:
+            prepare(for: .folder(cell.file), destination: segue.destination)
+        default:
+            prepareForRoute(using: segue, sender: sender)
         }
     }
 }

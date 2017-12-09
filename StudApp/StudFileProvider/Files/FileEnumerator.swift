@@ -32,7 +32,7 @@ final class FileEnumerator: CachingFileEnumerator {
         case let course as Course:
             viewModel = FileListViewModel(course: course)
         case let folder as File:
-            viewModel = FileListViewModel(course: folder.course, parentFolder: folder)
+            viewModel = FileListViewModel(folder: folder)
         default:
             fatalError("Cannot enumerate files in item with identifier '\(itemIdentifier)'.")
         }

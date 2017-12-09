@@ -24,18 +24,18 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
     }
 
     func prepareDependencies(for route: Routes) {
-        guard case let .folder(file) = route else { fatalError() }
+        guard case let .folder(folder) = route else { fatalError() }
 
-        viewModel = FileListViewModel(course: file.course, parentFolder: file)
+        viewModel = FileListViewModel(folder: folder)
     }
 
     // MARK: - Table View Data Source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in _: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return viewModel.numberOfRows
     }
 
