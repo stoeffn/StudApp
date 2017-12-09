@@ -26,8 +26,10 @@ final class FileCell: UITableViewCell {
             userGlyph.isHidden = file.owner == nil
             userLabel.text = file.owner?.nameComponents.formatted()
 
-            activityIndicator?.isHidden = !file.state.isDownloading || file.isFolder
-            downloadGlyph?.isHidden = file.state.isMostRecentVersionDownloaded || file.state.isDownloading
+            activityIndicator?.isHidden = !file.state.isDownloading
+            downloadGlyph?.isHidden = file.isFolder
+                || file.state.isMostRecentVersionDownloaded
+                || file.state.isDownloading
         }
     }
 
