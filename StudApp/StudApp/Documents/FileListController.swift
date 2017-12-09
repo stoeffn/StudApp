@@ -23,6 +23,11 @@ final class FileListController: UITableViewController, DataSourceSectionDelegate
         registerForPreviewing(with: self, sourceView: tableView)
 
         navigationItem.title = viewModel.title
+
+        if #available(iOS 11.0, *) {
+            tableView.dragDelegate = self
+            tableView.dragInteractionEnabled = true
+        }
     }
 
     func prepareDependencies(for route: Routes) {
@@ -92,6 +97,26 @@ final class FileListController: UITableViewController, DataSourceSectionDelegate
         default:
             prepareForRoute(using: segue, sender: sender)
         }
+    }
+}
+
+// MARK: - Table View Drag Delegate
+
+@available(iOS 11.0, *)
+extension FileListController: UITableViewDragDelegate {
+    private func items(forIndexPath indexPath: IndexPath) -> [UIDragItem] {
+        let file = viewModel[rowAt: indexPath.row]
+        guard let itemProvider = NSItemProvider(contentsOf: file.documentUrl(inProviderDirectory: true)) else { return [] }
+        return [UIDragItem(itemProvider: itemProvider)]
+    }
+
+    func tableView(_: UITableView, itemsForBeginning _: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        return items(forIndexPath: indexPath)
+    }
+
+    func tableView(_: UITableView, itemsForAddingTo _: UIDragSession, at indexPath: IndexPath,
+                   point _: CGPoint) -> [UIDragItem] {
+        return items(forIndexPath: indexPath)
     }
 }
 
