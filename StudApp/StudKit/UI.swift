@@ -33,7 +33,7 @@ public enum UI {
             7: UIColor(red: 0.118, green: 0.388, blue: 0.933, alpha: 1),
             8: UIColor(red: 0, green: 0.847, blue: 0.922, alpha: 1),
             9: UIColor(red: 0.345, green: 0.918, blue: 0.631, alpha: 1),
-            10: UIColor(red: 0.00784, green: 0.698, blue: 0.122, alpha: 1)
+            10: UIColor(red: 0.00784, green: 0.698, blue: 0.122, alpha: 1),
         ]
     }
 }

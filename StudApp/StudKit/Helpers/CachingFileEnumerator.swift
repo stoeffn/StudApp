@@ -44,28 +44,28 @@ extension CachingFileEnumerator: NSFileProviderEnumerator {
 
     public func enumerateItems(for observer: NSFileProviderEnumerationObserver, startingAt _: NSFileProviderPage) {
         coreDataService.viewContext.performAndWait {
-            try? historyService.mergeHistory(into: coreDataService.viewContext)
-            try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
-        }
+            try? self.historyService.mergeHistory(into: self.coreDataService.viewContext)
+            try? self.historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: self.coreDataService.viewContext)
 
-        observer.didEnumerate(items)
-        observer.finishEnumerating(upTo: nil)
+            observer.didEnumerate(self.items)
+            observer.finishEnumerating(upTo: nil)
+        }
     }
 
     public func enumerateChanges(for observer: NSFileProviderChangeObserver, from _: NSFileProviderSyncAnchor) {
         coreDataService.viewContext.performAndWait {
-            try? historyService.mergeHistory(into: coreDataService.viewContext)
-            try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
+            try? self.historyService.mergeHistory(into: self.coreDataService.viewContext)
+            try? self.historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: self.coreDataService.viewContext)
+
+            let updatedItems = self.cache.updatedItems
+                .flatMap { try? $0.fileProviderItem(context: self.coreDataService.viewContext) }
+
+            observer.didUpdate(updatedItems)
+            observer.didDeleteItems(withIdentifiers: self.cache.deletedItemIdentifiers)
+            observer.finishEnumeratingChanges(upTo: self.cache.currentSyncAnchor, moreComing: false)
+
+            self.cache.flush()
         }
-
-        let updatedItems = cache.updatedItems
-            .flatMap { try? $0.fileProviderItem(context: self.coreDataService.viewContext) }
-
-        observer.didUpdate(updatedItems)
-        observer.didDeleteItems(withIdentifiers: cache.deletedItemIdentifiers)
-        observer.finishEnumeratingChanges(upTo: cache.currentSyncAnchor, moreComing: false)
-
-        cache.flush()
     }
 
     public func currentSyncAnchor(completionHandler: @escaping (NSFileProviderSyncAnchor?) -> Void) {
