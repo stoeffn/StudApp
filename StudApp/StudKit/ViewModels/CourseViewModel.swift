@@ -12,4 +12,8 @@ public final class CourseViewModel {
     public init(course: Course) {
         self.course = course
     }
+
+    public var infoFields: [String?] {
+        return [course.number, course.location, course.summary]
+    }
 }
