@@ -184,7 +184,7 @@ final class CourseController: UITableViewController, Routable {
     // MARK: - User Interaction
 
     @IBAction
-    func actionButtonTapped(_ sender: Any) {
+    func actionButtonTapped(_: Any) {
         guard let courseUrl = viewModel.course.url else { return }
 
         let controller = UIActivityViewController(activityItems: [courseUrl], applicationActivities: [SafariActivity()])
