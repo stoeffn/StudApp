@@ -45,10 +45,21 @@ final class FileListController: UITableViewController, DataSourceSectionDelegate
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? FileCell else { return }
+
+        preview(cell.file)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    // MARK: - User Interface
+
     private func preview(_ file: File) {
         file.download { result in
             guard result.isSuccess else {
-                // TODO: Display error
+                let alert = UIAlertController(title: result.error?.localizedDescription, message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
                 return
             }
 
@@ -63,7 +74,6 @@ final class FileListController: UITableViewController, DataSourceSectionDelegate
     override func shouldPerformSegue(withIdentifier _: String, sender: Any?) -> Bool {
         switch sender {
         case let cell as FileCell where !cell.file.isFolder:
-            preview(cell.file)
             return false
         default:
             return true
