@@ -118,9 +118,9 @@ final class FileListController: UITableViewController, DataSourceSectionDelegate
     func actionButtonTapped(_: Any) {
         guard let url = viewModel.folder?.documentUrl else { return }
 
-        let activityController = UIActivityViewController(activityItems: [url], applicationActivities: nil)
-        activityController.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
-        present(activityController, animated: true, completion: nil)
+        let controller = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+        controller.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(controller, animated: true, completion: nil)
     }
 
     // MARK: - Navigation

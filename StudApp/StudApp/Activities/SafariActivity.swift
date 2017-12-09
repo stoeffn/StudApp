@@ -20,8 +20,7 @@ final class SafariActivity: UIActivity, ByTypeNameIdentifiable {
     }
 
     override var activityImage: UIImage {
-        guard let image = UIImage(named: "\(SafariActivity.typeIdentifier).bundle/safari") else { fatalError() }
-        return image
+        return #imageLiteral(resourceName: "OpenInSafariActivityGlyph")
     }
 
     override func canPerform(withActivityItems activityItems: [Any]) -> Bool {

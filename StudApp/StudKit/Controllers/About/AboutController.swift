@@ -53,9 +53,9 @@ final class AboutController: UITableViewController, Routable {
     func actionButtonTapped(_: Any) {
         guard let appUrl = App.url else { return }
 
-        let activityController = UIActivityViewController(activityItems: [appUrl], applicationActivities: nil)
-        activityController.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
-        present(activityController, animated: true, completion: nil)
+        let controller = UIActivityViewController(activityItems: [appUrl], applicationActivities: nil)
+        controller.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(controller, animated: true, completion: nil)
     }
 
     // MARK: - Table View Data Source
