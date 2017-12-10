@@ -73,16 +73,7 @@ final class FileListController: UITableViewController, DataSourceSectionDelegate
     }
 
     override func tableView(_: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender _: Any?) {
-        let file = viewModel[rowAt: indexPath.row]
-
-        switch action {
-        case #selector(copy(_:)):
-            let documentUrl = file.localUrl(inProviderDirectory: true)
-            guard let data = try? Data(contentsOf: documentUrl, options: .mappedIfSafe) else { return }
-            UIPasteboard.general.setData(data, forPasteboardType: file.typeIdentifier)
-        default:
-            break
-        }
+        return
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -130,24 +130,12 @@ final class CourseController: UITableViewController, Routable {
     override func tableView(_: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender _: Any?) {
         switch Sections(rawValue: indexPath.section) {
         case .info?:
-            switch action {
-            case #selector(copy(_:)):
+            if action == #selector(copy(_:)) {
                 let titleAndValue = viewModel[rowAt: indexPath.row]
                 UIPasteboard.general.string = titleAndValue.value
-            default:
-                break
             }
         case .documents?:
-            let file = filesViewModel[rowAt: indexPath.row]
-
-            switch action {
-            case #selector(copy(_:)):
-                let documentUrl = file.localUrl(inProviderDirectory: true)
-                guard let data = try? Data(contentsOf: documentUrl, options: .mappedIfSafe) else { return }
-                UIPasteboard.general.setData(data, forPasteboardType: file.typeIdentifier)
-            default:
-                break
-            }
+            break
         case nil:
             fatalError()
         }

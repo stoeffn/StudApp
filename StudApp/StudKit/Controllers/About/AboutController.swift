@@ -141,12 +141,21 @@ final class AboutController: UITableViewController, Routable {
         }
     }
 
+    override func tableView(_: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
+        switch Sections(rawValue: indexPath.section) {
+        case .feedback?:
+            return true
+        case .thanks?:
+            return viewModel[rowAt: indexPath.row].url != nil
+        default:
+            return false
+        }
+    }
+
     override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath,
                             withSender _: Any?) -> Bool {
-        let cell = tableView.cellForRow(at: indexPath)
-
         switch Sections(rawValue: indexPath.section) {
-        case .feedback? where cell === sendFeedbackCell:
+        case .feedback?:
             return action == #selector(copy(_:))
         case .thanks?:
             guard viewModel[rowAt: indexPath.row].url != nil else { return false }
@@ -163,23 +172,12 @@ final class AboutController: UITableViewController, Routable {
         switch Sections(rawValue: indexPath.section) {
         case .feedback? where cell === sendFeedbackCell:
             UIPasteboard.general.string = App.feedbackMailAddress
+        case .feedback? where cell === rateAppCell:
+            UIPasteboard.general.url = App.reviewUrl
         case .thanks?:
             UIPasteboard.general.url = viewModel[rowAt: indexPath.row].url
         default:
-            break
-        }
-    }
-
-    override func tableView(_: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
-        let cell = tableView.cellForRow(at: indexPath)
-
-        switch Sections(rawValue: indexPath.section) {
-        case .feedback? where cell === sendFeedbackCell:
-            return true
-        case .thanks?:
-            return viewModel[rowAt: indexPath.row].url != nil
-        default:
-            return false
+            fatalError()
         }
     }
 

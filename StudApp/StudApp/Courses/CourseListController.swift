@@ -86,12 +86,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt _: IndexPath,
                             withSender _: Any?) -> Bool {
-        switch action {
-        case #selector(CustomMenuItems.color(_:)):
-            return true
-        default:
-            return false
-        }
+        return action == #selector(CustomMenuItems.color(_:))
     }
 
     override func tableView(_: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender _: Any?) {
@@ -164,7 +159,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     // MARK: - User Interface
 
     @available(iOS 11.0, *)
-    private func colorAction(for cell: CourseCell, at indexPath: IndexPath) -> UIContextualAction {
+    private func colorAction(for cell: CourseCell, at _: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Color".localized) { _, _, success in
             cell.color(nil)
             success(true)

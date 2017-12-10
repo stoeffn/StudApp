@@ -46,7 +46,7 @@ final class CourseCell: UITableViewCell {
     // MARK: - User Interaction
 
     @objc
-    func color(_ sender: Any?) {
+    func color(_: Any?) {
         let route = Routes.colorPicker { id, _ in
             self.course.state.colorId = id
         }
