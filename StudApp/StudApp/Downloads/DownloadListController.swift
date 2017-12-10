@@ -106,7 +106,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt _: IndexPath,
                             withSender _: Any?) -> Bool {
         switch action {
-        case #selector(copy(_:)), #selector(CustomMenuItems.share(_:)), #selector(CustomMenuItems.remove(_:)):
+        case #selector(CustomMenuItems.share(_:)), #selector(CustomMenuItems.remove(_:)):
             return true
         default:
             return false

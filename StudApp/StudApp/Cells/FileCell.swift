@@ -56,13 +56,6 @@ final class FileCell: UITableViewCell {
     // MARK: - User Interaction
 
     @objc
-    override func copy(_: Any?) {
-        let documentUrl = file.localUrl(inProviderDirectory: true)
-        guard let data = try? Data(contentsOf: documentUrl, options: .mappedIfSafe) else { return }
-        UIPasteboard.general.setData(data, forPasteboardType: file.typeIdentifier)
-    }
-
-    @objc
     func share(_: Any?) {
         file.documentController { $0.presentOptionsMenu(from: self.frame, in: self, animated: true) }
     }

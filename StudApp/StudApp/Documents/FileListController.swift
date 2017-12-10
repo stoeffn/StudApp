@@ -63,7 +63,7 @@ final class FileListController: UITableViewController, DataSourceSectionDelegate
         let file = viewModel[rowAt: indexPath.row]
 
         switch action {
-        case #selector(copy(_:)), #selector(CustomMenuItems.share(_:)):
+        case #selector(CustomMenuItems.share(_:)):
             return true
         case #selector(CustomMenuItems.remove(_:)):
             return file.state.isDownloaded

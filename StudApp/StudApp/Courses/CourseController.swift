@@ -115,7 +115,7 @@ final class CourseController: UITableViewController, Routable {
             let file = filesViewModel[rowAt: indexPath.row]
 
             switch action {
-            case #selector(copy(_:)), #selector(CustomMenuItems.share(_:)):
+            case #selector(CustomMenuItems.share(_:)):
                 return true
             case #selector(CustomMenuItems.remove(_:)):
                 return file.state.isDownloaded
