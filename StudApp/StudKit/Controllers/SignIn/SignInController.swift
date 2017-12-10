@@ -91,7 +91,7 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
             isLoading = true
             isErrorCellHidden = true
         case let .failure(message):
-            errorLabel.text = message
+            errorLabel.text = message.localizedDescription
             isLoading = false
             isErrorCellHidden = false
         case .success:

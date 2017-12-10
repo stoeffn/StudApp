@@ -21,7 +21,7 @@ public final class SignInViewModel {
         case loading
 
         /// There was an error signing in. The view should display the associated error.
-        case failure(String)
+        case failure(Error)
 
         /// User has been signed in successfully. The view should now show the application's main view.
         case success
