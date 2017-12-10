@@ -87,7 +87,7 @@ final class CourseController: UITableViewController, Routable {
         }
     }
 
-    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
         switch Sections(rawValue: section) {
         case .info?: return viewModel.course.summary
         case .documents?: return nil

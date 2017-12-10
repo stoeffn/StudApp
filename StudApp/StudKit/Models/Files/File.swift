@@ -89,6 +89,11 @@ public extension File {
         return typeIdentifier == kUTTypeFolder as String
     }
 
+    public var `extension`: String {
+        let pathExtension = URL(string: name)?.pathExtension
+        return pathExtension.map { ".\($0)" } ?? ""
+    }
+
     public static func localContainerUrl(forId id: String, in directory: URL) -> URL {
         let containerUrl = directory.appendingPathComponent(id, isDirectory: true)
         return containerUrl
