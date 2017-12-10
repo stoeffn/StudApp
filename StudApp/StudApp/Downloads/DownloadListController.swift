@@ -151,7 +151,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         guard view != nil else { return }
 
         emptyViewTitleLabel.text = "It Looks Like There Are No Downloads Yet".localized
-        emptyViewSubtitleLabel.text = "Open the app \"Files\" to get started.".localized
+        emptyViewSubtitleLabel.text = "Open the app \"Files\" or browse your courses to get started.".localized
 
         tableView.backgroundView = viewModel.isEmpty ? emptyView : nil
         tableView.separatorStyle = viewModel.isEmpty ? .none : .singleLine
