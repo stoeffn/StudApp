@@ -129,6 +129,18 @@ final class FileProviderExtension: NSFileProviderExtension {
             return
         }
 
+        guard !file.isFolder else {
+            do {
+                try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                completionHandler?(error)
+                return
+            }
+
+            completionHandler?(nil)
+            return
+        }
+
         file.download { result in
             guard result.isSuccess else {
                 completionHandler?(NSFileProviderError(.serverUnreachable))

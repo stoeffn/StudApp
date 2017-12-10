@@ -21,7 +21,9 @@ final class FileItem: NSObject, NSFileProviderItem {
         itemIdentifier = file.itemIdentifier
         filename = file.title
         typeIdentifier = file.typeIdentifier
-        capabilities = file.isFolder ? [.allowsReading, .allowsContentEnumerating] : [.allowsReading]
+        capabilities = file.isFolder
+            ? [.allowsReading, .allowsContentEnumerating]
+            : [.allowsReading]
 
         childItemCount = file.children.count as NSNumber
         documentSize = file.size >= 0 ? file.size as NSNumber : nil
