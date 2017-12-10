@@ -243,6 +243,7 @@ extension CourseController: UITableViewDragDelegate {
         case .documents?:
             let file = filesViewModel[rowAt: indexPath.row]
             guard let itemProvider = NSItemProvider(contentsOf: file.localUrl(inProviderDirectory: true)) else { return [] }
+            itemProvider.suggestedName = file.sanitizedTitleWithExtension
             return [UIDragItem(itemProvider: itemProvider)]
         case nil:
             fatalError()

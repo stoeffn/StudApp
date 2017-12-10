@@ -142,6 +142,7 @@ extension FileListController: UITableViewDragDelegate {
     private func items(forIndexPath indexPath: IndexPath) -> [UIDragItem] {
         let file = viewModel[rowAt: indexPath.row]
         guard let itemProvider = NSItemProvider(contentsOf: file.localUrl(inProviderDirectory: true)) else { return [] }
+        itemProvider.suggestedName = file.sanitizedTitleWithExtension
         return [UIDragItem(itemProvider: itemProvider)]
     }
 
