@@ -30,11 +30,6 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
     public required convenience init(createIn context: NSManagedObjectContext) {
         self.init(context: context)
         state = FileState(createIn: context)
-
-        if isFolder {
-            try? FileManager.default.createDirectory(at: localUrl(inProviderDirectory: true),
-                                                     withIntermediateDirectories: true, attributes: [:])
-        }
     }
 }
 
