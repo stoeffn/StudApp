@@ -65,6 +65,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CourseCell.typeIdentifier, for: indexPath)
         cell.setDisclosureIndicatorHidden(for: splitViewController)
+        (cell as? CourseCell)?.controller = self
         (cell as? CourseCell)?.course = courseListViewModels[indexPath.section][rowAt: indexPath.row]
         return cell
     }
@@ -79,6 +80,24 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     // MARK: - Table View Delegate
 
+    override func tableView(_: UITableView, shouldShowMenuForRowAt _: IndexPath) -> Bool {
+        return true
+    }
+
+    override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt _: IndexPath,
+                            withSender _: Any?) -> Bool {
+        switch action {
+        case #selector(CustomMenuItems.color(_:)):
+            return true
+        default:
+            return false
+        }
+    }
+
+    override func tableView(_: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender _: Any?) {
+        return
+    }
+
     @available(iOS 11.0, *)
     override func tableView(_: UITableView,
                             leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -92,7 +111,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     @available(iOS 11.0, *)
     override func tableView(_: UITableView,
                             trailingSwipeActionsConfigurationForRowAt _: IndexPath) -> UISwipeActionsConfiguration? {
-        return nil
+        return UISwipeActionsConfiguration(actions: [])
     }
 
     // MARK: - Responding to Changed Data
@@ -146,8 +165,8 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     @available(iOS 11.0, *)
     private func colorAction(for cell: CourseCell, at indexPath: IndexPath) -> UIContextualAction {
-        let action = UIContextualAction(style: .normal, title: "Color") { _, _, success in
-            self.colorActionActivated(withCourse: cell.course, at: indexPath)
+        let action = UIContextualAction(style: .normal, title: "Color".localized) { _, _, success in
+            cell.color(nil)
             success(true)
         }
         action.backgroundColor = cell.colorView.backgroundColor
@@ -160,14 +179,6 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     @IBAction
     func userButtonTapped(_ sender: Any) {
         (tabBarController as? MainController)?.userButtonTapped(sender)
-    }
-
-    private func colorActionActivated(withCourse course: Course, at indexPath: IndexPath) {
-        let course = courseListViewModels[indexPath.section][rowAt: indexPath.row]
-        let route = Routes.colorPicker { id, _ in
-            course.state.colorId = id
-        }
-        performSegue(withRoute: route)
     }
 
     // MARK: - Navigation

@@ -11,6 +11,8 @@ import StudKit
 final class CourseCell: UITableViewCell {
     // MARK: - Life Cycle
 
+    weak var controller: UIViewController!
+
     var course: Course! {
         didSet {
             colorView.backgroundColor = UI.Colors.pickerColors[course.state.colorId] ?? UI.Colors.studBlue
@@ -39,5 +41,15 @@ final class CourseCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         colorView.backgroundColor = UI.Colors.pickerColors[course.state.colorId] ?? UI.Colors.studBlue
+    }
+
+    // MARK: - User Interaction
+
+    @objc
+    func color(_ sender: Any?) {
+        let route = Routes.colorPicker { id, _ in
+            self.course.state.colorId = id
+        }
+        controller.performSegue(withRoute: route)
     }
 }
