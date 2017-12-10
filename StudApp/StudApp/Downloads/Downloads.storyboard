@@ -23,8 +23,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" misplaced="YES" id="X0M-6M-fk1">
-                            <rect key="frame" x="0.0" y="0.0" width="768" height="225"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="X0M-6M-fk1">
+                            <rect key="frame" x="0.0" y="0.0" width="768" height="250"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open the app &quot;Files&quot; to get started." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TMm-hn-B4O">
@@ -70,7 +70,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FileCell" rowHeight="72" id="1zq-2J-AVl" customClass="FileCell" customModule="StudApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="253" width="768" height="72"/>
+                                <rect key="frame" x="0.0" y="278" width="768" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1zq-2J-AVl" id="11a-Vz-8MG">
                                     <rect key="frame" x="0.0" y="0.0" width="702" height="71.5"/>

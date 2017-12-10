@@ -24,6 +24,8 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
         courseListViewModels = viewModel.map(courseListViewModel)
 
+        splitViewController?.preferredDisplayMode = .allVisible
+
         navigationItem.title = "Courses".localized
 
         if #available(iOS 11.0, *) {
