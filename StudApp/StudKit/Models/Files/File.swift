@@ -89,6 +89,10 @@ public extension File {
         return pathExtension.map { ".\($0)" } ?? ""
     }
 
+    public var sanitizedTitleWithExtension: String {
+        return title.replacingOccurrences(of: ":", with: "") + `extension`
+    }
+
     public static func localContainerUrl(forId id: String, in directory: URL) -> URL {
         let containerUrl = directory.appendingPathComponent(id, isDirectory: true)
         return containerUrl

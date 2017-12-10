@@ -13,13 +13,13 @@ import StudKit
 final class FileItem: NSObject, NSFileProviderItem {
     // MARK: - Constants
 
-    private static let realFilenameUserInfoKey = "realFilename"
+    private static let internalFilenameUserInfoKey = "internalFilename"
 
     // MARK: - Life Cycle
 
     init(from file: File, parentItemIdentifier: NSFileProviderItemIdentifier) {
         itemIdentifier = file.itemIdentifier
-        filename = "\(file.title)\(file.extension)"
+        filename = file.sanitizedTitleWithExtension
         typeIdentifier = file.typeIdentifier
         capabilities = file.isFolder
             ? [.allowsReading, .allowsContentEnumerating]
@@ -47,7 +47,7 @@ final class FileItem: NSObject, NSFileProviderItem {
 
         super.init()
 
-        realFilename = file.name
+        internalFilename = file.name
     }
 
     convenience init(from file: File) throws {
@@ -123,8 +123,8 @@ final class FileItem: NSObject, NSFileProviderItem {
     /// `File` has both a name and a title. The name is, as one would expect, the name at file system level, whereas the title
     /// is a simplified display name, often containing additional or more human-readable information. As `filename` on
     /// `NSFileProviderItem` refers to the display name, it contains the title of a `File`.
-    var realFilename: String? {
-        get { return userInfo?[FileItem.realFilenameUserInfoKey] as? String }
-        set { userInfo?[FileItem.realFilenameUserInfoKey] = newValue }
+    var internalFilename: String? {
+        get { return userInfo?[FileItem.internalFilenameUserInfoKey] as? String }
+        set { userInfo?[FileItem.internalFilenameUserInfoKey] = newValue }
     }
 }

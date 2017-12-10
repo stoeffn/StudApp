@@ -45,7 +45,7 @@ final class FileProviderExtension: NSFileProviderExtension {
         guard
             let item = try? item(for: identifier),
             let fileItem = item as? FileItem,
-            let filename = fileItem.realFilename
+            let filename = fileItem.internalFilename
         else { return nil }
 
         return containerUrlForItem(withPersistentIdentifier: identifier)
