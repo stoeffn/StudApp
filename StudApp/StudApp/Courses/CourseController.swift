@@ -87,6 +87,14 @@ final class CourseController: UITableViewController, Routable {
         }
     }
 
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        switch Sections(rawValue: section) {
+        case .info?: return viewModel.course.summary
+        case .documents?: return nil
+        case nil: fatalError()
+        }
+    }
+
     // MARK: - Table View Delegate
 
     override func tableView(_: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
