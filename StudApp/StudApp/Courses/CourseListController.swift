@@ -89,6 +89,12 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         ])
     }
 
+    @available(iOS 11.0, *)
+    override func tableView(_: UITableView,
+                            trailingSwipeActionsConfigurationForRowAt _: IndexPath) -> UISwipeActionsConfiguration? {
+        return nil
+    }
+
     // MARK: - Responding to Changed Data
 
     func data<Section: DataSourceSection>(changedIn row: Section.Row, at index: Int, change: DataChange<Section.Row, Int>,
