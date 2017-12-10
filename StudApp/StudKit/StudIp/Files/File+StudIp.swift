@@ -47,6 +47,9 @@ extension File {
 
         guard let downloadTask = task else { return nil }
 
+        try? FileManager.default.createIntermediateDirectories(forFileAt: localUrl())
+        try? FileManager.default.createIntermediateDirectories(forFileAt: localUrl(inProviderDirectory: true))
+
         if #available(iOSApplicationExtension 11.0, *) {
             NSFileProviderManager.default.register(downloadTask, forItemWithIdentifier: itemIdentifier) { _ in
                 downloadTask.resume()
