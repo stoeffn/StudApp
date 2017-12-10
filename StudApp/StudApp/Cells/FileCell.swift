@@ -20,11 +20,16 @@ final class FileCell: UITableViewCell {
 
             titleLabel.text = file.title
 
-            modificationDateLabel?.text = file.modifiedAt.formattedAsShortDifferenceFromNow
-            sizeLabel.text = file.size.formattedAsByteCount
-            downloadCountLabel.text = "%dx".localized(file.downloadCount)
-            userGlyph.isHidden = file.owner == nil
+            modifiedAtLabel?.text = file.modifiedAt.formattedAsShortDifferenceFromNow
+
+            userContainer.isHidden = file.owner == nil
             userLabel.text = file.owner?.nameComponents.formatted()
+
+            sizeContainer.isHidden = file.isFolder || traitCollection.horizontalSizeClass == .compact
+            sizeLabel.text = file.size.formattedAsByteCount
+
+            downloadCountContainer.isHidden = file.isFolder || traitCollection.horizontalSizeClass == .compact
+            downloadCountLabel.text = "%dx".localized(file.downloadCount)
 
             activityIndicator?.isHidden = !file.state.isDownloading
             downloadGlyph?.isHidden = file.isFolder
@@ -39,18 +44,19 @@ final class FileCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
 
-    @IBOutlet weak var modificationDateLabel: UILabel!
+    @IBOutlet weak var modifiedAtContainer: UIStackView!
+    @IBOutlet weak var modifiedAtLabel: UILabel!
 
-    @IBOutlet weak var sizeLabel: UILabel!
-
-    @IBOutlet weak var downloadCountLabel: UILabel!
-
-    @IBOutlet weak var userGlyph: UIImageView!
-
+    @IBOutlet weak var userContainer: UIStackView!
     @IBOutlet weak var userLabel: UILabel!
 
-    @IBOutlet weak var activityIndicator: StudIpActivityIndicatorView?
+    @IBOutlet weak var sizeContainer: UIStackView!
+    @IBOutlet weak var sizeLabel: UILabel!
 
+    @IBOutlet weak var downloadCountContainer: UIStackView!
+    @IBOutlet weak var downloadCountLabel: UILabel!
+
+    @IBOutlet weak var activityIndicator: StudIpActivityIndicatorView?
     @IBOutlet weak var downloadGlyph: UIImageView?
 
     // MARK: - User Interaction
