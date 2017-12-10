@@ -21,21 +21,21 @@ final class FileCell: UITableViewCell {
             titleLabel.text = file.title
 
             modifiedAtLabel?.text = file.modifiedAt.formattedAsShortDifferenceFromNow
-
-            userContainer.isHidden = file.owner == nil
             userLabel.text = file.owner?.nameComponents.formatted()
-
-            sizeContainer.isHidden = file.isFolder || traitCollection.horizontalSizeClass == .compact
             sizeLabel.text = file.size.formattedAsByteCount
-
-            downloadCountContainer.isHidden = file.isFolder || traitCollection.horizontalSizeClass == .compact
             downloadCountLabel.text = "%dx".localized(file.downloadCount)
 
             activityIndicator?.isHidden = !file.state.isDownloading
             downloadGlyph?.isHidden = file.isFolder
                 || file.state.isMostRecentVersionDownloaded
                 || file.state.isDownloading
+
+            updateSubtitleHiddenStates()
         }
+    }
+
+    override var frame: CGRect {
+        didSet { updateSubtitleHiddenStates() }
     }
 
     // MARK: - User Interface
@@ -58,6 +58,13 @@ final class FileCell: UITableViewCell {
 
     @IBOutlet weak var activityIndicator: StudIpActivityIndicatorView?
     @IBOutlet weak var downloadGlyph: UIImageView?
+
+    private func updateSubtitleHiddenStates() {
+        guard let file = file else { return }
+        userContainer.isHidden = file.owner == nil
+        sizeContainer.isHidden = file.isFolder || traitCollection.horizontalSizeClass == .compact
+        downloadCountContainer.isHidden = file.isFolder || traitCollection.horizontalSizeClass == .compact
+    }
 
     // MARK: - User Interaction
 
