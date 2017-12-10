@@ -44,12 +44,11 @@ final class FileProviderExtension: NSFileProviderExtension {
     override func urlForItem(withPersistentIdentifier identifier: NSFileProviderItemIdentifier) -> URL? {
         guard
             let item = try? item(for: identifier),
-            let fileItem = item as? FileItem,
-            let filename = fileItem.internalFilename
+            let fileItem = item as? FileItem
         else { return nil }
 
         return containerUrlForItem(withPersistentIdentifier: identifier)
-            .appendingPathComponent(filename, isDirectory: false)
+            .appendingPathComponent(fileItem.filename, isDirectory: false)
     }
 
     static func model(for identifier: NSFileProviderItemIdentifier,

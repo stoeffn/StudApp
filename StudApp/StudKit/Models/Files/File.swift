@@ -85,7 +85,7 @@ public extension File {
     }
 
     public var `extension`: String {
-        let pathExtension = URL(string: name)?.pathExtension
+        let pathExtension = URL(string: name)?.pathExtension.nilWhenEmpty
         return pathExtension.map { ".\($0)" } ?? ""
     }
 
@@ -107,7 +107,7 @@ public extension File {
 
     public func localUrl(inProviderDirectory: Bool = false) -> URL {
         return File.documentContainerUrl(forId: id, inProviderDirectory: inProviderDirectory)
-            .appendingPathComponent(name, isDirectory: isFolder)
+            .appendingPathComponent(sanitizedTitleWithExtension, isDirectory: isFolder)
     }
 
     public func documentController(handler: @escaping (UIDocumentInteractionController) -> Void) {
