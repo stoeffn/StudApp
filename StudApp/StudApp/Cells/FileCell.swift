@@ -15,8 +15,12 @@ final class FileCell: UITableViewCell {
         didSet {
             accessoryType = file.isFolder ? .disclosureIndicator : .none
 
-            iconView.image = nil
-            file.documentController { self.iconView?.image = $0.icons.first }
+            if file.isFolder {
+                iconView.image = #imageLiteral(resourceName: "FolderIcon")
+            } else {
+                iconView.image = nil
+                file.documentController { self.iconView?.image = $0.icons.first }
+            }
 
             titleLabel.text = file.title
 
