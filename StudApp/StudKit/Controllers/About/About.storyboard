@@ -31,7 +31,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="85.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="AppIcon-Big" translatesAutoresizingMaskIntoConstraints="NO" id="DJi-Yk-Aot">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="AppIcon" translatesAutoresizingMaskIntoConstraints="NO" id="DJi-Yk-Aot">
                                                     <rect key="frame" x="16" y="11" width="64" height="64"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="128" id="KDK-qd-Tbk"/>
@@ -186,7 +186,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AppIcon-Big" width="1024" height="1024"/>
+        <image name="AppIcon" width="1024" height="1024"/>
         <image name="MailTableViewGlyph" width="25" height="25"/>
         <image name="RateTableViewGlyph" width="25" height="25"/>
     </resources>
