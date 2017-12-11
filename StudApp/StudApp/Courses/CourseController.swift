@@ -211,8 +211,7 @@ final class CourseController: UITableViewController, Routable {
             file.download { result in
                 guard result.isFailure else { return }
 
-                let alert = UIAlertController(title: result.error?.localizedDescription, message: nil, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
+                let alert = UIAlertController(title: result.error?.localizedDescription)
                 self.present(alert, animated: true, completion: nil)
             }
             return
