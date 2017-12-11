@@ -19,7 +19,7 @@ public enum Routes {
 
     case folder(File)
 
-    case colorPicker((Int, UIColor) -> Void)
+    case colorPicker(sender: Any?, (Int, UIColor) -> Void)
 
     private var destinationStoryboard: UIStoryboard? {
         switch self {

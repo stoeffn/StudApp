@@ -24,7 +24,7 @@ final class ColorPickerController: UICollectionViewController, Routable {
     }
 
     func prepareDependencies(for route: Routes) {
-        guard case let .colorPicker(handler) = route else { fatalError() }
+        guard case let .colorPicker(_, handler) = route else { fatalError() }
 
         viewModel = ColorPickerViewModel(handler: handler)
     }
@@ -52,28 +52,21 @@ final class ColorPickerController: UICollectionViewController, Routable {
         viewModel.didSelectColor(atIndex: indexPath.row)
         dismiss(animated: true, completion: nil)
     }
-
-    // MARK: - User Interaction
-
-    @IBAction
-    func cancelButtonTapped(sender _: Any?) {
-        dismiss(animated: true, completion: nil)
-    }
 }
 
 extension ColorPickerController: UICollectionViewDelegateFlowLayout {
     private func numberOfCells(forCollectionViewWidth width: CGFloat) -> Int {
-        return Int(width / 84)
+        return Int(width / 72)
     }
 
     func collectionView(_: UICollectionView, layout _: UICollectionViewLayout,
                         insetForSectionAt _: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     }
 
     func collectionView(_: UICollectionView, layout _: UICollectionViewLayout,
                         minimumInteritemSpacingForSectionAt _: Int) -> CGFloat {
-        return 8
+        return 4
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,

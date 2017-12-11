@@ -203,11 +203,23 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch sender {
-        case let cell as CourseCell:
-            prepare(for: .course(cell.course), destination: segue.destination)
-        default:
-            prepareForRoute(using: segue, sender: sender)
+        if let cell = sender as? CourseCell {
+            return prepare(for: .course(cell.course), destination: segue.destination)
         }
+        if case let .colorPicker(sender, _)? = sender as? Routes {
+            let cell = sender as? UITableViewCell
+            segue.destination.popoverPresentationController?.delegate = self
+            segue.destination.popoverPresentationController?.sourceView = cell
+            segue.destination.popoverPresentationController?.sourceRect = cell?.bounds ?? .zero
+        }
+        prepareForRoute(using: segue, sender: sender)
+    }
+}
+
+// MARK: - Popover Presentation
+
+extension CourseListController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
     }
 }

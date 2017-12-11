@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hSa-wQ-55N">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2NH-On-QFl">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -54,35 +54,11 @@
                             <outlet property="delegate" destination="2NH-On-QFl" id="ZPs-vZ-QFY"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Choose Color" id="Og5-GC-4ix">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="r7k-Lm-BGq">
-                            <connections>
-                                <action selector="cancelButtonTappedWithSender:" destination="2NH-On-QFl" id="aex-Jd-y6j"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Choose Color" id="Og5-GC-4ix"/>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fHw-U7-vg6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1168.8" y="595.95202398800609"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="WNU-Au-ni0">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hSa-wQ-55N" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ISu-aC-xMN">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="2NH-On-QFl" kind="relationship" relationship="rootViewController" id="HbA-ua-cLa"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zjb-6i-Imo" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="372" y="596"/>
         </scene>
     </scenes>
 </document>

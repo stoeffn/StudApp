@@ -130,7 +130,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="fEh-y0-dhM" kind="presentation" identifier="colorPicker" modalPresentationStyle="overFullScreen" id="S1u-q0-dDD"/>
+                        <segue destination="fEh-y0-dhM" kind="popoverPresentation" identifier="colorPicker" popoverAnchorView="m4z-J1-SuS" id="S1u-q0-dDD">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Grr-wn-BU0" userLabel="First Responder" sceneMemberID="firstResponder"/>

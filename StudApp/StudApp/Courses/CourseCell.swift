@@ -48,7 +48,7 @@ final class CourseCell: UITableViewCell {
 
     @objc
     func color(_: Any?) {
-        let route = Routes.colorPicker { id, _ in
+        let route = Routes.colorPicker(sender: self) { id, _ in
             self.course.state.colorId = id
         }
         controller.performSegue(withRoute: route)
