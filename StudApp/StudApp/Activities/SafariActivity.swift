@@ -6,10 +6,16 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import SafariServices
 import StudKit
 
 final class SafariActivity: UIActivity, ByTypeNameIdentifiable {
+    private weak var controller: UIViewController?
     private var url: URL?
+
+    init(controller: UIViewController? = nil) {
+        self.controller = controller
+    }
 
     override var activityType: UIActivityType? {
         return UIActivityType(SafariActivity.typeIdentifier)
@@ -38,6 +44,14 @@ final class SafariActivity: UIActivity, ByTypeNameIdentifiable {
 
     override func perform() {
         guard let url = url else { return activityDidFinish(false) }
-        UIApplication.shared.open(url, options: [:], completionHandler: activityDidFinish)
+
+        guard let controller = controller else {
+            return UIApplication.shared.open(url, options: [:], completionHandler: activityDidFinish)
+        }
+
+        let safariController = SFSafariViewController(url: url)
+        controller.present(safariController, animated: true) {
+            self.activityDidFinish(true)
+        }
     }
 }

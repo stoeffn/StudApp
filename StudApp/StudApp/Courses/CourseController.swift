@@ -185,7 +185,8 @@ final class CourseController: UITableViewController, Routable {
     func actionButtonTapped(_: Any) {
         guard let courseUrl = viewModel.course.url else { return }
 
-        let controller = UIActivityViewController(activityItems: [courseUrl], applicationActivities: [SafariActivity()])
+        let controller = UIActivityViewController(activityItems: [courseUrl],
+                                                  applicationActivities: [SafariActivity(controller: self)])
         controller.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         present(controller, animated: true, completion: nil)
     }
