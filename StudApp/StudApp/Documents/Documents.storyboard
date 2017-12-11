@@ -188,6 +188,7 @@
                                     <outlet property="titleLabel" destination="AGW-xi-pxG" id="OxN-7g-TK3"/>
                                     <outlet property="userContainer" destination="3BD-dk-dat" id="2Ia-Fi-dLt"/>
                                     <outlet property="userLabel" destination="bhY-HO-FLm" id="dm5-dk-dHL"/>
+                                    <segue destination="9OB-lI-obx" kind="show" identifier="folder" id="N6g-aE-vg6"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
