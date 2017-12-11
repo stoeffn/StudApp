@@ -33,6 +33,7 @@
 		243817AF1FC88B2B004052D0 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD96A1FA9090F00FBD750 /* UI.swift */; };
 		243CC2BE1FDF0A7F00FE7376 /* CDSortable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CC2BD1FDF0A7F00FE7376 /* CDSortable.swift */; };
 		243CC2C01FDF19BB00FE7376 /* UserActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CC2BF1FDF19BB00FE7376 /* UserActivities.swift */; };
+		243CC2C21FDF2ED900FE7376 /* UIAlertController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CC2C11FDF2ED900FE7376 /* UIAlertController+Utils.swift */; };
 		2446F9741FC8D16900D6AB6C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		2446F9751FC8D1C400D6AB6C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */; };
@@ -340,6 +341,7 @@
 		2438179F1FC77226004052D0 /* StudFileProviderUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudFileProviderUI.entitlements; sourceTree = "<group>"; };
 		243CC2BD1FDF0A7F00FE7376 /* CDSortable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDSortable.swift; sourceTree = "<group>"; };
 		243CC2BF1FDF19BB00FE7376 /* UserActivities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActivities.swift; sourceTree = "<group>"; };
+		243CC2C11FDF2ED900FE7376 /* UIAlertController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Utils.swift"; sourceTree = "<group>"; };
 		2446F9731FC8D16900D6AB6C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2448D4091FA8DA2400DAB97E /* StudApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -614,6 +616,7 @@
 		241FD9631FA8FF8A00FBD750 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				243CC2C11FDF2ED900FE7376 /* UIAlertController+Utils.swift */,
 				242B03601FD7220F00863B08 /* UIColor+Adjustments.swift */,
 				242B03621FD7221900863B08 /* UIColor+Utils.swift */,
 				242B035E1FD7220800863B08 /* UIFont+Mutations.swift */,
@@ -1838,6 +1841,7 @@
 				245B6ADE1FCB381B00302CD0 /* OrganizationListViewModel.swift in Sources */,
 				245B6ADA1FCB351F00302CD0 /* OrganizationListController.swift in Sources */,
 				24FE8A121FB7B0D100A4A3C6 /* RangeIterator.swift in Sources */,
+				243CC2C21FDF2ED900FE7376 /* UIAlertController+Utils.swift in Sources */,
 				2448D4971FA8DFB200DAB97E /* StudKitServiceProvider.swift in Sources */,
 				2469EF6D1FCF4D19008A122B /* ActivityIndicatorCell.swift in Sources */,
 				24712BF41FB8B80B0067E416 /* DateComponentsFormatter+Shared.swift in Sources */,
