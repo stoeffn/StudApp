@@ -7,6 +7,8 @@
 //
 
 public enum Routes {
+    case empty
+
     case about
 
     case signIn
@@ -39,6 +41,7 @@ public enum Routes {
 
     public var segueIdentifier: String {
         switch self {
+        case .empty: return "empty"
         case .about: return "about"
         case .signIn: return "signIn"
         case .signIntoOrganization: return "signIntoOrganization"
