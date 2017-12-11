@@ -31,6 +31,7 @@
 		243817AB1FC88B15004052D0 /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9661FA9022400FBD750 /* FilledButton.swift */; };
 		243817AC1FC88B18004052D0 /* GroupedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9681FA9087900FBD750 /* GroupedTextField.swift */; };
 		243817AF1FC88B2B004052D0 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD96A1FA9090F00FBD750 /* UI.swift */; };
+		243CC2BE1FDF0A7F00FE7376 /* CDSortable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CC2BD1FDF0A7F00FE7376 /* CDSortable.swift */; };
 		2446F9741FC8D16900D6AB6C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		2446F9751FC8D1C400D6AB6C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */; };
@@ -336,6 +337,7 @@
 		243817961FC76BDC004052D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2438179D1FC76D1E004052D0 /* Routes+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Routes+Utils.swift"; sourceTree = "<group>"; };
 		2438179F1FC77226004052D0 /* StudFileProviderUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudFileProviderUI.entitlements; sourceTree = "<group>"; };
+		243CC2BD1FDF0A7F00FE7376 /* CDSortable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDSortable.swift; sourceTree = "<group>"; };
 		2446F9731FC8D16900D6AB6C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2448D4091FA8DA2400DAB97E /* StudApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1140,6 +1142,7 @@
 				24D360C71FAA5AFE00BBBAED /* CDConvertible.swift */,
 				24D360C81FAA5AFE00BBBAED /* CDCreatable.swift */,
 				24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */,
+				243CC2BD1FDF0A7F00FE7376 /* CDSortable.swift */,
 				24D360C61FAA5AFE00BBBAED /* CDUpdatable.swift */,
 				24D360C91FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift */,
 				24D360D21FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift */,
@@ -1898,6 +1901,7 @@
 				24CFB5D61FB24F4D00F30DEA /* Routable.swift in Sources */,
 				2448D4A51FA8E07E00DAB97E /* Result+Api.swift in Sources */,
 				24D360D31FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift in Sources */,
+				243CC2BE1FDF0A7F00FE7376 /* CDSortable.swift in Sources */,
 				24D360DF1FAA5D3800BBBAED /* String+HTML.swift in Sources */,
 				242B03761FD7471D00863B08 /* UIViewController+Utils.swift in Sources */,
 				246F3ACA1FAC879C00A477FF /* DataSourceDelegate.swift in Sources */,

@@ -9,7 +9,7 @@
 import CoreData
 
 @objc(FileState)
-public final class FileState: NSManagedObject, CDCreatable {
+public final class FileState: NSManagedObject, CDCreatable, CDSortable {
     @NSManaged public var lastUsedAt: Date?
     @NSManaged public var favoriteRank: Int
     @NSManaged public var tagData: Data?
@@ -24,6 +24,12 @@ public final class FileState: NSManagedObject, CDCreatable {
 
         favoriteRank = defaultFavoriteRank
     }
+
+    // MARK: - Sorting
+
+    static let defaultSortDescriptors = [
+        NSSortDescriptor(keyPath: \FileState.file.title, ascending: true)
+    ]
 }
 
 // MARK: - Utilites

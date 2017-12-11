@@ -11,7 +11,7 @@ import MobileCoreServices
 import QuickLook
 
 @objc(File)
-public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable {
+public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable, CDSortable {
     @NSManaged public var id: String
     @NSManaged public var createdAt: Date
     @NSManaged public var modifiedAt: Date
@@ -31,6 +31,12 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
         self.init(context: context)
         state = FileState(createIn: context)
     }
+
+    // MARK: - Sorting
+
+    static let defaultSortDescriptors = [
+        NSSortDescriptor(keyPath: \File.title, ascending: true)
+    ]
 }
 
 // MARK: - Core Data Operations

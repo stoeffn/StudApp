@@ -9,7 +9,7 @@
 import CoreData
 
 @objc(SemesterState)
-public final class SemesterState: NSManagedObject, CDCreatable {
+public final class SemesterState: NSManagedObject, CDCreatable, CDSortable {
     @NSManaged public var lastUsedAt: Date?
 
     @NSManaged public var favoriteRank: Int
@@ -37,6 +37,14 @@ public final class SemesterState: NSManagedObject, CDCreatable {
 
         favoriteRank = defaultFavoriteRank
     }
+
+    // MARK: - Sorting
+
+    static let defaultSortDescriptors = [
+        NSSortDescriptor(keyPath: \SemesterState.semester.beginsAt, ascending: false),
+    ]
+
+    // MARK: - Events
 
     private func isHiddenChanged(_: _KeyValueCodingAndObserving, change: NSKeyValueObservedChange<Bool>) {
         guard let oldValue = change.oldValue,

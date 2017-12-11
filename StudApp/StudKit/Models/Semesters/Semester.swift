@@ -9,7 +9,7 @@
 import CoreData
 
 @objc(Semester)
-public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable {
+public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable, CDSortable {
     @NSManaged public var id: String
     @NSManaged public var title: String
     @NSManaged public var beginsAt: Date
@@ -25,8 +25,10 @@ public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDUpd
         state = SemesterState(createIn: context)
     }
 
+    // MARK: - Sorting
+
     static let defaultSortDescriptors = [
-        NSSortDescriptor(keyPath: \SemesterState.semester.beginsAt, ascending: false),
+        NSSortDescriptor(keyPath: \Semester.beginsAt, ascending: false),
     ]
 }
 

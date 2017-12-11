@@ -12,7 +12,7 @@ import CoreData
 ///
 /// Besides containing some metadata such as a title and location, each course is alse the root node of a file structure.
 @objc(Course)
-public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable {
+public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable, CDSortable {
     @NSManaged public var id: String
 
     /// Course number internal to Stud.IP that can also be used for identifying a course.
@@ -46,6 +46,12 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdat
         self.init(context: context)
         state = CourseState(createIn: context)
     }
+
+    // MARK: - Sorting
+
+    static let defaultSortDescriptors = [
+        NSSortDescriptor(keyPath: \Course.title, ascending: true)
+    ]
 }
 
 // MARK: - Core Data Operations

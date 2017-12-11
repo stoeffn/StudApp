@@ -10,7 +10,7 @@ import CoreData
 
 /// Represents the current state of a course.
 @objc(CourseState)
-public final class CourseState: NSManagedObject, CDCreatable {
+public final class CourseState: NSManagedObject, CDCreatable, CDSortable {
     @NSManaged public var lastUsedAt: Date?
 
     @NSManaged public var favoriteRank: Int
@@ -30,4 +30,10 @@ public final class CourseState: NSManagedObject, CDCreatable {
 
         favoriteRank = defaultFavoriteRank
     }
+
+    // MARK: - Sorting
+
+    static let defaultSortDescriptors = [
+        NSSortDescriptor(keyPath: \CourseState.course.title, ascending: true)
+    ]
 }

@@ -9,7 +9,7 @@
 import CoreData
 
 @objc(User)
-public final class User: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable {
+public final class User: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable, CDSortable {
     @NSManaged public var id: String
 
     @NSManaged public var username: String
@@ -25,6 +25,12 @@ public final class User: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
     @NSManaged public var pictureModifiedAt: Date?
 
     @NSManaged public var lecturedCourses: Set<Course>
+
+    // MARK: - Sorting
+
+    static let defaultSortDescriptors = [
+        NSSortDescriptor(keyPath: \User.username, ascending: true)
+    ]
 }
 
 // MARK: - Utilities
