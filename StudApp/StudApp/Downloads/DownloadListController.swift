@@ -54,6 +54,20 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         }, completion: nil)
     }
 
+    // MARK: - Supporting User Activities
+
+    override func restoreUserActivityState(_ activity: NSUserActivity) {
+        guard
+            activity.activityType == UserActivities.documentIdentifier,
+            let fileId = activity.userInfo?[File.typeIdentifier] as? String,
+            let file = viewModel.file(withId: fileId)
+        else { return }
+
+        let previewController = PreviewController()
+        previewController.prepareDependencies(for: .preview(file))
+        present(previewController, animated: true, completion: nil)
+    }
+
     // MARK: - Table View Data Source
 
     override func numberOfSections(in _: UITableView) -> Int {

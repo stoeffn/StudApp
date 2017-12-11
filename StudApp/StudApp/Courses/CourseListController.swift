@@ -48,6 +48,18 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         }, completion: nil)
     }
 
+    // MARK: - Supporting User Activities
+
+    override func restoreUserActivityState(_ activity: NSUserActivity) {
+        guard
+            activity.activityType == UserActivities.courseIdentifier,
+            let courseId = activity.userInfo?[Course.typeIdentifier] as? String,
+            let courseViewModel = CourseViewModel(courseId: courseId)
+        else { return }
+
+        performSegue(withRoute: .course(courseViewModel.course))
+    }
+
     // MARK: - Table View Data Source
 
     override func numberOfSections(in _: UITableView) -> Int {

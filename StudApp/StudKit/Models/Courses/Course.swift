@@ -50,7 +50,7 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdat
     // MARK: - Sorting
 
     static let defaultSortDescriptors = [
-        NSSortDescriptor(keyPath: \Course.title, ascending: true)
+        NSSortDescriptor(keyPath: \Course.title, ascending: true),
     ]
 }
 

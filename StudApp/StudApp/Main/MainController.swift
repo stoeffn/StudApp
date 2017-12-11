@@ -18,8 +18,8 @@ final class MainController: UITabBarController {
 
         viewModel = MainViewModel()
 
-        tabBar.items?[0].title = "Downloads".localized
-        tabBar.items?[1].title = "Courses".localized
+        tabBar.items?[Tabs.downloadList.rawValue].title = "Downloads".localized
+        tabBar.items?[Tabs.courseList.rawValue].title = "Courses".localized
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -36,10 +36,49 @@ final class MainController: UITabBarController {
         }
     }
 
+    // MARK: - Supporting User Activities
+
+    override func restoreUserActivityState(_ activity: NSUserActivity) {
+        switch activity.activityType {
+        case UserActivities.documentIdentifier:
+            selectedIndex = Tabs.downloadList.rawValue
+            downloadListController?.restoreUserActivityState(activity)
+        case UserActivities.courseIdentifier:
+            selectedIndex = Tabs.courseList.rawValue
+            courseListController?.restoreUserActivityState(activity)
+        default:
+            break
+        }
+    }
+
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         prepareForRoute(using: segue, sender: sender)
+    }
+
+    // MARK: - User Interface
+
+    private enum Tabs: Int {
+        case downloadList, courseList
+    }
+
+    var downloadListController: DownloadListController? {
+        return viewControllers?
+            .flatMap { $0 as? UINavigationController }
+            .flatMap { $0.viewControllers.first }
+            .flatMap { $0 as? DownloadListController }
+            .first
+    }
+
+    var courseListController: CourseListController? {
+        return viewControllers?
+            .flatMap { $0 as? UISplitViewController }
+            .flatMap { $0.viewControllers.first }
+            .flatMap { $0 as? UINavigationController }
+            .flatMap { $0.viewControllers.first }
+            .flatMap { $0 as? CourseListController }
+            .first
     }
 
     // MARK: - User Interaction

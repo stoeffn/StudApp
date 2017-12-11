@@ -43,6 +43,14 @@ public final class DownloadListViewModel: NSObject {
             return false
         }
     }
+
+    public func file(withId id: String) -> File? {
+        guard
+            let optionalFile = try? File.fetch(byId: id, in: coreDataService.viewContext),
+            let file = optionalFile
+        else { return nil }
+        return file
+    }
 }
 
 // MARK: - Data Source Section

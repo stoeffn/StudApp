@@ -105,7 +105,7 @@
                                     <outlet property="lecturersGlyph" destination="vdC-gl-GMx" id="A9C-pB-GDy"/>
                                     <outlet property="lecturersLabel" destination="aWd-9x-Zou" id="bff-Fc-WB8"/>
                                     <outlet property="titleLabel" destination="4ty-MF-qcd" id="ddB-iw-tDP"/>
-                                    <segue destination="h1S-Q9-gut" kind="showDetail" id="4Tp-c5-wvM">
+                                    <segue destination="h1S-Q9-gut" kind="showDetail" identifier="course" id="4Tp-c5-wvM">
                                         <segue key="commit" inheritsFrom="parent" id="YbJ-gI-lg3"/>
                                         <segue key="preview" inheritsFrom="commit" id="OwR-FU-EWV"/>
                                     </segue>

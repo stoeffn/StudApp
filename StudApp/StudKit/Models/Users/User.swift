@@ -29,7 +29,7 @@ public final class User: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
     // MARK: - Sorting
 
     static let defaultSortDescriptors = [
-        NSSortDescriptor(keyPath: \User.username, ascending: true)
+        NSSortDescriptor(keyPath: \User.username, ascending: true),
     ]
 }
 

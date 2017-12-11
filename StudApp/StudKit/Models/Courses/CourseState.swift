@@ -34,6 +34,6 @@ public final class CourseState: NSManagedObject, CDCreatable, CDSortable {
     // MARK: - Sorting
 
     static let defaultSortDescriptors = [
-        NSSortDescriptor(keyPath: \CourseState.course.title, ascending: true)
+        NSSortDescriptor(keyPath: \CourseState.course.title, ascending: true),
     ]
 }

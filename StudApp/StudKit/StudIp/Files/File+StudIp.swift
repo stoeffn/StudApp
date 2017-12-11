@@ -72,7 +72,7 @@ extension File {
         guard
             let baseUrl = studIpService.api.baseUrl?.deletingLastPathComponent(),
             let url = URL(string: "\(baseUrl)/sendfile.php?force_download=1&type=0&file_id=\(id)&file_name=\(name)")
-            else { return nil }
+        else { return nil }
         return url
     }
 }

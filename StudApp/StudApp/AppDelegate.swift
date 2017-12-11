@@ -22,6 +22,8 @@ final class AppDelegate: UIResponder {
 // MARK: - Application Delegate
 
 extension AppDelegate: UIApplicationDelegate {
+    // MARK: Initializing the App
+
     func application(_: UIApplication, willFinishLaunchingWithOptions _: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
         ServiceContainer.default.register(providers: StudKitServiceProvider(currentTarget: .app, openUrl: openUrl))
 
@@ -43,6 +45,8 @@ extension AppDelegate: UIApplicationDelegate {
         return true
     }
 
+    // MARK: Responding to App State Changes and System Events
+
     func applicationDidEnterBackground(_: UIApplication) {
         try? coreDataService.viewContext.saveWhenChanged()
     }
@@ -56,11 +60,21 @@ extension AppDelegate: UIApplicationDelegate {
         try? coreDataService.viewContext.saveWhenChanged()
     }
 
+    // MARK: Managing App State Restoration
+
     func application(_: UIApplication, shouldSaveApplicationState _: NSCoder) -> Bool {
         return studIpService.isSignedIn
     }
 
     func application(_: UIApplication, shouldRestoreApplicationState _: NSCoder) -> Bool {
         return studIpService.isSignedIn
+    }
+
+    // MARK: Continuing User Activity and Handling Quick Actions
+
+    func application(_: UIApplication, continue userActivity: NSUserActivity,
+                     restorationHandler _: @escaping ([Any]?) -> Void) -> Bool {
+        window?.rootViewController?.restoreUserActivityState(userActivity)
+        return true
     }
 }

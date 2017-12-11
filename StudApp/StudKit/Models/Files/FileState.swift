@@ -28,7 +28,7 @@ public final class FileState: NSManagedObject, CDCreatable, CDSortable {
     // MARK: - Sorting
 
     static let defaultSortDescriptors = [
-        NSSortDescriptor(keyPath: \FileState.file.title, ascending: true)
+        NSSortDescriptor(keyPath: \FileState.file.title, ascending: true),
     ]
 }
 

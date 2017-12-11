@@ -28,15 +28,19 @@ final class PreviewController: QLPreviewController, Routable {
         dataSource = self
     }
 
-    // MARK: - User Activity
+    // MARK: - Supporting User Activities
 
     func userActivity() -> NSUserActivity {
-        let activity = NSUserActivity(activityType: UserActivities.courseIdentifier)
+        let activity = NSUserActivity(activityType: UserActivities.documentIdentifier)
         activity.isEligibleForHandoff = true
         activity.title = file.title
         activity.webpageURL = file.url
-        activity.userInfo = [File.typeIdentifier: file.id]
+        activity.requiredUserInfoKeys = [File.typeIdentifier]
         return activity
+    }
+
+    override func updateUserActivityState(_ activity: NSUserActivity) {
+        activity.addUserInfoEntries(from: [File.typeIdentifier: file.id])
     }
 }
 

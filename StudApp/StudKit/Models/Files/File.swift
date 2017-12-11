@@ -35,7 +35,7 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
     // MARK: - Sorting
 
     static let defaultSortDescriptors = [
-        NSSortDescriptor(keyPath: \File.title, ascending: true)
+        NSSortDescriptor(keyPath: \File.title, ascending: true),
     ]
 }
 
@@ -68,7 +68,7 @@ extension File {
 
     public static var downloadedFetchRequest: NSFetchRequest<FileState> {
         let sortDescriptors = [
-            NSSortDescriptor(keyPath: \FileState.file.course.title, ascending: true)
+            NSSortDescriptor(keyPath: \FileState.file.course.title, ascending: true),
         ] + FileState.defaultSortDescriptors
         return FileState.fetchRequest(predicate: downloadedPredicate(), sortDescriptors: sortDescriptors,
                                       relationshipKeyPathsForPrefetching: ["file"])

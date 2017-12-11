@@ -70,15 +70,19 @@ final class CourseController: UITableViewController, Routable {
         filesViewModel.fetch()
     }
 
-    // MARK: - User Activity
+    // MARK: - Supporting User Activities
 
     func userActivity() -> NSUserActivity {
         let activity = NSUserActivity(activityType: UserActivities.courseIdentifier)
         activity.isEligibleForHandoff = true
         activity.title = viewModel.course.title
         activity.webpageURL = viewModel.course.url
-        activity.userInfo = [Course.typeIdentifier: viewModel.course.id]
+        activity.requiredUserInfoKeys = [Course.typeIdentifier]
         return activity
+    }
+
+    override func updateUserActivityState(_ activity: NSUserActivity) {
+        activity.addUserInfoEntries(from: [Course.typeIdentifier: viewModel.course.id])
     }
 
     // MARK: - Table View Data Source
