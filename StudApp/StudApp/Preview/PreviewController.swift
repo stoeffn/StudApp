@@ -14,6 +14,12 @@ final class PreviewController: QLPreviewController, Routable {
 
     private var file: File!
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        userActivity = userActivity()
+    }
+
     func prepareDependencies(for route: Routes) {
         guard case let .preview(file) = route else { fatalError() }
 
@@ -21,7 +27,20 @@ final class PreviewController: QLPreviewController, Routable {
 
         dataSource = self
     }
+
+    // MARK: - User Activity
+
+    func userActivity() -> NSUserActivity {
+        let activity = NSUserActivity(activityType: UserActivities.courseIdentifier)
+        activity.isEligibleForHandoff = true
+        activity.title = file.title
+        activity.webpageURL = file.url
+        activity.userInfo = [File.typeIdentifier: file.id]
+        return activity
+    }
 }
+
+// MARK: - QuickLook Data Source
 
 extension PreviewController: QLPreviewControllerDataSource {
     func numberOfPreviewItems(in _: QLPreviewController) -> Int {
