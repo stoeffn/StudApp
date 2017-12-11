@@ -61,7 +61,10 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
             activity.activityType == UserActivities.documentIdentifier,
             let fileId = activity.userInfo?[File.typeIdentifier] as? String,
             let file = viewModel.file(withId: fileId)
-        else { return }
+        else {
+            let alert = UIAlertController(title: "Something went wrong continuing your activity.".localized)
+            return present(alert, animated: true, completion: nil)
+        }
 
         let previewController = PreviewController()
         previewController.prepareDependencies(for: .preview(file))

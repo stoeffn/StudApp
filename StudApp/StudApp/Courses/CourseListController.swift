@@ -55,7 +55,10 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
             activity.activityType == UserActivities.courseIdentifier,
             let courseId = activity.userInfo?[Course.typeIdentifier] as? String,
             let courseViewModel = CourseViewModel(courseId: courseId)
-        else { return }
+        else {
+            let alert = UIAlertController(title: "Something went wrong continuing your activity.".localized)
+            return present(alert, animated: true, completion: nil)
+        }
 
         performSegue(withRoute: .course(courseViewModel.course))
     }
