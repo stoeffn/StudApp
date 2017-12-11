@@ -24,14 +24,64 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="rti-OO-NEz">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="wzE-zV-w24">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can try to reload the semesters from Stud.IP." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXQ-Xl-gyc">
+                                    <rect key="frame" x="8" y="179.5" width="304" height="38"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                    <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoursesTabBarGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="ITQ-RL-1uV">
+                                    <rect key="frame" x="110" y="32" width="100" height="100"/>
+                                    <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="100" id="v9t-Ko-Mmq">
+                                            <variation key="widthClass=regular" constant="128"/>
+                                        </constraint>
+                                        <constraint firstAttribute="width" secondItem="ITQ-RL-1uV" secondAttribute="height" multiplier="1:1" id="xWJ-GM-uHU"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                            <color key="value" white="0.75" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It Looks Like There Are No Semesters" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bkx-xV-ynE">
+                                    <rect key="frame" x="8" y="153.5" width="304" height="20.5"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14A-k0-KOd">
+                                    <rect key="frame" x="135" y="223.5" width="50" height="32"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                    <state key="normal" title="Reload"/>
+                                    <connections>
+                                        <action selector="emptyViewActionButtonTapped:" destination="24U-Co-VfF" eventType="touchUpInside" id="u7R-xE-KeY"/>
+                                    </connections>
+                                </button>
+                            </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailingMargin" secondItem="Bkx-xV-ynE" secondAttribute="trailing" id="6ZC-we-tlP"/>
+                                <constraint firstItem="OXQ-Xl-gyc" firstAttribute="leading" secondItem="wzE-zV-w24" secondAttribute="leadingMargin" id="6iV-LC-uoo"/>
+                                <constraint firstItem="Bkx-xV-ynE" firstAttribute="leading" secondItem="wzE-zV-w24" secondAttribute="leadingMargin" id="WLa-JS-t0p"/>
+                                <constraint firstItem="ITQ-RL-1uV" firstAttribute="centerX" secondItem="wzE-zV-w24" secondAttribute="centerX" id="aaQ-IV-vGn"/>
+                                <constraint firstItem="Bkx-xV-ynE" firstAttribute="firstBaseline" secondItem="ITQ-RL-1uV" secondAttribute="baseline" multiplier="1.1" constant="24.5" symbolType="layoutAnchor" id="bs9-Gh-mIj"/>
+                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="14A-k0-KOd" secondAttribute="bottom" constant="32" id="dTk-81-AVj"/>
+                                <constraint firstItem="14A-k0-KOd" firstAttribute="centerX" secondItem="wzE-zV-w24" secondAttribute="centerX" id="dnN-8i-sr6"/>
+                                <constraint firstItem="OXQ-Xl-gyc" firstAttribute="firstBaseline" secondItem="Bkx-xV-ynE" secondAttribute="baseline" multiplier="1.025" constant="20" symbolType="layoutAnchor" id="eI2-dD-fVE"/>
+                                <constraint firstItem="14A-k0-KOd" firstAttribute="firstBaseline" secondItem="OXQ-Xl-gyc" secondAttribute="baseline" multiplier="1.05" constant="20" symbolType="layoutAnchor" id="oDU-FE-xlJ"/>
+                                <constraint firstItem="ITQ-RL-1uV" firstAttribute="top" secondItem="wzE-zV-w24" secondAttribute="top" constant="32" id="oqM-he-mSs"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="OXQ-Xl-gyc" secondAttribute="trailing" id="vPy-2n-6Fq"/>
+                            </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CourseCell" rowHeight="72" id="1sW-Aa-9YJ" customClass="CourseCell" customModule="StudApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="75.5" width="320" height="72"/>
+                                <rect key="frame" x="0.0" y="355.5" width="320" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1sW-Aa-9YJ" id="sfO-5F-cwN">
                                     <rect key="frame" x="0.0" y="0.0" width="286" height="71.5"/>
@@ -133,6 +183,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="emptyView" destination="wzE-zV-w24" id="Hv8-bS-Hd6"/>
+                        <outlet property="emptyViewActionButton" destination="14A-k0-KOd" id="uQp-eq-Mfi"/>
+                        <outlet property="emptyViewSubtitleLabel" destination="OXQ-Xl-gyc" id="hMO-MW-p86"/>
+                        <outlet property="emptyViewTitleLabel" destination="Bkx-xV-ynE" id="DQQ-fC-ABr"/>
+                        <outlet property="emptyViewTopConstraint" destination="oqM-he-mSs" id="anm-om-d3Q"/>
                         <segue destination="fEh-y0-dhM" kind="popoverPresentation" identifier="colorPicker" popoverAnchorView="m4z-J1-SuS" id="S1u-q0-dDD">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>

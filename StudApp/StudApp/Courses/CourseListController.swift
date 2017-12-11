@@ -32,12 +32,15 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         }
 
         tableView.register(SemesterHeader.self, forHeaderFooterViewReuseIdentifier: SemesterHeader.typeIdentifier)
+        tableView.tableHeaderView = UIView()
+        tableView.tableHeaderView?.frame = CGRect(x: 0, y: 0, width: 0, height: 20)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         viewModel.update()
+        updateEmptyView()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -52,6 +55,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         coordinator.animate(alongsideTransition: { _ in
             self.tableView.visibleCells.forEach { $0.setDisclosureIndicatorHidden(for: self.splitViewController) }
             self.splitViewController?.showEmptyDetailIfApplicable()
+            self.updateEmptyView()
         }, completion: nil)
     }
 
@@ -189,6 +193,31 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     // MARK: - User Interface
 
+    @IBOutlet var emptyView: UIView!
+
+    @IBOutlet var emptyViewTopConstraint: NSLayoutConstraint!
+
+    @IBOutlet weak var emptyViewTitleLabel: UILabel!
+
+    @IBOutlet weak var emptyViewSubtitleLabel: UILabel!
+
+    @IBOutlet weak var emptyViewActionButton: UIButton!
+
+    private func updateEmptyView() {
+        guard view != nil else { return }
+
+        emptyViewTitleLabel.text = "It Looks Like There Are No Semesters".localized
+        emptyViewSubtitleLabel.text = "You can try to reload the semesters from Stud.IP.".localized
+
+        tableView.backgroundView = viewModel.isEmpty ? emptyView : nil
+        tableView.separatorStyle = viewModel.isEmpty ? .none : .singleLine
+        tableView.bounces = !viewModel.isEmpty
+
+        if let navigationBarHeight = navigationController?.navigationBar.bounds.size.height {
+            emptyViewTopConstraint.constant = navigationBarHeight * 2 + 32
+        }
+    }
+
     @available(iOS 11.0, *)
     private func colorAction(for cell: CourseCell, at _: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .normal, title: "Color".localized) { _, _, success in
@@ -205,6 +234,11 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     @IBAction
     func userButtonTapped(_ sender: Any) {
         (tabBarController as? MainController)?.userButtonTapped(sender)
+    }
+
+    @IBAction
+    func emptyViewActionButtonTapped(_: Any) {
+        viewModel.update(enforce: true)
     }
 
     // MARK: - Navigation

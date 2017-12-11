@@ -83,7 +83,7 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
     private func updateEmptyView() {
         guard view != nil else { return }
 
-        emptyViewTitleLabel.text = "It Looks Like There Are No Semester".localized
+        emptyViewTitleLabel.text = "It Looks Like There Are No Semesters".localized
         emptyViewSubtitleLabel.text = "You can try to reload the semesters from Stud.IP.".localized
 
         tableView.backgroundView = viewModel.isEmpty ? emptyView : nil
