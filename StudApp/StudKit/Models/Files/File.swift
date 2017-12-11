@@ -110,7 +110,7 @@ public extension File {
 
     public func localUrl(inProviderDirectory: Bool = false) -> URL {
         return File.documentContainerUrl(forId: id, inProviderDirectory: inProviderDirectory)
-            .appendingPathComponent(sanitizedTitleWithExtension, isDirectory: isFolder)
+            .appendingPathComponent(name, isDirectory: isFolder)
     }
 
     public func documentController(handler: @escaping (UIDocumentInteractionController) -> Void) {
