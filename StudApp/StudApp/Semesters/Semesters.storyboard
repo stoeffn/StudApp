@@ -32,7 +32,7 @@
                                     <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SIU-nC-NyK">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoursesTabBarGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="SIU-nC-NyK">
                                     <rect key="frame" x="137.5" y="32" width="100" height="100"/>
                                     <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
@@ -54,7 +54,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="21M-Rg-kwj">
-                                    <rect key="frame" x="162.5" y="188.5" width="50" height="32"/>
+                                    <rect key="frame" x="162.5" y="189.5" width="50" height="32"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <state key="normal" title="Reload"/>
                                     <connections>
@@ -156,7 +156,6 @@
         <!--Semesters-->
         <scene sceneID="1Rz-lA-yYv">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZnP-g1-nQE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dbq-bM-eAu" customClass="BorderlessNavigationController" customModule="StudKit" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Semesters" image="tabBarItem:7my-5k-oCp:image" landscapeImage="tabBarItem:7my-5k-oCp:landscapeImage" id="7my-5k-oCp"/>
                     <toolbarItems/>
@@ -170,11 +169,13 @@
                         <segue destination="fag-gD-kkk" kind="relationship" relationship="rootViewController" id="g3v-NV-FHc"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZnP-g1-nQE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="684.79999999999995" y="-102.54872563718142"/>
         </scene>
     </scenes>
     <resources>
+        <image name="CoursesTabBarGlyph" width="25" height="25"/>
         <image name="tabBarItem:7my-5k-oCp:image" width="23" height="23">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGVVZYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8QEgcI
