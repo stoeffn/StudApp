@@ -40,11 +40,18 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         viewModel.update()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        splitViewController?.showEmptyDetailIfApplicable()
+    }
+
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
         coordinator.animate(alongsideTransition: { _ in
             self.tableView.visibleCells.forEach { $0.setDisclosureIndicatorHidden(for: self.splitViewController) }
+            self.splitViewController?.showEmptyDetailIfApplicable()
         }, completion: nil)
     }
 

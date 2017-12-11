@@ -24,11 +24,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="X0M-6M-fk1">
-                            <rect key="frame" x="0.0" y="0.0" width="768" height="250"/>
+                            <rect key="frame" x="0.0" y="0.0" width="768" height="256"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open the app &quot;Files&quot; or browse your courses to get started." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TMm-hn-B4O">
-                                    <rect key="frame" x="8" y="194.5" width="752" height="18"/>
+                                    <rect key="frame" x="8" y="206" width="752" height="18"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                     <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -49,7 +49,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It Looks Like There Are No Downloads Yet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyl-2h-SyR">
-                                    <rect key="frame" x="8" y="168.5" width="752" height="20.5"/>
+                                    <rect key="frame" x="8" y="184.5" width="752" height="16"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -60,7 +60,7 @@
                                 <constraint firstItem="fyl-2h-SyR" firstAttribute="leading" secondItem="X0M-6M-fk1" secondAttribute="leadingMargin" id="3Pz-dQ-dVb"/>
                                 <constraint firstItem="TMm-hn-B4O" firstAttribute="leading" secondItem="X0M-6M-fk1" secondAttribute="leadingMargin" id="5MD-vk-I1u"/>
                                 <constraint firstItem="g2d-wr-nmJ" firstAttribute="centerX" secondItem="X0M-6M-fk1" secondAttribute="centerX" id="C6P-SX-us7"/>
-                                <constraint firstItem="fyl-2h-SyR" firstAttribute="firstBaseline" secondItem="g2d-wr-nmJ" secondAttribute="baseline" constant="24.5" symbolType="layoutAnchor" id="CTk-Fc-HxC"/>
+                                <constraint firstItem="fyl-2h-SyR" firstAttribute="firstBaseline" secondItem="g2d-wr-nmJ" secondAttribute="baseline" multiplier="1.1" constant="24.5" symbolType="layoutAnchor" id="CTk-Fc-HxC"/>
                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="TMm-hn-B4O" secondAttribute="bottom" constant="32" id="EZ8-GB-jTn"/>
                                 <constraint firstItem="TMm-hn-B4O" firstAttribute="firstBaseline" secondItem="fyl-2h-SyR" secondAttribute="baseline" multiplier="1.025" constant="20" symbolType="layoutAnchor" id="Ict-ww-Dkw"/>
                                 <constraint firstAttribute="trailingMargin" secondItem="TMm-hn-B4O" secondAttribute="trailing" id="aoM-xC-ZfU"/>
@@ -70,7 +70,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FileCell" rowHeight="72" id="1zq-2J-AVl" customClass="FileCell" customModule="StudApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="278" width="768" height="72"/>
+                                <rect key="frame" x="0.0" y="284" width="768" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1zq-2J-AVl" id="11a-Vz-8MG">
                                     <rect key="frame" x="0.0" y="0.0" width="702" height="71.5"/>

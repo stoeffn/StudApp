@@ -6,8 +6,11 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -147,6 +150,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="EOg-85-93W" kind="relationship" relationship="masterViewController" id="g8D-uS-kW0"/>
+                        <segue destination="VWg-Lk-BuI" kind="showDetail" identifier="empty" id="mEi-rC-6Xg"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aj9-As-eDh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -399,6 +403,77 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PtY-OR-DU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1869.53125" y="131.25"/>
+        </scene>
+        <!--Course Empty Controller-->
+        <scene sceneID="Fhw-D1-XKX">
+            <objects>
+                <viewController id="VWg-Lk-BuI" customClass="CourseEmptyController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="OBs-ij-60P">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ege-Kh-itC">
+                                <rect key="frame" x="0.0" y="416" width="768" height="192.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a course on the left to get started." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMZ-t0-4Wb">
+                                        <rect key="frame" x="8" y="174.5" width="752" height="18"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                        <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoursesTabBarGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="iOB-wu-czk">
+                                        <rect key="frame" x="320" y="0.0" width="128" height="128"/>
+                                        <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="iOB-wu-czk" secondAttribute="height" multiplier="1:1" id="PBv-lf-pQX"/>
+                                            <constraint firstAttribute="width" constant="100" id="aYg-AF-Rzf">
+                                                <variation key="widthClass=regular" constant="128"/>
+                                            </constraint>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                                <color key="value" white="0.75" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Course" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7eK-eX-Dx6">
+                                        <rect key="frame" x="8" y="149" width="752" height="21"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailingMargin" secondItem="XMZ-t0-4Wb" secondAttribute="trailing" id="9HK-Cc-0Z3"/>
+                                    <constraint firstItem="7eK-eX-Dx6" firstAttribute="leading" secondItem="Ege-Kh-itC" secondAttribute="leadingMargin" id="RSr-Jr-URz"/>
+                                    <constraint firstItem="XMZ-t0-4Wb" firstAttribute="firstBaseline" secondItem="7eK-eX-Dx6" secondAttribute="baseline" multiplier="1.025" constant="20" symbolType="layoutAnchor" id="Tat-Na-43E"/>
+                                    <constraint firstItem="iOB-wu-czk" firstAttribute="centerX" secondItem="Ege-Kh-itC" secondAttribute="centerX" id="imz-VH-toV"/>
+                                    <constraint firstItem="iOB-wu-czk" firstAttribute="top" secondItem="Ege-Kh-itC" secondAttribute="top" id="qCR-14-XIf"/>
+                                    <constraint firstItem="XMZ-t0-4Wb" firstAttribute="leading" secondItem="Ege-Kh-itC" secondAttribute="leadingMargin" id="qtJ-Y3-Rlx"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="7eK-eX-Dx6" secondAttribute="trailing" id="rXP-FQ-vZt"/>
+                                    <constraint firstItem="7eK-eX-Dx6" firstAttribute="firstBaseline" secondItem="iOB-wu-czk" secondAttribute="baseline" multiplier="1.1" constant="24.5" symbolType="layoutAnchor" id="vwn-O8-ASQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="XMZ-t0-4Wb" secondAttribute="bottom" id="zhz-HQ-rU5"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="US3-sq-hQx" firstAttribute="trailing" secondItem="Ege-Kh-itC" secondAttribute="trailing" id="T3u-Ue-TjX"/>
+                            <constraint firstItem="Ege-Kh-itC" firstAttribute="centerY" secondItem="OBs-ij-60P" secondAttribute="centerY" id="X06-8A-Gh6"/>
+                            <constraint firstItem="Ege-Kh-itC" firstAttribute="leading" secondItem="US3-sq-hQx" secondAttribute="leading" id="ZWO-oK-Bgp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="US3-sq-hQx"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="KyQ-K8-E6w"/>
+                    <connections>
+                        <outlet property="subtitleLabel" destination="XMZ-t0-4Wb" id="wqs-gH-WJc"/>
+                        <outlet property="titleLabel" destination="7eK-eX-Dx6" id="YR3-FP-qcg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wVz-jx-ozO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1366" y="889"/>
         </scene>
         <!--Documents-->
         <scene sceneID="Yim-PB-jaZ">

@@ -39,6 +39,8 @@
 // MARK: Courses
 
 "Courses" = "Courses";
+"No Course" = "No Course";
+"Select a course on the left to get started." = "Select a course on the left to get started.";
 "Course Number" = "Course Number";
 "Location" = "Location";
 

@@ -35,6 +35,7 @@
 		243CC2C01FDF19BB00FE7376 /* UserActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CC2BF1FDF19BB00FE7376 /* UserActivities.swift */; };
 		243CC2C21FDF2ED900FE7376 /* UIAlertController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CC2C11FDF2ED900FE7376 /* UIAlertController+Utils.swift */; };
 		243CC2C41FDF42D600FE7376 /* UISplitViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CC2C31FDF42D600FE7376 /* UISplitViewController+Utils.swift */; };
+		243CC2C61FDF464800FE7376 /* CourseEmptyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CC2C51FDF464800FE7376 /* CourseEmptyController.swift */; };
 		2446F9741FC8D16900D6AB6C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		2446F9751FC8D1C400D6AB6C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */; };
@@ -344,6 +345,7 @@
 		243CC2BF1FDF19BB00FE7376 /* UserActivities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActivities.swift; sourceTree = "<group>"; };
 		243CC2C11FDF2ED900FE7376 /* UIAlertController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Utils.swift"; sourceTree = "<group>"; };
 		243CC2C31FDF42D600FE7376 /* UISplitViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISplitViewController+Utils.swift"; sourceTree = "<group>"; };
+		243CC2C51FDF464800FE7376 /* CourseEmptyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseEmptyController.swift; sourceTree = "<group>"; };
 		2446F9731FC8D16900D6AB6C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2448D4091FA8DA2400DAB97E /* StudApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1112,6 +1114,7 @@
 			children = (
 				242B035A1FD71AB700863B08 /* CourseCell.swift */,
 				24830AAA1FDC09EC006A1927 /* CourseController.swift */,
+				243CC2C51FDF464800FE7376 /* CourseEmptyController.swift */,
 				24ABFC491FD714EF00CD1646 /* CourseListController.swift */,
 				242B035C1FD7213700863B08 /* SemesterHeader.swift */,
 				24ABFC471FD714AF00CD1646 /* Courses.storyboard */,
@@ -1786,6 +1789,7 @@
 				242B035B1FD71AB700863B08 /* CourseCell.swift in Sources */,
 				24FD786E1FBF81EA0072F860 /* DownloadListController.swift in Sources */,
 				242B03701FD7464C00863B08 /* ColorCell.swift in Sources */,
+				243CC2C61FDF464800FE7376 /* CourseEmptyController.swift in Sources */,
 				24CFB5D11FB24E2500F30DEA /* MainController.swift in Sources */,
 				242B036A1FD745E800863B08 /* ColorPickerController.swift in Sources */,
 				242B035D1FD7213700863B08 /* SemesterHeader.swift in Sources */,

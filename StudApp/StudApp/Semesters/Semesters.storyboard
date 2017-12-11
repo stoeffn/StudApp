@@ -27,7 +27,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can try to reload the semesters from Stud.IP." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4B-WZ-h5c">
-                                    <rect key="frame" x="8" y="166" width="359" height="18"/>
+                                    <rect key="frame" x="8" y="179.5" width="359" height="18"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                     <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -48,13 +48,13 @@
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It Looks Like There Are No Semesters" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOv-3H-SZb">
-                                    <rect key="frame" x="8" y="140.5" width="359" height="20.5"/>
+                                    <rect key="frame" x="8" y="153.5" width="359" height="20.5"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="21M-Rg-kwj">
-                                    <rect key="frame" x="162.5" y="189.5" width="50" height="32"/>
+                                    <rect key="frame" x="162.5" y="202.5" width="50" height="32"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <state key="normal" title="Reload"/>
                                     <connections>
@@ -74,7 +74,7 @@
                                 <constraint firstItem="cOv-3H-SZb" firstAttribute="leading" secondItem="rqR-yv-Aeg" secondAttribute="leadingMargin" id="lxc-QU-xPK"/>
                                 <constraint firstItem="21M-Rg-kwj" firstAttribute="firstBaseline" secondItem="b4B-WZ-h5c" secondAttribute="baseline" multiplier="1.05" constant="20" symbolType="layoutAnchor" id="pPp-BJ-wC5"/>
                                 <constraint firstAttribute="trailingMargin" secondItem="cOv-3H-SZb" secondAttribute="trailing" id="q9i-2t-hrS"/>
-                                <constraint firstItem="cOv-3H-SZb" firstAttribute="firstBaseline" secondItem="SIU-nC-NyK" secondAttribute="baseline" constant="24.5" symbolType="layoutAnchor" id="r07-RP-HPk"/>
+                                <constraint firstItem="cOv-3H-SZb" firstAttribute="firstBaseline" secondItem="SIU-nC-NyK" secondAttribute="baseline" multiplier="1.1" constant="24.5" symbolType="layoutAnchor" id="r07-RP-HPk"/>
                             </constraints>
                         </view>
                         <prototypes>
