@@ -1,5 +1,5 @@
 //
-//  CourseController.swift
+//  FolderController.swift
 //  StudApp
 //
 //  Created by Steffen Ryll on 09.12.17.
@@ -8,7 +8,7 @@
 
 import StudKit
 
-final class FileListController: UITableViewController, DataSourceSectionDelegate, Routable {
+final class FolderController: UITableViewController, DataSourceSectionDelegate, Routable {
     private var viewModel: FileListViewModel!
 
     // MARK: - Life Cycle
@@ -140,7 +140,7 @@ final class FileListController: UITableViewController, DataSourceSectionDelegate
 // MARK: - Table View Drag Delegate
 
 @available(iOS 11.0, *)
-extension FileListController: UITableViewDragDelegate {
+extension FolderController: UITableViewDragDelegate {
     private func items(forIndexPath indexPath: IndexPath) -> [UIDragItem] {
         let file = viewModel[rowAt: indexPath.row]
         guard let itemProvider = NSItemProvider(contentsOf: file.localUrl(inProviderDirectory: true)) else { return [] }
@@ -160,7 +160,7 @@ extension FileListController: UITableViewDragDelegate {
 
 // MARK: - Document Previewing
 
-extension FileListController: UIViewControllerPreviewingDelegate {
+extension FolderController: UIViewControllerPreviewingDelegate {
     func previewingContext(_: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
         let file = viewModel[rowAt: indexPath.row]

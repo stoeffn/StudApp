@@ -65,7 +65,7 @@
 		2448D4BD1FA8E0AB00DAB97E /* TestableApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4B51FA8E0AB00DAB97E /* TestableApiRoutes.swift */; };
 		2450AC6D1FDC1582004F1267 /* CourseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC6C1FDC1582004F1267 /* CourseViewModel.swift */; };
 		2450AC711FDC405E004F1267 /* Documents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2450AC701FDC405E004F1267 /* Documents.storyboard */; };
-		2450AC731FDC406F004F1267 /* FileListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC721FDC406F004F1267 /* FileListController.swift */; };
+		2450AC731FDC406F004F1267 /* FolderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC721FDC406F004F1267 /* FolderController.swift */; };
 		2450AC751FDC4FBC004F1267 /* UITableView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC741FDC4FBC004F1267 /* UITableView+Utils.swift */; };
 		2450AC771FDC6973004F1267 /* CustomMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC761FDC6973004F1267 /* CustomMenuItems.swift */; };
 		2450AC7A1FDC79B6004F1267 /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC791FDC79B6004F1267 /* SafariActivity.swift */; };
@@ -376,7 +376,7 @@
 		2448D4B51FA8E0AB00DAB97E /* TestableApiRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestableApiRoutes.swift; sourceTree = "<group>"; };
 		2450AC6C1FDC1582004F1267 /* CourseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewModel.swift; sourceTree = "<group>"; };
 		2450AC701FDC405E004F1267 /* Documents.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Documents.storyboard; sourceTree = "<group>"; };
-		2450AC721FDC406F004F1267 /* FileListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileListController.swift; sourceTree = "<group>"; };
+		2450AC721FDC406F004F1267 /* FolderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderController.swift; sourceTree = "<group>"; };
 		2450AC741FDC4FBC004F1267 /* UITableView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Utils.swift"; sourceTree = "<group>"; };
 		2450AC761FDC6973004F1267 /* CustomMenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenuItems.swift; sourceTree = "<group>"; };
 		2450AC791FDC79B6004F1267 /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
@@ -889,7 +889,7 @@
 		2450AC6F1FDC4036004F1267 /* Documents */ = {
 			isa = PBXGroup;
 			children = (
-				2450AC721FDC406F004F1267 /* FileListController.swift */,
+				2450AC721FDC406F004F1267 /* FolderController.swift */,
 				2450AC701FDC405E004F1267 /* Documents.storyboard */,
 			);
 			path = Documents;
@@ -1765,7 +1765,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2467A8BC1FD307CE00F25720 /* PreviewController.swift in Sources */,
-				2450AC731FDC406F004F1267 /* FileListController.swift in Sources */,
+				2450AC731FDC406F004F1267 /* FolderController.swift in Sources */,
 				2450AC771FDC6973004F1267 /* CustomMenuItems.swift in Sources */,
 				24712BE61FB8B0E20067E416 /* SemesterListController.swift in Sources */,
 				242B03721FD7467D00863B08 /* GlowView.swift in Sources */,
