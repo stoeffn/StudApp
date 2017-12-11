@@ -21,12 +21,6 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         contextService = ServiceContainer.default[ContextService.self]
 
         viewModel = OrganizationListViewModel()
-        viewModel.stateChanged = { _ in
-            UIView.transition(with: self.tableView, duration: 0.1, options: .transitionCrossDissolve, animations: {
-                self.tableView.reloadData()
-            }, completion: nil)
-        }
-        viewModel.fetch()
 
         navigationItem.title = "Choose Your Organization".localized
         navigationItem.backBarButtonItem?.title = "Organizations".localized
@@ -34,6 +28,13 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         if contextService.currentTarget != .fileProviderUI {
             navigationItem.leftBarButtonItem = nil
         }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        viewModel.stateChanged = updateUserInterface
+        viewModel.fetch()
     }
 
     // MARK: - Table View Data Source
@@ -84,6 +85,12 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     // MARK: - User Interface
 
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+
+    private func updateUserInterface(_: OrganizationListViewModel.State? = nil) {
+        UIView.transition(with: tableView, duration: 0.1, options: .transitionCrossDissolve, animations: {
+            self.tableView.reloadData()
+        }, completion: nil)
+    }
 
     // MARK: - User Interaction
 

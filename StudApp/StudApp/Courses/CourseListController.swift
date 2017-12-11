@@ -20,7 +20,6 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         viewModel = SemesterListViewModel(fetchRequest: Semester.nonHiddenFetchRequest)
         viewModel.delegate = self
         viewModel.fetch()
-        viewModel.update()
 
         courseListViewModels = viewModel.map(courseListViewModel)
 
@@ -33,6 +32,12 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         }
 
         tableView.register(SemesterHeader.self, forHeaderFooterViewReuseIdentifier: SemesterHeader.typeIdentifier)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        viewModel.update()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

@@ -10,6 +10,7 @@ import MobileCoreServices
 import StudKit
 
 final class CourseController: UITableViewController, Routable {
+    private var restoredCourseId: String?
     private var viewModel: CourseViewModel!
     private var filesViewModel: FileListViewModel!
 
@@ -18,15 +19,7 @@ final class CourseController: UITableViewController, Routable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        filesViewModel.delegate = self
-        filesViewModel.fetch()
-        filesViewModel.update()
-
         registerForPreviewing(with: self, sourceView: tableView)
-
-        navigationItem.title = viewModel.course.title
-
-        subtitleLabel.text = viewModel.course.subtitle
 
         if #available(iOS 11.0, *) {
             tableView.dragDelegate = self
@@ -34,11 +27,45 @@ final class CourseController: UITableViewController, Routable {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        filesViewModel.update()
+
+        navigationItem.title = viewModel.course.title
+        subtitleLabel.text = viewModel.course.subtitle
+    }
+
     func prepareDependencies(for route: Routes) {
         guard case let .course(course) = route else { fatalError() }
 
         viewModel = CourseViewModel(course: course)
+
         filesViewModel = FileListViewModel(course: course)
+        filesViewModel.delegate = self
+        filesViewModel.fetch()
+    }
+
+    // MARK: - Restoration
+
+    override func encodeRestorableState(with coder: NSCoder) {
+        coder.encode(viewModel.course.id, forKey: Course.typeIdentifier)
+        super.encode(with: coder)
+    }
+
+    override func decodeRestorableState(with coder: NSCoder) {
+        restoredCourseId = coder.decodeObject(forKey: Course.typeIdentifier) as? String
+        super.decodeRestorableState(with: coder)
+    }
+
+    override func applicationFinishedRestoringState() {
+        guard let courseId = restoredCourseId else { return }
+
+        viewModel = CourseViewModel(courseId: courseId)
+
+        filesViewModel = FileListViewModel(courseId: courseId)
+        filesViewModel.delegate = self
+        filesViewModel.fetch()
     }
 
     // MARK: - Table View Data Source

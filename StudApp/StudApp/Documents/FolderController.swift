@@ -9,16 +9,13 @@
 import StudKit
 
 final class FolderController: UITableViewController, DataSourceSectionDelegate, Routable {
+    private var restoredFolderId: String?
     private var viewModel: FileListViewModel!
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        viewModel.delegate = self
-        viewModel.fetch()
-        viewModel.update()
 
         registerForPreviewing(with: self, sourceView: tableView)
 
@@ -30,10 +27,40 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        viewModel.update()
+    }
+
     func prepareDependencies(for route: Routes) {
         guard case let .folder(folder) = route else { fatalError() }
 
         viewModel = FileListViewModel(folder: folder)
+        viewModel.delegate = self
+        viewModel.fetch()
+    }
+
+    // MARK: - Restoration
+
+    override func encodeRestorableState(with coder: NSCoder) {
+        if let folderId = viewModel.folder?.id {
+            coder.encode(folderId, forKey: File.typeIdentifier)
+        }
+        super.encode(with: coder)
+    }
+
+    override func decodeRestorableState(with coder: NSCoder) {
+        restoredFolderId = coder.decodeObject(forKey: File.typeIdentifier) as? String
+        super.decodeRestorableState(with: coder)
+    }
+
+    override func applicationFinishedRestoringState() {
+        guard let folderId = restoredFolderId else { return }
+
+        viewModel = FileListViewModel(folderId: folderId)
+        viewModel.delegate = self
+        viewModel.fetch()
     }
 
     // MARK: - Table View Data Source

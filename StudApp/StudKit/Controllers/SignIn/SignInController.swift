@@ -21,6 +21,13 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
         passwordField.placeholder = "Password".localized
         signInButton.titleLabel?.text = "Sign In".localized
 
+        NotificationCenter.default
+            .addObserver(self, selector: #selector(keyboardDidShow), name: .UIKeyboardDidShow, object: nil)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
         var organization = viewModel.organization
         iconView.image = organization.iconThumbnail
         titleLabel.text = organization.title
@@ -30,9 +37,6 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
                 self.iconView.image = icon.value
             }, completion: nil)
         }
-
-        NotificationCenter.default
-            .addObserver(self, selector: #selector(keyboardDidShow), name: .UIKeyboardDidShow, object: nil)
     }
 
     func prepareDependencies(for route: Routes) {

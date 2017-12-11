@@ -19,7 +19,6 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
         viewModel = SemesterListViewModel()
         viewModel.delegate = self
         viewModel.fetch()
-        viewModel.update()
 
         navigationItem.title = "Semesters".localized
 
@@ -30,6 +29,12 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
         tableView.tableHeaderView = nil
 
         updateEmptyView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        viewModel.update()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
