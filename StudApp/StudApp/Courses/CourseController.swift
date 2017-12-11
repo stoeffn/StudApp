@@ -30,6 +30,8 @@ final class CourseController: UITableViewController, Routable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        userActivity = userActivity()
+
         filesViewModel.update()
 
         navigationItem.title = viewModel.course.title
@@ -66,6 +68,17 @@ final class CourseController: UITableViewController, Routable {
         filesViewModel = FileListViewModel(courseId: courseId)
         filesViewModel.delegate = self
         filesViewModel.fetch()
+    }
+
+    // MARK: - User Activity
+
+    func userActivity() -> NSUserActivity {
+        let activity = NSUserActivity(activityType: UserActivities.courseIdentifier)
+        activity.isEligibleForHandoff = true
+        activity.title = viewModel.course.title
+        activity.webpageURL = viewModel.course.url
+        activity.userInfo = [Course.typeIdentifier: viewModel.course.id]
+        return activity
     }
 
     // MARK: - Table View Data Source

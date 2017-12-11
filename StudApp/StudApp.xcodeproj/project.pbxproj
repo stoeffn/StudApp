@@ -32,6 +32,7 @@
 		243817AC1FC88B18004052D0 /* GroupedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9681FA9087900FBD750 /* GroupedTextField.swift */; };
 		243817AF1FC88B2B004052D0 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD96A1FA9090F00FBD750 /* UI.swift */; };
 		243CC2BE1FDF0A7F00FE7376 /* CDSortable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CC2BD1FDF0A7F00FE7376 /* CDSortable.swift */; };
+		243CC2C01FDF19BB00FE7376 /* UserActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CC2BF1FDF19BB00FE7376 /* UserActivities.swift */; };
 		2446F9741FC8D16900D6AB6C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		2446F9751FC8D1C400D6AB6C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */; };
@@ -338,6 +339,7 @@
 		2438179D1FC76D1E004052D0 /* Routes+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Routes+Utils.swift"; sourceTree = "<group>"; };
 		2438179F1FC77226004052D0 /* StudFileProviderUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudFileProviderUI.entitlements; sourceTree = "<group>"; };
 		243CC2BD1FDF0A7F00FE7376 /* CDSortable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDSortable.swift; sourceTree = "<group>"; };
+		243CC2BF1FDF19BB00FE7376 /* UserActivities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActivities.swift; sourceTree = "<group>"; };
 		2446F9731FC8D16900D6AB6C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2448D4091FA8DA2400DAB97E /* StudApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -756,6 +758,7 @@
 				24FD785D1FBF45B10072F860 /* Targets.swift */,
 				24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */,
 				241FD96A1FA9090F00FBD750 /* UI.swift */,
+				243CC2BF1FDF19BB00FE7376 /* UserActivities.swift */,
 				24FD78711FC07C630072F860 /* UserDefaults+Keys.swift */,
 				2448D4411FA8DB1E00DAB97E /* StudKit.h */,
 				249DD6FD1FC8B896006DA46E /* Localizable.strings */,
@@ -1847,6 +1850,7 @@
 				2448D4A61FA8E07E00DAB97E /* ApiRoutes.swift in Sources */,
 				249DD6DE1FC8A3D4006DA46E /* User+StudIp.swift in Sources */,
 				24D360FF1FAA5E0800BBBAED /* User.swift in Sources */,
+				243CC2C01FDF19BB00FE7376 /* UserActivities.swift in Sources */,
 				24D729411FC7490C0097777F /* Int+ByteCountFormatting.swift in Sources */,
 				24A8EDDE1FCCBC93007C1CCF /* ContextService.swift in Sources */,
 				24D360E61FAA5D7600BBBAED /* CourseState.swift in Sources */,
