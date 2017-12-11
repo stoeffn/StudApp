@@ -82,25 +82,27 @@ final class FileListController: UITableViewController, DataSourceSectionDelegate
             !cell.file.isFolder
         else { return }
 
-        preview(cell.file)
+        downloadOrPreview(cell.file)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
     // MARK: - User Interface
 
-    private func preview(_ file: File) {
-        file.download { result in
-            guard result.isSuccess else {
+    private func downloadOrPreview(_ file: File) {
+        guard file.state.isMostRecentVersionDownloaded else {
+            file.download { result in
+                guard result.isFailure else { return }
+
                 let alert = UIAlertController(title: result.error?.localizedDescription, message: nil, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
-                return
             }
-
-            let previewController = PreviewController()
-            previewController.prepareDependencies(for: .preview(file))
-            self.present(previewController, animated: true, completion: nil)
+            return
         }
+
+        let previewController = PreviewController()
+        previewController.prepareDependencies(for: .preview(file))
+        present(previewController, animated: true, completion: nil)
     }
 
     // MARK: - User Interaction
@@ -162,7 +164,8 @@ extension FileListController: UIViewControllerPreviewingDelegate {
     func previewingContext(_: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
         let file = viewModel[rowAt: indexPath.row]
-        guard !file.isFolder else { return nil }
+        guard !file.isFolder && file.state.isMostRecentVersionDownloaded else { return nil }
+
         let previewController = PreviewController()
         previewController.prepareDependencies(for: .preview(file))
         return previewController

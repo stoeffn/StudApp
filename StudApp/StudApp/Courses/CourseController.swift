@@ -151,7 +151,7 @@ final class CourseController: UITableViewController, Routable {
                 !cell.file.isFolder
             else { return }
 
-            preview(cell.file)
+            downloadOrPreview(cell.file)
             tableView.deselectRow(at: indexPath, animated: true)
         case nil:
             fatalError()
@@ -162,19 +162,21 @@ final class CourseController: UITableViewController, Routable {
 
     @IBOutlet weak var subtitleLabel: UILabel!
 
-    private func preview(_ file: File) {
-        file.download { result in
-            guard result.isSuccess else {
+    private func downloadOrPreview(_ file: File) {
+        guard file.state.isMostRecentVersionDownloaded else {
+            file.download { result in
+                guard result.isFailure else { return }
+
                 let alert = UIAlertController(title: result.error?.localizedDescription, message: nil, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
-                return
             }
-
-            let previewController = PreviewController()
-            previewController.prepareDependencies(for: .preview(file))
-            self.present(previewController, animated: true, completion: nil)
+            return
         }
+
+        let previewController = PreviewController()
+        previewController.prepareDependencies(for: .preview(file))
+        present(previewController, animated: true, completion: nil)
     }
 
     // MARK: - User Interaction
@@ -271,7 +273,8 @@ extension CourseController: UIViewControllerPreviewingDelegate {
             return nil
         case .documents?:
             let file = filesViewModel[rowAt: indexPath.row]
-            guard !file.isFolder else { return nil }
+            guard !file.isFolder && file.state.isDownloaded else { return nil }
+
             let previewController = PreviewController()
             previewController.prepareDependencies(for: .preview(file))
             return previewController
