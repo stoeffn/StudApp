@@ -68,17 +68,15 @@ extension File {
 
     public static var downloadedFetchRequest: NSFetchRequest<FileState> {
         let sortDescriptors = [
-            NSSortDescriptor(keyPath: \FileState.file.course.title, ascending: true),
-            NSSortDescriptor(keyPath: \FileState.file.title, ascending: true),
-        ]
+            NSSortDescriptor(keyPath: \FileState.file.course.title, ascending: true)
+        ] + FileState.defaultSortDescriptors
         return FileState.fetchRequest(predicate: downloadedPredicate(), sortDescriptors: sortDescriptors,
                                       relationshipKeyPathsForPrefetching: ["file"])
     }
 
     public var childrenFetchRequest: NSFetchRequest<FileState> {
-        let sortDescriptor = NSSortDescriptor(keyPath: \FileState.file.title, ascending: true)
         let predicate = NSPredicate(format: "file.parent == %@", self)
-        return FileState.fetchRequest(predicate: predicate, sortDescriptors: [sortDescriptor],
+        return FileState.fetchRequest(predicate: predicate, sortDescriptors: FileState.defaultSortDescriptors,
                                       relationshipKeyPathsForPrefetching: ["file"])
     }
 }
@@ -103,8 +101,7 @@ public extension File {
     }
 
     public static func localContainerUrl(forId id: String, in directory: URL) -> URL {
-        let containerUrl = directory.appendingPathComponent(id, isDirectory: true)
-        return containerUrl
+        return directory.appendingPathComponent(id, isDirectory: true)
     }
 
     public static func documentContainerUrl(forId id: String, inProviderDirectory: Bool = false) -> URL {

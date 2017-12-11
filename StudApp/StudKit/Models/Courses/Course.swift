@@ -62,9 +62,8 @@ extension Course {
     /// - Remark: This request uses file states instead of files in order to simplify monitoring changes using
     ///           `NSFetchedResultsController`.
     public var rootFilesFetchRequest: NSFetchRequest<FileState> {
-        let sortDescriptor = NSSortDescriptor(keyPath: \FileState.file.title, ascending: true)
         let predicate = NSPredicate(format: "file.course == %@ AND file.parent == NIL", self)
-        return FileState.fetchRequest(predicate: predicate, sortDescriptors: [sortDescriptor],
+        return FileState.fetchRequest(predicate: predicate, sortDescriptors: FileState.defaultSortDescriptors,
                                       relationshipKeyPathsForPrefetching: ["file"])
     }
 

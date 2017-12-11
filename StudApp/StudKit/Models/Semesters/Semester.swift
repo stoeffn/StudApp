@@ -53,18 +53,19 @@ extension Semester {
         let endsAt = endSemester?.endsAt ?? .distantFuture
         let predicate = NSPredicate(format: "beginsAt >= %@ AND endsAt <= %@",
                                     beginSemester.beginsAt as CVarArg, endsAt as CVarArg)
-        let request = fetchRequest(predicate: predicate, sortDescriptors: [])
+        let request = fetchRequest(predicate: predicate, sortDescriptors: defaultSortDescriptors)
         return try context.fetch(request)
     }
 
     public static var sortedFetchRequest: NSFetchRequest<SemesterState> {
-        return SemesterState.fetchRequest(predicate: NSPredicate(value: true), sortDescriptors: defaultSortDescriptors,
+        return SemesterState.fetchRequest(predicate: NSPredicate(value: true),
+                                          sortDescriptors: SemesterState.defaultSortDescriptors,
                                           relationshipKeyPathsForPrefetching: ["semester"])
     }
 
     public static var nonHiddenFetchRequest: NSFetchRequest<SemesterState> {
         let predicate = NSPredicate(format: "isHidden == NO")
-        return SemesterState.fetchRequest(predicate: predicate, sortDescriptors: defaultSortDescriptors,
+        return SemesterState.fetchRequest(predicate: predicate, sortDescriptors: SemesterState.defaultSortDescriptors,
                                           relationshipKeyPathsForPrefetching: ["semester"])
     }
 
@@ -74,8 +75,7 @@ extension Semester {
 
     public var coursesFetchRequest: NSFetchRequest<CourseState> {
         let predicate = NSPredicate(format: "%@ IN course.semesters", self)
-        let sortDescriptors = [NSSortDescriptor(keyPath: \CourseState.course.title, ascending: true)]
-        return CourseState.fetchRequest(predicate: predicate, sortDescriptors: sortDescriptors,
+        return CourseState.fetchRequest(predicate: predicate, sortDescriptors: CourseState.defaultSortDescriptors,
                                         relationshipKeyPathsForPrefetching: ["course"])
     }
 }
