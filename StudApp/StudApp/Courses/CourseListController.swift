@@ -159,11 +159,12 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         }
     }
 
-    func data<Section: DataSourceSection>(changedInCourse _: Course, at index: Int, change: DataChange<Course, Int>,
+    func data<Section: DataSourceSection>(changedInCourse course: Course, at index: Int, change: DataChange<Course, Int>,
                                           in section: Section) {
         guard let courseListViewModel = section as? CourseListViewModel,
             let sectionIndex = courseListViewModels.index(of: courseListViewModel) else { return }
         let indexPath = IndexPath(row: index, section: sectionIndex)
+        let cell = tableView.cellForRow(at: indexPath) as? CourseCell
 
         switch change {
         case .insert:
@@ -175,6 +176,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         case let .move(newIndex):
             let newIndexPath = IndexPath(row: newIndex, section: sectionIndex)
             tableView.moveRow(at: indexPath, to: newIndexPath)
+            cell?.course = course
         }
     }
 
