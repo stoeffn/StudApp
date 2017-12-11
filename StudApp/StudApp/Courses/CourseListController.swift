@@ -219,7 +219,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 // MARK: - Popover Presentation
 
 extension CourseListController: UIPopoverPresentationControllerDelegate {
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+    func adaptivePresentationStyle(for _: UIPresentationController) -> UIModalPresentationStyle {
         return .none
     }
 }
