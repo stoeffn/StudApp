@@ -19,6 +19,7 @@ final class CourseCell: UITableViewCell {
             titleLabel.text = course.title
             lecturersLabel.text = course.lecturers
                 .map { $0.nameComponents.formatted() }
+                .sorted()
                 .joined(separator: ", ")
         }
     }
