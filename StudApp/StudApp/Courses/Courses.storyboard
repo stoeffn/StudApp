@@ -29,17 +29,17 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can try to reload the semesters from Stud.IP." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXQ-Xl-gyc">
-                                    <rect key="frame" x="8" y="179.5" width="304" height="38"/>
+                                    <rect key="frame" x="8" y="175" width="304" height="38"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                     <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoursesTabBarGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="ITQ-RL-1uV">
-                                    <rect key="frame" x="110" y="32" width="100" height="100"/>
+                                    <rect key="frame" x="112" y="32" width="96" height="96"/>
                                     <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="100" id="v9t-Ko-Mmq">
-                                            <variation key="widthClass=regular" constant="128"/>
+                                        <constraint firstAttribute="width" constant="84" id="v9t-Ko-Mmq">
+                                            <variation key="widthClass=regular" constant="96"/>
                                         </constraint>
                                         <constraint firstAttribute="width" secondItem="ITQ-RL-1uV" secondAttribute="height" multiplier="1:1" id="xWJ-GM-uHU"/>
                                     </constraints>
@@ -50,13 +50,13 @@
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It Looks Like There Are No Semesters" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bkx-xV-ynE">
-                                    <rect key="frame" x="8" y="153.5" width="304" height="20.5"/>
+                                    <rect key="frame" x="8" y="149.5" width="304" height="20.5"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14A-k0-KOd">
-                                    <rect key="frame" x="135" y="223.5" width="50" height="32"/>
+                                    <rect key="frame" x="135" y="219" width="50" height="32"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <state key="normal" title="Reload"/>
                                     <connections>
@@ -468,21 +468,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ege-Kh-itC">
-                                <rect key="frame" x="0.0" y="416" width="768" height="192.5"/>
+                                <rect key="frame" x="0.0" y="434" width="768" height="156.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a course on the left to get started." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMZ-t0-4Wb">
-                                        <rect key="frame" x="8" y="174.5" width="752" height="18"/>
+                                        <rect key="frame" x="8" y="138.5" width="752" height="18"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                         <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoursesTabBarGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="iOB-wu-czk">
-                                        <rect key="frame" x="320" y="0.0" width="128" height="128"/>
+                                        <rect key="frame" x="336" y="0.0" width="96" height="96"/>
                                         <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="iOB-wu-czk" secondAttribute="height" multiplier="1:1" id="PBv-lf-pQX"/>
-                                            <constraint firstAttribute="width" constant="100" id="aYg-AF-Rzf">
-                                                <variation key="widthClass=regular" constant="128"/>
+                                            <constraint firstAttribute="width" constant="64" id="aYg-AF-Rzf">
+                                                <variation key="widthClass=regular" constant="96"/>
                                             </constraint>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
@@ -492,7 +492,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Course" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7eK-eX-Dx6">
-                                        <rect key="frame" x="8" y="149" width="752" height="21"/>
+                                        <rect key="frame" x="8" y="114" width="752" height="21"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>

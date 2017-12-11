@@ -27,18 +27,18 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can try to reload the semesters from Stud.IP." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4B-WZ-h5c">
-                                    <rect key="frame" x="8" y="179.5" width="359" height="18"/>
+                                    <rect key="frame" x="8" y="161.5" width="359" height="18"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                     <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoursesTabBarGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="SIU-nC-NyK">
-                                    <rect key="frame" x="137.5" y="32" width="100" height="100"/>
+                                    <rect key="frame" x="145.5" y="32" width="84" height="84"/>
                                     <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="SIU-nC-NyK" secondAttribute="height" multiplier="1:1" id="58e-ro-uPa"/>
-                                        <constraint firstAttribute="width" constant="100" id="95P-AH-efa">
-                                            <variation key="widthClass=regular" constant="128"/>
+                                        <constraint firstAttribute="width" constant="84" id="95P-AH-efa">
+                                            <variation key="widthClass=regular" constant="96"/>
                                         </constraint>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
@@ -48,13 +48,13 @@
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It Looks Like There Are No Semesters" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOv-3H-SZb">
-                                    <rect key="frame" x="8" y="153.5" width="359" height="20.5"/>
+                                    <rect key="frame" x="8" y="136" width="359" height="20.5"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="21M-Rg-kwj">
-                                    <rect key="frame" x="162.5" y="202.5" width="50" height="32"/>
+                                    <rect key="frame" x="162.5" y="184" width="50" height="32"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <state key="normal" title="Reload"/>
                                     <connections>
