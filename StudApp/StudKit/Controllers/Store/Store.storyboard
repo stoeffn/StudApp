@@ -108,7 +108,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="signInButtonTapped:" destination="NWf-sZ-PHj" eventType="touchUpInside" id="GPJ-Rq-8n2"/>
+                                                        <action selector="trialButtonTapped:" destination="NWf-sZ-PHj" eventType="touchUpInside" id="wIC-4d-brJ"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -164,7 +164,7 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="signInButtonTapped:" destination="NWf-sZ-PHj" eventType="touchUpInside" id="U3t-br-Q8D"/>
+                                                        <action selector="unlockButtonTapped:" destination="NWf-sZ-PHj" eventType="touchUpInside" id="dAz-nX-Tlc"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -195,6 +195,9 @@
                                                     <rect key="frame" x="134" y="0.0" width="107" height="28"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                     <state key="normal" title="Restore Purchase"/>
+                                                    <connections>
+                                                        <action selector="restoreButtonTapped:" destination="NWf-sZ-PHj" eventType="touchUpInside" id="oYD-bl-2ae"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -236,18 +239,36 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="VnA-1A-b1q">
-                        <barButtonItem key="rightBarButtonItem" image="MoreBarButtonGlyph" id="ZxO-GR-zTG"/>
+                        <barButtonItem key="rightBarButtonItem" image="MoreBarButtonGlyph" id="ZxO-GR-zTG">
+                            <connections>
+                                <action selector="moreButtonTapped:" destination="NWf-sZ-PHj" id="orE-W6-77f"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="disclaimerLabel" destination="tWU-4c-raX" id="o6E-yt-LfK"/>
                         <outlet property="iconView" destination="5zw-GD-CKT" id="LRT-m8-JuZ"/>
-                        <outlet property="signInButton" destination="20I-iW-8ae" id="sTU-Ty-oue"/>
-                        <outlet property="titleLabel" destination="GNi-DH-nkU" id="1AA-UM-zeY"/>
+                        <outlet property="orLabel" destination="XXn-ia-yTS" id="hWd-ya-1xB"/>
+                        <outlet property="restoreButton" destination="kHA-IB-KAn" id="QCF-TH-YU4"/>
+                        <outlet property="subtitleLabel" destination="Rkt-yd-75x" id="2Zt-gX-ib0"/>
+                        <outlet property="titleLabel" destination="GNi-DH-nkU" id="vGJ-TK-8iF"/>
+                        <outlet property="trialButton" destination="20I-iW-8ae" id="KMu-kn-H9O"/>
+                        <outlet property="unlockButton" destination="J94-G1-rVT" id="TvR-VV-FhV"/>
+                        <segue destination="Hy6-tN-9FA" kind="presentation" identifier="about" modalPresentationStyle="formSheet" id="Ar7-Bp-S2z"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SFl-h7-jrg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2080.8000000000002" y="608.54572713643188"/>
+        </scene>
+        <!--About-->
+        <scene sceneID="eTk-wU-fSm">
+            <objects>
+                <viewControllerPlaceholder storyboardName="About" id="Hy6-tN-9FA" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c4P-cP-kAN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2081" y="1013"/>
         </scene>
     </scenes>
     <resources>
