@@ -17,13 +17,13 @@ final class MainController: UITabBarController {
         super.viewDidLoad()
 
         viewModel = MainViewModel()
-
-        tabBar.items?[Tabs.downloadList.rawValue].title = "Downloads".localized
-        tabBar.items?[Tabs.courseList.rawValue].title = "Courses".localized
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        tabBar.items?[Tabs.downloadList.rawValue].title = "Downloads".localized
+        tabBar.items?[Tabs.courseList.rawValue].title = "Courses".localized
 
         viewModel.updateCurrentUser()
     }
