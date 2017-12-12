@@ -32,8 +32,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         }
 
         tableView.register(SemesterHeader.self, forHeaderFooterViewReuseIdentifier: SemesterHeader.typeIdentifier)
-        tableView.tableHeaderView = UIView()
-        tableView.tableHeaderView?.frame = CGRect(x: 0, y: 0, width: 0, height: 20)
+        tableView.tableHeaderView = nil
     }
 
     override func viewWillAppear(_ animated: Bool) {
