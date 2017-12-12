@@ -50,6 +50,7 @@ final class SafariActivity: UIActivity, ByTypeNameIdentifiable {
         }
 
         let safariController = SFSafariViewController(url: url)
+        safariController.preferredControlTintColor = UI.Colors.studBlue
         controller.present(safariController, animated: true) {
             self.activityDidFinish(true)
         }

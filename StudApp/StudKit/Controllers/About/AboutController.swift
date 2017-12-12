@@ -128,7 +128,9 @@ final class AboutController: UITableViewController, Routable {
         switch Sections(rawValue: indexPath.section) {
         case .thanks?:
             guard let url = viewModel[rowAt: indexPath.row].url else { return }
+
             let safariController = SFSafariViewController(url: url)
+            safariController.preferredControlTintColor = UI.Colors.studBlue
             present(safariController, animated: true, completion: nil)
         case .feedback? where cell === sendFeedbackCell:
             openFeedbackMailComposer()
