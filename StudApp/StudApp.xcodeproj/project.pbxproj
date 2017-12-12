@@ -37,6 +37,8 @@
 		243CC2C41FDF42D600FE7376 /* UISplitViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CC2C31FDF42D600FE7376 /* UISplitViewController+Utils.swift */; };
 		243CC2C61FDF464800FE7376 /* CourseEmptyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CC2C51FDF464800FE7376 /* CourseEmptyController.swift */; };
 		243CC2C81FE0390200FE7376 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 243CC2CA1FE0390200FE7376 /* LaunchScreen.storyboard */; };
+		243CC3111FE0491B00FE7376 /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CC3101FE0491B00FE7376 /* StoreController.swift */; };
+		243CC3131FE0495300FE7376 /* Store.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 243CC3121FE0495300FE7376 /* Store.storyboard */; };
 		2446F9741FC8D16900D6AB6C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		2446F9751FC8D1C400D6AB6C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */; };
@@ -349,6 +351,8 @@
 		243CC2C71FE037BE00FE7376 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		243CC2C91FE0390200FE7376 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		243CC2CC1FE0392700FE7376 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		243CC3101FE0491B00FE7376 /* StoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreController.swift; sourceTree = "<group>"; };
+		243CC3121FE0495300FE7376 /* Store.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Store.storyboard; sourceTree = "<group>"; };
 		2446F9731FC8D16900D6AB6C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2448D4091FA8DA2400DAB97E /* StudApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -669,11 +673,21 @@
 		243817A61FC88A36004052D0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				243CC30F1FE0490800FE7376 /* Store */,
 				24EBC4341FCDCA0000181455 /* About */,
 				2477935F1FC890C100090F4D /* SignIn */,
 				241FD96E1FA9191500FBD750 /* BorderlessNavigationController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		243CC30F1FE0490800FE7376 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				243CC3101FE0491B00FE7376 /* StoreController.swift */,
+				243CC3121FE0495300FE7376 /* Store.storyboard */,
+			);
+			path = Store;
 			sourceTree = "<group>";
 		};
 		2448D4001FA8DA2400DAB97E = {
@@ -1723,6 +1737,7 @@
 			files = (
 				24E60B6A1FC8C76F000EDD2A /* SignIn.storyboard in Resources */,
 				2469EF6E1FCF5BC9008A122B /* Assets.xcassets in Resources */,
+				243CC3131FE0495300FE7376 /* Store.storyboard in Resources */,
 				2469EF721FCF5E02008A122B /* About.storyboard in Resources */,
 				249DD6FB1FC8B896006DA46E /* Localizable.strings in Resources */,
 			);
@@ -1834,6 +1849,7 @@
 				243817A91FC88B0E004052D0 /* StudIpActivityIndicatorView.swift in Sources */,
 				24D360EA1FAA5D7600BBBAED /* CourseResponse+CDConvertible.swift in Sources */,
 				24712BF61FB8B80B0067E416 /* DateFormatter+Shared.swift in Sources */,
+				243CC3111FE0491B00FE7376 /* StoreController.swift in Sources */,
 				24D361061FAA5E2300BBBAED /* SemesterResponse+CDConvertible.swift in Sources */,
 				24D360E71FAA5D7600BBBAED /* Course+StudIp.swift in Sources */,
 				243817AB1FC88B15004052D0 /* FilledButton.swift in Sources */,
