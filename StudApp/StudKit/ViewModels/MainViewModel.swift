@@ -9,6 +9,7 @@
 /// Manages applications main view.
 public final class MainViewModel {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
+    private let storeService = ServiceContainer.default[StoreService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]
 
     public init() {}
@@ -38,5 +39,9 @@ public final class MainViewModel {
     public var currentUser: User? {
         guard let user = try? User.fetchCurrent(in: coreDataService.viewContext) else { return nil }
         return user
+    }
+
+    public var isAppLocked: Bool {
+        return storeService.state.isLocked
     }
 }

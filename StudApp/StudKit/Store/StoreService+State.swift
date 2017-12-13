@@ -16,6 +16,13 @@ extension StoreService {
 
         case subscribed(until: Date, validatedByServer: Bool)
 
+        // MARK: - Utilities
+
+        var isLocked: Bool {
+            guard case .locked = self else { return true }
+            return false
+        }
+
         // MARK: - Coding
 
         init?(rawValue: RawValue) {
