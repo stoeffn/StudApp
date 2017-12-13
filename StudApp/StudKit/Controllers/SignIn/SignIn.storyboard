@@ -401,10 +401,10 @@
         <!--Store-->
         <scene sceneID="ocK-Me-EVY">
             <objects>
-                <viewControllerPlaceholder storyboardName="Store" id="waM-SL-7JR" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Store" referencedIdentifier="Store" id="waM-SL-7JR" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JFH-Ii-JRj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2080.8000000000002" y="608.54572713643188"/>
+            <point key="canvasLocation" x="2004" y="608"/>
         </scene>
     </scenes>
     <resources>

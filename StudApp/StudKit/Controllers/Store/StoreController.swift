@@ -6,13 +6,15 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-import UIKit
+public final class StoreController: UITableViewController, Routable {
+    private var viewModel: StoreViewModel!
 
-public final class StoreController: UITableViewController {
     // MARK: - Life Cycle
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+
+        viewModel = StoreViewModel()
     }
 
     // MARK: - User Interface

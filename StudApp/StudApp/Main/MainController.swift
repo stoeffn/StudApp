@@ -33,6 +33,8 @@ final class MainController: UITabBarController {
 
         if !viewModel.isSignedIn {
             performSegue(withRoute: .signIn)
+        } else if viewModel.isAppLocked {
+            performSegue(withRoute: .store)
         }
     }
 

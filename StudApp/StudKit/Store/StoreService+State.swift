@@ -19,8 +19,8 @@ extension StoreService {
         // MARK: - Utilities
 
         var isLocked: Bool {
-            guard case .locked = self else { return true }
-            return false
+            guard case .locked = self else { return false }
+            return true
         }
 
         // MARK: - Coding
