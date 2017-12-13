@@ -16,4 +16,8 @@ extension UserDefaults {
     static let authenticationRealm = "authenticationRealm"
 
     static let userIdKey = "userId"
+
+    static let storeStateKey = "storeState"
+
+    static let storeStateSubscribedUntilKey = "storeStateSubscribedUntil"
 }

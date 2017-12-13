@@ -194,6 +194,7 @@
 		24D361621FAA641600BBBAED /* semesterCollection.json in Resources */ = {isa = PBXBuildFile; fileRef = 24D3615E1FAA641500BBBAED /* semesterCollection.json */; };
 		24D361631FAA641600BBBAED /* courseCollection+20.json in Resources */ = {isa = PBXBuildFile; fileRef = 24D3615F1FAA641600BBBAED /* courseCollection+20.json */; };
 		24D361661FAA648B00BBBAED /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361651FAA648B00BBBAED /* SignInViewModel.swift */; };
+		24D4627B1FE1C4F200DE3B3A /* StoreService+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D4627A1FE1C4F200DE3B3A /* StoreService+State.swift */; };
 		24D7293D1FC736120097777F /* FileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7293C1FC736120097777F /* FileCell.swift */; };
 		24D729411FC7490C0097777F /* Int+ByteCountFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D729401FC7490C0097777F /* Int+ByteCountFormatting.swift */; };
 		24D729451FC74B600097777F /* PersonNameComponents+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D729441FC74B600097777F /* PersonNameComponents+Formatting.swift */; };
@@ -504,6 +505,7 @@
 		24D3615E1FAA641500BBBAED /* semesterCollection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = semesterCollection.json; sourceTree = "<group>"; };
 		24D3615F1FAA641600BBBAED /* courseCollection+20.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "courseCollection+20.json"; sourceTree = "<group>"; };
 		24D361651FAA648B00BBBAED /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		24D4627A1FE1C4F200DE3B3A /* StoreService+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreService+State.swift"; sourceTree = "<group>"; };
 		24D7293C1FC736120097777F /* FileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCell.swift; sourceTree = "<group>"; };
 		24D729401FC7490C0097777F /* Int+ByteCountFormatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+ByteCountFormatting.swift"; sourceTree = "<group>"; };
 		24D729441FC74B600097777F /* PersonNameComponents+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonNameComponents+Formatting.swift"; sourceTree = "<group>"; };
@@ -770,13 +772,13 @@
 				24D360BE1FAA585B00BBBAED /* Models */,
 				24CFB5D21FB24F2700F30DEA /* Routing */,
 				2448D4741FA8DE1700DAB97E /* Services */,
+				24D462791FE1C4D200DE3B3A /* Store */,
 				24D360EB1FAA5DA700BBBAED /* StudIp */,
 				24D361641FAA646200BBBAED /* ViewModels */,
 				24E626721FA9203E0040F9F7 /* Views */,
 				241C67E91FCDFAC700F4A099 /* App.swift */,
 				2469EF671FCE1D1C008A122B /* CacheService.swift */,
 				24A8EDDD1FCCBC93007C1CCF /* ContextService.swift */,
-				24D2DA1D1FD03B98006FC700 /* StoreService.swift */,
 				2448D4961FA8DFB200DAB97E /* StudKitServiceProvider.swift */,
 				24FD785D1FBF45B10072F860 /* Targets.swift */,
 				24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */,
@@ -1305,6 +1307,15 @@
 				24712BE31FB888E30067E416 /* WorkingSetViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		24D462791FE1C4D200DE3B3A /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				24D2DA1D1FD03B98006FC700 /* StoreService.swift */,
+				24D4627A1FE1C4F200DE3B3A /* StoreService+State.swift */,
+			);
+			path = Store;
 			sourceTree = "<group>";
 		};
 		24D9EF831FB75818006776B7 /* StudFileProvider */ = {
@@ -1931,6 +1942,7 @@
 				24D361151FAA5F0E00BBBAED /* CollectionResponse.swift in Sources */,
 				243817A71FC88A49004052D0 /* SignInController.swift in Sources */,
 				24D360ED1FAA5DC500BBBAED /* Transforms.swift in Sources */,
+				24D4627B1FE1C4F200DE3B3A /* StoreService+State.swift in Sources */,
 				24CFB5D61FB24F4D00F30DEA /* Routable.swift in Sources */,
 				2448D4A51FA8E07E00DAB97E /* Result+Api.swift in Sources */,
 				24D360D31FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift in Sources */,
