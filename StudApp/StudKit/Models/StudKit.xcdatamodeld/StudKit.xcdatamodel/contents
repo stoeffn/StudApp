@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17B1003" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17C88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Announcement" representedClassName="Announcement" syncable="YES" codeGenerationType="class">
+        <attribute name="body" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="expiresAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="String" minValueString="1" syncable="YES"/>
+        <attribute name="modifiedAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="title" attributeType="String" minValueString="1" syncable="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="announcements" inverseEntity="Course" syncable="YES"/>
+        <fetchIndex name="byId">
+            <fetchIndexElement property="id" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
     <entity name="Course" representedClassName="Course" syncable="YES">
         <attribute name="id" attributeType="String" minValueString="1" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
@@ -7,6 +24,7 @@
         <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" minValueString="1" syncable="YES"/>
+        <relationship name="announcements" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Announcement" inverseName="course" inverseEntity="Announcement" syncable="YES"/>
         <relationship name="files" toMany="YES" deletionRule="Cascade" destinationEntity="File" inverseName="course" inverseEntity="File" syncable="YES"/>
         <relationship name="lecturers" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="lecturedCourses" inverseEntity="User" syncable="YES"/>
         <relationship name="semesters" toMany="YES" deletionRule="Nullify" destinationEntity="Semester" inverseName="courses" inverseEntity="Semester" syncable="YES"/>
@@ -87,13 +105,13 @@
         <relationship name="semester" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Semester" inverseName="state" inverseEntity="Semester" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
-        <attribute name="familyName" attributeType="String" syncable="YES"/>
-        <attribute name="givenName" attributeType="String" syncable="YES"/>
+        <attribute name="familyName" attributeType="String" minValueString="1" syncable="YES"/>
+        <attribute name="givenName" attributeType="String" minValueString="1" syncable="YES"/>
         <attribute name="id" attributeType="String" minValueString="1" syncable="YES"/>
         <attribute name="namePrefix" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nameSuffix" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pictureModifiedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="username" attributeType="String" syncable="YES"/>
+        <attribute name="username" attributeType="String" minValueString="1" syncable="YES"/>
         <relationship name="files" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="owner" inverseEntity="File" syncable="YES"/>
         <relationship name="lecturedCourses" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="lecturers" inverseEntity="Course" syncable="YES"/>
         <fetchIndex name="byId">
@@ -106,12 +124,13 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Course" positionX="-8568" positionY="-2218" width="128" height="195"/>
+        <element name="Course" positionX="-8568" positionY="-2218" width="128" height="210"/>
         <element name="CourseState" positionX="-8354" positionY="-2142" width="128" height="135"/>
         <element name="File" positionX="-8381" positionY="-1971" width="128" height="240"/>
         <element name="FileState" positionX="-8199" positionY="-1836" width="128" height="135"/>
         <element name="Semester" positionX="-8748" positionY="-2188" width="128" height="165"/>
         <element name="SemesterState" positionX="-8910" positionY="-2121" width="128" height="150"/>
         <element name="User" positionX="-8748" positionY="-1924" width="128" height="180"/>
+        <element name="Announcement" positionX="-8703" positionY="-2070" width="128" height="150"/>
     </elements>
 </model>
