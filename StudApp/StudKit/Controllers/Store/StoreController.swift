@@ -15,6 +15,8 @@ public final class StoreController: UITableViewController, Routable {
         super.viewDidLoad()
 
         viewModel = StoreViewModel()
+        viewModel.loadProducts()
+        viewModel.didLoadProducts = updateUserInterface
     }
 
     // MARK: - User Interface
@@ -32,6 +34,14 @@ public final class StoreController: UITableViewController, Routable {
     @IBOutlet weak var restoreButton: UIButton!
 
     @IBOutlet weak var disclaimerLabel: UILabel!
+
+    private func updateUserInterface() {
+        trialButton.isEnabled = viewModel.subscriptionProduct != nil
+        trialButton.titleLabel?.text = viewModel.subscriptionProduct?.price.debugDescription
+
+        unlockButton.isEnabled = viewModel.unlockProduct != nil
+        unlockButton.titleLabel?.text = viewModel.unlockProduct?.price.debugDescription
+    }
 
     // MARK: - User Interaction
 
@@ -58,13 +68,18 @@ public final class StoreController: UITableViewController, Routable {
 
     @IBAction
     func trialButtonTapped(_: Any) {
+        guard let product = viewModel.subscriptionProduct else { return }
+        viewModel.buy(product: product)
     }
 
     @IBAction
     func unlockButtonTapped(_: Any) {
+        guard let product = viewModel.unlockProduct else { return }
+        viewModel.buy(product: product)
     }
 
     @IBAction
     func restoreButtonTapped(_: Any) {
+        viewModel.restoreCompletedTransactions()
     }
 }
