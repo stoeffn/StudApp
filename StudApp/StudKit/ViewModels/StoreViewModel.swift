@@ -10,6 +10,7 @@ import StoreKit
 
 public final class StoreViewModel: NSObject {
     private let storeService = ServiceContainer.default[StoreService.self]
+    private let studIpService = ServiceContainer.default[StudIpService.self]
     private var productsRequest: SKProductsRequest?
 
     public override init() {}
@@ -35,6 +36,11 @@ public final class StoreViewModel: NSObject {
     public func buy(product: SKProduct) {
         let payment = SKPayment(product: product)
         SKPaymentQueue.default().add(payment)
+    }
+
+    /// Sign user out of this app and the API.
+    public func signOut() {
+        studIpService.signOut()
     }
 }
 

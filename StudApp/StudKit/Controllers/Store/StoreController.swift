@@ -18,6 +18,8 @@ public final class StoreController: UITableViewController, Routable {
         viewModel.loadProducts()
         viewModel.didLoadProducts = updateUserInterface
 
+        navigationItem.hidesBackButton = true
+
         titleLabel.text = App.name
         subtitleLabel.text = "Access all your Stud.IP courses and documents, including unlimited offline documents.".localized
 
@@ -72,8 +74,8 @@ public final class StoreController: UITableViewController, Routable {
         }
 
         func signOut(_: UIAlertAction) {
-            // TODO
-            print("TODO")
+            viewModel.signOut()
+            performSegue(withRoute: .signIn)
         }
 
         let barButtonItem = sender as? UIBarButtonItem

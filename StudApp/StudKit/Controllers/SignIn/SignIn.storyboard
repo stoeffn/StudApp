@@ -217,7 +217,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j0T-rI-XDo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1353" y="609"/>
+            <point key="canvasLocation" x="1399" y="609"/>
         </scene>
         <!--About-->
         <scene sceneID="05I-eR-cld">
@@ -230,7 +230,7 @@
         <!--Choose Your Organization-->
         <scene sceneID="yCO-3G-g8A">
             <objects>
-                <tableViewController id="7Cl-OR-2Sy" customClass="OrganizationListController" customModule="StudKit" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="OrganizationList" id="7Cl-OR-2Sy" customClass="OrganizationListController" customModule="StudKit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="QYh-3Q-84Z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -396,7 +396,7 @@
                 <viewControllerPlaceholder storyboardName="About" id="myS-Lb-AhU" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nBC-me-csl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1353" y="999"/>
+            <point key="canvasLocation" x="1398" y="999"/>
         </scene>
         <!--Store-->
         <scene sceneID="ocK-Me-EVY">
@@ -404,7 +404,7 @@
                 <viewControllerPlaceholder storyboardName="Store" referencedIdentifier="Store" id="waM-SL-7JR" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JFH-Ii-JRj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2004" y="608"/>
+            <point key="canvasLocation" x="1954" y="608"/>
         </scene>
     </scenes>
     <resources>

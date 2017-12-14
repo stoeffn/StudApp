@@ -23,7 +23,7 @@
                         <segue destination="P8g-Nk-6wL" kind="presentation" identifier="about" modalPresentationStyle="formSheet" id="yVy-q8-doc"/>
                         <segue destination="KYP-jD-J4O" kind="relationship" relationship="viewControllers" id="bFd-ds-8U0"/>
                         <segue destination="AZc-n8-OsC" kind="relationship" relationship="viewControllers" id="g3S-Ak-cad"/>
-                        <segue destination="Zqw-Yy-HDJ" kind="presentation" identifier="store" animates="NO" modalPresentationStyle="formSheet" id="m33-kG-meW"/>
+                        <segue destination="Zqw-Yy-HDJ" kind="presentation" identifier="store" animates="NO" id="m33-kG-meW"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l4I-wS-6ep" userLabel="First Responder" sceneMemberID="firstResponder"/>

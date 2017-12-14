@@ -28,6 +28,7 @@ public final class SignInViewModel {
     }
 
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
+    private let storeService = ServiceContainer.default[StoreService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]
 
     public let organization: OrganizationRecord
@@ -84,5 +85,9 @@ public final class SignInViewModel {
                 try? context.saveWhenChanged()
             }
         }
+    }
+
+    public var isAppLocked: Bool {
+        return storeService.state.isLocked
     }
 }

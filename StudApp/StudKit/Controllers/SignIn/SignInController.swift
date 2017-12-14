@@ -102,6 +102,10 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
             isLoading = false
             isErrorCellHidden = true
 
+            guard !viewModel.isAppLocked else {
+                return performSegue(withRoute: .store)
+            }
+
             switch contextService.currentTarget {
             case .app:
                 dismiss(animated: true, completion: nil)
