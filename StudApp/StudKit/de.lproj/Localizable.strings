@@ -32,6 +32,24 @@
 "Thanks to" = "Danke an";
 "Without you, this app could not exist. Thank you ❤️" = "Ohne Euch könnte diese App nicht existieren. Danke ❤️";
 
+// MARK: Signing In
+
+"Username" = "Benutzername";
+"Password" = "Passwort";
+"Sign In" = "Anmelden";
+"Please enter your Stud.IP credentials" = "Bitte gib Deine Stud.IP Anmeldedaten ein";
+"Please check your username and password" = "Bitte überprüfe Deine Anmeldedaten";
+
+// MARK: Store
+
+"Access all your Stud.IP courses and documents, including unlimited offline documents." = "Zugriff auf alle Deine Stud.IP-Kurse und Dokumente, inklusive unbegrenzte Offline-Dokumente.";
+"Start Free Trial" = "Kostenloser Probemonat";
+"%@ for six months after a 1-month trial" = "%@ je sechs Monate nach einem Probemonat";
+"——— or ———" = "——— oder ———";
+"Unlock All Features" = "Alles freischalten";
+"Unlock All Features for %@" = "Alles freischalten für %@";
+"Restore Purchase" = "Kauf wiederherstellen";
+
 // MARK: User Menu
 
 "Signed in as %@" = "Angemeldet als %@";
@@ -67,14 +85,6 @@
 "Choose Your Organization" = "Wähle Deine Organisation";
 "Choose the organization, university, or company you would like to sign into." = "Wähle die Organisation, Hochschule oder Firma, bei der Du Dich anmelden möchtest.";
 "Error Loading Organizations" = "Fehler beim Laden der Organisationen";
-
-// MARK: Signing In
-
-"Username" = "Benutzername";
-"Password" = "Passwort";
-"Sign In" = "Anmelden";
-"Please enter your Stud.IP credentials" = "Bitte gib Deine Stud.IP Anmeldedaten ein";
-"Please check your username and password" = "Bitte überprüfe Deine Anmeldedaten";
 
 // MARK: Color Picker
 

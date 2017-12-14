@@ -32,6 +32,24 @@
 "Thanks to" = "Thanks to";
 "Without you, this app could not exist. Thank you ❤️" = "Without you, this app could not exist. Thank you ❤️";
 
+// MARK: Signing In
+
+"Username" = "Username";
+"Password" = "Password";
+"Sign In" = "Sign In";
+"Please enter your Stud.IP credentials" = "Please enter your Stud.IP credentials";
+"Please check your username and password" = "Please check your username and password";
+
+// MARK: Store
+
+"Access all your Stud.IP courses and documents, including unlimited offline documents." = "Access all your Stud.IP courses and documents, including unlimited offline documents.";
+"Start Free Trial" = "Start Free Trial";
+"%@ for six months after a 1-month trial" = "%@ for six months after a 1-month trial";
+"——— or ———" = "——— or ———";
+"Unlock All Features" = "Unlock All Features";
+"Unlock All Features for %@" = "Unlock All Features for %@";
+"Restore Purchase" = "Restore Purchase";
+
 // MARK: User Menu
 
 "Signed in as %@" = "Signed in as %@";
@@ -67,14 +85,6 @@
 "Choose Your Organization" = "Choose Your Organization";
 "Choose the organization, university, or company you would like to sign into." = "Choose the organization, university, or company you would like to sign into.";
 "Error Loading Organizations" = "Error Loading Organizations";
-
-// MARK: Signing In
-
-"Username" = "Username";
-"Password" = "Password";
-"Sign In" = "Sign In";
-"Please enter your Stud.IP credentials" = "Please enter your Stud.IP credentials";
-"Please check your username and password" = "Please check your username and password";
 
 // MARK: Color Picker
 

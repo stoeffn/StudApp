@@ -17,6 +17,19 @@ public final class StoreController: UITableViewController, Routable {
         viewModel = StoreViewModel()
         viewModel.loadProducts()
         viewModel.didLoadProducts = updateUserInterface
+
+        titleLabel.text = App.name
+        subtitleLabel.text = "Access all your Stud.IP courses and documents, including unlimited offline documents.".localized
+
+        trialButton.setTitle("Start Free Trial".localized, for: .normal)
+
+        orLabel.text = "——— or ———".localized
+
+        unlockButton.setTitle("Unlock All Features".localized, for: .normal)
+
+        restoreButton.setTitle("Restore Purchase".localized, for: .normal)
+
+        disclaimerLabel.text = "DISCLAIMER".localized
     }
 
     // MARK: - User Interface
@@ -37,10 +50,17 @@ public final class StoreController: UITableViewController, Routable {
 
     private func updateUserInterface() {
         trialButton.isEnabled = viewModel.subscriptionProduct != nil
-        trialButton.titleLabel?.text = viewModel.subscriptionProduct?.price.debugDescription
+        if let subscriptionProduct = viewModel.subscriptionProduct {
+            let localizedSubscriptionPrice = NumberFormatter.localizedString(from: subscriptionProduct.price, number: .currency)
+            let localizedButtonSubtitle = "%@ for six months after a 1-month trial".localized(localizedSubscriptionPrice)
+            unlockButton.setTitle("Start Free Trial".localized + "\n" + localizedButtonSubtitle, for: .normal)
+        }
 
         unlockButton.isEnabled = viewModel.unlockProduct != nil
-        unlockButton.titleLabel?.text = viewModel.unlockProduct?.price.debugDescription
+        if let unlockProduct = viewModel.unlockProduct {
+            let localizedUnlockPrice = NumberFormatter.localizedString(from: unlockProduct.price, number: .currency)
+            unlockButton.setTitle("Unlock All Features for %@".localized(localizedUnlockPrice), for: .normal)
+        }
     }
 
     // MARK: - User Interaction
