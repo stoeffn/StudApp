@@ -12,6 +12,8 @@ extension StoreService {
 
         case locked
 
+        case deferred
+
         case unlocked(validatedByServer: Bool)
 
         case subscribed(until: Date, validatedByServer: Bool)
@@ -23,12 +25,19 @@ extension StoreService {
             return true
         }
 
+        var isDeferred: Bool {
+            guard case .deferred = self else { return false }
+            return true
+        }
+
         // MARK: - Coding
 
         init?(rawValue: RawValue) {
             switch rawValue.state {
             case "locked":
                 self = .locked
+            case "deferred":
+                self = .deferred
             case "unlocked":
                 self = .unlocked(validatedByServer: false)
             case "subscribed":
@@ -43,6 +52,8 @@ extension StoreService {
             switch self {
             case .locked:
                 return (state: "locked", subscribedUntilTimestamp: nil)
+            case .deferred:
+                return (state: "deferred", subscribedUntilTimestamp: nil)
             case .unlocked:
                 return (state: "unlocked", subscribedUntilTimestamp: nil)
             case let .subscribed(until: subscribedUntil, _):

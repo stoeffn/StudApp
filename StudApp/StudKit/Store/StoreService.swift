@@ -23,6 +23,10 @@ final class StoreService: NSObject {
         SKPaymentQueue.default().add(self)
     }
 
+    deinit {
+        SKPaymentQueue.default().remove(self)
+    }
+
     // MARK: - Managing State
 
     private(set) lazy var state = State.fromDefaults ?? .locked
@@ -36,6 +40,18 @@ final class StoreService: NSObject {
 
 extension StoreService: SKPaymentTransactionObserver {
     func paymentQueue(_: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        print(transactions)
+        for transaction in transactions {
+            updateState(using: transaction)
+        }
+    }
+
+    private func updateState(using transaction: SKPaymentTransaction) {
+        switch transaction.transactionState {
+        case .purchased, .restored:
+            state = .unlocked(validatedByServer: false)
+            state.toDefaults()
+        default:
+            break
+        }
     }
 }

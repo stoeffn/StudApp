@@ -18,13 +18,10 @@ public final class StoreController: UITableViewController, Routable {
 
         viewModel = StoreViewModel()
         viewModel.loadProducts()
-        viewModel.didLoadProducts = {
-            self.navigationItem.setActivityIndicatorHidden(true)
-            UIView.animate(withDuration: 0.3, animations: self.updateUserInterface)
-        }
+        viewModel.didLoadProducts = didLoadProducts
+        viewModel.transactionChanged = transactionChanged
 
         navigationItem.hidesBackButton = true
-        navigationItem.setActivityIndicatorHidden(false)
 
         titleLabel.text = App.name
         subtitleLabel.text = "Access all your Stud.IP courses and documents, including unlimited offline documents.".localized
@@ -38,6 +35,12 @@ public final class StoreController: UITableViewController, Routable {
         restoreButton.setTitle("Restore Purchase".localized, for: .normal)
 
         disclaimerLabel.text = "DISCLAIMER".localized
+
+        isLoading = true
+
+        if viewModel.isPaymentDeferred {
+            present(deferralAlert, animated: true, completion: nil)
+        }
     }
 
     // MARK: - User Interface
@@ -56,14 +59,11 @@ public final class StoreController: UITableViewController, Routable {
 
     @IBOutlet weak var disclaimerLabel: UILabel!
 
-    private func updateUserInterface() {
-        updateTrialButton(withProduct: viewModel.subscriptionProduct)
-        updateUnlockButton(withProduct: viewModel.unlockProduct)
-    }
+    private lazy var deferralAlert = UIAlertController(title: "Your Purchase is Deferred".localized,
+                                                       message: "A family member might have to approve this puchase.".localized,
+                                                       preferredStyle: .alert)
 
     private func updateTrialButton(withProduct product: SKProduct?) {
-        trialButton.isEnabled = product != nil
-
         guard let product = product else { return }
 
         let localizedSubscriptionPrice = NumberFormatter.localizedString(from: product.price, number: .currency)
@@ -92,8 +92,6 @@ public final class StoreController: UITableViewController, Routable {
     }
 
     private func updateUnlockButton(withProduct product: SKProduct?) {
-        unlockButton.isEnabled = product != nil
-
         guard let product = product else { return }
 
         let localizedUnlockPrice = NumberFormatter.localizedString(from: product.price, number: .currency)
@@ -123,6 +121,15 @@ public final class StoreController: UITableViewController, Routable {
         present(controller, animated: true, completion: nil)
     }
 
+    private var isLoading: Bool = false {
+        didSet {
+            navigationItem.setActivityIndicatorHidden(!isLoading)
+            trialButton.isEnabled = !isLoading && viewModel.subscriptionProduct != nil
+            unlockButton.isEnabled = !isLoading && viewModel.unlockProduct != nil
+            restoreButton.isEnabled = !isLoading
+        }
+    }
+
     @IBAction
     func trialButtonTapped(_: Any) {
         guard let product = viewModel.subscriptionProduct else { return }
@@ -138,5 +145,41 @@ public final class StoreController: UITableViewController, Routable {
     @IBAction
     func restoreButtonTapped(_: Any) {
         viewModel.restoreCompletedTransactions()
+    }
+
+    // MARK: - Store Events
+
+    private func didLoadProducts() {
+        UIView.animate(withDuration: 0.3) {
+            self.isLoading = false
+            self.updateTrialButton(withProduct: self.viewModel.subscriptionProduct)
+            self.updateUnlockButton(withProduct: self.viewModel.unlockProduct)
+        }
+    }
+
+    private func transactionChanged(_ transaction: SKPaymentTransaction) {
+        deferralAlert.dismiss(animated: true, completion: nil)
+
+        switch transaction.transactionState {
+        case .purchasing:
+            isLoading = true
+        case .purchased:
+            let alert = UIAlertController(title: "Thank You for Supporting StudApp!".localized)
+            present(alert, animated: true) {
+                self.dismiss(animated: true, completion: nil)
+            }
+        case .failed:
+            isLoading = false
+            let alert = UIAlertController(title: "Something Went Wrong".localized,
+                                          message: transaction.error?.localizedDescription)
+            present(alert, animated: true, completion: nil)
+        case .restored:
+            let alert = UIAlertController(title: "Your Purchase Was Restored Successfully".localized)
+            present(alert, animated: true) {
+                self.dismiss(animated: true, completion: nil)
+            }
+        case .deferred:
+            present(deferralAlert, animated: true, completion: nil)
+        }
     }
 }

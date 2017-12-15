@@ -17,9 +17,10 @@
 
 // MARK: Generic Errors
 
+"Something Went Wrong" = "Something Went Wrong";
+"Something Went Wrong Continuing Your Activity." = "Something Went Wrong Continuing Your Activity.";
 "There seems to be a problem with the internet connection." = "There seems to be a problem with the internet connection.";
 "Unfortunately, there was an internal error." = "Unfortunately, there was an internal error. Please contact app support if this occurs repeatedly.";
-"Something went wrong continuing your activity." = "Something went wrong continuing your activity.";
 
 // MARK: About
 
@@ -49,6 +50,10 @@
 "Unlock All Features" = "Unlock All Features";
 "Unlock All Features for %@" = "Unlock All Features for %@";
 "Restore Purchase" = "Restore Purchase";
+"Thank You for Supporting StudApp!" = "Thank You for Supporting StudApp!";
+"Your Purchase Was Restored Successfully" = "Your Purchase Was Restored Successfully";
+"Your Purchase is Deferred" = "Your Purchase is Deferred";
+"A family member might have to approve this puchase." = "A family member might have to approve this puchase.";
 
 // MARK: User Menu
 

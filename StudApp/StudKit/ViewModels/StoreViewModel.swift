@@ -13,7 +13,15 @@ public final class StoreViewModel: NSObject {
     private let studIpService = ServiceContainer.default[StudIpService.self]
     private var productsRequest: SKProductsRequest?
 
-    public override init() {}
+    public override init() {
+        super.init()
+
+        SKPaymentQueue.default().add(self)
+    }
+
+    deinit {
+        SKPaymentQueue.default().remove(self)
+    }
 
     public func loadProducts() {
         productsRequest = SKProductsRequest(productIdentifiers: [
@@ -24,6 +32,8 @@ public final class StoreViewModel: NSObject {
     }
 
     public var didLoadProducts: (() -> Void)?
+
+    public var transactionChanged: ((SKPaymentTransaction) -> Void)?
 
     public private(set) var subscriptionProduct: SKProduct?
 
@@ -36,6 +46,10 @@ public final class StoreViewModel: NSObject {
     public func buy(product: SKProduct) {
         let payment = SKPayment(product: product)
         SKPaymentQueue.default().add(payment)
+    }
+
+    public var isPaymentDeferred: Bool {
+        return storeService.state.isDeferred
     }
 
     /// Sign user out of this app and the API.
@@ -53,5 +67,15 @@ extension StoreViewModel: SKProductsRequestDelegate {
 
         didLoadProducts?()
         productsRequest = nil
+    }
+}
+
+// MARK: - Payment Transaction Observer
+
+extension StoreViewModel: SKPaymentTransactionObserver {
+    public func paymentQueue(_: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            transactionChanged?(transaction)
+        }
     }
 }

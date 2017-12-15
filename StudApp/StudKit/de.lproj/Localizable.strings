@@ -17,9 +17,10 @@
 
 // MARK: Generic Errors
 
+"Something Went Wrong" = "Etwas lief schief";
+"Something Went Wrong Continuing Your Activity." = "Etwas lief schief beim Fortführen Deiner Aktivität.";
 "There seems to be a problem with the internet connection." = "Es scheint ein Problem mit der Internetverbindung zu geben.";
 "Unfortunately, there was an internal error." = "Leider gab es einen internen Fehler. Bitte kontaktiere den App-Support, sollte dies öfter auftreten.";
-"Something went wrong continuing your activity." = "Etwas lief schief beim Fortführen Deiner Aktivität.";
 
 // MARK: About
 
@@ -49,6 +50,10 @@
 "Unlock All Features" = "Alles freischalten";
 "Unlock All Features for %@" = "Alles freischalten für %@";
 "Restore Purchase" = "Kauf wiederherstellen";
+"Thank You for Supporting StudApp!" = "Danke, dass Du StudApp unterstützt!";
+"Your Purchase Was Restored Successfully" = "Dein Kauf wurde erfolgreich wiederhergestellt";
+"Your Purchase is Deferred" = "Dein Kauf ist aufgeschoben";
+"A family member might have to approve this puchase." = "Möglicherweise muss ein Familienmitglied diesen Kauf bestätigen.";
 
 // MARK: User Menu
 

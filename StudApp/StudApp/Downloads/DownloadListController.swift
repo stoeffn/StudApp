@@ -62,7 +62,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
             let fileId = activity.userInfo?[File.typeIdentifier] as? String,
             let file = viewModel.file(withId: fileId)
         else {
-            let alert = UIAlertController(title: "Something went wrong continuing your activity.".localized)
+            let alert = UIAlertController(title: "Something Went Wrong Continuing Your Activity.".localized)
             return present(alert, animated: true, completion: nil)
         }
 
