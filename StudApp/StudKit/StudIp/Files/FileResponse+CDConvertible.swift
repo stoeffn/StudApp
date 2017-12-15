@@ -15,9 +15,7 @@ extension FileResponse: CDConvertible {
             let id = id,
             let name = name,
             let course = try fetchCourse(in: context)
-        else {
-            throw "Cannot create file core data model from invalid file model."
-        }
+        else { throw "Cannot create file without id, name, or course." }
 
         let (file, _) = try File.fetch(byId: id, orCreateIn: context)
         file.id = id

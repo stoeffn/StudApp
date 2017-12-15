@@ -6,16 +6,20 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import CoreData
+
 struct AnnouncementResponse: Decodable {
     let id: String
-    let rawCreatedAt: String
-    let rawModifiedAt: String
-    let rawExpiresAfter: String
+    private let coursePaths: [String]
+    private let rawCreatedAt: String
+    private let rawModifiedAt: String
+    private let rawExpiresAfter: String
     let title: String
     let body: String
 
     enum CodingKeys: String, CodingKey {
         case id = "news_id"
+        case coursePaths = "ranges"
         case rawCreatedAt = "mkdate"
         case rawModifiedAt = "chdate"
         case rawExpiresAfter = "expire"
@@ -23,8 +27,10 @@ struct AnnouncementResponse: Decodable {
         case body
     }
 
-    init(id: String, rawCreatedAt: String, rawModifiedAt: String, rawExpiresAfter: String, title: String, body: String = "") {
+    init(id: String, coursePaths: [String] = [], rawCreatedAt: String, rawModifiedAt: String, rawExpiresAfter: String,
+         title: String, body: String = "") {
         self.id = id
+        self.coursePaths = coursePaths
         self.rawCreatedAt = rawCreatedAt
         self.rawModifiedAt = rawModifiedAt
         self.rawExpiresAfter = rawExpiresAfter
@@ -49,5 +55,9 @@ extension AnnouncementResponse {
     var expiresAt: Date? {
         guard let createdAt = createdAt else { return nil }
         return createdAt + TimeInterval(rawExpiresAfter)!
+    }
+
+    var courseIds: [String] {
+        return coursePaths.flatMap(StudIp.transformIdPath)
     }
 }

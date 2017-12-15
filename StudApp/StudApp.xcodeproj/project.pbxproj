@@ -14,6 +14,7 @@
 		2422660B1FE3D62500FA7CA6 /* AnnouncementResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422660A1FE3D62500FA7CA6 /* AnnouncementResponse.swift */; };
 		2422660E1FE3D9A900FA7CA6 /* AnnouncementResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422660D1FE3D9A900FA7CA6 /* AnnouncementResponseTests.swift */; };
 		242266101FE3D9E400FA7CA6 /* AnnouncementResponseTests+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422660F1FE3D9E400FA7CA6 /* AnnouncementResponseTests+Data.swift */; };
+		242266121FE3EE7B00FA7CA6 /* AnnouncementResponse+CDConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242266111FE3EE7B00FA7CA6 /* AnnouncementResponse+CDConvertible.swift */; };
 		242B035B1FD71AB700863B08 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B035A1FD71AB700863B08 /* CourseCell.swift */; };
 		242B035D1FD7213700863B08 /* SemesterHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B035C1FD7213700863B08 /* SemesterHeader.swift */; };
 		242B035F1FD7220800863B08 /* UIFont+Mutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B035E1FD7220800863B08 /* UIFont+Mutations.swift */; };
@@ -335,6 +336,7 @@
 		2422660A1FE3D62500FA7CA6 /* AnnouncementResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementResponse.swift; sourceTree = "<group>"; };
 		2422660D1FE3D9A900FA7CA6 /* AnnouncementResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementResponseTests.swift; sourceTree = "<group>"; };
 		2422660F1FE3D9E400FA7CA6 /* AnnouncementResponseTests+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnnouncementResponseTests+Data.swift"; sourceTree = "<group>"; };
+		242266111FE3EE7B00FA7CA6 /* AnnouncementResponse+CDConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnnouncementResponse+CDConvertible.swift"; sourceTree = "<group>"; };
 		242B035A1FD71AB700863B08 /* CourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 		242B035C1FD7213700863B08 /* SemesterHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterHeader.swift; sourceTree = "<group>"; };
 		242B035E1FD7220800863B08 /* UIFont+Mutations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Mutations.swift"; sourceTree = "<group>"; };
@@ -658,6 +660,7 @@
 			isa = PBXGroup;
 			children = (
 				2422660A1FE3D62500FA7CA6 /* AnnouncementResponse.swift */,
+				242266111FE3EE7B00FA7CA6 /* AnnouncementResponse+CDConvertible.swift */,
 			);
 			path = Announcements;
 			sourceTree = "<group>";
@@ -1984,6 +1987,7 @@
 				242B03631FD7221900863B08 /* UIColor+Utils.swift in Sources */,
 				246F3AC61FAC879C00A477FF /* DataSource.swift in Sources */,
 				24D360CF1FAA5AFE00BBBAED /* CDCreatable.swift in Sources */,
+				242266121FE3EE7B00FA7CA6 /* AnnouncementResponse+CDConvertible.swift in Sources */,
 				24D361161FAA5F0E00BBBAED /* Api+CollectionResponse.swift in Sources */,
 				246F3AC51FAC879C00A477FF /* DataChange.swift in Sources */,
 				2469EF6B1FCF4D07008A122B /* ActionCell.swift in Sources */,
