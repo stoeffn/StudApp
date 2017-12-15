@@ -47,6 +47,14 @@ extension Course {
         }
     }
 
+    public func updateAnnouncements(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Announcement]>) {
+        let studIpService = ServiceContainer.default[StudIpService.self]
+        studIpService.api
+            .requestCompleteCollection(.announcementsInCourse(withId: id)) { (result: Result<[AnnouncementResponse]>) in
+                Announcement.update(using: result, in: context, handler: handler)
+            }
+    }
+
     public var url: URL? {
         let studIpService = ServiceContainer.default[StudIpService.self]
         guard

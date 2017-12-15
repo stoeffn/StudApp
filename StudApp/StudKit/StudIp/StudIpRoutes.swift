@@ -28,6 +28,9 @@ public enum StudIpRoutes: ApiRoutes {
     /// Returns the contents of a file with the given id.
     case fileContents(forFileId: String)
 
+    /// Returns a list of unexpired announcements for the course with the id given.
+    case announcementsInCourse(withId: String)
+
     /// Returns the profile picture at the URL given.
     case profilePicture(URL)
 
@@ -48,6 +51,8 @@ public enum StudIpRoutes: ApiRoutes {
             return "file/\(folderId)"
         case let .fileContents(fileId):
             return "file/\(fileId)/content"
+        case let .announcementsInCourse(courseId):
+            return "course/\(courseId)/news"
         case let .profilePicture(url):
             return url.path
         case .currentUser:
@@ -63,6 +68,7 @@ public enum StudIpRoutes: ApiRoutes {
         case .filesInCourse: return CollectionResponse<FileResponse>.self
         case .file: return FileResponse.self
         case .fileContents, .profilePicture: return nil
+        case .announcementsInCourse: return CollectionResponse<AnnouncementResponse>.self
         case .currentUser: return UserResponse.self
         }
     }
@@ -71,7 +77,7 @@ public enum StudIpRoutes: ApiRoutes {
         switch self {
         case .discovery:
             return 0
-        case .courses, .filesInCourse, .file, .fileContents, .currentUser:
+        case .courses, .filesInCourse, .file, .fileContents, .announcementsInCourse, .currentUser:
             return 60
         case .semesters, .profilePicture:
             return 60 * 60
