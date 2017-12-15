@@ -11,11 +11,19 @@ import XCTest
 
 final class TransformsTests: XCTestCase {
     func testTransformIdpath_IdPath_Id() {
-        XCTAssertEqual(StudIp.transformIdPath("/api.php/semester/123"), "123")
+        XCTAssertEqual(StudIp.transformIdPath("/api.php/semester/123", idComponentIndex: 2), "123")
+    }
+
+    func testTransformIdpath_IdPathWithNews_Id() {
+        XCTAssertEqual(StudIp.transformIdPath("/api.php/semester/123/news", idComponentIndex: 2), "123")
+    }
+
+    func testTransformIdpath_IdPathWithoutSlash_Id() {
+        XCTAssertEqual(StudIp.transformIdPath("api.php/semester/123", idComponentIndex: 2), "123")
     }
 
     func testTransformIdpath_InvalidPath_Nil() {
-        XCTAssertEqual(StudIp.transformIdPath("/api.php/semester/"), nil)
+        XCTAssertEqual(StudIp.transformIdPath("/api.php/semester/", idComponentIndex: 2), nil)
     }
 
     func testTransformCourseNumber_Padding_Trimmed() {

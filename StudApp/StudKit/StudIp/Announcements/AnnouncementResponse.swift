@@ -58,6 +58,6 @@ extension AnnouncementResponse {
     }
 
     var courseIds: [String] {
-        return coursePaths.flatMap(StudIp.transformIdPath)
+        return coursePaths.flatMap {StudIp.transformIdPath($0, idComponentIndex: 2) }
     }
 }

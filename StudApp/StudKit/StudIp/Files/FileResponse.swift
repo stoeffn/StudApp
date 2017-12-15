@@ -86,11 +86,11 @@ extension FileResponse {
     }
 
     var courseId: String? {
-        return StudIp.transformIdPath(coursePath)
+        return StudIp.transformIdPath(coursePath, idComponentIndex: 2)
     }
 
     var ownerId: String? {
-        return StudIp.transformIdPath(ownerPath)
+        return StudIp.transformIdPath(ownerPath, idComponentIndex: 2)
     }
 
     var isFolder: Bool {

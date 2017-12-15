@@ -11,12 +11,14 @@ enum StudIp {
     ///
     /// ## Examples
     /// - "/api/rooms/abc" -> "abc"
+    /// - "/api/rooms/abc/test" -> "abc"
     /// - "api/rooms/" -> `nil`
-    static func transformIdPath(_ path: String?) -> String? {
-        return path?
-            .components(separatedBy: "/")
-            .last?
-            .nilWhenEmpty
+    static func transformIdPath(_ path: String?, idComponentIndex: Int) -> String? {
+        guard
+            let components = path?.trimmingCharacters(in: CharacterSet(charactersIn: "/")).components(separatedBy: "/"),
+            components.count > idComponentIndex
+        else { return nil }
+        return components[idComponentIndex].nilWhenEmpty
     }
 
     /// Returns the input with trimmed whitespace.
