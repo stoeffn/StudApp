@@ -11,9 +11,9 @@ import StoreKit
 final class StoreService: NSObject {
     // MARK: - Constants
 
-    private let subscriptionProductIdentifier = "SteffenRyll.StudApp.Subscriptions.SixMonths"
+    let subscriptionProductIdentifier = "SteffenRyll.StudApp.Subscription"
 
-    private let unlockProductIdentifier = "SteffenRyll.StudApp.Unlock"
+    let unlockProductIdentifier = "SteffenRyll.StudApp.Unlock"
 
     // MARK: - Life Cycle
 
