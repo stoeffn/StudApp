@@ -36,15 +36,18 @@ struct AnnouncementResponse: Decodable {
 // MARK: - Utilities
 
 extension AnnouncementResponse {
-    var createdAt: Date {
-        return Date(timeIntervalSince1970: TimeInterval(rawCreatedAt)!)
+    var createdAt: Date? {
+        guard let interval = TimeInterval(rawCreatedAt) else { return nil }
+        return Date(timeIntervalSince1970: interval)
     }
 
-    var modifiedAt: Date {
-        return Date(timeIntervalSince1970: TimeInterval(rawModifiedAt)!)
+    var modifiedAt: Date? {
+        guard let interval = TimeInterval(rawModifiedAt) else { return nil }
+        return Date(timeIntervalSince1970: interval)
     }
 
-    var expiresAt: Date {
+    var expiresAt: Date? {
+        guard let createdAt = createdAt else { return nil }
         return createdAt + TimeInterval(rawExpiresAfter)!
     }
 }
