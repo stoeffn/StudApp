@@ -17,7 +17,7 @@ public final class StoreViewModel: NSObject {
 
     public func loadProducts() {
         productsRequest = SKProductsRequest(productIdentifiers: [
-            storeService.subscriptionProductIdentifier, storeService.unlockProductIdentifier
+            storeService.subscriptionProductIdentifier, storeService.unlockProductIdentifier,
         ])
         productsRequest?.delegate = self
         productsRequest?.start()
@@ -47,7 +47,7 @@ public final class StoreViewModel: NSObject {
 // MARK: - Product Request Delegate
 
 extension StoreViewModel: SKProductsRequestDelegate {
-    public func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+    public func productsRequest(_: SKProductsRequest, didReceive response: SKProductsResponse) {
         subscriptionProduct = response.products.first { $0.productIdentifier == storeService.subscriptionProductIdentifier }
         unlockProduct = response.products.first { $0.productIdentifier == storeService.unlockProductIdentifier }
 

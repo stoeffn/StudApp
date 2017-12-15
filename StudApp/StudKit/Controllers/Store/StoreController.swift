@@ -18,9 +18,13 @@ public final class StoreController: UITableViewController, Routable {
 
         viewModel = StoreViewModel()
         viewModel.loadProducts()
-        viewModel.didLoadProducts = updateUserInterface
+        viewModel.didLoadProducts = {
+            self.navigationItem.setActivityIndicatorHidden(true)
+            UIView.animate(withDuration: 0.3, animations: self.updateUserInterface)
+        }
 
         navigationItem.hidesBackButton = true
+        navigationItem.setActivityIndicatorHidden(false)
 
         titleLabel.text = App.name
         subtitleLabel.text = "Access all your Stud.IP courses and documents, including unlimited offline documents.".localized
@@ -53,10 +57,8 @@ public final class StoreController: UITableViewController, Routable {
     @IBOutlet weak var disclaimerLabel: UILabel!
 
     private func updateUserInterface() {
-        UIView.animate(withDuration: 0.3) {
-            self.updateTrialButton(withProduct: self.viewModel.subscriptionProduct)
-            self.updateUnlockButton(withProduct: self.viewModel.unlockProduct)
-        }
+        updateTrialButton(withProduct: viewModel.subscriptionProduct)
+        updateUnlockButton(withProduct: viewModel.unlockProduct)
     }
 
     private func updateTrialButton(withProduct product: SKProduct?) {
