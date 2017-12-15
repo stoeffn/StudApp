@@ -22,7 +22,7 @@ public final class Announcement: NSManagedObject, CDCreatable, CDIdentifiable, C
 
     @NSManaged public var body: String
 
-    @NSManaged public var course: Course?
+    @NSManaged public var courses: Set<Course>
 
     // MARK: - Sorting
 

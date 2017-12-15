@@ -18,6 +18,7 @@ final class IdentifiableTests: XCTestCase {
 
         try! CourseResponse(id: "0", title: "A").coreDataModel(in: context)
         try! CourseResponse(id: "1", title: "B").coreDataModel(in: context)
+        try! CourseResponse(id: "2", title: "C").coreDataModel(in: context)
     }
 
     func testFetchById_ExistingId_Course() {
@@ -30,5 +31,12 @@ final class IdentifiableTests: XCTestCase {
     func testFetchById_MissingId_Nil() {
         let course = try! Course.fetch(byId: "abc", in: context)
         XCTAssertNil(course)
+    }
+
+    func testFetchByIds_Courses_Courses() {
+        let courses = try! Course.fetch(byIds: ["0", "2"], in: context)
+        XCTAssertEqual(courses[0].title, "A")
+        XCTAssertEqual(courses[1].title, "C")
+        XCTAssertEqual(courses.count, 2)
     }
 }
