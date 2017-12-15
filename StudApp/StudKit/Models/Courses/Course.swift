@@ -38,6 +38,8 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdat
     /// It is also important to know that—if contained in semesters `A` and `C`—a course should also be contained in `B`.
     @NSManaged public var semesters: Set<Semester>
 
+    @NSManaged public var announcements: Set<Announcement>
+
     @NSManaged public var state: CourseState
 
     // MARK: - Life Cycle

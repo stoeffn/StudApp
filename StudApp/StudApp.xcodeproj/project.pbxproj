@@ -10,6 +10,7 @@
 		241C67E51FCDD78100F4A099 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E41FCDD78100F4A099 /* AboutViewModel.swift */; };
 		241C67EA1FCDFAC700F4A099 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E91FCDFAC700F4A099 /* App.swift */; };
 		241FD9651FA8FFAD00FBD750 /* UINavigationBar+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9641FA8FFAD00FBD750 /* UINavigationBar+Utils.swift */; };
+		242266081FE3D45F00FA7CA6 /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242266071FE3D45F00FA7CA6 /* Announcement.swift */; };
 		242B035B1FD71AB700863B08 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B035A1FD71AB700863B08 /* CourseCell.swift */; };
 		242B035D1FD7213700863B08 /* SemesterHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B035C1FD7213700863B08 /* SemesterHeader.swift */; };
 		242B035F1FD7220800863B08 /* UIFont+Mutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B035E1FD7220800863B08 /* UIFont+Mutations.swift */; };
@@ -327,6 +328,7 @@
 		241FD9681FA9087900FBD750 /* GroupedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedTextField.swift; sourceTree = "<group>"; };
 		241FD96A1FA9090F00FBD750 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
 		241FD96E1FA9191500FBD750 /* BorderlessNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderlessNavigationController.swift; sourceTree = "<group>"; };
+		242266071FE3D45F00FA7CA6 /* Announcement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcement.swift; sourceTree = "<group>"; };
 		242B035A1FD71AB700863B08 /* CourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 		242B035C1FD7213700863B08 /* SemesterHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterHeader.swift; sourceTree = "<group>"; };
 		242B035E1FD7220800863B08 /* UIFont+Mutations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Mutations.swift"; sourceTree = "<group>"; };
@@ -636,6 +638,14 @@
 				242B03751FD7471D00863B08 /* UIViewController+Utils.swift */,
 			);
 			path = UIKit;
+			sourceTree = "<group>";
+		};
+		242266061FE3D44600FA7CA6 /* Announcements */ = {
+			isa = PBXGroup;
+			children = (
+				242266071FE3D45F00FA7CA6 /* Announcement.swift */,
+			);
+			path = Announcements;
 			sourceTree = "<group>";
 		};
 		242B03641FD745E600863B08 /* ColorPicker */ = {
@@ -1150,6 +1160,7 @@
 		24D360BE1FAA585B00BBBAED /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				242266061FE3D44600FA7CA6 /* Announcements */,
 				245B6ADF1FCB39AD00302CD0 /* Organizations */,
 				247793671FC892AE00090F4D /* Courses */,
 				247793681FC892B600090F4D /* Files */,
@@ -1929,6 +1940,7 @@
 				24D361111FAA5F0500BBBAED /* StudIpService.swift in Sources */,
 				246F3AC91FAC879C00A477FF /* DataSourceSection.swift in Sources */,
 				24D361151FAA5F0E00BBBAED /* CollectionResponse.swift in Sources */,
+				242266081FE3D45F00FA7CA6 /* Announcement.swift in Sources */,
 				243817A71FC88A49004052D0 /* SignInController.swift in Sources */,
 				24D360ED1FAA5DC500BBBAED /* Transforms.swift in Sources */,
 				24CFB5D61FB24F4D00F30DEA /* Routable.swift in Sources */,
