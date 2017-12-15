@@ -85,18 +85,18 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="dcB-ot-ISo">
-                                        <rect key="frame" x="0.0" y="262" width="375" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="72" id="dcB-ot-ISo">
+                                        <rect key="frame" x="0.0" y="262" width="375" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dcB-ot-ISo" id="nLQ-I0-B8c">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="20I-iW-8ae" customClass="FilledButton" customModule="StudKit" customModuleProvider="target">
-                                                    <rect key="frame" x="48" y="8" width="279" height="72"/>
+                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="20I-iW-8ae" customClass="FilledButton" customModule="StudKit" customModuleProvider="target">
+                                                    <rect key="frame" x="48" y="8" width="279" height="64"/>
                                                     <color key="backgroundColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="72" id="PpJ-Mq-h4q"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="PpJ-Mq-h4q"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                     <state key="normal" title="Start Free Trial">
@@ -113,7 +113,7 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="20I-iW-8ae" secondAttribute="bottom" id="GSR-Q4-R6y"/>
+                                                <constraint firstAttribute="bottom" secondItem="20I-iW-8ae" secondAttribute="bottom" id="GSR-Q4-R6y"/>
                                                 <constraint firstItem="20I-iW-8ae" firstAttribute="leading" relation="lessThanOrEqual" secondItem="nLQ-I0-B8c" secondAttribute="leadingMargin" constant="32" id="ko8-RK-6Xd"/>
                                                 <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="20I-iW-8ae" secondAttribute="trailing" constant="32" id="m17-Kb-b3n"/>
                                                 <constraint firstItem="20I-iW-8ae" firstAttribute="top" secondItem="nLQ-I0-B8c" secondAttribute="top" constant="8" id="wty-rR-SEs"/>
@@ -121,7 +121,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="42" id="dHW-B6-aaK">
-                                        <rect key="frame" x="0.0" y="342" width="375" height="42"/>
+                                        <rect key="frame" x="0.0" y="334" width="375" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dHW-B6-aaK" id="NfH-su-nIS">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="42"/>
@@ -142,13 +142,13 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="58" id="SDW-Sg-kZH">
-                                        <rect key="frame" x="0.0" y="384" width="375" height="58"/>
+                                        <rect key="frame" x="0.0" y="376" width="375" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SDW-Sg-kZH" id="Cf2-Wd-VY3">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="58"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J94-G1-rVT" customClass="FilledButton" customModule="StudKit" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J94-G1-rVT" customClass="FilledButton" customModule="StudKit" customModuleProvider="target">
                                                     <rect key="frame" x="48" y="0.0" width="279" height="50"/>
                                                     <color key="backgroundColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -177,7 +177,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="56" id="EWP-zU-JIE">
-                                        <rect key="frame" x="0.0" y="442" width="375" height="56"/>
+                                        <rect key="frame" x="0.0" y="434" width="375" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EWP-zU-JIE" id="Tfx-Yz-5hm">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
@@ -185,7 +185,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="28" id="ONe-SN-BtZ">
-                                        <rect key="frame" x="0.0" y="498" width="375" height="28"/>
+                                        <rect key="frame" x="0.0" y="490" width="375" height="28"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ONe-SN-BtZ" id="BvL-9O-ugt">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="28"/>
@@ -208,7 +208,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="0Ye-F3-Wc0">
-                                        <rect key="frame" x="0.0" y="526" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="518" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Ye-F3-Wc0" id="e7x-fc-zhj">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>

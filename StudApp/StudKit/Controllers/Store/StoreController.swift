@@ -6,6 +6,8 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import StoreKit
+
 public final class StoreController: UITableViewController, Routable {
     private var viewModel: StoreViewModel!
 
@@ -51,18 +53,49 @@ public final class StoreController: UITableViewController, Routable {
     @IBOutlet weak var disclaimerLabel: UILabel!
 
     private func updateUserInterface() {
-        trialButton.isEnabled = viewModel.subscriptionProduct != nil
-        if let subscriptionProduct = viewModel.subscriptionProduct {
-            let localizedSubscriptionPrice = NumberFormatter.localizedString(from: subscriptionProduct.price, number: .currency)
-            let localizedButtonSubtitle = "%@ for six months after a 1-month trial".localized(localizedSubscriptionPrice)
-            unlockButton.setTitle("Start Free Trial".localized + "\n" + localizedButtonSubtitle, for: .normal)
+        UIView.animate(withDuration: 0.3) {
+            self.updateTrialButton(withProduct: self.viewModel.subscriptionProduct)
+            self.updateUnlockButton(withProduct: self.viewModel.unlockProduct)
         }
+    }
 
-        unlockButton.isEnabled = viewModel.unlockProduct != nil
-        if let unlockProduct = viewModel.unlockProduct {
-            let localizedUnlockPrice = NumberFormatter.localizedString(from: unlockProduct.price, number: .currency)
-            unlockButton.setTitle("Unlock All Features for %@".localized(localizedUnlockPrice), for: .normal)
-        }
+    private func updateTrialButton(withProduct product: SKProduct?) {
+        trialButton.isEnabled = product != nil
+
+        guard let product = product else { return }
+
+        let localizedSubscriptionPrice = NumberFormatter.localizedString(from: product.price, number: .currency)
+
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+
+        let localizedTitle = "Start Free Trial".localized
+        let title = NSAttributedString(string: localizedTitle, attributes: [
+            .paragraphStyle: paragraphStyle,
+        ])
+
+        let localizedSubtitle = "%@ for six months after a 1-month trial".localized(localizedSubscriptionPrice)
+        let subtitle = NSAttributedString(string: localizedSubtitle, attributes: [
+            .paragraphStyle: paragraphStyle,
+            .font: UIFont.preferredFont(forTextStyle: .footnote),
+            .foregroundColor: UIColor.white.withAlphaComponent(0.6),
+        ])
+
+        let attributedButtonTitle = NSMutableAttributedString()
+        attributedButtonTitle.append(title)
+        attributedButtonTitle.append(NSAttributedString(string: "\n"))
+        attributedButtonTitle.append(subtitle)
+
+        trialButton.setAttributedTitle(attributedButtonTitle, for: .normal)
+    }
+
+    private func updateUnlockButton(withProduct product: SKProduct?) {
+        unlockButton.isEnabled = product != nil
+
+        guard let product = product else { return }
+
+        let localizedUnlockPrice = NumberFormatter.localizedString(from: product.price, number: .currency)
+        unlockButton.setTitle("Unlock All Features for %@".localized(localizedUnlockPrice), for: .normal)
     }
 
     // MARK: - User Interaction
