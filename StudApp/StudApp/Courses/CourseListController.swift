@@ -97,7 +97,6 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CourseCell.typeIdentifier, for: indexPath)
         cell.setDisclosureIndicatorHidden(for: splitViewController)
-        (cell as? CourseCell)?.controller = self
         (cell as? CourseCell)?.course = courseListViewModels[indexPath.section][rowAt: indexPath.row]
         return cell
     }
@@ -219,10 +218,15 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     @available(iOS 11.0, *)
     private func colorAction(for cell: CourseCell, at _: IndexPath) -> UIContextualAction {
-        let action = UIContextualAction(style: .normal, title: "Color".localized) { _, _, success in
-            cell.color(nil)
+        func colorActionHandler(_: UIContextualAction, _: UIView, success: @escaping (Bool) -> Void) {
+            let route = Routes.colorPicker(sender: cell) { id, _ in
+                cell.course.state.colorId = id
+            }
+            performSegue(withRoute: route)
             success(true)
         }
+
+        let action = UIContextualAction(style: .normal, title: "Color".localized, handler: colorActionHandler)
         action.backgroundColor = cell.colorView.backgroundColor
         action.image = #imageLiteral(resourceName: "ColorActionGlyph")
         return action

@@ -11,8 +11,6 @@ import StudKit
 final class CourseCell: UITableViewCell {
     // MARK: - Life Cycle
 
-    weak var controller: UIViewController!
-
     var course: Course! {
         didSet {
             colorView.backgroundColor = UI.Colors.pickerColors[course.state.colorId] ?? UI.Colors.studBlue
@@ -46,11 +44,7 @@ final class CourseCell: UITableViewCell {
 
     // MARK: - User Interaction
 
+    /// Empty dummy implementation that is needed for the menu item to appear.
     @objc
-    func color(_: Any?) {
-        let route = Routes.colorPicker(sender: self) { id, _ in
-            self.course.state.colorId = id
-        }
-        controller.performSegue(withRoute: route)
-    }
+    func color(_: Any?) {}
 }
