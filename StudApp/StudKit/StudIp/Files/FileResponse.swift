@@ -38,43 +38,47 @@ struct FileResponse: Decodable {
         case ownerPath = "author"
     }
 
-    init(folderId: String? = nil, fileId: String? = nil, name: String? = nil, coursePath: String,
-         parentId: String? = nil, children: [FileResponse] = [], title: String, creationDate: Date = Date(),
-         modificationDate: Date = Date(), size: Int? = nil, downloadCount: Int? = nil, ownerPath: String? = nil) {
+    init(folderId: String? = nil, fileId: String? = nil, filename: String? = nil, coursePath: String,
+         parentId: String? = nil, children: [FileResponse] = [], title: String, createdAt: Date = Date(),
+         modifiedAt: Date = Date(), size: Int? = nil, downloadCount: Int? = nil, ownerPath: String? = nil) {
         self.folderId = folderId
         self.fileId = fileId
-        filename = name
+        self.filename = filename
         self.coursePath = coursePath
         self.parentId = parentId
         self.children = children
         self.title = title
-        createdAt = creationDate
-        modifiedAt = modificationDate
+        self.createdAt = createdAt
+        self.modifiedAt = modifiedAt
         self.size = size
         self.downloadCount = downloadCount
         self.ownerPath = ownerPath
     }
 
     init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        folderId = try values.decodeIfPresent(String.self, forKey: .folderId)
-        fileId = try values.decodeIfPresent(String.self, forKey: .fileId)
-        filename = try values.decodeIfPresent(String.self, forKey: .filename)
-        coursePath = try values.decode(String.self, forKey: .coursePath)
-        parentId = try values.decodeIfPresent(String.self, forKey: .parentId)
-        title = try values.decode(String.self, forKey: .title)
-        createdAt = try values.decode(Date.self, forKey: .createdAt)
-        modifiedAt = try values.decode(Date.self, forKey: .modifiedAt)
-        size = try values.decodeIfPresent(Int.self, forKey: .size)
-        downloadCount = try values.decodeIfPresent(Int.self, forKey: .downloadCount)
-        ownerPath = try values.decodeIfPresent(String.self, forKey: .ownerPath)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        if let childrenCollection = try? values.decodeIfPresent([String: FileResponse].self, forKey: .children),
-            let children = childrenCollection?.values {
-            self.children = Array(children)
-        } else {
-            children = []
+        folderId = try container.decodeIfPresent(String.self, forKey: .folderId)
+        fileId = try container.decodeIfPresent(String.self, forKey: .fileId)
+        filename = try container.decodeIfPresent(String.self, forKey: .filename)
+        coursePath = try container.decode(String.self, forKey: .coursePath)
+        parentId = try container.decodeIfPresent(String.self, forKey: .parentId)
+        title = try container.decode(String.self, forKey: .title)
+        createdAt = try container.decode(Date.self, forKey: .createdAt)
+        modifiedAt = try container.decode(Date.self, forKey: .modifiedAt)
+        size = try container.decodeIfPresent(Int.self, forKey: .size)
+        downloadCount = try container.decodeIfPresent(Int.self, forKey: .downloadCount)
+        ownerPath = try container.decodeIfPresent(String.self, forKey: .ownerPath)
+
+        guard
+            let childrenCollection = try? container.decodeIfPresent([String: FileResponse].self, forKey: .children),
+            let children = childrenCollection?.values
+        else {
+            self.children = []
+            return
         }
+
+        self.children = Array(children)
     }
 }
 
