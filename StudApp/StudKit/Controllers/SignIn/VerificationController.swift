@@ -7,10 +7,21 @@
 //
 
 public final class VerificationController: UIViewController, Routable {
+    private var viewModel: VerificationViewModel!
+
     // MARK: - Life Cycle
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+
+        viewModel = VerificationViewModel()
+        viewModel.verifyStoreState { result in
+            if let optionalRoute = result.value, let route = optionalRoute {
+                self.performSegue(withRoute: route)
+            }
+        }
+
+        navigationItem.hidesBackButton = true
 
         titleLabel.text = "Verifying Your Purchase…".localized
     }

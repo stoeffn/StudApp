@@ -398,7 +398,7 @@
                 <viewControllerPlaceholder storyboardName="About" id="myS-Lb-AhU" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nBC-me-csl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1249" y="1109"/>
+            <point key="canvasLocation" x="1398" y="1108"/>
         </scene>
         <!--Store-->
         <scene sceneID="ocK-Me-EVY">
@@ -406,7 +406,7 @@
                 <viewControllerPlaceholder storyboardName="Store" bundleIdentifier="SteffenRyll.StudApp" referencedIdentifier="Store" id="waM-SL-7JR" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JFH-Ii-JRj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1548" y="1109"/>
+            <point key="canvasLocation" x="1774" y="1108"/>
         </scene>
         <!--Verification Controller-->
         <scene sceneID="icl-kX-KgG">
@@ -443,6 +443,7 @@
                     <navigationItem key="navigationItem" id="DFE-MB-kT5"/>
                     <connections>
                         <outlet property="titleLabel" destination="iW4-2V-7bu" id="Fo2-Y1-96h"/>
+                        <segue destination="waM-SL-7JR" kind="show" identifier="store" id="nQi-aj-HeZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7i6-gZ-vBw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -455,5 +456,8 @@
         <image name="MailTableViewGlyph" width="25" height="25"/>
         <image name="MoreBarButtonGlyph" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="nQi-aj-HeZ"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
