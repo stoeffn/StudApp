@@ -401,7 +401,7 @@
         <!--Store-->
         <scene sceneID="ocK-Me-EVY">
             <objects>
-                <viewControllerPlaceholder storyboardName="Store" referencedIdentifier="Store" id="waM-SL-7JR" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Store" bundleIdentifier="SteffenRyll.StudApp" referencedIdentifier="Store" id="waM-SL-7JR" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JFH-Ii-JRj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1954" y="608"/>

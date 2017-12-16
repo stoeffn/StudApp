@@ -6,6 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import StudKit
 import StoreKit
 
 public final class StoreController: UITableViewController, Routable {

@@ -9,7 +9,7 @@
 @testable import StudKit
 
 extension StoreRoutes: TestableApiRoutes {
-    func testData(for parameters: [URLQueryItem]) throws -> Data {
+    func testData(for _: [URLQueryItem]) throws -> Data {
         switch self {
         case .verifyReceipt:
             let encoder = ServiceContainer.default[JSONEncoder.self]

@@ -69,7 +69,7 @@
         <!--Store-->
         <scene sceneID="B6j-8Z-fO8">
             <objects>
-                <viewControllerPlaceholder storyboardName="Store" bundleIdentifier="SteffenRyll.StudKit" id="Zqw-Yy-HDJ" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Store" id="Zqw-Yy-HDJ" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rEN-VM-jyW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="586" y="-151"/>
