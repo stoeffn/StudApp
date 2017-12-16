@@ -18,7 +18,6 @@ public final class VerificationController: UIViewController, Routable {
 
         navigationItem.hidesBackButton = true
 
-        titleLabel.text = "Verifying Your Purchase…".localized
         retryButton.setTitle("Retry".localized, for: .normal)
 
         verifyStoreState()
@@ -27,6 +26,8 @@ public final class VerificationController: UIViewController, Routable {
     // MARK: - User Interface
 
     @IBOutlet weak var titleLabel: UILabel!
+
+    @IBOutlet weak var subtitleLabel: UILabel!
 
     @IBOutlet weak var retryButton: UIButton!
 
@@ -40,9 +41,21 @@ public final class VerificationController: UIViewController, Routable {
     // MARK: - Helpers
 
     private func verifyStoreState() {
+        titleLabel.text = "Verifying Your Purchase…".localized
+        subtitleLabel.isHidden = true
+        retryButton.isHidden = true
+
         viewModel.verifyStoreState { result in
-            if let optionalRoute = result.value, let route = optionalRoute {
+            guard result.isSuccess, let optionalRoute = result.value else {
+                self.titleLabel.text = "Something Went Wrong".localized
+                self.subtitleLabel.text = result.error?.localizedDescription
+                self.retryButton.isHidden = false
+                return
+            }
+            if let route = optionalRoute {
                 self.performSegue(withRoute: route)
+            } else {
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }
