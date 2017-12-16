@@ -21,6 +21,9 @@ public enum App {
 
     public static let feedbackMailAddress = "studapp@stoeffn.de"
 
+    public static let manageSubscriptionsUrl = URL(string:
+        "https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/manageSubscriptions")
+
     static let kitBundle = Bundle(for: StudKitServiceProvider.self)
 
     static let groupIdentifier = "group.SteffenRyll.StudKit"
