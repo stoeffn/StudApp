@@ -96,6 +96,10 @@ extension StoreService.State: Codable {
             self = .unlocked(validatedByServer: false)
         case "subscribed":
             let subscribedUntil = try container.decode(Date.self, forKey: .subscribedUntil)
+            guard subscribedUntil >= Date() else {
+                self = .locked
+                return
+            }
             self = .subscribed(until: subscribedUntil, validatedByServer: false)
         default:
             throw "Unknown state '\(state)'"

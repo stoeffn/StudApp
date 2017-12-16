@@ -104,25 +104,36 @@ final class StoreStateTests: XCTestCase {
     }
 
     func testDecode_subscribed() {
+        let timestamp = Date() + 123
+        let encodedState = """
+        {"state":"subscribed","subscribedUntil":\(timestamp.timeIntervalSince1970)}
+        """.data(using: .utf8)!
+        let state = try! decoder.decode(StoreService.State.self, from: encodedState)
+
+        guard case let .subscribed(subscribedUntil, _) = state else { return XCTFail("Invalid state") }
+        XCTAssertTrue(subscribedUntil.timeIntervalSince1970 - timestamp.timeIntervalSince1970 < 0.001)
+        XCTAssertFalse(state.isVerifiedByServer ?? true)
+    }
+
+    func testDecode_subscribedExpired() {
         let encodedState = """
         {"state":"subscribed","subscribedUntil":123}
         """.data(using: .utf8)!
         let state = try! decoder.decode(StoreService.State.self, from: encodedState)
 
-        guard case let .subscribed(subscribedUntil, _) = state else { return XCTFail("Invalid state") }
-        XCTAssertEqual(subscribedUntil, Date(timeIntervalSince1970: 123))
-        XCTAssertFalse(state.isVerifiedByServer ?? true)
+        guard case .locked = state else { return XCTFail("Invalid state") }
     }
 
     // MARK: - Persistence
 
     func testToAndFromDefaults() {
-        StoreService.State.subscribed(until: Date(timeIntervalSince1970: 456), validatedByServer: true).toDefaults()
+        let timestamp = Date() + 123
+        StoreService.State.subscribed(until: timestamp, validatedByServer: true).toDefaults()
         let state = StoreService.State.fromDefaults
 
         XCTAssertNotNil(state)
         guard case let .subscribed(subscribedUntil, _)? = state else { return XCTFail("Invalid state") }
-        XCTAssertEqual(subscribedUntil, Date(timeIntervalSince1970: 456))
+        XCTAssertTrue(subscribedUntil.timeIntervalSince1970 - timestamp.timeIntervalSince1970 < 0.001)
         XCTAssertFalse(state?.isVerifiedByServer ?? true)
     }
 }
