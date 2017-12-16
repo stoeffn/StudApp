@@ -11,7 +11,7 @@
 extension StoreRoutes: TestableApiRoutes {
     func testData(for _: [URLQueryItem]) throws -> Data {
         switch self {
-        case .verifyReceipt:
+        case .verify:
             let encoder = ServiceContainer.default[JSONEncoder.self]
             return try encoder.encode(StoreService.State.subscribed(until: Date() + 10, verifiedByServer: false))
         }
