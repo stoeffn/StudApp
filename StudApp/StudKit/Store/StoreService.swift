@@ -71,6 +71,9 @@ extension StoreService: SKPaymentTransactionObserver {
     func updateState(using transaction: SKPaymentTransaction) {
         switch transaction.transactionState {
         case .purchased, .restored:
+            self.state = .unlocked(verifiedByServer: false)
+            self.state.toDefaults()
+
             verifyStateWithServer { result in
                 guard let state = result.value, state.isUnlocked else { return }
                 SKPaymentQueue.default().finishTransaction(transaction)
