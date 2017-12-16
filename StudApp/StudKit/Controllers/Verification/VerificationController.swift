@@ -25,6 +25,8 @@ public final class VerificationController: UIViewController, Routable {
 
     // MARK: - User Interface
 
+    @IBOutlet weak var activityIndicator: StudIpActivityIndicatorView!
+
     @IBOutlet weak var titleLabel: UILabel!
 
     @IBOutlet weak var subtitleLabel: UILabel!
@@ -41,14 +43,17 @@ public final class VerificationController: UIViewController, Routable {
     // MARK: - Helpers
 
     private func verifyStoreState() {
+        activityIndicator.isHidden = false
         titleLabel.text = "Verifying Your Purchase…".localized
         subtitleLabel.isHidden = true
         retryButton.isHidden = true
 
         viewModel.verifyStoreState { result in
             guard result.isSuccess, let optionalRoute = result.value else {
+                self.activityIndicator.isHidden = true
                 self.titleLabel.text = "Something Went Wrong".localized
                 self.subtitleLabel.text = result.error?.localizedDescription
+                    ?? "There seems to be a problem with the internet connection.".localized
                 self.retryButton.isHidden = false
                 return
             }

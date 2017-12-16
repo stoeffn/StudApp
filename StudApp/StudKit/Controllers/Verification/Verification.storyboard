@@ -75,6 +75,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="DFE-MB-kT5"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="J4C-KI-8wA" id="wip-HT-8lF"/>
                         <outlet property="retryButton" destination="ngl-iz-Qq5" id="Jmb-ua-dcf"/>
                         <outlet property="subtitleLabel" destination="oNh-Ny-cge" id="1gw-Qb-5Xt"/>
                         <outlet property="titleLabel" destination="iW4-2V-7bu" id="Fo2-Y1-96h"/>
