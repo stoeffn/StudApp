@@ -38,13 +38,14 @@ public class StudKitServiceProvider: ServiceProvider {
         return CoreDataService(modelName: "StudKit", appGroupIdentifier: App.groupIdentifier)
     }
 
-    func provideStudIpService() -> StudIpService {
-        return StudIpService()
+    func provideStoreService() -> StoreService {
+        guard let verificationApiBaseUrl = URL(string: "http://127.0.0.1:8080/api/v1") else { fatalError() }
+        let verificationApi = Api<StoreRoutes>(baseUrl: verificationApiBaseUrl)
+        return StoreService(verificationApi: verificationApi)
     }
 
-    func provideStudAppService() -> StudAppService {
-        guard let baseUrl = URL(string: "http://127.0.0.1:8080/api/v1") else { fatalError("Cannot construct API URL.") }
-        return StudAppService(baseUrl: baseUrl)
+    func provideStudIpService() -> StudIpService {
+        return StudIpService()
     }
 
     public func registerServices(in container: ServiceContainer) {
@@ -52,8 +53,7 @@ public class StudKitServiceProvider: ServiceProvider {
         container[JSONDecoder.self] = provideJsonDecoder()
         container[ContextService.self] = provideContextService()
         container[CacheService.self] = CacheService()
-        container[StudAppService.self] = provideStudAppService()
-        container[StoreService.self] = StoreService()
+        container[StoreService.self] = provideStoreService()
         container[StorageService.self] = StorageService()
         container[CoreDataService.self] = provideCoreDataService()
         container[HistoryService.self] = HistoryService(currentTarget: currentTarget)

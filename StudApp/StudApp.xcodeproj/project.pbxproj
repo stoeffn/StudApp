@@ -20,9 +20,9 @@
 		242B03721FD7467D00863B08 /* GlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B03711FD7467D00863B08 /* GlowView.swift */; };
 		242B03741FD7470200863B08 /* ColorPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B03731FD7470200863B08 /* ColorPickerViewModel.swift */; };
 		242B03761FD7471D00863B08 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B03751FD7471D00863B08 /* UIViewController+Utils.swift */; };
-		243637081FE5602C001D1B86 /* StudAppRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637071FE5602C001D1B86 /* StudAppRoutes.swift */; };
-		2436370A1FE560DE001D1B86 /* StudAppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637091FE560DE001D1B86 /* StudAppService.swift */; };
+		243637081FE5602C001D1B86 /* StoreRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637071FE5602C001D1B86 /* StoreRoutes.swift */; };
 		2436370F1FE56F33001D1B86 /* StoreStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2436370E1FE56F33001D1B86 /* StoreStateTests.swift */; };
+		243637121FE57727001D1B86 /* StudAppRoutes+TestableApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637111FE57727001D1B86 /* StudAppRoutes+TestableApiRoutes.swift */; };
 		243817921FC76BDC004052D0 /* DocumentActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243817911FC76BDC004052D0 /* DocumentActionViewController.swift */; };
 		243817991FC76BDC004052D0 /* StudFileProviderUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2438179E1FC76D1E004052D0 /* Routes+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438179D1FC76D1E004052D0 /* Routes+Utils.swift */; };
@@ -342,9 +342,9 @@
 		242B03731FD7470200863B08 /* ColorPickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewModel.swift; sourceTree = "<group>"; };
 		242B03751FD7471D00863B08 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
 		243014251FA8FE2800680253 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
-		243637071FE5602C001D1B86 /* StudAppRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudAppRoutes.swift; sourceTree = "<group>"; };
-		243637091FE560DE001D1B86 /* StudAppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudAppService.swift; sourceTree = "<group>"; };
+		243637071FE5602C001D1B86 /* StoreRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRoutes.swift; sourceTree = "<group>"; };
 		2436370E1FE56F33001D1B86 /* StoreStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreStateTests.swift; sourceTree = "<group>"; };
+		243637111FE57727001D1B86 /* StudAppRoutes+TestableApiRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudAppRoutes+TestableApiRoutes.swift"; sourceTree = "<group>"; };
 		2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StudFileProviderUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		243817911FC76BDC004052D0 /* DocumentActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentActionViewController.swift; sourceTree = "<group>"; };
 		243817961FC76BDC004052D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -657,21 +657,20 @@
 			path = ColorPicker;
 			sourceTree = "<group>";
 		};
-		243637061FE5600A001D1B86 /* StudApp */ = {
-			isa = PBXGroup;
-			children = (
-				243637071FE5602C001D1B86 /* StudAppRoutes.swift */,
-				243637091FE560DE001D1B86 /* StudAppService.swift */,
-			);
-			path = StudApp;
-			sourceTree = "<group>";
-		};
 		2436370D1FE56F1B001D1B86 /* Store */ = {
 			isa = PBXGroup;
 			children = (
 				2436370E1FE56F33001D1B86 /* StoreStateTests.swift */,
 			);
 			path = Store;
+			sourceTree = "<group>";
+		};
+		243637101FE5770D001D1B86 /* StudApp */ = {
+			isa = PBXGroup;
+			children = (
+				243637111FE57727001D1B86 /* StudAppRoutes+TestableApiRoutes.swift */,
+			);
+			path = StudApp;
 			sourceTree = "<group>";
 		};
 		243817901FC76BDC004052D0 /* StudFileProviderUI */ = {
@@ -796,7 +795,6 @@
 				24CFB5D21FB24F2700F30DEA /* Routing */,
 				2448D4741FA8DE1700DAB97E /* Services */,
 				24D462791FE1C4D200DE3B3A /* Store */,
-				243637061FE5600A001D1B86 /* StudApp */,
 				24D360EB1FAA5DA700BBBAED /* StudIp */,
 				24D361641FAA646200BBBAED /* ViewModels */,
 				24E626721FA9203E0040F9F7 /* Views */,
@@ -825,6 +823,7 @@
 				24D361381FAA637E00BBBAED /* Models */,
 				2448D4791FA8DE3300DAB97E /* Services */,
 				2436370D1FE56F1B001D1B86 /* Store */,
+				243637101FE5770D001D1B86 /* StudApp */,
 				24D361261FAA603400BBBAED /* StudIp */,
 				2448D49A1FA8E01B00DAB97E /* Setup.swift */,
 				2448D4981FA8E00800DAB97E /* StudKitTestsServiceProvider.swift */,
@@ -1339,6 +1338,7 @@
 			children = (
 				24D2DA1D1FD03B98006FC700 /* StoreService.swift */,
 				24D4627A1FE1C4F200DE3B3A /* StoreService+State.swift */,
+				243637071FE5602C001D1B86 /* StoreRoutes.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -1922,12 +1922,11 @@
 				246F3ACB1FAC879C00A477FF /* DataSourceSectionDelegate.swift in Sources */,
 				24D2DA201FD04431006FC700 /* StoreViewModel.swift in Sources */,
 				24D2DA1E1FD03B98006FC700 /* StoreService.swift in Sources */,
-				2436370A1FE560DE001D1B86 /* StudAppService.swift in Sources */,
 				24712BE11FB8869B0067E416 /* NSFileProviderItemIdentifier+Utils.swift in Sources */,
 				24830AA91FD9F324006A1927 /* UITableViewCell+Utils.swift in Sources */,
 				2469EF681FCE1D1C008A122B /* CacheService.swift in Sources */,
 				24D3610A1FAA5E2300BBBAED /* SemesterState.swift in Sources */,
-				243637081FE5602C001D1B86 /* StudAppRoutes.swift in Sources */,
+				243637081FE5602C001D1B86 /* StoreRoutes.swift in Sources */,
 				24FD78601FBF4D330072F860 /* NSPersistentHistoryToken+Utils.swift in Sources */,
 				2469EF701FCF5DF9008A122B /* AboutController.swift in Sources */,
 				24FD785E1FBF45B10072F860 /* Targets.swift in Sources */,
@@ -2008,6 +2007,7 @@
 				24D361591FAA63DF00BBBAED /* UserResponseTests.swift in Sources */,
 				2448D4BA1FA8E0AB00DAB97E /* TestRoutes.swift in Sources */,
 				24D3611C1FAA5FC900BBBAED /* Data+Resource.swift in Sources */,
+				243637121FE57727001D1B86 /* StudAppRoutes+TestableApiRoutes.swift in Sources */,
 				24D361451FAA63C500BBBAED /* CourseResponseTests+Data.swift in Sources */,
 				24D361371FAA633000BBBAED /* IdentifiableTests.swift in Sources */,
 				24D361241FAA5FF500BBBAED /* String+RegexTests.swift in Sources */,

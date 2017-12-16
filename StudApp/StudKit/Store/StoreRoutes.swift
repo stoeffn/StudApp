@@ -1,12 +1,12 @@
 //
-//  StudAppRoutes.swift
+//  StoreRoutes.swift
 //  StudKit
 //
 //  Created by Steffen Ryll on 16.12.17.
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-enum StudAppRoutes: ApiRoutes {
+enum StoreRoutes: ApiRoutes {
     case verifyReceipt
 
     var path: String {

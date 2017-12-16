@@ -17,9 +17,13 @@ final class StoreService: NSObject {
 
     let initialSubscriptionTimeout: TimeInterval = 60 * 60 * 24 * 7
 
+    let verificationApi: Api<StoreRoutes>
+
     // MARK: - Life Cycle
 
-    init(addAsObserver _: Bool = true) {
+    init(verificationApi: Api<StoreRoutes>) {
+        self.verificationApi = verificationApi
+
         super.init()
 
         SKPaymentQueue.default().add(self)
@@ -36,8 +40,7 @@ final class StoreService: NSObject {
     private(set) lazy var state = State.fromDefaults ?? .locked
 
     func verifyStateWithServer(handler: ResultHandler<State>? = nil) {
-        let studAppService = ServiceContainer.default[StudAppService.self]
-        studAppService.api.requestDecoded(.verifyReceipt) { (result: Result<State>) in
+        verificationApi.requestDecoded(.verifyReceipt) { (result: Result<State>) in
             result.value?.toDefaults()
             handler?(result)
         }
