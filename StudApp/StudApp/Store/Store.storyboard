@@ -11,52 +11,9 @@
         <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Verification Controller-->
-        <scene sceneID="C1g-cq-rmy">
-            <objects>
-                <viewController id="hE7-ch-D1j" customClass="VerificationController" customModule="StudApp" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="zBf-DD-aNY">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rtk-vi-Qaz" customClass="StudIpActivityIndicatorView" customModule="StudKit">
-                                <rect key="frame" x="155.5" y="237.5" width="64" height="64"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="64" id="CWH-4w-cLx"/>
-                                    <constraint firstAttribute="width" secondItem="rtk-vi-Qaz" secondAttribute="height" multiplier="1:1" id="Vhv-0d-dhy"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verifying Your Purchase…" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5a-22-3gQ">
-                                <rect key="frame" x="84.5" y="333.5" width="206" height="21"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="rtk-vi-Qaz" firstAttribute="centerX" secondItem="zBf-DD-aNY" secondAttribute="centerX" id="0HQ-hT-lqC"/>
-                            <constraint firstItem="rtk-vi-Qaz" firstAttribute="centerY" secondItem="zBf-DD-aNY" secondAttribute="centerY" constant="-64" id="176-wf-Qdn"/>
-                            <constraint firstItem="V5a-22-3gQ" firstAttribute="top" secondItem="rtk-vi-Qaz" secondAttribute="bottom" constant="32" id="HyL-TF-RFN"/>
-                            <constraint firstItem="V5a-22-3gQ" firstAttribute="centerX" secondItem="uaN-XP-OYw" secondAttribute="centerX" id="epI-xr-gqo"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="uaN-XP-OYw"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="MGq-VA-bls"/>
-                    <connections>
-                        <outlet property="titleLabel" destination="V5a-22-3gQ" id="QL6-W7-XCB"/>
-                        <segue destination="NWf-sZ-PHj" kind="show" identifier="store" id="ZPO-Rc-eNS"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ICw-Te-cKH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2414" y="609"/>
-        </scene>
         <!--Store Controller-->
         <scene sceneID="9D7-CI-aZj">
             <objects>
@@ -299,11 +256,12 @@
                         <outlet property="unlockButton" destination="J94-G1-rVT" id="TvR-VV-FhV"/>
                         <segue destination="Hy6-tN-9FA" kind="presentation" identifier="about" modalPresentationStyle="formSheet" id="Ar7-Bp-S2z"/>
                         <segue destination="bKG-5c-oAr" kind="show" identifier="signIn" id="snS-2r-I7O"/>
+                        <segue destination="FfA-wm-Wx4" kind="show" identifier="verification" id="RTS-gC-pDI"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SFl-h7-jrg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3190" y="609"/>
+            <point key="canvasLocation" x="2457" y="609"/>
         </scene>
         <!--OrganizationList-->
         <scene sceneID="aIc-Np-gYb">
@@ -311,7 +269,7 @@
                 <viewControllerPlaceholder storyboardName="SignIn" bundleIdentifier="SteffenRyll.StudKit" referencedIdentifier="OrganizationList" id="bKG-5c-oAr" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aRe-hV-dpb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3778" y="607"/>
+            <point key="canvasLocation" x="3102" y="560"/>
         </scene>
         <!--About-->
         <scene sceneID="eTk-wU-fSm">
@@ -319,7 +277,7 @@
                 <viewControllerPlaceholder storyboardName="About" bundleIdentifier="SteffenRyll.StudKit" id="Hy6-tN-9FA" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c4P-cP-kAN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3190" y="1036"/>
+            <point key="canvasLocation" x="3052" y="658"/>
         </scene>
         <!--Borderless Navigation Controller-->
         <scene sceneID="HSy-6M-8Cs">
@@ -332,12 +290,20 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="hE7-ch-D1j" kind="relationship" relationship="rootViewController" id="cgM-hx-YrR"/>
+                        <segue destination="NWf-sZ-PHj" kind="relationship" relationship="rootViewController" id="ADP-NS-dmB"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hkd-ki-g8v" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1649" y="609"/>
+        </scene>
+        <!--Verification-->
+        <scene sceneID="pmM-Lx-1hO">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SignIn" bundleIdentifier="SteffenRyll.StudKit" referencedIdentifier="Verification" id="FfA-wm-Wx4" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7qm-n3-jNU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3078" y="608"/>
         </scene>
     </scenes>
     <resources>

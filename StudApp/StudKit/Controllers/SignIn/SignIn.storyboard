@@ -11,6 +11,7 @@
         <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -213,6 +214,7 @@
                         <outlet property="usernameField" destination="Iao-Vh-FML" id="ozU-Fe-273"/>
                         <segue destination="waM-SL-7JR" kind="show" identifier="verification" id="v9x-jj-O8i"/>
                         <segue destination="myS-Lb-AhU" kind="presentation" identifier="about" modalPresentationStyle="formSheet" id="5FT-PL-R7g"/>
+                        <segue destination="wN8-if-H3U" kind="show" identifier="verification" id="H6I-aQ-C2M"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j0T-rI-XDo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -225,7 +227,7 @@
                 <viewControllerPlaceholder storyboardName="About" id="RVa-94-5EL" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jm1-wZ-H8G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="646" y="999"/>
+            <point key="canvasLocation" x="646" y="1109"/>
         </scene>
         <!--Choose Your Organization-->
         <scene sceneID="yCO-3G-g8A">
@@ -396,7 +398,7 @@
                 <viewControllerPlaceholder storyboardName="About" id="myS-Lb-AhU" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nBC-me-csl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1398" y="999"/>
+            <point key="canvasLocation" x="1249" y="1109"/>
         </scene>
         <!--Store-->
         <scene sceneID="ocK-Me-EVY">
@@ -404,7 +406,48 @@
                 <viewControllerPlaceholder storyboardName="Store" bundleIdentifier="SteffenRyll.StudApp" referencedIdentifier="Store" id="waM-SL-7JR" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JFH-Ii-JRj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1954" y="608"/>
+            <point key="canvasLocation" x="1548" y="1109"/>
+        </scene>
+        <!--Verification Controller-->
+        <scene sceneID="icl-kX-KgG">
+            <objects>
+                <viewController storyboardIdentifier="Verification" id="wN8-if-H3U" customClass="VerificationController" customModule="StudApp" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Sgg-SW-cFl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J4C-KI-8wA" customClass="StudIpActivityIndicatorView" customModule="StudKit">
+                                <rect key="frame" x="155.5" y="237.5" width="64" height="64"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="J4C-KI-8wA" secondAttribute="height" multiplier="1:1" id="MXm-kd-kMM"/>
+                                    <constraint firstAttribute="width" constant="64" id="fys-uh-sBd"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verifying Your Purchase…" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iW4-2V-7bu">
+                                <rect key="frame" x="84.5" y="333.5" width="206" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="J4C-KI-8wA" firstAttribute="centerY" secondItem="Sgg-SW-cFl" secondAttribute="centerY" constant="-64" id="MsW-6c-Hwt"/>
+                            <constraint firstItem="J4C-KI-8wA" firstAttribute="centerX" secondItem="Sgg-SW-cFl" secondAttribute="centerX" id="OwF-PL-OJd"/>
+                            <constraint firstItem="iW4-2V-7bu" firstAttribute="top" secondItem="J4C-KI-8wA" secondAttribute="bottom" constant="32" id="hE9-9i-xv7"/>
+                            <constraint firstItem="iW4-2V-7bu" firstAttribute="centerX" secondItem="50C-5Y-oeq" secondAttribute="centerX" id="isy-w0-jr0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="50C-5Y-oeq"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="DFE-MB-kT5"/>
+                    <connections>
+                        <outlet property="titleLabel" destination="iW4-2V-7bu" id="Fo2-Y1-96h"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7i6-gZ-vBw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2170" y="609"/>
         </scene>
     </scenes>
     <resources>

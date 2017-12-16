@@ -25,8 +25,8 @@
 		243637121FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637111FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift */; };
 		243637141FE579A5001D1B86 /* StoreServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637131FE579A5001D1B86 /* StoreServiceTests.swift */; };
 		243637161FE585D9001D1B86 /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CC3101FE0491B00FE7376 /* StoreController.swift */; };
-		2436371A1FE588D7001D1B86 /* VerificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637191FE588D7001D1B86 /* VerificationController.swift */; };
 		2436371B1FE58D6D001D1B86 /* Store.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 243CC3121FE0495300FE7376 /* Store.storyboard */; };
+		2436371C1FE5923C001D1B86 /* VerificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637191FE588D7001D1B86 /* VerificationController.swift */; };
 		243817921FC76BDC004052D0 /* DocumentActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243817911FC76BDC004052D0 /* DocumentActionViewController.swift */; };
 		243817991FC76BDC004052D0 /* StudFileProviderUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2438179E1FC76D1E004052D0 /* Routes+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438179D1FC76D1E004052D0 /* Routes+Utils.swift */; };
@@ -706,7 +706,6 @@
 			isa = PBXGroup;
 			children = (
 				243CC3101FE0491B00FE7376 /* StoreController.swift */,
-				243637191FE588D7001D1B86 /* VerificationController.swift */,
 				243CC3121FE0495300FE7376 /* Store.storyboard */,
 			);
 			path = Store;
@@ -1000,6 +999,7 @@
 				245B6ADB1FCB355D00302CD0 /* OrganizationCell.swift */,
 				245B6AD91FCB351F00302CD0 /* OrganizationListController.swift */,
 				243014251FA8FE2800680253 /* SignInController.swift */,
+				243637191FE588D7001D1B86 /* VerificationController.swift */,
 				24E60B691FC8C76F000EDD2A /* SignIn.storyboard */,
 			);
 			path = SignIn;
@@ -1831,7 +1831,6 @@
 			files = (
 				2467A8BC1FD307CE00F25720 /* PreviewController.swift in Sources */,
 				2450AC731FDC406F004F1267 /* FolderController.swift in Sources */,
-				2436371A1FE588D7001D1B86 /* VerificationController.swift in Sources */,
 				2450AC771FDC6973004F1267 /* CustomMenuItems.swift in Sources */,
 				24712BE61FB8B0E20067E416 /* SemesterListController.swift in Sources */,
 				242B03721FD7467D00863B08 /* GlowView.swift in Sources */,
@@ -1976,6 +1975,7 @@
 				242B03761FD7471D00863B08 /* UIViewController+Utils.swift in Sources */,
 				246F3ACA1FAC879C00A477FF /* DataSourceDelegate.swift in Sources */,
 				24D361071FAA5E2300BBBAED /* Semester+StudIp.swift in Sources */,
+				2436371C1FE5923C001D1B86 /* VerificationController.swift in Sources */,
 				243817AA1FC88B11004052D0 /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */,
 				24712BF51FB8B80B0067E416 /* Date+Formatting.swift in Sources */,
 				24712BDF1FB886940067E416 /* FileProviderItemConvertible.swift in Sources */,
