@@ -51,7 +51,7 @@ public final class VerificationController: UIViewController, Routable {
         viewModel.verifyStoreState { result in
             guard result.isSuccess, let optionalRoute = result.value else {
                 self.activityIndicator.isHidden = true
-                self.titleLabel.text = "Something Went Wrong".localized
+                self.titleLabel.text = "Something Went Wrong Veryifying Your Purchase".localized
                 self.subtitleLabel.text = result.error?.localizedDescription
                     ?? "There seems to be a problem with the internet connection.".localized
                 self.retryButton.isHidden = false
