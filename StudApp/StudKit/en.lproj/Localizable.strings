@@ -41,6 +41,10 @@
 "Please enter your Stud.IP credentials" = "Please enter your Stud.IP credentials";
 "Please check your username and password" = "Please check your username and password";
 
+// MARK: Verification
+
+"Verifying Your Purchase…" = "Verifying Your Purchase…";
+
 // MARK: Store
 
 "Access all your Stud.IP courses and documents, including unlimited offline documents." = "Access all your Stud.IP courses and documents, including unlimited offline documents.";

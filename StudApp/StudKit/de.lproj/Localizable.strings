@@ -41,6 +41,10 @@
 "Please enter your Stud.IP credentials" = "Bitte gib Deine Stud.IP Anmeldedaten ein";
 "Please check your username and password" = "Bitte überprüfe Deine Anmeldedaten";
 
+// MARK: Verification
+
+"Verifying Your Purchase…" = "Dein Kauf wird überprüft…";
+
 // MARK: Store
 
 "Access all your Stud.IP courses and documents, including unlimited offline documents." = "Zugriff auf alle Deine Stud.IP-Kurse und Dokumente, inklusive unbegrenzte Offline-Dokumente.";

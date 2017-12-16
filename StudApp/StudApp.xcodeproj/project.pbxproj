@@ -25,8 +25,8 @@
 		243637121FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637111FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift */; };
 		243637141FE579A5001D1B86 /* StoreServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637131FE579A5001D1B86 /* StoreServiceTests.swift */; };
 		243637161FE585D9001D1B86 /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CC3101FE0491B00FE7376 /* StoreController.swift */; };
-		243637181FE58732001D1B86 /* Store.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 243CC3121FE0495300FE7376 /* Store.storyboard */; };
 		2436371A1FE588D7001D1B86 /* VerificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637191FE588D7001D1B86 /* VerificationController.swift */; };
+		2436371B1FE58D6D001D1B86 /* Store.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 243CC3121FE0495300FE7376 /* Store.storyboard */; };
 		243817921FC76BDC004052D0 /* DocumentActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243817911FC76BDC004052D0 /* DocumentActionViewController.swift */; };
 		243817991FC76BDC004052D0 /* StudFileProviderUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2438179E1FC76D1E004052D0 /* Routes+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438179D1FC76D1E004052D0 /* Routes+Utils.swift */; };
@@ -1746,7 +1746,7 @@
 				24A6C14D1FD75C56004BBEA5 /* ColorPicker.storyboard in Resources */,
 				24ABFC481FD714AF00CD1646 /* Courses.storyboard in Resources */,
 				2450AC711FDC405E004F1267 /* Documents.storyboard in Resources */,
-				243637181FE58732001D1B86 /* Store.storyboard in Resources */,
+				2436371B1FE58D6D001D1B86 /* Store.storyboard in Resources */,
 				24E60B621FC8C725000EDD2A /* Main.storyboard in Resources */,
 				24E60B681FC8C754000EDD2A /* Semesters.storyboard in Resources */,
 			);

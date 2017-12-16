@@ -8,4 +8,16 @@
 
 import StudKit
 
-final class VerificationController: UIViewController, Routable {}
+final class VerificationController: UIViewController, Routable {
+    // MARK: - Life Cycle
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        titleLabel.text = "Verifying Your Purchase…".localized
+    }
+
+    // MARK: - User Interface
+
+    @IBOutlet weak var titleLabel: UILabel!
+}

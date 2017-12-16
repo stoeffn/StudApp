@@ -18,15 +18,38 @@
         <!--Verification Controller-->
         <scene sceneID="C1g-cq-rmy">
             <objects>
-                <viewController id="hE7-ch-D1j" customClass="VerificationController" customModule="StudKit" sceneMemberID="viewController">
+                <viewController id="hE7-ch-D1j" customClass="VerificationController" customModule="StudApp" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zBf-DD-aNY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rtk-vi-Qaz" customClass="StudIpActivityIndicatorView" customModule="StudKit">
+                                <rect key="frame" x="155.5" y="237.5" width="64" height="64"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="CWH-4w-cLx"/>
+                                    <constraint firstAttribute="width" secondItem="rtk-vi-Qaz" secondAttribute="height" multiplier="1:1" id="Vhv-0d-dhy"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verifying Your Purchase…" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5a-22-3gQ">
+                                <rect key="frame" x="84.5" y="333.5" width="206" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rtk-vi-Qaz" firstAttribute="centerX" secondItem="zBf-DD-aNY" secondAttribute="centerX" id="0HQ-hT-lqC"/>
+                            <constraint firstItem="rtk-vi-Qaz" firstAttribute="centerY" secondItem="zBf-DD-aNY" secondAttribute="centerY" constant="-64" id="176-wf-Qdn"/>
+                            <constraint firstItem="V5a-22-3gQ" firstAttribute="top" secondItem="rtk-vi-Qaz" secondAttribute="bottom" constant="32" id="HyL-TF-RFN"/>
+                            <constraint firstItem="V5a-22-3gQ" firstAttribute="centerX" secondItem="uaN-XP-OYw" secondAttribute="centerX" id="epI-xr-gqo"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="uaN-XP-OYw"/>
                     </view>
                     <navigationItem key="navigationItem" id="MGq-VA-bls"/>
                     <connections>
+                        <outlet property="titleLabel" destination="V5a-22-3gQ" id="QL6-W7-XCB"/>
                         <segue destination="NWf-sZ-PHj" kind="show" identifier="store" id="ZPO-Rc-eNS"/>
                     </connections>
                 </viewController>
@@ -37,7 +60,7 @@
         <!--Store Controller-->
         <scene sceneID="9D7-CI-aZj">
             <objects>
-                <tableViewController storyboardIdentifier="Store" id="NWf-sZ-PHj" customClass="StoreController" customModule="StudKit" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Store" id="NWf-sZ-PHj" customClass="StoreController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="uPY-CS-tEb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
