@@ -92,6 +92,6 @@ public final class SignInViewModel {
     }
 
     public var isStoreStateVerified: Bool {
-        return storeService.state.isVerifiedByServer ?? false
+        return storeService.state.isVerifiedByServer
     }
 }

@@ -36,6 +36,11 @@ final class StoreService: NSObject {
     private(set) lazy var state = State.fromDefaults ?? .locked
 
     func verifyStateWithServer(handler: ResultHandler<State>? = nil) {
+        guard !state.isVerifiedByServer else {
+            handler?(.success(state))
+            return
+        }
+
         guard
             let receiptUrl = Bundle.main.appStoreReceiptURL,
             let data = try? Data(contentsOf: receiptUrl)

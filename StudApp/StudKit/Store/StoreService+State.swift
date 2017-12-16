@@ -32,10 +32,10 @@ extension StoreService {
             return true
         }
 
-        var isVerifiedByServer: Bool? {
+        var isVerifiedByServer: Bool {
             switch self {
             case .locked, .deferred:
-                return nil
+                return false
             case let .unlocked(verifiedByServer):
                 return verifiedByServer
             case let .subscribed(_, verifiedByServer):
