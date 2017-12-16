@@ -52,7 +52,7 @@ extension StoreService: SKPaymentTransactionObserver {
     private func updateState(using transaction: SKPaymentTransaction) {
         switch transaction.transactionState {
         case .purchased, .restored:
-            didActivateProdct(withIdentifier: transaction.payment.productIdentifier)
+            didActivateProdct(withTransaction: transaction)
         case .deferred:
             state = .deferred
             state.toDefaults()
@@ -61,18 +61,24 @@ extension StoreService: SKPaymentTransactionObserver {
         }
     }
 
-    private func didActivateProdct(withIdentifier identifier: String) {
-        switch identifier {
+    private func didActivateProdct(withTransaction transaction: SKPaymentTransaction) {
+        switch transaction.payment.productIdentifier {
         case subscriptionProductIdentifier:
             state = .subscribed(until: Date() + initialSubscriptionTimeout, validatedByServer: false)
         case unlockProductIdentifier:
             state = .unlocked(validatedByServer: false)
         default:
-            break
+            return
         }
 
         state.toDefaults()
 
-        refreshStateFromServer()
+        refreshStateFromServer { result in
+            guard
+                let state = result.value,
+                !state.isLocked
+            else { return }
+            SKPaymentQueue.default().finishTransaction(transaction)
+        }
     }
 }
