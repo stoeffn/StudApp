@@ -211,7 +211,7 @@
                         <outlet property="signInButton" destination="cZS-9a-wlw" id="C09-ot-fbn"/>
                         <outlet property="titleLabel" destination="82M-7T-kaN" id="ZRe-T6-bp3"/>
                         <outlet property="usernameField" destination="Iao-Vh-FML" id="ozU-Fe-273"/>
-                        <segue destination="waM-SL-7JR" kind="show" identifier="store" id="v9x-jj-O8i"/>
+                        <segue destination="waM-SL-7JR" kind="show" identifier="verification" id="v9x-jj-O8i"/>
                         <segue destination="myS-Lb-AhU" kind="presentation" identifier="about" modalPresentationStyle="formSheet" id="5FT-PL-R7g"/>
                     </connections>
                 </tableViewController>

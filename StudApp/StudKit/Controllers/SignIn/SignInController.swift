@@ -103,7 +103,7 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
             isErrorCellHidden = true
 
             guard viewModel.isAppUnlocked else {
-                return performSegue(withRoute: .store)
+                return performSegue(withRoute: .verification)
             }
 
             switch contextService.currentTarget {

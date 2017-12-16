@@ -13,6 +13,8 @@ public enum Routes {
 
     case signIn
 
+    case verification
+
     case store
 
     case signIntoOrganization(OrganizationRecord)
@@ -46,6 +48,7 @@ public enum Routes {
         case .empty: return "empty"
         case .about: return "about"
         case .signIn: return "signIn"
+        case .verification: return "verification"
         case .store: return "store"
         case .signIntoOrganization: return "signIntoOrganization"
         case .preview: return "preview"

@@ -11,9 +11,29 @@
         <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Verification Controller-->
+        <scene sceneID="C1g-cq-rmy">
+            <objects>
+                <viewController id="hE7-ch-D1j" customClass="VerificationController" customModule="StudKit" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zBf-DD-aNY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="uaN-XP-OYw"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="MGq-VA-bls"/>
+                    <connections>
+                        <segue destination="NWf-sZ-PHj" kind="show" identifier="store" id="ZPO-Rc-eNS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ICw-Te-cKH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2414" y="609"/>
+        </scene>
         <!--Store Controller-->
         <scene sceneID="9D7-CI-aZj">
             <objects>
@@ -260,7 +280,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SFl-h7-jrg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2420" y="608.54572713643188"/>
+            <point key="canvasLocation" x="3190" y="609"/>
         </scene>
         <!--OrganizationList-->
         <scene sceneID="aIc-Np-gYb">
@@ -268,7 +288,7 @@
                 <viewControllerPlaceholder storyboardName="SignIn" bundleIdentifier="SteffenRyll.StudKit" referencedIdentifier="OrganizationList" id="bKG-5c-oAr" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aRe-hV-dpb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3008" y="608"/>
+            <point key="canvasLocation" x="3778" y="607"/>
         </scene>
         <!--About-->
         <scene sceneID="eTk-wU-fSm">
@@ -276,7 +296,7 @@
                 <viewControllerPlaceholder storyboardName="About" bundleIdentifier="SteffenRyll.StudKit" id="Hy6-tN-9FA" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c4P-cP-kAN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2420" y="1037"/>
+            <point key="canvasLocation" x="3190" y="1036"/>
         </scene>
         <!--Borderless Navigation Controller-->
         <scene sceneID="HSy-6M-8Cs">
@@ -289,7 +309,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="NWf-sZ-PHj" kind="relationship" relationship="rootViewController" id="4nl-6z-YQj"/>
+                        <segue destination="hE7-ch-D1j" kind="relationship" relationship="rootViewController" id="cgM-hx-YrR"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hkd-ki-g8v" userLabel="First Responder" sceneMemberID="firstResponder"/>
