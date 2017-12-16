@@ -36,6 +36,11 @@ public class StudKitServiceProvider: ServiceProvider {
         return StudIpService()
     }
 
+    func provideStudAppService() -> StudAppService {
+        guard let baseUrl = URL(string: "localhost:8080/api/v1") else { fatalError() }
+        return StudAppService(baseUrl: baseUrl)
+    }
+
     public func registerServices(in container: ServiceContainer) {
         container[ContextService.self] = provideContextService()
         container[CacheService.self] = CacheService()
@@ -45,5 +50,6 @@ public class StudKitServiceProvider: ServiceProvider {
         container[CoreDataService.self] = provideCoreDataService()
         container[HistoryService.self] = HistoryService(currentTarget: currentTarget)
         container[StudIpService.self] = provideStudIpService()
+        container[StudAppService.self] = provideStudAppService()
     }
 }
