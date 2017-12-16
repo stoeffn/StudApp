@@ -15,8 +15,6 @@ final class StoreService: NSObject {
 
     let unlockProductIdentifier = "SteffenRyll.StudApp.Unlock"
 
-    let initialSubscriptionTimeout: TimeInterval = 60 * 60 * 24 * 7
-
     let verificationApi: Api<StoreRoutes>
 
     // MARK: - Life Cycle
@@ -60,32 +58,15 @@ extension StoreService: SKPaymentTransactionObserver {
     func updateState(using transaction: SKPaymentTransaction) {
         switch transaction.transactionState {
         case .purchased, .restored:
-            didActivateProdct(withTransaction: transaction)
+            verifyStateWithServer { result in
+                guard let state = result.value, state.isUnlocked else { return }
+                SKPaymentQueue.default().finishTransaction(transaction)
+            }
         case .deferred:
             state = .deferred
             state.toDefaults()
         default:
             break
-        }
-    }
-
-    private func didActivateProdct(withTransaction transaction: SKPaymentTransaction) {
-        guard transaction.transactionState == .purchased || transaction.transactionState == .restored else { return }
-
-        switch transaction.payment.productIdentifier {
-        case subscriptionProductIdentifier:
-            state = .subscribed(until: Date() + initialSubscriptionTimeout, verifiedByServer: false)
-        case unlockProductIdentifier:
-            state = .unlocked(verifiedByServer: false)
-        default:
-            return
-        }
-
-        state.toDefaults()
-
-        verifyStateWithServer { result in
-            guard let state = result.value, state.isUnlocked else { return }
-            SKPaymentQueue.default().finishTransaction(transaction)
         }
     }
 }
