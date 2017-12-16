@@ -7,28 +7,23 @@
 //
 
 enum StoreRoutes: ApiRoutes {
-    case verifyReceipt
+    case verify(receipt: Data)
 
     var path: String {
         switch self {
-        case .verifyReceipt: return "verify-receipt"
+        case .verify: return "verify-receipt"
         }
     }
 
     var body: Data? {
         switch self {
-        case .verifyReceipt:
-            guard
-                let receiptUrl = Bundle.main.appStoreReceiptURL,
-                let receiptData = try? Data(contentsOf: receiptUrl)
-            else { return nil }
-            return receiptData
+        case let .verify(receipt): return receipt
         }
     }
 
     var type: Decodable.Type? {
         switch self {
-        case .verifyReceipt: return StoreService.State.self
+        case .verify: return StoreService.State.self
         }
     }
 }

@@ -36,7 +36,17 @@ final class StoreService: NSObject {
     private(set) lazy var state = State.fromDefaults ?? .locked
 
     func verifyStateWithServer(handler: ResultHandler<State>? = nil) {
-        verificationApi.requestDecoded(.verifyReceipt) { (result: Result<State>) in
+        guard
+            let receiptUrl = Bundle.main.appStoreReceiptURL,
+            let data = try? Data(contentsOf: receiptUrl)
+        else {
+            let state = State.locked
+            state.toDefaults()
+            handler?(.success(state))
+            return
+        }
+
+        verificationApi.requestDecoded(.verify(receipt: data)) { (result: Result<State>) in
             let state = result.value?.markedAsVerifiedByServer
             state?.toDefaults()
             handler?(result.replacingValue(state))

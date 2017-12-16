@@ -33,8 +33,8 @@ public final class VerificationController: UIViewController, Routable {
     // MARK: - User Interaction
 
     @IBAction
-    func retryButtonTapped(_ sender: Any) {
-
+    func retryButtonTapped(_: Any) {
+        verifyStoreState()
     }
 
     // MARK: - Helpers
