@@ -22,7 +22,8 @@
 		242B03761FD7471D00863B08 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B03751FD7471D00863B08 /* UIViewController+Utils.swift */; };
 		243637081FE5602C001D1B86 /* StoreRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637071FE5602C001D1B86 /* StoreRoutes.swift */; };
 		2436370F1FE56F33001D1B86 /* StoreStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2436370E1FE56F33001D1B86 /* StoreStateTests.swift */; };
-		243637121FE57727001D1B86 /* StudAppRoutes+TestableApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637111FE57727001D1B86 /* StudAppRoutes+TestableApiRoutes.swift */; };
+		243637121FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637111FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift */; };
+		243637141FE579A5001D1B86 /* StoreServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637131FE579A5001D1B86 /* StoreServiceTests.swift */; };
 		243817921FC76BDC004052D0 /* DocumentActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243817911FC76BDC004052D0 /* DocumentActionViewController.swift */; };
 		243817991FC76BDC004052D0 /* StudFileProviderUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2438179E1FC76D1E004052D0 /* Routes+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438179D1FC76D1E004052D0 /* Routes+Utils.swift */; };
@@ -344,7 +345,8 @@
 		243014251FA8FE2800680253 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		243637071FE5602C001D1B86 /* StoreRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRoutes.swift; sourceTree = "<group>"; };
 		2436370E1FE56F33001D1B86 /* StoreStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreStateTests.swift; sourceTree = "<group>"; };
-		243637111FE57727001D1B86 /* StudAppRoutes+TestableApiRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudAppRoutes+TestableApiRoutes.swift"; sourceTree = "<group>"; };
+		243637111FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreRoutes+TestableApiRoutes.swift"; sourceTree = "<group>"; };
+		243637131FE579A5001D1B86 /* StoreServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreServiceTests.swift; sourceTree = "<group>"; };
 		2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StudFileProviderUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		243817911FC76BDC004052D0 /* DocumentActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentActionViewController.swift; sourceTree = "<group>"; };
 		243817961FC76BDC004052D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -660,17 +662,11 @@
 		2436370D1FE56F1B001D1B86 /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				243637131FE579A5001D1B86 /* StoreServiceTests.swift */,
 				2436370E1FE56F33001D1B86 /* StoreStateTests.swift */,
+				243637111FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift */,
 			);
 			path = Store;
-			sourceTree = "<group>";
-		};
-		243637101FE5770D001D1B86 /* StudApp */ = {
-			isa = PBXGroup;
-			children = (
-				243637111FE57727001D1B86 /* StudAppRoutes+TestableApiRoutes.swift */,
-			);
-			path = StudApp;
 			sourceTree = "<group>";
 		};
 		243817901FC76BDC004052D0 /* StudFileProviderUI */ = {
@@ -823,7 +819,6 @@
 				24D361381FAA637E00BBBAED /* Models */,
 				2448D4791FA8DE3300DAB97E /* Services */,
 				2436370D1FE56F1B001D1B86 /* Store */,
-				243637101FE5770D001D1B86 /* StudApp */,
 				24D361261FAA603400BBBAED /* StudIp */,
 				2448D49A1FA8E01B00DAB97E /* Setup.swift */,
 				2448D4981FA8E00800DAB97E /* StudKitTestsServiceProvider.swift */,
@@ -2007,7 +2002,7 @@
 				24D361591FAA63DF00BBBAED /* UserResponseTests.swift in Sources */,
 				2448D4BA1FA8E0AB00DAB97E /* TestRoutes.swift in Sources */,
 				24D3611C1FAA5FC900BBBAED /* Data+Resource.swift in Sources */,
-				243637121FE57727001D1B86 /* StudAppRoutes+TestableApiRoutes.swift in Sources */,
+				243637121FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift in Sources */,
 				24D361451FAA63C500BBBAED /* CourseResponseTests+Data.swift in Sources */,
 				24D361371FAA633000BBBAED /* IdentifiableTests.swift in Sources */,
 				24D361241FAA5FF500BBBAED /* String+RegexTests.swift in Sources */,
@@ -2038,6 +2033,7 @@
 				24D3614B1FAA63CE00BBBAED /* FileResponseTests+Data.swift in Sources */,
 				2448D4BB1FA8E0AB00DAB97E /* ApiRoutesTests.swift in Sources */,
 				24D3614C1FAA63CE00BBBAED /* FileResponseTests.swift in Sources */,
+				243637141FE579A5001D1B86 /* StoreServiceTests.swift in Sources */,
 				2448D4BD1FA8E0AB00DAB97E /* TestableApiRoutes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

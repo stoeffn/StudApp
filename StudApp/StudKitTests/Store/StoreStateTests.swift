@@ -100,7 +100,7 @@ final class StoreStateTests: XCTestCase {
         let state = try! decoder.decode(StoreService.State.self, from: encodedState)
 
         guard case .unlocked = state else { return XCTFail("Invalid state") }
-        XCTAssertFalse(state.isValidatedByServer ?? true)
+        XCTAssertFalse(state.isVerifiedByServer ?? true)
     }
 
     func testDecode_subscribed() {
@@ -111,7 +111,7 @@ final class StoreStateTests: XCTestCase {
 
         guard case let .subscribed(subscribedUntil, _) = state else { return XCTFail("Invalid state") }
         XCTAssertEqual(subscribedUntil, Date(timeIntervalSince1970: 123))
-        XCTAssertFalse(state.isValidatedByServer ?? true)
+        XCTAssertFalse(state.isVerifiedByServer ?? true)
     }
 
     // MARK: - Persistence
@@ -123,6 +123,6 @@ final class StoreStateTests: XCTestCase {
         XCTAssertNotNil(state)
         guard case let .subscribed(subscribedUntil, _)? = state else { return XCTFail("Invalid state") }
         XCTAssertEqual(subscribedUntil, Date(timeIntervalSince1970: 456))
-        XCTAssertFalse(state?.isValidatedByServer ?? true)
+        XCTAssertFalse(state?.isVerifiedByServer ?? true)
     }
 }

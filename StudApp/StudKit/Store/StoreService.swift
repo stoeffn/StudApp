@@ -41,8 +41,9 @@ final class StoreService: NSObject {
 
     func verifyStateWithServer(handler: ResultHandler<State>? = nil) {
         verificationApi.requestDecoded(.verifyReceipt) { (result: Result<State>) in
-            result.value?.toDefaults()
-            handler?(result)
+            let state = result.value?.markedAsVerifiedByServer
+            state?.toDefaults()
+            handler?(result.replacingValue(state))
         }
     }
 }

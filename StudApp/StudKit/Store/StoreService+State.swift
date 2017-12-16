@@ -32,7 +32,7 @@ extension StoreService {
             return true
         }
 
-        var isValidatedByServer: Bool? {
+        var isVerifiedByServer: Bool? {
             switch self {
             case .locked, .deferred:
                 return nil
@@ -40,6 +40,17 @@ extension StoreService {
                 return validatedByServer
             case let .subscribed(_, validatedByServer):
                 return validatedByServer
+            }
+        }
+
+        var markedAsVerifiedByServer: State {
+            switch self {
+            case .locked, .deferred:
+                return self
+            case .unlocked:
+                return .unlocked(validatedByServer: true)
+            case let .subscribed(subscribedUntil, _):
+                return .subscribed(until: subscribedUntil, validatedByServer: true)
             }
         }
 
