@@ -29,9 +29,9 @@ final class CourseTests: XCTestCase {
         try! CourseResponse(id: "3", title: "D", beginSemesterPath: "/1", endSemesterPath: "/1").coreDataModel(in: context)
 
         try! FileResponse(folderId: "0", coursePath: "/0", title: "A").coreDataModel(in: context)
-        try! FileResponse(fileId: "1", name: "1", coursePath: "/0", title: "B").coreDataModel(in: context)
-        try! FileResponse(fileId: "2", name: "2", coursePath: "/0", parentId: "0", title: "C").coreDataModel(in: context)
-        try! FileResponse(fileId: "3", name: "3", coursePath: "/1", title: "D").coreDataModel(in: context)
+        try! FileResponse(fileId: "1", filename: "1", coursePath: "/0", title: "B").coreDataModel(in: context)
+        try! FileResponse(fileId: "2", filename: "2", coursePath: "/0", parentId: "0", title: "C").coreDataModel(in: context)
+        try! FileResponse(fileId: "3", filename: "3", coursePath: "/1", title: "D").coreDataModel(in: context)
     }
 
     func testInit_CourseModel_Course() {

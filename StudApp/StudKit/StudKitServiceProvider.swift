@@ -37,19 +37,19 @@ public class StudKitServiceProvider: ServiceProvider {
     }
 
     func provideStudAppService() -> StudAppService {
-        guard let baseUrl = URL(string: "localhost:8080/api/v1") else { fatalError() }
+        guard let baseUrl = URL(string: "http://127.0.0.1:8080/api/v1") else { fatalError("Cannot construct API URL.") }
         return StudAppService(baseUrl: baseUrl)
     }
 
     public func registerServices(in container: ServiceContainer) {
         container[ContextService.self] = provideContextService()
         container[CacheService.self] = CacheService()
+        container[StudAppService.self] = provideStudAppService()
         container[StoreService.self] = StoreService()
         container[JSONDecoder.self] = provideJsonDecoder()
         container[StorageService.self] = StorageService()
         container[CoreDataService.self] = provideCoreDataService()
         container[HistoryService.self] = HistoryService(currentTarget: currentTarget)
         container[StudIpService.self] = provideStudIpService()
-        container[StudAppService.self] = provideStudAppService()
     }
 }

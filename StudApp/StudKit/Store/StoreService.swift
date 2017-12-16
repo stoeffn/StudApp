@@ -53,7 +53,7 @@ extension StoreService: SKPaymentTransactionObserver {
         }
     }
 
-    private func updateState(using transaction: SKPaymentTransaction) {
+    func updateState(using transaction: SKPaymentTransaction) {
         switch transaction.transactionState {
         case .purchased, .restored:
             didActivateProdct(withTransaction: transaction)

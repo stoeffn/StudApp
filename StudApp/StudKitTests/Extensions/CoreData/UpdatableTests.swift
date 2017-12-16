@@ -19,7 +19,7 @@ final class UpdatableTests: XCTestCase {
         try! CourseResponse(id: "0", title: "A").coreDataModel(in: context)
         try! CourseResponse(id: "1", title: "Course 2").coreDataModel(in: context)
 
-        try! FileResponse(fileId: "0", name: "file.pdf", coursePath: "/1", title: "File").coreDataModel(in: context)
+        try! FileResponse(fileId: "0", filename: "file.pdf", coursePath: "/1", title: "File").coreDataModel(in: context)
 
         try! context.save()
     }

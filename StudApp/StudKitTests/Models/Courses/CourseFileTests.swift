@@ -20,9 +20,9 @@ final class FileServiceTests: XCTestCase {
         course = try! CourseResponse(id: "a2c88e905abf322d1868640859f13c99", title: "Course")
             .coreDataModel(in: context!) as! Course
 
-        try! FileResponse(fileId: "123456784c20d3c1931649b979ecd73e", name: "f.pdf",
+        try! FileResponse(fileId: "123456784c20d3c1931649b979ecd73e", filename: "f.pdf",
                           coursePath: "/a2c88e905abf322d1868640859f13c99", title: "Current").coreDataModel(in: context!)
-        try! FileResponse(fileId: "d4a7bef74c20d3c1931649b979ecd73e", name: "file.pdf",
+        try! FileResponse(fileId: "d4a7bef74c20d3c1931649b979ecd73e", filename: "file.pdf",
                           coursePath: "/a2c88e905abf322d1868640859f13c99", title: "Stale").coreDataModel(in: context!)
 
         try! context.save()
