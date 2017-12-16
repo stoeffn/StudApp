@@ -37,7 +37,7 @@
                 <viewControllerPlaceholder storyboardName="SignIn" bundleIdentifier="SteffenRyll.StudKit" id="2bU-cg-kHC" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fcI-cX-vXc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="593" y="-241"/>
+            <point key="canvasLocation" x="594" y="-219"/>
         </scene>
         <!--Courses-->
         <scene sceneID="gB9-sw-zWL">
@@ -47,7 +47,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oxn-vo-iGe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="602" y="-56"/>
+            <point key="canvasLocation" x="603" y="-35"/>
         </scene>
         <!--About-->
         <scene sceneID="eSg-ig-br1">
@@ -55,7 +55,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="About" storyboardName="About" bundleIdentifier="SteffenRyll.StudKit" id="P8g-Nk-6wL" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zXO-Dm-wlW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="593" y="-7"/>
+            <point key="canvasLocation" x="594" y="14"/>
         </scene>
         <!--Downloads-->
         <scene sceneID="xGE-gW-7nZ">
@@ -65,15 +65,15 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pTP-vX-G4w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="614" y="-104"/>
+            <point key="canvasLocation" x="615" y="-83"/>
         </scene>
         <!--Store-->
         <scene sceneID="B6j-8Z-fO8">
             <objects>
-                <viewControllerPlaceholder storyboardName="Store" id="Zqw-Yy-HDJ" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rEN-VM-jyW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Store" id="Zqw-Yy-HDJ" sceneMemberID="viewController"/>
             </objects>
-            <point key="canvasLocation" x="586" y="-195"/>
+            <point key="canvasLocation" x="586" y="-174"/>
         </scene>
         <!--Verification-->
         <scene sceneID="Cm0-hr-MH5">
@@ -81,7 +81,7 @@
                 <viewControllerPlaceholder storyboardName="SignIn" bundleIdentifier="SteffenRyll.StudKit" referencedIdentifier="Verification" id="2hQ-7a-knq" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cq7-Je-IdZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="616" y="-152"/>
+            <point key="canvasLocation" x="618" y="-130"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.32941176470588235" green="0.50588235294117645" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -14,12 +14,12 @@ public final class MainViewModel {
 
     public init() {}
 
-    /// Whether the user is currently signed in.
-    ///
-    /// - Warning: This does not garantuee that the credential is actually correct as this implementation only relies on a
-    ///            credential being stored. Thus, the password might have changed in the meantime.
-    public var isSignedIn: Bool {
-        return studIpService.isSignedIn
+    public func verifyStoreState(handler: @escaping ResultHandler<Routes?>) {
+        storeService.verifyStateWithServer { result in
+            guard let state = result.value else { return handler(result.replacingValue(nil)) }
+            let route = !state.isUnlocked ? Routes.store : nil
+            handler(result.replacingValue(route))
+        }
     }
 
     /// Sign user out of this app and the API.
@@ -41,7 +41,9 @@ public final class MainViewModel {
         return user
     }
 
-    public var isAppUnlocked: Bool {
-        return storeService.state.isUnlocked
+    public var routeToPerformOnAppStart: Routes? {
+        guard studIpService.isSignedIn else { return .signIn }
+        guard storeService.state.isUnlocked else { return .verification }
+        return nil
     }
 }

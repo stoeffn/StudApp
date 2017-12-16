@@ -26,15 +26,18 @@ final class MainController: UITabBarController {
         tabBar.items?[Tabs.courseList.rawValue].title = "Courses".localized
 
         viewModel.updateCurrentUser()
+        viewModel.verifyStoreState { result in
+            if let optionalRoute = result.value, let route = optionalRoute {
+                self.performSegue(withRoute: route)
+            }
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if !viewModel.isSignedIn {
-            performSegue(withRoute: .signIn)
-        } else if !viewModel.isAppUnlocked {
-            performSegue(withRoute: .verification)
+        if let route = viewModel.routeToPerformOnAppStart {
+            performSegue(withRoute: route)
         }
     }
 

@@ -25,8 +25,6 @@ final class StoreService: NSObject {
         super.init()
 
         SKPaymentQueue.default().add(self)
-
-        verifyStateWithServer()
     }
 
     deinit {

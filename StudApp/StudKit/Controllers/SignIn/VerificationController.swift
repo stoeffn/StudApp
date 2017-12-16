@@ -9,7 +9,7 @@
 public final class VerificationController: UIViewController, Routable {
     // MARK: - Life Cycle
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         titleLabel.text = "Verifying Your Purchase…".localized
