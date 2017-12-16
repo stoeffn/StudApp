@@ -24,7 +24,7 @@ final class StoreService: NSObject {
 
         SKPaymentQueue.default().add(self)
 
-        refreshStateFromServer()
+        verifyStateWithServer()
     }
 
     deinit {
@@ -35,8 +35,12 @@ final class StoreService: NSObject {
 
     private(set) lazy var state = State.fromDefaults ?? .locked
 
-    func refreshStateFromServer(handler: ResultHandler<State>? = nil) {
-        handler?(.success(state))
+    func verifyStateWithServer(handler: ResultHandler<State>? = nil) {
+        let studAppService = ServiceContainer.default[StudAppService.self]
+        studAppService.api.requestDecoded(.verifyReceipt) { (result: Result<State>) in
+            result.value?.toDefaults()
+            handler?(result)
+        }
     }
 }
 
@@ -75,11 +79,8 @@ extension StoreService: SKPaymentTransactionObserver {
 
         state.toDefaults()
 
-        refreshStateFromServer { result in
-            guard
-                let state = result.value,
-                state.isUnlocked
-            else { return }
+        verifyStateWithServer { result in
+            guard let state = result.value, state.isUnlocked else { return }
             SKPaymentQueue.default().finishTransaction(transaction)
         }
     }

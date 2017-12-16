@@ -25,4 +25,10 @@ enum StudAppRoutes: ApiRoutes {
             return receiptData
         }
     }
+
+    var type: Decodable.Type? {
+        switch self {
+        case .verifyReceipt: return StoreService.State.self
+        }
+    }
 }
