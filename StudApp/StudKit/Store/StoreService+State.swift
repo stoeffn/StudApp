@@ -20,9 +20,13 @@ extension StoreService {
 
         // MARK: - Utilities
 
-        var isLocked: Bool {
-            guard case .locked = self else { return false }
-            return true
+        var isUnlocked: Bool {
+            switch self {
+            case .locked, .deferred:
+                return false
+            case .unlocked, .subscribed:
+                return true
+            }
         }
 
         var isDeferred: Bool {

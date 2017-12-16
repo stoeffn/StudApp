@@ -62,6 +62,8 @@ extension StoreService: SKPaymentTransactionObserver {
     }
 
     private func didActivateProdct(withTransaction transaction: SKPaymentTransaction) {
+        guard transaction.transactionState == .purchased || transaction.transactionState == .restored else { return }
+
         switch transaction.payment.productIdentifier {
         case subscriptionProductIdentifier:
             state = .subscribed(until: Date() + initialSubscriptionTimeout, validatedByServer: false)
@@ -76,7 +78,7 @@ extension StoreService: SKPaymentTransactionObserver {
         refreshStateFromServer { result in
             guard
                 let state = result.value,
-                !state.isLocked
+                state.isUnlocked
             else { return }
             SKPaymentQueue.default().finishTransaction(transaction)
         }

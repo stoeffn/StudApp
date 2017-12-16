@@ -87,7 +87,7 @@ public final class SignInViewModel {
         }
     }
 
-    public var isAppLocked: Bool {
-        return storeService.state.isLocked
+    public var isAppUnlocked: Bool {
+        return storeService.state.isUnlocked
     }
 }

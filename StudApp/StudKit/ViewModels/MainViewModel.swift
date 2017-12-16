@@ -41,7 +41,7 @@ public final class MainViewModel {
         return user
     }
 
-    public var isAppLocked: Bool {
-        return storeService.state.isLocked
+    public var isAppUnlocked: Bool {
+        return storeService.state.isUnlocked
     }
 }
