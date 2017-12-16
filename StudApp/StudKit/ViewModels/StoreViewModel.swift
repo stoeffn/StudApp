@@ -25,7 +25,8 @@ public final class StoreViewModel: NSObject {
 
     public func loadProducts() {
         productsRequest = SKProductsRequest(productIdentifiers: [
-            storeService.subscriptionProductIdentifier, storeService.unlockProductIdentifier,
+            storeService.subscriptionProductIdentifier,
+            storeService.unlockProductIdentifier,
         ])
         productsRequest?.delegate = self
         productsRequest?.start()

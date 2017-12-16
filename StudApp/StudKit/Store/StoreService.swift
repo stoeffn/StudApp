@@ -15,12 +15,16 @@ final class StoreService: NSObject {
 
     let unlockProductIdentifier = "SteffenRyll.StudApp.Unlock"
 
+    let initialSubscriptionTimeout: TimeInterval = 60 * 60 * 24 * 7
+
     // MARK: - Life Cycle
 
     init(addAsObserver _: Bool = true) {
         super.init()
 
         SKPaymentQueue.default().add(self)
+
+        refreshStateFromServer()
     }
 
     deinit {
@@ -31,8 +35,8 @@ final class StoreService: NSObject {
 
     private(set) lazy var state = State.fromDefaults ?? .locked
 
-    func validateState(handler: @escaping ResultHandler<State>) {
-        handler(.success(state))
+    func refreshStateFromServer(handler: ResultHandler<State>? = nil) {
+        handler?(.success(state))
     }
 }
 
@@ -48,10 +52,27 @@ extension StoreService: SKPaymentTransactionObserver {
     private func updateState(using transaction: SKPaymentTransaction) {
         switch transaction.transactionState {
         case .purchased, .restored:
-            state = .unlocked(validatedByServer: false)
+            didActivateProdct(withIdentifier: transaction.payment.productIdentifier)
+        case .deferred:
+            state = .deferred
             state.toDefaults()
         default:
             break
         }
+    }
+
+    private func didActivateProdct(withIdentifier identifier: String) {
+        switch identifier {
+        case subscriptionProductIdentifier:
+            state = .subscribed(until: Date() + initialSubscriptionTimeout, validatedByServer: false)
+        case unlockProductIdentifier:
+            state = .unlocked(validatedByServer: false)
+        default:
+            break
+        }
+
+        state.toDefaults()
+
+        refreshStateFromServer()
     }
 }
