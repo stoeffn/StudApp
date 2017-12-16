@@ -12,9 +12,9 @@ extension StoreService {
 
         case deferred
 
-        case unlocked(validatedByServer: Bool)
+        case unlocked(verifiedByServer: Bool)
 
-        case subscribed(until: Date, validatedByServer: Bool)
+        case subscribed(until: Date, verifiedByServer: Bool)
 
         // MARK: - Utilities
 
@@ -36,10 +36,10 @@ extension StoreService {
             switch self {
             case .locked, .deferred:
                 return nil
-            case let .unlocked(validatedByServer):
-                return validatedByServer
-            case let .subscribed(_, validatedByServer):
-                return validatedByServer
+            case let .unlocked(verifiedByServer):
+                return verifiedByServer
+            case let .subscribed(_, verifiedByServer):
+                return verifiedByServer
             }
         }
 
@@ -48,9 +48,9 @@ extension StoreService {
             case .locked, .deferred:
                 return self
             case .unlocked:
-                return .unlocked(validatedByServer: true)
+                return .unlocked(verifiedByServer: true)
             case let .subscribed(subscribedUntil, _):
-                return .subscribed(until: subscribedUntil, validatedByServer: true)
+                return .subscribed(until: subscribedUntil, verifiedByServer: true)
             }
         }
 
@@ -93,14 +93,14 @@ extension StoreService.State: Codable {
         case "deferred":
             self = .deferred
         case "unlocked":
-            self = .unlocked(validatedByServer: false)
+            self = .unlocked(verifiedByServer: false)
         case "subscribed":
             let subscribedUntil = try container.decode(Date.self, forKey: .subscribedUntil)
             guard subscribedUntil >= Date() else {
                 self = .locked
                 return
             }
-            self = .subscribed(until: subscribedUntil, validatedByServer: false)
+            self = .subscribed(until: subscribedUntil, verifiedByServer: false)
         default:
             throw "Unknown state '\(state)'"
         }

@@ -74,9 +74,9 @@ extension StoreService: SKPaymentTransactionObserver {
 
         switch transaction.payment.productIdentifier {
         case subscriptionProductIdentifier:
-            state = .subscribed(until: Date() + initialSubscriptionTimeout, validatedByServer: false)
+            state = .subscribed(until: Date() + initialSubscriptionTimeout, verifiedByServer: false)
         case unlockProductIdentifier:
-            state = .unlocked(validatedByServer: false)
+            state = .unlocked(verifiedByServer: false)
         default:
             return
         }

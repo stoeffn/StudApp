@@ -26,11 +26,11 @@ final class StoreStateTests: XCTestCase {
     }
 
     func testIsUnlocked_unlocked_true() {
-        XCTAssertTrue(StoreService.State.unlocked(validatedByServer: true).isUnlocked)
+        XCTAssertTrue(StoreService.State.unlocked(verifiedByServer: true).isUnlocked)
     }
 
     func testIsUnlocked_subscribed_true() {
-        XCTAssertTrue(StoreService.State.subscribed(until: Date(), validatedByServer: true).isUnlocked)
+        XCTAssertTrue(StoreService.State.subscribed(until: Date(), verifiedByServer: true).isUnlocked)
     }
 
     // MARK: - Coding
@@ -56,7 +56,7 @@ final class StoreStateTests: XCTestCase {
     }
 
     func testEncode_unlocked() {
-        let state = StoreService.State.unlocked(validatedByServer: false)
+        let state = StoreService.State.unlocked(verifiedByServer: false)
         let encodedState = try! encoder.encode(state)
 
         XCTAssertEqual(String(data: encodedState, encoding: .utf8), """
@@ -65,7 +65,7 @@ final class StoreStateTests: XCTestCase {
     }
 
     func testEncode_subscribed() {
-        let state = StoreService.State.subscribed(until: Date(timeIntervalSince1970: 123), validatedByServer: false)
+        let state = StoreService.State.subscribed(until: Date(timeIntervalSince1970: 123), verifiedByServer: false)
         let encodedState = try! encoder.encode(state)
 
         XCTAssertEqual(String(data: encodedState, encoding: .utf8), """
@@ -128,7 +128,7 @@ final class StoreStateTests: XCTestCase {
 
     func testToAndFromDefaults() {
         let timestamp = Date() + 123
-        StoreService.State.subscribed(until: timestamp, validatedByServer: true).toDefaults()
+        StoreService.State.subscribed(until: timestamp, verifiedByServer: true).toDefaults()
         let state = StoreService.State.fromDefaults
 
         XCTAssertNotNil(state)

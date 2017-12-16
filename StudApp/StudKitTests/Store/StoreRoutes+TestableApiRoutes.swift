@@ -13,7 +13,7 @@ extension StoreRoutes: TestableApiRoutes {
         switch self {
         case .verifyReceipt:
             let encoder = ServiceContainer.default[JSONEncoder.self]
-            return try encoder.encode(StoreService.State.subscribed(until: Date() + 10, validatedByServer: false))
+            return try encoder.encode(StoreService.State.subscribed(until: Date() + 10, verifiedByServer: false))
         }
     }
 }

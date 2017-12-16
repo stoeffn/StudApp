@@ -6,6 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import StoreKit
 import XCTest
 @testable import StudKit
 
@@ -18,5 +19,6 @@ final class StoreServiceTests: XCTestCase {
             XCTAssertTrue(result.value?.isUnlocked ?? false)
             XCTAssertTrue(result.value?.isVerifiedByServer ?? false)
         }
+        XCTAssertTrue(StoreService.State.fromDefaults?.isUnlocked ?? false)
     }
 }
