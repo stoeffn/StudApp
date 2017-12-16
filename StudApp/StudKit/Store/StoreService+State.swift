@@ -32,20 +32,33 @@ extension StoreService {
             return true
         }
 
+        var isValidatedByServer: Bool? {
+            switch self {
+            case .locked, .deferred:
+                return nil
+            case let .unlocked(validatedByServer):
+                return validatedByServer
+            case let .subscribed(_, validatedByServer):
+                return validatedByServer
+            }
+        }
+
         // MARK: - Persistence
 
         static var fromDefaults: State? {
             let storageService = ServiceContainer.default[StorageService.self]
+            let decoder = ServiceContainer.default[JSONDecoder.self]
             guard
                 let encodedState = storageService.defaults.data(forKey: UserDefaults.storeStateKey),
-                let state = try? PropertyListDecoder().decode(State.self, from: encodedState)
+                let state = try? decoder.decode(State.self, from: encodedState)
             else { return nil }
             return state
         }
 
         func toDefaults() {
             let storageService = ServiceContainer.default[StorageService.self]
-            let encodedState = try? PropertyListEncoder().encode(self)
+            let encoder = ServiceContainer.default[JSONEncoder.self]
+            let encodedState = try? encoder.encode(self)
             storageService.defaults.set(encodedState, forKey: UserDefaults.storeStateKey)
         }
     }

@@ -22,6 +22,7 @@
 		242B03761FD7471D00863B08 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B03751FD7471D00863B08 /* UIViewController+Utils.swift */; };
 		243637081FE5602C001D1B86 /* StudAppRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637071FE5602C001D1B86 /* StudAppRoutes.swift */; };
 		2436370A1FE560DE001D1B86 /* StudAppService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637091FE560DE001D1B86 /* StudAppService.swift */; };
+		2436370F1FE56F33001D1B86 /* StoreStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2436370E1FE56F33001D1B86 /* StoreStateTests.swift */; };
 		243817921FC76BDC004052D0 /* DocumentActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243817911FC76BDC004052D0 /* DocumentActionViewController.swift */; };
 		243817991FC76BDC004052D0 /* StudFileProviderUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2438179E1FC76D1E004052D0 /* Routes+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438179D1FC76D1E004052D0 /* Routes+Utils.swift */; };
@@ -343,6 +344,7 @@
 		243014251FA8FE2800680253 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		243637071FE5602C001D1B86 /* StudAppRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudAppRoutes.swift; sourceTree = "<group>"; };
 		243637091FE560DE001D1B86 /* StudAppService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudAppService.swift; sourceTree = "<group>"; };
+		2436370E1FE56F33001D1B86 /* StoreStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreStateTests.swift; sourceTree = "<group>"; };
 		2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StudFileProviderUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		243817911FC76BDC004052D0 /* DocumentActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentActionViewController.swift; sourceTree = "<group>"; };
 		243817961FC76BDC004052D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -664,6 +666,14 @@
 			path = StudApp;
 			sourceTree = "<group>";
 		};
+		2436370D1FE56F1B001D1B86 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				2436370E1FE56F33001D1B86 /* StoreStateTests.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
 		243817901FC76BDC004052D0 /* StudFileProviderUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -814,6 +824,7 @@
 				247793741FC894C400090F4D /* Helpers */,
 				24D361381FAA637E00BBBAED /* Models */,
 				2448D4791FA8DE3300DAB97E /* Services */,
+				2436370D1FE56F1B001D1B86 /* Store */,
 				24D361261FAA603400BBBAED /* StudIp */,
 				2448D49A1FA8E01B00DAB97E /* Setup.swift */,
 				2448D4981FA8E00800DAB97E /* StudKitTestsServiceProvider.swift */,
@@ -2008,6 +2019,7 @@
 				24D3614A1FAA63CE00BBBAED /* FileTests.swift in Sources */,
 				24D3615A1FAA63DF00BBBAED /* UserResponseTests+Data.swift in Sources */,
 				24D3611B1FAA5FC900BBBAED /* JSONDecoder+Resource.swift in Sources */,
+				2436370F1FE56F33001D1B86 /* StoreStateTests.swift in Sources */,
 				2448D4B61FA8E0AB00DAB97E /* Result+ApiTests.swift in Sources */,
 				24D361231FAA5FF500BBBAED /* Set+ArrayTests.swift in Sources */,
 				2448D4B81FA8E0AB00DAB97E /* MockApi.swift in Sources */,

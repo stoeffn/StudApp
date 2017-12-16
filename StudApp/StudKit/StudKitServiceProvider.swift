@@ -22,6 +22,12 @@ public class StudKitServiceProvider: ServiceProvider {
         return ContextService(currentTarget: currentTarget, extensionContext: extensionContext, openUrl: openUrl)
     }
 
+    func provideJsonEncoder() -> JSONEncoder {
+        let decoder = JSONEncoder()
+        decoder.dateEncodingStrategy = .secondsSince1970
+        return decoder
+    }
+
     func provideJsonDecoder() -> JSONDecoder {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .secondsSince1970
@@ -42,11 +48,12 @@ public class StudKitServiceProvider: ServiceProvider {
     }
 
     public func registerServices(in container: ServiceContainer) {
+        container[JSONEncoder.self] = provideJsonEncoder()
+        container[JSONDecoder.self] = provideJsonDecoder()
         container[ContextService.self] = provideContextService()
         container[CacheService.self] = CacheService()
         container[StudAppService.self] = provideStudAppService()
         container[StoreService.self] = StoreService()
-        container[JSONDecoder.self] = provideJsonDecoder()
         container[StorageService.self] = StorageService()
         container[CoreDataService.self] = provideCoreDataService()
         container[HistoryService.self] = HistoryService(currentTarget: currentTarget)
