@@ -90,4 +90,8 @@ public final class SignInViewModel {
     public var isAppUnlocked: Bool {
         return storeService.state.isUnlocked
     }
+
+    public var isStoreStateVerified: Bool {
+        return storeService.state.isVerifiedByServer ?? false
+    }
 }

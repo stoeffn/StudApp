@@ -103,6 +103,10 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
             isErrorCellHidden = true
 
             guard viewModel.isAppUnlocked else {
+                return performSegue(withRoute: .store)
+            }
+
+            guard viewModel.isStoreStateVerified else {
                 return performSegue(withRoute: .verification)
             }
 
@@ -112,7 +116,7 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
             case .fileProviderUI:
                 contextService.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
             default:
-                break
+                fatalError()
             }
         }
     }
