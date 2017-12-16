@@ -28,6 +28,7 @@
 		2436371B1FE58D6D001D1B86 /* Store.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 243CC3121FE0495300FE7376 /* Store.storyboard */; };
 		2436371C1FE5923C001D1B86 /* VerificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637191FE588D7001D1B86 /* VerificationController.swift */; };
 		2436371E1FE59E5E001D1B86 /* VerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2436371D1FE59E5E001D1B86 /* VerificationViewModel.swift */; };
+		243637211FE5A7C8001D1B86 /* Verification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 243637201FE5A7C8001D1B86 /* Verification.storyboard */; };
 		243817921FC76BDC004052D0 /* DocumentActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243817911FC76BDC004052D0 /* DocumentActionViewController.swift */; };
 		243817991FC76BDC004052D0 /* StudFileProviderUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2438179E1FC76D1E004052D0 /* Routes+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438179D1FC76D1E004052D0 /* Routes+Utils.swift */; };
@@ -351,6 +352,7 @@
 		243637131FE579A5001D1B86 /* StoreServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreServiceTests.swift; sourceTree = "<group>"; };
 		243637191FE588D7001D1B86 /* VerificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationController.swift; sourceTree = "<group>"; };
 		2436371D1FE59E5E001D1B86 /* VerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewModel.swift; sourceTree = "<group>"; };
+		243637201FE5A7C8001D1B86 /* Verification.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Verification.storyboard; sourceTree = "<group>"; };
 		2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StudFileProviderUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		243817911FC76BDC004052D0 /* DocumentActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentActionViewController.swift; sourceTree = "<group>"; };
 		243817961FC76BDC004052D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -673,6 +675,15 @@
 			path = Store;
 			sourceTree = "<group>";
 		};
+		2436371F1FE5A7A9001D1B86 /* Verification */ = {
+			isa = PBXGroup;
+			children = (
+				243637191FE588D7001D1B86 /* VerificationController.swift */,
+				243637201FE5A7C8001D1B86 /* Verification.storyboard */,
+			);
+			path = Verification;
+			sourceTree = "<group>";
+		};
 		243817901FC76BDC004052D0 /* StudFileProviderUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -699,6 +710,7 @@
 			children = (
 				24EBC4341FCDCA0000181455 /* About */,
 				2477935F1FC890C100090F4D /* SignIn */,
+				2436371F1FE5A7A9001D1B86 /* Verification */,
 				241FD96E1FA9191500FBD750 /* BorderlessNavigationController.swift */,
 			);
 			path = Controllers;
@@ -1001,7 +1013,6 @@
 				245B6ADB1FCB355D00302CD0 /* OrganizationCell.swift */,
 				245B6AD91FCB351F00302CD0 /* OrganizationListController.swift */,
 				243014251FA8FE2800680253 /* SignInController.swift */,
-				243637191FE588D7001D1B86 /* VerificationController.swift */,
 				24E60B691FC8C76F000EDD2A /* SignIn.storyboard */,
 			);
 			path = SignIn;
@@ -1774,6 +1785,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24E60B6A1FC8C76F000EDD2A /* SignIn.storyboard in Resources */,
+				243637211FE5A7C8001D1B86 /* Verification.storyboard in Resources */,
 				2469EF6E1FCF5BC9008A122B /* Assets.xcassets in Resources */,
 				2469EF721FCF5E02008A122B /* About.storyboard in Resources */,
 				249DD6FB1FC8B896006DA46E /* Localizable.strings in Resources */,

@@ -78,7 +78,7 @@
         <!--Verification-->
         <scene sceneID="Cm0-hr-MH5">
             <objects>
-                <viewControllerPlaceholder storyboardName="SignIn" bundleIdentifier="SteffenRyll.StudKit" referencedIdentifier="Verification" id="2hQ-7a-knq" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Verification" bundleIdentifier="SteffenRyll.StudKit" id="2hQ-7a-knq" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cq7-Je-IdZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="618" y="-130"/>

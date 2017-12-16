@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IpY-rL-d6G">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Store-->
+        <scene sceneID="ocK-Me-EVY">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Store" bundleIdentifier="SteffenRyll.StudApp" referencedIdentifier="Store" id="waM-SL-7JR" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JFH-Ii-JRj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3146" y="608"/>
+        </scene>
+        <!--Verification Controller-->
+        <scene sceneID="icl-kX-KgG">
+            <objects>
+                <viewController storyboardIdentifier="Verification" id="wN8-if-H3U" customClass="VerificationController" customModule="StudKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="Sgg-SW-cFl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J4C-KI-8wA" customClass="StudIpActivityIndicatorView" customModule="StudKit" customModuleProvider="target">
+                                <rect key="frame" x="155.5" y="237.5" width="64" height="64"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="J4C-KI-8wA" secondAttribute="height" multiplier="1:1" id="MXm-kd-kMM"/>
+                                    <constraint firstAttribute="width" constant="64" id="fys-uh-sBd"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verifying Your Purchase…" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iW4-2V-7bu">
+                                <rect key="frame" x="84.5" y="333.5" width="206" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngl-iz-Qq5">
+                                <rect key="frame" x="167.5" y="397" width="39" height="32"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                <state key="normal" title="Retry"/>
+                                <connections>
+                                    <action selector="retryButtonTapped:" destination="wN8-if-H3U" eventType="touchUpInside" id="QxM-Ba-QJq"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNh-Ny-cge">
+                                <rect key="frame" x="8" y="364.5" width="359" height="18"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="50C-5Y-oeq" firstAttribute="trailing" secondItem="oNh-Ny-cge" secondAttribute="trailing" constant="8" id="6gQ-0H-gLT"/>
+                            <constraint firstItem="oNh-Ny-cge" firstAttribute="firstBaseline" secondItem="iW4-2V-7bu" secondAttribute="baseline" multiplier="1.025" constant="20" symbolType="layoutAnchor" id="H3j-3C-q5t"/>
+                            <constraint firstItem="J4C-KI-8wA" firstAttribute="centerY" secondItem="Sgg-SW-cFl" secondAttribute="centerY" constant="-64" id="MsW-6c-Hwt"/>
+                            <constraint firstItem="oNh-Ny-cge" firstAttribute="leading" secondItem="50C-5Y-oeq" secondAttribute="leading" constant="8" id="Ok8-id-h86"/>
+                            <constraint firstItem="J4C-KI-8wA" firstAttribute="centerX" secondItem="Sgg-SW-cFl" secondAttribute="centerX" id="OwF-PL-OJd"/>
+                            <constraint firstItem="iW4-2V-7bu" firstAttribute="top" secondItem="J4C-KI-8wA" secondAttribute="bottom" constant="32" id="hE9-9i-xv7"/>
+                            <constraint firstItem="iW4-2V-7bu" firstAttribute="centerX" secondItem="50C-5Y-oeq" secondAttribute="centerX" id="isy-w0-jr0"/>
+                            <constraint firstItem="ngl-iz-Qq5" firstAttribute="centerX" secondItem="50C-5Y-oeq" secondAttribute="centerX" id="jec-9N-4dZ"/>
+                            <constraint firstItem="ngl-iz-Qq5" firstAttribute="firstBaseline" secondItem="oNh-Ny-cge" secondAttribute="baseline" multiplier="1.05" constant="20" symbolType="layoutAnchor" id="prE-wa-dlu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="50C-5Y-oeq"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="DFE-MB-kT5"/>
+                    <connections>
+                        <outlet property="retryButton" destination="ngl-iz-Qq5" id="Jmb-ua-dcf"/>
+                        <outlet property="subtitleLabel" destination="oNh-Ny-cge" id="1gw-Qb-5Xt"/>
+                        <outlet property="titleLabel" destination="iW4-2V-7bu" id="Fo2-Y1-96h"/>
+                        <segue destination="waM-SL-7JR" kind="show" identifier="store" id="nQi-aj-HeZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7i6-gZ-vBw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2588" y="609"/>
+        </scene>
+        <!--Borderless Navigation Controller-->
+        <scene sceneID="CGI-Es-6sB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IpY-rL-d6G" customClass="BorderlessNavigationController" customModule="StudKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GiJ-i8-XCX">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wN8-if-H3U" kind="relationship" relationship="rootViewController" id="Ndw-9t-RkY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3qF-U4-rQh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1751" y="609"/>
+        </scene>
+    </scenes>
+    <color key="tintColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+</document>
