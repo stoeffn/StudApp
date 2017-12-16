@@ -45,16 +45,16 @@ final class StoreService: NSObject {
             let receiptUrl = Bundle.main.appStoreReceiptURL,
             let data = try? Data(contentsOf: receiptUrl)
         else {
-            let state = State.locked
+            state = State.locked
             state.toDefaults()
             handler?(.success(state))
             return
         }
 
         verificationApi.requestDecoded(.verify(receipt: data)) { (result: Result<State>) in
-            let state = result.value?.markedAsVerifiedByServer
-            state?.toDefaults()
-            handler?(result.replacingValue(state))
+            self.state = result.value?.markedAsVerifiedByServer ?? self.state
+            self.state.toDefaults()
+            handler?(result.replacingValue(self.state))
         }
     }
 }
