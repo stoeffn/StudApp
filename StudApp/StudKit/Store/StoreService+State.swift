@@ -7,9 +7,7 @@
 //
 
 extension StoreService {
-    enum State: RawRepresentable {
-        typealias RawValue = (state: String, subscribedUntilTimestamp: TimeInterval?)
-
+    enum State {
         case locked
 
         case deferred
@@ -34,50 +32,65 @@ extension StoreService {
             return true
         }
 
-        // MARK: - Coding
-
-        init?(rawValue: RawValue) {
-            switch rawValue.state {
-            case "locked":
-                self = .locked
-            case "deferred":
-                self = .deferred
-            case "unlocked":
-                self = .unlocked(validatedByServer: false)
-            case "subscribed":
-                guard let subscribedUntilTimestamp = rawValue.subscribedUntilTimestamp else { return nil }
-                self = .subscribed(until: Date(timeIntervalSince1970: subscribedUntilTimestamp), validatedByServer: false)
-            default:
-                return nil
-            }
-        }
-
-        var rawValue: RawValue {
-            switch self {
-            case .locked:
-                return (state: "locked", subscribedUntilTimestamp: nil)
-            case .deferred:
-                return (state: "deferred", subscribedUntilTimestamp: nil)
-            case .unlocked:
-                return (state: "unlocked", subscribedUntilTimestamp: nil)
-            case let .subscribed(until: subscribedUntil, _):
-                return (state: "subscribed", subscribedUntilTimestamp: subscribedUntil.timeIntervalSince1970)
-            }
-        }
-
         // MARK: - Persistence
 
         static var fromDefaults: State? {
             let storageService = ServiceContainer.default[StorageService.self]
-            guard let state = storageService.defaults.string(forKey: UserDefaults.storeStateKey) else { return nil }
-            let subscribedUntilTimestamp = storageService.defaults.double(forKey: UserDefaults.storeStateSubscribedUntilKey)
-            return State(rawValue: (state: state, subscribedUntilTimestamp: subscribedUntilTimestamp))
+            guard
+                let encodedState = storageService.defaults.data(forKey: UserDefaults.storeStateKey),
+                let state = try? PropertyListDecoder().decode(State.self, from: encodedState)
+            else { return nil }
+            return state
         }
 
         func toDefaults() {
             let storageService = ServiceContainer.default[StorageService.self]
-            storageService.defaults.set(rawValue.state, forKey: UserDefaults.storeStateKey)
-            storageService.defaults.set(rawValue.subscribedUntilTimestamp, forKey: UserDefaults.storeStateSubscribedUntilKey)
+            let encodedState = try? PropertyListEncoder().encode(self)
+            storageService.defaults.set(encodedState, forKey: UserDefaults.storeStateKey)
+        }
+    }
+}
+
+// MARK: - Coding
+
+extension StoreService.State: Codable {
+    enum CodingKeys: String, CodingKey {
+        case state
+        case subscribedUntil
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let state = try container.decode(String.self, forKey: .state)
+
+        switch state {
+        case "locked":
+            self = .locked
+        case "deferred":
+            self = .deferred
+        case "unlocked":
+            self = .unlocked(validatedByServer: false)
+        case "subscribed":
+            let subscribedUntil = try container.decode(Date.self, forKey: .subscribedUntil)
+            self = .subscribed(until: subscribedUntil, validatedByServer: false)
+        default:
+            throw "Unknown state '\(state)'"
+        }
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+
+        switch self {
+        case .locked:
+            try container.encode("locked", forKey: .state)
+        case .deferred:
+            try container.encode("deferred", forKey: .state)
+        case .unlocked:
+            try container.encode("unlocked", forKey: .state)
+        case let .subscribed(until: subscribedUntil, _):
+            try container.encode("subscribed", forKey: .state)
+            try container.encode(subscribedUntil, forKey: .subscribedUntil)
         }
     }
 }
