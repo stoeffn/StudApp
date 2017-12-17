@@ -69,6 +69,9 @@
 "The former option is an auto-renewing subscription, whereas the latter is a one-time payment." = "The former option is an auto-renewing subscription, whereas the latter is a one-time payment.";
 "View our Privacy Policy and Terms of Use." = "View our Privacy Policy and Terms of Use.";
 "auto-renewing subscription" = "auto-renewing subscription";
+"Payment will be charged to your iTunes account," = "Payment will be charged to your iTunes account,";
+"and your account will be charged for renewal 24 hours prior to the end of the current period." = "and your account will be charged for renewal 24 hours prior to the end of the current period.";
+"Auto-renewal may be turned off at any time by going to your iTunes account settings after purchase." = "Auto-renewal may be turned off at any time by going to your iTunes account settings after purchase.";
 
 // MARK: User Menu
 

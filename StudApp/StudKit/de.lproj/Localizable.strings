@@ -69,6 +69,9 @@
 "The former option is an auto-renewing subscription, whereas the latter is a one-time payment." = "Erstere Option ist ein Abonnement mit automatischer Verlängerung, wohingegen letztere eine einmalige Zahlung ist.";
 "View our Privacy Policy and Terms of Use." = "Siehe unsere Datenschutzhinweise und Nutzungsbedingungen.";
 "auto-renewing subscription" = "Abonnement mit automatischer Verlängerung";
+"Payment will be charged to your iTunes account," = "Die Bezahlung erfolgt über Deinen iTunes-Account.";
+"and your account will be charged for renewal 24 hours prior to the end of the current period." = "Verlängerungen erfolgen 24 Stunden vor Ende der aktuellen Periode.";
+"Auto-renewal may be turned off at any time by going to your iTunes account settings after purchase." = "Das automatische Verlängern kann jederzeit deaktiviert werden, indem Du die Account-Einstellungen von iTunes öffnest.";
 
 // MARK: User Menu
 

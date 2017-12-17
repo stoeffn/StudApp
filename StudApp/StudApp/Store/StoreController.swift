@@ -65,16 +65,22 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
                                                        message: "A family member might have to approve this puchase.".localized,
                                                        preferredStyle: .alert)
 
-    private var attributedDisclaimerText: NSAttributedString = {
-        let text = [
-            "The former option is an auto-renewing subscription, whereas the latter is a one-time payment.".localized,
-            "View our Privacy Policy and Terms of Use.".localized,
-        ].joined(separator: " ")
+    private let disclaimerText = [
+        "The former option is an auto-renewing subscription, whereas the latter is a one-time payment.".localized,
+        "View our Privacy Policy and Terms of Use.".localized,
+    ].joined(separator: " ")
 
+    private let autoRenewingSubscriptionDisclaimerText = [
+        "Payment will be charged to your iTunes account,".localized,
+        "and your account will be charged for renewal 24 hours prior to the end of the current period.".localized,
+        "Auto-renewal may be turned off at any time by going to your iTunes account settings after purchase.".localized,
+    ].joined(separator: " ")
+
+    private lazy var attributedDisclaimerText: NSAttributedString = {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .center
 
-        let attributedText = NSMutableAttributedString(string: text, attributes: [
+        let attributedText = NSMutableAttributedString(string: disclaimerText, attributes: [
             .paragraphStyle: paragraphStyle,
             .foregroundColor: UI.Colors.greyText,
         ])
@@ -173,7 +179,7 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
     public func textView(_: UITextView, shouldInteractWith url: URL, in _: NSRange,
                          interaction _: UITextItemInteraction) -> Bool {
         if url == App.autorenewingSubscriptionDisclaimerUrl {
-            performSegue(withRoute: .disclaimer("ABC".localized))
+            performSegue(withRoute: .disclaimer(autoRenewingSubscriptionDisclaimerText))
             return true
         }
 
