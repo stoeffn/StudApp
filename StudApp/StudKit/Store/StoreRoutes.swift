@@ -15,6 +15,12 @@ enum StoreRoutes: ApiRoutes {
         }
     }
 
+    var method: HttpMethod {
+        switch self {
+        case .verify: return .post
+        }
+    }
+
     var body: Data? {
         switch self {
         case let .verify(receipt): return receipt
