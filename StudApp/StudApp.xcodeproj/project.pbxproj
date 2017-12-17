@@ -120,6 +120,7 @@
 		2477936F1FC8939700090F4D /* ChangeCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E81FB7725100A4A3C6 /* ChangeCache.swift */; };
 		24801F451FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24801F441FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift */; };
 		24801F481FE6FD430064C748 /* DisclaimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24801F461FE6EDD10064C748 /* DisclaimerController.swift */; };
+		24801F4A1FE6FDC20064C748 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24801F491FE6FDC20064C748 /* ConfettiView.swift */; };
 		24830AA91FD9F324006A1927 /* UITableViewCell+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24830AA81FD9F324006A1927 /* UITableViewCell+Utils.swift */; };
 		24830AAB1FDC09EC006A1927 /* CourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24830AAA1FDC09EC006A1927 /* CourseController.swift */; };
 		249DD6DE1FC8A3D4006DA46E /* User+StudIp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249DD6DD1FC8A3D4006DA46E /* User+StudIp.swift */; };
@@ -441,6 +442,7 @@
 		24712BF71FB8CD0B0067E416 /* CachingFileEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingFileEnumerator.swift; sourceTree = "<group>"; };
 		24801F441FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Utils.swift"; sourceTree = "<group>"; };
 		24801F461FE6EDD10064C748 /* DisclaimerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerController.swift; sourceTree = "<group>"; };
+		24801F491FE6FDC20064C748 /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		24830AA81FD9F324006A1927 /* UITableViewCell+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Utils.swift"; sourceTree = "<group>"; };
 		24830AAA1FDC09EC006A1927 /* CourseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseController.swift; sourceTree = "<group>"; };
 		249DD6DD1FC8A3D4006DA46E /* User+StudIp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+StudIp.swift"; sourceTree = "<group>"; };
@@ -1380,6 +1382,7 @@
 		24E626721FA9203E0040F9F7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				24801F491FE6FDC20064C748 /* ConfettiView.swift */,
 				241FD9661FA9022400FBD750 /* FilledButton.swift */,
 				241FD9681FA9087900FBD750 /* GroupedTextField.swift */,
 				24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */,
@@ -1904,6 +1907,7 @@
 				241C67E51FCDD78100F4A099 /* AboutViewModel.swift in Sources */,
 				24712BEA1FB8B48A0067E416 /* ByTypeNameIdentifiable.swift in Sources */,
 				243817A91FC88B0E004052D0 /* StudIpActivityIndicatorView.swift in Sources */,
+				24801F4A1FE6FDC20064C748 /* ConfettiView.swift in Sources */,
 				24D360EA1FAA5D7600BBBAED /* CourseResponse+CDConvertible.swift in Sources */,
 				24712BF61FB8B80B0067E416 /* DateFormatter+Shared.swift in Sources */,
 				24D361061FAA5E2300BBBAED /* SemesterResponse+CDConvertible.swift in Sources */,
