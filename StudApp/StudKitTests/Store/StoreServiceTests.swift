@@ -16,9 +16,9 @@ final class StoreServiceTests: XCTestCase {
     func testVerfifyStateWithServer() {
         storeService.verifyStateWithServer { result in
             XCTAssertTrue(result.isSuccess)
-            XCTAssertFalse(result.value?.isUnlocked ?? true)
-            XCTAssertFalse(result.value?.isVerifiedByServer ?? true)
+            XCTAssertTrue(result.value?.isUnlocked ?? false)
+            XCTAssertTrue(result.value?.isVerifiedByServer ?? false)
         }
-        XCTAssertFalse(StoreService.State.fromDefaults?.isUnlocked ?? true)
+        XCTAssertTrue(StoreService.State.fromDefaults?.isUnlocked ?? false)
     }
 }

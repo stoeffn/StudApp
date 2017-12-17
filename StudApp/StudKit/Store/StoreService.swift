@@ -36,6 +36,8 @@ final class StoreService: NSObject {
     private(set) lazy var state = State.fromDefaults ?? .locked
 
     func verifyStateWithServer(handler: ResultHandler<State>? = nil) {
+        state = State.fromDefaults ?? state
+
         guard !state.isVerifiedByServer else {
             handler?(.success(state))
             return
