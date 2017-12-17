@@ -11,6 +11,7 @@
         <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -261,11 +262,59 @@
                         <segue destination="Hy6-tN-9FA" kind="presentation" identifier="about" modalPresentationStyle="formSheet" id="Ar7-Bp-S2z"/>
                         <segue destination="bKG-5c-oAr" kind="show" identifier="signIn" id="snS-2r-I7O"/>
                         <segue destination="FfA-wm-Wx4" kind="show" identifier="verification" id="RTS-gC-pDI"/>
+                        <segue destination="Q7b-5L-o4o" kind="popoverPresentation" identifier="disclaimer" popoverAnchorView="SaS-1D-p4b" id="CH9-cb-1cr">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SFl-h7-jrg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2457" y="609"/>
+        </scene>
+        <!--Disclaimer Controller-->
+        <scene sceneID="QtI-NK-1CB">
+            <objects>
+                <viewController id="Q7b-5L-o4o" customClass="DisclaimerController" customModule="StudKit" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="bvV-tZ-9zx">
+                        <rect key="frame" x="0.0" y="0.0" width="128" height="48"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="03b-sg-aBs">
+                                <rect key="frame" x="0.0" y="0.0" width="126" height="48"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disclaimer text." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4x6-WQ-QjG">
+                                        <rect key="frame" x="16" y="16" width="94" height="16"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="4x6-WQ-QjG" firstAttribute="top" secondItem="03b-sg-aBs" secondAttribute="topMargin" constant="8" id="5Fo-dh-Ad2"/>
+                                    <constraint firstItem="4x6-WQ-QjG" firstAttribute="leading" secondItem="03b-sg-aBs" secondAttribute="leadingMargin" constant="8" id="9Rb-ZH-V6c"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="4x6-WQ-QjG" secondAttribute="bottom" constant="8" id="cyC-O2-HZv"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="4x6-WQ-QjG" secondAttribute="trailing" constant="8" id="ymY-MQ-aDr"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="03b-sg-aBs" firstAttribute="top" secondItem="bvV-tZ-9zx" secondAttribute="topMargin" id="VZ2-up-2Hg"/>
+                            <constraint firstItem="03b-sg-aBs" firstAttribute="leading" secondItem="VgS-Dr-TPf" secondAttribute="leading" id="nrG-ea-tRB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VgS-Dr-TPf"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="128" height="48"/>
+                    <connections>
+                        <outlet property="containerView" destination="03b-sg-aBs" id="mBw-PM-Rwc"/>
+                        <outlet property="disclaimerLabel" destination="4x6-WQ-QjG" id="wZy-mm-U5z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2QP-nn-nWN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2457" y="1064"/>
         </scene>
         <!--OrganizationList-->
         <scene sceneID="aIc-Np-gYb">

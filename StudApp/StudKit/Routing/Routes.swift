@@ -15,6 +15,8 @@ public enum Routes {
 
     case store
 
+    case disclaimer(String)
+
     case verification
 
     case signIntoOrganization(OrganizationRecord)
@@ -49,6 +51,7 @@ public enum Routes {
         case .about: return "about"
         case .signIn: return "signIn"
         case .store: return "store"
+        case .disclaimer: return "disclaimer"
         case .verification: return "verification"
         case .signIntoOrganization: return "signIntoOrganization"
         case .preview: return "preview"

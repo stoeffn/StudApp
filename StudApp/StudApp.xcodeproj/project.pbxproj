@@ -119,6 +119,7 @@
 		2477936E1FC8939700090F4D /* CachingFileEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BF71FB8CD0B0067E416 /* CachingFileEnumerator.swift */; };
 		2477936F1FC8939700090F4D /* ChangeCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E81FB7725100A4A3C6 /* ChangeCache.swift */; };
 		24801F451FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24801F441FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift */; };
+		24801F471FE6EDD10064C748 /* DisclaimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24801F461FE6EDD10064C748 /* DisclaimerController.swift */; };
 		24830AA91FD9F324006A1927 /* UITableViewCell+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24830AA81FD9F324006A1927 /* UITableViewCell+Utils.swift */; };
 		24830AAB1FDC09EC006A1927 /* CourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24830AAA1FDC09EC006A1927 /* CourseController.swift */; };
 		249DD6DE1FC8A3D4006DA46E /* User+StudIp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249DD6DD1FC8A3D4006DA46E /* User+StudIp.swift */; };
@@ -439,6 +440,7 @@
 		24712BF31FB8B80B0067E416 /* DateFormatter+Shared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Shared.swift"; sourceTree = "<group>"; };
 		24712BF71FB8CD0B0067E416 /* CachingFileEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingFileEnumerator.swift; sourceTree = "<group>"; };
 		24801F441FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Utils.swift"; sourceTree = "<group>"; };
+		24801F461FE6EDD10064C748 /* DisclaimerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerController.swift; sourceTree = "<group>"; };
 		24830AA81FD9F324006A1927 /* UITableViewCell+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Utils.swift"; sourceTree = "<group>"; };
 		24830AAA1FDC09EC006A1927 /* CourseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseController.swift; sourceTree = "<group>"; };
 		249DD6DD1FC8A3D4006DA46E /* User+StudIp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+StudIp.swift"; sourceTree = "<group>"; };
@@ -1354,6 +1356,7 @@
 				24D2DA1D1FD03B98006FC700 /* StoreService.swift */,
 				24D4627A1FE1C4F200DE3B3A /* StoreService+State.swift */,
 				243637071FE5602C001D1B86 /* StoreRoutes.swift */,
+				24801F461FE6EDD10064C748 /* DisclaimerController.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -1980,6 +1983,7 @@
 				24D361081FAA5E2300BBBAED /* SemesterResponse.swift in Sources */,
 				24712BE01FB886980067E416 /* FileProviderItemConvertibleState.swift in Sources */,
 				24D361001FAA5E0800BBBAED /* UserResponse.swift in Sources */,
+				24801F471FE6EDD10064C748 /* DisclaimerController.swift in Sources */,
 				241C67EA1FCDFAC700F4A099 /* App.swift in Sources */,
 				24D361111FAA5F0500BBBAED /* StudIpService.swift in Sources */,
 				246F3AC91FAC879C00A477FF /* DataSourceSection.swift in Sources */,
