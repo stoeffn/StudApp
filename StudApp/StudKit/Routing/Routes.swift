@@ -33,6 +33,8 @@ public enum Routes {
         switch self {
         case .signIn:
             return UIStoryboard(name: "SignIn", bundle: App.kitBundle)
+        case .verification:
+            return UIStoryboard(name: "Verification", bundle: App.kitBundle)
         default:
             return nil
         }
@@ -41,6 +43,7 @@ public enum Routes {
     private var destinationIdentifier: String? {
         switch self {
         case .signIn: return "SignInNavigationController"
+        case .verification: return "VerificationNavigationController"
         default: return nil
         }
     }

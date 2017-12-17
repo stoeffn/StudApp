@@ -105,7 +105,7 @@
         <!--Borderless Navigation Controller-->
         <scene sceneID="CGI-Es-6sB">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="IpY-rL-d6G" customClass="BorderlessNavigationController" customModule="StudKit" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="VerificationNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="IpY-rL-d6G" customClass="BorderlessNavigationController" customModule="StudKit" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GiJ-i8-XCX">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
