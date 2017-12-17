@@ -6,10 +6,11 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-import StudKit
+import SafariServices
 import StoreKit
+import StudKit
 
-public final class StoreController: UITableViewController, Routable {
+public final class StoreController: UITableViewController, UITextViewDelegate, Routable {
     private var viewModel: StoreViewModel!
 
     // MARK: - Life Cycle
@@ -35,7 +36,7 @@ public final class StoreController: UITableViewController, Routable {
 
         restoreButton.setTitle("Restore Purchase".localized, for: .normal)
 
-        disclaimerLabel.text = "DISCLAIMER".localized
+        disclaimerView.attributedText = attributedDisclaimerText
 
         isLoading = true
 
@@ -58,11 +59,32 @@ public final class StoreController: UITableViewController, Routable {
 
     @IBOutlet weak var restoreButton: UIButton!
 
-    @IBOutlet weak var disclaimerLabel: UILabel!
+    @IBOutlet weak var disclaimerView: UITextView!
 
     private lazy var deferralAlert = UIAlertController(title: "Your Purchase is Deferred".localized,
                                                        message: "A family member might have to approve this puchase.".localized,
                                                        preferredStyle: .alert)
+
+    private var attributedDisclaimerText: NSAttributedString = {
+        let text = [
+            "The former option is an auto-renewing subscription, whereas the latter is a one-time payment.".localized,
+            "View our Privacy Policy and Terms of Use.".localized,
+        ].joined(separator: " ")
+
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+
+        let attributedText = NSMutableAttributedString(string: text, attributes: [
+            .paragraphStyle: paragraphStyle,
+            .foregroundColor: UI.Colors.greyText,
+        ])
+
+        attributedText.addLink(for: "auto-renewing subscription".localized, to: App.url)
+        attributedText.addLink(for: "Privacy Policy".localized, to: App.url)
+        attributedText.addLink(for: "Terms of Use".localized, to: App.url)
+
+        return attributedText
+    }()
 
     private func updateTrialButton(withProduct product: SKProduct?) {
         guard let product = product else { return }
@@ -148,6 +170,13 @@ public final class StoreController: UITableViewController, Routable {
         viewModel.restoreCompletedTransactions()
     }
 
+    public func textView(_: UITextView, shouldInteractWith url: URL, in _: NSRange,
+                         interaction _: UITextItemInteraction) -> Bool {
+        let controller = SFSafariViewController(url: url)
+        present(controller, animated: true, completion: nil)
+        return true
+    }
+
     // MARK: - Store Events
 
     private func didLoadProducts() {
@@ -165,14 +194,14 @@ public final class StoreController: UITableViewController, Routable {
         case .purchasing:
             isLoading = true
         case .purchased:
-            self.performSegue(withRoute: .verification)
+            performSegue(withRoute: .verification)
         case .failed:
             isLoading = false
             let alert = UIAlertController(title: "Something Went Wrong".localized,
                                           message: transaction.error?.localizedDescription)
             present(alert, animated: true, completion: nil)
         case .restored:
-            self.performSegue(withRoute: .verification)
+            performSegue(withRoute: .verification)
         case .deferred:
             present(deferralAlert, animated: true, completion: nil)
         }

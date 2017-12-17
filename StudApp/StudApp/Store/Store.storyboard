@@ -192,8 +192,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kHA-IB-KAn">
-                                                    <rect key="frame" x="134" y="0.0" width="107" height="28"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                    <rect key="frame" x="123.5" y="0.0" width="128" height="28"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                                     <state key="normal" title="Restore Purchase"/>
                                                     <connections>
                                                         <action selector="restoreButtonTapped:" destination="NWf-sZ-PHj" eventType="touchUpInside" id="oYD-bl-2ae"/>
@@ -207,26 +207,30 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="80" id="0Ye-F3-Wc0">
-                                        <rect key="frame" x="0.0" y="518" width="375" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="84" id="0Ye-F3-Wc0">
+                                        <rect key="frame" x="0.0" y="518" width="375" height="84"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Ye-F3-Wc0" id="e7x-fc-zhj">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tWU-4c-raX">
-                                                    <rect key="frame" x="16" y="11" width="343" height="58"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SaS-1D-p4b">
+                                                    <rect key="frame" x="16" y="11" width="343" height="62"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <string key="text">The former option is an auto-renewing subscription, whereas the latter is a one-time payment. View our Privacy Policy and Terms of Use.</string>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                     <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="NWf-sZ-PHj" id="hOJ-Sq-vye"/>
+                                                    </connections>
+                                                </textView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="tWU-4c-raX" secondAttribute="trailing" id="NZ0-H3-GVJ"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="tWU-4c-raX" secondAttribute="bottom" id="Qj5-bR-nd7"/>
-                                                <constraint firstItem="tWU-4c-raX" firstAttribute="leading" secondItem="e7x-fc-zhj" secondAttribute="leadingMargin" id="c6C-AG-4wq"/>
-                                                <constraint firstItem="tWU-4c-raX" firstAttribute="top" secondItem="e7x-fc-zhj" secondAttribute="topMargin" id="w3X-NH-dK9"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="SaS-1D-p4b" secondAttribute="bottom" id="3HW-D8-RSX"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="SaS-1D-p4b" secondAttribute="trailing" id="I11-iN-xAE"/>
+                                                <constraint firstItem="SaS-1D-p4b" firstAttribute="leading" secondItem="e7x-fc-zhj" secondAttribute="leadingMargin" id="bnP-Vg-ETl"/>
+                                                <constraint firstItem="SaS-1D-p4b" firstAttribute="top" secondItem="e7x-fc-zhj" secondAttribute="topMargin" id="sO3-Pa-sX3"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -247,7 +251,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="disclaimerLabel" destination="tWU-4c-raX" id="o6E-yt-LfK"/>
+                        <outlet property="disclaimerView" destination="SaS-1D-p4b" id="zJy-fL-UQy"/>
                         <outlet property="orLabel" destination="XXn-ia-yTS" id="hWd-ya-1xB"/>
                         <outlet property="restoreButton" destination="kHA-IB-KAn" id="QCF-TH-YU4"/>
                         <outlet property="subtitleLabel" destination="Rkt-yd-75x" id="2Zt-gX-ib0"/>

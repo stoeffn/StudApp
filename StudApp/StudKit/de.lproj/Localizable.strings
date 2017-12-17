@@ -23,6 +23,11 @@
 "There seems to be a problem with the internet connection." = "Es scheint ein Problem mit der Internetverbindung zu geben.";
 "Unfortunately, there was an internal error." = "Leider gab es einen internen Fehler. Bitte kontaktiere den App-Support, sollte dies öfter auftreten.";
 
+// MARK: Generic Terms
+
+"Privacy Policy" = "Datenschutzhinweise";
+"Terms of Use" = "Nutzungsbedingungen";
+
 // MARK: About
 
 "About" = "Über";
@@ -61,6 +66,9 @@
 "Your Purchase Was Restored Successfully" = "Dein Kauf wurde erfolgreich wiederhergestellt";
 "Your Purchase is Deferred" = "Dein Kauf ist aufgeschoben";
 "A family member might have to approve this puchase." = "Möglicherweise muss ein Familienmitglied diesen Kauf bestätigen.";
+"The former option is an auto-renewing subscription, whereas the latter is a one-time payment." = "Erstere Option ist ein Abonnement mit automatischer Verlängerung, wohingegen letztere eine einmalige Zahlung ist.";
+"View our Privacy Policy and Terms of Use." = "Siehe unsere Datenschutzhinweise und Nutzungsbedingungen.";
+"auto-renewing subscription" = "Abonnement mit automatischer Verlängerung";
 
 // MARK: User Menu
 
