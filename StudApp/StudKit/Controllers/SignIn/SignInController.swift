@@ -86,7 +86,7 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
         }
     }
 
-    func setState(_ state: SignInViewModel.State) {
+    private func setState(_ state: SignInViewModel.State) {
         switch state {
         case .idle:
             isLoading = false
@@ -101,27 +101,39 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
         case .success:
             isLoading = false
             isErrorCellHidden = true
-
-            guard viewModel.isAppUnlocked else {
-                return performSegue(withRoute: .store)
-            }
-
-            guard viewModel.isStoreStateVerified else {
-                return performSegue(withRoute: .verification)
-            }
-
-            switch contextService.currentTarget {
-            case .app:
-                dismiss(animated: true, completion: nil)
-            case .fileProviderUI:
-                contextService.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
-            default:
-                fatalError()
-            }
+            didSignInSuccessfully()
         }
     }
 
-    func scrollToBottom() {
+    private func didSignInSuccessfully() {
+        guard viewModel.isAppUnlocked else {
+            switch contextService.currentTarget {
+            case .app:
+                return performSegue(withRoute: .store)
+            case .fileProviderUI:
+                guard let url = App.storeUrl else { return }
+                contextService.openUrl?(url) { _ in }
+            default:
+                fatalError()
+            }
+            return
+        }
+
+        guard viewModel.isStoreStateVerified else {
+            return performSegue(withRoute: .verification)
+        }
+
+        switch contextService.currentTarget {
+        case .app:
+            dismiss(animated: true, completion: nil)
+        case .fileProviderUI:
+            contextService.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+        default:
+            fatalError()
+        }
+    }
+
+    private func scrollToBottom() {
         let lastSectionIndex = tableView.numberOfSections - 1
         let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
         let lastIndexPath = IndexPath(row: lastRowIndex, section: lastSectionIndex)

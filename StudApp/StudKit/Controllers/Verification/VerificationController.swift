@@ -7,12 +7,15 @@
 //
 
 public final class VerificationController: UIViewController, Routable {
+    private var contextService: ContextService!
     private var viewModel: VerificationViewModel!
 
     // MARK: - Life Cycle
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+
+        contextService = ServiceContainer.default[ContextService.self]
 
         viewModel = VerificationViewModel()
 
@@ -50,7 +53,14 @@ public final class VerificationController: UIViewController, Routable {
     @IBAction
     func actionButtonTapped(_: Any) {
         if viewModel.isAppUnlocked {
-            dismiss(animated: true, completion: nil)
+            switch self.contextService.currentTarget {
+            case .app:
+                dismiss(animated: true, completion: nil)
+            case .fileProviderUI:
+                contextService.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+            default:
+                fatalError()
+            }
         } else {
             verifyStoreState()
         }
@@ -89,8 +99,15 @@ public final class VerificationController: UIViewController, Routable {
                 }
                 animator.startAnimation()
             } else {
-                // TODO: Redirect to main app if inside file provider
-                self.performSegue(withRoute: .store)
+                switch self.contextService.currentTarget {
+                case .app:
+                    self.performSegue(withRoute: .store)
+                case .fileProviderUI:
+                    guard let url = App.storeUrl else { return }
+                    self.contextService.openUrl?(url) { _ in }
+                default:
+                    fatalError()
+                }
             }
         }
     }
