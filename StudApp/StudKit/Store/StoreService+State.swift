@@ -7,7 +7,7 @@
 //
 
 extension StoreService {
-    enum State {
+    public enum State {
         case locked
 
         case deferred
@@ -18,7 +18,7 @@ extension StoreService {
 
         // MARK: - Utilities
 
-        var isUnlocked: Bool {
+        public var isUnlocked: Bool {
             switch self {
             case .locked, .deferred:
                 return false
@@ -27,12 +27,12 @@ extension StoreService {
             }
         }
 
-        var isDeferred: Bool {
+        public var isDeferred: Bool {
             guard case .deferred = self else { return false }
             return true
         }
 
-        var isVerifiedByServer: Bool {
+        public var isVerifiedByServer: Bool {
             switch self {
             case .locked, .deferred:
                 return false
@@ -83,7 +83,7 @@ extension StoreService.State: Codable {
         case subscribedUntil
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let state = try container.decode(String.self, forKey: .state)
 
@@ -106,7 +106,7 @@ extension StoreService.State: Codable {
         }
     }
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         switch self {

@@ -8,7 +8,7 @@
 
 import StoreKit
 
-final class StoreService: NSObject {
+public final class StoreService: NSObject {
     // MARK: - Constants
 
     let subscriptionProductIdentifier = "SteffenRyll.StudApp.Subscription"
@@ -33,7 +33,7 @@ final class StoreService: NSObject {
 
     // MARK: - Managing State
 
-    private(set) lazy var state = State.fromDefaults ?? .locked
+    public private(set) lazy var state = State.fromDefaults ?? .locked
 
     func verifyStateWithServer(handler: ResultHandler<State>? = nil) {
         state = State.fromDefaults ?? state
@@ -64,7 +64,7 @@ final class StoreService: NSObject {
 // MARK: - Payment Transaction Observer
 
 extension StoreService: SKPaymentTransactionObserver {
-    func paymentQueue(_: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+    public func paymentQueue(_: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
             updateState(using: transaction)
         }

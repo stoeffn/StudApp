@@ -12,13 +12,16 @@ import StudKit
 
 final class FileProviderExtension: NSFileProviderExtension {
     private let coreDataService: CoreDataService
+    private let storeService: StoreService
     private let studIpService: StudIpService
 
     // MARK: - Life Cycle
 
     override init() {
         ServiceContainer.default.register(providers: StudKitServiceProvider(currentTarget: .fileProvider))
+
         coreDataService = ServiceContainer.default[CoreDataService.self]
+        storeService = ServiceContainer.default[StoreService.self]
         studIpService = ServiceContainer.default[StudIpService.self]
 
         let historyService = ServiceContainer.default[HistoryService.self]
@@ -83,7 +86,16 @@ final class FileProviderExtension: NSFileProviderExtension {
     }
 
     override func enumerator(for containerItemIdentifier: NSFileProviderItemIdentifier) throws -> NSFileProviderEnumerator {
-        guard studIpService.isSignedIn else { throw NSFileProviderError(.notAuthenticated) }
+        guard studIpService.isSignedIn else {
+            throw NSFileProviderError(.notAuthenticated, userInfo: [
+                NSFileProviderError.reasonKey: NSFileProviderError.Reasons.notSignedIn
+            ])
+        }
+        guard storeService.state.isUnlocked && storeService.state.isVerifiedByServer else {
+            throw NSFileProviderError(.notAuthenticated, userInfo: [
+                NSFileProviderError.reasonKey: NSFileProviderError.Reasons.noVerifiedPurchase
+            ])
+        }
 
         switch containerItemIdentifier.model {
         case .workingSet:
