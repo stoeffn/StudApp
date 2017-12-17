@@ -101,28 +101,25 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
         case .success:
             isLoading = false
             isErrorCellHidden = true
-            didSignInSuccessfully()
+            guard viewModel.isAppUnlocked else { return showStore() }
+            guard viewModel.isStoreStateVerified else { return performSegue(withRoute: .verification) }
+            dismissSignIn()
         }
     }
 
-    private func didSignInSuccessfully() {
-        guard viewModel.isAppUnlocked else {
-            switch contextService.currentTarget {
-            case .app:
-                return performSegue(withRoute: .store)
-            case .fileProviderUI:
-                guard let url = App.storeUrl else { return }
-                contextService.openUrl?(url) { _ in }
-            default:
-                fatalError()
-            }
-            return
+    private func showStore() {
+        switch contextService.currentTarget {
+        case .app:
+            return performSegue(withRoute: .store)
+        case .fileProviderUI:
+            guard let url = App.storeUrl else { return }
+            contextService.openUrl?(url) { _ in }
+        default:
+            fatalError()
         }
+    }
 
-        guard viewModel.isStoreStateVerified else {
-            return performSegue(withRoute: .verification)
-        }
-
+    private func dismissSignIn() {
         switch contextService.currentTarget {
         case .app:
             dismiss(animated: true, completion: nil)

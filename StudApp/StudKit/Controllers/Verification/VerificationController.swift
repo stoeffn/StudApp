@@ -48,12 +48,18 @@ public final class VerificationController: UIViewController, Routable {
 
     @IBOutlet weak var confettiView: ConfettiView!
 
-    // MARK: - User Interaction
+    private func show(_ error: Error?) {
+        activityIndicator.isHidden = true
+        titleLabel.text = "Something Went Wrong Veryifying Your Purchase".localized
+        subtitleLabel.text = error?.localizedDescription
+            ?? "There seems to be a problem with the internet connection.".localized
+        actionButton.setTitle("Retry".localized, for: .normal)
+        actionButton.isHidden = false
+    }
 
-    @IBAction
-    func actionButtonTapped(_: Any) {
+    private func dismissVerification() {
         if viewModel.isAppUnlocked {
-            switch self.contextService.currentTarget {
+            switch contextService.currentTarget {
             case .app:
                 dismiss(animated: true, completion: nil)
             case .fileProviderUI:
@@ -66,6 +72,40 @@ public final class VerificationController: UIViewController, Routable {
         }
     }
 
+    private func showStore() {
+        switch contextService.currentTarget {
+        case .app:
+            performSegue(withRoute: .store)
+        case .fileProviderUI:
+            guard let url = App.storeUrl else { return }
+            contextService.openUrl?(url) { _ in }
+        default:
+            fatalError()
+        }
+    }
+
+    private func showThankYouMessage() {
+        activityIndicator.isHidden = true
+        titleLabel.text = "Thank You for Supporting StudApp!".localized
+        actionButton.setTitle("Dismiss".localized, for: .normal)
+        actionButton.isHidden = false
+
+        confettiView.alpha = 0
+        confettiView.intensity = 0
+        let animator = UIViewPropertyAnimator(duration: 3, curve: .easeInOut) {
+            self.confettiView.alpha = 1
+            self.confettiView.intensity = 1
+        }
+        animator.startAnimation()
+    }
+
+    // MARK: - User Interaction
+
+    @IBAction
+    func actionButtonTapped(_: Any) {
+        dismissVerification()
+    }
+
     // MARK: - Helpers
 
     private func verifyStoreState() {
@@ -75,40 +115,9 @@ public final class VerificationController: UIViewController, Routable {
         actionButton.isHidden = true
 
         viewModel.verifyStoreState { result in
-            guard result.isSuccess, let isAppUnlocked = result.value else {
-                self.activityIndicator.isHidden = true
-                self.titleLabel.text = "Something Went Wrong Veryifying Your Purchase".localized
-                self.subtitleLabel.text = result.error?.localizedDescription
-                    ?? "There seems to be a problem with the internet connection.".localized
-                self.actionButton.setTitle("Retry".localized, for: .normal)
-                self.actionButton.isHidden = false
-                return
-            }
-
-            if isAppUnlocked {
-                self.activityIndicator.isHidden = true
-                self.titleLabel.text = "Thank You for Supporting StudApp!".localized
-                self.actionButton.setTitle("Dismiss".localized, for: .normal)
-                self.actionButton.isHidden = false
-
-                self.confettiView.alpha = 0
-                self.confettiView.intensity = 0
-                let animator = UIViewPropertyAnimator(duration: 3, curve: .easeInOut) {
-                    self.confettiView.alpha = 1
-                    self.confettiView.intensity = 1
-                }
-                animator.startAnimation()
-            } else {
-                switch self.contextService.currentTarget {
-                case .app:
-                    self.performSegue(withRoute: .store)
-                case .fileProviderUI:
-                    guard let url = App.storeUrl else { return }
-                    self.contextService.openUrl?(url) { _ in }
-                default:
-                    fatalError()
-                }
-            }
+            guard result.isSuccess, let isAppUnlocked = result.value else { return self.show(result.error) }
+            guard isAppUnlocked else { return self.showStore() }
+            self.showThankYouMessage()
         }
     }
 }
