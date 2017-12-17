@@ -87,14 +87,14 @@ extension StoreService.State: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let state = try container.decode(String.self, forKey: .state)
 
-        switch state {
-        case "locked":
+        switch state.uppercased() {
+        case "LOCKED":
             self = .locked
-        case "deferred":
+        case "DEFERRED":
             self = .deferred
-        case "unlocked":
+        case "UNLOCKED":
             self = .unlocked(verifiedByServer: false)
-        case "subscribed":
+        case "SUBSCRIBED":
             let subscribedUntil = try container.decode(Date.self, forKey: .subscribedUntil)
             guard subscribedUntil >= Date() else {
                 self = .locked
@@ -111,13 +111,13 @@ extension StoreService.State: Codable {
 
         switch self {
         case .locked:
-            try container.encode("locked", forKey: .state)
+            try container.encode("LOCKED", forKey: .state)
         case .deferred:
-            try container.encode("deferred", forKey: .state)
+            try container.encode("DEFERRED", forKey: .state)
         case .unlocked:
-            try container.encode("unlocked", forKey: .state)
+            try container.encode("UNLOCKED", forKey: .state)
         case let .subscribed(until: subscribedUntil, _):
-            try container.encode("subscribed", forKey: .state)
+            try container.encode("SUBSCRIBED", forKey: .state)
             try container.encode(subscribedUntil, forKey: .subscribedUntil)
         }
     }

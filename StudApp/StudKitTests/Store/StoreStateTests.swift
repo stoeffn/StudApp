@@ -42,7 +42,7 @@ final class StoreStateTests: XCTestCase {
         let encodedState = try! encoder.encode(state)
 
         XCTAssertEqual(String(data: encodedState, encoding: .utf8), """
-        {"state":"deferred"}
+        {"state":"DEFERRED"}
         """)
     }
 
@@ -51,7 +51,7 @@ final class StoreStateTests: XCTestCase {
         let encodedState = try! encoder.encode(state)
 
         XCTAssertEqual(String(data: encodedState, encoding: .utf8), """
-        {"state":"locked"}
+        {"state":"LOCKED"}
         """)
     }
 
@@ -60,7 +60,7 @@ final class StoreStateTests: XCTestCase {
         let encodedState = try! encoder.encode(state)
 
         XCTAssertEqual(String(data: encodedState, encoding: .utf8), """
-        {"state":"unlocked"}
+        {"state":"UNLOCKED"}
         """)
     }
 
@@ -69,7 +69,7 @@ final class StoreStateTests: XCTestCase {
         let encodedState = try! encoder.encode(state)
 
         XCTAssertEqual(String(data: encodedState, encoding: .utf8), """
-        {"state":"subscribed","subscribedUntil":123}
+        {"state":"SUBSCRIBED","subscribedUntil":123}
         """)
     }
 
@@ -77,7 +77,7 @@ final class StoreStateTests: XCTestCase {
 
     func testDecode_deferred() {
         let encodedState = """
-        {"state":"deferred"}
+        {"state":"DEFERRED"}
         """.data(using: .utf8)!
         let state = try! decoder.decode(StoreService.State.self, from: encodedState)
 
@@ -87,7 +87,7 @@ final class StoreStateTests: XCTestCase {
 
     func testDecode_locked() {
         let encodedState = """
-        {"state":"locked"}
+        {"state":"LOCKED"}
         """.data(using: .utf8)!
         let state = try! decoder.decode(StoreService.State.self, from: encodedState)
 
