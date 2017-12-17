@@ -65,9 +65,8 @@ public final class VerificationController: UIViewController, Routable {
         actionButton.isHidden = true
 
         viewModel.verifyStoreState { result in
-            self.activityIndicator.isHidden = true
-
             guard result.isSuccess, let isAppUnlocked = result.value else {
+                self.activityIndicator.isHidden = true
                 self.titleLabel.text = "Something Went Wrong Veryifying Your Purchase".localized
                 self.subtitleLabel.text = result.error?.localizedDescription
                     ?? "There seems to be a problem with the internet connection.".localized
@@ -77,6 +76,7 @@ public final class VerificationController: UIViewController, Routable {
             }
 
             if isAppUnlocked {
+                self.activityIndicator.isHidden = true
                 self.titleLabel.text = "Thank You for Supporting StudApp!".localized
                 self.actionButton.setTitle("Dismiss".localized, for: .normal)
                 self.actionButton.isHidden = false

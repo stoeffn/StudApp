@@ -180,12 +180,12 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
                          interaction _: UITextItemInteraction) -> Bool {
         if url == App.autorenewingSubscriptionDisclaimerUrl {
             performSegue(withRoute: .disclaimer(autoRenewingSubscriptionDisclaimerText))
-            return true
+            return false
         }
 
         let controller = SFSafariViewController(url: url)
         present(controller, animated: true, completion: nil)
-        return true
+        return false
     }
 
     // MARK: - Store Events
