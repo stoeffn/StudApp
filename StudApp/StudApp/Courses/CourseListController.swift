@@ -66,7 +66,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
             let courseId = activity.userInfo?[Course.typeIdentifier] as? String,
             let courseViewModel = CourseViewModel(courseId: courseId)
         else {
-            let alert = UIAlertController(title: "Something Went Wrong Continuing Your Activity.".localized)
+            let alert = UIAlertController(alertWithTitle: "Something Went Wrong Continuing Your Activity.".localized)
             return present(alert, animated: true, completion: nil)
         }
 

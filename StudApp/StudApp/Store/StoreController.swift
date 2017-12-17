@@ -197,7 +197,7 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
             performSegue(withRoute: .verification)
         case .failed:
             isLoading = false
-            let alert = UIAlertController(title: "Something Went Wrong".localized,
+            let alert = UIAlertController(alertWithTitle: "Something Went Wrong".localized,
                                           message: transaction.error?.localizedDescription)
             present(alert, animated: true, completion: nil)
         case .restored:

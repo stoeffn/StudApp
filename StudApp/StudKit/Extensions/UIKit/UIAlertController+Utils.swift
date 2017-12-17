@@ -9,7 +9,7 @@
 import UIKit
 
 public extension UIAlertController {
-    public convenience init(title: String?, message: String? = nil) {
+    public convenience init(alertWithTitle title: String?, message: String? = nil) {
         self.init(title: title, message: message, preferredStyle: .alert)
         addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
     }
