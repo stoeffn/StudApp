@@ -24,6 +24,12 @@ public enum App {
     public static let manageSubscriptionsUrl = URL(string:
         "https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/manageSubscriptions")
 
+    public static let termsOfUseUrl = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")
+
+    public static let privacyPolicyUrl = URL(string: "https://www.studapp.eu/privacy")
+
+    public static let autorenewingSubscriptionDisclaimerUrl = URL(string: "studapp://disclaimers/auto-renewing-subscription")
+
     static let kitBundle = Bundle(for: StudKitServiceProvider.self)
 
     static let groupIdentifier = "group.SteffenRyll.StudKit"

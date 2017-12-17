@@ -79,9 +79,9 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
             .foregroundColor: UI.Colors.greyText,
         ])
 
-        attributedText.addLink(for: "auto-renewing subscription".localized, to: App.url)
-        attributedText.addLink(for: "Privacy Policy".localized, to: App.url)
-        attributedText.addLink(for: "Terms of Use".localized, to: App.url)
+        attributedText.addLink(for: "auto-renewing subscription".localized, to: App.autorenewingSubscriptionDisclaimerUrl)
+        attributedText.addLink(for: "Privacy Policy".localized, to: App.privacyPolicyUrl)
+        attributedText.addLink(for: "Terms of Use".localized, to: App.termsOfUseUrl)
 
         return attributedText
     }()
@@ -172,6 +172,11 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
 
     public func textView(_: UITextView, shouldInteractWith url: URL, in _: NSRange,
                          interaction _: UITextItemInteraction) -> Bool {
+        if url == App.autorenewingSubscriptionDisclaimerUrl {
+            performSegue(withRoute: .disclaimer("ABC".localized))
+            return true
+        }
+
         let controller = SFSafariViewController(url: url)
         present(controller, animated: true, completion: nil)
         return true
@@ -205,5 +210,25 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
         case .deferred:
             present(deferralAlert, animated: true, completion: nil)
         }
+    }
+
+    // MARK: - Navigation
+
+    override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if case .disclaimer? = sender as? Routes {
+            let sourceRect = CGRect(x: disclaimerView.bounds.size.width / 2, y: 0, width: 0, height: 0)
+            segue.destination.popoverPresentationController?.delegate = self
+            segue.destination.popoverPresentationController?.sourceRect = sourceRect
+            segue.destination.popoverPresentationController?.permittedArrowDirections = [.up, .down]
+        }
+        prepareForRoute(using: segue, sender: sender)
+    }
+}
+
+// MARK: - Popover Presentation
+
+extension StoreController: UIPopoverPresentationControllerDelegate {
+    public func adaptivePresentationStyle(for _: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
     }
 }
