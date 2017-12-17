@@ -28,6 +28,8 @@ public enum App {
 
     public static let privacyPolicyUrl = URL(string: "https://www.studapp.eu/privacy")
 
+    public static let websiteUrl = URL(string: "https://www.studapp.eu/")
+
     public static let storeUrl = URL(string: "studapp://")
 
     public static let autorenewingSubscriptionDisclaimerUrl = URL(string: "studapp://disclaimers/auto-renewing-subscription")
