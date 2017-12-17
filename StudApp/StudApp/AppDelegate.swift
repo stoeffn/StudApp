@@ -77,4 +77,10 @@ extension AppDelegate: UIApplicationDelegate {
         window?.rootViewController?.restoreUserActivityState(userActivity)
         return true
     }
+
+    // MARK: Opening a URL-Specified Resource
+
+    func application(_: UIApplication, open _: URL, options _: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
+        return true
+    }
 }
