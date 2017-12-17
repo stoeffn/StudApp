@@ -28,7 +28,7 @@ public final class ConfettiView: UIView {
         return layer
     }()
 
-    public override var frame: CGRect {
+    public override var bounds: CGRect {
         didSet { updateEmitterLayerFrame() }
     }
 

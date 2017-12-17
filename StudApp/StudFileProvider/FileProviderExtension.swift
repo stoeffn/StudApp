@@ -88,12 +88,12 @@ final class FileProviderExtension: NSFileProviderExtension {
     override func enumerator(for containerItemIdentifier: NSFileProviderItemIdentifier) throws -> NSFileProviderEnumerator {
         guard studIpService.isSignedIn else {
             throw NSFileProviderError(.notAuthenticated, userInfo: [
-                NSFileProviderError.reasonKey: NSFileProviderError.Reasons.notSignedIn.rawValue
+                NSFileProviderError.reasonKey: NSFileProviderError.Reasons.notSignedIn.rawValue,
             ])
         }
         guard storeService.state.isUnlocked && storeService.state.isVerifiedByServer else {
             throw NSFileProviderError(.notAuthenticated, userInfo: [
-                NSFileProviderError.reasonKey: NSFileProviderError.Reasons.noVerifiedPurchase.rawValue
+                NSFileProviderError.reasonKey: NSFileProviderError.Reasons.noVerifiedPurchase.rawValue,
             ])
         }
 

@@ -84,7 +84,7 @@ public final class VerificationController: UIViewController, Routable {
             contextService.openUrl?(url) { _ in
                 guard #available(iOSApplicationExtension 11.0, *) else { return }
                 let error = NSFileProviderError(.notAuthenticated, userInfo: [
-                    NSFileProviderError.reasonKey: NSFileProviderError.Reasons.noVerifiedPurchase.rawValue
+                    NSFileProviderError.reasonKey: NSFileProviderError.Reasons.noVerifiedPurchase.rawValue,
                 ])
                 self.contextService.extensionContext?.cancelRequest(withError: error)
             }
