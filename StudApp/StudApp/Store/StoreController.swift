@@ -165,20 +165,14 @@ public final class StoreController: UITableViewController, Routable {
         case .purchasing:
             isLoading = true
         case .purchased:
-            let alert = UIAlertController(title: "Thank You for Supporting StudApp!".localized)
-            present(alert, animated: true) {
-                self.performSegue(withRoute: .verification)
-            }
+            self.performSegue(withRoute: .verification)
         case .failed:
             isLoading = false
             let alert = UIAlertController(title: "Something Went Wrong".localized,
                                           message: transaction.error?.localizedDescription)
             present(alert, animated: true, completion: nil)
         case .restored:
-            let alert = UIAlertController(title: "Your Purchase Was Restored Successfully".localized)
-            present(alert, animated: true) {
-                self.performSegue(withRoute: .verification)
-            }
+            self.performSegue(withRoute: .verification)
         case .deferred:
             present(deferralAlert, animated: true, completion: nil)
         }
