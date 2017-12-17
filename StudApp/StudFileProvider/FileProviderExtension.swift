@@ -91,7 +91,7 @@ final class FileProviderExtension: NSFileProviderExtension {
                 NSFileProviderError.reasonKey: NSFileProviderError.Reasons.notSignedIn.rawValue,
             ])
         }
-        guard storeService.state.isUnlocked && storeService.state.isVerifiedByServer else {
+        guard storeService.state.isUnlocked else {
             throw NSFileProviderError(.notAuthenticated, userInfo: [
                 NSFileProviderError.reasonKey: NSFileProviderError.Reasons.noVerifiedPurchase.rawValue,
             ])
