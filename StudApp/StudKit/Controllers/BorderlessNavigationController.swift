@@ -53,6 +53,14 @@ public final class BorderlessNavigationController: UINavigationController {
         didSet { updateNavigationBarBackgroundFrame() }
     }
 
+    // Whether the navigation bar background view is hidden.
+    public var isNavigationBarBackgroundHidden: Bool = false {
+        didSet {
+            navigationBarBackgroundBlurView.isHidden = isNavigationBarBackgroundHidden
+            navigationBarBackgroundAlphaView.isHidden = isNavigationBarBackgroundHidden
+        }
+    }
+
     /// View with a light blur effect to be placed beneath the status and navigation bar. With no content behind it, it appears
     /// white and therefore blends in with the background.
     private let navigationBarBackgroundBlurView: UIVisualEffectView = {

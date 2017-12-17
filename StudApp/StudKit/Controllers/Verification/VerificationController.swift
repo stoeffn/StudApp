@@ -21,6 +21,18 @@ public final class VerificationController: UIViewController, Routable {
         verifyStoreState()
     }
 
+    public override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        (navigationController as? BorderlessNavigationController)?.isNavigationBarBackgroundHidden = true
+    }
+
+    public override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        (navigationController as? BorderlessNavigationController)?.isNavigationBarBackgroundHidden = false
+    }
+
     // MARK: - User Interface
 
     @IBOutlet weak var activityIndicator: StudIpActivityIndicatorView!
