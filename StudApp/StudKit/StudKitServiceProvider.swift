@@ -39,7 +39,7 @@ public class StudKitServiceProvider: ServiceProvider {
     }
 
     func provideStoreService() -> StoreService {
-        guard let verificationApiBaseUrl = URL(string: "http://127.0.0.1:8080/api/v1") else { fatalError() }
+        guard let verificationApiBaseUrl = URL(string: "http://192.168.178.77:8080/api/v1") else { fatalError() }
         let verificationApi = Api<StoreRoutes>(baseUrl: verificationApiBaseUrl)
         return StoreService(verificationApi: verificationApi)
     }
