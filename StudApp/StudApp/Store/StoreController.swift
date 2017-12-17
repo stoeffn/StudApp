@@ -45,6 +45,18 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
         }
     }
 
+    public override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        viewModel.addAsTransactionObserver()
+    }
+
+    public override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        viewModel.removeAsTransactionObserver()
+    }
+
     // MARK: - User Interface
 
     @IBOutlet weak var titleLabel: UILabel!
@@ -68,7 +80,7 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
     private let disclaimerText = [
         "The former option is an auto-renewing subscription, whereas the latter is a one-time payment.".localized,
         "View our Privacy Policy and Terms of Use.".localized,
-    ].joined(separator: " ")
+    ].joined(separator: "\n")
 
     private let autoRenewingSubscriptionDisclaimerText = [
         "Payment will be charged to your iTunes account,".localized,

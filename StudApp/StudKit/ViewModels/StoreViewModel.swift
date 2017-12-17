@@ -13,16 +13,6 @@ public final class StoreViewModel: NSObject {
     private let studIpService = ServiceContainer.default[StudIpService.self]
     private var productsRequest: SKProductsRequest?
 
-    public override init() {
-        super.init()
-
-        SKPaymentQueue.default().add(self)
-    }
-
-    deinit {
-        SKPaymentQueue.default().remove(self)
-    }
-
     public func loadProducts() {
         productsRequest = SKProductsRequest(productIdentifiers: [
             storeService.subscriptionProductIdentifier,
@@ -39,6 +29,14 @@ public final class StoreViewModel: NSObject {
     public private(set) var subscriptionProduct: SKProduct?
 
     public private(set) var unlockProduct: SKProduct?
+
+    public func addAsTransactionObserver() {
+        SKPaymentQueue.default().add(self)
+    }
+
+    public func removeAsTransactionObserver() {
+        SKPaymentQueue.default().remove(self)
+    }
 
     public func restoreCompletedTransactions() {
         SKPaymentQueue.default().restoreCompletedTransactions()
