@@ -119,7 +119,7 @@
 		2477936E1FC8939700090F4D /* CachingFileEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BF71FB8CD0B0067E416 /* CachingFileEnumerator.swift */; };
 		2477936F1FC8939700090F4D /* ChangeCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E81FB7725100A4A3C6 /* ChangeCache.swift */; };
 		24801F451FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24801F441FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift */; };
-		24801F471FE6EDD10064C748 /* DisclaimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24801F461FE6EDD10064C748 /* DisclaimerController.swift */; };
+		24801F481FE6FD430064C748 /* DisclaimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24801F461FE6EDD10064C748 /* DisclaimerController.swift */; };
 		24830AA91FD9F324006A1927 /* UITableViewCell+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24830AA81FD9F324006A1927 /* UITableViewCell+Utils.swift */; };
 		24830AAB1FDC09EC006A1927 /* CourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24830AAA1FDC09EC006A1927 /* CourseController.swift */; };
 		249DD6DE1FC8A3D4006DA46E /* User+StudIp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249DD6DD1FC8A3D4006DA46E /* User+StudIp.swift */; };
@@ -723,6 +723,7 @@
 		243CC30F1FE0490800FE7376 /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				24801F461FE6EDD10064C748 /* DisclaimerController.swift */,
 				243CC3101FE0491B00FE7376 /* StoreController.swift */,
 				243CC3121FE0495300FE7376 /* Store.storyboard */,
 			);
@@ -1356,7 +1357,6 @@
 				24D2DA1D1FD03B98006FC700 /* StoreService.swift */,
 				24D4627A1FE1C4F200DE3B3A /* StoreService+State.swift */,
 				243637071FE5602C001D1B86 /* StoreRoutes.swift */,
-				24801F461FE6EDD10064C748 /* DisclaimerController.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -1856,6 +1856,7 @@
 				24712BE61FB8B0E20067E416 /* SemesterListController.swift in Sources */,
 				242B03721FD7467D00863B08 /* GlowView.swift in Sources */,
 				2450AC7A1FDC79B6004F1267 /* SafariActivity.swift in Sources */,
+				24801F481FE6FD430064C748 /* DisclaimerController.swift in Sources */,
 				24712BE81FB8B4420067E416 /* SemesterCell.swift in Sources */,
 				242B035B1FD71AB700863B08 /* CourseCell.swift in Sources */,
 				24FD786E1FBF81EA0072F860 /* DownloadListController.swift in Sources */,
@@ -1983,7 +1984,6 @@
 				24D361081FAA5E2300BBBAED /* SemesterResponse.swift in Sources */,
 				24712BE01FB886980067E416 /* FileProviderItemConvertibleState.swift in Sources */,
 				24D361001FAA5E0800BBBAED /* UserResponse.swift in Sources */,
-				24801F471FE6EDD10064C748 /* DisclaimerController.swift in Sources */,
 				241C67EA1FCDFAC700F4A099 /* App.swift in Sources */,
 				24D361111FAA5F0500BBBAED /* StudIpService.swift in Sources */,
 				246F3AC91FAC879C00A477FF /* DataSourceSection.swift in Sources */,

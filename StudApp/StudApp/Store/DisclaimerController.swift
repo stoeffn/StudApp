@@ -6,6 +6,8 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import StudKit
+
 final class DisclaimerController: UIViewController, Routable {
     private var text: String!
 

@@ -274,7 +274,7 @@
         <!--Disclaimer Controller-->
         <scene sceneID="QtI-NK-1CB">
             <objects>
-                <viewController id="Q7b-5L-o4o" customClass="DisclaimerController" customModule="StudKit" sceneMemberID="viewController">
+                <viewController id="Q7b-5L-o4o" customClass="DisclaimerController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="bvV-tZ-9zx">
                         <rect key="frame" x="0.0" y="0.0" width="128" height="48"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
