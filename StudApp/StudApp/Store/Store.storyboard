@@ -177,16 +177,16 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="56" id="EWP-zU-JIE">
-                                        <rect key="frame" x="0.0" y="434" width="375" height="56"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="48" id="EWP-zU-JIE">
+                                        <rect key="frame" x="0.0" y="434" width="375" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EWP-zU-JIE" id="Tfx-Yz-5hm">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="28" id="ONe-SN-BtZ">
-                                        <rect key="frame" x="0.0" y="490" width="375" height="28"/>
+                                        <rect key="frame" x="0.0" y="482" width="375" height="28"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ONe-SN-BtZ" id="BvL-9O-ugt">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="28"/>
@@ -208,15 +208,15 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="84" id="0Ye-F3-Wc0">
-                                        <rect key="frame" x="0.0" y="518" width="375" height="84"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="96" id="0Ye-F3-Wc0">
+                                        <rect key="frame" x="0.0" y="510" width="375" height="96"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Ye-F3-Wc0" id="e7x-fc-zhj">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SaS-1D-p4b">
-                                                    <rect key="frame" x="16" y="11" width="343" height="62"/>
+                                                    <rect key="frame" x="16" y="19" width="343" height="66"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <string key="text">The former option is an auto-renewing subscription, whereas the latter is a one-time payment. View our Privacy Policy and Terms of Use.</string>
                                                     <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -231,7 +231,7 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="SaS-1D-p4b" secondAttribute="bottom" id="3HW-D8-RSX"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="SaS-1D-p4b" secondAttribute="trailing" id="I11-iN-xAE"/>
                                                 <constraint firstItem="SaS-1D-p4b" firstAttribute="leading" secondItem="e7x-fc-zhj" secondAttribute="leadingMargin" id="bnP-Vg-ETl"/>
-                                                <constraint firstItem="SaS-1D-p4b" firstAttribute="top" secondItem="e7x-fc-zhj" secondAttribute="topMargin" id="sO3-Pa-sX3"/>
+                                                <constraint firstItem="SaS-1D-p4b" firstAttribute="top" secondItem="e7x-fc-zhj" secondAttribute="topMargin" constant="8" id="sO3-Pa-sX3"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -284,6 +284,9 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disclaimer text." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4x6-WQ-QjG">
                                         <rect key="frame" x="16" y="16" width="94" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="256" id="Lu9-iI-hRy"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>

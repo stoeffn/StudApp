@@ -15,7 +15,10 @@ final class DisclaimerController: UIViewController, Routable {
         super.viewDidLoad()
 
         disclaimerLabel.text = text
-        disclaimerLabel.sizeToFit()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
 
         preferredContentSize = containerView.bounds.size
     }
