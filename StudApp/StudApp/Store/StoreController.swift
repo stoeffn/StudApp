@@ -220,7 +220,7 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
 
     // MARK: - Navigation
 
-    override public func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if case .disclaimer? = sender as? Routes {
             let sourceRect = CGRect(x: disclaimerView.bounds.size.width / 2, y: 0, width: 0, height: 0)
             segue.destination.popoverPresentationController?.delegate = self

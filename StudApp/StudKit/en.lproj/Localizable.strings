@@ -11,6 +11,7 @@
 "Share" = "Share";
 "Retry" = "Retry";
 "Reload" = "Reload";
+"Dismiss" = "Dismiss";
 "Remove" = "Remove";
 "Sign Out" = "Sign Out";
 "Send Feedback" = "Send Feedback";
@@ -52,6 +53,7 @@
 
 "Verifying Your Purchase…" = "Verifying Your Purchase…";
 "Something Went Wrong Veryifying Your Purchase" = "Something Went Wrong Veryifying Your Purchase";
+"Thank You for Supporting StudApp!" = "Thank You for Supporting StudApp!";
 
 // MARK: Store
 
@@ -62,8 +64,6 @@
 "Unlock All Features" = "Unlock All Features";
 "Unlock All Features for %@" = "Unlock All Features for %@";
 "Restore Purchase" = "Restore Purchase";
-"Thank You for Supporting StudApp!" = "Thank You for Supporting StudApp!";
-"Your Purchase Was Restored Successfully" = "Your Purchase Was Restored Successfully";
 "Your Purchase is Deferred" = "Your Purchase is Deferred";
 "A family member might have to approve this puchase." = "A family member might have to approve this puchase.";
 "The former option is an auto-renewing subscription, whereas the latter is a one-time payment." = "The former option is an auto-renewing subscription, whereas the latter is a one-time payment.";

@@ -11,11 +11,14 @@ public final class VerificationViewModel {
 
     public init() {}
 
-    public func verifyStoreState(handler: @escaping ResultHandler<Routes?>) {
+    public func verifyStoreState(handler: @escaping ResultHandler<Bool>) {
         storeService.verifyStateWithServer { result in
             guard let state = result.value else { return handler(result.replacingValue(nil)) }
-            let route = !state.isUnlocked ? Routes.store : nil
-            handler(result.replacingValue(route))
+            handler(result.replacingValue(state.isUnlocked))
         }
+    }
+
+    public var isAppUnlocked: Bool {
+        return storeService.state.isUnlocked
     }
 }

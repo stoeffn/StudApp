@@ -38,7 +38,7 @@ final class DisclaimerController: UIViewController, Routable {
 
     // MARK: - User Interaction
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesBegan(_: Set<UITouch>, with _: UIEvent?) {
         dismiss(animated: true, completion: nil)
     }
 }

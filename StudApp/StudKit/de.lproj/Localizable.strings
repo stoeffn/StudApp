@@ -11,6 +11,7 @@
 "Share" = "Teilen";
 "Retry" = "Nochmal probieren";
 "Reload" = "Neuladen";
+"Dismiss" = "Schließen";
 "Remove" = "Entfernen";
 "Sign Out" = "Abmelden";
 "Send Feedback" = "Feedback senden";
@@ -52,6 +53,7 @@
 
 "Verifying Your Purchase…" = "Dein Kauf wird überprüft…";
 "Something Went Wrong Veryifying Your Purchase" = "Beim Verifizieren deines Kaufs lief etwas schief";
+"Thank You for Supporting StudApp!" = "Danke, dass Du StudApp unterstützt!";
 
 // MARK: Store
 
@@ -62,8 +64,6 @@
 "Unlock All Features" = "Alles freischalten";
 "Unlock All Features for %@" = "Alles freischalten für %@";
 "Restore Purchase" = "Kauf wiederherstellen";
-"Thank You for Supporting StudApp!" = "Danke, dass Du StudApp unterstützt!";
-"Your Purchase Was Restored Successfully" = "Dein Kauf wurde erfolgreich wiederhergestellt";
 "Your Purchase is Deferred" = "Dein Kauf ist aufgeschoben";
 "A family member might have to approve this puchase." = "Möglicherweise muss ein Familienmitglied diesen Kauf bestätigen.";
 "The former option is an auto-renewing subscription, whereas the latter is a one-time payment." = "Erstere Option ist ein Abonnement mit automatischer Verlängerung, wohingegen letztere eine einmalige Zahlung ist.";

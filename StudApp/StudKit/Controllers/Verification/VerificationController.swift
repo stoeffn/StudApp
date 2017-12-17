@@ -18,8 +18,6 @@ public final class VerificationController: UIViewController, Routable {
 
         navigationItem.hidesBackButton = true
 
-        retryButton.setTitle("Retry".localized, for: .normal)
-
         verifyStoreState()
     }
 
@@ -31,13 +29,19 @@ public final class VerificationController: UIViewController, Routable {
 
     @IBOutlet weak var subtitleLabel: UILabel!
 
-    @IBOutlet weak var retryButton: UIButton!
+    @IBOutlet weak var actionButton: UIButton!
+
+    @IBOutlet weak var confettiView: ConfettiView!
 
     // MARK: - User Interaction
 
     @IBAction
-    func retryButtonTapped(_: Any) {
-        verifyStoreState()
+    func actionButtonTapped(_: Any) {
+        if viewModel.isAppUnlocked {
+            dismiss(animated: true, completion: nil)
+        } else {
+            verifyStoreState()
+        }
     }
 
     // MARK: - Helpers
@@ -46,21 +50,35 @@ public final class VerificationController: UIViewController, Routable {
         activityIndicator.isHidden = false
         titleLabel.text = "Verifying Your Purchase…".localized
         subtitleLabel.isHidden = true
-        retryButton.isHidden = true
+        actionButton.isHidden = true
 
         viewModel.verifyStoreState { result in
-            guard result.isSuccess, let optionalRoute = result.value else {
-                self.activityIndicator.isHidden = true
+            self.activityIndicator.isHidden = true
+
+            guard result.isSuccess, let isAppUnlocked = result.value else {
                 self.titleLabel.text = "Something Went Wrong Veryifying Your Purchase".localized
                 self.subtitleLabel.text = result.error?.localizedDescription
                     ?? "There seems to be a problem with the internet connection.".localized
-                self.retryButton.isHidden = false
+                self.actionButton.setTitle("Retry".localized, for: .normal)
+                self.actionButton.isHidden = false
                 return
             }
-            if let route = optionalRoute {
-                self.performSegue(withRoute: route)
+
+            if isAppUnlocked {
+                self.titleLabel.text = "Thank You for Supporting StudApp!".localized
+                self.actionButton.setTitle("Dismiss".localized, for: .normal)
+                self.actionButton.isHidden = false
+
+                self.confettiView.alpha = 0
+                self.confettiView.intensity = 0
+                let animator = UIViewPropertyAnimator(duration: 3, curve: .easeInOut) {
+                    self.confettiView.alpha = 1
+                    self.confettiView.intensity = 1
+                }
+                animator.startAnimation()
             } else {
-                self.dismiss(animated: true, completion: nil)
+                // TODO: Redirect to main app if inside file provider
+                self.performSegue(withRoute: .store)
             }
         }
     }
