@@ -28,6 +28,10 @@ final class AboutController: UITableViewController, Routable {
             titleLabel.text = "\(appName) \(appVersionName)"
         }
         subtitleLabel.text = "by %@".localized(App.authorName)
+
+        websiteCell.textLabel?.text = "Website".localized
+        privacyCell.textLabel?.text = "Privacy Policy".localized
+
         sendFeedbackCell.textLabel?.text = "Send Feedback".localized
         rateAppCell.textLabel?.text = "Rate StudApp".localized
     }
