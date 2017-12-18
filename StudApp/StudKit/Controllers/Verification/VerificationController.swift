@@ -112,6 +112,7 @@ public final class VerificationController: UIViewController, Routable {
 
     @IBAction
     func actionButtonTapped(_: Any) {
+        guard viewModel.isAppUnlocked else { return verifyStoreState() }
         dismissVerification()
     }
 
