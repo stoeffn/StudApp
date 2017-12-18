@@ -80,7 +80,7 @@ public final class VerificationController: UIViewController, Routable {
             activityIndicator.isHidden = true
             titleLabel.text = "Please open StudApp".localized
 
-            guard let url = App.storeUrl else { return }
+            guard let url = App.Links.appStore else { return }
             contextService.openUrl?(url) { _ in
                 guard #available(iOSApplicationExtension 11.0, *) else { return }
                 let error = NSFileProviderError(.notAuthenticated, userInfo: [

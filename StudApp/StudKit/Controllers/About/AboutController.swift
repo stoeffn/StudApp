@@ -61,7 +61,7 @@ final class AboutController: UITableViewController, Routable {
 
     @IBAction
     func actionButtonTapped(_: Any) {
-        guard let appUrl = App.url else { return }
+        guard let appUrl = App.Links.appStore else { return }
 
         let controller = UIActivityViewController(activityItems: [appUrl], applicationActivities: nil)
         controller.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
@@ -139,9 +139,9 @@ final class AboutController: UITableViewController, Routable {
         case .thanks?:
             openInSafari(viewModel[rowAt: indexPath.row].url)
         case .links? where cell === websiteCell:
-            openInSafari(App.websiteUrl)
+            openInSafari(App.Links.website)
         case .links? where cell === privacyCell:
-            openInSafari(App.privacyPolicyUrl)
+            openInSafari(App.Links.privacyPolicy)
         case .feedback? where cell === sendFeedbackCell:
             openFeedbackMailComposer()
             tableView.deselectRow(at: indexPath, animated: true)
@@ -149,7 +149,7 @@ final class AboutController: UITableViewController, Routable {
             openAppStoreReviewPage()
             tableView.deselectRow(at: indexPath, animated: true)
         case .manageSubscriptions?:
-            guard let url = App.manageSubscriptionsUrl else { return }
+            guard let url = App.Links.manageSubscriptions else { return }
             contextService.openUrl?(url) { _ in }
             tableView.deselectRow(at: indexPath, animated: true)
         default:
@@ -187,13 +187,13 @@ final class AboutController: UITableViewController, Routable {
 
         switch Sections(rawValue: indexPath.section) {
         case .links? where cell === websiteCell:
-            UIPasteboard.general.url = App.websiteUrl
+            UIPasteboard.general.url = App.Links.website
         case .links? where cell === privacyCell:
-            UIPasteboard.general.url = App.privacyPolicyUrl
+            UIPasteboard.general.url = App.Links.privacyPolicy
         case .feedback? where cell === sendFeedbackCell:
             UIPasteboard.general.string = App.feedbackMailAddress
         case .feedback? where cell === rateAppCell:
-            UIPasteboard.general.url = App.reviewUrl
+            UIPasteboard.general.url = App.Links.review
         case .thanks?:
             UIPasteboard.general.url = viewModel[rowAt: indexPath.row].url
         default:
@@ -223,7 +223,7 @@ final class AboutController: UITableViewController, Routable {
     }
 
     private func openAppStoreReviewPage() {
-        guard let reviewUrl = App.reviewUrl else { return }
+        guard let reviewUrl = App.Links.review else { return }
 
         contextService.openUrl?(reviewUrl) { success in
             guard !success else { return }

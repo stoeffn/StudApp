@@ -112,7 +112,7 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
         case .app:
             return performSegue(withRoute: .store)
         case .fileProviderUI:
-            guard let url = App.storeUrl else { return }
+            guard let url = App.Links.appStore else { return }
             contextService.openUrl?(url) { _ in }
         default:
             fatalError()

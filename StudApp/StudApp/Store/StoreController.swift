@@ -97,9 +97,9 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
             .foregroundColor: UI.Colors.greyText,
         ])
 
-        attributedText.addLink(for: "auto-renewing subscription".localized, to: App.autorenewingSubscriptionDisclaimerUrl)
-        attributedText.addLink(for: "Privacy Policy".localized, to: App.privacyPolicyUrl)
-        attributedText.addLink(for: "Terms of Use".localized, to: App.termsOfUseUrl)
+        attributedText.addLink(for: "auto-renewing subscription".localized, to: App.Links.autorenewingSubscriptionDisclaimerUrl)
+        attributedText.addLink(for: "Privacy Policy".localized, to: App.Links.privacyPolicy)
+        attributedText.addLink(for: "Terms of Use".localized, to: App.Links.termsOfUse)
 
         return attributedText
     }()
@@ -190,7 +190,7 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
 
     public func textView(_: UITextView, shouldInteractWith url: URL, in _: NSRange,
                          interaction _: UITextItemInteraction) -> Bool {
-        if url == App.autorenewingSubscriptionDisclaimerUrl {
+        if url == App.Links.autorenewingSubscriptionDisclaimerUrl {
             performSegue(withRoute: .disclaimer(autoRenewingSubscriptionDisclaimerText))
             return false
         }
