@@ -37,6 +37,7 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
         restoreButton.setTitle("Restore Purchase".localized, for: .normal)
 
         disclaimerView.attributedText = attributedDisclaimerText
+        disclaimerView.sizeToFit()
 
         isLoading = true
 
@@ -55,6 +56,12 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
         super.viewWillDisappear(animated)
 
         viewModel.removeAsTransactionObserver()
+    }
+
+    // MARK: - Table View Data Source
+
+    public override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
 
     // MARK: - User Interface
@@ -80,7 +87,7 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
     private let disclaimerText = [
         "The former option is an auto-renewing subscription, whereas the latter is a one-time payment.".localized,
         "View our Privacy Policy and Terms of Use.".localized,
-    ].joined(separator: "\n")
+    ].joined(separator: " ")
 
     private let autoRenewingSubscriptionDisclaimerText = [
         "Payment will be charged to your iTunes account,".localized,
@@ -94,6 +101,7 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
 
         let attributedText = NSMutableAttributedString(string: disclaimerText, attributes: [
             .paragraphStyle: paragraphStyle,
+            .font: UIFont.preferredFont(forTextStyle: .footnote),
             .foregroundColor: UI.Colors.greyText,
         ])
 
