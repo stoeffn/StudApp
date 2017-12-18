@@ -35,13 +35,10 @@ public final class StoreService: NSObject {
 
     public private(set) lazy var state = State.fromDefaults ?? .locked
 
-    func verifyStateWithServer(handler: ResultHandler<State>? = nil) {
+    func verifyStateWithServer(handler: @escaping ResultHandler<State>) {
         state = State.fromDefaults ?? state
 
-        guard !state.isVerifiedByServer else {
-            handler?(.success(state))
-            return
-        }
+        guard !state.isVerifiedByServer else { return handler(.success(state)) }
 
         guard
             let receiptUrl = Bundle.main.appStoreReceiptURL,
@@ -49,14 +46,13 @@ public final class StoreService: NSObject {
         else {
             state = State.locked
             state.toDefaults()
-            handler?(.success(state))
-            return
+            return handler(.success(state))
         }
 
         verificationApi.requestDecoded(.verify(receipt: data)) { (result: Result<State>) in
             self.state = result.value?.markedAsVerifiedByServer ?? self.state
             self.state.toDefaults()
-            handler?(result.replacingValue(self.state))
+            handler(result.replacingValue(self.state))
         }
     }
 }
@@ -72,7 +68,7 @@ extension StoreService: SKPaymentTransactionObserver {
 
     func updateState(using transaction: SKPaymentTransaction) {
         switch transaction.transactionState {
-        case .purchased, .restored:
+        case .purchased:
             state = .unlocked(verifiedByServer: false)
             state.toDefaults()
 
@@ -80,6 +76,8 @@ extension StoreService: SKPaymentTransactionObserver {
                 guard let state = result.value, state.isUnlocked else { return }
                 SKPaymentQueue.default().finishTransaction(transaction)
             }
+        case .restored:
+            SKPaymentQueue.default().finishTransaction(transaction)
         case .deferred:
             state = .deferred
             state.toDefaults()

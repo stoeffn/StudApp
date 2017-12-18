@@ -9,11 +9,47 @@
 import StoreKit
 
 public final class StoreViewModel: NSObject {
+    // MARK: - State
+
+    public enum State {
+        case idle
+        case loadingProducts
+        case purchasing
+        case purchased
+        case deferred
+        case restored
+        case failure(Error)
+    }
+
+    /// Current state of the store, which should be respected by the user interface.
+    public var state: State = .idle {
+        didSet { stateChanged?(state) }
+    }
+
+    /// This handler is called every time `state` changes.
+    public var stateChanged: ((State) -> Void)?
+
+    // MARK: - Life Cycle
+
     private let storeService = ServiceContainer.default[StoreService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]
     private var productsRequest: SKProductsRequest?
 
+    public override init() {
+        super.init()
+
+        state = storeService.state.isDeferred ? .deferred : .idle
+    }
+
+    // MARK: - Products
+
+    public private(set) var subscriptionProduct: SKProduct?
+
+    public private(set) var unlockProduct: SKProduct?
+
     public func loadProducts() {
+        state = .loadingProducts
+
         productsRequest = SKProductsRequest(productIdentifiers: [
             storeService.subscriptionProductIdentifier,
             storeService.unlockProductIdentifier,
@@ -22,13 +58,7 @@ public final class StoreViewModel: NSObject {
         productsRequest?.start()
     }
 
-    public var didLoadProducts: (() -> Void)?
-
-    public var transactionChanged: ((SKPaymentTransaction) -> Void)?
-
-    public private(set) var subscriptionProduct: SKProduct?
-
-    public private(set) var unlockProduct: SKProduct?
+    // MARK: - Actions
 
     public func addAsTransactionObserver() {
         SKPaymentQueue.default().add(self)
@@ -47,10 +77,6 @@ public final class StoreViewModel: NSObject {
         SKPaymentQueue.default().add(payment)
     }
 
-    public var isPaymentDeferred: Bool {
-        return storeService.state.isDeferred
-    }
-
     /// Sign user out of this app and the API.
     public func signOut() {
         studIpService.signOut()
@@ -64,7 +90,7 @@ extension StoreViewModel: SKProductsRequestDelegate {
         subscriptionProduct = response.products.first { $0.productIdentifier == storeService.subscriptionProductIdentifier }
         unlockProduct = response.products.first { $0.productIdentifier == storeService.unlockProductIdentifier }
 
-        didLoadProducts?()
+        state = storeService.state.isDeferred ? .deferred : .idle
         productsRequest = nil
     }
 }
@@ -74,7 +100,27 @@ extension StoreViewModel: SKProductsRequestDelegate {
 extension StoreViewModel: SKPaymentTransactionObserver {
     public func paymentQueue(_: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
-            transactionChanged?(transaction)
+            switch transaction.transactionState {
+            case .purchasing:
+                state = .purchasing
+            case .purchased:
+                state = .purchased
+            case .failed:
+                guard let error = transaction.error else { break }
+                state = .failure(error)
+            case .restored:
+                break
+            case .deferred:
+                state = .deferred
+            }
         }
+    }
+
+    public func paymentQueueRestoreCompletedTransactionsFinished(_: SKPaymentQueue) {
+        state = .restored
+    }
+
+    public func paymentQueue(_: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
+        state = .failure(error)
     }
 }

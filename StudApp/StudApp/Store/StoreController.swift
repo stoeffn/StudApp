@@ -19,9 +19,8 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
         super.viewDidLoad()
 
         viewModel = StoreViewModel()
+        viewModel.stateChanged = stateChanged
         viewModel.loadProducts()
-        viewModel.didLoadProducts = didLoadProducts
-        viewModel.transactionChanged = transactionChanged
 
         navigationItem.hidesBackButton = true
 
@@ -38,12 +37,6 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
 
         disclaimerView.attributedText = attributedDisclaimerText
         disclaimerView.sizeToFit()
-
-        isLoading = true
-
-        if viewModel.isPaymentDeferred {
-            present(deferralAlert, animated: true, completion: nil)
-        }
     }
 
     public override func viewDidAppear(_ animated: Bool) {
@@ -60,7 +53,7 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
 
     // MARK: - Table View Data Source
 
-    public override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    public override func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
 
@@ -147,6 +140,31 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
         unlockButton.setTitle("Unlock All Features for %@".localized(localizedUnlockPrice), for: .normal)
     }
 
+    private func stateChanged(_ state: StoreViewModel.State) {
+        deferralAlert.dismiss(animated: true, completion: nil)
+
+        switch state {
+        case .idle:
+            UIView.animate(withDuration: 0.3) {
+                self.isLoading = false
+                self.updateTrialButton(withProduct: self.viewModel.subscriptionProduct)
+                self.updateUnlockButton(withProduct: self.viewModel.unlockProduct)
+            }
+        case .loadingProducts:
+            isLoading = true
+        case .purchasing:
+            isLoading = true
+        case .purchased, .restored:
+            performSegue(withRoute: .verification)
+        case let .failure(error):
+            isLoading = false
+            let alert = UIAlertController(alertWithTitle: "Something Went Wrong".localized, message: error.localizedDescription)
+            present(alert, animated: true, completion: nil)
+        case .deferred:
+            present(deferralAlert, animated: true, completion: nil)
+        }
+    }
+
     // MARK: - User Interaction
 
     @IBAction
@@ -214,36 +232,6 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
         let controller = SFSafariViewController(url: url)
         present(controller, animated: true, completion: nil)
         return false
-    }
-
-    // MARK: - Store Events
-
-    private func didLoadProducts() {
-        UIView.animate(withDuration: 0.3) {
-            self.isLoading = false
-            self.updateTrialButton(withProduct: self.viewModel.subscriptionProduct)
-            self.updateUnlockButton(withProduct: self.viewModel.unlockProduct)
-        }
-    }
-
-    private func transactionChanged(_ transaction: SKPaymentTransaction) {
-        deferralAlert.dismiss(animated: true, completion: nil)
-
-        switch transaction.transactionState {
-        case .purchasing:
-            isLoading = true
-        case .purchased:
-            performSegue(withRoute: .verification)
-        case .failed:
-            isLoading = false
-            let alert = UIAlertController(alertWithTitle: "Something Went Wrong".localized,
-                                          message: transaction.error?.localizedDescription)
-            present(alert, animated: true, completion: nil)
-        case .restored:
-            performSegue(withRoute: .verification)
-        case .deferred:
-            present(deferralAlert, animated: true, completion: nil)
-        }
     }
 
     // MARK: - Navigation
