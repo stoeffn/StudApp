@@ -6,6 +6,8 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import SafariServices
+
 final class SignInController: UITableViewController, UITextFieldDelegate, Routable {
     private var contextService: ContextService!
     private var viewModel: SignInViewModel!
@@ -178,11 +180,19 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
             performSegue(withRoute: .about)
         }
 
+        func showHelpView(_: UIAlertAction) {
+            guard let url = App.Links.help else { return }
+            let controller = SFSafariViewController(url: url)
+            controller.preferredControlTintColor = UI.Colors.tint
+            present(controller, animated: true, completion: nil)
+        }
+
         let barButtonItem = sender as? UIBarButtonItem
 
         let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         controller.popoverPresentationController?.barButtonItem = barButtonItem
         controller.addAction(UIAlertAction(title: "About".localized, style: .default, handler: showAboutView))
+        controller.addAction(UIAlertAction(title: "Help".localized, style: .default, handler: showHelpView))
         controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
         present(controller, animated: true, completion: nil)
     }

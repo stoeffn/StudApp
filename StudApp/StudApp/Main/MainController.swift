@@ -6,6 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import SafariServices
 import StudKit
 
 final class MainController: UITabBarController {
@@ -94,6 +95,13 @@ final class MainController: UITabBarController {
             performSegue(withRoute: .about)
         }
 
+        func showHelpView(_: UIAlertAction) {
+            guard let url = App.Links.help else { return }
+            let controller = SFSafariViewController(url: url)
+            controller.preferredControlTintColor = UI.Colors.tint
+            present(controller, animated: true, completion: nil)
+        }
+
         func signOut(_: UIAlertAction) {
             viewModel.signOut()
             performSegue(withRoute: .signIn)
@@ -106,6 +114,7 @@ final class MainController: UITabBarController {
         let controller = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
         controller.popoverPresentationController?.barButtonItem = barButtonItem
         controller.addAction(UIAlertAction(title: "About".localized, style: .default, handler: showAboutView))
+        controller.addAction(UIAlertAction(title: "Help".localized, style: .default, handler: showHelpView))
         controller.addAction(UIAlertAction(title: "Sign Out".localized, style: .destructive, handler: signOut))
         controller.actions.last?.setValue(UI.Colors.studRed, forKey: "titleTextColor")
         controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
