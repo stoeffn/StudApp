@@ -59,7 +59,7 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdat
 // MARK: - Core Data Operations
 
 extension Course {
-    /// Request that fetches all files contained in `files`, i.e. documents and folders at the course's root.
+    /// Request for fetching all files contained in `files`, i.e. documents and folders at the course's root.
     ///
     /// - Remark: This request uses file states instead of files in order to simplify monitoring changes using
     ///           `NSFetchedResultsController`.
@@ -72,5 +72,11 @@ extension Course {
     /// Fetches and returns the documents and folder at this course's root in the context given.
     public func fetchRootFiles(in context: NSManagedObjectContext) throws -> [File] {
         return try context.fetch(rootFilesFetchRequest).map { $0.file }
+    }
+
+    /// Request for fetching all announcements for this course.
+    public var announcementsFetchRequest: NSFetchRequest<Announcement> {
+        let predicate = NSPredicate(format: "%@ IN courses", self)
+        return Announcement.fetchRequest(predicate: predicate, sortDescriptors: Announcement.defaultSortDescriptors)
     }
 }
