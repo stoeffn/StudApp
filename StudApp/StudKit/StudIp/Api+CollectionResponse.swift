@@ -23,9 +23,9 @@ extension Api {
     /// - Precondition: `route`'s type must not be `nil`.
     /// - Remark: At the moment, this method supports JSON decoding only.
     @discardableResult
-    func requestCollection<Result>(_ route: Routes, afterOffset offset: Int = 0,
-                                   itemsPerRequest: Int = defaultNumberOfItemsPerRequest, ignoreLastAccess: Bool = false,
-                                   handler: @escaping ResultHandler<CollectionResponse<Result>>) -> URLSessionTask? {
+    func requestCollectionPage<Result>(_ route: Routes, afterOffset offset: Int = 0,
+                                       itemsPerRequest: Int = defaultNumberOfItemsPerRequest, ignoreLastAccess: Bool = false,
+                                       handler: @escaping ResultHandler<CollectionResponse<Result>>) -> URLSessionTask? {
         let offsetQuery = URLQueryItem(name: "offset", value: String(offset))
         let limitQuery = URLQueryItem(name: "limit", value: String(itemsPerRequest))
         return requestDecoded(route, parameters: [offsetQuery, limitQuery], ignoreLastAccess: ignoreLastAccess) { result in
@@ -46,20 +46,21 @@ extension Api {
     /// - Precondition: `route`'s type must not be `nil`.
     /// - Remark: At the moment, this method supports JSON decoding only. Due to issueing multiple requests, this method does
     ///           not return a single session task.
-    func requestCompleteCollection<Value: Decodable>(_ route: Routes, afterOffset offset: Int = 0,
-                                                     itemsPerRequest: Int = defaultNumberOfItemsPerRequest,
-                                                     ignoreLastAccess: Bool = false, items initialItems: [Value] = [],
-                                                     handler: @escaping ResultHandler<[Value]>) {
-        requestCollection(route, afterOffset: offset, itemsPerRequest: itemsPerRequest,
-                          ignoreLastAccess: ignoreLastAccess) { (result: Result<CollectionResponse<Value>>) in
+    func requestCollection<Value: Decodable>(_ route: Routes, afterOffset offset: Int = 0,
+                                             itemsPerRequest: Int = defaultNumberOfItemsPerRequest,
+                                             ignoreLastAccess: Bool = false, items initialItems: [Value] = [],
+                                             handler: @escaping ResultHandler<[Value]>) {
+        requestCollectionPage(route, afterOffset: offset, itemsPerRequest: itemsPerRequest,
+                              ignoreLastAccess: ignoreLastAccess) { (result: Result<CollectionResponse<Value>>) in
             guard let collection = result.value else {
                 self.removeLastAccess(for: route)
                 return handler(result.replacingValue(nil))
             }
+
             let items = initialItems + collection.items
+
             if let offset = collection.pagination.nextOffset {
-                self.requestCompleteCollection(route, afterOffset: offset, ignoreLastAccess: true, items: items,
-                                               handler: handler)
+                self.requestCollection(route, afterOffset: offset, ignoreLastAccess: true, items: items, handler: handler)
             } else {
                 handler(result.replacingValue(items))
             }

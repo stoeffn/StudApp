@@ -12,8 +12,7 @@ extension Semester {
     public static func update(in context: NSManagedObjectContext, enforce: Bool = false,
                               handler: @escaping ResultHandler<[Semester]>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
-        studIpService.api.requestCompleteCollection(.semesters,
-                                                    ignoreLastAccess: !enforce) { (result: Result<[SemesterResponse]>) in
+        studIpService.api.requestCollection(.semesters, ignoreLastAccess: !enforce) { (result: Result<[SemesterResponse]>) in
             Semester.update(using: result, in: context, handler: handler)
 
             if #available(iOSApplicationExtension 11.0, *) {

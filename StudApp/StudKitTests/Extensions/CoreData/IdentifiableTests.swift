@@ -34,7 +34,7 @@ final class IdentifiableTests: XCTestCase {
     }
 
     func testFetchByIds_Courses_Courses() {
-        let courses = try! Course.fetch(byIds: ["0", "2"], in: context)
+        let courses = try! Course.fetch(byIds: ["0", "2"], in: context).sorted { $0.title < $1.title }
         XCTAssertEqual(courses[0].title, "A")
         XCTAssertEqual(courses[1].title, "C")
         XCTAssertEqual(courses.count, 2)

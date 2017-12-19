@@ -13,7 +13,7 @@ extension Course {
         let studIpService = ServiceContainer.default[StudIpService.self]
         guard let userId = studIpService.userId else { return }
 
-        studIpService.api.requestCompleteCollection(.courses(forUserId: userId)) { (result: Result<[CourseResponse]>) in
+        studIpService.api.requestCollection(.courses(forUserId: userId)) { (result: Result<[CourseResponse]>) in
             Course.update(using: result, in: context, handler: handler)
 
             guard let semesters = try? Semester.fetchNonHidden(in: context) else { return }
@@ -35,7 +35,7 @@ extension Course {
 
     public func updateFiles(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[File]>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
-        studIpService.api.requestCompleteCollection(.filesInCourse(withId: id)) { (result: Result<[FileResponse]>) in
+        studIpService.api.requestCollection(.filesInCourse(withId: id)) { (result: Result<[FileResponse]>) in
             File.update(using: result, in: context, handler: handler)
 
             self.state.areFilesFetchedFromRemote = true
@@ -49,10 +49,9 @@ extension Course {
 
     public func updateAnnouncements(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Announcement]>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
-        studIpService.api
-            .requestCompleteCollection(.announcementsInCourse(withId: id)) { (result: Result<[AnnouncementResponse]>) in
-                Announcement.update(using: result, in: context, handler: handler)
-            }
+        studIpService.api.requestCollection(.announcementsInCourse(withId: id)) { (result: Result<[AnnouncementResponse]>) in
+            Announcement.update(using: result, in: context, handler: handler)
+        }
     }
 
     public var url: URL? {
