@@ -20,7 +20,7 @@ final class FileResponseTests: XCTestCase {
 
         try! CourseResponse(id: "0", title: "A").coreDataModel(in: context)
 
-        try! FileResponse(folderId: "0", coursePath: "/0", title: "a").coreDataModel(in: context)
+        try! FileResponse(folderId: "0", coursePath: "$0", title: "a").coreDataModel(in: context)
     }
 
     func testInit_FolderData_Folder() {

@@ -26,6 +26,10 @@ final class TransformsTests: XCTestCase {
         XCTAssertEqual(StudIp.transformIdPath("/api.php/semester/", idComponentIndex: 2), nil)
     }
 
+    func testTransformIdpath_Dollar_Path() {
+        XCTAssertEqual(StudIp.transformIdPath("$A", idComponentIndex: 2), "A")
+    }
+
     func testTransformCourseNumber_Padding_Trimmed() {
         XCTAssertEqual(StudIp.transformCourseNumber("   123 "), "123")
     }

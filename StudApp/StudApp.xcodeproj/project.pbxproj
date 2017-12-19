@@ -1251,7 +1251,7 @@
 				247793721FC893CF00090F4D /* Semesters */,
 				247793711FC893C900090F4D /* Files */,
 				247793701FC893BB00090F4D /* Courses */,
-				24D3615B1FAA640100BBBAED /* Reponses */,
+				24D3615B1FAA640100BBBAED /* Responses */,
 				24D3612A1FAA60E000BBBAED /* Api+CollectionResponseTests.swift */,
 				24D3612B1FAA60E000BBBAED /* CollectionResponseTests.swift */,
 				24D361291FAA60E000BBBAED /* StudIpRoutes+TestableApiRoutes.swift */,
@@ -1314,7 +1314,7 @@
 			path = Semesters;
 			sourceTree = "<group>";
 		};
-		24D3615B1FAA640100BBBAED /* Reponses */ = {
+		24D3615B1FAA640100BBBAED /* Responses */ = {
 			isa = PBXGroup;
 			children = (
 				24D3615D1FAA641500BBBAED /* courseCollection.json */,
@@ -1323,7 +1323,7 @@
 				24D3615E1FAA641500BBBAED /* semesterCollection.json */,
 				246F3AB91FAC7BEA00A477FF /* discovery.json */,
 			);
-			path = Reponses;
+			path = Responses;
 			sourceTree = "<group>";
 		};
 		24D361641FAA646200BBBAED /* ViewModels */ = {

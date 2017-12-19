@@ -15,8 +15,8 @@ extension CourseResponseTests {
             "subtitle": "Subtitle",
             "description": "<b>S&uuml;mmary</b>  Literatur: ",
             "location": "Location",
-            "start_semester": "/0",
-            "end_semester": "/1",
+            "start_semester": "$0",
+            "end_semester": "$1",
             "lecturers": {
                 "\\/api.php\\/user\\/0": {
                     "id": "0",

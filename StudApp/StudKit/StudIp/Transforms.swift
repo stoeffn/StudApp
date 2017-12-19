@@ -9,15 +9,21 @@
 enum StudIp {
     /// Returns the id from a path with an id as its last component.
     ///
+    /// For testing purposes, paths starting with "$" will be returned completely, except for the leading dollar sign.
+    ///
     /// ## Examples
-    /// - "/api/rooms/abc" -> "abc"
-    /// - "/api/rooms/abc/test" -> "abc"
-    /// - "api/rooms/" -> `nil`
+    /// - "/api/rooms/abc", 2 -> "abc"
+    /// - "/api/rooms/abc/test", 2 -> "abc"
+    /// - "api/rooms/", 2 -> `nil`
     static func transformIdPath(_ path: String?, idComponentIndex: Int) -> String? {
-        guard
-            let components = path?.trimmingCharacters(in: CharacterSet(charactersIn: "/")).components(separatedBy: "/"),
-            components.count > idComponentIndex
-        else { return nil }
+        guard let path = path else { return nil }
+
+        guard path.first != "$" else { return String(path.dropFirst()) }
+
+        let components = path
+            .trimmingCharacters(in: CharacterSet(charactersIn: "/"))
+            .components(separatedBy: "/")
+        guard components.count > idComponentIndex else { return nil }
         return components[idComponentIndex].nilWhenEmpty
     }
 

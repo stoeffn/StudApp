@@ -22,7 +22,7 @@ final class CourseServiceTests: XCTestCase {
         try! context!.save()
 
         try! FileResponse(fileId: "4594bd27b2c3f5b25e438932f14b60e1", name: "file.pdf",
-                          coursePath: "/e894bd27b2c3f5b25e438932f14b60e1", title: "File")
+                          coursePath: "$e894bd27b2c3f5b25e438932f14b60e1", title: "File")
             .coreDataModel(in: context)
 
         try! context!.save()

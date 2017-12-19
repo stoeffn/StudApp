@@ -30,7 +30,7 @@ final class SemesterTests: XCTestCase {
                               endsAt: Date(timeIntervalSince1970: 39), coursesBeginAt: .distantPast,
                               coursesEndAt: .distantPast).coreDataModel(in: context)
 
-        try! CourseResponse(id: "0", title: "A", beginSemesterPath: "/2").coreDataModel(in: context)
+        try! CourseResponse(id: "0", title: "A", beginSemesterPath: "$2").coreDataModel(in: context)
     }
 
     func testInit_SemesterModel_Semester() {
