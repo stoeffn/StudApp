@@ -40,7 +40,7 @@ public final class StoreController: UITableViewController {
         }
 
         func signOut(_: UIAlertAction) {
-            // TODO
+            // TODO:
             print("TODO")
         }
 

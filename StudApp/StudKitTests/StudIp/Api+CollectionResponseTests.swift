@@ -23,7 +23,8 @@ final class ApiCollectionResponseTests: XCTestCase {
     }
 
     func testRequestCollection_Request5_Response5() {
-        api.requestCollectionPage(.collection, afterOffset: 5, itemsPerRequest: 5) { (result: Result<CollectionResponse<Test>>) in
+        api.requestCollectionPage(.collection, afterOffset: 5,
+                                  itemsPerRequest: 5) { (result: Result<CollectionResponse<Test>>) in
             XCTAssertTrue(result.isSuccess)
             XCTAssertEqual(result.value?.items.count, 1)
             XCTAssertEqual(result.value?.items.first?.id, "1")
