@@ -22,12 +22,30 @@ public final class AnnouncementListViewModel: NSObject {
         controller.delegate = self
     }
 
+    public convenience init?(courseId: String) {
+        let coreDataService = ServiceContainer.default[CoreDataService.self]
+        guard
+            let optionalCourse = try? Course.fetch(byId: courseId, in: coreDataService.viewContext),
+            let course = optionalCourse
+            else { return nil }
+        self.init(course: course)
+    }
+
     private(set) lazy var controller: NSFetchedResultsController<Announcement>
         = NSFetchedResultsController(fetchRequest: course.announcementsFetchRequest,
                                      managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
 
     public func fetch() {
         try? controller.performFetch()
+    }
+
+    public func update(handler: (ResultHandler<[Announcement]>)? = nil) {
+        coreDataService.performBackgroundTask { context in
+            self.course.updateAnnouncements(in: context) { result in
+                try? context.saveWhenChanged()
+                handler?(result)
+            }
+        }
     }
 }
 

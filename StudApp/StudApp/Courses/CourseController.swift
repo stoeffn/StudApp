@@ -12,6 +12,7 @@ import StudKit
 final class CourseController: UITableViewController, Routable {
     private var restoredCourseId: String?
     private var viewModel: CourseViewModel!
+    private var announcementsViewModel: AnnouncementListViewModel!
     private var filesViewModel: FileListViewModel!
 
     // MARK: - Life Cycle
@@ -32,20 +33,28 @@ final class CourseController: UITableViewController, Routable {
 
         userActivity = userActivity()
 
+        announcementsViewModel.update()
         filesViewModel.update()
 
         navigationItem.title = viewModel.course.title
         subtitleLabel.text = viewModel.course.subtitle
     }
 
-    func prepareDependencies(for route: Routes) {
-        guard case let .course(course) = route else { fatalError() }
-
-        viewModel = CourseViewModel(course: course)
+    private func configureViewModels(with course: Course) {
+        announcementsViewModel = AnnouncementListViewModel(course: course)
+        announcementsViewModel.delegate = self
+        announcementsViewModel.fetch()
 
         filesViewModel = FileListViewModel(course: course)
         filesViewModel.delegate = self
         filesViewModel.fetch()
+    }
+
+    func prepareDependencies(for route: Routes) {
+        guard case let .course(course) = route else { fatalError() }
+
+        viewModel = CourseViewModel(course: course)
+        configureViewModels(with: course)
     }
 
     // MARK: - Restoration
@@ -64,10 +73,7 @@ final class CourseController: UITableViewController, Routable {
         guard let courseId = restoredCourseId else { return }
 
         viewModel = CourseViewModel(courseId: courseId)
-
-        filesViewModel = FileListViewModel(courseId: courseId)
-        filesViewModel.delegate = self
-        filesViewModel.fetch()
+        configureViewModels(with: viewModel.course)
     }
 
     // MARK: - Supporting User Activities
@@ -88,17 +94,19 @@ final class CourseController: UITableViewController, Routable {
     // MARK: - Table View Data Source
 
     private enum Sections: Int {
-        case info, documents
+        case info, announcements, documents
     }
 
     override func numberOfSections(in _: UITableView) -> Int {
-        return 2
+        return 3
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch Sections(rawValue: section) {
         case .info?:
             return viewModel.numberOfRows
+        case .announcements?:
+            return announcementsViewModel.numberOfRows
         case .documents?:
             return filesViewModel.numberOfRows
         case nil:
@@ -114,6 +122,10 @@ final class CourseController: UITableViewController, Routable {
             cell.textLabel?.text = titleAndValue.title
             cell.detailTextLabel?.text = titleAndValue.value
             return cell
+        case .announcements?:
+            let cell = tableView.dequeueReusableCell(withIdentifier: AnnouncementCell.typeIdentifier, for: indexPath)
+            (cell as? AnnouncementCell)?.announcement = announcementsViewModel[rowAt: indexPath.row]
+            return cell
         case .documents?:
             let cell = tableView.dequeueReusableCell(withIdentifier: FileCell.typeIdentifier, for: indexPath)
             (cell as? FileCell)?.file = filesViewModel[rowAt: indexPath.row]
@@ -126,6 +138,7 @@ final class CourseController: UITableViewController, Routable {
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch Sections(rawValue: section) {
         case .info?: return nil
+        case .announcements?: return "Announcements".localized
         case .documents?: return "Documents".localized
         case nil: fatalError()
         }
@@ -134,7 +147,7 @@ final class CourseController: UITableViewController, Routable {
     override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
         switch Sections(rawValue: section) {
         case .info?: return viewModel.course.summary
-        case .documents?: return nil
+        case .announcements?, .documents?: return nil
         case nil: fatalError()
         }
     }
@@ -143,7 +156,7 @@ final class CourseController: UITableViewController, Routable {
 
     override func tableView(_: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
         switch Sections(rawValue: indexPath.section) {
-        case .info?, .documents?:
+        case .info?, .announcements?, .documents?:
             return true
         case nil:
             fatalError()
@@ -153,7 +166,7 @@ final class CourseController: UITableViewController, Routable {
     override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath,
                             withSender _: Any?) -> Bool {
         switch Sections(rawValue: indexPath.section) {
-        case .info?:
+        case .info?, .announcements?:
             return action == #selector(copy(_:))
         case .documents?:
             let file = filesViewModel[rowAt: indexPath.row]
@@ -178,6 +191,8 @@ final class CourseController: UITableViewController, Routable {
                 let titleAndValue = viewModel[rowAt: indexPath.row]
                 UIPasteboard.general.string = titleAndValue.value
             }
+        case .announcements?:
+            UIPasteboard.general.string = announcementsViewModel[rowAt: indexPath.row].body
         case .documents?:
             break
         case nil:
@@ -189,6 +204,8 @@ final class CourseController: UITableViewController, Routable {
         switch Sections(rawValue: indexPath.section) {
         case .info?:
             break
+        case .announcements?:
+            print("Announcement")
         case .documents?:
             guard
                 let cell = tableView.cellForRow(at: indexPath) as? FileCell,
@@ -285,7 +302,10 @@ extension CourseController: UITableViewDragDelegate {
             let titleAndValue = viewModel[rowAt: indexPath.row]
             let itemProvider = NSItemProvider(item: titleAndValue.value as NSSecureCoding?,
                                               typeIdentifier: kUTTypePlainText as String)
-            return [UIDragItem(itemProvider: itemProvider)]
+            print(itemProvider)
+            return []
+        case .announcements?:
+            return []
         case .documents?:
             let file = filesViewModel[rowAt: indexPath.row]
             guard let itemProvider = NSItemProvider(contentsOf: file.localUrl(inProviderDirectory: true)) else { return [] }
@@ -314,6 +334,8 @@ extension CourseController: UIViewControllerPreviewingDelegate {
 
         switch Sections(rawValue: indexPath.section) {
         case .info?:
+            return nil
+        case .announcements?:
             return nil
         case .documents?:
             let file = filesViewModel[rowAt: indexPath.row]
