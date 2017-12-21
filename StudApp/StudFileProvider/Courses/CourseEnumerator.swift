@@ -23,8 +23,10 @@ final class CourseEnumerator: CachingFileEnumerator {
 
         let coreDataService = ServiceContainer.default[CoreDataService.self]
 
-        guard let semester = try? Semester.fetch(byId: itemIdentifier.id, in: coreDataService.viewContext),
-            let unwrappedSemester = semester else {
+        guard
+            let semester = try? Semester.fetch(byId: itemIdentifier.id, in: coreDataService.viewContext),
+            let unwrappedSemester = semester
+        else {
             fatalError("Cannot find semester with identifier '\(itemIdentifier)'.")
         }
 

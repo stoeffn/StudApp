@@ -27,7 +27,7 @@ public final class AnnouncementListViewModel: NSObject {
         guard
             let optionalCourse = try? Course.fetch(byId: courseId, in: coreDataService.viewContext),
             let course = optionalCourse
-            else { return nil }
+        else { return nil }
         self.init(course: course)
     }
 

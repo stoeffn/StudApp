@@ -27,6 +27,7 @@
 		242B03761FD7471D00863B08 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B03751FD7471D00863B08 /* UIViewController+Utils.swift */; };
 		2432ABB71FE98BF000346226 /* AnnouncementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2432ABB61FE98BF000346226 /* AnnouncementCell.swift */; };
 		2432ABB91FE98D2900346226 /* AnnouncementListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2432ABB81FE98D2900346226 /* AnnouncementListViewModel.swift */; };
+		2432ABBB1FEBA2C500346226 /* AnnouncementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2432ABBA1FEBA2C500346226 /* AnnouncementController.swift */; };
 		243817921FC76BDC004052D0 /* DocumentActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243817911FC76BDC004052D0 /* DocumentActionViewController.swift */; };
 		243817991FC76BDC004052D0 /* StudFileProviderUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2438179E1FC76D1E004052D0 /* Routes+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438179D1FC76D1E004052D0 /* Routes+Utils.swift */; };
@@ -352,6 +353,7 @@
 		243014251FA8FE2800680253 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		2432ABB61FE98BF000346226 /* AnnouncementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementCell.swift; sourceTree = "<group>"; };
 		2432ABB81FE98D2900346226 /* AnnouncementListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementListViewModel.swift; sourceTree = "<group>"; };
+		2432ABBA1FEBA2C500346226 /* AnnouncementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementController.swift; sourceTree = "<group>"; };
 		2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StudFileProviderUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		243817911FC76BDC004052D0 /* DocumentActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentActionViewController.swift; sourceTree = "<group>"; };
 		243817961FC76BDC004052D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1168,6 +1170,7 @@
 			isa = PBXGroup;
 			children = (
 				2432ABB61FE98BF000346226 /* AnnouncementCell.swift */,
+				2432ABBA1FEBA2C500346226 /* AnnouncementController.swift */,
 				242B035A1FD71AB700863B08 /* CourseCell.swift */,
 				24830AAA1FDC09EC006A1927 /* CourseController.swift */,
 				243CC2C51FDF464800FE7376 /* CourseEmptyController.swift */,
@@ -1850,6 +1853,7 @@
 				242B035B1FD71AB700863B08 /* CourseCell.swift in Sources */,
 				24FD786E1FBF81EA0072F860 /* DownloadListController.swift in Sources */,
 				242B03701FD7464C00863B08 /* ColorCell.swift in Sources */,
+				2432ABBB1FEBA2C500346226 /* AnnouncementController.swift in Sources */,
 				243CC2C61FDF464800FE7376 /* CourseEmptyController.swift in Sources */,
 				24CFB5D11FB24E2500F30DEA /* MainController.swift in Sources */,
 				242B036A1FD745E800863B08 /* ColorPickerController.swift in Sources */,
