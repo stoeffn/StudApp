@@ -264,6 +264,8 @@ final class CourseController: UITableViewController, Routable {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch sender {
+        case let cell as AnnouncementCell:
+            prepare(for: .announcement(cell.announcement), destination: segue.destination)
         case let cell as FileCell:
             prepare(for: .folder(cell.file), destination: segue.destination)
         default:
@@ -333,9 +335,7 @@ extension CourseController: UIViewControllerPreviewingDelegate {
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
 
         switch Sections(rawValue: indexPath.section) {
-        case .info?:
-            return nil
-        case .announcements?:
+        case .info?, .announcements?:
             return nil
         case .documents?:
             let file = filesViewModel[rowAt: indexPath.row]

@@ -515,6 +515,10 @@
                                     <outlet property="lecturersGlyph" destination="myI-FQ-SXL" id="APR-K9-CPR"/>
                                     <outlet property="lecturersLabel" destination="0qT-vE-VkR" id="4QY-Eu-hNh"/>
                                     <outlet property="titleLabel" destination="btC-Vm-3wI" id="Nq2-Nx-5iW"/>
+                                    <segue destination="bF4-7v-77i" kind="presentation" identifier="announcement" id="huu-M5-eJx">
+                                        <segue key="commit" inheritsFrom="parent" id="0cC-j8-dTy"/>
+                                        <segue key="preview" inheritsFrom="commit" id="g0U-a0-94E"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -618,6 +622,73 @@
             </objects>
             <point key="canvasLocation" x="2425" y="132"/>
         </scene>
+        <!--Announcement-->
+        <scene sceneID="WLK-tl-nfG">
+            <objects>
+                <tableViewController id="5yc-2c-dLV" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Q5U-O4-81L">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <sections>
+                            <tableViewSection id="ux5-43-xOK">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="xxa-ib-gDj">
+                                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xxa-ib-gDj" id="JMR-Jr-Z8z">
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="wX1-EP-TPN">
+                                        <rect key="frame" x="0.0" y="44" width="768" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wX1-EP-TPN" id="YDO-Pd-8kh">
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="UJI-ED-zPR">
+                                        <rect key="frame" x="0.0" y="88" width="768" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UJI-ED-zPR" id="CL2-6Z-HfH">
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="5yc-2c-dLV" id="UQp-dO-08r"/>
+                            <outlet property="delegate" destination="5yc-2c-dLV" id="lnu-34-5Ro"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Announcement" id="CPe-Vo-ijl">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="wXg-j4-GTY"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WXl-yb-DKU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2643" y="868"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Xdh-WM-vSa">
+            <objects>
+                <navigationController id="bF4-7v-77i" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qBL-eo-q8K">
+                        <rect key="frame" x="0.0" y="20" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="5yc-2c-dLV" kind="relationship" relationship="rootViewController" id="NE7-DR-IkW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mib-KB-17i" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1870" y="868"/>
+        </scene>
         <!--Semesters-->
         <scene sceneID="UXO-ER-iwK">
             <objects>
@@ -680,6 +751,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="4Tp-c5-wvM"/>
+        <segue reference="huu-M5-eJx"/>
         <segue reference="BCO-wr-oP7"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
