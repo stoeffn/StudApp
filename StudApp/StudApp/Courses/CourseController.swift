@@ -298,33 +298,31 @@ extension CourseController: DataSourceSectionDelegate {
 
 @available(iOS 11.0, *)
 extension CourseController: UITableViewDragDelegate {
-    private func items(forIndexPath indexPath: IndexPath) -> [UIDragItem] {
+    private func itemProviders(forIndexPath indexPath: IndexPath) -> [NSItemProvider] {
         switch Sections(rawValue: indexPath.section) {
         case .info?:
-            let titleAndValue = viewModel[rowAt: indexPath.row]
-            let itemProvider = NSItemProvider(item: titleAndValue.value as NSSecureCoding?,
-                                              typeIdentifier: kUTTypePlainText as String)
-            print(itemProvider)
-            return []
+            guard let value = viewModel[rowAt: indexPath.row].value else { return [] }
+            return [NSItemProvider(item: value as NSString, typeIdentifier: kUTTypePlainText as String)]
         case .announcements?:
-            return []
+            let value = announcementsViewModel[rowAt: indexPath.row].body
+            return [NSItemProvider(item: value as NSString, typeIdentifier: kUTTypePlainText as String)]
         case .documents?:
             let file = filesViewModel[rowAt: indexPath.row]
             guard let itemProvider = NSItemProvider(contentsOf: file.localUrl(inProviderDirectory: true)) else { return [] }
             itemProvider.suggestedName = file.sanitizedTitleWithExtension
-            return [UIDragItem(itemProvider: itemProvider)]
+            return [itemProvider]
         case nil:
             fatalError()
         }
     }
 
     func tableView(_: UITableView, itemsForBeginning _: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        return items(forIndexPath: indexPath)
+        return itemProviders(forIndexPath: indexPath).map(UIDragItem.init)
     }
 
     func tableView(_: UITableView, itemsForAddingTo _: UIDragSession, at indexPath: IndexPath,
                    point _: CGPoint) -> [UIDragItem] {
-        return items(forIndexPath: indexPath)
+        return itemProviders(forIndexPath: indexPath).map(UIDragItem.init)
     }
 }
 

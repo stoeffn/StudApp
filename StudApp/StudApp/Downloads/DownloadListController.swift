@@ -200,20 +200,20 @@ extension DownloadListController: UISearchResultsUpdating {
 
 @available(iOS 11.0, *)
 extension DownloadListController: UITableViewDragDelegate {
-    private func items(forIndexPath indexPath: IndexPath) -> [UIDragItem] {
+    private func itemProviders(forIndexPath indexPath: IndexPath) -> [NSItemProvider] {
         let file = viewModel[rowAt: indexPath]
         guard let itemProvider = NSItemProvider(contentsOf: file.localUrl(inProviderDirectory: true)) else { return [] }
         itemProvider.suggestedName = file.sanitizedTitleWithExtension
-        return [UIDragItem(itemProvider: itemProvider)]
+        return [itemProvider]
     }
 
     func tableView(_: UITableView, itemsForBeginning _: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        return items(forIndexPath: indexPath)
+        return itemProviders(forIndexPath: indexPath).map(UIDragItem.init)
     }
 
     func tableView(_: UITableView, itemsForAddingTo _: UIDragSession, at indexPath: IndexPath,
                    point _: CGPoint) -> [UIDragItem] {
-        return items(forIndexPath: indexPath)
+        return itemProviders(forIndexPath: indexPath).map(UIDragItem.init)
     }
 }
 
