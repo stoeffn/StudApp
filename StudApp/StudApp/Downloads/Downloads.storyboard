@@ -33,7 +33,7 @@
                                     <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FilesGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="g2d-wr-nmJ">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownloadsGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="g2d-wr-nmJ">
                                     <rect key="frame" x="336" y="32" width="96" height="96"/>
                                     <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
@@ -270,7 +270,7 @@
     </scenes>
     <resources>
         <image name="DownloadCountSubtitleGlyph" width="16" height="16"/>
-        <image name="FilesGlyph" width="512" height="512"/>
+        <image name="DownloadsGlyph" width="512" height="512"/>
         <image name="SizeSubtitleGlyph" width="16" height="16"/>
         <image name="TimeSubtitleGlyph" width="16" height="16"/>
         <image name="UserBarButtonGlyph" width="25" height="25"/>
