@@ -98,7 +98,7 @@ extension Course {
 
         attributes.displayName = title
         attributes.keywords = keywords.array
-        attributes.relatedUniqueIdentifier = id
+        attributes.relatedUniqueIdentifier = itemIdentifier.rawValue
         attributes.kind = UserActivities.courseIdentifier
         attributes.title = title
 
@@ -108,7 +108,7 @@ extension Course {
     }
 
     public var searchableItem: CSSearchableItem {
-        return CSSearchableItem(uniqueIdentifier: id, domainIdentifier: Course.typeIdentifier,
+        return CSSearchableItem(uniqueIdentifier: itemIdentifier.rawValue, domainIdentifier: Course.typeIdentifier,
                                 attributeSet: searchableItemAttributes)
     }
 
@@ -120,7 +120,7 @@ extension Course {
         activity.webpageURL = url
         activity.contentAttributeSet = searchableItemAttributes
         activity.keywords = keywords
-        activity.requiredUserInfoKeys = [Course.typeIdentifier]
+        activity.itemIdentifier = itemIdentifier
         return activity
     }
 }

@@ -79,7 +79,7 @@ final class CourseController: UITableViewController, Routable {
     // MARK: - Supporting User Activities
 
     override func updateUserActivityState(_ activity: NSUserActivity) {
-        activity.addUserInfoEntries(from: [Course.typeIdentifier: viewModel.course.id])
+        activity.itemIdentifier = viewModel.course.itemIdentifier
     }
 
     // MARK: - Table View Data Source

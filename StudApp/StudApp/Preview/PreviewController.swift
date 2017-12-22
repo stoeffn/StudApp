@@ -31,7 +31,7 @@ final class PreviewController: QLPreviewController, Routable {
     // MARK: - Supporting User Activities
 
     override func updateUserActivityState(_ activity: NSUserActivity) {
-        activity.addUserInfoEntries(from: [File.typeIdentifier: file.id])
+        activity.itemIdentifier = file.itemIdentifier
     }
 }
 

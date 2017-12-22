@@ -208,6 +208,7 @@
 		24D9EF561FB7559C006776B7 /* SemesterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9EF551FB7559C006776B7 /* SemesterListViewModel.swift */; };
 		24D9EF851FB75818006776B7 /* FileProviderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9EF841FB75818006776B7 /* FileProviderExtension.swift */; };
 		24D9EF9E1FB75819006776B7 /* StudFileProvider.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 24D9EF821FB75818006776B7 /* StudFileProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		24E525C11FED8650000FB71A /* NSUserActivity+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E525C01FED8650000FB71A /* NSUserActivity+Utils.swift */; };
 		24E60B621FC8C725000EDD2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B611FC8C723000EDD2A /* Main.storyboard */; };
 		24E60B661FC8C749000EDD2A /* Downloads.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B651FC8C749000EDD2A /* Downloads.storyboard */; };
 		24E60B681FC8C754000EDD2A /* Semesters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B671FC8C754000EDD2A /* Semesters.storyboard */; };
@@ -528,6 +529,7 @@
 		24D9EF841FB75818006776B7 /* FileProviderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderExtension.swift; sourceTree = "<group>"; };
 		24D9EF8A1FB75819006776B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24D9EF8B1FB75819006776B7 /* StudFileProvider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudFileProvider.entitlements; sourceTree = "<group>"; };
+		24E525C01FED8650000FB71A /* NSUserActivity+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSUserActivity+Utils.swift"; sourceTree = "<group>"; };
 		24E60B611FC8C723000EDD2A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		24E60B651FC8C749000EDD2A /* Downloads.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Downloads.storyboard; sourceTree = "<group>"; };
 		24E60B671FC8C754000EDD2A /* Semesters.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Semesters.storyboard; sourceTree = "<group>"; };
@@ -899,6 +901,7 @@
 				24712BF31FB8B80B0067E416 /* DateFormatter+Shared.swift */,
 				2448D48E1FA8DEE800DAB97E /* FileManager+Utils.swift */,
 				24D729401FC7490C0097777F /* Int+ByteCountFormatting.swift */,
+				24E525C01FED8650000FB71A /* NSUserActivity+Utils.swift */,
 				24D729441FC74B600097777F /* PersonNameComponents+Formatting.swift */,
 			);
 			path = Foundation;
@@ -1988,6 +1991,7 @@
 				2448D4A51FA8E07E00DAB97E /* Result+Api.swift in Sources */,
 				24D360D31FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift in Sources */,
 				243CC2BE1FDF0A7F00FE7376 /* CDSortable.swift in Sources */,
+				24E525C11FED8650000FB71A /* NSUserActivity+Utils.swift in Sources */,
 				24D360DF1FAA5D3800BBBAED /* String+HTML.swift in Sources */,
 				242B03761FD7471D00863B08 /* UIViewController+Utils.swift in Sources */,
 				246F3ACA1FAC879C00A477FF /* DataSourceDelegate.swift in Sources */,

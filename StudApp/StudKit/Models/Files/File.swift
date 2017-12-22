@@ -199,8 +199,7 @@ extension File {
 
         attributes.displayName = title
         attributes.keywords = keywords.array
-        attributes.metadataModificationDate = state.downloadedAt
-        attributes.relatedUniqueIdentifier = id
+        attributes.relatedUniqueIdentifier = itemIdentifier.rawValue
         attributes.title = title
 
         attributes.contentDescription = summary
@@ -219,7 +218,7 @@ extension File {
     }
 
     public var searchableItem: CSSearchableItem {
-        return CSSearchableItem(uniqueIdentifier: id, domainIdentifier: File.typeIdentifier,
+        return CSSearchableItem(uniqueIdentifier: itemIdentifier.rawValue, domainIdentifier: File.typeIdentifier,
                                 attributeSet: searchableItemAttributes)
     }
 
@@ -237,7 +236,7 @@ extension File {
         activity.webpageURL = url
         activity.contentAttributeSet = searchableItemAttributes
         activity.keywords = keywords
-        activity.requiredUserInfoKeys = [File.typeIdentifier]
+        activity.itemIdentifier = itemIdentifier
         return activity
     }
 }
