@@ -33,7 +33,7 @@ final class AnnouncementController: UIViewController, Routable {
     // MARK: - User Interaction
 
     @IBAction
-    func doneButtonTapped(_ sender: Any) {
+    func doneButtonTapped(_: Any) {
         dismiss(animated: true, completion: nil)
     }
 }

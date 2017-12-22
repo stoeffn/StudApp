@@ -7,7 +7,7 @@
 //
 
 public final class ColorPickerViewModel {
-    private let colors = Array(UI.Colors.pickerColors.enumerated().sorted { $0.element.key < $1.element.key } .map { $1 })
+    private let colors = Array(UI.Colors.pickerColors.enumerated().sorted { $0.element.key < $1.element.key }.map { $1 })
 
     public var handler: (Int, UIColor) -> Void
 

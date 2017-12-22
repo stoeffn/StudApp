@@ -13,7 +13,7 @@ final class CourseController: UITableViewController, Routable {
     private var restoredCourseId: String?
     private var viewModel: CourseViewModel!
     private var announcementsViewModel: AnnouncementListViewModel!
-    private var filesViewModel: FileListViewModel!
+    private var fileListViewModel: FileListViewModel!
 
     // MARK: - Life Cycle
 
@@ -34,7 +34,7 @@ final class CourseController: UITableViewController, Routable {
         userActivity = userActivity()
 
         announcementsViewModel.update()
-        filesViewModel.update()
+        fileListViewModel.update()
 
         navigationItem.title = viewModel.course.title
         subtitleLabel.text = viewModel.course.subtitle
@@ -45,9 +45,9 @@ final class CourseController: UITableViewController, Routable {
         announcementsViewModel.delegate = self
         announcementsViewModel.fetch()
 
-        filesViewModel = FileListViewModel(course: course)
-        filesViewModel.delegate = self
-        filesViewModel.fetch()
+        fileListViewModel = FileListViewModel(course: course)
+        fileListViewModel.delegate = self
+        fileListViewModel.fetch()
     }
 
     func prepareDependencies(for route: Routes) {
@@ -97,6 +97,13 @@ final class CourseController: UITableViewController, Routable {
         case info, announcements, documents
     }
 
+    private func index<Section: DataSourceSection>(for section: Section) -> Sections? {
+        let section = section as AnyObject
+        if section === announcementsViewModel { return Sections.announcements }
+        if section === fileListViewModel { return Sections.documents }
+        return nil
+    }
+
     override func numberOfSections(in _: UITableView) -> Int {
         return 3
     }
@@ -108,7 +115,7 @@ final class CourseController: UITableViewController, Routable {
         case .announcements?:
             return announcementsViewModel.numberOfRows
         case .documents?:
-            return filesViewModel.numberOfRows
+            return fileListViewModel.numberOfRows
         case nil:
             fatalError()
         }
@@ -128,7 +135,7 @@ final class CourseController: UITableViewController, Routable {
             return cell
         case .documents?:
             let cell = tableView.dequeueReusableCell(withIdentifier: FileCell.typeIdentifier, for: indexPath)
-            (cell as? FileCell)?.file = filesViewModel[rowAt: indexPath.row]
+            (cell as? FileCell)?.file = fileListViewModel[rowAt: indexPath.row]
             return cell
         case nil:
             fatalError()
@@ -169,7 +176,7 @@ final class CourseController: UITableViewController, Routable {
         case .info?, .announcements?:
             return action == #selector(copy(_:))
         case .documents?:
-            let file = filesViewModel[rowAt: indexPath.row]
+            let file = fileListViewModel[rowAt: indexPath.row]
 
             switch action {
             case #selector(CustomMenuItems.share(_:)):
@@ -277,8 +284,9 @@ final class CourseController: UITableViewController, Routable {
 
 extension CourseController: DataSourceSectionDelegate {
     public func data<Section: DataSourceSection>(changedIn _: Section.Row, at index: Int, change: DataChange<Section.Row, Int>,
-                                                 in _: Section) {
-        let indexPath = IndexPath(row: index, section: Sections.documents.rawValue)
+                                                 in section: Section) {
+        guard let sectionIndex = self.index(for: section)?.rawValue else { return }
+        let indexPath = IndexPath(row: index, section: sectionIndex)
         switch change {
         case .insert:
             tableView.insertRows(at: [indexPath], with: .automatic)
@@ -287,7 +295,7 @@ extension CourseController: DataSourceSectionDelegate {
         case .update:
             tableView.reloadRows(at: [indexPath], with: .automatic)
         case let .move(newIndex):
-            let newIndexPath = IndexPath(row: newIndex, section: Sections.documents.rawValue)
+            let newIndexPath = IndexPath(row: newIndex, section: sectionIndex)
             tableView.moveRow(at: indexPath, to: newIndexPath)
         }
     }
@@ -306,7 +314,7 @@ extension CourseController: UITableViewDragDelegate {
             let value = announcementsViewModel[rowAt: indexPath.row].body
             return [NSItemProvider(item: value as NSString, typeIdentifier: kUTTypePlainText as String)]
         case .documents?:
-            let file = filesViewModel[rowAt: indexPath.row]
+            let file = fileListViewModel[rowAt: indexPath.row]
             guard let itemProvider = NSItemProvider(contentsOf: file.localUrl(inProviderDirectory: true)) else { return [] }
             itemProvider.suggestedName = file.sanitizedTitleWithExtension
             return [itemProvider]
@@ -335,7 +343,7 @@ extension CourseController: UIViewControllerPreviewingDelegate {
         case .info?, .announcements?:
             return nil
         case .documents?:
-            let file = filesViewModel[rowAt: indexPath.row]
+            let file = fileListViewModel[rowAt: indexPath.row]
             guard !file.isFolder && file.state.isDownloaded else { return nil }
 
             let previewController = PreviewController()
