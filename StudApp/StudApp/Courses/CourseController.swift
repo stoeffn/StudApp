@@ -202,10 +202,8 @@ final class CourseController: UITableViewController, Routable {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch Sections(rawValue: indexPath.section) {
-        case .info?:
+        case .info?, .announcements?:
             break
-        case .announcements?:
-            print("Announcement")
         case .documents?:
             guard
                 let cell = tableView.cellForRow(at: indexPath) as? FileCell,

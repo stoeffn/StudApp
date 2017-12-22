@@ -56,7 +56,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14A-k0-KOd">
-                                    <rect key="frame" x="135" y="218.5" width="50" height="32"/>
+                                    <rect key="frame" x="135" y="219" width="50" height="32"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <state key="normal" title="Reload"/>
                                     <connections>
@@ -512,8 +512,8 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="colorView" destination="Bv3-hO-yWr" id="ed3-C4-CIJ"/>
-                                    <outlet property="lecturersGlyph" destination="myI-FQ-SXL" id="APR-K9-CPR"/>
-                                    <outlet property="lecturersLabel" destination="0qT-vE-VkR" id="4QY-Eu-hNh"/>
+                                    <outlet property="createdAtGlyph" destination="myI-FQ-SXL" id="Glb-ms-twa"/>
+                                    <outlet property="createdAtLabel" destination="0qT-vE-VkR" id="igR-v1-xqL"/>
                                     <outlet property="titleLabel" destination="btC-Vm-3wI" id="Nq2-Nx-5iW"/>
                                     <segue destination="bF4-7v-77i" kind="presentation" identifier="announcement" id="huu-M5-eJx">
                                         <segue key="commit" inheritsFrom="parent" id="0cC-j8-dTy"/>
@@ -625,7 +625,6 @@
         <!--Announcement-->
         <scene sceneID="WLK-tl-nfG">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WXl-yb-DKU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="5yc-2c-dLV" customClass="AnnouncementController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Q5U-O4-81L">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
@@ -670,6 +669,7 @@
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="wXg-j4-GTY"/>
                     </navigationItem>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WXl-yb-DKU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2642.96875" y="867.7734375"/>
         </scene>
