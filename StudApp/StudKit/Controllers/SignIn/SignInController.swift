@@ -19,7 +19,7 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
 
         usernameField.placeholder = "Username".localized
         passwordField.placeholder = "Password".localized
-        signInButton.titleLabel?.text = "Sign In".localized
+        signInButton.setTitle("Sign In".localized, for: .normal)
 
         NotificationCenter.default
             .addObserver(self, selector: #selector(keyboardDidShow), name: .UIKeyboardDidShow, object: nil)

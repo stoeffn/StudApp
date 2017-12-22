@@ -61,7 +61,7 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
                                                            for: indexPath) as? ActionCell else { fatalError() }
             cell.titleLabel.text = "Error Loading Organizations".localized
             cell.subtitleLabel.text = error
-            cell.actionButton.titleLabel?.text = "Retry".localized
+            cell.actionButton.setTitle("Retry".localized, for: .normal)
             cell.action = { self.viewModel.fetch() }
             return cell
         case let .success(organizations):
