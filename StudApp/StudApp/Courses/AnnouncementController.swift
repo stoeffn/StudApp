@@ -8,7 +8,7 @@
 
 import StudKit
 
-final class AnnouncementController: UITableViewController, Routable {
+final class AnnouncementController: UIViewController, Routable {
     private var announcement: Announcement!
 
     // MARK: - Life Cycle
@@ -17,10 +17,23 @@ final class AnnouncementController: UITableViewController, Routable {
         super.viewDidLoad()
 
         navigationItem.title = announcement.title
+
+        bodyView.text = announcement.body
     }
 
     func prepareDependencies(for route: Routes) {
         guard case let .announcement(announcement) = route else { return }
         self.announcement = announcement
+    }
+
+    // MARK: - User Interface
+
+    @IBOutlet weak var bodyView: UITextView!
+
+    // MARK: - User Interaction
+
+    @IBAction
+    func doneButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
 }

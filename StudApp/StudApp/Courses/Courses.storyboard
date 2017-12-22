@@ -515,7 +515,7 @@
                                     <outlet property="createdAtGlyph" destination="myI-FQ-SXL" id="Glb-ms-twa"/>
                                     <outlet property="createdAtLabel" destination="0qT-vE-VkR" id="igR-v1-xqL"/>
                                     <outlet property="titleLabel" destination="btC-Vm-3wI" id="Nq2-Nx-5iW"/>
-                                    <segue destination="bF4-7v-77i" kind="presentation" identifier="announcement" id="huu-M5-eJx">
+                                    <segue destination="bF4-7v-77i" kind="presentation" identifier="announcement" modalPresentationStyle="formSheet" id="huu-M5-eJx">
                                         <segue key="commit" inheritsFrom="parent" id="0cC-j8-dTy"/>
                                         <segue key="preview" inheritsFrom="commit" id="g0U-a0-94E"/>
                                     </segue>
@@ -623,66 +623,56 @@
             <point key="canvasLocation" x="2425" y="132"/>
         </scene>
         <!--Announcement-->
-        <scene sceneID="WLK-tl-nfG">
+        <scene sceneID="WLS-mh-YBa">
             <objects>
-                <tableViewController id="5yc-2c-dLV" customClass="AnnouncementController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Q5U-O4-81L">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                <viewController id="VDm-07-PSg" customClass="AnnouncementController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="YXn-Mt-Otv">
+                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <sections>
-                            <tableViewSection footerTitle="" id="ux5-43-xOK">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="452" id="UJI-ED-zPR">
-                                        <rect key="frame" x="0.0" y="35" width="768" height="452"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UJI-ED-zPR" id="CL2-6Z-HfH">
-                                            <rect key="frame" x="0.0" y="0.0" width="768" height="451.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="npv-L8-TMy">
-                                                    <rect key="frame" x="48" y="11" width="672" height="430"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES" shipmentTrackingNumber="YES" flightNumber="YES" lookupSuggestion="YES"/>
-                                                </textView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="npv-L8-TMy" firstAttribute="top" secondItem="CL2-6Z-HfH" secondAttribute="topMargin" id="5Gs-Yo-BgN"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="npv-L8-TMy" secondAttribute="trailing" id="FP6-hA-4G8"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="npv-L8-TMy" secondAttribute="bottom" id="kHb-vJ-ktc"/>
-                                                <constraint firstItem="npv-L8-TMy" firstAttribute="leading" secondItem="CL2-6Z-HfH" secondAttribute="leadingMargin" id="pso-DX-Tev"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="5yc-2c-dLV" id="UQp-dO-08r"/>
-                            <outlet property="delegate" destination="5yc-2c-dLV" id="lnu-34-5Ro"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Announcement" id="CPe-Vo-ijl">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="wXg-j4-GTY"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" editable="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lZu-MX-3CK">
+                                <rect key="frame" x="0.0" y="44" width="540" height="576"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES" shipmentTrackingNumber="YES" flightNumber="YES" lookupSuggestion="YES"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="lZu-MX-3CK" firstAttribute="leading" secondItem="50v-8P-Ij0" secondAttribute="leading" id="Y9g-39-gmD"/>
+                            <constraint firstItem="50v-8P-Ij0" firstAttribute="trailing" secondItem="lZu-MX-3CK" secondAttribute="trailing" id="YFO-lX-odf"/>
+                            <constraint firstItem="50v-8P-Ij0" firstAttribute="bottom" secondItem="lZu-MX-3CK" secondAttribute="bottom" id="jMU-fN-BUW"/>
+                            <constraint firstItem="lZu-MX-3CK" firstAttribute="top" secondItem="50v-8P-Ij0" secondAttribute="top" id="z16-I6-PcK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="50v-8P-Ij0"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Announcement" id="YSc-JM-8f0">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="dzS-iH-y7K">
+                            <connections>
+                                <action selector="doneButtonTapped:" destination="VDm-07-PSg" id="dQj-Gn-hJC"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WXl-yb-DKU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                    <connections>
+                        <outlet property="bodyView" destination="lZu-MX-3CK" id="DCl-bn-Set"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2k0-uK-KMv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2642.96875" y="867.7734375"/>
+            <point key="canvasLocation" x="2652" y="868"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Xdh-WM-vSa">
             <objects>
                 <navigationController id="bF4-7v-77i" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qBL-eo-q8K">
-                        <rect key="frame" x="0.0" y="20" width="768" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="5yc-2c-dLV" kind="relationship" relationship="rootViewController" id="NE7-DR-IkW"/>
+                        <segue destination="VDm-07-PSg" kind="relationship" relationship="rootViewController" id="2KX-Li-WZ9"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mib-KB-17i" userLabel="First Responder" sceneMemberID="firstResponder"/>

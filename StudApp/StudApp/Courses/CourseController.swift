@@ -211,10 +211,11 @@ final class CourseController: UITableViewController, Routable {
             else { return }
 
             downloadOrPreview(cell.file)
-            tableView.deselectRow(at: indexPath, animated: true)
         case nil:
             fatalError()
         }
+
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     // MARK: - User Interface
