@@ -25,6 +25,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
         navigationItem.title = "Downloads".localized
 
+        tableView.register(CourseHeader.self, forHeaderFooterViewReuseIdentifier: CourseHeader.typeIdentifier)
         tableView.tableHeaderView = nil
 
         let searchController = UISearchController(searchResultsController: nil)
@@ -81,14 +82,20 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         return viewModel.numberOfRows(inSection: section)
     }
 
+    override func tableView(_: UITableView, heightForHeaderInSection _: Int) -> CGFloat {
+        return CourseHeader.height
+    }
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: CourseHeader.typeIdentifier)
+        (header as? CourseHeader)?.course = viewModel[rowAt: IndexPath(row: 0, section: section)].course
+        return header
+    }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FileCell.typeIdentifier, for: indexPath)
         (cell as? FileCell)?.file = viewModel[rowAt: indexPath]
         return cell
-    }
-
-    override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return viewModel[sectionAt: section]
     }
 
     override func sectionIndexTitles(for _: UITableView) -> [String]? {

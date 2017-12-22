@@ -76,7 +76,7 @@ extension Course {
 
     /// Request for fetching all announcements for this course that are not expired.
     public var unexpiredAnnouncementsFetchRequest: NSFetchRequest<Announcement> {
-        let predicate = NSPredicate(format: "%@ ØIN courses AND expiresAt >= %@", self, Date() as CVarArg)
+        let predicate = NSPredicate(format: "%@ IN courses AND expiresAt >= %@", self, Date() as CVarArg)
         return Announcement.fetchRequest(predicate: predicate, sortDescriptors: Announcement.defaultSortDescriptors)
     }
 }
