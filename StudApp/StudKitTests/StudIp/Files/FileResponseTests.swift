@@ -46,6 +46,7 @@ final class FileResponseTests: XCTestCase {
         XCTAssertEqual(file.title, "Title")
         XCTAssertEqual(file.createdAt.debugDescription, "2016-07-07 12:55:55 +0000")
         XCTAssertEqual(file.modifiedAt.debugDescription, "2016-07-07 12:55:42 +0000")
+        XCTAssertEqual(file.summary, "Hello, World!")
         XCTAssertEqual(file.ownerId, nil)
     }
 

@@ -51,6 +51,9 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
     /// User who uploaded or modified this file. Might be `nil` for folders or some documents authored by multiple users.
     @NSManaged public var owner: User?
 
+    /// File description.
+    @NSManaged public var summary: String?
+
     /// Files contained in this file in case of a folder.
     @NSManaged public var children: Set<File>
 
