@@ -6,6 +6,8 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import CoreSpotlight
+
 public final class StudIpService {
     let api: Api<StudIpRoutes>
 
@@ -118,6 +120,8 @@ public final class StudIpService {
 
         let storageService = ServiceContainer.default[StorageService.self]
         try? storageService.removeAllDocuments()
+
+        CSSearchableIndex.default().deleteAllSearchableItems { _ in }
 
         if #available(iOSApplicationExtension 11.0, *) {
             NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
