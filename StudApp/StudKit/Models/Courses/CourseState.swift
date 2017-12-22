@@ -38,3 +38,11 @@ public final class CourseState: NSManagedObject, CDCreatable, CDSortable {
         NSSortDescriptor(keyPath: \CourseState.course.title, ascending: true),
     ]
 }
+
+// MARK: - Utilities
+
+public extension CourseState {
+    public var color: UIColor {
+        return UI.Colors.pickerColors[course.state.colorId] ?? UI.Colors.pickerColors.first?.value ?? UI.Colors.studBlue
+    }
+}

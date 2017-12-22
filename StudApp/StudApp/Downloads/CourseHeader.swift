@@ -25,8 +25,7 @@ final class CourseHeader: UITableViewHeaderFooterView {
 
     var course: Course! {
         didSet {
-            colorView.backgroundColor = (UI.Colors.pickerColors[course.state.colorId] ?? UI.Colors.studBlue)
-                .withAlphaComponent(0.2)
+            colorView.backgroundColor = course.state.color.withAlphaComponent(0.2)
             titleLabel.text = course.title
         }
     }

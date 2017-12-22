@@ -134,6 +134,7 @@ final class CourseController: UITableViewController, Routable {
         case .announcements?:
             let cell = tableView.dequeueReusableCell(withIdentifier: AnnouncementCell.typeIdentifier, for: indexPath)
             (cell as? AnnouncementCell)?.announcement = announcementsViewModel[rowAt: indexPath.row]
+            (cell as? AnnouncementCell)?.color = viewModel.course.state.color
             return cell
         case .documents?:
             let cell = tableView.dequeueReusableCell(withIdentifier: FileCell.typeIdentifier, for: indexPath)
