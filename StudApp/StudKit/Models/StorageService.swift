@@ -14,12 +14,21 @@ public final class StorageService {
         return defaults
     }()
 
-    lazy var documentsUrl: URL = {
+    lazy var appGroupUrl: URL = {
         let identifier = App.groupIdentifier
         guard let appGroupUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: identifier) else {
             fatalError("Cannot create URL for app group directory with identifier '\(identifier)'.")
         }
-        return appGroupUrl.appendingPathComponent("Documents", isDirectory: true)
+        return appGroupUrl
+    }()
+
+    lazy var documentsUrl = appGroupUrl.appendingPathComponent("Documents", isDirectory: true)
+
+    lazy var fileProviderDocumentsUrl: URL = {
+        guard #available(iOSApplicationExtension 11.0, *) else {
+            return appGroupUrl.appendingPathComponent("File Provider Storage", isDirectory: true)
+        }
+        return NSFileProviderManager.default.documentStorageURL
     }()
 
     func removeAllDocuments() throws {

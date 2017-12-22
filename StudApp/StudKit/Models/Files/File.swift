@@ -160,20 +160,17 @@ public extension File {
     /// - Parameters:
     ///   - id: File identifier.
     ///   - inProviderDirectory: Whether to return the local URL inside the file provider documents folder or the app's
-    ///                          document folder, which is the default option. Before iOS 11, this method always uses the
-    ///                          app's document folder.
+    ///                          document folder, which is the default option.
     public static func localContainerUrl(forId id: String, inProviderDirectory: Bool = false) -> URL {
-        guard #available(iOSApplicationExtension 11.0, *), inProviderDirectory else {
-            return localContainerUrl(forId: id, in: ServiceContainer.default[StorageService.self].documentsUrl)
-        }
-        return localContainerUrl(forId: id, in: NSFileProviderManager.default.documentStorageURL)
+        let storageService = ServiceContainer.default[StorageService.self]
+        let directory = inProviderDirectory ? storageService.fileProviderDocumentsUrl : storageService.documentsUrl
+        return localContainerUrl(forId: id, in: directory)
     }
 
     /// URL for the locally downloaded file.
     ///
     /// - Parameter inProviderDirectory: Whether to return the local file URL inside the file provider documents folder or the
-    ///                                  app's document folder, which is the default option. Before iOS 11, this method always
-    ////                                 uses the app's document folder.
+    ///                                  app's document folder, which is the default option.
     public func localUrl(inProviderDirectory: Bool = false) -> URL {
         return File.localContainerUrl(forId: id, inProviderDirectory: inProviderDirectory)
             .appendingPathComponent(name, isDirectory: isFolder)
