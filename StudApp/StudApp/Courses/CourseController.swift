@@ -335,7 +335,7 @@ extension CourseController: UIViewControllerPreviewingDelegate {
             return nil
         case .documents?:
             let file = fileListViewModel[rowAt: indexPath.row]
-            guard !file.isFolder && file.state.isDownloaded else { return nil }
+            guard !file.isFolder else { return nil }
 
             let previewController = PreviewController()
             previewController.prepareDependencies(for: .preview(file))
