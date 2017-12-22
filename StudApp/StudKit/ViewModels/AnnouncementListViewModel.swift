@@ -32,7 +32,7 @@ public final class AnnouncementListViewModel: NSObject {
     }
 
     private(set) lazy var controller: NSFetchedResultsController<Announcement>
-        = NSFetchedResultsController(fetchRequest: course.announcementsFetchRequest,
+        = NSFetchedResultsController(fetchRequest: course.unexpiredAnnouncementsFetchRequest,
                                      managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
 
     public func fetch() {
