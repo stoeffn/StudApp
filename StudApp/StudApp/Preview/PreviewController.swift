@@ -33,6 +33,7 @@ final class PreviewController: QLPreviewController, Routable {
     func userActivity() -> NSUserActivity {
         let activity = NSUserActivity(activityType: UserActivities.documentIdentifier)
         activity.isEligibleForHandoff = true
+        activity.isEligibleForSearch = true
         activity.title = file.title
         activity.webpageURL = file.url
         activity.requiredUserInfoKeys = [File.typeIdentifier]

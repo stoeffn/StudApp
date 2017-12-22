@@ -81,6 +81,7 @@ final class CourseController: UITableViewController, Routable {
     func userActivity() -> NSUserActivity {
         let activity = NSUserActivity(activityType: UserActivities.courseIdentifier)
         activity.isEligibleForHandoff = true
+        activity.isEligibleForSearch = true
         activity.title = viewModel.course.title
         activity.webpageURL = viewModel.course.url
         activity.requiredUserInfoKeys = [Course.typeIdentifier]
