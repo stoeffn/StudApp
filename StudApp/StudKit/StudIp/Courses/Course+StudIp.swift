@@ -16,24 +16,27 @@ extension Course {
 
         studIpService.api.requestCollection(.courses(forUserId: userId)) { (result: Result<[CourseResponse]>) in
             guard let models = result.value else { return handler(result.replacingValue(nil)) }
-            let updatedCourses = try? Course.update(using: models, in: context)
 
-            guard let semesters = try? Semester.fetchNonHidden(in: context) else { return }
+            do {
+                let updatedCourses = try Course.update(using: models, in: context)
 
-            for semester in semesters {
-                semester.state.areCoursesFetchedFromRemote = true
+                try? Semester.fetchNonHidden(in: context).forEach { semester in
+                    semester.state.areCoursesFetchedFromRemote = true
+
+                    if #available(iOSApplicationExtension 11.0, *) {
+                        NSFileProviderManager.default.signalEnumerator(for: semester.itemIdentifier) { _ in }
+                    }
+                }
 
                 if #available(iOSApplicationExtension 11.0, *) {
-                    NSFileProviderManager.default.signalEnumerator(for: semester.itemIdentifier) { _ in }
+                    NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
+                    NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
                 }
-            }
 
-            if #available(iOSApplicationExtension 11.0, *) {
-                NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
-                NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+                handler(result.replacingValue(updatedCourses))
+            } catch {
+                handler(.failure(error))
             }
-
-            handler(result.replacingValue(updatedCourses))
         }
     }
 
@@ -41,16 +44,21 @@ extension Course {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestCollection(.filesInCourse(withId: id)) { (result: Result<[FileResponse]>) in
             guard let models = result.value else { return handler(result.replacingValue(nil)) }
-            let updatedFiles = try? File.update(using: models, in: context)
 
-            self.state.areFilesFetchedFromRemote = true
+            do {
+                let updatedFiles = try File.update(using: models, in: context)
 
-            if #available(iOSApplicationExtension 11.0, *) {
-                NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
-                NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+                self.state.areFilesFetchedFromRemote = true
+
+                if #available(iOSApplicationExtension 11.0, *) {
+                    NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
+                    NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+                }
+
+                handler(result.replacingValue(updatedFiles))
+            } catch {
+                handler(.failure(error))
             }
-
-            handler(result.replacingValue(updatedFiles))
         }
     }
 
@@ -58,8 +66,13 @@ extension Course {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestCollection(.announcementsInCourse(withId: id)) { (result: Result<[AnnouncementResponse]>) in
             guard let models = result.value else { return handler(result.replacingValue(nil)) }
-            let updatedAnnouncements = try? Announcement.update(using: models, in: context)
-            handler(result.replacingValue(updatedAnnouncements))
+
+            do {
+                let updatedAnnouncements = try Announcement.update(using: models, in: context)
+                handler(result.replacingValue(updatedAnnouncements))
+            } catch {
+                handler(.failure(error))
+            }
         }
     }
 

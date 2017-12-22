@@ -12,17 +12,20 @@ extension File {
     public func updateChildren(in context: NSManagedObjectContext, handler: @escaping ResultHandler<File>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestDecoded(.file(withId: id)) { (result: Result<FileResponse>) in
-            guard
-                let models = result.value,
-                let updatedFile = try? File.update(using: [models], in: context).first
-            else { return handler(result.replacingValue(nil)) }
+            guard let models = result.value else { return handler(result.replacingValue(nil)) }
 
-            if #available(iOSApplicationExtension 11.0, *) {
-                NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
-                NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+            do {
+                let updatedFile = try File.update(using: [models], in: context).first
+
+                if #available(iOSApplicationExtension 11.0, *) {
+                    NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
+                    NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+                }
+
+                handler(result.replacingValue(updatedFile))
+            } catch {
+                handler(.failure(error))
             }
-
-            handler(result.replacingValue(updatedFile))
         }
     }
 
