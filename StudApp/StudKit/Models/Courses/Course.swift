@@ -7,6 +7,8 @@
 //
 
 import CoreData
+import CoreSpotlight
+import MobileCoreServices
 
 /// Course that a user can attend, e.g. a university class.
 ///
@@ -84,6 +86,17 @@ extension Course {
 // MARK: - Utilities
 
 extension Course {
+    public var attributes: CSSearchableItemAttributeSet {
+        let attributes = CSSearchableItemAttributeSet(itemContentType: kUTTypeFolder as String)
+        attributes.relatedUniqueIdentifier = id
+        attributes.kind = Course.typeIdentifier
+        attributes.displayName = title
+        attributes.title = title
+        attributes.keywords = keywords.array
+        attributes.comment = description
+        return attributes
+    }
+
     public var keywords: Set<String> {
         let courseKeyWords = [number].flatMap { $0 }.set
         let lecturersKeywords = lecturers.flatMap { [$0.givenName, $0.familyName] }.set

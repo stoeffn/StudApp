@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import CoreSpotlight
 import MobileCoreServices
 import QuickLook
 
@@ -171,6 +172,25 @@ public extension File {
         let cacheService = ServiceContainer.default[CacheService.self]
         return cacheService.documentInteractionController(forUrl: localUrl(inProviderDirectory: true), name: title,
                                                           handler: handler)
+    }
+
+    public var attributes: CSSearchableItemAttributeSet {
+        let attributes = CSSearchableItemAttributeSet(itemContentType: typeIdentifier)
+        attributes.relatedUniqueIdentifier = id
+        attributes.identifier = id
+        attributes.metadataModificationDate = state.downloadedAt
+        attributes.kind = File.typeIdentifier
+        attributes.displayName = title
+        attributes.subject = title
+        attributes.title = title
+        attributes.keywords = keywords.array
+        attributes.fileSize = size > 0 ? size as NSNumber : nil
+        attributes.contentURL = localUrl(inProviderDirectory: true)
+        attributes.comment = description
+        attributes.downloadedDate = state.downloadedAt
+        attributes.contentCreationDate = createdAt
+        attributes.contentModificationDate = modifiedAt
+        return attributes
     }
 
     public var keywords: Set<String> {
