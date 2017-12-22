@@ -10,6 +10,9 @@ import QuickLook
 import StudKit
 
 final class PreviewController: QLPreviewController, Routable {
+    private var coreDataService = ServiceContainer.default[CoreDataService.self]
+    private var historyService = ServiceContainer.default[HistoryService.self]
+
     // MARK: - Life Cycle
 
     private var file: File!
@@ -25,6 +28,7 @@ final class PreviewController: QLPreviewController, Routable {
 
         self.file = file
 
+        delegate = self
         dataSource = self
     }
 
@@ -32,6 +36,15 @@ final class PreviewController: QLPreviewController, Routable {
 
     override func updateUserActivityState(_ activity: NSUserActivity) {
         activity.itemIdentifier = file.itemIdentifier
+    }
+}
+
+// MARK: - QuickLook Delegate
+
+extension PreviewController: QLPreviewControllerDelegate {
+    func previewControllerWillDismiss(_: QLPreviewController) {
+        try? historyService.mergeHistory(into: coreDataService.viewContext)
+        try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
     }
 }
 
