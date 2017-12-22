@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import CoreSpotlight
 
 extension Course {
     public static func update(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Course]>) {
@@ -14,7 +15,8 @@ extension Course {
         guard let userId = studIpService.userId else { return }
 
         studIpService.api.requestCollection(.courses(forUserId: userId)) { (result: Result<[CourseResponse]>) in
-            Course.update(using: result, in: context, handler: handler)
+            guard let models = result.value else { return handler(result.replacingValue(nil)) }
+            let updatedCourses = try? Course.update(using: models, in: context)
 
             guard let semesters = try? Semester.fetchNonHidden(in: context) else { return }
 
@@ -30,13 +32,16 @@ extension Course {
                 NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
                 NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
             }
+
+            handler(result.replacingValue(updatedCourses))
         }
     }
 
     public func updateFiles(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[File]>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestCollection(.filesInCourse(withId: id)) { (result: Result<[FileResponse]>) in
-            File.update(using: result, in: context, handler: handler)
+            guard let models = result.value else { return handler(result.replacingValue(nil)) }
+            let updatedFiles = try? File.update(using: models, in: context)
 
             self.state.areFilesFetchedFromRemote = true
 
@@ -44,13 +49,17 @@ extension Course {
                 NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
                 NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
             }
+
+            handler(result.replacingValue(updatedFiles))
         }
     }
 
     public func updateAnnouncements(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Announcement]>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestCollection(.announcementsInCourse(withId: id)) { (result: Result<[AnnouncementResponse]>) in
-            Announcement.update(using: result, in: context, handler: handler)
+            guard let models = result.value else { return handler(result.replacingValue(nil)) }
+            let updatedAnnouncements = try? Announcement.update(using: models, in: context)
+            handler(result.replacingValue(updatedAnnouncements))
         }
     }
 
