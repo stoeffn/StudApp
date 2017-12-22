@@ -28,9 +28,9 @@ final class UpdatableTests: XCTestCase {
         XCTAssertEqual(try! Course.fetch(in: context).count, 2)
 
         try! Course.update(using: [CourseResponse(id: "2", title: "C")], in: context)
-        try! self.context.save()
+        try! context.save()
 
-        XCTAssertEqual(try! Course.fetch(in: self.context).count, 3)
+        XCTAssertEqual(try! Course.fetch(in: context).count, 3)
     }
 
     func testMerge_Courses_Merged() {

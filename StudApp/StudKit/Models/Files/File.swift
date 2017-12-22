@@ -176,29 +176,55 @@ public extension File {
         return cacheService.documentInteractionController(forUrl: localUrl(inProviderDirectory: true), name: title,
                                                           handler: handler)
     }
+}
 
-    public var attributes: CSSearchableItemAttributeSet {
+// MARK: - Core Spotlight and Activity Tracking
+
+extension File {
+    public var keywords: Set<String> {
+        let fileKeyWords = [name, owner?.givenName, owner?.familyName].flatMap { $0 }.set
+        return fileKeyWords.union(course.keywords)
+    }
+
+    public var searchableItemAttributes: CSSearchableItemAttributeSet {
         let attributes = CSSearchableItemAttributeSet(itemContentType: typeIdentifier)
-        attributes.relatedUniqueIdentifier = id
-        attributes.identifier = id
-        attributes.metadataModificationDate = state.downloadedAt
-        attributes.kind = File.typeIdentifier
+
         attributes.displayName = title
-        attributes.subject = title
-        attributes.title = title
         attributes.keywords = keywords.array
+        attributes.metadataModificationDate = state.downloadedAt
+        attributes.relatedUniqueIdentifier = id
+        attributes.title = title
+
+        attributes.contentDescription = summary
         attributes.fileSize = size > 0 ? size as NSNumber : nil
+        attributes.identifier = id
+        attributes.kind = File.typeIdentifier
+        attributes.subject = title
+
         attributes.contentURL = localUrl(inProviderDirectory: true)
         attributes.comment = description
         attributes.downloadedDate = state.downloadedAt
         attributes.contentCreationDate = createdAt
         attributes.contentModificationDate = modifiedAt
+
         return attributes
     }
 
-    public var keywords: Set<String> {
-        let fileKeyWords = [name, owner?.givenName, owner?.familyName].flatMap { $0 }.set
-        return fileKeyWords.union(course.keywords)
+    public var searchableItem: CSSearchableItem {
+        return CSSearchableItem(uniqueIdentifier: id, domainIdentifier: File.typeIdentifier,
+                                attributeSet: searchableItemAttributes)
+    }
+
+    public var userActivity: NSUserActivity {
+        let activity = NSUserActivity(activityType: UserActivities.documentIdentifier)
+        activity.isEligibleForHandoff = true
+        activity.isEligibleForSearch = true
+        activity.title = title
+        activity.webpageURL = url
+        activity.contentAttributeSet = searchableItemAttributes
+        activity.keywords = keywords
+        activity.requiredUserInfoKeys = [File.typeIdentifier]
+        return activity
     }
 }
 

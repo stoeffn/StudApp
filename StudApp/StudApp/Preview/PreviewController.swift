@@ -17,7 +17,7 @@ final class PreviewController: QLPreviewController, Routable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        userActivity = userActivity()
+        userActivity = file.userActivity
     }
 
     func prepareDependencies(for route: Routes) {
@@ -29,17 +29,6 @@ final class PreviewController: QLPreviewController, Routable {
     }
 
     // MARK: - Supporting User Activities
-
-    func userActivity() -> NSUserActivity {
-        let activity = NSUserActivity(activityType: UserActivities.documentIdentifier)
-        activity.isEligibleForHandoff = true
-        activity.isEligibleForSearch = true
-        activity.title = file.title
-        activity.webpageURL = file.url
-        activity.keywords = file.keywords
-        activity.requiredUserInfoKeys = [File.typeIdentifier]
-        return activity
-    }
 
     override func updateUserActivityState(_ activity: NSUserActivity) {
         activity.addUserInfoEntries(from: [File.typeIdentifier: file.id])

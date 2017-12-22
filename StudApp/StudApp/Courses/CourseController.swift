@@ -31,7 +31,7 @@ final class CourseController: UITableViewController, Routable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        userActivity = userActivity()
+        userActivity = viewModel.course.userActivity
 
         announcementsViewModel.update()
         fileListViewModel.update()
@@ -77,17 +77,6 @@ final class CourseController: UITableViewController, Routable {
     }
 
     // MARK: - Supporting User Activities
-
-    func userActivity() -> NSUserActivity {
-        let activity = NSUserActivity(activityType: UserActivities.courseIdentifier)
-        activity.isEligibleForHandoff = true
-        activity.isEligibleForSearch = true
-        activity.title = viewModel.course.title
-        activity.webpageURL = viewModel.course.url
-        activity.keywords = viewModel.course.keywords
-        activity.requiredUserInfoKeys = [Course.typeIdentifier]
-        return activity
-    }
 
     override func updateUserActivityState(_ activity: NSUserActivity) {
         activity.addUserInfoEntries(from: [Course.typeIdentifier: viewModel.course.id])
