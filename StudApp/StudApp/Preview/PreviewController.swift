@@ -36,6 +36,7 @@ final class PreviewController: QLPreviewController, Routable {
         activity.isEligibleForSearch = true
         activity.title = file.title
         activity.webpageURL = file.url
+        activity.keywords = file.keywords
         activity.requiredUserInfoKeys = [File.typeIdentifier]
         return activity
     }

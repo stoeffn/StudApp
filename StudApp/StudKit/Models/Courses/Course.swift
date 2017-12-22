@@ -76,7 +76,18 @@ extension Course {
 
     /// Request for fetching all announcements for this course that are not expired.
     public var unexpiredAnnouncementsFetchRequest: NSFetchRequest<Announcement> {
-        let predicate = NSPredicate(format: "%@ IN courses AND expiresAt >= %@", self, Date() as CVarArg)
+        let predicate = NSPredicate(format: "%@ ØIN courses AND expiresAt >= %@", self, Date() as CVarArg)
         return Announcement.fetchRequest(predicate: predicate, sortDescriptors: Announcement.defaultSortDescriptors)
+    }
+}
+
+// MARK: - Utilities
+
+extension Course {
+    public var keywords: Set<String> {
+        let courseKeyWords = [number].flatMap { $0 }.set
+        let lecturersKeywords = lecturers.flatMap { [$0.givenName, $0.familyName] }.set
+        let semestersKeywords = semesters.map { $0.title }.set
+        return courseKeyWords.union(lecturersKeywords).union(semestersKeywords)
     }
 }

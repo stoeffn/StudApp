@@ -84,6 +84,7 @@ final class CourseController: UITableViewController, Routable {
         activity.isEligibleForSearch = true
         activity.title = viewModel.course.title
         activity.webpageURL = viewModel.course.url
+        activity.keywords = viewModel.course.keywords
         activity.requiredUserInfoKeys = [Course.typeIdentifier]
         return activity
     }

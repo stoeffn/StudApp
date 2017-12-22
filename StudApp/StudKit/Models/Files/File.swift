@@ -172,6 +172,11 @@ public extension File {
         return cacheService.documentInteractionController(forUrl: localUrl(inProviderDirectory: true), name: title,
                                                           handler: handler)
     }
+
+    public var keywords: Set<String> {
+        let fileKeyWords = [name, owner?.givenName, owner?.familyName].flatMap { $0 }.set
+        return fileKeyWords.union(course.keywords)
+    }
 }
 
 // MARK: - QuickLook Preview Item
