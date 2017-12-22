@@ -99,7 +99,7 @@ extension Course {
         attributes.displayName = title
         attributes.keywords = keywords.array
         attributes.relatedUniqueIdentifier = id
-        attributes.kind = Course.typeIdentifier
+        attributes.kind = UserActivities.courseIdentifier
         attributes.title = title
 
         attributes.contentDescription = summary

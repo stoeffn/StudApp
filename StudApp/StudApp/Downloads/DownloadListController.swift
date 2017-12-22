@@ -58,7 +58,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
     override func restoreUserActivityState(_ activity: NSUserActivity) {
         guard
-            activity.activityType == UserActivities.documentIdentifier,
+            activity.activityType == UserActivities.fileIdentifier,
             let fileId = activity.userInfo?[File.typeIdentifier] as? String,
             let file = viewModel.file(withId: fileId)
         else {

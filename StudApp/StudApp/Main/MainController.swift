@@ -40,7 +40,7 @@ final class MainController: UITabBarController {
 
     override func restoreUserActivityState(_ activity: NSUserActivity) {
         switch activity.activityType {
-        case UserActivities.documentIdentifier:
+        case UserActivities.fileIdentifier:
             selectedIndex = Tabs.downloadList.rawValue
             downloadListController?.restoreUserActivityState(activity)
         case UserActivities.courseIdentifier:

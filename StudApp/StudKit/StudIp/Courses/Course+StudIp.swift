@@ -20,6 +20,9 @@ extension Course {
             do {
                 let updatedCourses = try Course.update(using: models, in: context)
 
+                let searchableItems = updatedCourses.map { $0.searchableItem }
+                CSSearchableIndex.default().indexSearchableItems(searchableItems) { _ in }
+
                 try? Semester.fetchNonHidden(in: context).forEach { semester in
                     semester.state.areCoursesFetchedFromRemote = true
 
@@ -47,6 +50,9 @@ extension Course {
 
             do {
                 let updatedFiles = try File.update(using: models, in: context)
+
+                let searchableItems = updatedFiles.flatMap { $0.searchableChildrenItems }
+                CSSearchableIndex.default().indexSearchableItems(searchableItems) { _ in }
 
                 self.state.areFilesFetchedFromRemote = true
 

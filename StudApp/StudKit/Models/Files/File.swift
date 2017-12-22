@@ -137,13 +137,21 @@ public extension File {
             + `extension`
     }
 
+    /// Flat list of all children, including this file.
+    public var allChildren: [File] {
+        return [self] + children.flatMap { $0.allChildren }
+    }
+}
+
+// MARK: - Storage
+
+public extension File {
     /// URL of local directory that should contain the downloaded file based on the document base directory given.
     ///
     /// - Parameters:
     ///   - id: File identifier.
     ///   - directory: Base document directory.
     public static func localContainerUrl(forId id: String, in directory: URL) -> URL {
-        // TODO: Rename
         return directory.appendingPathComponent(id, isDirectory: true)
     }
 
@@ -154,7 +162,7 @@ public extension File {
     ///   - inProviderDirectory: Whether to return the local URL inside the file provider documents folder or the app's
     ///                          document folder, which is the default option. Before iOS 11, this method always uses the
     ///                          app's document folder.
-    public static func documentContainerUrl(forId id: String, inProviderDirectory: Bool = false) -> URL {
+    public static func localContainerUrl(forId id: String, inProviderDirectory: Bool = false) -> URL {
         guard #available(iOSApplicationExtension 11.0, *), inProviderDirectory else {
             return localContainerUrl(forId: id, in: ServiceContainer.default[StorageService.self].documentsUrl)
         }
@@ -167,7 +175,7 @@ public extension File {
     ///                                  app's document folder, which is the default option. Before iOS 11, this method always
     ////                                 uses the app's document folder.
     public func localUrl(inProviderDirectory: Bool = false) -> URL {
-        return File.documentContainerUrl(forId: id, inProviderDirectory: inProviderDirectory)
+        return File.localContainerUrl(forId: id, inProviderDirectory: inProviderDirectory)
             .appendingPathComponent(name, isDirectory: isFolder)
     }
 
@@ -198,7 +206,7 @@ extension File {
         attributes.contentDescription = summary
         attributes.fileSize = size > 0 ? size as NSNumber : nil
         attributes.identifier = id
-        attributes.kind = File.typeIdentifier
+        attributes.kind = UserActivities.fileIdentifier
         attributes.subject = title
 
         attributes.contentURL = localUrl(inProviderDirectory: true)
@@ -215,8 +223,14 @@ extension File {
                                 attributeSet: searchableItemAttributes)
     }
 
+    public var searchableChildrenItems: [CSSearchableItem] {
+        return allChildren
+            .filter { !$0.isFolder }
+            .map { $0.searchableItem }
+    }
+
     public var userActivity: NSUserActivity {
-        let activity = NSUserActivity(activityType: UserActivities.documentIdentifier)
+        let activity = NSUserActivity(activityType: UserActivities.fileIdentifier)
         activity.isEligibleForHandoff = true
         activity.isEligibleForSearch = true
         activity.title = title

@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import CoreSpotlight
 
 extension File {
     public func updateChildren(in context: NSManagedObjectContext, handler: @escaping ResultHandler<File>) {
@@ -16,6 +17,10 @@ extension File {
 
             do {
                 let updatedFile = try File.update(using: [models], in: context).first
+
+                if let searchableItems = updatedFile?.searchableChildrenItems {
+                    CSSearchableIndex.default().indexSearchableItems(searchableItems) { _ in }
+                }
 
                 if #available(iOSApplicationExtension 11.0, *) {
                     NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
