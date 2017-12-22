@@ -10,6 +10,7 @@ import CoreData
 import StudKit
 
 /// Enumerates folders and documents inside a course or folder.
+@available(iOSApplicationExtension 11.0, *)
 final class FileEnumerator: CachingFileEnumerator {
     private let itemIdentifier: NSFileProviderItemIdentifier
     private let viewModel: FileListViewModel

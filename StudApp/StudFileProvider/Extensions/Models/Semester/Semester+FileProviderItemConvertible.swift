@@ -15,6 +15,7 @@ extension Semester: FileProviderItemConvertible {
     }
 
     public func fileProviderItem(context _: NSManagedObjectContext) throws -> NSFileProviderItem {
+        guard #available(iOSApplicationExtension 11.0, *) else { fatalError() }
         return try SemesterItem(from: self)
     }
 }

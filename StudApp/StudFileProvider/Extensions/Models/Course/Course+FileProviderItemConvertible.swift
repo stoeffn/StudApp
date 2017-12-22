@@ -15,6 +15,7 @@ extension Course: FileProviderItemConvertible {
     }
 
     public func fileProviderItem(context: NSManagedObjectContext) throws -> NSFileProviderItem {
+        guard #available(iOSApplicationExtension 11.0, *) else { fatalError() }
         return try CourseItem(from: self, context: context)
     }
 }

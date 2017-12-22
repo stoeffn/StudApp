@@ -11,6 +11,7 @@ import FileProvider
 import MobileCoreServices
 import StudKit
 
+@available(iOSApplicationExtension 11.0, *)
 final class SemesterItem: NSObject, NSFileProviderItem {
     // MARK: - Life Cycle
 
