@@ -18,6 +18,13 @@ final class StoreService: NSObject, SKPaymentTransactionObserver {
     }
 
     func paymentQueue(_: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        print(transactions)
+        for transaction in transactions {
+            switch transaction.transactionState {
+            case .purchased, .restored:
+                SKPaymentQueue.default().finishTransaction(transaction)
+            default:
+                break
+            }
+        }
     }
 }
