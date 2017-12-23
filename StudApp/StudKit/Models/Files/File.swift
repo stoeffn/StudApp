@@ -199,8 +199,9 @@ extension File {
         attributes.relatedUniqueIdentifier = itemIdentifier.rawValue
         attributes.title = title
 
+        // Apparently, Core Spotlight expects file sizes in mega bytes.
         attributes.contentDescription = summary
-        attributes.fileSize = size > 0 ? size as NSNumber : nil
+        attributes.fileSize = size > 0 ? size / 1024 / 1024 as NSNumber : nil
         attributes.identifier = id
         attributes.kind = UserActivities.fileIdentifier
         attributes.subject = title
