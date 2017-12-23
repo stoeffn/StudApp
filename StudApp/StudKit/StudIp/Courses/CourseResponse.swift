@@ -11,7 +11,7 @@ struct CourseResponse: Decodable {
     let id: String
     private let rawNumber: String?
     let title: String
-    let subtitle: String?
+    private let rawSubtitle: String?
     private let rawLocation: String?
     private let rawSummary: String?
     private let rawLecturers: [String: UserResponse]
@@ -22,7 +22,7 @@ struct CourseResponse: Decodable {
         case id = "course_id"
         case rawNumber = "number"
         case title
-        case subtitle
+        case rawSubtitle = "subtitle"
         case rawLocation = "location"
         case rawSummary = "description"
         case rawLecturers = "lecturers"
@@ -30,13 +30,13 @@ struct CourseResponse: Decodable {
         case endSemesterPath = "end_semester"
     }
 
-    init(id: String, rawNumber: String? = nil, title: String, subtitle: String? = nil, rawLocation: String? = nil,
+    init(id: String, rawNumber: String? = nil, title: String, rawSubtitle: String? = nil, rawLocation: String? = nil,
          rawSummary: String? = nil, rawLecturers: [String: UserResponse] = [:], beginSemesterPath: String = "",
          endSemesterPath: String? = nil) {
         self.id = id
         self.rawNumber = rawNumber
         self.title = title
-        self.subtitle = subtitle
+        self.rawSubtitle = rawSubtitle
         self.rawLocation = rawLocation
         self.rawSummary = rawSummary
         self.rawLecturers = rawLecturers
@@ -50,6 +50,10 @@ struct CourseResponse: Decodable {
 extension CourseResponse {
     var number: String? {
         return StudIp.transformCourseNumber(rawNumber)
+    }
+
+    var subtitle: String? {
+        return rawSubtitle?.nilWhenEmpty
     }
 
     var location: String? {

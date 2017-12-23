@@ -35,7 +35,7 @@ final class CourseTests: XCTestCase {
     }
 
     func testInit_CourseModel_Course() {
-        let course = try! CourseResponse(id: "0", rawNumber: " 123  ", title: "Title", subtitle: "Subtitle",
+        let course = try! CourseResponse(id: "0", rawNumber: " 123  ", title: "Title", rawSubtitle: "Subtitle",
                                          rawLocation: "Location", rawSummary: "Summary<br> ",
                                          rawLecturers: ["abc": UserResponseTests.user], beginSemesterPath: "$0",
                                          endSemesterPath: "$0").coreDataModel(in: context) as! Course
