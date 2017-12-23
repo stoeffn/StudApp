@@ -30,4 +30,10 @@ public extension String {
     public var localized: String {
         return App.kitBundle.localizedString(forKey: self, value: "###\(self)###", table: nil)
     }
+
+    public var sanitizedAsFilename: String {
+        return replacingOccurrences(of: "/", with: "⁄")
+            .replacingOccurrences(of: ": ", with: "：")
+            .replacingOccurrences(of: ":", with: "：")
+    }
 }

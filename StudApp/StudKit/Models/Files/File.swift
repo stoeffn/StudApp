@@ -131,10 +131,7 @@ public extension File {
 
     /// Human-readable file title with extension that only contains valid file name characters.
     public var sanitizedTitleWithExtension: String {
-        return title
-            .replacingOccurrences(of: "/", with: "")
-            .replacingOccurrences(of: ":", with: "—")
-            + `extension`
+        return title.sanitizedAsFilename + `extension`
     }
 
     /// Flat list of all children, including this file.
