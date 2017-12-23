@@ -154,10 +154,10 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         switch change {
         case .insert:
             courseListViewModels.insert(courseListViewModel(for: semester), at: index)
-            tableView.insertSections(IndexSet(integer: index), with: .automatic)
+            tableView.insertSections(IndexSet(integer: index), with: .middle)
         case .delete:
             courseListViewModels.remove(at: index)
-            tableView.deleteSections(IndexSet(integer: index), with: .fade)
+            tableView.deleteSections(IndexSet(integer: index), with: .middle)
         case .update:
             break
         case let .move(newIndex):
@@ -176,11 +176,11 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
         switch change {
         case .insert:
-            tableView.insertRows(at: [indexPath], with: .automatic)
+            tableView.insertRows(at: [indexPath], with: .middle)
         case .delete:
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.deleteRows(at: [indexPath], with: .middle)
         case .update:
-            tableView.reloadRows(at: [indexPath], with: .automatic)
+            tableView.reloadRows(at: [indexPath], with: .fade)
         case let .move(newIndex):
             let newIndexPath = IndexPath(row: newIndex, section: sectionIndex)
             tableView.moveRow(at: indexPath, to: newIndexPath)

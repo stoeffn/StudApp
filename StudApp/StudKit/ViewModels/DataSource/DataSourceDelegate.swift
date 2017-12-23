@@ -47,11 +47,11 @@ public extension DataSourceDelegate where Self: UITableViewController {
                                   in _: Source) {
         switch change {
         case .insert:
-            tableView.insertRows(at: [indexPath], with: .automatic)
+            tableView.insertRows(at: [indexPath], with: .middle)
         case .delete:
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            tableView.deleteRows(at: [indexPath], with: .middle)
         case .update:
-            tableView.reloadRows(at: [indexPath], with: .automatic)
+            tableView.reloadRows(at: [indexPath], with: .fade)
         case let .move(newIndexPath):
             tableView.moveRow(at: indexPath, to: newIndexPath)
         }
@@ -62,11 +62,11 @@ public extension DataSourceDelegate where Self: UITableViewController {
         let indexSet = IndexSet(integer: index)
         switch change {
         case .insert:
-            tableView.insertSections(indexSet, with: .automatic)
+            tableView.insertSections(indexSet, with: .middle)
         case .delete:
-            tableView.deleteSections(indexSet, with: .fade)
+            tableView.deleteSections(indexSet, with: .middle)
         case .update:
-            tableView.reloadSections(indexSet, with: .automatic)
+            tableView.reloadSections(indexSet, with: .fade)
         case let .move(newIndex):
             tableView.moveSection(index, toSection: newIndex)
         }

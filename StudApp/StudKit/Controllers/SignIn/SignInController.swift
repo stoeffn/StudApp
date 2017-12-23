@@ -78,9 +78,9 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
             guard isErrorCellHidden != oldValue else { return }
             tableView.update {
                 if self.isErrorCellHidden {
-                    self.tableView.deleteRows(at: [self.errorMessageIndexPath], with: .fade)
+                    self.tableView.deleteRows(at: [self.errorMessageIndexPath], with: .middle)
                 } else {
-                    self.tableView.insertRows(at: [self.errorMessageIndexPath], with: .fade)
+                    self.tableView.insertRows(at: [self.errorMessageIndexPath], with: .middle)
                 }
             }
         }
