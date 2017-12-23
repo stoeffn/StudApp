@@ -79,6 +79,7 @@
 		2448D4BA1FA8E0AB00DAB97E /* TestRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4B21FA8E0AB00DAB97E /* TestRoutes.swift */; };
 		2448D4BB1FA8E0AB00DAB97E /* ApiRoutesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4B31FA8E0AB00DAB97E /* ApiRoutesTests.swift */; };
 		2448D4BD1FA8E0AB00DAB97E /* TestableApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4B51FA8E0AB00DAB97E /* TestableApiRoutes.swift */; };
+		244EB5E71FEED260006BE633 /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244EB5E61FEED260006BE633 /* ReachabilityService.swift */; };
 		2450AC6D1FDC1582004F1267 /* CourseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC6C1FDC1582004F1267 /* CourseViewModel.swift */; };
 		2450AC711FDC405E004F1267 /* Documents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2450AC701FDC405E004F1267 /* Documents.storyboard */; };
 		2450AC731FDC406F004F1267 /* FolderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC721FDC406F004F1267 /* FolderController.swift */; };
@@ -208,8 +209,8 @@
 		24D9EF561FB7559C006776B7 /* SemesterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9EF551FB7559C006776B7 /* SemesterListViewModel.swift */; };
 		24D9EF851FB75818006776B7 /* FileProviderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9EF841FB75818006776B7 /* FileProviderExtension.swift */; };
 		24D9EF9E1FB75819006776B7 /* StudFileProvider.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 24D9EF821FB75818006776B7 /* StudFileProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		24E525C31FEDB276000FB71A /* CourseHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E525C21FEDB276000FB71A /* CourseHeader.swift */; };
 		24E525C11FED8650000FB71A /* NSUserActivity+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E525C01FED8650000FB71A /* NSUserActivity+Utils.swift */; };
+		24E525C31FEDB276000FB71A /* CourseHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E525C21FEDB276000FB71A /* CourseHeader.swift */; };
 		24E60B621FC8C725000EDD2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B611FC8C723000EDD2A /* Main.storyboard */; };
 		24E60B661FC8C749000EDD2A /* Downloads.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B651FC8C749000EDD2A /* Downloads.storyboard */; };
 		24E60B681FC8C754000EDD2A /* Semesters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B671FC8C754000EDD2A /* Semesters.storyboard */; };
@@ -409,6 +410,7 @@
 		2448D4B21FA8E0AB00DAB97E /* TestRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestRoutes.swift; sourceTree = "<group>"; };
 		2448D4B31FA8E0AB00DAB97E /* ApiRoutesTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRoutesTests.swift; sourceTree = "<group>"; };
 		2448D4B51FA8E0AB00DAB97E /* TestableApiRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestableApiRoutes.swift; sourceTree = "<group>"; };
+		244EB5E61FEED260006BE633 /* ReachabilityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
 		2450AC6C1FDC1582004F1267 /* CourseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewModel.swift; sourceTree = "<group>"; };
 		2450AC701FDC405E004F1267 /* Documents.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Documents.storyboard; sourceTree = "<group>"; };
 		2450AC721FDC406F004F1267 /* FolderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderController.swift; sourceTree = "<group>"; };
@@ -530,8 +532,8 @@
 		24D9EF841FB75818006776B7 /* FileProviderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderExtension.swift; sourceTree = "<group>"; };
 		24D9EF8A1FB75819006776B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24D9EF8B1FB75819006776B7 /* StudFileProvider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudFileProvider.entitlements; sourceTree = "<group>"; };
-		24E525C21FEDB276000FB71A /* CourseHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseHeader.swift; sourceTree = "<group>"; };
 		24E525C01FED8650000FB71A /* NSUserActivity+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSUserActivity+Utils.swift"; sourceTree = "<group>"; };
+		24E525C21FEDB276000FB71A /* CourseHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseHeader.swift; sourceTree = "<group>"; };
 		24E60B611FC8C723000EDD2A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		24E60B651FC8C749000EDD2A /* Downloads.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Downloads.storyboard; sourceTree = "<group>"; };
 		24E60B671FC8C754000EDD2A /* Semesters.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Semesters.storyboard; sourceTree = "<group>"; };
@@ -812,7 +814,6 @@
 				2448D49C1FA8E07E00DAB97E /* Api */,
 				243817A61FC88A36004052D0 /* Controllers */,
 				2448D45F1FA8DC1D00DAB97E /* Extensions */,
-				2477936C1FC8933400090F4D /* Helpers */,
 				24D360BE1FAA585B00BBBAED /* Models */,
 				24CFB5D21FB24F2700F30DEA /* Routing */,
 				2448D4741FA8DE1700DAB97E /* Services */,
@@ -822,6 +823,12 @@
 				241C67E91FCDFAC700F4A099 /* App.swift */,
 				2469EF671FCE1D1C008A122B /* CacheService.swift */,
 				24A8EDDD1FCCBC93007C1CCF /* ContextService.swift */,
+				244EB5E61FEED260006BE633 /* ReachabilityService.swift */,
+				24712BE91FB8B48A0067E416 /* ByTypeNameIdentifiable.swift */,
+				24712BF71FB8CD0B0067E416 /* CachingFileEnumerator.swift */,
+				24FE89E81FB7725100A4A3C6 /* ChangeCache.swift */,
+				24FE8A111FB7B0D100A4A3C6 /* RangeIterator.swift */,
+				2448D45D1FA8DBA300DAB97E /* Result.swift */,
 				24D2DA1D1FD03B98006FC700 /* StoreService.swift */,
 				2448D4961FA8DFB200DAB97E /* StudKitServiceProvider.swift */,
 				24FD785D1FBF45B10072F860 /* Targets.swift */,
@@ -845,6 +852,8 @@
 				24D361381FAA637E00BBBAED /* Models */,
 				2448D4791FA8DE3300DAB97E /* Services */,
 				24D361261FAA603400BBBAED /* StudIp */,
+				24FE8A131FB7B1A000A4A3C6 /* RangeIteratorTests.swift */,
+				2448D44E1FA8DB1E00DAB97E /* ResultTests.swift */,
 				2448D49A1FA8E01B00DAB97E /* Setup.swift */,
 				2448D4981FA8E00800DAB97E /* StudKitTestsServiceProvider.swift */,
 				2448D4501FA8DB1E00DAB97E /* Info.plist */,
@@ -1112,18 +1121,6 @@
 			path = Users;
 			sourceTree = "<group>";
 		};
-		2477936C1FC8933400090F4D /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				24712BE91FB8B48A0067E416 /* ByTypeNameIdentifiable.swift */,
-				24712BF71FB8CD0B0067E416 /* CachingFileEnumerator.swift */,
-				24FE89E81FB7725100A4A3C6 /* ChangeCache.swift */,
-				24FE8A111FB7B0D100A4A3C6 /* RangeIterator.swift */,
-				2448D45D1FA8DBA300DAB97E /* Result.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		247793701FC893BB00090F4D /* Courses */ = {
 			isa = PBXGroup;
 			children = (
@@ -1165,8 +1162,6 @@
 		247793741FC894C400090F4D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				24FE8A131FB7B1A000A4A3C6 /* RangeIteratorTests.swift */,
-				2448D44E1FA8DB1E00DAB97E /* ResultTests.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1966,6 +1961,7 @@
 				24712BD81FB858CC0067E416 /* File+StudIp.swift in Sources */,
 				24D360F71FAA5DE800BBBAED /* FileState.swift in Sources */,
 				24D360FE1FAA5E0800BBBAED /* UserResponse+CDConvertible.swift in Sources */,
+				244EB5E71FEED260006BE633 /* ReachabilityService.swift in Sources */,
 				24FE8A161FB8527E00A4A3C6 /* FileListViewModel.swift in Sources */,
 				243817AF1FC88B2B004052D0 /* UI.swift in Sources */,
 				24D360FA1FAA5DE800BBBAED /* FileResponse.swift in Sources */,

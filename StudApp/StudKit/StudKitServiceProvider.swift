@@ -38,6 +38,7 @@ public class StudKitServiceProvider: ServiceProvider {
 
     public func registerServices(in container: ServiceContainer) {
         container[ContextService.self] = provideContextService()
+        container[ReachabilityService.self] = ReachabilityService()
         container[CacheService.self] = CacheService()
         container[StoreService.self] = StoreService()
         container[JSONDecoder.self] = provideJsonDecoder()
