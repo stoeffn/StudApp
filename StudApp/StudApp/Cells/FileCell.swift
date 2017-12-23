@@ -38,11 +38,11 @@ final class FileCell: UITableViewCell {
         }
     }
 
+    // MARK: - User Interface
+
     override var frame: CGRect {
         didSet { updateSubtitleHiddenStates() }
     }
-
-    // MARK: - User Interface
 
     @IBOutlet weak var iconView: UIImageView!
 
@@ -63,7 +63,7 @@ final class FileCell: UITableViewCell {
     @IBOutlet weak var activityIndicator: StudIpActivityIndicatorView?
     @IBOutlet weak var downloadGlyph: UIImageView?
 
-    private func updateSubtitleHiddenStates() {
+    func updateSubtitleHiddenStates() {
         guard let file = file else { return }
         userContainer.isHidden = file.owner == nil
         sizeContainer.isHidden = file.isFolder || traitCollection.horizontalSizeClass == .compact

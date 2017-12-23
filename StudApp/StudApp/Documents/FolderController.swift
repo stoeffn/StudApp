@@ -34,6 +34,16 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
         viewModel.update()
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: { _ in
+            self.tableView.visibleCells
+                .flatMap { $0 as? FileCell }
+                .forEach { $0.updateSubtitleHiddenStates() }
+        }, completion: nil)
+    }
+
     func prepareDependencies(for route: Routes) {
         guard case let .folder(folder) = route else { fatalError() }
 

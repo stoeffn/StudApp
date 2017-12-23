@@ -41,6 +41,16 @@ final class CourseController: UITableViewController, Routable {
         subtitleLabel.text = viewModel.course.subtitle
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: { _ in
+            self.tableView.visibleCells
+                .flatMap { $0 as? FileCell }
+                .forEach { $0.updateSubtitleHiddenStates() }
+        }, completion: nil)
+    }
+
     private func configureViewModels(with course: Course) {
         announcementsViewModel = AnnouncementListViewModel(course: course)
         announcementsViewModel.delegate = self
@@ -288,7 +298,6 @@ final class CourseController: UITableViewController, Routable {
 extension CourseController: DataSourceSectionDelegate {
     func dataDidChange<Section: DataSourceSection>(in section: Section) {
         guard let sectionIndex = index(for: section) else { fatalError() }
-
         switch sectionIndex {
         case .announcements, .documents:
             let indexPath = IndexPath(row: 0, section: sectionIndex.rawValue)
@@ -363,7 +372,6 @@ extension CourseController: UITableViewDragDelegate {
 extension CourseController: UIViewControllerPreviewingDelegate, QLPreviewControllerDelegate {
     func previewingContext(_: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
-
         switch Sections(rawValue: indexPath.section) {
         case .documents? where !fileListViewModel.isEmpty:
             let file = fileListViewModel[rowAt: indexPath.row]
