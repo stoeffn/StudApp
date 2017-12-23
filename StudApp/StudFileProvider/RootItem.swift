@@ -10,6 +10,7 @@ import CoreData
 import MobileCoreServices
 import StudKit
 
+@available(iOSApplicationExtension 11.0, *)
 final class RootItem: NSObject, NSFileProviderItem {
     // MARK: - Life Cycle
 
@@ -28,7 +29,7 @@ final class RootItem: NSObject, NSFileProviderItem {
 
     let itemIdentifier: NSFileProviderItemIdentifier = .rootContainer
 
-    let filename = "Semesters"
+    let filename = "Semesters".localized
 
     let typeIdentifier = kUTTypeFolder as String
 

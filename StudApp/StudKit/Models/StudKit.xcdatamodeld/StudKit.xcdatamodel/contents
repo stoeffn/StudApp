@@ -53,6 +53,7 @@
         <attribute name="modifiedAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="size" attributeType="Integer 64" defaultValueString="-1" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="typeIdentifier" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="children" toMany="YES" deletionRule="Cascade" destinationEntity="File" inverseName="parent" inverseEntity="File" syncable="YES"/>
@@ -127,7 +128,7 @@
         <element name="Announcement" positionX="-8703" positionY="-2070" width="128" height="30"/>
         <element name="Course" positionX="-8568" positionY="-2218" width="128" height="30"/>
         <element name="CourseState" positionX="-8354" positionY="-2142" width="128" height="135"/>
-        <element name="File" positionX="-8381" positionY="-1971" width="128" height="240"/>
+        <element name="File" positionX="-8381" positionY="-1971" width="128" height="30"/>
         <element name="FileState" positionX="-8199" positionY="-1836" width="128" height="135"/>
         <element name="Semester" positionX="-8748" positionY="-2188" width="128" height="165"/>
         <element name="SemesterState" positionX="-8910" positionY="-2121" width="128" height="150"/>

@@ -6,8 +6,8 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-import QuickLook
 import StudKit
+import QuickLook
 
 final class DownloadListController: UITableViewController, DataSourceDelegate {
     private var viewModel: DownloadListViewModel!
@@ -59,8 +59,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
     override func restoreUserActivityState(_ activity: NSUserActivity) {
         guard
-            activity.activityType == UserActivities.documentIdentifier,
-            let fileId = activity.userInfo?[File.typeIdentifier] as? String,
+            case let .file(fileId)? = activity.itemIdentifier?.model,
             let file = viewModel.file(withId: fileId)
         else {
             let alert = UIAlertController(title: "Something went wrong continuing your activity.".localized)

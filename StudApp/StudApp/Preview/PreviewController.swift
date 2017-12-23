@@ -10,39 +10,51 @@ import QuickLook
 import StudKit
 
 final class PreviewController: QLPreviewController, Routable {
+    private var coreDataService = ServiceContainer.default[CoreDataService.self]
+    private var historyService = ServiceContainer.default[HistoryService.self]
+
     // MARK: - Life Cycle
 
     private var file: File!
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        dataSource = self
+
+        file.download { result in
+            guard result.isSuccess else {
+                let alert = UIAlertController(title: result.error?.localizedDescription, message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
+                return self.present(alert, animated: true, completion: nil)
+            }
+
+            self.refreshCurrentPreviewItem()
+        }
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        userActivity = userActivity()
+        userActivity = file.userActivity
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        try? historyService.mergeHistory(into: coreDataService.viewContext)
+        try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
     }
 
     func prepareDependencies(for route: Routes) {
         guard case let .preview(file) = route else { fatalError() }
-
         self.file = file
-
-        dataSource = self
     }
 
     // MARK: - Supporting User Activities
 
-    func userActivity() -> NSUserActivity {
-        let activity = NSUserActivity(activityType: UserActivities.documentIdentifier)
-        activity.isEligibleForHandoff = true
-        activity.isEligibleForSearch = true
-        activity.title = file.title
-        activity.webpageURL = file.url
-        activity.keywords = file.keywords
-        activity.requiredUserInfoKeys = [File.typeIdentifier]
-        return activity
-    }
-
     override func updateUserActivityState(_ activity: NSUserActivity) {
-        activity.addUserInfoEntries(from: [File.typeIdentifier: file.id])
+        activity.itemIdentifier = file.itemIdentifier
     }
 }
 

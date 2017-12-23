@@ -18,6 +18,7 @@ final class FileProviderExtension: NSFileProviderExtension {
 
     override init() {
         ServiceContainer.default.register(providers: StudKitServiceProvider(currentTarget: .fileProvider))
+
         coreDataService = ServiceContainer.default[CoreDataService.self]
         studIpService = ServiceContainer.default[StudIpService.self]
 
@@ -36,6 +37,7 @@ final class FileProviderExtension: NSFileProviderExtension {
         return File.itemIdentifier(forId: id)
     }
 
+    @available(iOSApplicationExtension 11.0, *)
     func containerUrlForItem(withPersistentIdentifier identifier: NSFileProviderItemIdentifier) -> URL {
         return NSFileProviderManager.default.documentStorageURL
             .appendingPathComponent(identifier.id, isDirectory: true)
@@ -43,6 +45,7 @@ final class FileProviderExtension: NSFileProviderExtension {
 
     override func urlForItem(withPersistentIdentifier identifier: NSFileProviderItemIdentifier) -> URL? {
         guard
+            #available(iOS 11.0, *),
             let item = try? item(for: identifier),
             let fileItem = item as? FileItem,
             let filename = fileItem.internalFilename
@@ -52,6 +55,7 @@ final class FileProviderExtension: NSFileProviderExtension {
             .appendingPathComponent(filename, isDirectory: false)
     }
 
+    @available(iOSApplicationExtension 11.0, *)
     static func model(for identifier: NSFileProviderItemIdentifier,
                       in context: NSManagedObjectContext) throws -> FileProviderItemConvertible? {
         switch identifier.model {
@@ -66,6 +70,7 @@ final class FileProviderExtension: NSFileProviderExtension {
         }
     }
 
+    @available(iOSApplicationExtension 11.0, *)
     override func item(for identifier: NSFileProviderItemIdentifier) throws -> NSFileProviderItem {
         switch identifier.model {
         case .workingSet:
@@ -83,6 +88,7 @@ final class FileProviderExtension: NSFileProviderExtension {
     }
 
     override func enumerator(for containerItemIdentifier: NSFileProviderItemIdentifier) throws -> NSFileProviderEnumerator {
+        guard #available(iOS 11.0, *) else { fatalError() }
         guard studIpService.isSignedIn else { throw NSFileProviderError(.notAuthenticated) }
 
         switch containerItemIdentifier.model {
@@ -105,13 +111,22 @@ final class FileProviderExtension: NSFileProviderExtension {
 
     override func providePlaceholder(at url: URL, completionHandler: @escaping (Error?) -> Void) {
         guard let identifier = persistentIdentifierForItem(at: url) else {
-            return completionHandler(NSFileProviderError(.noSuchItem))
+            if #available(iOSApplicationExtension 11.0, *) {
+                return completionHandler(NSFileProviderError(.noSuchItem))
+            }
+            return completionHandler("No such item")
         }
 
         do {
-            let placeholderUrl = NSFileProviderManager.placeholderURL(for: url)
-            try FileManager.default.createIntermediateDirectories(forFileAt: placeholderUrl)
-            try NSFileProviderManager.writePlaceholder(at: placeholderUrl, withMetadata: item(for: identifier))
+            if #available(iOSApplicationExtension 11.0, *) {
+                let placeholderUrl = NSFileProviderManager.placeholderURL(for: url)
+                try FileManager.default.createIntermediateDirectories(forFileAt: placeholderUrl)
+                try NSFileProviderManager.writePlaceholder(at: placeholderUrl, withMetadata: item(for: identifier))
+            } else {
+                let placeholderUrl = NSFileProviderExtension.placeholderURL(for: url)
+                try FileManager.default.createIntermediateDirectories(forFileAt: placeholderUrl)
+                try NSFileProviderExtension.writePlaceholder(at: placeholderUrl, withMetadata: [:])
+            }
             completionHandler(nil)
         } catch {
             completionHandler(error)
@@ -125,7 +140,11 @@ final class FileProviderExtension: NSFileProviderExtension {
             let file = optionalFile,
             let itemUrl = self.urlForItem(withPersistentIdentifier: file.itemIdentifier)
         else {
-            completionHandler?(NSFileProviderError(.noSuchItem))
+            if #available(iOSApplicationExtension 11.0, *) {
+                completionHandler?(NSFileProviderError(.noSuchItem))
+            } else {
+                completionHandler?("No such item")
+            }
             return
         }
 
@@ -143,7 +162,11 @@ final class FileProviderExtension: NSFileProviderExtension {
 
         file.download { result in
             guard result.isSuccess else {
-                completionHandler?(NSFileProviderError(.serverUnreachable))
+                if #available(iOSApplicationExtension 11.0, *) {
+                    completionHandler?(NSFileProviderError(.serverUnreachable))
+                } else {
+                    completionHandler?("Server unreachable")
+                }
                 return
             }
 
@@ -166,6 +189,7 @@ final class FileProviderExtension: NSFileProviderExtension {
 
     // MARK: - Handling Actions
 
+    @available(iOSApplicationExtension 11.0, *)
     private func modifyItem(withIdentifier identifier: NSFileProviderItemIdentifier,
                             completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void,
                             task: ((inout FileProviderItemConvertible?) -> Void)) {
@@ -188,6 +212,7 @@ final class FileProviderExtension: NSFileProviderExtension {
         }
     }
 
+    @available(iOSApplicationExtension 11.0, *)
     override func setLastUsedDate(_ lastUsedDate: Date?, forItemIdentifier itemIdentifier: NSFileProviderItemIdentifier,
                                   completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) {
         modifyItem(withIdentifier: itemIdentifier, completionHandler: completionHandler) { model in
@@ -195,6 +220,7 @@ final class FileProviderExtension: NSFileProviderExtension {
         }
     }
 
+    @available(iOSApplicationExtension 11.0, *)
     override func setFavoriteRank(_ favoriteRank: NSNumber?, forItemIdentifier itemIdentifier: NSFileProviderItemIdentifier,
                                   completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) {
         modifyItem(withIdentifier: itemIdentifier, completionHandler: completionHandler) { model in
@@ -202,6 +228,7 @@ final class FileProviderExtension: NSFileProviderExtension {
         }
     }
 
+    @available(iOSApplicationExtension 11.0, *)
     override func setTagData(_ tagData: Data?, forItemIdentifier itemIdentifier: NSFileProviderItemIdentifier,
                              completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) {
         modifyItem(withIdentifier: itemIdentifier, completionHandler: completionHandler) { model in

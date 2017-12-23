@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import CoreSpotlight
 
 extension Course {
     public static func update(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Course]>) {
@@ -14,21 +15,30 @@ extension Course {
         guard let userId = studIpService.userId else { return }
 
         studIpService.api.requestCollection(.courses(forUserId: userId)) { (result: Result<[CourseResponse]>) in
-            Course.update(using: result, in: context, handler: handler)
+            guard let models = result.value else { return handler(result.replacingValue(nil)) }
 
-            guard let semesters = try? Semester.fetchNonHidden(in: context) else { return }
+            do {
+                let updatedCourses = try Course.update(using: models, in: context)
 
-            for semester in semesters {
-                semester.state.areCoursesFetchedFromRemote = true
+                let searchableItems = updatedCourses.map { $0.searchableItem }
+                CSSearchableIndex.default().indexSearchableItems(searchableItems) { _ in }
+
+                try? Semester.fetchNonHidden(in: context).forEach { semester in
+                    semester.state.areCoursesFetchedFromRemote = true
+
+                    if #available(iOSApplicationExtension 11.0, *) {
+                        NSFileProviderManager.default.signalEnumerator(for: semester.itemIdentifier) { _ in }
+                    }
+                }
 
                 if #available(iOSApplicationExtension 11.0, *) {
-                    NSFileProviderManager.default.signalEnumerator(for: semester.itemIdentifier) { _ in }
+                    NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
+                    NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
                 }
-            }
 
-            if #available(iOSApplicationExtension 11.0, *) {
-                NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
-                NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+                handler(result.replacingValue(updatedCourses))
+            } catch {
+                handler(.failure(error))
             }
         }
     }
@@ -36,13 +46,24 @@ extension Course {
     public func updateFiles(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[File]>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestCollection(.filesInCourse(withId: id)) { (result: Result<[FileResponse]>) in
-            File.update(using: result, in: context, handler: handler)
+            guard let models = result.value else { return handler(result.replacingValue(nil)) }
 
-            self.state.areFilesFetchedFromRemote = true
+            do {
+                let updatedFiles = try File.update(using: models, in: context)
 
-            if #available(iOSApplicationExtension 11.0, *) {
-                NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
-                NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+                let searchableItems = updatedFiles.flatMap { $0.searchableChildrenItems }
+                CSSearchableIndex.default().indexSearchableItems(searchableItems) { _ in }
+
+                self.state.areFilesFetchedFromRemote = true
+
+                if #available(iOSApplicationExtension 11.0, *) {
+                    NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
+                    NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+                }
+
+                handler(result.replacingValue(updatedFiles))
+            } catch {
+                handler(.failure(error))
             }
         }
     }
@@ -50,7 +71,14 @@ extension Course {
     public func updateAnnouncements(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Announcement]>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestCollection(.announcementsInCourse(withId: id)) { (result: Result<[AnnouncementResponse]>) in
-            Announcement.update(using: result, in: context, handler: handler)
+            guard let models = result.value else { return handler(result.replacingValue(nil)) }
+
+            do {
+                let updatedAnnouncements = try Announcement.update(using: models, in: context)
+                handler(result.replacingValue(updatedAnnouncements))
+            } catch {
+                handler(.failure(error))
+            }
         }
     }
 

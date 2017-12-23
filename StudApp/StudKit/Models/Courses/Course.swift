@@ -7,6 +7,8 @@
 //
 
 import CoreData
+import CoreSpotlight
+import MobileCoreServices
 
 /// Course that a user can attend, e.g. a university class.
 ///
@@ -81,7 +83,7 @@ extension Course {
     }
 }
 
-// MARK: - Utilities
+// MARK: - Core Spotlight and Activity Tracking
 
 extension Course {
     public var keywords: Set<String> {
@@ -89,5 +91,35 @@ extension Course {
         let lecturersKeywords = lecturers.flatMap { [$0.givenName, $0.familyName] }.set
         let semestersKeywords = semesters.map { $0.title }.set
         return courseKeyWords.union(lecturersKeywords).union(semestersKeywords)
+    }
+
+    public var searchableItemAttributes: CSSearchableItemAttributeSet {
+        let attributes = CSSearchableItemAttributeSet(itemContentType: kUTTypeFolder as String)
+
+        attributes.displayName = title
+        attributes.keywords = keywords.array
+        attributes.relatedUniqueIdentifier = itemIdentifier.rawValue
+        attributes.title = title
+
+        attributes.contentDescription = summary
+
+        return attributes
+    }
+
+    public var searchableItem: CSSearchableItem {
+        return CSSearchableItem(uniqueIdentifier: itemIdentifier.rawValue, domainIdentifier: Course.typeIdentifier,
+                                attributeSet: searchableItemAttributes)
+    }
+
+    public var userActivity: NSUserActivity {
+        let activity = NSUserActivity(activityType: UserActivities.courseIdentifier)
+        activity.isEligibleForHandoff = true
+        activity.isEligibleForSearch = true
+        activity.title = title
+        activity.webpageURL = url
+        activity.contentAttributeSet = searchableItemAttributes
+        activity.keywords = keywords
+        activity.itemIdentifier = itemIdentifier
+        return activity
     }
 }

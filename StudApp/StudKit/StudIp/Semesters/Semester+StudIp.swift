@@ -13,11 +13,19 @@ extension Semester {
                               handler: @escaping ResultHandler<[Semester]>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestCollection(.semesters, ignoreLastAccess: !enforce) { (result: Result<[SemesterResponse]>) in
-            Semester.update(using: result, in: context, handler: handler)
+            guard let models = result.value else { return handler(result.replacingValue(nil)) }
 
-            if #available(iOSApplicationExtension 11.0, *) {
-                NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
-                NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+            do {
+                let updatedSemesters = try Semester.update(using: models, in: context)
+
+                if #available(iOSApplicationExtension 11.0, *) {
+                    NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
+                    NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+                }
+
+                handler(result.replacingValue(updatedSemesters))
+            } catch {
+                handler(.failure(error))
             }
         }
     }

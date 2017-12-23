@@ -191,7 +191,7 @@ extension FolderController: UIViewControllerPreviewingDelegate {
     func previewingContext(_: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
         let file = viewModel[rowAt: indexPath.row]
-        guard !file.isFolder && file.state.isMostRecentVersionDownloaded else { return nil }
+        guard !file.isFolder else { return nil }
 
         let previewController = PreviewController()
         previewController.prepareDependencies(for: .preview(file))

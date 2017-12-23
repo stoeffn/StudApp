@@ -9,6 +9,7 @@
 import StudKit
 
 /// Enumerates all courses in a semester.
+@available(iOSApplicationExtension 11.0, *)
 final class CourseEnumerator: CachingFileEnumerator {
     private let itemIdentifier: NSFileProviderItemIdentifier
     private let viewModel: CourseListViewModel

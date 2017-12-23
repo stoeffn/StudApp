@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import CoreSpotlight
 import MobileCoreServices
 import QuickLook
 
@@ -49,6 +50,9 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
 
     /// User who uploaded or modified this file. Might be `nil` for folders or some documents authored by multiple users.
     @NSManaged public var owner: User?
+
+    /// File description.
+    @NSManaged public var summary: String?
 
     /// Files contained in this file in case of a folder.
     @NSManaged public var children: Set<File>
@@ -133,13 +137,21 @@ public extension File {
             + `extension`
     }
 
+    /// Flat list of all children, including this file.
+    public var allChildren: [File] {
+        return [self] + children.flatMap { $0.allChildren }
+    }
+}
+
+// MARK: - Storage
+
+public extension File {
     /// URL of local directory that should contain the downloaded file based on the document base directory given.
     ///
     /// - Parameters:
     ///   - id: File identifier.
     ///   - directory: Base document directory.
     public static func localContainerUrl(forId id: String, in directory: URL) -> URL {
-        // TODO: Rename
         return directory.appendingPathComponent(id, isDirectory: true)
     }
 
@@ -148,22 +160,19 @@ public extension File {
     /// - Parameters:
     ///   - id: File identifier.
     ///   - inProviderDirectory: Whether to return the local URL inside the file provider documents folder or the app's
-    ///                          document folder, which is the default option. Before iOS 11, this method always uses the
-    ///                          app's document folder.
-    public static func documentContainerUrl(forId id: String, inProviderDirectory: Bool = false) -> URL {
-        guard #available(iOSApplicationExtension 11.0, *), inProviderDirectory else {
-            return localContainerUrl(forId: id, in: ServiceContainer.default[StorageService.self].documentsUrl)
-        }
-        return localContainerUrl(forId: id, in: NSFileProviderManager.default.documentStorageURL)
+    ///                          document folder, which is the default option.
+    public static func localContainerUrl(forId id: String, inProviderDirectory: Bool = false) -> URL {
+        let storageService = ServiceContainer.default[StorageService.self]
+        let directory = inProviderDirectory ? storageService.fileProviderDocumentsUrl : storageService.documentsUrl
+        return localContainerUrl(forId: id, in: directory)
     }
 
     /// URL for the locally downloaded file.
     ///
     /// - Parameter inProviderDirectory: Whether to return the local file URL inside the file provider documents folder or the
-    ///                                  app's document folder, which is the default option. Before iOS 11, this method always
-    ////                                 uses the app's document folder.
+    ///                                  app's document folder, which is the default option.
     public func localUrl(inProviderDirectory: Bool = false) -> URL {
-        return File.documentContainerUrl(forId: id, inProviderDirectory: inProviderDirectory)
+        return File.localContainerUrl(forId: id, inProviderDirectory: inProviderDirectory)
             .appendingPathComponent(name, isDirectory: isFolder)
     }
 
@@ -172,10 +181,60 @@ public extension File {
         return cacheService.documentInteractionController(forUrl: localUrl(inProviderDirectory: true), name: title,
                                                           handler: handler)
     }
+}
 
+// MARK: - Core Spotlight and Activity Tracking
+
+extension File {
     public var keywords: Set<String> {
         let fileKeyWords = [name, owner?.givenName, owner?.familyName].flatMap { $0 }.set
         return fileKeyWords.union(course.keywords)
+    }
+
+    public var searchableItemAttributes: CSSearchableItemAttributeSet {
+        let attributes = CSSearchableItemAttributeSet(itemContentType: typeIdentifier)
+
+        attributes.displayName = title
+        attributes.keywords = keywords.array
+        attributes.relatedUniqueIdentifier = itemIdentifier.rawValue
+        attributes.title = title
+
+        // Apparently, Core Spotlight expects file sizes in mega bytes.
+        attributes.contentDescription = summary
+        attributes.fileSize = size > 0 ? size / 1024 / 1024 as NSNumber : nil
+        attributes.identifier = id
+        attributes.subject = title
+
+        attributes.contentURL = localUrl(inProviderDirectory: true)
+        attributes.comment = description
+        attributes.downloadedDate = state.downloadedAt
+        attributes.contentCreationDate = createdAt
+        attributes.contentModificationDate = modifiedAt
+
+        return attributes
+    }
+
+    public var searchableItem: CSSearchableItem {
+        return CSSearchableItem(uniqueIdentifier: itemIdentifier.rawValue, domainIdentifier: File.typeIdentifier,
+                                attributeSet: searchableItemAttributes)
+    }
+
+    public var searchableChildrenItems: [CSSearchableItem] {
+        return allChildren
+            .filter { !$0.isFolder }
+            .map { $0.searchableItem }
+    }
+
+    public var userActivity: NSUserActivity {
+        let activity = NSUserActivity(activityType: UserActivities.fileIdentifier)
+        activity.isEligibleForHandoff = true
+        activity.isEligibleForSearch = true
+        activity.title = title
+        activity.webpageURL = url
+        activity.contentAttributeSet = searchableItemAttributes
+        activity.keywords = keywords
+        activity.itemIdentifier = itemIdentifier
+        return activity
     }
 }
 

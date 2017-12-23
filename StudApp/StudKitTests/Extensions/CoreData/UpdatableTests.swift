@@ -24,25 +24,13 @@ final class UpdatableTests: XCTestCase {
         try! context.save()
     }
 
-    func testUpdate_Nil_Failure() {
-        let result = Result<[CourseResponse]>.failure(nil)
-        Course.update(using: result, in: context) { courseResult in
-            try! self.context.save()
-            XCTAssertTrue(courseResult.isFailure)
-            XCTAssertEqual(try! Course.fetch(in: self.context).count, 2)
-        }
-    }
-
     func testUpdate_Add_Added() {
         XCTAssertEqual(try! Course.fetch(in: context).count, 2)
 
-        let result = Result.success([CourseResponse(id: "2", title: "C")])
-        Course.update(using: result, in: context) { courseResult in
-            try! self.context.save()
+        try! Course.update(using: [CourseResponse(id: "2", title: "C")], in: context)
+        try! context.save()
 
-            XCTAssertTrue(courseResult.isSuccess)
-            XCTAssertEqual(try! Course.fetch(in: self.context).count, 3)
-        }
+        XCTAssertEqual(try! Course.fetch(in: context).count, 3)
     }
 
     func testMerge_Courses_Merged() {
@@ -58,15 +46,13 @@ final class UpdatableTests: XCTestCase {
     func testUpdate_Update_Updated() {
         XCTAssertEqual(try! Course.fetch(in: context).count, 2)
 
-        let result = Result.success([CourseResponse(id: "1", title: "Updated Course 2")])
-        Course.update(using: result, in: context) { courseResult in
-            try! self.context.save()
-            let course2 = try! Course.fetch(byId: "1", in: self.context)
+        try! Course.update(using: [CourseResponse(id: "1", title: "Updated Course 2")], in: context)
 
-            XCTAssertTrue(courseResult.isSuccess)
-            XCTAssertEqual(try! Course.fetch(in: self.context!).count, 2)
-            XCTAssertEqual(course2?.title, "Updated Course 2")
-            XCTAssertEqual(course2?.files.count, 1)
-        }
+        try! context.save()
+        let course2 = try! Course.fetch(byId: "1", in: context)
+
+        XCTAssertEqual(try! Course.fetch(in: context!).count, 2)
+        XCTAssertEqual(course2?.title, "Updated Course 2")
+        XCTAssertEqual(course2?.files.count, 1)
     }
 }

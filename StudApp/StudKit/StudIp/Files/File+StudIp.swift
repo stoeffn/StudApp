@@ -7,16 +7,29 @@
 //
 
 import CoreData
+import CoreSpotlight
 
 extension File {
     public func updateChildren(in context: NSManagedObjectContext, handler: @escaping ResultHandler<File>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestDecoded(.file(withId: id)) { (result: Result<FileResponse>) in
-            File.update(using: result, in: context, handler: handler)
+            guard let models = result.value else { return handler(result.replacingValue(nil)) }
 
-            if #available(iOSApplicationExtension 11.0, *) {
-                NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
-                NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+            do {
+                let updatedFile = try File.update(using: [models], in: context).first
+
+                if let searchableItems = updatedFile?.searchableChildrenItems {
+                    CSSearchableIndex.default().indexSearchableItems(searchableItems) { _ in }
+                }
+
+                if #available(iOSApplicationExtension 11.0, *) {
+                    NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
+                    NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+                }
+
+                handler(result.replacingValue(updatedFile))
+            } catch {
+                handler(.failure(error))
             }
         }
     }
@@ -27,6 +40,9 @@ extension File {
             handler(.success(localUrl(inProviderDirectory: true)))
             return nil
         }
+
+        try? FileManager.default.createIntermediateDirectories(forFileAt: localUrl())
+        try? FileManager.default.createIntermediateDirectories(forFileAt: localUrl(inProviderDirectory: true))
 
         let downloadDate = Date()
         state.isDownloading = true
@@ -47,17 +63,14 @@ extension File {
 
         guard let downloadTask = task else { return nil }
 
-        try? FileManager.default.createIntermediateDirectories(forFileAt: localUrl())
-        try? FileManager.default.createIntermediateDirectories(forFileAt: localUrl(inProviderDirectory: true))
-
         if #available(iOSApplicationExtension 11.0, *) {
             NSFileProviderManager.default.register(downloadTask, forItemWithIdentifier: itemIdentifier) { _ in
                 downloadTask.resume()
             }
-        } else {
-            downloadTask.resume()
+            return downloadTask.progress
         }
 
+        downloadTask.resume()
         return nil
     }
 

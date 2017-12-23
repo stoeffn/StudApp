@@ -21,6 +21,7 @@ struct FileResponse: Decodable {
     let modifiedAt: Date
     let size: Int?
     let downloadCount: Int?
+    private let rawSummary: String?
     private let ownerPath: String?
 
     enum CodingKeys: String, CodingKey {
@@ -35,12 +36,14 @@ struct FileResponse: Decodable {
         case modifiedAt = "chdate"
         case size = "filesize"
         case downloadCount = "downloads"
+        case rawSummary = "description"
         case ownerPath = "author"
     }
 
     init(folderId: String? = nil, fileId: String? = nil, name: String? = nil, coursePath: String,
          parentId: String? = nil, children: [FileResponse] = [], title: String, creationDate: Date = Date(),
-         modificationDate: Date = Date(), size: Int? = nil, downloadCount: Int? = nil, ownerPath: String? = nil) {
+         modificationDate: Date = Date(), size: Int? = nil, downloadCount: Int? = nil, rawSummary: String? = nil,
+         ownerPath: String? = nil) {
         self.folderId = folderId
         self.fileId = fileId
         filename = name
@@ -52,6 +55,7 @@ struct FileResponse: Decodable {
         modifiedAt = modificationDate
         self.size = size
         self.downloadCount = downloadCount
+        self.rawSummary = rawSummary
         self.ownerPath = ownerPath
     }
 
@@ -67,6 +71,7 @@ struct FileResponse: Decodable {
         modifiedAt = try values.decode(Date.self, forKey: .modifiedAt)
         size = try values.decodeIfPresent(Int.self, forKey: .size)
         downloadCount = try values.decodeIfPresent(Int.self, forKey: .downloadCount)
+        rawSummary = try values.decodeIfPresent(String.self, forKey: .rawSummary)
         ownerPath = try values.decodeIfPresent(String.self, forKey: .ownerPath)
 
         if let childrenCollection = try? values.decodeIfPresent([String: FileResponse].self, forKey: .children),
@@ -108,6 +113,10 @@ extension FileResponse {
 
     var name: String? {
         return isFolder ? title : filename
+    }
+
+    var summary: String? {
+        return rawSummary?.nilWhenEmpty
     }
 
     func fetchCourse(in context: NSManagedObjectContext) throws -> Course? {

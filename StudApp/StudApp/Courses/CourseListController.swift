@@ -62,8 +62,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     override func restoreUserActivityState(_ activity: NSUserActivity) {
         guard
-            activity.activityType == UserActivities.courseIdentifier,
-            let courseId = activity.userInfo?[Course.typeIdentifier] as? String,
+            case let .course(courseId)? = activity.itemIdentifier?.model,
             let courseViewModel = CourseViewModel(courseId: courseId)
         else {
             let alert = UIAlertController(title: "Something went wrong continuing your activity.".localized)

@@ -39,15 +39,16 @@ final class MainController: UITabBarController {
     // MARK: - Supporting User Activities
 
     override func restoreUserActivityState(_ activity: NSUserActivity) {
-        switch activity.activityType {
-        case UserActivities.documentIdentifier:
+        switch activity.itemIdentifier?.model {
+        case .file?:
             selectedIndex = Tabs.downloadList.rawValue
             downloadListController?.restoreUserActivityState(activity)
-        case UserActivities.courseIdentifier:
+        case .course?:
             selectedIndex = Tabs.courseList.rawValue
             courseListController?.restoreUserActivityState(activity)
         default:
-            break
+            let alert = UIAlertController(title: "Something went wrong continuing your activity.".localized)
+            return present(alert, animated: true, completion: nil)
         }
     }
 

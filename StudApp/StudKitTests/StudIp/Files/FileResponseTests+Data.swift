@@ -36,6 +36,7 @@ extension FileResponseTests {
             "chdate": 1467896142,
             "course": "\\/api.php\\/course\\/a2c88e905abf322d1868640859f13c99",
             "range_id": "088f5f2efe1324e7296913bed9c1f93f",
+            "description": "Hello, World!",
             "documents": []
         }
     """.data(using: .utf8)!

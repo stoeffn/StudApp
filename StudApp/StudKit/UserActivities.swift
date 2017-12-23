@@ -11,5 +11,5 @@ public enum UserActivities {
 
     public static let courseIdentifier = "\(identifierPrefix).Course"
 
-    public static let documentIdentifier = "\(identifierPrefix).Document"
+    public static let fileIdentifier = "\(identifierPrefix).File"
 }
