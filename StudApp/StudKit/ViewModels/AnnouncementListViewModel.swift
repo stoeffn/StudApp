@@ -55,7 +55,7 @@ extension AnnouncementListViewModel: DataSourceSection {
     public typealias Row = Announcement
 
     public var numberOfRows: Int {
-        return controller.fetchedObjects?.count ?? 0
+        return controller.sections?.first?.numberOfObjects ?? 0
     }
 
     public subscript(rowAt index: Int) -> Announcement {

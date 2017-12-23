@@ -75,7 +75,7 @@ extension CourseListViewModel: DataSourceSection {
     public typealias Row = Course
 
     public var numberOfRows: Int {
-        return controller.fetchedObjects?.count ?? 0
+        return controller.sections?.first?.numberOfObjects ?? 0
     }
 
     public subscript(rowAt index: Int) -> Course {

@@ -85,8 +85,12 @@ final class CourseController: UITableViewController, Routable {
 
     // MARK: - Table View Data Source
 
+    private let emptyCellIdentifier = "EmptyCell"
+
     private enum Sections: Int {
         case info, announcements, documents
+
+        static var isSectionAtIndexEmpty = [true, true, true]
     }
 
     private func index<Section: DataSourceSection>(for section: Section) -> Sections? {
@@ -105,9 +109,9 @@ final class CourseController: UITableViewController, Routable {
         case .info?:
             return viewModel.numberOfRows
         case .announcements?:
-            return announcementsViewModel.numberOfRows
+            return max(announcementsViewModel.numberOfRows, 1)
         case .documents?:
-            return fileListViewModel.numberOfRows
+            return max(fileListViewModel.numberOfRows, 1)
         case nil:
             fatalError()
         }
@@ -121,10 +125,18 @@ final class CourseController: UITableViewController, Routable {
             cell.textLabel?.text = titleAndValue.title
             cell.detailTextLabel?.text = titleAndValue.value
             return cell
+        case .announcements? where announcementsViewModel.isEmpty:
+            let cell = tableView.dequeueReusableCell(withIdentifier: emptyCellIdentifier, for: indexPath)
+            cell.textLabel?.text = "No Announcements".localized
+            return cell
         case .announcements?:
             let cell = tableView.dequeueReusableCell(withIdentifier: AnnouncementCell.typeIdentifier, for: indexPath)
             (cell as? AnnouncementCell)?.announcement = announcementsViewModel[rowAt: indexPath.row]
             (cell as? AnnouncementCell)?.color = viewModel.course.state.color
+            return cell
+        case .documents? where fileListViewModel.isEmpty:
+            let cell = tableView.dequeueReusableCell(withIdentifier: emptyCellIdentifier, for: indexPath)
+            cell.textLabel?.text = "No Documents".localized
             return cell
         case .documents?:
             let cell = tableView.dequeueReusableCell(withIdentifier: FileCell.typeIdentifier, for: indexPath)
@@ -156,10 +168,12 @@ final class CourseController: UITableViewController, Routable {
 
     override func tableView(_: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
         switch Sections(rawValue: indexPath.section) {
-        case .info?, .announcements?, .documents?:
+        case .info?,
+             .announcements? where !announcementsViewModel.isEmpty,
+             .documents? where !fileListViewModel.isEmpty:
             return true
-        case nil:
-            fatalError()
+        default:
+            return false
         }
     }
 
@@ -202,17 +216,13 @@ final class CourseController: UITableViewController, Routable {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch Sections(rawValue: indexPath.section) {
-        case .info?, .announcements?:
+        case .announcements? where !announcementsViewModel.isEmpty:
             break
-        case .documents?:
-            guard
-                let cell = tableView.cellForRow(at: indexPath) as? FileCell,
-                !cell.file.isFolder
-            else { return }
-
+        case .documents? where !announcementsViewModel.isEmpty:
+            guard let cell = tableView.cellForRow(at: indexPath) as? FileCell, !cell.file.isFolder else { return }
             downloadOrPreview(cell.file)
-        case nil:
-            fatalError()
+        default:
+            break
         }
 
         tableView.deselectRow(at: indexPath, animated: true)
@@ -276,10 +286,32 @@ final class CourseController: UITableViewController, Routable {
 // MARK: - Data Section Delegate
 
 extension CourseController: DataSourceSectionDelegate {
-    public func data<Section: DataSourceSection>(changedIn _: Section.Row, at index: Int, change: DataChange<Section.Row, Int>,
-                                                 in section: Section) {
-        guard let sectionIndex = self.index(for: section)?.rawValue else { return }
-        let indexPath = IndexPath(row: index, section: sectionIndex)
+    func dataDidChange<Section: DataSourceSection>(in section: Section) {
+        guard let sectionIndex = index(for: section) else { fatalError() }
+
+        switch sectionIndex {
+        case .announcements, .documents:
+            let indexPath = IndexPath(row: 0, section: sectionIndex.rawValue)
+            guard Sections.isSectionAtIndexEmpty[sectionIndex.rawValue] != section.isEmpty else { break }
+            Sections.isSectionAtIndexEmpty[sectionIndex.rawValue] = section.isEmpty
+
+            if section.isEmpty {
+                tableView.insertRows(at: [indexPath], with: .fade)
+            } else {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        default:
+            break
+        }
+
+        tableView.endUpdates()
+    }
+
+    func data<Section: DataSourceSection>(changedIn _: Section.Row, at index: Int, change: DataChange<Section.Row, Int>,
+                                          in section: Section) {
+        guard let sectionIndex = self.index(for: section) else { fatalError() }
+        let indexPath = IndexPath(row: index, section: sectionIndex.rawValue)
+
         switch change {
         case .insert:
             tableView.insertRows(at: [indexPath], with: .automatic)
@@ -288,7 +320,7 @@ extension CourseController: DataSourceSectionDelegate {
         case .update:
             tableView.reloadRows(at: [indexPath], with: .automatic)
         case let .move(newIndex):
-            let newIndexPath = IndexPath(row: newIndex, section: sectionIndex)
+            let newIndexPath = IndexPath(row: newIndex, section: sectionIndex.rawValue)
             tableView.moveRow(at: indexPath, to: newIndexPath)
         }
     }
@@ -303,16 +335,16 @@ extension CourseController: UITableViewDragDelegate {
         case .info?:
             guard let value = viewModel[rowAt: indexPath.row].value else { return [] }
             return [NSItemProvider(item: value as NSString, typeIdentifier: kUTTypePlainText as String)]
-        case .announcements?:
+        case .announcements? where !announcementsViewModel.isEmpty:
             let value = announcementsViewModel[rowAt: indexPath.row].body
             return [NSItemProvider(item: value as NSString, typeIdentifier: kUTTypePlainText as String)]
-        case .documents?:
+        case .documents? where !fileListViewModel.isEmpty:
             let file = fileListViewModel[rowAt: indexPath.row]
             guard let itemProvider = NSItemProvider(contentsOf: file.localUrl(inProviderDirectory: true)) else { return [] }
             itemProvider.suggestedName = file.sanitizedTitleWithExtension
             return [itemProvider]
-        case nil:
-            fatalError()
+        default:
+            return []
         }
     }
 
@@ -333,17 +365,15 @@ extension CourseController: UIViewControllerPreviewingDelegate, QLPreviewControl
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
 
         switch Sections(rawValue: indexPath.section) {
-        case .info?, .announcements?:
-            return nil
-        case .documents?:
+        case .documents? where !fileListViewModel.isEmpty:
             let file = fileListViewModel[rowAt: indexPath.row]
             guard !file.isFolder else { return nil }
 
             let previewController = PreviewController()
             previewController.prepareDependencies(for: .preview(file, self))
             return previewController
-        case nil:
-            fatalError()
+        default:
+            return nil
         }
     }
 

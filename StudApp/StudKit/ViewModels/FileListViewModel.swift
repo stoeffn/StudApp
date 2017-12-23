@@ -92,7 +92,7 @@ extension FileListViewModel: DataSourceSection {
     public typealias Row = File
 
     public var numberOfRows: Int {
-        return controller.fetchedObjects?.count ?? 0
+        return controller.sections?.first?.numberOfObjects ?? 0
     }
 
     public subscript(rowAt index: Int) -> File {
