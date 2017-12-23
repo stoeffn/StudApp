@@ -49,9 +49,7 @@ final class FileCell: UITableViewCell {
             downloadCountLabel.text = "%dx".localized(file.downloadCount)
 
             activityIndicator?.isHidden = !file.state.isDownloading
-            downloadGlyph?.isHidden = file.isFolder
-                || file.state.isMostRecentVersionDownloaded
-                || file.state.isDownloading
+            downloadGlyph?.isHidden = !file.isDownloadable
 
             updateAvailability()
             updateSubtitleHiddenStates()
@@ -91,11 +89,8 @@ final class FileCell: UITableViewCell {
     }
 
     private func updateAvailability(_: Notification? = nil) {
-        let isFileAvailable = file.isFolder
-            || file.state.isDownloaded
-            || reachabilityService.currentReachabilityFlags.contains(.reachable)
         UIView.animate(withDuration: 0.3) {
-            self.contentView.alpha = isFileAvailable ? 1 : 0.6
+            self.contentView.alpha = self.file.isAvailable ? 1 : 0.6
         }
     }
 

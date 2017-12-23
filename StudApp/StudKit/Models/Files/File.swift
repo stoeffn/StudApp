@@ -138,6 +138,23 @@ public extension File {
     public var allChildren: [File] {
         return [self] + children.flatMap { $0.allChildren }
     }
+
+    /// Whether this file is available for download, ignoring network connectivity conditions. May also be `true` for downloaded
+    /// files if a more recent version is available.
+    public var isDownloadable: Bool {
+        return !isFolder
+            && !state.isMostRecentVersionDownloaded
+            && !state.isDownloading
+    }
+
+    /// Whether this file is available. Returns `true` for folders as they can be enumerated and for documents iff downloaded
+    /// or network is available.
+    public var isAvailable: Bool {
+        let reachabilityService = ServiceContainer.default[ReachabilityService.self]
+        return isFolder
+            || state.isDownloaded
+            || reachabilityService.currentReachabilityFlags.contains(.reachable)
+    }
 }
 
 // MARK: - Storage
