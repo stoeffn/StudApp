@@ -69,25 +69,35 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FileCell" rowHeight="72" id="1zq-2J-AVl" customClass="FileCell" customModule="StudApp" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FileCell" rowHeight="72" id="1zq-2J-AVl" customClass="FileCell" customModule="StudApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="284" width="768" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1zq-2J-AVl" id="11a-Vz-8MG">
-                                    <rect key="frame" x="0.0" y="0.0" width="702" height="71.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="71.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FH0-1f-HVE">
-                                            <rect key="frame" x="48" y="11" width="646" height="50"/>
+                                            <rect key="frame" x="48" y="11" width="672" height="50"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CSQ-4S-MVL">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eK6-ZS-EGw">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CSQ-4S-MVL">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="XJd-NI-1GI"/>
-                                                        <constraint firstAttribute="width" secondItem="CSQ-4S-MVL" secondAttribute="height" multiplier="1:1" id="ZAo-uX-4bV"/>
+                                                        <constraint firstItem="CSQ-4S-MVL" firstAttribute="top" secondItem="eK6-ZS-EGw" secondAttribute="top" id="8S3-2g-KbW"/>
+                                                        <constraint firstItem="CSQ-4S-MVL" firstAttribute="leading" secondItem="eK6-ZS-EGw" secondAttribute="leading" id="KgO-a8-zqb"/>
+                                                        <constraint firstAttribute="width" constant="50" id="Zhd-ET-ay1"/>
+                                                        <constraint firstAttribute="trailing" secondItem="CSQ-4S-MVL" secondAttribute="trailing" id="inF-dp-LYM"/>
+                                                        <constraint firstAttribute="width" secondItem="eK6-ZS-EGw" secondAttribute="height" multiplier="1:1" id="jqY-fa-T4p"/>
+                                                        <constraint firstAttribute="bottom" secondItem="CSQ-4S-MVL" secondAttribute="bottom" id="xJQ-gm-uYT"/>
                                                     </constraints>
-                                                </imageView>
+                                                </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="wgl-9L-6Gs">
-                                                    <rect key="frame" x="58" y="6" width="588" height="38.5"/>
+                                                    <rect key="frame" x="58" y="6" width="614" height="38.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Assignment 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcf-XD-Ysk">
                                                             <rect key="frame" x="0.0" y="0.0" width="102.5" height="20.5"/>

@@ -51,6 +51,10 @@ public final class DownloadListViewModel: NSObject {
         else { return nil }
         return file
     }
+
+    public func indexPath(for file: File) -> IndexPath? {
+        return controller.indexPath(forObject: file.state)
+    }
 }
 
 // MARK: - Data Source Section

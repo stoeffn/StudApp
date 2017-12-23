@@ -6,6 +6,8 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import QuickLook
+
 public enum Routes {
     case empty
 
@@ -15,7 +17,7 @@ public enum Routes {
 
     case signIntoOrganization(OrganizationRecord)
 
-    case preview(File)
+    case preview(File, QLPreviewControllerDelegate?)
 
     case course(Course)
 

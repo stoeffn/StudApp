@@ -274,13 +274,23 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IYt-7I-IrG">
                                             <rect key="frame" x="20" y="11" width="702" height="50"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NDK-C4-aKK">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cXk-S1-j3w">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NDK-C4-aKK">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="50" id="GMi-uO-1IQ"/>
-                                                        <constraint firstAttribute="width" secondItem="NDK-C4-aKK" secondAttribute="height" multiplier="1:1" id="NEv-Ua-CG2"/>
+                                                        <constraint firstAttribute="width" secondItem="cXk-S1-j3w" secondAttribute="height" multiplier="1:1" id="0mb-Je-Opi"/>
+                                                        <constraint firstAttribute="bottom" secondItem="NDK-C4-aKK" secondAttribute="bottom" id="99K-gA-2fb"/>
+                                                        <constraint firstAttribute="trailing" secondItem="NDK-C4-aKK" secondAttribute="trailing" id="FhC-Yv-CAF"/>
+                                                        <constraint firstAttribute="width" constant="50" id="SrS-k4-nX3"/>
+                                                        <constraint firstItem="NDK-C4-aKK" firstAttribute="leading" secondItem="cXk-S1-j3w" secondAttribute="leading" id="XJo-zd-XZ8"/>
+                                                        <constraint firstItem="NDK-C4-aKK" firstAttribute="top" secondItem="cXk-S1-j3w" secondAttribute="top" id="erh-4o-dSG"/>
                                                     </constraints>
-                                                </imageView>
+                                                </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="NZQ-WI-0Ho">
                                                     <rect key="frame" x="58" y="6" width="581" height="38.5"/>
                                                     <subviews>

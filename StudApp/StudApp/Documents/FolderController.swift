@@ -7,6 +7,7 @@
 //
 
 import StudKit
+import QuickLook
 
 final class FolderController: UITableViewController, DataSourceSectionDelegate, Routable {
     private var restoredFolderId: String?
@@ -128,7 +129,7 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
         }
 
         let previewController = PreviewController()
-        previewController.prepareDependencies(for: .preview(file))
+        previewController.prepareDependencies(for: .preview(file, self))
         present(previewController, animated: true, completion: nil)
     }
 
@@ -187,18 +188,27 @@ extension FolderController: UITableViewDragDelegate {
 
 // MARK: - Document Previewing
 
-extension FolderController: UIViewControllerPreviewingDelegate {
+extension FolderController: UIViewControllerPreviewingDelegate, QLPreviewControllerDelegate {
     func previewingContext(_: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
         let file = viewModel[rowAt: indexPath.row]
         guard !file.isFolder else { return nil }
 
         let previewController = PreviewController()
-        previewController.prepareDependencies(for: .preview(file))
+        previewController.prepareDependencies(for: .preview(file, self))
         return previewController
     }
 
     func previewingContext(_: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         present(viewControllerToCommit, animated: true, completion: nil)
+    }
+
+    func previewController(_: QLPreviewController, transitionViewFor item: QLPreviewItem) -> UIView? {
+        guard
+            let file = item as? File,
+            let index = viewModel.index(for: file),
+            let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? FileCell
+            else { return nil }
+        return cell.iconView
     }
 }

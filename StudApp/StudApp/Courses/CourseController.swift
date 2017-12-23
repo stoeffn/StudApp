@@ -8,6 +8,7 @@
 
 import MobileCoreServices
 import StudKit
+import QuickLook
 
 final class CourseController: UITableViewController, Routable {
     private var restoredCourseId: String?
@@ -233,7 +234,7 @@ final class CourseController: UITableViewController, Routable {
         }
 
         let previewController = PreviewController()
-        previewController.prepareDependencies(for: .preview(file))
+        previewController.prepareDependencies(for: .preview(file, self))
         present(previewController, animated: true, completion: nil)
     }
 
@@ -327,7 +328,7 @@ extension CourseController: UITableViewDragDelegate {
 
 // MARK: - Document Previewing
 
-extension CourseController: UIViewControllerPreviewingDelegate {
+extension CourseController: UIViewControllerPreviewingDelegate, QLPreviewControllerDelegate {
     func previewingContext(_: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
 
@@ -339,7 +340,7 @@ extension CourseController: UIViewControllerPreviewingDelegate {
             guard !file.isFolder else { return nil }
 
             let previewController = PreviewController()
-            previewController.prepareDependencies(for: .preview(file))
+            previewController.prepareDependencies(for: .preview(file, self))
             return previewController
         case nil:
             fatalError()
@@ -348,5 +349,14 @@ extension CourseController: UIViewControllerPreviewingDelegate {
 
     func previewingContext(_: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         present(viewControllerToCommit, animated: true, completion: nil)
+    }
+
+    func previewController(_: QLPreviewController, transitionViewFor item: QLPreviewItem) -> UIView? {
+        guard
+            let file = item as? File,
+            let index = fileListViewModel.index(for: file),
+            let cell = tableView.cellForRow(at: IndexPath(row: index, section: Sections.documents.rawValue)) as? FileCell
+            else { return nil }
+        return cell.iconView
     }
 }

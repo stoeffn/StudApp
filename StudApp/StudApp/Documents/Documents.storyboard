@@ -31,13 +31,23 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jaK-M7-b2o">
                                             <rect key="frame" x="20" y="11" width="702" height="50"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="suH-Gp-Qt4">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uUn-ry-IbG">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="suH-Gp-Qt4">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="suH-Gp-Qt4" secondAttribute="height" multiplier="1:1" id="JTA-5c-j54"/>
-                                                        <constraint firstAttribute="width" constant="50" id="R0f-uP-Bt9"/>
+                                                        <constraint firstAttribute="width" constant="50" id="L51-1x-dAW"/>
+                                                        <constraint firstItem="suH-Gp-Qt4" firstAttribute="top" secondItem="uUn-ry-IbG" secondAttribute="top" id="Vi2-fG-7wD"/>
+                                                        <constraint firstAttribute="trailing" secondItem="suH-Gp-Qt4" secondAttribute="trailing" id="VqP-5Q-0lR"/>
+                                                        <constraint firstAttribute="bottom" secondItem="suH-Gp-Qt4" secondAttribute="bottom" id="giF-il-jUr"/>
+                                                        <constraint firstAttribute="width" secondItem="uUn-ry-IbG" secondAttribute="height" multiplier="1:1" id="msq-B6-ud8"/>
+                                                        <constraint firstItem="suH-Gp-Qt4" firstAttribute="leading" secondItem="uUn-ry-IbG" secondAttribute="leading" id="qtM-a0-5MS"/>
                                                     </constraints>
-                                                </imageView>
+                                                </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="XjF-Bg-e1r">
                                                     <rect key="frame" x="58" y="6" width="581" height="38.5"/>
                                                     <subviews>

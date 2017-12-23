@@ -47,8 +47,9 @@ final class PreviewController: QLPreviewController, Routable {
     }
 
     func prepareDependencies(for route: Routes) {
-        guard case let .preview(file) = route else { fatalError() }
+        guard case let .preview(file, delegate) = route else { fatalError() }
         self.file = file
+        self.delegate = delegate
     }
 
     // MARK: - Supporting User Activities

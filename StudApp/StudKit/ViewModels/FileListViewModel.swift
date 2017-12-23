@@ -80,6 +80,10 @@ public final class FileListViewModel: NSObject {
     public var title: String {
         return folder?.title ?? course.title
     }
+
+    public func index(for file: File) -> Int? {
+        return controller.indexPath(forObject: file.state)?.row
+    }
 }
 
 // MARK: - Data Source Section

@@ -67,7 +67,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         }
 
         let previewController = PreviewController()
-        previewController.prepareDependencies(for: .preview(file))
+        previewController.prepareDependencies(for: .preview(file, self))
         present(previewController, animated: true, completion: nil)
     }
 
@@ -143,7 +143,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let file = viewModel[rowAt: indexPath]
         let previewController = PreviewController()
-        previewController.prepareDependencies(for: .preview(file))
+        previewController.prepareDependencies(for: .preview(file, self))
         present(previewController, animated: true, completion: nil)
     }
 
@@ -225,16 +225,25 @@ extension DownloadListController: UITableViewDragDelegate {
 
 // MARK: - Document Previewing
 
-extension DownloadListController: UIViewControllerPreviewingDelegate {
+extension DownloadListController: UIViewControllerPreviewingDelegate, QLPreviewControllerDelegate {
     func previewingContext(_: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
         let file = viewModel[rowAt: indexPath]
         let previewController = PreviewController()
-        previewController.prepareDependencies(for: .preview(file))
+        previewController.prepareDependencies(for: .preview(file, self))
         return previewController
     }
 
     func previewingContext(_: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
         present(viewControllerToCommit, animated: true, completion: nil)
+    }
+
+    func previewController(_: QLPreviewController, transitionViewFor item: QLPreviewItem) -> UIView? {
+        guard
+            let file = item as? File,
+            let indexPath = viewModel.indexPath(for: file),
+            let cell = tableView.cellForRow(at: indexPath) as? FileCell
+        else { return nil }
+        return cell.iconView
     }
 }
