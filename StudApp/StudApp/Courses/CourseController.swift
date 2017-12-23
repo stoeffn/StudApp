@@ -356,7 +356,7 @@ extension CourseController: UIViewControllerPreviewingDelegate, QLPreviewControl
             let file = item as? File,
             let index = fileListViewModel.index(for: file),
             let cell = tableView.cellForRow(at: IndexPath(row: index, section: Sections.documents.rawValue)) as? FileCell
-            else { return nil }
+        else { return nil }
         return cell.iconView
     }
 }

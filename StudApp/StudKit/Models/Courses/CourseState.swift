@@ -43,6 +43,6 @@ public final class CourseState: NSManagedObject, CDCreatable, CDSortable {
 
 public extension CourseState {
     public var color: UIColor {
-        return UI.Colors.pickerColors[course.state.colorId] ?? UI.Colors.pickerColors.first?.value ?? UI.Colors.studBlue
+        return UI.Colors.pickerColors[course.state.colorId] ?? UI.Colors.defaultPickerColor ?? UI.Colors.studBlue
     }
 }

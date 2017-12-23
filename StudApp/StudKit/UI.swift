@@ -44,5 +44,7 @@ public enum UI {
             18: UIColor(red: 0.659, green: 0.365, blue: 0.271, alpha: 1),
             19: UIColor(red: 0.863, green: 0.745, blue: 0.706, alpha: 1),
         ]
+
+        public static let defaultPickerColor = pickerColors[0]
     }
 }

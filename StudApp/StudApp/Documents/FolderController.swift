@@ -208,7 +208,7 @@ extension FolderController: UIViewControllerPreviewingDelegate, QLPreviewControl
             let file = item as? File,
             let index = viewModel.index(for: file),
             let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? FileCell
-            else { return nil }
+        else { return nil }
         return cell.iconView
     }
 }
