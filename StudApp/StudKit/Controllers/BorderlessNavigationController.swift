@@ -16,12 +16,12 @@ public final class BorderlessNavigationController: UINavigationController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationBar.removeBackground()
-
         view.insertSubview(navigationBarBackgroundBlurView, belowSubview: navigationBar)
         view.insertSubview(navigationBarBackgroundAlphaView, belowSubview: navigationBar)
 
         updateNavigationBarBackgroundFrame()
+
+        usesDefaultAppearance = false
     }
 
     public override func viewDidAppear(_ animated: Bool) {
@@ -51,6 +51,14 @@ public final class BorderlessNavigationController: UINavigationController {
     /// Any additional navigation bar height, e.g. due to a search bar.
     public var additionalHeight: CGFloat = 0 {
         didSet { updateNavigationBarBackgroundFrame() }
+    }
+
+    public var usesDefaultAppearance: Bool = false {
+        didSet {
+            navigationBarBackgroundBlurView.isHidden = usesDefaultAppearance
+            navigationBarBackgroundAlphaView.isHidden = usesDefaultAppearance
+            navigationBar.setBackgroundHidden(!usesDefaultAppearance)
+        }
     }
 
     /// View with a light blur effect to be placed beneath the status and navigation bar. With no content behind it, it appears

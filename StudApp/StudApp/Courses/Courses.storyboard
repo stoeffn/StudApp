@@ -220,28 +220,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" id="mrt-iR-1ys">
-                            <rect key="frame" x="0.0" y="0.0" width="768" height="56"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2df-sD-bEW">
-                                    <rect key="frame" x="48" y="8" width="672" height="16"/>
-                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                    <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                            <constraints>
-                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="2df-sD-bEW" secondAttribute="bottom" constant="4" id="MB3-h1-wAO"/>
-                                <constraint firstItem="2df-sD-bEW" firstAttribute="top" secondItem="mrt-iR-1ys" secondAttribute="top" constant="8" id="Sf1-O4-e2u"/>
-                                <constraint firstAttribute="trailingMargin" secondItem="2df-sD-bEW" secondAttribute="trailing" id="gXR-py-vVV"/>
-                                <constraint firstItem="2df-sD-bEW" firstAttribute="leading" secondItem="mrt-iR-1ys" secondAttribute="leadingMargin" id="sDr-cf-uQi"/>
-                            </constraints>
-                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UITableViewCell" textLabel="w0J-7F-tTZ" detailTextLabel="f8b-oJ-u7n" style="IBUITableViewCellStyleValue1" id="Pe3-Dc-UMn">
-                                <rect key="frame" x="0.0" y="111.5" width="768" height="44"/>
+                                <rect key="frame" x="0.0" y="55.5" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pe3-Dc-UMn" id="Vcj-NJ-GCr">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
@@ -265,7 +246,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FileCell" rowHeight="72" id="18v-nC-lXr" customClass="FileCell" customModule="StudApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="155.5" width="768" height="72"/>
+                                <rect key="frame" x="0.0" y="99.5" width="768" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="18v-nC-lXr" id="d9m-hY-YdC">
                                     <rect key="frame" x="0.0" y="0.0" width="730" height="71.5"/>
@@ -448,7 +429,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AnnouncementCell" rowHeight="72" id="Xmm-E2-ALL" customClass="AnnouncementCell" customModule="StudApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="227.5" width="768" height="72"/>
+                                <rect key="frame" x="0.0" y="171.5" width="768" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xmm-E2-ALL" id="CCi-b4-zYj">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="71.5"/>
@@ -532,7 +513,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="EmptyCell" textLabel="mfb-9F-mgz" rowHeight="72" style="IBUITableViewCellStyleDefault" id="QGR-HI-Lac">
-                                <rect key="frame" x="0.0" y="299.5" width="768" height="72"/>
+                                <rect key="frame" x="0.0" y="243.5" width="768" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QGR-HI-Lac" id="68x-80-K8h">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="71.5"/>
@@ -562,9 +543,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="subtitleLabel" destination="2df-sD-bEW" id="zRB-Qh-vaa"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PtY-OR-DU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -37,7 +37,17 @@ final class CourseController: UITableViewController, Routable {
         fileListViewModel.update()
 
         navigationItem.title = viewModel.course.title
-        subtitleLabel.text = viewModel.course.subtitle
+        navigationItem.prompt = viewModel.course.subtitle
+
+        (navigationController as? BorderlessNavigationController)?.usesDefaultAppearance = true
+        (splitViewController?.viewControllers.first as? BorderlessNavigationController)?.usesDefaultAppearance = true
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        (navigationController as? BorderlessNavigationController)?.usesDefaultAppearance = false
+        (splitViewController?.viewControllers.first as? BorderlessNavigationController)?.usesDefaultAppearance = false
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -244,8 +254,6 @@ final class CourseController: UITableViewController, Routable {
 
     // MARK: - User Interface
 
-    @IBOutlet weak var subtitleLabel: UILabel!
-
     private func downloadOrPreview(_ file: File) {
         guard file.state.isMostRecentVersionDownloaded else {
             file.download { result in
@@ -356,6 +364,7 @@ extension CourseController: UITableViewDragDelegate {
 extension CourseController: UIViewControllerPreviewingDelegate, QLPreviewControllerDelegate {
     func previewingContext(_: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
+
         switch Sections(rawValue: indexPath.section) {
         case .documents? where !fileListViewModel.isEmpty:
             let file = fileListViewModel[rowAt: indexPath.row]

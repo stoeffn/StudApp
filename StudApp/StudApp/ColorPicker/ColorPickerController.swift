@@ -16,8 +16,6 @@ final class ColorPickerController: UICollectionViewController, Routable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController?.navigationBar.removeBackground()
-
         navigationItem.title = "Choose Color".localized
 
         addBackgroundView(withEffect: UIBlurEffect(style: .light))
