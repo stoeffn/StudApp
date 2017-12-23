@@ -11,7 +11,6 @@ import StudKit
 import QuickLook
 
 final class CourseController: UITableViewController, Routable {
-    private var restoredCourseId: String?
     private var viewModel: CourseViewModel!
     private var announcementsViewModel: AnnouncementListViewModel!
     private var fileListViewModel: FileListViewModel!
@@ -76,15 +75,12 @@ final class CourseController: UITableViewController, Routable {
     }
 
     override func decodeRestorableState(with coder: NSCoder) {
-        restoredCourseId = coder.decodeObject(forKey: Course.typeIdentifier) as? String
+        if let restoredCourseId = coder.decodeObject(forKey: Course.typeIdentifier) as? String {
+            viewModel = CourseViewModel(courseId: restoredCourseId)
+            configureViewModels(with: viewModel.course)
+        }
+
         super.decodeRestorableState(with: coder)
-    }
-
-    override func applicationFinishedRestoringState() {
-        guard let courseId = restoredCourseId else { return }
-
-        viewModel = CourseViewModel(courseId: courseId)
-        configureViewModels(with: viewModel.course)
     }
 
     // MARK: - Supporting User Activities

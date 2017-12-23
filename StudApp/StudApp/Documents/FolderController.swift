@@ -10,7 +10,6 @@ import StudKit
 import QuickLook
 
 final class FolderController: UITableViewController, DataSourceSectionDelegate, Routable {
-    private var restoredFolderId: String?
     private var viewModel: FileListViewModel!
 
     // MARK: - Life Cycle
@@ -62,16 +61,13 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
     }
 
     override func decodeRestorableState(with coder: NSCoder) {
-        restoredFolderId = coder.decodeObject(forKey: File.typeIdentifier) as? String
+        if let restoredFolderId = coder.decodeObject(forKey: File.typeIdentifier) as? String {
+            viewModel = FileListViewModel(folderId: restoredFolderId)
+            viewModel.delegate = self
+            viewModel.fetch()
+        }
+
         super.decodeRestorableState(with: coder)
-    }
-
-    override func applicationFinishedRestoringState() {
-        guard let folderId = restoredFolderId else { return }
-
-        viewModel = FileListViewModel(folderId: folderId)
-        viewModel.delegate = self
-        viewModel.fetch()
     }
 
     // MARK: - Table View Data Source
