@@ -99,9 +99,9 @@ final class CourseController: UITableViewController, Routable {
 
     private enum Sections: Int {
         case info, announcements, documents
-
-        static var isSectionAtIndexEmpty = [true, true, true]
     }
+
+    private var isSectionAtIndexEmpty = [true, true, true]
 
     private func index<Section: DataSourceSection>(for section: Section) -> Sections? {
         let section = section as AnyObject
@@ -301,8 +301,8 @@ extension CourseController: DataSourceSectionDelegate {
         switch sectionIndex {
         case .announcements, .documents:
             let indexPath = IndexPath(row: 0, section: sectionIndex.rawValue)
-            guard Sections.isSectionAtIndexEmpty[sectionIndex.rawValue] != section.isEmpty else { break }
-            Sections.isSectionAtIndexEmpty[sectionIndex.rawValue] = section.isEmpty
+            guard isSectionAtIndexEmpty[sectionIndex.rawValue] != section.isEmpty else { break }
+            isSectionAtIndexEmpty[sectionIndex.rawValue] = section.isEmpty
 
             if section.isEmpty {
                 tableView.insertRows(at: [indexPath], with: .middle)
