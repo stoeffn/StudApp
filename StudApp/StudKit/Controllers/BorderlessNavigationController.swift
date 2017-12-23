@@ -16,6 +16,8 @@ public final class BorderlessNavigationController: UINavigationController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
+        delegate = self
+
         view.insertSubview(navigationBarBackgroundBlurView, belowSubview: navigationBar)
         view.insertSubview(navigationBarBackgroundAlphaView, belowSubview: navigationBar)
 
@@ -53,11 +55,13 @@ public final class BorderlessNavigationController: UINavigationController {
         didSet { updateNavigationBarBackgroundFrame() }
     }
 
+    /// Whether to use the default navigation bar appearance with background and hairline.
     public var usesDefaultAppearance: Bool = false {
         didSet {
             navigationBarBackgroundBlurView.isHidden = usesDefaultAppearance
             navigationBarBackgroundAlphaView.isHidden = usesDefaultAppearance
             navigationBar.setBackgroundHidden(!usesDefaultAppearance)
+            updateNavigationBarBackgroundFrame()
         }
     }
 
@@ -88,8 +92,20 @@ public final class BorderlessNavigationController: UINavigationController {
 
     /// Update the navigation bar background views' frames. Needs to be called every time the layout changes.
     private func updateNavigationBarBackgroundFrame() {
-        guard let frame = navigationBarBackgroundFrame else { return }
+        guard let frame = navigationBarBackgroundFrame, !usesDefaultAppearance else { return }
         let size = CGSize(width: frame.size.width, height: frame.size.height + additionalHeight)
         navigationBarBackgroundBlurView.frame = CGRect(origin: frame.origin, size: size)
+    }
+}
+
+// MARK: - Navigation Bar Delegate
+
+extension BorderlessNavigationController: UINavigationControllerDelegate {
+    public func navigationController(_: UINavigationController, willShow _: UIViewController, animated _: Bool) {
+        updateNavigationBarBackgroundFrame()
+    }
+
+    public func navigationController(_: UINavigationController, didShow _: UIViewController, animated _: Bool) {
+        updateNavigationBarBackgroundFrame()
     }
 }

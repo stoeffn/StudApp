@@ -10,7 +10,7 @@ public extension UINavigationBar {
     /// Remove or restores this bar's background color, effect, and the bottom hairline.
     public func setBackgroundHidden(_ hidden: Bool) {
         if hidden {
-            //barTintColor = .clear
+            // barTintColor = .clear
             setBackgroundImage(UIImage(), for: .default)
             shadowImage = UIImage()
         } else {
