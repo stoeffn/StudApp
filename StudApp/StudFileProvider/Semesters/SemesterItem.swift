@@ -17,7 +17,7 @@ final class SemesterItem: NSObject, NSFileProviderItem {
 
     init(from semester: Semester, childItemCount: Int?, parentItemIdentifier: NSFileProviderItemIdentifier = .rootContainer) {
         itemIdentifier = semester.itemIdentifier
-        filename = semester.title
+        filename = semester.title.sanitizedAsFilename
 
         self.childItemCount = childItemCount as NSNumber?
 
