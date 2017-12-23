@@ -18,6 +18,7 @@ final class AnnouncementController: UIViewController, Routable {
 
         navigationItem.title = announcement.title
 
+        bodyView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         bodyView.text = announcement.body
     }
 
