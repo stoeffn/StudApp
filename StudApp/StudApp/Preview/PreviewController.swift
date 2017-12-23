@@ -17,34 +17,44 @@ final class PreviewController: QLPreviewController, Routable {
 
     private var file: File!
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        dataSource = self
+
+        file.download { result in
+            guard result.isSuccess else {
+                let alert = UIAlertController(title: result.error?.localizedDescription, message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
+                return self.present(alert, animated: true, completion: nil)
+            }
+
+            self.refreshCurrentPreviewItem()
+        }
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         userActivity = file.userActivity
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        try? historyService.mergeHistory(into: coreDataService.viewContext)
+        try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
+    }
+
     func prepareDependencies(for route: Routes) {
         guard case let .preview(file) = route else { fatalError() }
-
         self.file = file
-
-        delegate = self
-        dataSource = self
     }
 
     // MARK: - Supporting User Activities
 
     override func updateUserActivityState(_ activity: NSUserActivity) {
         activity.itemIdentifier = file.itemIdentifier
-    }
-}
-
-// MARK: - QuickLook Delegate
-
-extension PreviewController: QLPreviewControllerDelegate {
-    func previewControllerWillDismiss(_: QLPreviewController) {
-        try? historyService.mergeHistory(into: coreDataService.viewContext)
-        try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
     }
 }
 
