@@ -23,7 +23,7 @@ public final class ReachabilityService: ByTypeNameIdentifiable {
         var context = SCNetworkReachabilityContext(version: 0, info: nil, retain: nil, release: nil, copyDescription: nil)
         context.info = UnsafeMutableRawPointer(Unmanaged<ReachabilityService>.passUnretained(self).toOpaque())
 
-        let reachabilityCallback: SCNetworkReachabilityCallBack? = { (_, flags, info) in
+        let reachabilityCallback: SCNetworkReachabilityCallBack? = { _, flags, info in
             guard let info = info else { return }
             let handler = Unmanaged<ReachabilityService>.fromOpaque(info).takeUnretainedValue()
 

@@ -9,8 +9,6 @@
 import QuickLook
 
 public enum Routes {
-    case empty
-
     case about
 
     case signIn
@@ -20,6 +18,8 @@ public enum Routes {
     case preview(File, QLPreviewControllerDelegate?)
 
     case course(Course)
+
+    case emptyCourse
 
     case announcement(Announcement)
 
@@ -31,6 +31,8 @@ public enum Routes {
         switch self {
         case .signIn:
             return UIStoryboard(name: "SignIn", bundle: App.kitBundle)
+        case .emptyCourse:
+            return UIStoryboard(name: "Courses", bundle: nil)
         default:
             return nil
         }
@@ -39,18 +41,19 @@ public enum Routes {
     private var destinationIdentifier: String? {
         switch self {
         case .signIn: return "SignInNavigationController"
+        case .emptyCourse: return "EmptyCourseController"
         default: return nil
         }
     }
 
     public var segueIdentifier: String {
         switch self {
-        case .empty: return "empty"
         case .about: return "about"
         case .signIn: return "signIn"
         case .signIntoOrganization: return "signIntoOrganization"
         case .preview: return "preview"
         case .course: return "course"
+        case .emptyCourse: return "emptyCourse"
         case .announcement: return "announcement"
         case .folder: return "folder"
         case .colorPicker: return "colorPicker"

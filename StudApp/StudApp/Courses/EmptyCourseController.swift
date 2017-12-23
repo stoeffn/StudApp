@@ -1,5 +1,5 @@
 //
-//  CourseEmptyController.swift
+//  EmptyCourseController.swift
 //  StudApp
 //
 //  Created by Steffen Ryll on 12.12.17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class CourseEmptyController: UIViewController {
+final class EmptyCourseController: UIViewController {
     // MARK: - Life Cycle
 
     override func viewDidLoad() {

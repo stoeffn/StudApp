@@ -23,8 +23,6 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
         courseListViewModels = viewModel.map(courseListViewModel)
 
-        splitViewController?.preferredDisplayMode = .allVisible
-
         navigationItem.title = "Courses".localized
 
         if #available(iOS 11.0, *) {
@@ -42,18 +40,11 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         updateEmptyView()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        splitViewController?.showEmptyDetailIfApplicable()
-    }
-
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
 
         coordinator.animate(alongsideTransition: { _ in
             self.tableView.visibleCells.forEach { $0.setDisclosureIndicatorHidden(for: self.splitViewController) }
-            self.splitViewController?.showEmptyDetailIfApplicable()
             self.updateEmptyView()
         }, completion: nil)
     }
