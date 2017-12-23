@@ -333,11 +333,11 @@ extension CourseController: UITableViewDragDelegate {
     private func itemProviders(forIndexPath indexPath: IndexPath) -> [NSItemProvider] {
         switch Sections(rawValue: indexPath.section) {
         case .info?:
-            guard let value = viewModel[rowAt: indexPath.row].value else { return [] }
-            return [NSItemProvider(item: value as NSString, typeIdentifier: kUTTypePlainText as String)]
+            guard let data = viewModel[rowAt: indexPath.row].value?.data(using: .utf8) else { return [] }
+            return [NSItemProvider(item: data as NSData, typeIdentifier: kUTTypePlainText as String)]
         case .announcements? where !announcementsViewModel.isEmpty:
-            let value = announcementsViewModel[rowAt: indexPath.row].body
-            return [NSItemProvider(item: value as NSString, typeIdentifier: kUTTypePlainText as String)]
+            guard let data = announcementsViewModel[rowAt: indexPath.row].body.data(using: .utf8) else { return [] }
+            return [NSItemProvider(item: data as NSData, typeIdentifier: kUTTypePlainText as String)]
         case .documents? where !fileListViewModel.isEmpty:
             let file = fileListViewModel[rowAt: indexPath.row]
             guard let itemProvider = NSItemProvider(contentsOf: file.localUrl(inProviderDirectory: true)) else { return [] }
