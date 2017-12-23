@@ -13,7 +13,7 @@ public final class ReachabilityService: ByTypeNameIdentifiable {
 
     private let reachability = SCNetworkReachabilityCreateWithName(nil, "apple.com")
 
-    private var currentReachabilityFlags: SCNetworkReachabilityFlags?
+    public private(set) var currentReachabilityFlags: SCNetworkReachabilityFlags!
 
     init() {
         guard let reachability = reachability else {

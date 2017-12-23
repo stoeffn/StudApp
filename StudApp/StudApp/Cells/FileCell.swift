@@ -9,7 +9,26 @@
 import StudKit
 
 final class FileCell: UITableViewCell {
+    private let reachabilityService = ServiceContainer.default[ReachabilityService.self]
+
     // MARK: - Life Cycle
+
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        initObservers()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        initObservers()
+    }
+
+    private func initObservers() {
+        observer = NotificationCenter.default.addObserver(forName: ReachabilityService.notificationName, object: nil,
+                                                          queue: nil, using: updateAvailability)
+    }
+
+    private var observer: NSObjectProtocol!
 
     var file: File! {
         didSet {
@@ -34,6 +53,7 @@ final class FileCell: UITableViewCell {
                 || file.state.isMostRecentVersionDownloaded
                 || file.state.isDownloading
 
+            updateAvailability()
             updateSubtitleHiddenStates()
         }
     }
@@ -68,6 +88,15 @@ final class FileCell: UITableViewCell {
         userContainer.isHidden = file.owner == nil
         sizeContainer.isHidden = file.isFolder || traitCollection.horizontalSizeClass == .compact
         downloadCountContainer.isHidden = file.isFolder || traitCollection.horizontalSizeClass == .compact
+    }
+
+    private func updateAvailability(_: Notification? = nil) {
+        let isFileAvailable = file.isFolder
+            || file.state.isDownloaded
+            || reachabilityService.currentReachabilityFlags.contains(.reachable)
+        UIView.animate(withDuration: 0.3) {
+            self.contentView.alpha = isFileAvailable ? 1 : 0.6
+        }
     }
 
     // MARK: - User Interaction
