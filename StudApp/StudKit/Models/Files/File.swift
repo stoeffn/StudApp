@@ -203,7 +203,6 @@ extension File {
         attributes.contentDescription = summary
         attributes.fileSize = size > 0 ? size / 1024 / 1024 as NSNumber : nil
         attributes.identifier = id
-        attributes.kind = UserActivities.fileIdentifier
         attributes.subject = title
 
         attributes.contentURL = localUrl(inProviderDirectory: true)
