@@ -97,8 +97,6 @@ final class CourseController: UITableViewController, Routable {
         case info, announcements, documents
     }
 
-    private var isSectionAtIndexEmpty = [true, true, true]
-
     private func index<Section: DataSourceSection>(for section: Section) -> Sections? {
         let section = section as AnyObject
         if section === announcementsViewModel { return Sections.announcements }
@@ -115,9 +113,9 @@ final class CourseController: UITableViewController, Routable {
         case .info?:
             return viewModel.numberOfRows
         case .announcements?:
-            return max(announcementsViewModel.numberOfRows, 1)
+            return announcementsViewModel.numberOfRows + 1
         case .documents?:
-            return max(fileListViewModel.numberOfRows, 1)
+            return fileListViewModel.numberOfRows + 1
         case nil:
             fatalError()
         }
@@ -131,7 +129,7 @@ final class CourseController: UITableViewController, Routable {
             cell.textLabel?.text = titleAndValue.title
             cell.detailTextLabel?.text = titleAndValue.value
             return cell
-        case .announcements? where announcementsViewModel.isEmpty:
+        case .announcements? where indexPath.row == announcementsViewModel.numberOfRows:
             let cell = tableView.dequeueReusableCell(withIdentifier: emptyCellIdentifier, for: indexPath)
             cell.textLabel?.text = "No Announcements".localized
             return cell
@@ -140,7 +138,7 @@ final class CourseController: UITableViewController, Routable {
             (cell as? AnnouncementCell)?.announcement = announcementsViewModel[rowAt: indexPath.row]
             (cell as? AnnouncementCell)?.color = viewModel.course.state.color
             return cell
-        case .documents? where fileListViewModel.isEmpty:
+        case .documents? where indexPath.row == fileListViewModel.numberOfRows:
             let cell = tableView.dequeueReusableCell(withIdentifier: emptyCellIdentifier, for: indexPath)
             cell.textLabel?.text = "No Documents".localized
             return cell
@@ -150,6 +148,16 @@ final class CourseController: UITableViewController, Routable {
             return cell
         case nil:
             fatalError()
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch Sections(rawValue: indexPath.section) {
+        case .announcements? where indexPath.row == announcementsViewModel.numberOfRows && !announcementsViewModel.isEmpty,
+             .documents? where indexPath.row == fileListViewModel.numberOfRows && !fileListViewModel.isEmpty:
+            return 0
+        default:
+            return super.tableView(tableView, heightForRowAt: indexPath)
         }
     }
 
@@ -292,26 +300,6 @@ final class CourseController: UITableViewController, Routable {
 // MARK: - Data Section Delegate
 
 extension CourseController: DataSourceSectionDelegate {
-    func dataDidChange<Section: DataSourceSection>(in section: Section) {
-        guard let sectionIndex = index(for: section) else { fatalError() }
-        switch sectionIndex {
-        case .announcements, .documents:
-            let indexPath = IndexPath(row: 0, section: sectionIndex.rawValue)
-            guard isSectionAtIndexEmpty[sectionIndex.rawValue] != section.isEmpty else { break }
-            isSectionAtIndexEmpty[sectionIndex.rawValue] = section.isEmpty
-
-            if section.isEmpty {
-                tableView.insertRows(at: [indexPath], with: .middle)
-            } else {
-                tableView.deleteRows(at: [indexPath], with: .middle)
-            }
-        default:
-            break
-        }
-
-        tableView.endUpdates()
-    }
-
     func data<Section: DataSourceSection>(changedIn _: Section.Row, at index: Int, change: DataChange<Section.Row, Int>,
                                           in section: Section) {
         guard let sectionIndex = self.index(for: section) else { fatalError() }
