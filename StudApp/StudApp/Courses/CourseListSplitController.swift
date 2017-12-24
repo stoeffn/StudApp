@@ -17,6 +17,14 @@ final class CourseListSplitController: UISplitViewController {
         delegate = self
         preferredDisplayMode = .allVisible
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if !isCollapsed && viewControllers.count == 1 {
+            performSegue(withRoute: .emptyCourse)
+        }
+    }
 }
 
 // MARK: - Split View Controller Delegate
