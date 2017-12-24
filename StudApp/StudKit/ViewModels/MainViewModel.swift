@@ -21,11 +21,6 @@ public final class MainViewModel {
         return studIpService.isSignedIn
     }
 
-    /// Sign user out of this app and the API.
-    public func signOut() {
-        studIpService.signOut()
-    }
-
     /// Updates the current user if signed in.
     public func updateCurrentUser(handler: (ResultHandler<User>)? = nil) {
         User.updateCurrent(in: coreDataService.viewContext) { result in

@@ -9,10 +9,14 @@
 import StudKit
 
 final class SettingsController: UITableViewController, Routable {
+    private var viewModel: SettingsViewModel!
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        viewModel = SettingsViewModel()
 
         navigationItem.title = "Settings".localized
 
@@ -28,22 +32,37 @@ final class SettingsController: UITableViewController, Routable {
         case documents, account
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch Sections(rawValue: section) {
         case .documents?: return "Documents".localized
         case .account?, nil: return nil
         }
     }
 
-    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
         switch Sections(rawValue: section) {
         case .documents?:
             return [
                 "This accounts for the combined sizes of all documents that you have downloaded.".localized,
-                "They are not backed up by iTunes or iCloud.".localized
+                "They are not backed up by iTunes or iCloud.".localized,
             ].joined(separator: " ")
         case .account?, nil:
             return nil
+        }
+    }
+
+    // MARK: - Table View Delegate
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch tableView.cellForRow(at: indexPath) {
+        case removeDownloadsCell?:
+            print("Remove Downloads")
+        case signOutCell?:
+            viewModel.signOut()
+            dismiss(animated: true, completion: nil)
+            presentingViewController?.performSegue(withRoute: .signIn)
+        default:
+            break
         }
     }
 
@@ -58,7 +77,7 @@ final class SettingsController: UITableViewController, Routable {
     // MARK: - User Interaction
 
     @IBAction
-    func doneButtonTapped(_ sender: Any) {
+    func doneButtonTapped(_: Any) {
         dismiss(animated: true, completion: nil)
     }
 }

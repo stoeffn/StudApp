@@ -83,6 +83,7 @@
 		244EB5EB1FEFBEFA006BE633 /* UISplitViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244EB5EA1FEFBEFA006BE633 /* UISplitViewController+Utils.swift */; };
 		244EB5EE1FEFC400006BE633 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244EB5ED1FEFC400006BE633 /* SettingsController.swift */; };
 		244EB5F01FEFC466006BE633 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 244EB5EF1FEFC466006BE633 /* Settings.storyboard */; };
+		244EB5F21FEFDD7F006BE633 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244EB5F11FEFDD7F006BE633 /* SettingsViewModel.swift */; };
 		2450AC6D1FDC1582004F1267 /* CourseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC6C1FDC1582004F1267 /* CourseViewModel.swift */; };
 		2450AC711FDC405E004F1267 /* Documents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2450AC701FDC405E004F1267 /* Documents.storyboard */; };
 		2450AC731FDC406F004F1267 /* FolderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC721FDC406F004F1267 /* FolderController.swift */; };
@@ -417,6 +418,7 @@
 		244EB5EA1FEFBEFA006BE633 /* UISplitViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISplitViewController+Utils.swift"; sourceTree = "<group>"; };
 		244EB5ED1FEFC400006BE633 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		244EB5EF1FEFC466006BE633 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		244EB5F11FEFDD7F006BE633 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		2450AC6C1FDC1582004F1267 /* CourseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewModel.swift; sourceTree = "<group>"; };
 		2450AC701FDC405E004F1267 /* Documents.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Documents.storyboard; sourceTree = "<group>"; };
 		2450AC721FDC406F004F1267 /* FolderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderController.swift; sourceTree = "<group>"; };
@@ -1365,6 +1367,7 @@
 				24D178EA1FB606B200EC5F4A /* MainViewModel.swift */,
 				245B6ADD1FCB381B00302CD0 /* OrganizationListViewModel.swift */,
 				24D9EF551FB7559C006776B7 /* SemesterListViewModel.swift */,
+				244EB5F11FEFDD7F006BE633 /* SettingsViewModel.swift */,
 				24D361651FAA648B00BBBAED /* SignInViewModel.swift */,
 				24D2DA1F1FD04431006FC700 /* StoreViewModel.swift */,
 				24712BE31FB888E30067E416 /* WorkingSetViewModel.swift */,
@@ -1964,6 +1967,7 @@
 				24712BE11FB8869B0067E416 /* NSFileProviderItemIdentifier+Utils.swift in Sources */,
 				24830AA91FD9F324006A1927 /* UITableViewCell+Utils.swift in Sources */,
 				2469EF681FCE1D1C008A122B /* CacheService.swift in Sources */,
+				244EB5F21FEFDD7F006BE633 /* SettingsViewModel.swift in Sources */,
 				24D3610A1FAA5E2300BBBAED /* SemesterState.swift in Sources */,
 				24FD78601FBF4D330072F860 /* NSPersistentHistoryToken+Utils.swift in Sources */,
 				2469EF701FCF5DF9008A122B /* AboutController.swift in Sources */,
