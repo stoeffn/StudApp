@@ -39,15 +39,13 @@ final class CourseController: UITableViewController, Routable {
         navigationItem.title = viewModel.course.title
         navigationItem.prompt = viewModel.course.subtitle
 
-        (navigationController as? BorderlessNavigationController)?.usesDefaultAppearance = true
-        (splitViewController?.viewControllers.first as? BorderlessNavigationController)?.usesDefaultAppearance = true
+        (splitViewController?.detailNavigationController as? BorderlessNavigationController)?.usesDefaultAppearance = true
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        (navigationController as? BorderlessNavigationController)?.usesDefaultAppearance = false
-        (splitViewController?.viewControllers.first as? BorderlessNavigationController)?.usesDefaultAppearance = false
+        (splitViewController?.detailNavigationController as? BorderlessNavigationController)?.usesDefaultAppearance = false
     }
 
     private func configureViewModels(with course: Course) {

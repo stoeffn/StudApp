@@ -9,7 +9,7 @@
 import StudKit
 
 final class CourseHeader: UITableViewHeaderFooterView {
-    static let height: CGFloat = 30
+    static let height: CGFloat = 24
 
     // MARK: - Life Cycle
 

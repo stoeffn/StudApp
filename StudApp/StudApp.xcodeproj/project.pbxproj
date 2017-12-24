@@ -80,6 +80,7 @@
 		2448D4BD1FA8E0AB00DAB97E /* TestableApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4B51FA8E0AB00DAB97E /* TestableApiRoutes.swift */; };
 		244EB5E71FEED260006BE633 /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244EB5E61FEED260006BE633 /* ReachabilityService.swift */; };
 		244EB5E91FEEEFEB006BE633 /* CourseListSplitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244EB5E81FEEEFEB006BE633 /* CourseListSplitController.swift */; };
+		244EB5EB1FEFBEFA006BE633 /* UISplitViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244EB5EA1FEFBEFA006BE633 /* UISplitViewController+Utils.swift */; };
 		2450AC6D1FDC1582004F1267 /* CourseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC6C1FDC1582004F1267 /* CourseViewModel.swift */; };
 		2450AC711FDC405E004F1267 /* Documents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2450AC701FDC405E004F1267 /* Documents.storyboard */; };
 		2450AC731FDC406F004F1267 /* FolderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC721FDC406F004F1267 /* FolderController.swift */; };
@@ -411,6 +412,7 @@
 		2448D4B51FA8E0AB00DAB97E /* TestableApiRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestableApiRoutes.swift; sourceTree = "<group>"; };
 		244EB5E61FEED260006BE633 /* ReachabilityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
 		244EB5E81FEEEFEB006BE633 /* CourseListSplitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListSplitController.swift; sourceTree = "<group>"; };
+		244EB5EA1FEFBEFA006BE633 /* UISplitViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISplitViewController+Utils.swift"; sourceTree = "<group>"; };
 		2450AC6C1FDC1582004F1267 /* CourseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewModel.swift; sourceTree = "<group>"; };
 		2450AC701FDC405E004F1267 /* Documents.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Documents.storyboard; sourceTree = "<group>"; };
 		2450AC721FDC406F004F1267 /* FolderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderController.swift; sourceTree = "<group>"; };
@@ -652,6 +654,7 @@
 				242B03621FD7221900863B08 /* UIColor+Utils.swift */,
 				242B035E1FD7220800863B08 /* UIFont+Mutations.swift */,
 				241FD9641FA8FFAD00FBD750 /* UINavigationBar+Utils.swift */,
+				244EB5EA1FEFBEFA006BE633 /* UISplitViewController+Utils.swift */,
 				2450AC741FDC4FBC004F1267 /* UITableView+Utils.swift */,
 				24830AA81FD9F324006A1927 /* UITableViewCell+Utils.swift */,
 				242B03751FD7471D00863B08 /* UIViewController+Utils.swift */,
@@ -2003,6 +2006,7 @@
 				24712BF51FB8B80B0067E416 /* Date+Formatting.swift in Sources */,
 				24712BDF1FB886940067E416 /* FileProviderItemConvertible.swift in Sources */,
 				24D361181FAA5F6200BBBAED /* CoreDataService.swift in Sources */,
+				244EB5EB1FEFBEFA006BE633 /* UISplitViewController+Utils.swift in Sources */,
 				242B03631FD7221900863B08 /* UIColor+Utils.swift in Sources */,
 				246F3AC61FAC879C00A477FF /* DataSource.swift in Sources */,
 				24D360CF1FAA5AFE00BBBAED /* CDCreatable.swift in Sources */,
