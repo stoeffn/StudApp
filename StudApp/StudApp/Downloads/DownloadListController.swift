@@ -52,9 +52,6 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
         coordinator.animate(alongsideTransition: { _ in
             self.updateEmptyView()
-            self.tableView.visibleCells
-                .flatMap { $0 as? FileCell }
-                .forEach { $0.updateSubtitleHiddenStates() }
         }, completion: nil)
     }
 

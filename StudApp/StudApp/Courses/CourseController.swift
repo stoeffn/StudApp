@@ -50,16 +50,6 @@ final class CourseController: UITableViewController, Routable {
         (splitViewController?.viewControllers.first as? BorderlessNavigationController)?.usesDefaultAppearance = false
     }
 
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-
-        coordinator.animate(alongsideTransition: { _ in
-            self.tableView.visibleCells
-                .flatMap { $0 as? FileCell }
-                .forEach { $0.updateSubtitleHiddenStates() }
-        }, completion: nil)
-    }
-
     private func configureViewModels(with course: Course) {
         announcementsViewModel = AnnouncementListViewModel(course: course)
         announcementsViewModel.delegate = self
