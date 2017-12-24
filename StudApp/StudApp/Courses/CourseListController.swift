@@ -177,7 +177,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         case .delete:
             tableView.deleteRows(at: [indexPath], with: .middle)
         case .update:
-            tableView.reloadRows(at: [indexPath], with: .fade)
+            cell?.course = course
         case let .move(newIndex):
             let newIndexPath = IndexPath(row: newIndex, section: sectionIndex)
             tableView.moveRow(at: indexPath, to: newIndexPath)
