@@ -35,6 +35,9 @@
 // MARK: Settings
 
 "Settings" = "Settings";
+"Remove All Downloads" = "Remove All Downloads";
+"This accounts for the combined sizes of all documents that you have downloaded." = "This accounts for the combined sizes of all documents that you have downloaded.";
+"They are not backed up by iTunes or iCloud." = "They are not backed up by iTunes or iCloud.";
 
 // MARK: User Menu
 
