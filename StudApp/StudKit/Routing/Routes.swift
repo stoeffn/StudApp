@@ -11,6 +11,8 @@ import QuickLook
 public enum Routes {
     case about
 
+    case settings
+
     case signIn
 
     case signIntoOrganization(OrganizationRecord)
@@ -49,6 +51,7 @@ public enum Routes {
     public var segueIdentifier: String {
         switch self {
         case .about: return "about"
+        case .settings: return "settings"
         case .signIn: return "signIn"
         case .signIntoOrganization: return "signIntoOrganization"
         case .preview: return "preview"

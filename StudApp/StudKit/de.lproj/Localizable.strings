@@ -32,6 +32,10 @@
 "Thanks to" = "Danke an";
 "Without you, this app could not exist. Thank you ❤️" = "Ohne Euch könnte diese App nicht existieren. Danke ❤️";
 
+// MARK: Settings
+
+"Settings" = "Einstellungen";
+
 // MARK: User Menu
 
 "Signed in as %@" = "Angemeldet als %@";

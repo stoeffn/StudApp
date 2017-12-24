@@ -90,9 +90,8 @@ final class MainController: UITabBarController {
             performSegue(withRoute: .about)
         }
 
-        func signOut(_: UIAlertAction) {
-            viewModel.signOut()
-            performSegue(withRoute: .signIn)
+        func showSettingsView(_: UIAlertAction) {
+            performSegue(withRoute: .settings)
         }
 
         guard let currentUser = viewModel.currentUser else { return }
@@ -102,8 +101,7 @@ final class MainController: UITabBarController {
         let controller = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
         controller.popoverPresentationController?.barButtonItem = barButtonItem
         controller.addAction(UIAlertAction(title: "About".localized, style: .default, handler: showAboutView))
-        controller.addAction(UIAlertAction(title: "Sign Out".localized, style: .destructive, handler: signOut))
-        controller.actions.last?.setValue(UI.Colors.studRed, forKey: "titleTextColor")
+        controller.addAction(UIAlertAction(title: "Settings".localized, style: .default, handler: showSettingsView))
         controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
         present(controller, animated: true, completion: nil)
     }

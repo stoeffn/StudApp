@@ -81,6 +81,8 @@
 		244EB5E71FEED260006BE633 /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244EB5E61FEED260006BE633 /* ReachabilityService.swift */; };
 		244EB5E91FEEEFEB006BE633 /* CourseListSplitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244EB5E81FEEEFEB006BE633 /* CourseListSplitController.swift */; };
 		244EB5EB1FEFBEFA006BE633 /* UISplitViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244EB5EA1FEFBEFA006BE633 /* UISplitViewController+Utils.swift */; };
+		244EB5EE1FEFC400006BE633 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244EB5ED1FEFC400006BE633 /* SettingsController.swift */; };
+		244EB5F01FEFC466006BE633 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 244EB5EF1FEFC466006BE633 /* Settings.storyboard */; };
 		2450AC6D1FDC1582004F1267 /* CourseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC6C1FDC1582004F1267 /* CourseViewModel.swift */; };
 		2450AC711FDC405E004F1267 /* Documents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2450AC701FDC405E004F1267 /* Documents.storyboard */; };
 		2450AC731FDC406F004F1267 /* FolderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC721FDC406F004F1267 /* FolderController.swift */; };
@@ -413,6 +415,8 @@
 		244EB5E61FEED260006BE633 /* ReachabilityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
 		244EB5E81FEEEFEB006BE633 /* CourseListSplitController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListSplitController.swift; sourceTree = "<group>"; };
 		244EB5EA1FEFBEFA006BE633 /* UISplitViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISplitViewController+Utils.swift"; sourceTree = "<group>"; };
+		244EB5ED1FEFC400006BE633 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		244EB5EF1FEFC466006BE633 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		2450AC6C1FDC1582004F1267 /* CourseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewModel.swift; sourceTree = "<group>"; };
 		2450AC701FDC405E004F1267 /* Documents.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Documents.storyboard; sourceTree = "<group>"; };
 		2450AC721FDC406F004F1267 /* FolderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderController.swift; sourceTree = "<group>"; };
@@ -782,6 +786,7 @@
 				24E626731FA920490040F9F7 /* Downloads */,
 				241412E91FD30C8100DEE0AF /* Preview */,
 				247793581FC8901E00090F4D /* Semesters */,
+				244EB5EC1FEFC3EA006BE633 /* Settings */,
 				2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */,
 				2450AC761FDC6973004F1267 /* CustomMenuItems.swift */,
 				243CC2CA1FE0390200FE7376 /* LaunchScreen.storyboard */,
@@ -962,6 +967,15 @@
 				2448D4B21FA8E0AB00DAB97E /* TestRoutes.swift */,
 			);
 			path = Api;
+			sourceTree = "<group>";
+		};
+		244EB5EC1FEFC3EA006BE633 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				244EB5ED1FEFC400006BE633 /* SettingsController.swift */,
+				244EB5EF1FEFC466006BE633 /* Settings.storyboard */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		2450AC6E1FDC2F21004F1267 /* Cells */ = {
@@ -1767,6 +1781,7 @@
 				24A6C14D1FD75C56004BBEA5 /* ColorPicker.storyboard in Resources */,
 				24ABFC481FD714AF00CD1646 /* Courses.storyboard in Resources */,
 				2450AC711FDC405E004F1267 /* Documents.storyboard in Resources */,
+				244EB5F01FEFC466006BE633 /* Settings.storyboard in Resources */,
 				24E60B621FC8C725000EDD2A /* Main.storyboard in Resources */,
 				24E60B681FC8C754000EDD2A /* Semesters.storyboard in Resources */,
 			);
@@ -1870,6 +1885,7 @@
 				24D7293D1FC736120097777F /* FileCell.swift in Sources */,
 				2432ABB71FE98BF000346226 /* AnnouncementCell.swift in Sources */,
 				24ABFC4A1FD714EF00CD1646 /* CourseListController.swift in Sources */,
+				244EB5EE1FEFC400006BE633 /* SettingsController.swift in Sources */,
 				2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */,
 				24830AAB1FDC09EC006A1927 /* CourseController.swift in Sources */,
 			);
