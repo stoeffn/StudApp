@@ -101,11 +101,9 @@ public final class BorderlessNavigationController: UINavigationController {
 // MARK: - Navigation Bar Delegate
 
 extension BorderlessNavigationController: UINavigationControllerDelegate {
-    public func navigationController(_: UINavigationController, willShow _: UIViewController, animated _: Bool) {
-        updateNavigationBarBackgroundFrame()
-    }
-
-    public func navigationController(_: UINavigationController, didShow _: UIViewController, animated _: Bool) {
-        updateNavigationBarBackgroundFrame()
+    public func navigationController(_: UINavigationController, didShow _: UIViewController, animated: Bool) {
+        UIView.animate(withDuration: animated ? 0.1 : 0) {
+            self.updateNavigationBarBackgroundFrame()
+        }
     }
 }
