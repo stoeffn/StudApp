@@ -117,7 +117,8 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
             file.download { result in
                 guard result.isFailure else { return }
 
-                let alert = UIAlertController(title: result.error?.localizedDescription, message: nil, preferredStyle: .alert)
+                let error = result.error?.localizedDescription ?? "Something went wrong downloading this document".localized
+                let alert = UIAlertController(title: error, message: nil, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }

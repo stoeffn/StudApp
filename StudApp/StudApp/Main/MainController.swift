@@ -47,8 +47,10 @@ final class MainController: UITabBarController {
             selectedIndex = Tabs.courseList.rawValue
             courseListController?.restoreUserActivityState(activity)
         default:
-            let alert = UIAlertController(title: "Something went wrong continuing your activity.".localized)
-            present(alert, animated: true, completion: nil)
+            let title = "Something went wrong continuing your activity.".localized
+            let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
+            return present(alert, animated: true, completion: nil)
         }
     }
 

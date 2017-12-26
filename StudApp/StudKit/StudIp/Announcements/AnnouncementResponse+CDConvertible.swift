@@ -14,7 +14,7 @@ extension AnnouncementResponse: CDConvertible {
             let createdAt = createdAt,
             let modifiedAt = modifiedAt,
             let expiresAt = expiresAt
-        else { throw "Cannot create announcement without creation or modification date." }
+        else { throw NSError(domain: Announcement.entity.rawValue, code: 0) }
 
         let courses = try Course.fetch(byIds: courseIds, in: context).set
 

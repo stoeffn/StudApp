@@ -27,6 +27,21 @@ public final class SignInViewModel {
         case success
     }
 
+    public enum Errors: LocalizedError {
+        case noCredentials
+
+        case wrongCredentials
+
+        public var errorDescription: String? {
+            switch self {
+            case .noCredentials:
+                return "Please enter your Stud.IP credentials".localized
+            case .wrongCredentials:
+                return "Please check your username and password".localized
+            }
+        }
+    }
+
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]
 
@@ -47,7 +62,7 @@ public final class SignInViewModel {
     /// Attempts to sign a user into his/her Stud.IP account after performing basic form validation.
     public func attemptSignIn(withUsername username: String, password: String) {
         guard !username.isEmpty && !password.isEmpty else {
-            state = .failure("Please enter your Stud.IP credentials".localized)
+            state = .failure(Errors.noCredentials)
             return
         }
 
@@ -58,7 +73,7 @@ public final class SignInViewModel {
                 self.state = .success
                 self.updateSemesters()
             case let .failure(error):
-                self.state = .failure(error?.localizedDescription ?? "Please check your username and password".localized)
+                self.state = .failure(error ?? Errors.wrongCredentials)
             }
         }
     }

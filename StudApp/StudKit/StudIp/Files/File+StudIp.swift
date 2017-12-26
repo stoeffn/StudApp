@@ -54,7 +54,7 @@ extension File {
             self.state.isDownloading = false
 
             guard result.isSuccess else {
-                return handler(.failure(result.error ?? "Something went wrong downloading this document".localized))
+                return handler(.failure(result.error))
             }
 
             self.state.downloadedAt = downloadDate

@@ -111,6 +111,6 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
 
     @IBAction
     func cancelButtonTapped(_: Any) {
-        contextService.extensionContext?.cancelRequest(withError: "Cancel".localized)
+        contextService.extensionContext?.cancelRequest(withError: NSError(domain: "Cancel", code: 0))
     }
 }

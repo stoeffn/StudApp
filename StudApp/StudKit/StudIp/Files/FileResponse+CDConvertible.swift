@@ -15,7 +15,7 @@ extension FileResponse: CDConvertible {
             let id = id,
             let name = name,
             let course = try fetchCourse(in: context)
-        else { throw "Cannot create file without id, name, or course." }
+        else { throw NSError(domain: File.entity.rawValue, code: 0) }
 
         let (file, _) = try File.fetch(byId: id, orCreateIn: context)
         file.id = id

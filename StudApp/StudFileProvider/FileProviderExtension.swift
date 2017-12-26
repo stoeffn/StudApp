@@ -27,6 +27,14 @@ final class FileProviderExtension: NSFileProviderExtension {
         try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
     }
 
+    // MARK: - Errors
+
+    enum Errors: LocalizedError {
+        case noSuchItem
+
+        case serverUnreachable
+    }
+
     // MARK: - Working with Items and Persistent Identifiers
 
     func object(for identifier: NSFileProviderItemIdentifier) -> FileProviderItemConvertible? {
@@ -92,7 +100,7 @@ final class FileProviderExtension: NSFileProviderExtension {
             if #available(iOSApplicationExtension 11.0, *) {
                 return completionHandler(NSFileProviderError(.noSuchItem))
             }
-            return completionHandler("No such item")
+            return completionHandler(Errors.noSuchItem)
         }
 
         do {
@@ -119,7 +127,7 @@ final class FileProviderExtension: NSFileProviderExtension {
             if #available(iOSApplicationExtension 11.0, *) {
                 completionHandler?(NSFileProviderError(.noSuchItem))
             } else {
-                completionHandler?("No such item")
+                completionHandler?(Errors.noSuchItem)
             }
             return
         }
@@ -141,7 +149,7 @@ final class FileProviderExtension: NSFileProviderExtension {
                 if #available(iOSApplicationExtension 11.0, *) {
                     completionHandler?(NSFileProviderError(.serverUnreachable))
                 } else {
-                    completionHandler?("Server unreachable")
+                    completionHandler?(Errors.serverUnreachable)
                 }
                 return
             }
