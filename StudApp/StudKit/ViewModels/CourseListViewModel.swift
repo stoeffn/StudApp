@@ -46,7 +46,6 @@ public final class CourseListViewModel: NSObject {
         coreDataService.performBackgroundTask { context in
             Course.update(in: context) { result in
                 try? context.saveWhenChanged()
-                try? self.coreDataService.viewContext.saveWhenChanged()
                 handler?(result.replacingValue(()))
             }
         }

@@ -30,11 +30,11 @@ public final class AnnouncementListViewModel: NSObject {
         try? controller.performFetch()
     }
 
-    public func update(handler: (ResultHandler<[Announcement]>)? = nil) {
+    public func update(handler: (ResultHandler<Void>)? = nil) {
         coreDataService.performBackgroundTask { context in
             self.course.updateAnnouncements(in: context) { result in
                 try? context.saveWhenChanged()
-                handler?(result)
+                handler?(result.replacingValue(()))
             }
         }
     }
