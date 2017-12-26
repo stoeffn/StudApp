@@ -29,11 +29,11 @@ final class ResultApiTests: XCTestCase {
     }
 
     func testInit_Error_Failure() {
-        let result = Result(42, error: "Error", statusCode: 200)
+        let result = Result(42, error: NSError(domain: "abc", code: 0), statusCode: 200)
         XCTAssertNil(result.value)
         XCTAssertFalse(result.isSuccess)
         XCTAssertTrue(result.isFailure)
-        XCTAssertEqual(result.error as? String, "Error")
+        XCTAssertEqual(result.error.debugDescription, "Optional(Error Domain=abc Code=0 \"(null)\")")
     }
 
     func testInit_NoValue_Failure() {

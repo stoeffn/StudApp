@@ -877,7 +877,6 @@
 			children = (
 				2448D4AD1FA8E0A000DAB97E /* Api */,
 				2448D4901FA8DF0900DAB97E /* Extensions */,
-				247793741FC894C400090F4D /* Helpers */,
 				24D361381FAA637E00BBBAED /* Models */,
 				2448D4791FA8DE3300DAB97E /* Services */,
 				24D361261FAA603400BBBAED /* StudIp */,
@@ -1194,13 +1193,6 @@
 				24D361571FAA63DF00BBBAED /* UserResponseTests+Data.swift */,
 			);
 			path = Users;
-			sourceTree = "<group>";
-		};
-		247793741FC894C400090F4D /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		24ABFC461FD7141800CD1646 /* Courses */ = {

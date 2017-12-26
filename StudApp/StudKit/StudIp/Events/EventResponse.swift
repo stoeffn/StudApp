@@ -24,7 +24,7 @@ struct EventResponse: Decodable {
         case cancellationReason = "canceled"
         case rawLocation = "location"
         case rawSummary = "description"
-        case category = "category"
+        case category
     }
 
     init(id: String, rawStartsAt: String, rawEndsAt: String, isCanceled: Bool = false, cancellationReason: String? = nil,
