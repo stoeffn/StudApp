@@ -32,7 +32,7 @@ final class EventResponseTests: XCTestCase {
         XCTAssertTrue(event.isCanceled)
         XCTAssertNil(event.cancellationReason)
         XCTAssertNil(event.summary)
-        XCTAssertEqual(event.location, nil)
+        XCTAssertNil(event.location)
         XCTAssertEqual(event.category, "Sitzung")
     }
 
@@ -44,12 +44,12 @@ final class EventResponseTests: XCTestCase {
         XCTAssertTrue(event.isCanceled)
         XCTAssertEqual(event.cancellationReason, "Weihnachtsferien 2016")
         XCTAssertNil(event.summary)
-        XCTAssertEqual(event.location, nil)
+        XCTAssertNil(event.location)
         XCTAssertEqual(event.category, "Sitzung")
     }
 
-    /*func testInit_EventCollection_Events() {
+    func testInit_EventCollection_Events() {
         let collection = try! decoder.decode(CollectionResponse<EventResponse>.self, fromResource: "eventCollection")
-        XCTAssertEqual(collection.items.count, 20)
-    }*/
+        XCTAssertEqual(collection.items.count, 63)
+    }
 }
