@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2407A07B1FF2B75A006D41C5 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407A07A1FF2B75A006D41C5 /* Event.swift */; };
+		2407A07E1FF2B982006D41C5 /* EventResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407A07D1FF2B982006D41C5 /* EventResponse.swift */; };
 		241C67E51FCDD78100F4A099 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E41FCDD78100F4A099 /* AboutViewModel.swift */; };
 		241C67EA1FCDFAC700F4A099 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E91FCDFAC700F4A099 /* App.swift */; };
 		241FD9651FA8FFAD00FBD750 /* UINavigationBar+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9641FA8FFAD00FBD750 /* UINavigationBar+Utils.swift */; };
@@ -337,6 +338,7 @@
 
 /* Begin PBXFileReference section */
 		2407A07A1FF2B75A006D41C5 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		2407A07D1FF2B982006D41C5 /* EventResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventResponse.swift; sourceTree = "<group>"; };
 		241C67E41FCDD78100F4A099 /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
 		241C67E71FCDEA3700F4A099 /* ThanksNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThanksNoteCell.swift; sourceTree = "<group>"; };
 		241C67E91FCDFAC700F4A099 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -652,6 +654,14 @@
 			isa = PBXGroup;
 			children = (
 				2407A07A1FF2B75A006D41C5 /* Event.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		2407A07C1FF2B960006D41C5 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				2407A07D1FF2B982006D41C5 /* EventResponse.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -1223,8 +1233,8 @@
 			isa = PBXGroup;
 			children = (
 				242266061FE3D44600FA7CA6 /* Announcements */,
-				2407A0791FF2B744006D41C5 /* Events */,
 				247793671FC892AE00090F4D /* Courses */,
+				2407A0791FF2B744006D41C5 /* Events */,
 				247793681FC892B600090F4D /* Files */,
 				245B6ADF1FCB39AD00302CD0 /* Organizations */,
 				247793691FC892C100090F4D /* Semesters */,
@@ -1259,6 +1269,7 @@
 			children = (
 				242266091FE3D60900FA7CA6 /* Announcements */,
 				247793661FC891FF00090F4D /* Courses */,
+				2407A07C1FF2B960006D41C5 /* Events */,
 				247793631FC891E500090F4D /* Files */,
 				247793651FC891F500090F4D /* Semesters */,
 				247793641FC891EE00090F4D /* Users */,
@@ -2006,6 +2017,7 @@
 				244EB5E71FEED260006BE633 /* ReachabilityService.swift in Sources */,
 				24FE8A161FB8527E00A4A3C6 /* FileListViewModel.swift in Sources */,
 				243817AF1FC88B2B004052D0 /* UI.swift in Sources */,
+				2407A07E1FF2B982006D41C5 /* EventResponse.swift in Sources */,
 				24D360FA1FAA5DE800BBBAED /* FileResponse.swift in Sources */,
 				24D9EF561FB7559C006776B7 /* SemesterListViewModel.swift in Sources */,
 				2422660B1FE3D62500FA7CA6 /* AnnouncementResponse.swift in Sources */,
