@@ -53,8 +53,9 @@ extension Api {
         requestCollectionPage(route, afterOffset: offset, itemsPerRequest: itemsPerRequest,
                               ignoreLastAccess: ignoreLastAccess) { (result: Result<CollectionResponse<Value>>) in
             guard let collection = result.value else {
-                self.removeLastAccess(for: route)
-                return handler(result.replacingValue(nil))
+                defer { handler(result.replacingValue(nil)) }
+                guard case Api.Errors.routeNotExpired? = result.error else { return }
+                return self.removeLastAccess(for: route)
             }
 
             let items = initialItems + collection.items
