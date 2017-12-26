@@ -44,6 +44,8 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdat
 
     @NSManaged public var announcements: Set<Announcement>
 
+    @NSManaged public var events: Set<Event>
+
     @NSManaged public var state: CourseState
 
     // MARK: - Life Cycle

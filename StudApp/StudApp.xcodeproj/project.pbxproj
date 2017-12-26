@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2407A07B1FF2B75A006D41C5 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407A07A1FF2B75A006D41C5 /* Event.swift */; };
 		241C67E51FCDD78100F4A099 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E41FCDD78100F4A099 /* AboutViewModel.swift */; };
 		241C67EA1FCDFAC700F4A099 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E91FCDFAC700F4A099 /* App.swift */; };
 		241FD9651FA8FFAD00FBD750 /* UINavigationBar+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9641FA8FFAD00FBD750 /* UINavigationBar+Utils.swift */; };
@@ -335,6 +336,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2407A07A1FF2B75A006D41C5 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		241C67E41FCDD78100F4A099 /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
 		241C67E71FCDEA3700F4A099 /* ThanksNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThanksNoteCell.swift; sourceTree = "<group>"; };
 		241C67E91FCDFAC700F4A099 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -646,6 +648,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2407A0791FF2B744006D41C5 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				2407A07A1FF2B75A006D41C5 /* Event.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
 		241412E91FD30C8100DEE0AF /* Preview */ = {
 			isa = PBXGroup;
 			children = (
@@ -1213,9 +1223,10 @@
 			isa = PBXGroup;
 			children = (
 				242266061FE3D44600FA7CA6 /* Announcements */,
-				245B6ADF1FCB39AD00302CD0 /* Organizations */,
+				2407A0791FF2B744006D41C5 /* Events */,
 				247793671FC892AE00090F4D /* Courses */,
 				247793681FC892B600090F4D /* Files */,
+				245B6ADF1FCB39AD00302CD0 /* Organizations */,
 				247793691FC892C100090F4D /* Semesters */,
 				2477936A1FC892D300090F4D /* Users */,
 				24E4B9A71FF284830061983C /* BaseDirectories.swift */,
@@ -1988,6 +1999,7 @@
 				2448D45E1FA8DBA300DAB97E /* Result.swift in Sources */,
 				24D360CD1FAA5AFE00BBBAED /* CDUpdatable.swift in Sources */,
 				24FD785A1FBF3F030072F860 /* HistoryService.swift in Sources */,
+				2407A07B1FF2B75A006D41C5 /* Event.swift in Sources */,
 				24712BD81FB858CC0067E416 /* File+StudIp.swift in Sources */,
 				24D360F71FAA5DE800BBBAED /* FileState.swift in Sources */,
 				24D360FE1FAA5E0800BBBAED /* UserResponse+CDConvertible.swift in Sources */,
