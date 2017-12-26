@@ -32,7 +32,7 @@ final class FileProviderExtension: NSFileProviderExtension {
     func object(for identifier: NSFileProviderItemIdentifier) -> FileProviderItemConvertible? {
         guard
             let itemConvertible = try? ObjectIdentifier(rawValue: identifier.rawValue)?
-                .fetch(in: coreDataService.viewContext) as? FileProviderItemConvertible
+            .fetch(in: coreDataService.viewContext) as? FileProviderItemConvertible
         else { return nil }
         return itemConvertible
     }
@@ -48,16 +48,16 @@ final class FileProviderExtension: NSFileProviderExtension {
 
     @available(iOSApplicationExtension 11.0, *)
     override func item(for identifier: NSFileProviderItemIdentifier) throws -> NSFileProviderItem {
-        switch identifier.model {
-        case .workingSet:
-            fatalError("Cannot create working set item")
-        case .root:
+        let objectIdentifier = ObjectIdentifier(rawValue: identifier.rawValue)
+
+        switch objectIdentifier?.entity {
+        case .root?:
             return try RootItem(context: coreDataService.viewContext)
-        case .semester, .course, .file:
-            guard let object = object(for: identifier) else {
-                throw NSFileProviderError(.noSuchItem)
-            }
+        case .semester?, .course?, .file?:
+            guard let object = object(for: identifier) else { throw NSFileProviderError(.noSuchItem) }
             return object.fileProviderItem
+        default:
+            fatalError("Cannot create item for identifier '\(identifier)'")
         }
     }
 
@@ -65,17 +65,21 @@ final class FileProviderExtension: NSFileProviderExtension {
         guard #available(iOS 11.0, *) else { fatalError() }
         guard studIpService.isSignedIn else { throw NSFileProviderError(.notAuthenticated) }
 
-        switch containerItemIdentifier.model {
-        case .workingSet:
+        let objectIdentifier = ObjectIdentifier(rawValue: containerItemIdentifier.rawValue)
+
+        switch objectIdentifier?.entity {
+        case .workingSet?:
             return WorkingSetEnumerator()
-        case .root:
+        case .root?:
             return SemesterEnumerator()
-        case .semester:
+        case .semester?:
             return CourseEnumerator(itemIdentifier: containerItemIdentifier)
-        case .course:
+        case .course?:
             return FileEnumerator(itemIdentifier: containerItemIdentifier)
-        case .file:
+        case .file?:
             return FileEnumerator(itemIdentifier: containerItemIdentifier)
+        default:
+            fatalError("Cannot create item for identifier '\(containerItemIdentifier)'")
         }
     }
 
@@ -110,10 +114,7 @@ final class FileProviderExtension: NSFileProviderExtension {
     override func startProvidingItem(at url: URL, completionHandler: ((_ error: Error?) -> Void)?) {
         guard
             let itemIdentifier = persistentIdentifierForItem(at: url),
-            let optionalFile = try? File.fetch(byId: itemIdentifier.id, in: coreDataService.viewContext),
-            let file = optionalFile,
-            let itemUrl = urlForItem(withPersistentIdentifier:
-                NSFileProviderItemIdentifier(rawValue: file.objectIdentifier.rawValue))
+            let file = File.fetch(byObjectId: ObjectIdentifier(rawValue: itemIdentifier.rawValue))
         else {
             if #available(iOSApplicationExtension 11.0, *) {
                 completionHandler?(NSFileProviderError(.noSuchItem))
@@ -146,9 +147,9 @@ final class FileProviderExtension: NSFileProviderExtension {
             }
 
             do {
-                try? FileManager.default.removeItem(at: itemUrl)
-                try FileManager.default.createIntermediateDirectories(forFileAt: itemUrl)
-                try FileManager.default.copyItem(at: file.localUrl(in: .downloads), to: itemUrl)
+                try? FileManager.default.removeItem(at: file.localUrl(in: .fileProvider))
+                try FileManager.default.createIntermediateDirectories(forFileAt: file.localUrl(in: .fileProvider))
+                try FileManager.default.copyItem(at: file.localUrl(in: .downloads), to: file.localUrl(in: .fileProvider))
                 completionHandler?(nil)
             } catch {
                 completionHandler?(error)

@@ -10,6 +10,8 @@ import CoreData
 
 @objc(User)
 public final class User: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable, CDSortable {
+    public static var entity = ObjectIdentifier.Entites.user
+
     @NSManaged public var id: String
 
     @NSManaged public var username: String

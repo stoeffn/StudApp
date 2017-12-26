@@ -9,30 +9,34 @@
 import CoreData
 
 public struct ObjectIdentifier: ByTypeNameIdentifiable {
-    let entityName: String
+    public let entity: Entites
 
     let id: String?
 
-    init(entityName: String, id: String? = nil) {
-        self.entityName = entityName
+    init(entity: Entites, id: String? = nil) {
+        self.entity = entity
         self.id = id
+    }
+}
+
+// MARK: - Entities
+
+public extension ObjectIdentifier {
+    public enum Entites: String {
+        case root, workingSet, announcement, course, courseState, file, fileState, semester, semesterState, user
     }
 }
 
 // MARK: - Utilities
 
 public extension ObjectIdentifier {
-    public func isOf(type: CDIdentifiable.Type) -> Bool {
-        return entityName == type.typeIdentifier
-    }
-
     public func fetch(in context: NSManagedObjectContext) throws -> CDIdentifiable? {
-        switch entityName {
-        case ObjectIdentifier.rootTypeIdentifier, ObjectIdentifier.workingSetTypeIdentifier:
+        switch entity {
+        case .root, .workingSet:
             fatalError("Cannot fetch object for root container or working set.")
         default:
             guard let id = id else { return nil }
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity.rawValue.capitalized)
             fetchRequest.predicate = NSPredicate(format: "id == %@", id)
             return try context.fetch(fetchRequest).first as? CDIdentifiable
         }
@@ -46,12 +50,12 @@ extension ObjectIdentifier: RawRepresentable {
 
     private static let rawValueSeparator = "-"
 
-    private static let rootTypeIdentifier: String = {
+    private static let rootEntityRawValue: String = {
         guard #available(iOS 11, *) else { return "root" }
         return NSFileProviderItemIdentifier.rootContainer.rawValue
     }()
 
-    private static let workingSetTypeIdentifier: String = {
+    private static let workingSetEntityRawValue: String = {
         guard #available(iOS 11, *) else { return "workingSet" }
         return NSFileProviderItemIdentifier.workingSet.rawValue
     }()
@@ -60,29 +64,30 @@ extension ObjectIdentifier: RawRepresentable {
         let parts = rawValue.components(separatedBy: ObjectIdentifier.rawValueSeparator)
 
         switch parts.first {
-        case ObjectIdentifier.rootTypeIdentifier?:
-            self.init(entityName: ObjectIdentifier.rootTypeIdentifier)
-        case ObjectIdentifier.workingSetTypeIdentifier?:
-            self.init(entityName: ObjectIdentifier.workingSetTypeIdentifier)
+        case ObjectIdentifier.rootEntityRawValue?:
+            self.init(entity: .root)
+        case ObjectIdentifier.workingSetEntityRawValue?:
+            self.init(entity: .workingSet)
         default:
             guard
                 let entityName = parts.first,
+                let entity = Entites(rawValue: entityName),
                 let id = parts.last,
                 parts.count == 2
             else { return nil }
-            self.init(entityName: entityName, id: id)
+            self.init(entity: entity, id: id)
         }
     }
 
     public var rawValue: String {
-        switch entityName {
-        case ObjectIdentifier.rootTypeIdentifier:
-            return ObjectIdentifier.rootTypeIdentifier
-        case ObjectIdentifier.workingSetTypeIdentifier:
-            return ObjectIdentifier.workingSetTypeIdentifier
+        switch entity {
+        case .root:
+            return ObjectIdentifier.rootEntityRawValue
+        case .workingSet:
+            return ObjectIdentifier.workingSetEntityRawValue
         default:
             guard let id = id else { fatalError("Cannot create object identifier representation for object without id.") }
-            return entityName + ObjectIdentifier.rawValueSeparator + id
+            return entity.rawValue + ObjectIdentifier.rawValueSeparator + id
         }
     }
 }

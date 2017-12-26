@@ -13,6 +13,8 @@ import QuickLook
 
 @objc(File)
 public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable, CDSortable {
+    public static var entity = ObjectIdentifier.Entites.file
+
     // MARK: Identification
 
     @NSManaged public var id: String
@@ -209,7 +211,7 @@ extension File {
     }
 
     public var searchableItem: CSSearchableItem {
-        return CSSearchableItem(uniqueIdentifier: objectIdentifier.rawValue, domainIdentifier: File.typeIdentifier,
+        return CSSearchableItem(uniqueIdentifier: objectIdentifier.rawValue, domainIdentifier: File.entity.rawValue,
                                 attributeSet: searchableItemAttributes)
     }
 

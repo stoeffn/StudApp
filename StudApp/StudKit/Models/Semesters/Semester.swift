@@ -10,6 +10,8 @@ import CoreData
 
 @objc(Semester)
 public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable, CDSortable {
+    public static var entity = ObjectIdentifier.Entites.semester
+
     @NSManaged public var id: String
     @NSManaged public var title: String
     @NSManaged public var beginsAt: Date

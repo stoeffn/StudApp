@@ -15,6 +15,8 @@ import MobileCoreServices
 /// Besides containing some metadata such as a title and location, each course is alse the root node of a file structure.
 @objc(Course)
 public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable, CDSortable {
+    public static var entity = ObjectIdentifier.Entites.course
+
     @NSManaged public var id: String
 
     /// Course number internal to Stud.IP that can also be used for identifying a course.
@@ -107,7 +109,7 @@ extension Course {
     }
 
     public var searchableItem: CSSearchableItem {
-        return CSSearchableItem(uniqueIdentifier: objectIdentifier.rawValue, domainIdentifier: Course.typeIdentifier,
+        return CSSearchableItem(uniqueIdentifier: objectIdentifier.rawValue, domainIdentifier: Course.entity.rawValue,
                                 attributeSet: searchableItemAttributes)
     }
 

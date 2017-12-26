@@ -10,6 +10,8 @@ import CoreData
 
 @objc(Announcement)
 public final class Announcement: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable, CDSortable {
+    public static var entity = ObjectIdentifier.Entites.announcement
+
     @NSManaged public var id: String
 
     @NSManaged public var title: String

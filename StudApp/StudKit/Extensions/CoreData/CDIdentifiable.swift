@@ -9,7 +9,9 @@
 import CoreData
 
 /// Something, usually a core data managed object, that can be uniquely identified.
-public protocol CDIdentifiable: ByTypeNameIdentifiable {
+public protocol CDIdentifiable {
+    static var entity: ObjectIdentifier.Entites { get }
+
     /// Identifier that uniquely identifies this object.
     var id: String { get }
 }
@@ -50,7 +52,7 @@ public extension CDIdentifiable where Self: NSFetchRequestResult & CDCreatable {
 
 extension CDIdentifiable {
     public var objectIdentifier: ObjectIdentifier {
-        return ObjectIdentifier(entityName: Self.typeIdentifier, id: id)
+        return ObjectIdentifier(entity: Self.entity, id: id)
     }
 }
 
@@ -59,7 +61,7 @@ extension CDIdentifiable where Self: NSFetchRequestResult {
         let context = context ?? ServiceContainer.default[CoreDataService.self].viewContext
 
         guard
-            objectId?.isOf(type: Self.self) ?? false,
+            objectId?.entity == Self.entity,
             let id = objectId?.id,
             let object = try? Self.fetch(byId: id, in: context)
         else { return nil }
