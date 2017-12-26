@@ -57,7 +57,7 @@ final class FileProviderExtension: NSFileProviderExtension {
             guard let object = object(for: identifier) else { throw NSFileProviderError(.noSuchItem) }
             return object.fileProviderItem
         default:
-            fatalError("Cannot create item for identifier '\(identifier)'")
+            throw NSFileProviderError(.noSuchItem)
         }
     }
 
@@ -79,7 +79,7 @@ final class FileProviderExtension: NSFileProviderExtension {
         case .file?:
             return FileEnumerator(itemIdentifier: containerItemIdentifier)
         default:
-            fatalError("Cannot create item for identifier '\(containerItemIdentifier)'")
+            throw NSFileProviderError(.noSuchItem)
         }
     }
 
