@@ -44,17 +44,14 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
     // MARK: - Restoration
 
     override func encodeRestorableState(with coder: NSCoder) {
-        if let objectIdentifier = viewModel.folder?.objectIdentifier {
-            coder.encode(objectIdentifier.rawValue, forKey: ObjectIdentifier.typeIdentifier)
-        }
+        coder.encode(viewModel.folder?.objectIdentifier.rawValue, forKey: ObjectIdentifier.typeIdentifier)
         super.encode(with: coder)
     }
 
     override func decodeRestorableState(with coder: NSCoder) {
         if
             let restoredObjectIdentifier = coder.decodeObject(forKey: ObjectIdentifier.typeIdentifier) as? String,
-            let folder = File.fetch(byObjectId: ObjectIdentifier(rawValue: restoredObjectIdentifier))
-        {
+            let folder = File.fetch(byObjectId: ObjectIdentifier(rawValue: restoredObjectIdentifier)) {
             viewModel = FileListViewModel(folder: folder)
             viewModel.delegate = self
             viewModel.fetch()
@@ -136,7 +133,7 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
 
     @IBAction
     func actionButtonTapped(_: Any) {
-        guard let url = viewModel.folder?.localUrl(inProviderDirectory: true) else { return }
+        guard let url = viewModel.folder?.localUrl(in: .fileProvider) else { return }
 
         let controller = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         controller.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
@@ -170,7 +167,7 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
 extension FolderController: UITableViewDragDelegate {
     private func itemProviders(forIndexPath indexPath: IndexPath) -> [NSItemProvider] {
         let file = viewModel[rowAt: indexPath.row]
-        guard let itemProvider = NSItemProvider(contentsOf: file.localUrl(inProviderDirectory: true)) else { return [] }
+        guard let itemProvider = NSItemProvider(contentsOf: file.localUrl(in: .fileProvider)) else { return [] }
         itemProvider.suggestedName = file.sanitizedTitleWithExtension
         return [itemProvider]
     }

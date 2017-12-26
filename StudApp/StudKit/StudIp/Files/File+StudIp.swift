@@ -38,18 +38,19 @@ extension File {
     @discardableResult
     public func download(handler: @escaping ResultHandler<URL>) -> Progress? {
         guard !state.isMostRecentVersionDownloaded else {
-            handler(.success(localUrl(inProviderDirectory: true)))
+            handler(.success(localUrl(in: .fileProvider)))
             return nil
         }
 
-        try? FileManager.default.createIntermediateDirectories(forFileAt: localUrl())
-        try? FileManager.default.createIntermediateDirectories(forFileAt: localUrl(inProviderDirectory: true))
+        try? FileManager.default.createIntermediateDirectories(forFileAt: localUrl(in: .downloads))
+        try? FileManager.default.createIntermediateDirectories(forFileAt: localUrl(in: .fileProvider))
 
         let downloadDate = Date()
         state.isDownloading = true
 
         let studIpService = ServiceContainer.default[StudIpService.self]
-        let task = studIpService.api.download(.fileContents(forFileId: id), to: localUrl(), startsResumed: false) { result in
+        let destination = localUrl(in: .downloads)
+        let task = studIpService.api.download(.fileContents(forFileId: id), to: destination, startsResumed: false) { result in
             self.state.isDownloading = false
 
             guard result.isSuccess else {
@@ -59,7 +60,7 @@ extension File {
             self.state.downloadedAt = downloadDate
             try? self.managedObjectContext?.saveWhenChanged()
 
-            return handler(.success(self.localUrl(inProviderDirectory: true)))
+            return handler(.success(self.localUrl(in: .fileProvider)))
         }
 
         guard let downloadTask = task else { return nil }
@@ -78,7 +79,8 @@ extension File {
 
     public func removeDownload() throws {
         state.downloadedAt = nil
-        try? FileManager.default.removeItem(at: localUrl())
+        try? FileManager.default.removeItem(at: localUrl(in: .downloads))
+        try? FileManager.default.removeItem(at: localUrl(in: .fileProvider))
         try managedObjectContext?.saveWhenChanged()
     }
 

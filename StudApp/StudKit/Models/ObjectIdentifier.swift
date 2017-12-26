@@ -6,13 +6,15 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import CoreData
+
 public struct ObjectIdentifier: ByTypeNameIdentifiable {
-    let typeIdentifier: String
+    let entityName: String
 
     let id: String?
 
-    init(typeIdentifier: String, id: String? = nil) {
-        self.typeIdentifier = typeIdentifier.lowercased()
+    init(entityName: String, id: String? = nil) {
+        self.entityName = entityName
         self.id = id
     }
 }
@@ -21,7 +23,19 @@ public struct ObjectIdentifier: ByTypeNameIdentifiable {
 
 public extension ObjectIdentifier {
     public func isOf(type: CDIdentifiable.Type) -> Bool {
-        return typeIdentifier == type.typeIdentifier
+        return entityName == type.typeIdentifier
+    }
+
+    public func fetch(in context: NSManagedObjectContext) throws -> CDIdentifiable? {
+        switch entityName {
+        case ObjectIdentifier.rootTypeIdentifier, ObjectIdentifier.workingSetTypeIdentifier:
+            fatalError("Cannot fetch object for root container or working set.")
+        default:
+            guard let id = id else { return nil }
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
+            fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+            return try context.fetch(fetchRequest).first as? CDIdentifiable
+        }
     }
 }
 
@@ -34,12 +48,12 @@ extension ObjectIdentifier: RawRepresentable {
 
     private static let rootTypeIdentifier: String = {
         guard #available(iOS 11, *) else { return "root" }
-        return NSFileProviderItemIdentifier.rootContainer.rawValue.lowercased()
+        return NSFileProviderItemIdentifier.rootContainer.rawValue
     }()
 
     private static let workingSetTypeIdentifier: String = {
-        guard #available(iOS 11, *) else { return "workingset" }
-        return NSFileProviderItemIdentifier.workingSet.rawValue.lowercased()
+        guard #available(iOS 11, *) else { return "workingSet" }
+        return NSFileProviderItemIdentifier.workingSet.rawValue
     }()
 
     public init?(rawValue: String) {
@@ -47,28 +61,28 @@ extension ObjectIdentifier: RawRepresentable {
 
         switch parts.first {
         case ObjectIdentifier.rootTypeIdentifier?:
-            self.init(typeIdentifier: ObjectIdentifier.rootTypeIdentifier)
+            self.init(entityName: ObjectIdentifier.rootTypeIdentifier)
         case ObjectIdentifier.workingSetTypeIdentifier?:
-            self.init(typeIdentifier: ObjectIdentifier.workingSetTypeIdentifier)
+            self.init(entityName: ObjectIdentifier.workingSetTypeIdentifier)
         default:
             guard
-                let typeIdentifier = parts.first,
+                let entityName = parts.first,
                 let id = parts.last,
                 parts.count == 2
             else { return nil }
-            self.init(typeIdentifier: typeIdentifier, id: id)
+            self.init(entityName: entityName, id: id)
         }
     }
 
     public var rawValue: String {
-        switch typeIdentifier {
+        switch entityName {
         case ObjectIdentifier.rootTypeIdentifier:
             return ObjectIdentifier.rootTypeIdentifier
         case ObjectIdentifier.workingSetTypeIdentifier:
             return ObjectIdentifier.workingSetTypeIdentifier
         default:
             guard let id = id else { fatalError("Cannot create object identifier representation for object without id.") }
-            return typeIdentifier + ObjectIdentifier.rawValueSeparator + id
+            return entityName + ObjectIdentifier.rawValueSeparator + id
         }
     }
 }

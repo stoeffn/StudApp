@@ -50,7 +50,7 @@ public extension CDIdentifiable where Self: NSFetchRequestResult & CDCreatable {
 
 extension CDIdentifiable {
     public var objectIdentifier: ObjectIdentifier {
-        return ObjectIdentifier(typeIdentifier: Self.typeIdentifier, id: id)
+        return ObjectIdentifier(entityName: Self.typeIdentifier, id: id)
     }
 }
 

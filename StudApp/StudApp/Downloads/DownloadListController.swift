@@ -205,7 +205,7 @@ extension DownloadListController: UISearchResultsUpdating {
 extension DownloadListController: UITableViewDragDelegate {
     private func itemProviders(forIndexPath indexPath: IndexPath) -> [NSItemProvider] {
         let file = viewModel[rowAt: indexPath]
-        guard let itemProvider = NSItemProvider(contentsOf: file.localUrl(inProviderDirectory: true)) else { return [] }
+        guard let itemProvider = NSItemProvider(contentsOf: file.localUrl(in: .fileProvider)) else { return [] }
         itemProvider.suggestedName = file.sanitizedTitleWithExtension
         return [itemProvider]
     }

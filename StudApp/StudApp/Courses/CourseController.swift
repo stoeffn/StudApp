@@ -75,8 +75,7 @@ final class CourseController: UITableViewController, Routable {
     override func decodeRestorableState(with coder: NSCoder) {
         if
             let restoredObjectIdentifier = coder.decodeObject(forKey: ObjectIdentifier.typeIdentifier) as? String,
-            let course = Course.fetch(byObjectId: ObjectIdentifier(rawValue: restoredObjectIdentifier))
-        {
+            let course = Course.fetch(byObjectId: ObjectIdentifier(rawValue: restoredObjectIdentifier)) {
             configureViewModels(with: course)
         }
 
@@ -331,7 +330,7 @@ extension CourseController: UITableViewDragDelegate {
             return [NSItemProvider(item: data as NSData, typeIdentifier: kUTTypePlainText as String)]
         case .documents? where !fileListViewModel.isEmpty:
             let file = fileListViewModel[rowAt: indexPath.row]
-            guard let itemProvider = NSItemProvider(contentsOf: file.localUrl(inProviderDirectory: true)) else { return [] }
+            guard let itemProvider = NSItemProvider(contentsOf: file.localUrl(in: .fileProvider)) else { return [] }
             itemProvider.suggestedName = file.sanitizedTitleWithExtension
             return [itemProvider]
         default:

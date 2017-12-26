@@ -119,7 +119,7 @@ public final class StudIpService {
         try? coreDataService.viewContext.saveWhenChanged()
 
         let storageService = ServiceContainer.default[StorageService.self]
-        try? storageService.removeAllDocuments()
+        try? storageService.removeAllDownloads()
 
         CSSearchableIndex.default().deleteAllSearchableItems { _ in }
 
