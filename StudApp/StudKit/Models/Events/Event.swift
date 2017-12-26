@@ -12,11 +12,9 @@ import CoreData
 public final class Event: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable, CDSortable {
     // MARK: Identification
 
-    public static var entity = ObjectIdentifier.Entites.announcement
+    public static var entity = ObjectIdentifier.Entites.event
 
     @NSManaged public var id: String
-
-    @NSManaged public var title: String?
 
     // MARK: Managing Timing
 
@@ -25,6 +23,8 @@ public final class Event: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdata
     @NSManaged public var endsAt: Date
 
     @NSManaged public var isCanceled: Bool
+
+    @NSManaged public var cancellationReason: String?
 
     // MARK: Specifying Location
 

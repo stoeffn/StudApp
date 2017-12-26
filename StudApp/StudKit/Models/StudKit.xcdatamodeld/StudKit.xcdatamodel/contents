@@ -48,6 +48,7 @@
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Course" inverseName="state" inverseEntity="Course" syncable="YES"/>
     </entity>
     <entity name="Event" representedClassName="Event" syncable="YES">
+        <attribute name="cancellationReason" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="endsAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" attributeType="String" minValueString="1" syncable="YES"/>
@@ -55,7 +56,6 @@
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="startsAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="events" inverseEntity="Course" syncable="YES"/>
         <fetchIndex name="byId">
             <fetchIndexElement property="id" type="Binary" order="ascending"/>
