@@ -16,10 +16,14 @@ final class CourseListSplitController: UISplitViewController {
 
         delegate = self
         preferredDisplayMode = .allVisible
+
+        view.backgroundColor = .white
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        view.backgroundColor = UI.Colors.greyText
 
         if !isCollapsed && viewControllers.count == 1 {
             performSegue(withRoute: .emptyCourse)
