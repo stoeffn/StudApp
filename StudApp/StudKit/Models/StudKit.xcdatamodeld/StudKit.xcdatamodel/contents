@@ -25,6 +25,7 @@
         <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" minValueString="1" syncable="YES"/>
         <relationship name="announcements" toMany="YES" deletionRule="Cascade" destinationEntity="Announcement" inverseName="courses" inverseEntity="Announcement" syncable="YES"/>
+        <relationship name="events" toMany="YES" deletionRule="Cascade" destinationEntity="Event" inverseName="course" inverseEntity="Event" syncable="YES"/>
         <relationship name="files" toMany="YES" deletionRule="Cascade" destinationEntity="File" inverseName="course" inverseEntity="File" syncable="YES"/>
         <relationship name="lecturers" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="lecturedCourses" inverseEntity="User" syncable="YES"/>
         <relationship name="semesters" toMany="YES" deletionRule="Nullify" destinationEntity="Semester" inverseName="courses" inverseEntity="Semester" syncable="YES"/>
@@ -45,6 +46,25 @@
         <attribute name="lastUsedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="tagData" optional="YES" attributeType="Binary" syncable="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Deny" destinationEntity="Course" inverseName="state" inverseEntity="Course" syncable="YES"/>
+    </entity>
+    <entity name="Event" representedClassName="Event" syncable="YES">
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="endsAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="String" minValueString="1" syncable="YES"/>
+        <attribute name="isCanceled" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startsAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="events" inverseEntity="Course" syncable="YES"/>
+        <fetchIndex name="byId">
+            <fetchIndexElement property="id" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="File" representedClassName="File" syncable="YES">
         <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -126,12 +146,13 @@
     </entity>
     <elements>
         <element name="Announcement" positionX="-8703" positionY="-2070" width="128" height="30"/>
-        <element name="Course" positionX="-8568" positionY="-2218" width="128" height="30"/>
+        <element name="Course" positionX="-8568" positionY="-2218" width="128" height="225"/>
         <element name="CourseState" positionX="-8354" positionY="-2142" width="128" height="135"/>
         <element name="File" positionX="-8381" positionY="-1971" width="128" height="30"/>
         <element name="FileState" positionX="-8199" positionY="-1836" width="128" height="135"/>
         <element name="Semester" positionX="-8748" positionY="-2188" width="128" height="165"/>
         <element name="SemesterState" positionX="-8910" positionY="-2121" width="128" height="150"/>
         <element name="User" positionX="-8748" positionY="-1924" width="128" height="180"/>
+        <element name="Event" positionX="-8703" positionY="-2070" width="128" height="180"/>
     </elements>
 </model>
