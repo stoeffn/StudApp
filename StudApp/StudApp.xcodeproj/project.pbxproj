@@ -17,6 +17,7 @@
 		2422660E1FE3D9A900FA7CA6 /* AnnouncementResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422660D1FE3D9A900FA7CA6 /* AnnouncementResponseTests.swift */; };
 		242266101FE3D9E400FA7CA6 /* AnnouncementResponseTests+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422660F1FE3D9E400FA7CA6 /* AnnouncementResponseTests+Data.swift */; };
 		242266121FE3EE7B00FA7CA6 /* AnnouncementResponse+CDConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242266111FE3EE7B00FA7CA6 /* AnnouncementResponse+CDConvertible.swift */; };
+		242A99041FF2CB76003108E3 /* EventResponse+CDConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242A99031FF2CB76003108E3 /* EventResponse+CDConvertible.swift */; };
 		242B035B1FD71AB700863B08 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B035A1FD71AB700863B08 /* CourseCell.swift */; };
 		242B035D1FD7213700863B08 /* SemesterHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B035C1FD7213700863B08 /* SemesterHeader.swift */; };
 		242B035F1FD7220800863B08 /* UIFont+Mutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B035E1FD7220800863B08 /* UIFont+Mutations.swift */; };
@@ -352,6 +353,7 @@
 		2422660D1FE3D9A900FA7CA6 /* AnnouncementResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementResponseTests.swift; sourceTree = "<group>"; };
 		2422660F1FE3D9E400FA7CA6 /* AnnouncementResponseTests+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnnouncementResponseTests+Data.swift"; sourceTree = "<group>"; };
 		242266111FE3EE7B00FA7CA6 /* AnnouncementResponse+CDConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnnouncementResponse+CDConvertible.swift"; sourceTree = "<group>"; };
+		242A99031FF2CB76003108E3 /* EventResponse+CDConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventResponse+CDConvertible.swift"; sourceTree = "<group>"; };
 		242B035A1FD71AB700863B08 /* CourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 		242B035C1FD7213700863B08 /* SemesterHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterHeader.swift; sourceTree = "<group>"; };
 		242B035E1FD7220800863B08 /* UIFont+Mutations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Mutations.swift"; sourceTree = "<group>"; };
@@ -662,6 +664,7 @@
 			isa = PBXGroup;
 			children = (
 				2407A07D1FF2B982006D41C5 /* EventResponse.swift */,
+				242A99031FF2CB76003108E3 /* EventResponse+CDConvertible.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -1970,6 +1973,7 @@
 				243CC2C21FDF2ED900FE7376 /* UIAlertController+Utils.swift in Sources */,
 				2448D4971FA8DFB200DAB97E /* StudKitServiceProvider.swift in Sources */,
 				2469EF6D1FCF4D19008A122B /* ActivityIndicatorCell.swift in Sources */,
+				242A99041FF2CB76003108E3 /* EventResponse+CDConvertible.swift in Sources */,
 				24712BF41FB8B80B0067E416 /* DateComponentsFormatter+Shared.swift in Sources */,
 				24FD78701FBF826D0072F860 /* DownloadListViewModel.swift in Sources */,
 				24CFB5D71FB24F4D00F30DEA /* Routes.swift in Sources */,
