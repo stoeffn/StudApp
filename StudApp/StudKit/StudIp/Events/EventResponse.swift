@@ -8,56 +8,35 @@
 
 struct EventResponse: Decodable {
     let id: String
-    private let rawStartsAt: String
-    private let rawEndsAt: String
+    let startsAt: Date
+    let endsAt: Date
     let isCanceled: Bool
     let cancellationReason: String?
-    private let rawLocation: String?
-    private let rawSummary: String?
+    let location: String?
+    let summary: String?
     let category: String?
 
     enum CodingKeys: String, CodingKey {
         case id = "event_id"
-        case rawStartsAt = "start"
-        case rawEndsAt = "end"
+        case startsAt = "start"
+        case endsAt = "end"
         case isCanceled = "deleted"
         case cancellationReason = "canceled"
-        case rawLocation = "location"
-        case rawSummary = "description"
-        case category
+        case location = "room"
+        case summary = "description"
+        case category = "categories"
     }
 
-    init(id: String, rawStartsAt: String, rawEndsAt: String, isCanceled: Bool = false, cancellationReason: String? = nil,
-         rawLocation: String? = nil, rawSummary: String? = nil, category: String? = nil) {
-        self.id = id
-        self.rawStartsAt = rawStartsAt
-        self.rawEndsAt = rawEndsAt
-        self.isCanceled = isCanceled
-        self.cancellationReason = cancellationReason
-        self.rawLocation = rawLocation
-        self.rawSummary = rawSummary
-        self.category = category
-    }
-}
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
 
-// MARK: - Utilities
-
-extension EventResponse {
-    var startsAt: Date? {
-        guard let interval = TimeInterval(rawStartsAt) else { return nil }
-        return Date(timeIntervalSince1970: interval)
-    }
-
-    var endsAt: Date? {
-        guard let interval = TimeInterval(rawEndsAt) else { return nil }
-        return Date(timeIntervalSince1970: interval)
-    }
-
-    var location: String? {
-        return rawLocation?.nilWhenEmpty
-    }
-
-    var summary: String? {
-        return rawLocation?.nilWhenEmpty
+        id = try container.decode(String.self, forKey: .id)
+        startsAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .startsAt)
+        endsAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .endsAt)
+        isCanceled = try container.decodeIfPresent(Bool.self, forKey: .isCanceled) ?? false
+        cancellationReason = try StudIp.decodeCancellationReason(in: container, forKey: .cancellationReason)
+        location = isCanceled ? nil : try StudIp.decodeLocation(in: container, forKey: .location)
+        summary = try container.decodeIfPresent(String.self, forKey: .summary)?.nilWhenEmpty
+        category = try container.decodeIfPresent(String.self, forKey: .category)?.nilWhenEmpty
     }
 }

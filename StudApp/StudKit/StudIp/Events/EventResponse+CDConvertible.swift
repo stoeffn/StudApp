@@ -11,8 +11,6 @@ import CoreData
 extension EventResponse: CDConvertible {
     @discardableResult
     func coreDataModel(in context: NSManagedObjectContext) throws -> NSManagedObject {
-        guard let startsAt = startsAt, let endsAt = endsAt else { throw NSError(domain: Event.entity.rawValue, code: 0) }
-
         let (event, _) = try Event.fetch(byId: id, orCreateIn: context)
         event.startsAt = startsAt
         event.endsAt = endsAt
