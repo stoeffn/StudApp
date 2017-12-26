@@ -88,11 +88,15 @@ extension Course {
     public func updateEvents(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Event]>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestCollection(.eventsInCourse(withId: id)) { (result: Result<[EventResponse]>) in
-            guard let models = result.value else { return handler(result.replacingValue(nil)) }
+            guard
+                let models = result.value,
+                let course = context.object(with: self.objectID) as? Course
+            else { return handler(result.replacingValue(nil)) }
 
             do {
                 let updatedEvents = try Event.update(using: models, in: context)
-                updatedEvents.forEach { $0.course = self }
+
+                updatedEvents.forEach { $0.course = course }
                 handler(result.replacingValue(updatedEvents))
             } catch {
                 handler(.failure(error))
