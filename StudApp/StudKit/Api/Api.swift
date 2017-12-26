@@ -22,19 +22,24 @@
 /// - Remark: This class is not marked `final` in order to allow subclassing for mock implementations. Usually, you will not
 ///           need to subclass it.
 class Api<Routes: ApiRoutes> {
+    // MARK: - Errors
+
+    /// Custom API errors.
+    ///
+    /// - missingBaseUrl: A request cannot be created due to a missing base URL. Set `baseUrl` on this object in order to solve
+    ///                   this problem.
+    /// - routeNotExpired: Route was recently accessed and has not expired yet. Set `ignoreLastAccess` to `true` when issuing
+    ///                    requests if you want to force an API request to this route.
+    enum Errors: Error {
+        case missingBaseUrl, routeNotExpired
+    }
+
+    // MARK: - Life Cycle
+
     private let defaultPort = 443
     private let session: URLSession
     private let authenticationMethod: String?
     private var lastRouteAccesses = [Routes: Date]()
-
-    /// Base `URL` of all requests this instance issues. Any route paths will be appended to it.
-    ///
-    /// - Warning: The application will crash when `nil` and trying to issue a request.
-    var baseUrl: URL?
-
-    /// When using authentication, sometimes you also need to specify a realm apart from just a username and password. This
-    /// realm will be used for ceating this API's `protectionSpace`.
-    var realm: String?
 
     /// Creates a new API wrapper at `baseUrl`.
     ///
@@ -52,23 +57,32 @@ class Api<Routes: ApiRoutes> {
         self.authenticationMethod = authenticationMethod
     }
 
+    // MARK: - Managing Metadata
+
+    /// Base `URL` of all requests this instance issues. Any route paths will be appended to it.
+    ///
+    /// - Warning: The application will crash when `nil` and trying to issue a request.
+    var baseUrl: URL?
+
+    /// When using authentication, sometimes you also need to specify a realm apart from just a username and password. This
+    /// realm will be used for ceating this API's `protectionSpace`.
+    var realm: String?
+
+    // MARK: - Building Requests
+
     /// This API's protection space, which is created using the base URL's components as well as the realm and URL
     /// Authentication Method given at initialization.
     ///
     /// - Remark: If the base URL does not include an explicit port, the default HTTPS port will be used.
     var protectionSpace: URLProtectionSpace? {
-        guard
-            let host = baseUrl?.host,
-            let scheme = baseUrl?.scheme
-        else { return nil }
-
+        guard let host = baseUrl?.host, let scheme = baseUrl?.scheme else { return nil }
         return URLProtectionSpace(host: host, port: baseUrl?.port ?? defaultPort, protocol: scheme,
                                   realm: realm, authenticationMethod: authenticationMethod)
     }
 
     /// Returns the full `URL` for `route`, consisting of the base `URL` as well as the route's path and query parameters.
-    func url(for route: Routes, parameters: [URLQueryItem] = []) -> URL? {
-        guard let url = baseUrl?.appendingPathComponent(route.path) else { return nil }
+    func url(for route: Routes, parameters: [URLQueryItem] = []) throws -> URL {
+        guard let url = baseUrl?.appendingPathComponent(route.path) else { throw Errors.missingBaseUrl }
 
         var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
         components?.queryItems = parameters
@@ -85,6 +99,8 @@ class Api<Routes: ApiRoutes> {
         request.httpMethod = method.rawValue
         return request
     }
+
+    // MARK: - Managing Expiry
 
     /// Returns whether a given route is expired. If a route has not been accessed before, this method returns `true`.
     /// Otherwise, it respects the route's expiry policy by comparing the last access time to the current time.
@@ -124,29 +140,32 @@ class Api<Routes: ApiRoutes> {
     @discardableResult
     func request(_ route: Routes, parameters: [URLQueryItem] = [], ignoreLastAccess: Bool = false, queue: DispatchQueue = .main,
                  handler: @escaping ResultHandler<Data>) -> URLSessionTask? {
-        guard
-            ignoreLastAccess || isRouteExpired(route),
-            let url = self.url(for: route, parameters: parameters)
-        else {
-            handler(.failure(nil))
+        guard ignoreLastAccess || isRouteExpired(route) else {
+            handler(.failure(Errors.routeNotExpired))
             return nil
         }
 
-        let request = self.request(for: url, method: route.method)
-        let task = session.dataTask(with: request) { data, response, error in
-            let response = response as? HTTPURLResponse
-            let result = Result(data, error: error, statusCode: response?.statusCode)
+        do {
+            let url = try self.url(for: route, parameters: parameters)
+            let request = self.request(for: url, method: route.method)
+            let task = session.dataTask(with: request) { data, response, error in
+                let response = response as? HTTPURLResponse
+                let result = Result(data, error: error, statusCode: response?.statusCode)
 
-            if result.isSuccess {
-                self.setRouteAccessed(route)
-            }
+                if result.isSuccess {
+                    self.setRouteAccessed(route)
+                }
 
-            queue.async {
-                handler(result)
+                queue.async {
+                    handler(result)
+                }
             }
+            task.resume()
+            return task
+        } catch {
+            handler(.failure(error))
+            return nil
         }
-        task.resume()
-        return task
     }
 
     // MARK: - Decoding Data
@@ -188,27 +207,29 @@ class Api<Routes: ApiRoutes> {
     ///   - startsResumed: Whether the URL task returned starts in its resumed state.
     ///   - handler: Completion handler a URL pointing to the dowloaded file.
     /// - Returns: URL task in its resumed state or `nil` if building the request failed.
-    /// - Remark: There is no `queue` parameter on this method because the file must be read or moved synchronously.
+    /// - Remark: There is no `queue` parameter on this method because the file must be read or moved synchronously. This
+    ///           method does not check or set last access times.
     @discardableResult
     func download(_ route: Routes, parameters: [URLQueryItem] = [], startsResumed: Bool = true,
                   handler: @escaping ResultHandler<URL>) -> URLSessionTask? {
-        guard let url = self.url(for: route, parameters: parameters) else {
+        do {
+            let url = try self.url(for: route, parameters: parameters)
+            let request = self.request(for: url, method: route.method)
+            let task = session.downloadTask(with: request) { url, response, error in
+                let response = response as? HTTPURLResponse
+                let result = Result(url, error: error, statusCode: response?.statusCode)
+                handler(result)
+            }
+
+            if startsResumed {
+                task.resume()
+            }
+
+            return task
+        } catch {
             handler(.failure(nil))
             return nil
         }
-
-        let request = self.request(for: url, method: route.method)
-        let task = session.downloadTask(with: request) { url, response, error in
-            let response = response as? HTTPURLResponse
-            let result = Result(url, error: error, statusCode: response?.statusCode)
-            handler(result)
-        }
-
-        if startsResumed {
-            task.resume()
-        }
-
-        return task
     }
 
     /// Downloads data from this API to disk and moves it to `destination`.
