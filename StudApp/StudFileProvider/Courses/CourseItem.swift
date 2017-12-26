@@ -59,6 +59,8 @@ final class CourseItem: NSObject, NSFileProviderItem {
 
     let childItemCount: NSNumber?
 
+    let documentSize: NSNumber? = nil
+
     // MARK: Specifying Content Location
 
     let parentItemIdentifier: NSFileProviderItemIdentifier
