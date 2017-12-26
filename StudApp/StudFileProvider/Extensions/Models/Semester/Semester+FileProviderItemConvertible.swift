@@ -14,8 +14,13 @@ extension Semester: FileProviderItemConvertible {
         return state
     }
 
-    public func fileProviderItem(context _: NSManagedObjectContext) throws -> NSFileProviderItem {
+    public var fileProviderItem: NSFileProviderItem {
         guard #available(iOSApplicationExtension 11.0, *) else { fatalError() }
-        return try SemesterItem(from: self)
+        return SemesterItem(from: self)
+    }
+
+    public func localUrl(in directory: BaseDirectories) -> URL {
+        return directory.containerUrl(forObjectId: objectIdentifier)
+            .appendingPathComponent(title.sanitizedAsFilename, isDirectory: true)
     }
 }

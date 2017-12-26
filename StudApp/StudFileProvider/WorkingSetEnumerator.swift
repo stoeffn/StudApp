@@ -37,6 +37,6 @@ final class WorkingSetEnumerator: CachingFileProviderEnumerator {
     override var items: [NSFileProviderItem] {
         return viewModels
             .flatMap { $0 }
-            .flatMap { try? $0.fileProviderItem(context: coreDataService.viewContext) }
+            .map { $0.fileProviderItem }
     }
 }

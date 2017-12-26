@@ -32,14 +32,12 @@ final class CourseItem: NSObject, NSFileProviderItem {
             : nil
     }
 
-    convenience init(from course: Course, context: NSManagedObjectContext) throws {
-        guard
-            let parentObjectIdentifier = course.semesters.first?.objectIdentifier
-        else { throw NSFileProviderError(.noSuchItem) }
+    convenience init(from course: Course) {
+        guard let parentObjectIdentifier = course.semesters.first?.objectIdentifier else { fatalError() }
         let parentItemIdentifier = NSFileProviderItemIdentifier(rawValue: parentObjectIdentifier.rawValue)
 
         let childItemCount = course.state.areFilesFetchedFromRemote
-            ? try context.count(for: course.rootFilesFetchRequest)
+            ? try? course.managedObjectContext?.count(for: course.rootFilesFetchRequest) ?? 0
             : nil
 
         self.init(from: course, childItemCount: childItemCount, parentItemIdentifier: parentItemIdentifier)

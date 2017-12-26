@@ -15,8 +15,9 @@ public protocol FileProviderItemConvertible: class {
     var itemState: FileProviderItemConvertibleState { get }
 
     /// Converts this object to a file provider item.
-    /// - TODO: Use object's context.
-    func fileProviderItem(context: NSManagedObjectContext) throws -> NSFileProviderItem
+    var fileProviderItem: NSFileProviderItem { get }
+
+    func localUrl(in directory: BaseDirectories) -> URL
 }
 
 // MARK: - Operating on File Items

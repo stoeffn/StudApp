@@ -43,6 +43,6 @@ final class CourseEnumerator: CachingFileProviderEnumerator {
     // MARK: - Providing Items
 
     override var items: [NSFileProviderItem] {
-        return viewModel.flatMap { try? $0.fileProviderItem(context: coreDataService.viewContext) }
+        return viewModel.map { $0.fileProviderItem }
     }
 }

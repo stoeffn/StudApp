@@ -14,8 +14,13 @@ extension Course: FileProviderItemConvertible {
         return state
     }
 
-    public func fileProviderItem(context: NSManagedObjectContext) throws -> NSFileProviderItem {
+    public var fileProviderItem: NSFileProviderItem {
         guard #available(iOSApplicationExtension 11.0, *) else { fatalError() }
-        return try CourseItem(from: self, context: context)
+        return CourseItem(from: self)
+    }
+
+    public func localUrl(in directory: BaseDirectories) -> URL {
+        return directory.containerUrl(forObjectId: objectIdentifier)
+            .appendingPathComponent(title.sanitizedAsFilename, isDirectory: true)
     }
 }

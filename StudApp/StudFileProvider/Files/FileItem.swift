@@ -11,10 +11,6 @@ import StudKit
 
 /// Represents a document or folder item.
 final class FileItem: NSObject, NSFileProviderItem {
-    // MARK: - Constants
-
-    private static let internalFilenameUserInfoKey = "internalFilename"
-
     // MARK: - Life Cycle
 
     init(from file: File, parentItemIdentifier: NSFileProviderItemIdentifier) {
@@ -46,11 +42,9 @@ final class FileItem: NSObject, NSFileProviderItem {
         favoriteRank = !file.state.isUnranked ? file.state.favoriteRank as NSNumber : nil
 
         super.init()
-
-        internalFilename = file.name
     }
 
-    convenience init(from file: File) throws {
+    convenience init(from file: File) {
         let parentObjectIdentifier = file.parent?.objectIdentifier ?? file.course.objectIdentifier
         let parentItemIdentifier = NSFileProviderItemIdentifier(rawValue: parentObjectIdentifier.rawValue)
         self.init(from: file, parentItemIdentifier: parentItemIdentifier)
@@ -114,18 +108,4 @@ final class FileItem: NSObject, NSFileProviderItem {
     let tagData: Data?
 
     let favoriteRank: NSNumber?
-
-    var userInfo: [AnyHashable: Any]? = [:]
-
-    // MARK: Additional Properties
-
-    /// File name on file system level.
-    ///
-    /// `File` has both a name and a title. The name is, as one would expect, the name at file system level, whereas the title
-    /// is a simplified display name, often containing additional or more human-readable information. As `filename` on
-    /// `NSFileProviderItem` refers to the display name, it contains the title of a `File`.
-    var internalFilename: String? {
-        get { return userInfo?[FileItem.internalFilenameUserInfoKey] as? String }
-        set { userInfo?[FileItem.internalFilenameUserInfoKey] = newValue }
-    }
 }

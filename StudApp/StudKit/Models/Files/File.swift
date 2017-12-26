@@ -13,11 +13,9 @@ import QuickLook
 
 @objc(File)
 public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable, CDSortable {
+    // MARK: Identification
+
     @NSManaged public var id: String
-
-    @NSManaged public var createdAt: Date
-
-    @NSManaged public var modifiedAt: Date
 
     /// Internal file name including a file extension as selected by the owner. You may want to use `title` in user interfaces
     /// as it is more human-readable.
@@ -29,17 +27,18 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
     /// Custom title, which you may prefer over `name` in user interfaces as it is human-readable.
     @NSManaged public var title: String
 
+    // MARK: Managing Content
+
     /// Size of the file in bytes.
     ///
     /// - Warning: Due to Core Data restrictions, this property cannot be optional. Thus, it uses `-1` as an invalid state, e.g.
     ///            for folders.
     @NSManaged public var size: Int
 
-    /// Number of times this file was donwloaded from the server.
-    ///
-    /// - Warning: Due to Core Data restrictions, this property cannot be optional. Thus, it uses `-1` as an invalid state, e.g.
-    ///            for folders.
-    @NSManaged public var downloadCount: Int
+    /// Files contained in this file in case of a folder.
+    @NSManaged public var children: Set<File>
+
+    // MARK: Specifying Content Location
 
     /// Course this file belongs to.
     @NSManaged public var course: Course
@@ -48,14 +47,25 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
     /// course's root.
     @NSManaged public var parent: File?
 
-    /// User who uploaded or modified this file. Might be `nil` for folders or some documents authored by multiple users.
-    @NSManaged public var owner: User?
+    // MARK: Tracking Usage
+
+    @NSManaged public var createdAt: Date
+
+    @NSManaged public var modifiedAt: Date
+
+    // MARK: Managing Metadata
+
+    /// Number of times this file was downloaded from the server.
+    ///
+    /// - Warning: Due to Core Data restrictions, this property cannot be optional. Thus, it uses `-1` as an invalid state, e.g.
+    ///            for folders.
+    @NSManaged public var downloadCount: Int
 
     /// File description.
     @NSManaged public var summary: String?
 
-    /// Files contained in this file in case of a folder.
-    @NSManaged public var children: Set<File>
+    /// User who uploaded or modified this file. Might be `nil` for folders or some documents authored by multiple users.
+    @NSManaged public var owner: User?
 
     @NSManaged public var state: FileState
 
@@ -66,7 +76,7 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
         state = FileState(createIn: context)
     }
 
-    // MARK: - Sorting
+    // MARK: Sorting
 
     static let defaultSortDescriptors = [
         NSSortDescriptor(keyPath: \File.title, ascending: true),
@@ -76,13 +86,12 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
 // MARK: - Core Data Operations
 
 extension File {
+    // MARK: Fetching
+
     public static func downloadedPredicate(forSearchTerm searchTerm: String? = nil) -> NSPredicate {
         let downloadedPredicate = NSPredicate(format: "downloadedAt != NIL")
 
-        guard
-            let searchTerm = searchTerm,
-            !searchTerm.isEmpty
-        else { return downloadedPredicate }
+        guard let searchTerm = searchTerm, !searchTerm.isEmpty else { return downloadedPredicate }
 
         let trimmedSearchTerm = searchTerm.trimmingCharacters(in: .whitespacesAndNewlines)
 
@@ -123,20 +132,15 @@ public extension File {
         return typeIdentifier == kUTTypeFolder as String
     }
 
-    /// File name extension as retrieved from the internal file name.
-    public var `extension`: String {
-        let pathExtension = URL(string: name)?.pathExtension.nilWhenEmpty
-        return pathExtension.map { ".\($0)" } ?? ""
-    }
-
-    /// Human-readable file title with extension that only contains valid file name characters.
-    public var sanitizedTitleWithExtension: String {
-        return title.sanitizedAsFilename + `extension`
-    }
-
     /// Flat list of all children, including this file.
     public var allChildren: [File] {
         return [self] + children.flatMap { $0.allChildren }
+    }
+
+    // TODO: Provide a lightweight alternative for retrieving icons
+    public func documentController(handler: @escaping (UIDocumentInteractionController) -> Void) {
+        let cacheService = ServiceContainer.default[CacheService.self]
+        return cacheService.documentInteractionController(forUrl: localUrl(in: .fileProvider), name: title, handler: handler)
     }
 
     /// Whether this file is available for download, ignoring network connectivity conditions. May also be `true` for downloaded
@@ -155,45 +159,21 @@ public extension File {
             || state.isDownloaded
             || reachabilityService.currentReachabilityFlags.contains(.reachable)
     }
-}
 
-// MARK: - Storage
-
-public extension File {
-    /// URL of local directory that should contain the downloaded file based on the document base directory given.
-    ///
-    /// - Parameters:
-    ///   - id: File identifier.
-    ///   - directory: Base document directory.
-    public static func localContainerUrl(forId id: String, in directory: URL) -> URL {
-        return directory.appendingPathComponent(id, isDirectory: true)
-    }
-
-    /// URL of local directory that should contain the downloaded file.
-    ///
-    /// - Parameters:
-    ///   - id: File identifier.
-    ///   - inProviderDirectory: Whether to return the local URL inside the file provider documents folder or the app's
-    ///                          document folder, which is the default option.
-    public static func localContainerUrl(forId id: String, inProviderDirectory: Bool = false) -> URL {
-        let storageService = ServiceContainer.default[StorageService.self]
-        let directory = inProviderDirectory ? storageService.fileProviderDocumentsUrl : storageService.downloadsUrl
-        return localContainerUrl(forId: id, in: directory)
-    }
-
-    /// URL for the locally downloaded file.
-    ///
-    /// - Parameter inProviderDirectory: Whether to return the local file URL inside the file provider documents folder or the
-    ///                                  app's document folder, which is the default option.
-    public func localUrl(inProviderDirectory: Bool = false) -> URL {
-        return File.localContainerUrl(forId: id, inProviderDirectory: inProviderDirectory)
+    public func localUrl(in directory: BaseDirectories) -> URL {
+        return directory.containerUrl(forObjectId: objectIdentifier)
             .appendingPathComponent(name, isDirectory: isFolder)
     }
 
-    public func documentController(handler: @escaping (UIDocumentInteractionController) -> Void) {
-        let cacheService = ServiceContainer.default[CacheService.self]
-        return cacheService.documentInteractionController(forUrl: localUrl(inProviderDirectory: true), name: title,
-                                                          handler: handler)
+    /// File name extension as retrieved from the internal file name.
+    public var `extension`: String {
+        let pathExtension = URL(string: name)?.pathExtension.nilWhenEmpty
+        return pathExtension.map { ".\($0)" } ?? ""
+    }
+
+    /// Human-readable file title with extension that only contains valid file name characters.
+    public var sanitizedTitleWithExtension: String {
+        return title.sanitizedAsFilename + `extension`
     }
 }
 
@@ -201,7 +181,7 @@ public extension File {
 
 extension File {
     public var keywords: Set<String> {
-        let fileKeyWords = [name, owner?.givenName, owner?.familyName].flatMap { $0 }.set
+        let fileKeyWords = [owner?.givenName, owner?.familyName].flatMap { $0 }.set
         return fileKeyWords.union(course.keywords)
     }
 
@@ -219,7 +199,7 @@ extension File {
         attributes.identifier = id
         attributes.subject = title
 
-        attributes.contentURL = localUrl(inProviderDirectory: true)
+        attributes.contentURL = localUrl(in: .fileProvider)
         attributes.comment = description
         attributes.downloadedDate = state.downloadedAt
         attributes.contentCreationDate = createdAt
@@ -252,11 +232,11 @@ extension File {
     }
 }
 
-// MARK: - QuickLook Preview Item
+// MARK: - QuickLook Previewing
 
 extension File: QLPreviewItem {
     public var previewItemURL: URL? {
-        return localUrl(inProviderDirectory: true)
+        return localUrl(in: .fileProvider)
     }
 
     public var previewItemTitle: String? {

@@ -25,11 +25,12 @@ final class FileEnumerator: CachingFileProviderEnumerator {
 
         let coreDataService = ServiceContainer.default[CoreDataService.self]
 
-        guard let model = try? FileProviderExtension.model(for: itemIdentifier, in: coreDataService.viewContext) else {
+        let objectIdentifier = ObjectIdentifier(rawValue: itemIdentifier.rawValue)
+        guard let object = try? objectIdentifier?.fetch(in: coreDataService.viewContext) else {
             fatalError("Cannot get model for item with identifier '\(itemIdentifier)'.")
         }
 
-        switch model {
+        switch object {
         case let course as Course:
             viewModel = FileListViewModel(course: course)
         case let folder as File:
@@ -48,6 +49,6 @@ final class FileEnumerator: CachingFileProviderEnumerator {
     // MARK: - Providing Items
 
     override var items: [NSFileProviderItem] {
-        return viewModel.flatMap { try? $0.fileProviderItem(context: coreDataService.viewContext) }
+        return viewModel.map { $0.fileProviderItem }
     }
 }

@@ -29,58 +29,35 @@ final class FileProviderExtension: NSFileProviderExtension {
 
     // MARK: - Working with Items and Persistent Identifiers
 
-    override func persistentIdentifierForItem(at url: URL) -> NSFileProviderItemIdentifier? {
-        // TODO
-        return nil
+    func object(for identifier: NSFileProviderItemIdentifier) -> FileProviderItemConvertible? {
+        guard
+            let itemConvertible = try? ObjectIdentifier(rawValue: identifier.rawValue)?
+                .fetch(in: coreDataService.viewContext) as? FileProviderItemConvertible
+        else { return nil }
+        return itemConvertible
     }
 
-    @available(iOSApplicationExtension 11.0, *)
-    func containerUrlForItem(withPersistentIdentifier identifier: NSFileProviderItemIdentifier) -> URL {
-        return NSFileProviderManager.default.documentStorageURL
-            .appendingPathComponent(identifier.id, isDirectory: true)
+    override func persistentIdentifierForItem(at url: URL) -> NSFileProviderItemIdentifier? {
+        let rawValue = url.deletingLastPathComponent().lastPathComponent
+        return NSFileProviderItemIdentifier(rawValue: rawValue)
     }
 
     override func urlForItem(withPersistentIdentifier identifier: NSFileProviderItemIdentifier) -> URL? {
-        guard
-            #available(iOS 11.0, *),
-            let item = try? item(for: identifier),
-            let fileItem = item as? FileItem,
-            let filename = fileItem.internalFilename
-        else { return nil }
-
-        return containerUrlForItem(withPersistentIdentifier: identifier)
-            .appendingPathComponent(filename, isDirectory: false)
-    }
-
-    @available(iOSApplicationExtension 11.0, *)
-    static func model(for identifier: NSFileProviderItemIdentifier,
-                      in context: NSManagedObjectContext) throws -> FileProviderItemConvertible? {
-        switch identifier.model {
-        case .root, .workingSet:
-            fatalError("Cannot fetch model of root container or working set.")
-        case let .semester(id):
-            return try Semester.fetch(byId: id, in: context)
-        case let .course(id):
-            return try Course.fetch(byId: id, in: context)
-        case let .file(id):
-            return try File.fetch(byId: id, in: context)
-        }
+        return object(for: identifier)?.localUrl(in: .fileProvider)
     }
 
     @available(iOSApplicationExtension 11.0, *)
     override func item(for identifier: NSFileProviderItemIdentifier) throws -> NSFileProviderItem {
         switch identifier.model {
         case .workingSet:
-            throw "Not implemented: Working Set Item"
+            fatalError("Cannot create working set item")
         case .root:
             return try RootItem(context: coreDataService.viewContext)
         case .semester, .course, .file:
-            guard let model = try? FileProviderExtension.model(for: identifier, in: coreDataService.viewContext),
-                let unwrappedModel = model,
-                let item = try? unwrappedModel.fileProviderItem(context: coreDataService.viewContext) else {
+            guard let object = object(for: identifier) else {
                 throw NSFileProviderError(.noSuchItem)
             }
-            return item
+            return object.fileProviderItem
         }
     }
 
@@ -171,7 +148,7 @@ final class FileProviderExtension: NSFileProviderExtension {
             do {
                 try? FileManager.default.removeItem(at: itemUrl)
                 try FileManager.default.createIntermediateDirectories(forFileAt: itemUrl)
-                try FileManager.default.copyItem(at: file.localUrl(), to: itemUrl)
+                try FileManager.default.copyItem(at: file.localUrl(in: .downloads), to: itemUrl)
                 completionHandler?(nil)
             } catch {
                 completionHandler?(error)
@@ -190,15 +167,14 @@ final class FileProviderExtension: NSFileProviderExtension {
     @available(iOSApplicationExtension 11.0, *)
     private func modifyItem(withIdentifier identifier: NSFileProviderItemIdentifier,
                             completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void,
-                            task: ((inout FileProviderItemConvertible?) -> Void)) {
+                            task: ((inout FileProviderItemConvertible) -> Void)) {
         do {
-            var model = try FileProviderExtension.model(for: identifier, in: coreDataService.viewContext)
-            task(&model)
+            guard var object = self.object(for: identifier) else { throw NSFileProviderError(.noSuchItem) }
+            task(&object)
+
             try coreDataService.viewContext.save()
 
-            guard let item = try model?.fileProviderItem(context: coreDataService.viewContext) else {
-                return completionHandler(nil, NSFileProviderError(.noSuchItem))
-            }
+            let item = object.fileProviderItem
 
             NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
             NSFileProviderManager.default.signalEnumerator(for: identifier) { _ in }
@@ -213,24 +189,24 @@ final class FileProviderExtension: NSFileProviderExtension {
     @available(iOSApplicationExtension 11.0, *)
     override func setLastUsedDate(_ lastUsedDate: Date?, forItemIdentifier itemIdentifier: NSFileProviderItemIdentifier,
                                   completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) {
-        modifyItem(withIdentifier: itemIdentifier, completionHandler: completionHandler) { model in
-            model?.itemState.lastUsedAt = lastUsedDate
+        modifyItem(withIdentifier: itemIdentifier, completionHandler: completionHandler) { object in
+            object.itemState.lastUsedAt = lastUsedDate
         }
     }
 
     @available(iOSApplicationExtension 11.0, *)
     override func setFavoriteRank(_ favoriteRank: NSNumber?, forItemIdentifier itemIdentifier: NSFileProviderItemIdentifier,
                                   completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) {
-        modifyItem(withIdentifier: itemIdentifier, completionHandler: completionHandler) { model in
-            model?.itemState.favoriteRank = favoriteRank?.intValue ?? Int(NSFileProviderFavoriteRankUnranked)
+        modifyItem(withIdentifier: itemIdentifier, completionHandler: completionHandler) { object in
+            object.itemState.favoriteRank = favoriteRank?.intValue ?? Int(NSFileProviderFavoriteRankUnranked)
         }
     }
 
     @available(iOSApplicationExtension 11.0, *)
     override func setTagData(_ tagData: Data?, forItemIdentifier itemIdentifier: NSFileProviderItemIdentifier,
                              completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) {
-        modifyItem(withIdentifier: itemIdentifier, completionHandler: completionHandler) { model in
-            model?.itemState.tagData = tagData
+        modifyItem(withIdentifier: itemIdentifier, completionHandler: completionHandler) { object in
+            object.itemState.tagData = tagData
         }
     }
 }

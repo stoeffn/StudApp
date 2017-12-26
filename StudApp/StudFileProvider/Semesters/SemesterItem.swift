@@ -33,7 +33,7 @@ final class SemesterItem: NSObject, NSFileProviderItem {
             : nil
     }
 
-    convenience init(from semester: Semester) throws {
+    convenience init(from semester: Semester) {
         let childItemCount = semester.state.areCoursesFetchedFromRemote
             ? semester.courses.count
             : nil
