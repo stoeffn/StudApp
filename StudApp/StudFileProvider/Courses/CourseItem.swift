@@ -15,7 +15,7 @@ final class CourseItem: NSObject, NSFileProviderItem {
     // MARK: - Life Cycle
 
     init(from course: Course, childItemCount: Int?, parentItemIdentifier: NSFileProviderItemIdentifier = .rootContainer) {
-        itemIdentifier = course.itemIdentifier
+        itemIdentifier = NSFileProviderItemIdentifier(rawValue: course.objectIdentifier.rawValue)
         filename = course.title.sanitizedAsFilename
 
         self.childItemCount = childItemCount as NSNumber?
@@ -33,10 +33,15 @@ final class CourseItem: NSObject, NSFileProviderItem {
     }
 
     convenience init(from course: Course, context: NSManagedObjectContext) throws {
-        guard let parentItemIdentifier = course.semesters.first?.itemIdentifier else { throw NSFileProviderError(.noSuchItem) }
+        guard
+            let parentObjectIdentifier = course.semesters.first?.objectIdentifier
+        else { throw NSFileProviderError(.noSuchItem) }
+        let parentItemIdentifier = NSFileProviderItemIdentifier(rawValue: parentObjectIdentifier.rawValue)
+
         let childItemCount = course.state.areFilesFetchedFromRemote
             ? try context.count(for: course.rootFilesFetchRequest)
             : nil
+
         self.init(from: course, childItemCount: childItemCount, parentItemIdentifier: parentItemIdentifier)
     }
 

@@ -49,18 +49,20 @@ public extension CDIdentifiable where Self: NSFetchRequestResult & CDCreatable {
 }
 
 extension CDIdentifiable {
-    /// Creates a file provider item identifier for this object type with the identifier given.
-    ///
-    /// - Parameter id: Identifier to include in the item identifier.
-    /// - Returns: Item identifier with the format `{lowercase type name} + "-" + {identifier}`.
-    public static func itemIdentifier(forId id: String) -> NSFileProviderItemIdentifier {
-        let itemIdentifier = typeIdentifier.lowercased().appending("-").appending(id)
-        return NSFileProviderItemIdentifier(rawValue: itemIdentifier)
+    public var objectIdentifier: ObjectIdentifier {
+        return ObjectIdentifier(typeIdentifier: Self.typeIdentifier, id: id)
     }
+}
 
-    /// File provider item identifier for this object. The item identifier has the format
-    /// `{lowercase type name} + "-" + {identifier}`.
-    public var itemIdentifier: NSFileProviderItemIdentifier {
-        return Self.itemIdentifier(forId: id)
+extension CDIdentifiable where Self: NSFetchRequestResult {
+    public static func fetch(byObjectId objectId: ObjectIdentifier?, in context: NSManagedObjectContext? = nil) -> Self? {
+        let context = context ?? ServiceContainer.default[CoreDataService.self].viewContext
+
+        guard
+            objectId?.isOf(type: Self.self) ?? false,
+            let id = objectId?.id,
+            let object = try? Self.fetch(byId: id, in: context)
+        else { return nil }
+        return object
     }
 }

@@ -9,10 +9,10 @@
 import CoreSpotlight
 
 public extension NSUserActivity {
-    public var itemIdentifier: NSFileProviderItemIdentifier? {
+    public var objectIdentifier: ObjectIdentifier? {
         get {
             guard let rawValue = userInfo?[CSSearchableItemActivityIdentifier] as? String else { return nil }
-            return NSFileProviderItemIdentifier(rawValue: rawValue)
+            return ObjectIdentifier(rawValue: rawValue)
         }
         set {
             requiredUserInfoKeys = [CSSearchableItemActivityIdentifier]

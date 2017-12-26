@@ -58,10 +58,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     // MARK: - Supporting User Activities
 
     override func restoreUserActivityState(_ activity: NSUserActivity) {
-        guard
-            case let .file(fileId)? = activity.itemIdentifier?.model,
-            let file = viewModel.file(withId: fileId)
-        else {
+        guard let file = File.fetch(byObjectId: activity.objectIdentifier), !file.isFolder else {
             let alert = UIAlertController(title: "Something went wrong continuing your activity.".localized)
             return present(alert, animated: true, completion: nil)
         }

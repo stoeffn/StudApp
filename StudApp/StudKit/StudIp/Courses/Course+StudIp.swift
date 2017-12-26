@@ -8,6 +8,7 @@
 
 import CoreData
 import CoreSpotlight
+import FileProvider
 
 extension Course {
     public static func update(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Course]>) {
@@ -27,7 +28,8 @@ extension Course {
                     semester.state.areCoursesFetchedFromRemote = true
 
                     if #available(iOSApplicationExtension 11.0, *) {
-                        NSFileProviderManager.default.signalEnumerator(for: semester.itemIdentifier) { _ in }
+                        let itemidentifier = NSFileProviderItemIdentifier(rawValue: semester.objectIdentifier.rawValue)
+                        NSFileProviderManager.default.signalEnumerator(for: itemidentifier) { _ in }
                     }
                 }
 
@@ -57,7 +59,8 @@ extension Course {
                 self.state.areFilesFetchedFromRemote = true
 
                 if #available(iOSApplicationExtension 11.0, *) {
-                    NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
+                    let itemIdentifier = NSFileProviderItemIdentifier(rawValue: self.objectIdentifier.rawValue)
+                    NSFileProviderManager.default.signalEnumerator(for: itemIdentifier) { _ in }
                     NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
                 }
 

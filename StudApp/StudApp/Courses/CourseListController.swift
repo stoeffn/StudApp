@@ -58,15 +58,12 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     // MARK: - Supporting User Activities
 
     override func restoreUserActivityState(_ activity: NSUserActivity) {
-        guard
-            case let .course(courseId)? = activity.itemIdentifier?.model,
-            let courseViewModel = CourseViewModel(courseId: courseId)
-        else {
+        guard let course = Course.fetch(byObjectId: activity.objectIdentifier) else {
             let alert = UIAlertController(title: "Something went wrong continuing your activity.".localized)
             return present(alert, animated: true, completion: nil)
         }
 
-        performSegue(withRoute: .course(courseViewModel.course))
+        performSegue(withRoute: .course(course))
     }
 
     // MARK: - Table View Data Source

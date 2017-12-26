@@ -16,7 +16,7 @@ final class SemesterItem: NSObject, NSFileProviderItem {
     // MARK: - Life Cycle
 
     init(from semester: Semester, childItemCount: Int?, parentItemIdentifier: NSFileProviderItemIdentifier = .rootContainer) {
-        itemIdentifier = semester.itemIdentifier
+        itemIdentifier = NSFileProviderItemIdentifier(rawValue: semester.objectIdentifier.rawValue)
         filename = semester.title.sanitizedAsFilename
 
         self.childItemCount = childItemCount as NSNumber?

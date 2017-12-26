@@ -15,15 +15,6 @@ public final class CourseViewModel {
         self.course = course
     }
 
-    public convenience init?(courseId: String) {
-        let coreDataService = ServiceContainer.default[CoreDataService.self]
-        guard
-            let optionalCourse = try? Course.fetch(byId: courseId, in: coreDataService.viewContext),
-            let course = optionalCourse
-        else { return nil }
-        self.init(course: course)
-    }
-
     private var rows: [TitleAndValue<String?>] {
         return [
             ("Course Number".localized, course.number),

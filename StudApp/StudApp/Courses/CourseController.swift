@@ -49,6 +49,8 @@ final class CourseController: UITableViewController, Routable {
     }
 
     private func configureViewModels(with course: Course) {
+        viewModel = CourseViewModel(course: course)
+
         announcementsViewModel = AnnouncementListViewModel(course: course)
         announcementsViewModel.delegate = self
         announcementsViewModel.fetch()
@@ -60,22 +62,22 @@ final class CourseController: UITableViewController, Routable {
 
     func prepareDependencies(for route: Routes) {
         guard case let .course(course) = route else { fatalError() }
-
-        viewModel = CourseViewModel(course: course)
         configureViewModels(with: course)
     }
 
     // MARK: - Restoration
 
     override func encodeRestorableState(with coder: NSCoder) {
-        coder.encode(viewModel.course.id, forKey: Course.typeIdentifier)
+        coder.encode(viewModel.course.objectIdentifier.rawValue, forKey: ObjectIdentifier.typeIdentifier)
         super.encode(with: coder)
     }
 
     override func decodeRestorableState(with coder: NSCoder) {
-        if let restoredCourseId = coder.decodeObject(forKey: Course.typeIdentifier) as? String {
-            viewModel = CourseViewModel(courseId: restoredCourseId)
-            configureViewModels(with: viewModel.course)
+        if
+            let restoredObjectIdentifier = coder.decodeObject(forKey: ObjectIdentifier.typeIdentifier) as? String,
+            let course = Course.fetch(byObjectId: ObjectIdentifier(rawValue: restoredObjectIdentifier))
+        {
+            configureViewModels(with: course)
         }
 
         super.decodeRestorableState(with: coder)
@@ -84,7 +86,7 @@ final class CourseController: UITableViewController, Routable {
     // MARK: - Supporting User Activities
 
     override func updateUserActivityState(_ activity: NSUserActivity) {
-        activity.itemIdentifier = viewModel.course.itemIdentifier
+        activity.objectIdentifier = viewModel.course.objectIdentifier
     }
 
     // MARK: - Table View Data Source

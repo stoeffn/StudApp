@@ -23,7 +23,8 @@ extension File {
                 }
 
                 if #available(iOSApplicationExtension 11.0, *) {
-                    NSFileProviderManager.default.signalEnumerator(for: self.itemIdentifier) { _ in }
+                    let itemIdentifier = NSFileProviderItemIdentifier(rawValue: self.objectIdentifier.rawValue)
+                    NSFileProviderManager.default.signalEnumerator(for: itemIdentifier) { _ in }
                     NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
                 }
 
@@ -64,6 +65,7 @@ extension File {
         guard let downloadTask = task else { return nil }
 
         if #available(iOSApplicationExtension 11.0, *) {
+            let itemIdentifier = NSFileProviderItemIdentifier(rawValue: objectIdentifier.rawValue)
             NSFileProviderManager.default.register(downloadTask, forItemWithIdentifier: itemIdentifier) { _ in
                 downloadTask.resume()
             }

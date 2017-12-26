@@ -46,7 +46,8 @@ extension FileProviderEnumeratorChangeCache: DataSourceSectionDelegate {
         case .insert, .update:
             updatedItems.append(item)
         case .delete:
-            deletedItemIdentifiers.append(item.itemIdentifier)
+            let itemIdentifier = NSFileProviderItemIdentifier(rawValue: item.objectIdentifier.rawValue)
+            deletedItemIdentifiers.append(itemIdentifier)
         case .move:
             break
         }

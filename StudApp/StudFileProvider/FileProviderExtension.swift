@@ -30,11 +30,8 @@ final class FileProviderExtension: NSFileProviderExtension {
     // MARK: - Working with Items and Persistent Identifiers
 
     override func persistentIdentifierForItem(at url: URL) -> NSFileProviderItemIdentifier? {
-        // Exploit the fact that the path structure has been defined as
-        // <base storage directory>/<item identifier>/<item file name>
-        guard url.pathComponents.count >= 2 else { return nil }
-        let id = url.pathComponents[url.pathComponents.count - 2]
-        return File.itemIdentifier(forId: id)
+        // TODO
+        return nil
     }
 
     @available(iOSApplicationExtension 11.0, *)
@@ -138,7 +135,8 @@ final class FileProviderExtension: NSFileProviderExtension {
             let itemIdentifier = persistentIdentifierForItem(at: url),
             let optionalFile = try? File.fetch(byId: itemIdentifier.id, in: coreDataService.viewContext),
             let file = optionalFile,
-            let itemUrl = self.urlForItem(withPersistentIdentifier: file.itemIdentifier)
+            let itemUrl = urlForItem(withPersistentIdentifier:
+                NSFileProviderItemIdentifier(rawValue: file.objectIdentifier.rawValue))
         else {
             if #available(iOSApplicationExtension 11.0, *) {
                 completionHandler?(NSFileProviderError(.noSuchItem))

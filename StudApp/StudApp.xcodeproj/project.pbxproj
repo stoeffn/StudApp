@@ -214,6 +214,7 @@
 		24E4B9A01FF25D770061983C /* FileProviderChangeCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E81FB7725100A4A3C6 /* FileProviderChangeCache.swift */; };
 		24E4B9A11FF25D9B0061983C /* WorkingSetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BE31FB888E30067E416 /* WorkingSetViewModel.swift */; };
 		24E4B9A41FF25E8C0061983C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E4B9A31FF25E8C0061983C /* Constants.swift */; };
+		24E4B9A61FF260240061983C /* ObjectIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E4B9A51FF260240061983C /* ObjectIdentifier.swift */; };
 		24E525C11FED8650000FB71A /* NSUserActivity+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E525C01FED8650000FB71A /* NSUserActivity+Utils.swift */; };
 		24E525C31FEDB276000FB71A /* CourseHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E525C21FEDB276000FB71A /* CourseHeader.swift */; };
 		24E60B621FC8C725000EDD2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B611FC8C723000EDD2A /* Main.storyboard */; };
@@ -542,6 +543,7 @@
 		24D9EF8A1FB75819006776B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24D9EF8B1FB75819006776B7 /* StudFileProvider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudFileProvider.entitlements; sourceTree = "<group>"; };
 		24E4B9A31FF25E8C0061983C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		24E4B9A51FF260240061983C /* ObjectIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectIdentifier.swift; sourceTree = "<group>"; };
 		24E525C01FED8650000FB71A /* NSUserActivity+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSUserActivity+Utils.swift"; sourceTree = "<group>"; };
 		24E525C21FEDB276000FB71A /* CourseHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseHeader.swift; sourceTree = "<group>"; };
 		24E60B611FC8C723000EDD2A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -1221,6 +1223,7 @@
 				2477936A1FC892D300090F4D /* Users */,
 				24D361171FAA5F6200BBBAED /* CoreDataService.swift */,
 				24FD78591FBF3F030072F860 /* HistoryService.swift */,
+				24E4B9A51FF260240061983C /* ObjectIdentifier.swift */,
 				2448D4941FA8DF6000DAB97E /* StorageService.swift */,
 				24A6C1491FD75A0A004BBEA5 /* StudKit.xcdatamodeld */,
 			);
@@ -2017,6 +2020,7 @@
 				246F3AC91FAC879C00A477FF /* DataSourceSection.swift in Sources */,
 				24D361151FAA5F0E00BBBAED /* CollectionResponse.swift in Sources */,
 				242266081FE3D45F00FA7CA6 /* Announcement.swift in Sources */,
+				24E4B9A61FF260240061983C /* ObjectIdentifier.swift in Sources */,
 				243817A71FC88A49004052D0 /* SignInController.swift in Sources */,
 				24D360ED1FAA5DC500BBBAED /* Transforms.swift in Sources */,
 				24CFB5D61FB24F4D00F30DEA /* Routable.swift in Sources */,

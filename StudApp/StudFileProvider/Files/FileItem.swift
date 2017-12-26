@@ -18,7 +18,7 @@ final class FileItem: NSObject, NSFileProviderItem {
     // MARK: - Life Cycle
 
     init(from file: File, parentItemIdentifier: NSFileProviderItemIdentifier) {
-        itemIdentifier = file.itemIdentifier
+        itemIdentifier = NSFileProviderItemIdentifier(rawValue: file.objectIdentifier.rawValue)
         filename = file.sanitizedTitleWithExtension
         typeIdentifier = file.typeIdentifier
         capabilities = file.isFolder
@@ -51,8 +51,9 @@ final class FileItem: NSObject, NSFileProviderItem {
     }
 
     convenience init(from file: File) throws {
-        let parentIdentifier = file.parent?.itemIdentifier ?? file.course.itemIdentifier
-        self.init(from: file, parentItemIdentifier: parentIdentifier)
+        let parentObjectIdentifier = file.parent?.objectIdentifier ?? file.course.objectIdentifier
+        let parentItemIdentifier = NSFileProviderItemIdentifier(rawValue: parentObjectIdentifier.rawValue)
+        self.init(from: file, parentItemIdentifier: parentItemIdentifier)
     }
 
     // MARK: - File Provider Item Conformance

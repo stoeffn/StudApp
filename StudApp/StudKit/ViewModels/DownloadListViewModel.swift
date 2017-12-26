@@ -44,14 +44,6 @@ public final class DownloadListViewModel: NSObject {
         }
     }
 
-    public func file(withId id: String) -> File? {
-        guard
-            let optionalFile = try? File.fetch(byId: id, in: coreDataService.viewContext),
-            let file = optionalFile
-        else { return nil }
-        return file
-    }
-
     public func indexPath(for file: File) -> IndexPath? {
         return controller.indexPath(forObject: file.state)
     }

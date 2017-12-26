@@ -210,7 +210,7 @@ extension File {
 
         attributes.displayName = title
         attributes.keywords = keywords.array
-        attributes.relatedUniqueIdentifier = itemIdentifier.rawValue
+        attributes.relatedUniqueIdentifier = objectIdentifier.rawValue
         attributes.title = title
 
         // Apparently, Core Spotlight expects file sizes in mega bytes.
@@ -229,7 +229,7 @@ extension File {
     }
 
     public var searchableItem: CSSearchableItem {
-        return CSSearchableItem(uniqueIdentifier: itemIdentifier.rawValue, domainIdentifier: File.typeIdentifier,
+        return CSSearchableItem(uniqueIdentifier: objectIdentifier.rawValue, domainIdentifier: File.typeIdentifier,
                                 attributeSet: searchableItemAttributes)
     }
 
@@ -247,7 +247,7 @@ extension File {
         activity.webpageURL = url
         activity.contentAttributeSet = searchableItemAttributes
         activity.keywords = keywords
-        activity.itemIdentifier = itemIdentifier
+        activity.objectIdentifier = objectIdentifier
         return activity
     }
 }
