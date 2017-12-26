@@ -22,16 +22,13 @@ final class CourseEnumerator: CachingFileProviderEnumerator {
     init(itemIdentifier: NSFileProviderItemIdentifier) {
         self.itemIdentifier = itemIdentifier
 
-        let coreDataService = ServiceContainer.default[CoreDataService.self]
+        let objectIdentifier = ObjectIdentifier(rawValue: itemIdentifier.rawValue)
 
-        guard
-            let semester = try? Semester.fetch(byId: itemIdentifier.id, in: coreDataService.viewContext),
-            let unwrappedSemester = semester
-        else {
+        guard let semester = Semester.fetch(byObjectId: objectIdentifier) else {
             fatalError("Cannot find semester with identifier '\(itemIdentifier)'.")
         }
 
-        viewModel = CourseListViewModel(semester: unwrappedSemester)
+        viewModel = CourseListViewModel(semester: semester)
 
         super.init()
 
