@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,13 +20,89 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventCell" id="3IE-zb-CER">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EventCell" rowHeight="99" id="UCc-jC-NTc" customClass="EventCell" customModule="StudApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="99"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3IE-zb-CER" id="M0X-uK-RCX">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UCc-jC-NTc" id="eN1-a2-Aak">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="98.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IlG-54-gIF" customClass="RoundedCornersView" customModule="StudApp" customModuleProvider="target">
+                                            <rect key="frame" x="100" y="4" width="5" height="90"/>
+                                            <color key="backgroundColor" red="0.75294117650000003" green="0.22352941179999999" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="5" id="HfG-7V-MiP"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Übung zu Grundlagen digitaler Systeme" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSZ-KN-NH2">
+                                            <rect key="frame" x="113" y="8" width="262" height="42.333333333333336"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75U-EO-shn">
+                                            <rect key="frame" x="16" y="12.5" width="76" height="18"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:30" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6P-D0-CJi">
+                                            <rect key="frame" x="16" y="32.5" width="76" height="18"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Abz-JA-Be0">
+                                            <rect key="frame" x="113" y="52.666666666666686" width="262" height="38"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <string key="text">Raum 023: Multimedia-Hörsaal
+Gebäude 3703: Technische Informatik</string>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Entfällt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfa-A6-v9I" customClass="BadgeView" customModule="StudApp" customModuleProvider="target">
+                                            <rect key="frame" x="113" y="52" width="42.5" height="15.666666666666671"/>
+                                            <color key="backgroundColor" red="0.75294117650000003" green="0.22352941179999999" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="IlG-54-gIF" secondAttribute="bottom" constant="4" id="6TN-u4-BHs"/>
+                                        <constraint firstItem="Abz-JA-Be0" firstAttribute="top" secondItem="kSZ-KN-NH2" secondAttribute="bottom" constant="2" id="7uI-Zs-dFt"/>
+                                        <constraint firstItem="pfa-A6-v9I" firstAttribute="top" secondItem="kSZ-KN-NH2" secondAttribute="bottom" constant="2" id="Bcy-lv-O2D"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="75U-EO-shn" secondAttribute="leading" id="FTe-Pk-GSh"/>
+                                        <constraint firstAttribute="trailing" secondItem="kSZ-KN-NH2" secondAttribute="trailing" id="H05-Ck-a67"/>
+                                        <constraint firstItem="IlG-54-gIF" firstAttribute="leading" secondItem="eN1-a2-Aak" secondAttribute="leading" constant="100" id="HV0-a3-oXf"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="pfa-A6-v9I" secondAttribute="bottom" constant="2" id="Ohf-yK-Gir"/>
+                                        <constraint firstItem="75U-EO-shn" firstAttribute="baseline" secondItem="kSZ-KN-NH2" secondAttribute="firstBaseline" id="VCZ-un-cnG"/>
+                                        <constraint firstItem="kSZ-KN-NH2" firstAttribute="leading" secondItem="IlG-54-gIF" secondAttribute="trailing" constant="8" id="Vju-XJ-qfJ"/>
+                                        <constraint firstItem="IlG-54-gIF" firstAttribute="top" secondItem="eN1-a2-Aak" secondAttribute="top" constant="4" id="Zmy-Mg-HJy"/>
+                                        <constraint firstItem="f6P-D0-CJi" firstAttribute="top" secondItem="75U-EO-shn" secondAttribute="bottom" constant="2" id="b7p-s2-MAi"/>
+                                        <constraint firstItem="Abz-JA-Be0" firstAttribute="leading" secondItem="IlG-54-gIF" secondAttribute="trailing" constant="8" id="dbF-Z1-hBQ"/>
+                                        <constraint firstAttribute="trailing" secondItem="Abz-JA-Be0" secondAttribute="trailing" id="g3Y-wj-ckb"/>
+                                        <constraint firstItem="IlG-54-gIF" firstAttribute="leading" secondItem="75U-EO-shn" secondAttribute="trailing" constant="8" id="gPu-c9-eUJ"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Abz-JA-Be0" secondAttribute="bottom" id="gYJ-zs-w4I"/>
+                                        <constraint firstItem="IlG-54-gIF" firstAttribute="leading" secondItem="f6P-D0-CJi" secondAttribute="trailing" constant="8" id="jmX-XG-8nb"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="f6P-D0-CJi" secondAttribute="leading" id="qNJ-kE-rzQ"/>
+                                        <constraint firstItem="pfa-A6-v9I" firstAttribute="leading" secondItem="kSZ-KN-NH2" secondAttribute="leading" id="qzO-qa-lHl"/>
+                                        <constraint firstItem="Abz-JA-Be0" firstAttribute="top" secondItem="kSZ-KN-NH2" secondAttribute="bottom" constant="2" id="tGu-ii-xvn"/>
+                                        <constraint firstItem="kSZ-KN-NH2" firstAttribute="top" secondItem="eN1-a2-Aak" secondAttribute="topMargin" id="vKV-Dj-u32"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="colorView" destination="IlG-54-gIF" id="INj-MI-sNS"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

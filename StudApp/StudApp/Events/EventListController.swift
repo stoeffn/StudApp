@@ -62,10 +62,8 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: EventCell.typeIdentifier, for: indexPath)
+        (cell as? EventCell)?.event = viewModel[rowAt: indexPath]
         return cell
     }
 }

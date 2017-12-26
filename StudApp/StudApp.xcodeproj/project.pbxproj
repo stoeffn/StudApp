@@ -93,6 +93,7 @@
 		2450AC771FDC6973004F1267 /* CustomMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC761FDC6973004F1267 /* CustomMenuItems.swift */; };
 		2450AC7A1FDC79B6004F1267 /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC791FDC79B6004F1267 /* SafariActivity.swift */; };
 		245524E01FF2D8E400C18F92 /* EventListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245524DF1FF2D8E400C18F92 /* EventListController.swift */; };
+		245524E21FF2DDDB00C18F92 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245524E11FF2DDDB00C18F92 /* EventCell.swift */; };
 		245B6AD61FCB327800302CD0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245B6AD51FCB327800302CD0 /* StoreKit.framework */; };
 		245B6ADA1FCB351F00302CD0 /* OrganizationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6AD91FCB351F00302CD0 /* OrganizationListController.swift */; };
 		245B6ADC1FCB355D00302CD0 /* OrganizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6ADB1FCB355D00302CD0 /* OrganizationCell.swift */; };
@@ -435,6 +436,7 @@
 		2450AC761FDC6973004F1267 /* CustomMenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenuItems.swift; sourceTree = "<group>"; };
 		2450AC791FDC79B6004F1267 /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
 		245524DF1FF2D8E400C18F92 /* EventListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListController.swift; sourceTree = "<group>"; };
+		245524E11FF2DDDB00C18F92 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
 		245B6AD51FCB327800302CD0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		245B6AD91FCB351F00302CD0 /* OrganizationListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationListController.swift; sourceTree = "<group>"; };
 		245B6ADB1FCB355D00302CD0 /* OrganizationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationCell.swift; sourceTree = "<group>"; };
@@ -1420,6 +1422,7 @@
 		24E2AD1B1FF2CEDE001D3E27 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				245524E11FF2DDDB00C18F92 /* EventCell.swift */,
 				245524DF1FF2D8E400C18F92 /* EventListController.swift */,
 				24E2AD191FF2CECC001D3E27 /* Events.storyboard */,
 			);
@@ -1915,6 +1918,7 @@
 			files = (
 				2467A8BC1FD307CE00F25720 /* PreviewController.swift in Sources */,
 				2450AC731FDC406F004F1267 /* FolderController.swift in Sources */,
+				245524E21FF2DDDB00C18F92 /* EventCell.swift in Sources */,
 				2450AC771FDC6973004F1267 /* CustomMenuItems.swift in Sources */,
 				24712BE61FB8B0E20067E416 /* SemesterListController.swift in Sources */,
 				242B03721FD7467D00863B08 /* GlowView.swift in Sources */,
