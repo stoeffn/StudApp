@@ -122,7 +122,7 @@ final class FileProviderExtension: NSFileProviderExtension {
     override func startProvidingItem(at url: URL, completionHandler: ((_ error: Error?) -> Void)?) {
         guard
             let itemIdentifier = persistentIdentifierForItem(at: url),
-            let file = File.fetch(byObjectId: ObjectIdentifier(rawValue: itemIdentifier.rawValue))
+            let object = object(for: itemIdentifier)
         else {
             if #available(iOSApplicationExtension 11.0, *) {
                 completionHandler?(NSFileProviderError(.noSuchItem))
@@ -132,37 +132,7 @@ final class FileProviderExtension: NSFileProviderExtension {
             return
         }
 
-        guard !file.isFolder else {
-            do {
-                try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
-            } catch {
-                completionHandler?(error)
-                return
-            }
-
-            completionHandler?(nil)
-            return
-        }
-
-        file.download { result in
-            guard result.isSuccess else {
-                if #available(iOSApplicationExtension 11.0, *) {
-                    completionHandler?(NSFileProviderError(.serverUnreachable))
-                } else {
-                    completionHandler?(Errors.serverUnreachable)
-                }
-                return
-            }
-
-            do {
-                try? FileManager.default.removeItem(at: url)
-                try FileManager.default.createIntermediateDirectories(forFileAt: url)
-                try FileManager.default.copyItem(at: file.localUrl(in: .downloads), to: url)
-                completionHandler?(nil)
-            } catch {
-                completionHandler?(error)
-            }
-        }
+        object.provide(at: url, handler: completionHandler)
     }
 
     override func stopProvidingItem(at url: URL) {
@@ -178,7 +148,7 @@ final class FileProviderExtension: NSFileProviderExtension {
                             completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void,
                             task: ((inout FileProviderItemConvertible) -> Void)) {
         do {
-            guard var object = self.object(for: identifier) else { throw NSFileProviderError(.noSuchItem) }
+            guard var object = object(for: identifier) else { throw NSFileProviderError(.noSuchItem) }
             task(&object)
 
             try coreDataService.viewContext.save()

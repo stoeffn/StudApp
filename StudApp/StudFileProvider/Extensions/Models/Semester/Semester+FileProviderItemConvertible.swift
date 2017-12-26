@@ -23,4 +23,13 @@ extension Semester: FileProviderItemConvertible {
         return directory.containerUrl(forObjectId: objectIdentifier)
             .appendingPathComponent(title.sanitizedAsFilename, isDirectory: true)
     }
+
+    public func provide(at url: URL, handler: ((Error?) -> Void)?) {
+        do {
+            try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+            handler?(nil)
+        } catch {
+            handler?(error)
+        }
+    }
 }

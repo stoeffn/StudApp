@@ -18,6 +18,8 @@ public protocol FileProviderItemConvertible: class {
     var fileProviderItem: NSFileProviderItem { get }
 
     func localUrl(in directory: BaseDirectories) -> URL
+
+    func provide(at url: URL, handler: ((Error?) -> Void)?)
 }
 
 // MARK: - Operating on File Items
