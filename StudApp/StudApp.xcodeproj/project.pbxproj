@@ -209,6 +209,7 @@
 		24D9EF561FB7559C006776B7 /* SemesterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9EF551FB7559C006776B7 /* SemesterListViewModel.swift */; };
 		24D9EF851FB75818006776B7 /* FileProviderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9EF841FB75818006776B7 /* FileProviderExtension.swift */; };
 		24D9EF9E1FB75819006776B7 /* StudFileProvider.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 24D9EF821FB75818006776B7 /* StudFileProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		24E2AD1A1FF2CECC001D3E27 /* Events.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E2AD191FF2CECC001D3E27 /* Events.storyboard */; };
 		24E4B99A1FF25C640061983C /* CachingFileProviderEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BF71FB8CD0B0067E416 /* CachingFileProviderEnumerator.swift */; };
 		24E4B99D1FF25D2D0061983C /* FileProviderItemConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89DB1FB7653E00A4A3C6 /* FileProviderItemConvertible.swift */; };
 		24E4B99E1FF25D350061983C /* FileProviderItemConvertibleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89EB1FB7778300A4A3C6 /* FileProviderItemConvertibleState.swift */; };
@@ -546,6 +547,7 @@
 		24D9EF841FB75818006776B7 /* FileProviderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderExtension.swift; sourceTree = "<group>"; };
 		24D9EF8A1FB75819006776B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24D9EF8B1FB75819006776B7 /* StudFileProvider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudFileProvider.entitlements; sourceTree = "<group>"; };
+		24E2AD191FF2CECC001D3E27 /* Events.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Events.storyboard; sourceTree = "<group>"; };
 		24E4B9A31FF25E8C0061983C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		24E4B9A51FF260240061983C /* ObjectIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectIdentifier.swift; sourceTree = "<group>"; };
 		24E4B9A71FF284830061983C /* BaseDirectories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDirectories.swift; sourceTree = "<group>"; };
@@ -811,6 +813,7 @@
 				24ABFC461FD7141800CD1646 /* Courses */,
 				2450AC6F1FDC4036004F1267 /* Documents */,
 				24E626731FA920490040F9F7 /* Downloads */,
+				24E2AD1B1FF2CEDE001D3E27 /* Events */,
 				241412E91FD30C8100DEE0AF /* Preview */,
 				247793581FC8901E00090F4D /* Semesters */,
 				244EB5EC1FEFC3EA006BE633 /* Settings */,
@@ -1409,6 +1412,14 @@
 			path = StudFileProvider;
 			sourceTree = "<group>";
 		};
+		24E2AD1B1FF2CEDE001D3E27 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				24E2AD191FF2CECC001D3E27 /* Events.storyboard */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
 		24E4B9A21FF25E7B0061983C /* FileProvider */ = {
 			isa = PBXGroup;
 			children = (
@@ -1814,6 +1825,7 @@
 				244EB5F01FEFC466006BE633 /* Settings.storyboard in Resources */,
 				24E60B621FC8C725000EDD2A /* Main.storyboard in Resources */,
 				24E60B681FC8C754000EDD2A /* Semesters.storyboard in Resources */,
+				24E2AD1A1FF2CECC001D3E27 /* Events.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -73,8 +73,7 @@ final class CourseController: UITableViewController, Routable {
     }
 
     override func decodeRestorableState(with coder: NSCoder) {
-        if
-            let restoredObjectIdentifier = coder.decodeObject(forKey: ObjectIdentifier.typeIdentifier) as? String,
+        if let restoredObjectIdentifier = coder.decodeObject(forKey: ObjectIdentifier.typeIdentifier) as? String,
             let course = Course.fetch(byObjectId: ObjectIdentifier(rawValue: restoredObjectIdentifier)) {
             configureViewModels(with: course)
         }
@@ -92,8 +91,10 @@ final class CourseController: UITableViewController, Routable {
 
     private let emptyCellIdentifier = "EmptyCell"
 
+    private let allEventsCellIdentifier = "AllEventsCell"
+
     private enum Sections: Int {
-        case info, announcements, documents
+        case info, announcements, documents, events
     }
 
     private func index<Section: DataSourceSection>(for section: Section) -> Sections? {
@@ -104,7 +105,7 @@ final class CourseController: UITableViewController, Routable {
     }
 
     override func numberOfSections(in _: UITableView) -> Int {
-        return 3
+        return 4
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -115,6 +116,8 @@ final class CourseController: UITableViewController, Routable {
             return announcementsViewModel.numberOfRows + 1
         case .documents?:
             return fileListViewModel.numberOfRows + 1
+        case .events?:
+            return 1
         case nil:
             fatalError()
         }
@@ -145,6 +148,10 @@ final class CourseController: UITableViewController, Routable {
             let cell = tableView.dequeueReusableCell(withIdentifier: FileCell.typeIdentifier, for: indexPath)
             (cell as? FileCell)?.file = fileListViewModel[rowAt: indexPath.row]
             return cell
+        case .events?:
+            let cell = tableView.dequeueReusableCell(withIdentifier: allEventsCellIdentifier, for: indexPath)
+            cell.textLabel?.text = "All Events".localized
+            return cell
         case nil:
             fatalError()
         }
@@ -165,6 +172,7 @@ final class CourseController: UITableViewController, Routable {
         case .info?: return nil
         case .announcements?: return "Announcements".localized
         case .documents?: return "Documents".localized
+        case .events?: return "Events".localized
         case nil: fatalError()
         }
     }
@@ -172,7 +180,7 @@ final class CourseController: UITableViewController, Routable {
     override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
         switch Sections(rawValue: section) {
         case .info?: return viewModel.course.summary
-        case .announcements?, .documents?: return nil
+        case .announcements?, .documents?, .events?: return nil
         case nil: fatalError()
         }
     }
@@ -206,7 +214,7 @@ final class CourseController: UITableViewController, Routable {
             default:
                 return false
             }
-        case nil:
+        case .events?, nil:
             fatalError()
         }
     }
@@ -222,7 +230,7 @@ final class CourseController: UITableViewController, Routable {
             UIPasteboard.general.string = announcementsViewModel[rowAt: indexPath.row].body
         case .documents?:
             break
-        case nil:
+        case .events?, nil:
             fatalError()
         }
     }
