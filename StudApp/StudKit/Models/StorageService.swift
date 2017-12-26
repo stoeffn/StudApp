@@ -6,13 +6,19 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import MobileCoreServices
+
 public final class StorageService {
+    // MARK: - User Defaults
+
     lazy var defaults: UserDefaults = {
         guard let defaults = UserDefaults(suiteName: App.groupIdentifier) else {
             fatalError("Cannot initialize user defaults for app group with identifier '\(App.groupIdentifier)'")
         }
         return defaults
     }()
+
+    // MARK: - Base Directories
 
     lazy var appGroupUrl: URL = {
         let identifier = App.groupIdentifier
@@ -22,7 +28,7 @@ public final class StorageService {
         return appGroupUrl
     }()
 
-    lazy var documentsUrl = appGroupUrl.appendingPathComponent("Documents", isDirectory: true)
+    lazy var downloadsUrl = appGroupUrl.appendingPathComponent("Downloads", isDirectory: true)
 
     lazy var fileProviderDocumentsUrl: URL = {
         guard #available(iOSApplicationExtension 11.0, *) else {
@@ -31,7 +37,15 @@ public final class StorageService {
         return NSFileProviderManager.default.documentStorageURL
     }()
 
-    func removeAllDocuments() throws {
-        try FileManager.default.removeItem(at: documentsUrl)
+    // MARK: - Handling Uniform Type Identifiers
+
+    func typeIdentifier(forFileExtension fileExtension: String) -> String? {
+        return UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension as CFString, nil)?
+            .takeRetainedValue() as String?
+    }
+
+    func fileExtension(forTypeIdentifier typeIdentifier: String) -> String? {
+        return UTTypeCopyPreferredTagWithClass(typeIdentifier as CFString, kUTTagClassFilenameExtension)?
+            .takeRetainedValue() as String?
     }
 }
