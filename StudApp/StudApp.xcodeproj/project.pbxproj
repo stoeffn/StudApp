@@ -92,6 +92,7 @@
 		2450AC751FDC4FBC004F1267 /* UITableView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC741FDC4FBC004F1267 /* UITableView+Utils.swift */; };
 		2450AC771FDC6973004F1267 /* CustomMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC761FDC6973004F1267 /* CustomMenuItems.swift */; };
 		2450AC7A1FDC79B6004F1267 /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC791FDC79B6004F1267 /* SafariActivity.swift */; };
+		245524E01FF2D8E400C18F92 /* EventListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245524DF1FF2D8E400C18F92 /* EventListController.swift */; };
 		245B6AD61FCB327800302CD0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245B6AD51FCB327800302CD0 /* StoreKit.framework */; };
 		245B6ADA1FCB351F00302CD0 /* OrganizationListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6AD91FCB351F00302CD0 /* OrganizationListController.swift */; };
 		245B6ADC1FCB355D00302CD0 /* OrganizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6ADB1FCB355D00302CD0 /* OrganizationCell.swift */; };
@@ -210,6 +211,7 @@
 		24D9EF851FB75818006776B7 /* FileProviderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9EF841FB75818006776B7 /* FileProviderExtension.swift */; };
 		24D9EF9E1FB75819006776B7 /* StudFileProvider.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 24D9EF821FB75818006776B7 /* StudFileProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		24E2AD1A1FF2CECC001D3E27 /* Events.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E2AD191FF2CECC001D3E27 /* Events.storyboard */; };
+		24E2AD1D1FF2D5B0001D3E27 /* EventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E2AD1C1FF2D5B0001D3E27 /* EventListViewModel.swift */; };
 		24E4B99A1FF25C640061983C /* CachingFileProviderEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BF71FB8CD0B0067E416 /* CachingFileProviderEnumerator.swift */; };
 		24E4B99D1FF25D2D0061983C /* FileProviderItemConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89DB1FB7653E00A4A3C6 /* FileProviderItemConvertible.swift */; };
 		24E4B99E1FF25D350061983C /* FileProviderItemConvertibleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89EB1FB7778300A4A3C6 /* FileProviderItemConvertibleState.swift */; };
@@ -432,6 +434,7 @@
 		2450AC741FDC4FBC004F1267 /* UITableView+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Utils.swift"; sourceTree = "<group>"; };
 		2450AC761FDC6973004F1267 /* CustomMenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenuItems.swift; sourceTree = "<group>"; };
 		2450AC791FDC79B6004F1267 /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
+		245524DF1FF2D8E400C18F92 /* EventListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListController.swift; sourceTree = "<group>"; };
 		245B6AD51FCB327800302CD0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		245B6AD91FCB351F00302CD0 /* OrganizationListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationListController.swift; sourceTree = "<group>"; };
 		245B6ADB1FCB355D00302CD0 /* OrganizationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationCell.swift; sourceTree = "<group>"; };
@@ -548,6 +551,7 @@
 		24D9EF8A1FB75819006776B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24D9EF8B1FB75819006776B7 /* StudFileProvider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudFileProvider.entitlements; sourceTree = "<group>"; };
 		24E2AD191FF2CECC001D3E27 /* Events.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Events.storyboard; sourceTree = "<group>"; };
+		24E2AD1C1FF2D5B0001D3E27 /* EventListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewModel.swift; sourceTree = "<group>"; };
 		24E4B9A31FF25E8C0061983C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		24E4B9A51FF260240061983C /* ObjectIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectIdentifier.swift; sourceTree = "<group>"; };
 		24E4B9A71FF284830061983C /* BaseDirectories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDirectories.swift; sourceTree = "<group>"; };
@@ -1391,6 +1395,7 @@
 				244EB5F11FEFDD7F006BE633 /* SettingsViewModel.swift */,
 				24D361651FAA648B00BBBAED /* SignInViewModel.swift */,
 				24D2DA1F1FD04431006FC700 /* StoreViewModel.swift */,
+				24E2AD1C1FF2D5B0001D3E27 /* EventListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1415,6 +1420,7 @@
 		24E2AD1B1FF2CEDE001D3E27 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				245524DF1FF2D8E400C18F92 /* EventListController.swift */,
 				24E2AD191FF2CECC001D3E27 /* Events.storyboard */,
 			);
 			path = Events;
@@ -1925,6 +1931,7 @@
 				242B036A1FD745E800863B08 /* ColorPickerController.swift in Sources */,
 				242B035D1FD7213700863B08 /* SemesterHeader.swift in Sources */,
 				24D7293D1FC736120097777F /* FileCell.swift in Sources */,
+				245524E01FF2D8E400C18F92 /* EventListController.swift in Sources */,
 				2432ABB71FE98BF000346226 /* AnnouncementCell.swift in Sources */,
 				24ABFC4A1FD714EF00CD1646 /* CourseListController.swift in Sources */,
 				244EB5EE1FEFC400006BE633 /* SettingsController.swift in Sources */,
@@ -1989,6 +1996,7 @@
 				24712BF41FB8B80B0067E416 /* DateComponentsFormatter+Shared.swift in Sources */,
 				24FD78701FBF826D0072F860 /* DownloadListViewModel.swift in Sources */,
 				24CFB5D71FB24F4D00F30DEA /* Routes.swift in Sources */,
+				24E2AD1D1FF2D5B0001D3E27 /* EventListViewModel.swift in Sources */,
 				243817AC1FC88B18004052D0 /* GroupedTextField.swift in Sources */,
 				24D360DE1FAA5D3800BBBAED /* String+Utils.swift in Sources */,
 				241FD9651FA8FFAD00FBD750 /* UINavigationBar+Utils.swift in Sources */,

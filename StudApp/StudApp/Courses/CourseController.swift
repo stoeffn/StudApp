@@ -298,6 +298,8 @@ final class CourseController: UITableViewController, Routable {
             prepare(for: .announcement(cell.announcement), destination: segue.destination)
         case let cell as FileCell:
             prepare(for: .folder(cell.file), destination: segue.destination)
+        case let cell as UITableViewCell where cell.reuseIdentifier == allEventsCellIdentifier:
+            prepare(for: .eventsInCourse(viewModel.course), destination: segue.destination)
         default:
             prepareForRoute(using: segue, sender: sender)
         }

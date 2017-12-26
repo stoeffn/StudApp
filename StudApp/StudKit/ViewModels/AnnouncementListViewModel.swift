@@ -22,15 +22,6 @@ public final class AnnouncementListViewModel: NSObject {
         controller.delegate = self
     }
 
-    public convenience init?(courseId: String) {
-        let coreDataService = ServiceContainer.default[CoreDataService.self]
-        guard
-            let optionalCourse = try? Course.fetch(byId: courseId, in: coreDataService.viewContext),
-            let course = optionalCourse
-        else { return nil }
-        self.init(course: course)
-    }
-
     private(set) lazy var controller: NSFetchedResultsController<Announcement>
         = NSFetchedResultsController(fetchRequest: course.unexpiredAnnouncementsFetchRequest,
                                      managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)

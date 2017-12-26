@@ -1,60 +1,52 @@
 //
-//  DownloadListViewModel.swift
+//  EventListViewModel.swift
 //  StudKit
 //
-//  Created by Steffen Ryll on 17.11.17.
+//  Created by Steffen Ryll on 26.12.17.
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
 import CoreData
 
-/// Manages a list of downloaded documents.
-///
-/// In order to display initial data, you must call `fetch()`. Changes in the view context are automatically propagated to
-/// `delegate`.
-public final class DownloadListViewModel: NSObject {
+public final class EventListViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
+
+    public let course: Course
 
     public weak var delegate: DataSourceDelegate?
 
-    /// Creates a new download list view model managing downloaded documents.
-    public override init() {
+    public init(course: Course) {
+        self.course = course
         super.init()
 
         controller.delegate = self
     }
 
-    private(set) lazy var controller: NSFetchedResultsController<FileState>
-        = NSFetchedResultsController(fetchRequest: File.downloadedFetchRequest,
-                                     managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: "file.course.title",
+    private(set) lazy var controller: NSFetchedResultsController<Event>
+        = NSFetchedResultsController(fetchRequest: course.eventsFetchRequest,
+                                     managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: "startsAt",
                                      cacheName: nil)
 
-    /// Fetches data matching the search term given. An `nil` or empty search term matches all items.
-    public func fetch(searchTerm: String? = nil) {
-        controller.fetchRequest.predicate = File.downloadedPredicate(forSearchTerm: searchTerm)
+    public func fetch() {
         try? controller.performFetch()
     }
 
-    public func removeDownload(_ file: File) -> Bool {
-        do {
-            try file.removeDownload()
-            return true
-        } catch {
-            return false
+    public func update(handler: (ResultHandler<[Event]>)? = nil) {
+        coreDataService.performBackgroundTask { context in
+            self.course.updateEvents(in: context) { result in
+                try? context.saveWhenChanged()
+                handler?(result)
+            }
         }
-    }
-
-    public func indexPath(for file: File) -> IndexPath? {
-        return controller.indexPath(forObject: file.state)
     }
 }
 
 // MARK: - Data Source Section
 
-extension DownloadListViewModel: DataSource {
+extension EventListViewModel: DataSource {
     public typealias Section = String?
 
-    public typealias Row = File
+    public typealias Row = Event
 
     public var numberOfSections: Int {
         return controller.sections?.count ?? 0
@@ -68,8 +60,8 @@ extension DownloadListViewModel: DataSource {
         return controller.sections?[index].name
     }
 
-    public subscript(rowAt indexPath: IndexPath) -> File {
-        return controller.object(at: indexPath).file
+    public subscript(rowAt indexPath: IndexPath) -> Event {
+        return controller.object(at: indexPath)
     }
 
     public var sectionIndexTitles: [String]? {
@@ -83,7 +75,7 @@ extension DownloadListViewModel: DataSource {
 
 // MARK: - Fetched Results Controller Delegate
 
-extension DownloadListViewModel: NSFetchedResultsControllerDelegate {
+extension EventListViewModel: NSFetchedResultsControllerDelegate {
     public func controllerWillChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
         delegate?.dataWillChange(in: self)
     }
@@ -109,22 +101,21 @@ extension DownloadListViewModel: NSFetchedResultsControllerDelegate {
 
     public func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange object: Any, at indexPath: IndexPath?,
                            for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        guard let fileState = object as? FileState else { fatalError() }
-        let file = fileState.file
+        guard let event = object as? Event else { fatalError() }
 
         switch type {
         case .insert:
             guard let indexPath = newIndexPath else { return }
-            delegate?.data(changedIn: file, at: indexPath, change: .insert, in: self)
+            delegate?.data(changedIn: event, at: indexPath, change: .insert, in: self)
         case .delete:
             guard let indexPath = indexPath else { return }
-            delegate?.data(changedIn: file, at: indexPath, change: .delete, in: self)
+            delegate?.data(changedIn: event, at: indexPath, change: .delete, in: self)
         case .update:
             guard let indexPath = indexPath else { return }
-            delegate?.data(changedIn: file, at: indexPath, change: .update(file), in: self)
+            delegate?.data(changedIn: event, at: indexPath, change: .update(event), in: self)
         case .move:
             guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
-            delegate?.data(changedIn: file, at: indexPath, change: .move(to: newIndexPath), in: self)
+            delegate?.data(changedIn: event, at: indexPath, change: .move(to: newIndexPath), in: self)
         }
     }
 }

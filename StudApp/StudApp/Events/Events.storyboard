@@ -12,7 +12,7 @@
         <!--Events-->
         <scene sceneID="ece-SN-rdZ">
             <objects>
-                <tableViewController id="iY0-Yj-hpw" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="EventList" useStoryboardIdentifierAsRestorationIdentifier="YES" id="iY0-Yj-hpw" customClass="EventListController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Qfk-eW-Ur6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,7 +41,7 @@
         <!--Navigation Controller-->
         <scene sceneID="fNS-qS-1Pu">
             <objects>
-                <navigationController id="QhU-F7-a2o" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="EventListNavigation" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QhU-F7-a2o" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aX3-Iw-ACZ">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

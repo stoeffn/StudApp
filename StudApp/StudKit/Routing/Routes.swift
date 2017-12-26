@@ -25,6 +25,8 @@ public enum Routes {
 
     case announcement(Announcement)
 
+    case eventsInCourse(Course)
+
     case folder(File)
 
     case colorPicker(sender: Any?, (Int, UIColor) -> Void)
@@ -58,6 +60,7 @@ public enum Routes {
         case .course: return "course"
         case .emptyCourse: return "emptyCourse"
         case .announcement: return "announcement"
+        case .eventsInCourse: return "eventsInCourse"
         case .folder: return "folder"
         case .colorPicker: return "colorPicker"
         }

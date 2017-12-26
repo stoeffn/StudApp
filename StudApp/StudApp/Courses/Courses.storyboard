@@ -56,7 +56,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14A-k0-KOd">
-                                    <rect key="frame" x="135" y="218.5" width="50" height="32"/>
+                                    <rect key="frame" x="135" y="219" width="50" height="32"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <state key="normal" title="Reload"/>
                                     <connections>
@@ -422,7 +422,7 @@
                                     <outlet property="titleLabel" destination="7BS-La-ljQ" id="3Dm-9s-rUD"/>
                                     <outlet property="userContainer" destination="1CS-1f-0fI" id="NDa-Y4-SDb"/>
                                     <outlet property="userLabel" destination="iEE-BD-yxy" id="6n6-4w-FMH"/>
-                                    <segue destination="dqA-Lf-eop" kind="show" id="BCO-wr-oP7">
+                                    <segue destination="dqA-Lf-eop" kind="show" identifier="folder" id="BCO-wr-oP7">
                                         <segue key="commit" inheritsFrom="parent" id="8S7-ou-Vvh"/>
                                         <segue key="preview" inheritsFrom="commit" id="mcM-oK-FKO"/>
                                     </segue>
@@ -546,7 +546,10 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="LFZ-w3-fcw" kind="show" id="9ny-D4-44n"/>
+                                    <segue destination="LFZ-w3-fcw" kind="show" identifier="eventsInCourse" id="9ny-D4-44n">
+                                        <segue key="commit" inheritsFrom="parent" id="JqR-7X-xy1"/>
+                                        <segue key="preview" inheritsFrom="commit" id="jHg-rG-Jz1"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -773,6 +776,7 @@
         <image name="UserSubtitleGlyph" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="9ny-D4-44n"/>
         <segue reference="4Tp-c5-wvM"/>
         <segue reference="huu-M5-eJx"/>
         <segue reference="BCO-wr-oP7"/>

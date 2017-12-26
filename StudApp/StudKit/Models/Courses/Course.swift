@@ -85,6 +85,11 @@ extension Course {
         let predicate = NSPredicate(format: "%@ IN courses AND expiresAt >= %@", self, Date() as CVarArg)
         return Announcement.fetchRequest(predicate: predicate, sortDescriptors: Announcement.defaultSortDescriptors)
     }
+
+    public var eventsFetchRequest: NSFetchRequest<Event> {
+        let predicate = NSPredicate(format: "course == %@", self)
+        return Event.fetchRequest(predicate: predicate, sortDescriptors: Event.defaultSortDescriptors)
+    }
 }
 
 // MARK: - Core Spotlight and Activity Tracking
