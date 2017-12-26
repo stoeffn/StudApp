@@ -35,7 +35,7 @@ public final class SemesterState: NSManagedObject, CDCreatable, CDSortable {
     public required convenience init(createIn context: NSManagedObjectContext) {
         self.init(context: context)
 
-        favoriteRank = defaultFavoriteRank
+        favoriteRank = fileProviderFavoriteRankUnranked
     }
 
     // MARK: - Sorting
@@ -47,7 +47,8 @@ public final class SemesterState: NSManagedObject, CDCreatable, CDSortable {
     // MARK: - Events
 
     private func isHiddenChanged(_: _KeyValueCodingAndObserving, change: NSKeyValueObservedChange<Bool>) {
-        guard let oldValue = change.oldValue,
+        guard
+            let oldValue = change.oldValue,
             let newValue = change.newValue,
             newValue != oldValue
         else { return }

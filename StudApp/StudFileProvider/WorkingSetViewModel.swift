@@ -7,6 +7,7 @@
 //
 
 import CoreData
+import StudKit
 
 /// Manages the file provider's working set, i.e. recently used files, tagged files, and favorites.
 ///

@@ -177,7 +177,7 @@ public extension File {
     ///                          document folder, which is the default option.
     public static func localContainerUrl(forId id: String, inProviderDirectory: Bool = false) -> URL {
         let storageService = ServiceContainer.default[StorageService.self]
-        let directory = inProviderDirectory ? storageService.fileProviderDocumentsUrl : storageService.documentsUrl
+        let directory = inProviderDirectory ? storageService.fileProviderDocumentsUrl : storageService.downloadsUrl
         return localContainerUrl(forId: id, in: directory)
     }
 

@@ -11,7 +11,7 @@ import StudKit
 
 /// Enumerates all files, eg. semesters, courses or documents, that are currently considered important. This includes any
 /// items marked as favorite, recently used items, and tagged items.
-final class WorkingSetEnumerator: CachingFileEnumerator {
+final class WorkingSetEnumerator: CachingFileProviderEnumerator {
     private let viewModels: [WorkingSetViewModel]
 
     // MARK: - Life Cycle

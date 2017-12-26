@@ -48,4 +48,10 @@ public final class StorageService {
         return UTTypeCopyPreferredTagWithClass(typeIdentifier as CFString, kUTTagClassFilenameExtension)?
             .takeRetainedValue() as String?
     }
+
+    // MARK: - WIP
+
+    func removeAllDocuments() throws {
+        try FileManager.default.removeItem(at: downloadsUrl)
+    }
 }

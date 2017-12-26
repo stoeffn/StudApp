@@ -1,5 +1,5 @@
 //
-//  CachingFileEnumerator.swift
+//  CachingFileProviderEnumerator.swift
 //  StudKit
 //
 //  Created by Steffen Ryll on 12.11.17.
@@ -8,6 +8,7 @@
 
 import CoreData
 import FileProvider
+import StudKit
 
 /// Enumerates any file items, e.g. courses, documents, or folders, returned by `items` and handles caching changed items until
 /// asked to enumerate those changes.
@@ -22,10 +23,10 @@ import FileProvider
 /// In order for this to work, you need to inform `cache` about any changes to the enumerator's content.
 ///
 /// - Remark: This class is not generic so it can implement an Objective C protocol.
-open class CachingFileEnumerator: NSObject {
+open class CachingFileProviderEnumerator: NSObject {
     public let coreDataService = ServiceContainer.default[CoreDataService.self]
     public let historyService = ServiceContainer.default[HistoryService.self]
-    public let cache = ChangeCache()
+    public let cache = FileProviderEnumeratorChangeCache()
 
     // MARK: - Providing Items
 
@@ -37,7 +38,7 @@ open class CachingFileEnumerator: NSObject {
 
 // MARK: - File Provider Enumerator Conformance
 
-extension CachingFileEnumerator: NSFileProviderEnumerator {
+extension CachingFileProviderEnumerator: NSFileProviderEnumerator {
     // MARK: Enumerating Items and Changes
 
     public func invalidate() {}
