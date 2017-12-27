@@ -21,6 +21,12 @@
 "Unfortunately, there was an internal error." = "Unfortunately, there was an internal error. Please contact app support if this occurs repeatedly.";
 "Something went wrong continuing your activity." = "Something went wrong continuing your activity.";
 
+// MARK: Days
+
+"Yesterday" = "Yesterday";
+"Today" = "Today";
+"Tomorrow" = "Tomorrow";
+
 // MARK: About
 
 "About" = "About";
@@ -90,3 +96,9 @@
 
 "Color" = "Color";
 "Choose Color" = "Choose Color";
+
+// MARK: Events
+
+"Events" = "Events";
+"All Events" = "All Events";
+"Canceled" = "Canceled";

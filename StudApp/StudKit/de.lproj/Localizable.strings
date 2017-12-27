@@ -21,6 +21,12 @@
 "Unfortunately, there was an internal error." = "Leider gab es einen internen Fehler. Bitte kontaktiere den App-Support, sollte dies öfter auftreten.";
 "Something went wrong continuing your activity." = "Etwas lief schief beim Fortführen Deiner Aktivität.";
 
+// MARK: Days
+
+"Yesterday" = "Gestern";
+"Today" = "Heute";
+"Tomorrow" = "Morgen";
+
 // MARK: About
 
 "About" = "Über";
@@ -90,3 +96,9 @@
 
 "Color" = "Farbe";
 "Choose Color" = "Farbe wählen";
+
+// MARK: Events
+
+"Events" = "Ereignisse";
+"All Events" = "Alle Ereignisse";
+"Canceled" = "Entfällt";
