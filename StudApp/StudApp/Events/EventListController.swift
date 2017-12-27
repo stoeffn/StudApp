@@ -25,10 +25,18 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         super.viewWillAppear(animated)
 
         if let nowIndexPath = viewModel.nowIndexPath {
-            tableView.scrollToRow(at: nowIndexPath, at: .top, animated: false)
+            tableView.scrollToRow(at: nowIndexPath, at: .top, animated: true)
         }
 
         viewModel.update()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if let nowIndexPath = viewModel.nowIndexPath {
+            tableView.scrollToRow(at: nowIndexPath, at: .top, animated: true)
+        }
     }
 
     func prepareDependencies(for route: Routes) {
