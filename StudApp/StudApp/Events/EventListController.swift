@@ -17,6 +17,8 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         super.viewDidLoad()
 
         navigationItem.title = "Events".localized
+
+        tableView.register(DateHeader.self, forHeaderFooterViewReuseIdentifier: DateHeader.typeIdentifier)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +69,13 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         return cell
     }
 
-    override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return viewModel[sectionAt: section].formattedAsRelativeDateFromNow
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return DateHeader.height
+    }
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: DateHeader.typeIdentifier)
+        (header as? DateHeader)?.date = viewModel[sectionAt: section]
+        return header
     }
 }
