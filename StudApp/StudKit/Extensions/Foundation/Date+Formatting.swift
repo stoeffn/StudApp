@@ -106,7 +106,7 @@ public extension Date {
         case -1: return "Yesterday".localized
         case 0: return "Today".localized
         case 1: return "Tomorrow".localized
-        case 2...7: return formatted(using: .weekday)
+        case 2 ... 7: return formatted(using: .weekday)
         default: return formatted(using: .longDate)
         }
     }

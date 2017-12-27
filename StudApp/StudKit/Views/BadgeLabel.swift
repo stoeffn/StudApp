@@ -11,7 +11,7 @@
 class BadgeLabel: UILabel {
     // MARK: - Life Cycle
 
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initUserInterface()
     }
@@ -47,10 +47,9 @@ class BadgeLabel: UILabel {
         super.drawText(in: UIEdgeInsetsInsetRect(rect, insets))
     }
 
-    override open var intrinsicContentSize: CGSize {
+    open override var intrinsicContentSize: CGSize {
         sizeToFit()
         return CGSize(width: frame.size.width + insets.left + insets.right,
                       height: insets.top + font.pointSize + insets.bottom)
     }
 }
-

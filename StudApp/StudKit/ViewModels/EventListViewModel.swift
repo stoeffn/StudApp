@@ -39,6 +39,25 @@ public final class EventListViewModel: NSObject {
             }
         }
     }
+
+    public var nowIndexPath: IndexPath? {
+        let today = Date()
+
+        let sectionIndex = enumerated()
+            .filter { $0.element >= today.startOfDay }
+            .first?
+            .offset
+        guard let section = sectionIndex else { return nil }
+
+        let rowIndex = controller.sections?[section].objects?
+            .enumerated()
+            .filter { ($0.element as? Event)?.startsAt ?? .distantPast >= today }
+            .first?
+            .offset
+        guard let row = rowIndex else { return nil }
+
+        return IndexPath(row: row, section: section)
+    }
 }
 
 // MARK: - Data Source Section

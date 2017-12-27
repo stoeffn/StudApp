@@ -24,6 +24,10 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        if let nowIndexPath = viewModel.nowIndexPath {
+            tableView.scrollToRow(at: nowIndexPath, at: .top, animated: false)
+        }
+
         viewModel.update()
     }
 
@@ -69,7 +73,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_: UITableView, heightForHeaderInSection _: Int) -> CGFloat {
         return DateHeader.height
     }
 
