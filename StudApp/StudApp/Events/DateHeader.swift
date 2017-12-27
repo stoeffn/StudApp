@@ -9,7 +9,7 @@
 import StudKit
 
 final class DateHeader: UITableViewHeaderFooterView {
-    static let height: CGFloat = 42
+    static let height: CGFloat = 48
 
     // MARK: - Life Cycle
 
@@ -40,10 +40,10 @@ final class DateHeader: UITableViewHeaderFooterView {
     }()
 
     private func initUserInterface() {
-        backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight))
+        backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
 
         addSubview(titleLabel)
         titleLabel.leadingAnchor.constraint(equalTo: readableContentGuide.leadingAnchor).isActive = true
-        titleLabel.centerYAnchor.constraint(equalTo: readableContentGuide.centerYAnchor).isActive = true
+        titleLabel.bottomAnchor.constraint(equalTo: readableContentGuide.bottomAnchor, constant: 6).isActive = true
     }
 }
