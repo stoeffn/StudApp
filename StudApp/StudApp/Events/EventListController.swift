@@ -67,7 +67,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return viewModel[sectionAt: section].formatted(using: .mediumDate)
+    override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return viewModel[sectionAt: section].formattedAsRelativeDateFromNow
     }
 }

@@ -88,4 +88,26 @@ public extension Date {
         guard let differenceString = DateComponentsFormatter.short.string(from: self, to: date) else { return nil }
         return "%@ ago".localized(differenceString)
     }
+
+    /// The difference from now in days as a relative date string.
+    ///
+    /// - returns: "yesterday", "today", and "tomorrow", the weekdays for the next week, or defaults to a long date
+    var formattedAsRelativeDateFromNow: String {
+        let today = Calendar(identifier: .gregorian).startOfDay(for: Date())
+        let date = Calendar(identifier: .gregorian).startOfDay(for: self)
+        return date.formatted(asRelativeDateFrom: today)
+    }
+
+    /// Returns the difference from another date in days as relative date string.
+    ///
+    /// - returns: "yesterday", "today", and "tomorrow", the weekdays for the next week, or defaults to a long date
+    func formatted(asRelativeDateFrom date: Date) -> String {
+        switch days(from: date) {
+        case -1: return "Yesterday".localized
+        case 0: return "Today".localized
+        case 1: return "Tomorrow".localized
+        case 2...7: return formatted(using: .weekday)
+        default: return formatted(using: .longDate)
+        }
+    }
 }
