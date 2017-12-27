@@ -48,7 +48,7 @@ final class FileCell: UITableViewCell {
             sizeLabel.text = file.size.formattedAsByteCount
             downloadCountLabel.text = "%dx".localized(file.downloadCount)
 
-            activityIndicator?.isHidden = !file.state.isDownloading
+            activityIndicator?.isHidden = file.isFolder || !file.state.isDownloading
             downloadGlyph?.isHidden = !file.isDownloadable
 
             updateAvailability()
