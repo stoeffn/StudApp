@@ -44,3 +44,11 @@ public final class Event: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdata
         NSSortDescriptor(keyPath: \Event.startsAt, ascending: true),
     ]
 }
+
+// MARK: - Utilities
+
+extension Event {
+    @objc var daysSince1970: Int {
+        return startsAt.days(from: Date(timeIntervalSince1970: 0))
+    }
+}

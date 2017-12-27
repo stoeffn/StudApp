@@ -24,7 +24,7 @@ public final class EventListViewModel: NSObject {
 
     private(set) lazy var controller: NSFetchedResultsController<Event>
         = NSFetchedResultsController(fetchRequest: course.eventsFetchRequest,
-                                     managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: "startsAt",
+                                     managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: "daysSince1970",
                                      cacheName: nil)
 
     public func fetch() {
@@ -44,7 +44,7 @@ public final class EventListViewModel: NSObject {
 // MARK: - Data Source Section
 
 extension EventListViewModel: DataSource {
-    public typealias Section = String?
+    public typealias Section = Date
 
     public typealias Row = Event
 
@@ -56,20 +56,12 @@ extension EventListViewModel: DataSource {
         return controller.sections?[index].numberOfObjects ?? 0
     }
 
-    public subscript(sectionAt index: Int) -> String? {
-        return controller.sections?[index].name
+    public subscript(sectionAt index: Int) -> Date {
+        return controller.object(at: IndexPath(row: 0, section: index)).startsAt
     }
 
     public subscript(rowAt indexPath: IndexPath) -> Event {
         return controller.object(at: indexPath)
-    }
-
-    public var sectionIndexTitles: [String]? {
-        return controller.sectionIndexTitles
-    }
-
-    public func section(forSectionIndexTitle title: String, at index: Int) -> Int {
-        return controller.section(forSectionIndexTitle: title, at: index)
     }
 }
 
@@ -87,15 +79,17 @@ extension EventListViewModel: NSFetchedResultsControllerDelegate {
     public func controller(_: NSFetchedResultsController<NSFetchRequestResult>,
                            didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex index: Int,
                            for type: NSFetchedResultsChangeType) {
+        guard let section = (sectionInfo.objects?.first as? Event)?.startsAt else { fatalError() }
+
         switch type {
         case .insert:
-            delegate?.data(changedIn: sectionInfo.name, at: index, change: .insert, in: self)
+            delegate?.data(changedIn: section, at: index, change: .insert, in: self)
         case .delete:
-            delegate?.data(changedIn: sectionInfo.name, at: index, change: .delete, in: self)
+            delegate?.data(changedIn: section, at: index, change: .delete, in: self)
         case .update:
-            delegate?.data(changedIn: sectionInfo.name, at: index, change: .update(sectionInfo.name), in: self)
+            delegate?.data(changedIn: section, at: index, change: .update(section), in: self)
         case .move:
-            delegate?.data(changedIn: sectionInfo.name, at: index, change: .move(to: index), in: self)
+            delegate?.data(changedIn: section, at: index, change: .move(to: index), in: self)
         }
     }
 
