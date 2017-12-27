@@ -52,7 +52,7 @@ public final class DownloadListViewModel: NSObject {
 // MARK: - Data Source Section
 
 extension DownloadListViewModel: DataSource {
-    public typealias Section = String?
+    public typealias Section = Course
 
     public typealias Row = File
 
@@ -64,8 +64,8 @@ extension DownloadListViewModel: DataSource {
         return controller.sections?[index].numberOfObjects ?? 0
     }
 
-    public subscript(sectionAt index: Int) -> String? {
-        return controller.sections?[index].name
+    public subscript(sectionAt index: Int) -> Course {
+        return controller.object(at: IndexPath(row: 0, section: index)).file.course
     }
 
     public subscript(rowAt indexPath: IndexPath) -> File {
@@ -95,15 +95,17 @@ extension DownloadListViewModel: NSFetchedResultsControllerDelegate {
     public func controller(_: NSFetchedResultsController<NSFetchRequestResult>,
                            didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex index: Int,
                            for type: NSFetchedResultsChangeType) {
+        guard let course = (sectionInfo.objects?.first as? FileState)?.file.course else { fatalError() }
+
         switch type {
         case .insert:
-            delegate?.data(changedIn: sectionInfo.name, at: index, change: .insert, in: self)
+            delegate?.data(changedIn: course, at: index, change: .insert, in: self)
         case .delete:
-            delegate?.data(changedIn: sectionInfo.name, at: index, change: .delete, in: self)
+            delegate?.data(changedIn: course, at: index, change: .delete, in: self)
         case .update:
-            delegate?.data(changedIn: sectionInfo.name, at: index, change: .update(sectionInfo.name), in: self)
+            delegate?.data(changedIn: course, at: index, change: .update(course), in: self)
         case .move:
-            delegate?.data(changedIn: sectionInfo.name, at: index, change: .move(to: index), in: self)
+            delegate?.data(changedIn: course, at: index, change: .move(to: index), in: self)
         }
     }
 
