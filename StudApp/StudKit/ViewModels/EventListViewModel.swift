@@ -49,6 +49,10 @@ public final class EventListViewModel: FetchedResultsControllerDataSource {
         }
     }
 
+    public func sectionIndex(for date: Date) -> Int? {
+        return controller.sections?.index { self.section(from: $0) == date }
+    }
+
     public var nowIndexPath: IndexPath? {
         let today = Date()
 

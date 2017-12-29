@@ -61,6 +61,7 @@ public final class DateTabBar: UIView {
         view.backgroundColor = .clear
         view.register(DateTabBarCell.self, forCellWithReuseIdentifier: DateTabBarCell.typeIdentifier)
         view.dataSource = self
+        view.delegate = self
         return view
     }()
 
@@ -77,6 +78,8 @@ public final class DateTabBar: UIView {
     // MARK: - Delegate
 
     public var isDateEnabled: ((Date) -> Bool)?
+
+    public var didSelectDate: ((Date) -> Void)?
 }
 
 // MARK: - Collection View Data Source
@@ -97,5 +100,14 @@ extension DateTabBar: UICollectionViewDataSource {
             (cell as? DateTabBarCell)?.isEnabled = isDateEnabled?(date) ?? true
         }
         return cell
+    }
+}
+
+// MARK: - Collection View Delegate
+
+extension DateTabBar: UICollectionViewDelegate {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? DateTabBarCell, let date = cell.date else { return }
+        didSelectDate?(date)
     }
 }

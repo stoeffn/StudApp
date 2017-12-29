@@ -26,6 +26,10 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         tableView.tableHeaderView = nil
 
         dateTabBar.isDateEnabled = viewModel.contains
+        dateTabBar.didSelectDate = { date in
+            guard let sectionIndex = self.viewModel.sectionIndex(for: date) else { return }
+            self.tableView.scrollToRow(at: IndexPath(row: 0, section: sectionIndex), at: .top, animated: true)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -106,6 +110,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         dateTabBar.startsAt = viewModel[sectionAt: 0]
         dateTabBar.endsAt = viewModel[sectionAt: viewModel.numberOfSections - 1]
         dateTabBar.reloadData()
+        updateDateTabBarSelection()
     }
 
     private func updateDateTabBarSelection() {
@@ -143,10 +148,6 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
     override func scrollViewDidEndDecelerating(_: UIScrollView) {
         updateDateTabBarSelection()
-    }
-
-    override func scrollViewWillBeginDragging(_: UIScrollView) {
-        // dayTabBarUpdatesContinuously = true
     }
 
     // MARK: - Reacting to Data Changes
