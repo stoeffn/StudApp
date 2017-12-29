@@ -19,11 +19,11 @@ public final class FileListViewModel: FetchedResultsControllerDataSourceSection 
 
     lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
 
+    public weak var delegate: DataSourceSectionDelegate?
+
     public let course: Course
 
     public let folder: File?
-
-    public weak var delegate: DataSourceSectionDelegate?
 
     /// Creates a new file list view model for the given course's root files.
     public init(course: Course) {

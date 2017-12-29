@@ -15,9 +15,9 @@ public final class AnnouncementListViewModel: FetchedResultsControllerDataSource
 
     lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
 
-    public let course: Course
-
     public weak var delegate: DataSourceSectionDelegate?
+
+    public let course: Course
 
     public init(course: Course) {
         self.course = course

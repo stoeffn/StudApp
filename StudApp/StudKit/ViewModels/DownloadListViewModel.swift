@@ -32,6 +32,18 @@ public final class DownloadListViewModel: FetchedResultsControllerDataSource {
         fetchRequest: File.downloadedFetchRequest, managedObjectContext: coreDataService.viewContext,
         sectionNameKeyPath: "file.course.title", cacheName: nil)
 
+    func section(from sectionInfo: NSFetchedResultsSectionInfo) -> Course? {
+        return (sectionInfo.objects?.first as? FileState)?.file.course
+    }
+
+    func row(from object: FileState) -> File {
+        return object.file
+    }
+
+    func object(from row: File) -> FileState {
+        return row.state
+    }
+
     /// Fetches data matching the search term given. An `nil` or empty search term matches all items.
     public func fetch(searchTerm: String? = nil) {
         controller.fetchRequest.predicate = File.downloadedPredicate(forSearchTerm: searchTerm)
@@ -45,17 +57,5 @@ public final class DownloadListViewModel: FetchedResultsControllerDataSource {
         } catch {
             return false
         }
-    }
-
-    func section(from sectionInfo: NSFetchedResultsSectionInfo) -> Course? {
-        return (sectionInfo.objects?.first as? FileState)?.file.course
-    }
-
-    func row(from object: FileState) -> File {
-        return object.file
-    }
-
-    func object(from row: File) -> FileState {
-        return row.state
     }
 }
