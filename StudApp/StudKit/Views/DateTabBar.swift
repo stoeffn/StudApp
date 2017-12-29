@@ -15,7 +15,7 @@ public final class DateTabBar: UIView {
         initUserInterface()
     }
 
-    required public init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initUserInterface()
     }
@@ -56,11 +56,11 @@ public final class DateTabBar: UIView {
 // MARK: - Collection View Data Source
 
 extension DateTabBar: UICollectionViewDataSource {
-    public func numberOfSections(in collectionView: UICollectionView) -> Int {
+    public func numberOfSections(in _: UICollectionView) -> Int {
         return 1
     }
 
-    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         return endDate.days(from: startDate)
     }
 

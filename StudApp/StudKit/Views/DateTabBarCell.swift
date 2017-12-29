@@ -126,8 +126,8 @@ final class DateTabBarCell: UICollectionViewCell {
         }, completion: nil)
         UIView.animate(withDuration: duration * 1.5, delay: 0, usingSpringWithDamping: 0.75, initialSpringVelocity: 0,
                        options: [], animations: {
-            self.selectedBackgroundViewCircle.alpha = self.isHighlighted || self.isSelected ? 1 : 0
-            self.selectedBackgroundViewCircle.transform = self.selectedBackgroundCircleTransform
+                           self.selectedBackgroundViewCircle.alpha = self.isHighlighted || self.isSelected ? 1 : 0
+                           self.selectedBackgroundViewCircle.transform = self.selectedBackgroundCircleTransform
         }, completion: nil)
     }
 }

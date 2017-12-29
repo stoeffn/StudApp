@@ -16,13 +16,21 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if #available(iOS 11.0, *) {
+            additionalSafeAreaInsets = UIEdgeInsets(top: dateTabBar.bounds.height, left: 0, bottom: 0, right: 0)
+        }
+
         navigationItem.title = "Events".localized
 
         tableView.register(DateHeader.self, forHeaderFooterViewReuseIdentifier: DateHeader.typeIdentifier)
+        tableView.tableHeaderView = nil
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        let navigationController = splitViewController?.detailNavigationController as? BorderlessNavigationController
+        navigationController?.toolBarView = dateTabBar
 
         if let nowIndexPath = viewModel.nowIndexPath {
             tableView.scrollToRow(at: nowIndexPath, at: .top, animated: true)
@@ -37,6 +45,25 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         if let nowIndexPath = viewModel.nowIndexPath {
             tableView.scrollToRow(at: nowIndexPath, at: .top, animated: true)
         }
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        let navigationController = splitViewController?.detailNavigationController as? BorderlessNavigationController
+        navigationController?.toolBarView = nil
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        let navigationController = splitViewController?.detailNavigationController as? BorderlessNavigationController
+        navigationController?.toolBarView = nil
+
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: { _ in }, completion: { _ in
+            let navigationController = self.splitViewController?.detailNavigationController as? BorderlessNavigationController
+            navigationController?.toolBarView = self.dateTabBar
+        })
     }
 
     func prepareDependencies(for route: Routes) {
@@ -64,6 +91,10 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
         super.decodeRestorableState(with: coder)
     }
+
+    // MARK: - User Interface
+
+    @IBOutlet var dateTabBar: DateTabBar!
 
     // MARK: - Table View Data Source
 
