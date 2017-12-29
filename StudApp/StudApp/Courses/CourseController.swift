@@ -51,15 +51,19 @@ final class CourseController: UITableViewController, Routable {
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        let navigationController = splitViewController?.detailNavigationController as? BorderlessNavigationController
-        navigationController?.usesDefaultAppearance = false
+        guard self == navigationController?.topViewController else {
+            return super.viewWillTransition(to: size, with: coordinator)
+        }
+
+        let controller = splitViewController?.detailNavigationController as? BorderlessNavigationController
+        controller?.usesDefaultAppearance = false
 
         super.viewWillTransition(to: size, with: coordinator)
 
-        coordinator.animate(alongsideTransition: { _ in }, completion: { _ in
-            let navigationController = self.splitViewController?.detailNavigationController as? BorderlessNavigationController
-            navigationController?.usesDefaultAppearance = true
-        })
+        coordinator.animate(alongsideTransition: { _ in
+            let controller = self.splitViewController?.detailNavigationController as? BorderlessNavigationController
+            controller?.usesDefaultAppearance = true
+        }, completion: nil)
     }
 
     private func configureViewModels(with course: Course) {

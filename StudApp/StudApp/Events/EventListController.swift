@@ -64,15 +64,19 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        let navigationController = splitViewController?.detailNavigationController as? BorderlessNavigationController
-        navigationController?.toolBarView = nil
+        guard self == navigationController?.topViewController else {
+            return super.viewWillTransition(to: size, with: coordinator)
+        }
+
+        let controller = splitViewController?.detailNavigationController as? BorderlessNavigationController
+        controller?.toolBarView = nil
 
         super.viewWillTransition(to: size, with: coordinator)
 
-        coordinator.animate(alongsideTransition: { _ in }, completion: { _ in
-            let navigationController = self.splitViewController?.detailNavigationController as? BorderlessNavigationController
-            navigationController?.toolBarView = self.dateTabBarContainer
-        })
+        coordinator.animate(alongsideTransition: { _ in
+            let controller = self.splitViewController?.detailNavigationController as? BorderlessNavigationController
+            controller?.toolBarView = self.dateTabBarContainer
+        }, completion: nil)
     }
 
     func prepareDependencies(for route: Routes) {
