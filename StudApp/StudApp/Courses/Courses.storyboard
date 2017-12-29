@@ -34,7 +34,7 @@
                                     <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoursesTabBarGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="ITQ-RL-1uV">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoursesGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="ITQ-RL-1uV">
                                     <rect key="frame" x="112" y="32" width="96" height="96"/>
                                     <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
@@ -56,7 +56,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14A-k0-KOd">
-                                    <rect key="frame" x="135" y="218.5" width="50" height="32"/>
+                                    <rect key="frame" x="135" y="219" width="50" height="32"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <state key="normal" title="Reload"/>
                                     <connections>
@@ -713,7 +713,7 @@ Gebäude 3703: Technische Informatik</string>
                                         <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoursesTabBarGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="iOB-wu-czk">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoursesGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="iOB-wu-czk">
                                         <rect key="frame" x="336" y="0.0" width="96" height="96"/>
                                         <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -892,6 +892,7 @@ Gebäude 3703: Technische Informatik</string>
         </scene>
     </scenes>
     <resources>
+        <image name="CoursesGlyph" width="512" height="512"/>
         <image name="CoursesTabBarGlyph" width="25" height="25"/>
         <image name="DownloadBarButtonGlyph" width="25" height="25"/>
         <image name="DownloadCountSubtitleGlyph" width="16" height="16"/>
