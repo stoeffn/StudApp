@@ -32,7 +32,11 @@ public final class StorageService {
 
     // MARK: - Managing Downloads and Documents
 
+    /// Delete all locally downloaded documents in the downloads and file provider directory.
+    ///
+    /// - Warning: This method does not reset file states.
     func removeAllDownloads() throws {
         try FileManager.default.removeItem(at: BaseDirectories.downloads.url)
+        try FileManager.default.removeItem(at: BaseDirectories.fileProvider.url)
     }
 }

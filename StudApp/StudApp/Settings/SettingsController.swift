@@ -21,6 +21,7 @@ final class SettingsController: UITableViewController, Routable {
         navigationItem.title = "Settings".localized
 
         downloadsCell.textLabel?.text = "Downloads".localized
+        downloadsCell.detailTextLabel?.text = viewModel.sizeOfDownloadsDirectory?.formattedAsByteCount ?? "—"
         removeDownloadsCell.textLabel?.text = "Remove All Downloads".localized
 
         signOutCell.textLabel?.text = "Sign Out".localized
@@ -56,7 +57,9 @@ final class SettingsController: UITableViewController, Routable {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch tableView.cellForRow(at: indexPath) {
         case removeDownloadsCell?:
-            print("Remove Downloads")
+            try? viewModel.removeAllDownloads()
+            downloadsCell.detailTextLabel?.text = viewModel.sizeOfDownloadsDirectory?.formattedAsByteCount ?? "—"
+            tableView.deselectRow(at: indexPath, animated: true)
         case signOutCell?:
             viewModel.signOut()
             dismiss(animated: true, completion: nil)
