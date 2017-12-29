@@ -12,22 +12,25 @@ import CoreData
 ///
 /// In order to display initial data, you must call `fetch()`. Changes in the view context are automatically propagated to
 /// `delegate`.
-public final class DownloadListViewModel: NSObject {
+public final class DownloadListViewModel: FetchedResultsControllerDataSource {
+    public typealias Section = Course
+
+    public typealias Row = File
+
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
+
+    lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
 
     public weak var delegate: DataSourceDelegate?
 
     /// Creates a new download list view model managing downloaded documents.
-    public override init() {
-        super.init()
-
-        controller.delegate = self
+    public init() {
+        controller.delegate = fetchedResultControllerDelegateHelper
     }
 
-    private(set) lazy var controller: NSFetchedResultsController<FileState>
-        = NSFetchedResultsController(fetchRequest: File.downloadedFetchRequest,
-                                     managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: "file.course.title",
-                                     cacheName: nil)
+    private(set) lazy var controller: NSFetchedResultsController<FileState> = NSFetchedResultsController(
+        fetchRequest: File.downloadedFetchRequest, managedObjectContext: coreDataService.viewContext,
+        sectionNameKeyPath: "file.course.title", cacheName: nil)
 
     /// Fetches data matching the search term given. An `nil` or empty search term matches all items.
     public func fetch(searchTerm: String? = nil) {
@@ -44,89 +47,15 @@ public final class DownloadListViewModel: NSObject {
         }
     }
 
-    public func indexPath(for file: File) -> IndexPath? {
-        return controller.indexPath(forObject: file.state)
-    }
-}
-
-// MARK: - Data Source Section
-
-extension DownloadListViewModel: DataSource {
-    public typealias Section = Course
-
-    public typealias Row = File
-
-    public var numberOfSections: Int {
-        return controller.sections?.count ?? 0
+    func section(from sectionInfo: NSFetchedResultsSectionInfo) -> Course? {
+        return (sectionInfo.objects?.first as? FileState)?.file.course
     }
 
-    public func numberOfRows(inSection index: Int) -> Int {
-        return controller.sections?[index].numberOfObjects ?? 0
+    func row(from object: FileState) -> File {
+        return object.file
     }
 
-    public subscript(sectionAt index: Int) -> Course {
-        return controller.object(at: IndexPath(row: 0, section: index)).file.course
-    }
-
-    public subscript(rowAt indexPath: IndexPath) -> File {
-        return controller.object(at: indexPath).file
-    }
-
-    public var sectionIndexTitles: [String]? {
-        return controller.sectionIndexTitles
-    }
-
-    public func section(forSectionIndexTitle title: String, at index: Int) -> Int {
-        return controller.section(forSectionIndexTitle: title, at: index)
-    }
-}
-
-// MARK: - Fetched Results Controller Delegate
-
-extension DownloadListViewModel: NSFetchedResultsControllerDelegate {
-    public func controllerWillChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
-        delegate?.dataWillChange(in: self)
-    }
-
-    public func controllerDidChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
-        delegate?.dataDidChange(in: self)
-    }
-
-    public func controller(_: NSFetchedResultsController<NSFetchRequestResult>,
-                           didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex index: Int,
-                           for type: NSFetchedResultsChangeType) {
-        guard let course = (sectionInfo.objects?.first as? FileState)?.file.course else { fatalError() }
-
-        switch type {
-        case .insert:
-            delegate?.data(changedIn: course, at: index, change: .insert, in: self)
-        case .delete:
-            delegate?.data(changedIn: course, at: index, change: .delete, in: self)
-        case .update:
-            delegate?.data(changedIn: course, at: index, change: .update(course), in: self)
-        case .move:
-            delegate?.data(changedIn: course, at: index, change: .move(to: index), in: self)
-        }
-    }
-
-    public func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange object: Any, at indexPath: IndexPath?,
-                           for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        guard let fileState = object as? FileState else { fatalError() }
-        let file = fileState.file
-
-        switch type {
-        case .insert:
-            guard let indexPath = newIndexPath else { return }
-            delegate?.data(changedIn: file, at: indexPath, change: .insert, in: self)
-        case .delete:
-            guard let indexPath = indexPath else { return }
-            delegate?.data(changedIn: file, at: indexPath, change: .delete, in: self)
-        case .update:
-            guard let indexPath = indexPath else { return }
-            delegate?.data(changedIn: file, at: indexPath, change: .update(file), in: self)
-        case .move:
-            guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
-            delegate?.data(changedIn: file, at: indexPath, change: .move(to: newIndexPath), in: self)
-        }
+    func object(from row: File) -> FileState {
+        return row.state
     }
 }

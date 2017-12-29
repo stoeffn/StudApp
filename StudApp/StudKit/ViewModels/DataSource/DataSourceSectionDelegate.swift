@@ -23,7 +23,7 @@ public extension DataSourceSectionDelegate {
     func dataDidChange<Section: DataSourceSection>(in _: Section) {}
 
     func data<Section: DataSourceSection>(changedIn _: Section.Row, at _: Int, change _: DataChange<Section.Row, Int>,
-                                          in _: Section) {}
+                                          in _: Section?) {}
 }
 
 // MARK: - Table View Controller Implementation

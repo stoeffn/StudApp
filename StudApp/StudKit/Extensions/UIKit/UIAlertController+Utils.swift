@@ -9,13 +9,13 @@
 import UIKit
 
 public extension UIAlertController {
-    public convenience init(confirmationWithTitle title: String?, sourceView: UIView, sourceRect: CGRect,
+    public convenience init(confirmationWithAction actionTitle: String?, sourceView: UIView, sourceRect: CGRect? = nil,
                             handler: @escaping (UIAlertAction) -> Void) {
         self.init(title: nil, message: nil, preferredStyle: .actionSheet)
         addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))
-        addAction(UIAlertAction(title: title, style: .destructive, handler: handler))
+        addAction(UIAlertAction(title: actionTitle, style: .destructive, handler: handler))
         popoverPresentationController?.sourceView = sourceView
-        popoverPresentationController?.sourceRect = sourceRect
+        popoverPresentationController?.sourceRect = sourceRect ?? sourceView.bounds
         popoverPresentationController?.permittedArrowDirections = [.up, .down]
     }
 }

@@ -99,7 +99,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="downloadsCell" destination="Og1-kj-hFK" id="TSg-zx-ipc"/>
-                        <outlet property="removeDownloadsCell" destination="rOA-iJ-jk4" id="I1p-12-sNM"/>
+                        <outlet property="removeAllDownloadsCell" destination="rOA-iJ-jk4" id="2GT-N4-qSX"/>
                         <outlet property="signOutCell" destination="jfr-di-olq" id="0Zk-vc-Mir"/>
                     </connections>
                 </tableViewController>

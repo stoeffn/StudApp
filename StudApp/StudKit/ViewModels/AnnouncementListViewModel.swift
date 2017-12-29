@@ -8,8 +8,12 @@
 
 import CoreData
 
-public final class AnnouncementListViewModel: NSObject {
+public final class AnnouncementListViewModel: FetchedResultsControllerDataSourceSection {
+    public typealias Row = Announcement
+
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
+
+    lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
 
     public let course: Course
 
@@ -17,18 +21,13 @@ public final class AnnouncementListViewModel: NSObject {
 
     public init(course: Course) {
         self.course = course
-        super.init()
 
-        controller.delegate = self
+        controller.delegate = fetchedResultControllerDelegateHelper
     }
 
-    private(set) lazy var controller: NSFetchedResultsController<Announcement>
-        = NSFetchedResultsController(fetchRequest: course.unexpiredAnnouncementsFetchRequest,
-                                     managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
-
-    public func fetch() {
-        try? controller.performFetch()
-    }
+    private(set) lazy var controller: NSFetchedResultsController<Announcement> = NSFetchedResultsController(
+        fetchRequest: course.unexpiredAnnouncementsFetchRequest, managedObjectContext: coreDataService.viewContext,
+        sectionNameKeyPath: nil, cacheName: nil)
 
     public func update(handler: (ResultHandler<Void>)? = nil) {
         coreDataService.performBackgroundTask { context in
@@ -36,51 +35,6 @@ public final class AnnouncementListViewModel: NSObject {
                 try? context.saveWhenChanged()
                 handler?(result.replacingValue(()))
             }
-        }
-    }
-}
-
-// MARK: - Data Source Section
-
-extension AnnouncementListViewModel: DataSourceSection {
-    public typealias Row = Announcement
-
-    public var numberOfRows: Int {
-        return controller.sections?.first?.numberOfObjects ?? 0
-    }
-
-    public subscript(rowAt index: Int) -> Announcement {
-        return controller.object(at: IndexPath(row: index, section: 0))
-    }
-}
-
-// MARK: - Fetched Results Controller Delegate
-
-extension AnnouncementListViewModel: NSFetchedResultsControllerDelegate {
-    public func controllerWillChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
-        delegate?.dataWillChange(in: self)
-    }
-
-    public func controllerDidChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
-        delegate?.dataDidChange(in: self)
-    }
-
-    public func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange object: Any,
-                           at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        guard let announcement = object as? Announcement else { fatalError() }
-        switch type {
-        case .insert:
-            guard let indexPath = newIndexPath else { return }
-            delegate?.data(changedIn: announcement, at: indexPath.row, change: .insert, in: self)
-        case .delete:
-            guard let indexPath = indexPath else { return }
-            delegate?.data(changedIn: announcement, at: indexPath.row, change: .delete, in: self)
-        case .update:
-            guard let indexPath = indexPath else { return }
-            delegate?.data(changedIn: announcement, at: indexPath.row, change: .update(announcement), in: self)
-        case .move:
-            guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
-            delegate?.data(changedIn: announcement, at: indexPath.row, change: .move(to: newIndexPath.row), in: self)
         }
     }
 }

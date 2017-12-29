@@ -23,10 +23,10 @@ final class CourseHeader: UITableViewHeaderFooterView {
         initUserInterface()
     }
 
-    var course: Course! {
+    var course: Course? {
         didSet {
-            colorView.backgroundColor = course.state.color.withAlphaComponent(0.2)
-            titleLabel.text = course.title
+            colorView.backgroundColor = course?.state.color.withAlphaComponent(0.2)
+            titleLabel.text = course?.title
         }
     }
 
