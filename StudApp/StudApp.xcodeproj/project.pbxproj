@@ -127,6 +127,11 @@
 		24A8EDDE1FCCBC93007C1CCF /* ContextService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A8EDDD1FCCBC93007C1CCF /* ContextService.swift */; };
 		24ABFC481FD714AF00CD1646 /* Courses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24ABFC471FD714AF00CD1646 /* Courses.storyboard */; };
 		24ABFC4A1FD714EF00CD1646 /* CourseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABFC491FD714EF00CD1646 /* CourseListController.swift */; };
+		24BF7B651FF661AF0013BA23 /* FetchedResultsControllerDelegateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF7B641FF661AF0013BA23 /* FetchedResultsControllerDelegateHelper.swift */; };
+		24BF7B671FF673650013BA23 /* FetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF7B661FF673650013BA23 /* FetchedResultsControllerDelegate.swift */; };
+		24BF7B691FF673BF0013BA23 /* FetchedResultsControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF7B681FF673BF0013BA23 /* FetchedResultsControllerDataSource.swift */; };
+		24BF7B6B1FF674100013BA23 /* FetchedResultsControllerSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF7B6A1FF674100013BA23 /* FetchedResultsControllerSource.swift */; };
+		24BF7B6D1FF6741E0013BA23 /* FetchedResultsControllerDataSourceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF7B6C1FF6741E0013BA23 /* FetchedResultsControllerDataSourceSection.swift */; };
 		24CFB5D11FB24E2500F30DEA /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D01FB24E2500F30DEA /* MainController.swift */; };
 		24CFB5D61FB24F4D00F30DEA /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D31FB24F4C00F30DEA /* Routable.swift */; };
 		24CFB5D71FB24F4D00F30DEA /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D41FB24F4C00F30DEA /* Routes.swift */; };
@@ -459,6 +464,11 @@
 		24A8EDDD1FCCBC93007C1CCF /* ContextService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextService.swift; sourceTree = "<group>"; };
 		24ABFC471FD714AF00CD1646 /* Courses.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Courses.storyboard; sourceTree = "<group>"; };
 		24ABFC491FD714EF00CD1646 /* CourseListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListController.swift; sourceTree = "<group>"; };
+		24BF7B641FF661AF0013BA23 /* FetchedResultsControllerDelegateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerDelegateHelper.swift; sourceTree = "<group>"; };
+		24BF7B661FF673650013BA23 /* FetchedResultsControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerDelegate.swift; sourceTree = "<group>"; };
+		24BF7B681FF673BF0013BA23 /* FetchedResultsControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerDataSource.swift; sourceTree = "<group>"; };
+		24BF7B6A1FF674100013BA23 /* FetchedResultsControllerSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerSource.swift; sourceTree = "<group>"; };
+		24BF7B6C1FF6741E0013BA23 /* FetchedResultsControllerDataSourceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerDataSourceSection.swift; sourceTree = "<group>"; };
 		24CFB5D01FB24E2500F30DEA /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		24CFB5D31FB24F4C00F30DEA /* Routable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
 		24CFB5D41FB24F4C00F30DEA /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
@@ -1029,6 +1039,9 @@
 				246F3AC31FAC879C00A477FF /* DataSourceDelegate.swift */,
 				246F3AC21FAC879C00A477FF /* DataSourceSection.swift */,
 				246F3AC41FAC879C00A477FF /* DataSourceSectionDelegate.swift */,
+				24BF7B681FF673BF0013BA23 /* FetchedResultsControllerDataSource.swift */,
+				24BF7B6C1FF6741E0013BA23 /* FetchedResultsControllerDataSourceSection.swift */,
+				24BF7B6A1FF674100013BA23 /* FetchedResultsControllerSource.swift */,
 			);
 			path = DataSource;
 			sourceTree = "<group>";
@@ -1236,6 +1249,8 @@
 				24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */,
 				243CC2BD1FDF0A7F00FE7376 /* CDSortable.swift */,
 				24D360C61FAA5AFE00BBBAED /* CDUpdatable.swift */,
+				24BF7B661FF673650013BA23 /* FetchedResultsControllerDelegate.swift */,
+				24BF7B641FF661AF0013BA23 /* FetchedResultsControllerDelegateHelper.swift */,
 				24D360C91FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift */,
 				24D360D21FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift */,
 				24FD785F1FBF4D330072F860 /* NSPersistentHistoryToken+Utils.swift */,
@@ -1951,6 +1966,7 @@
 				24D729451FC74B600097777F /* PersonNameComponents+Formatting.swift in Sources */,
 				245B6ADE1FCB381B00302CD0 /* OrganizationListViewModel.swift in Sources */,
 				245B6ADA1FCB351F00302CD0 /* OrganizationListController.swift in Sources */,
+				24BF7B691FF673BF0013BA23 /* FetchedResultsControllerDataSource.swift in Sources */,
 				24FE8A121FB7B0D100A4A3C6 /* RangeIterator.swift in Sources */,
 				2432ABB91FE98D2900346226 /* AnnouncementListViewModel.swift in Sources */,
 				243CC2C21FDF2ED900FE7376 /* UIAlertController+Utils.swift in Sources */,
@@ -1961,6 +1977,7 @@
 				24CFB5D71FB24F4D00F30DEA /* Routes.swift in Sources */,
 				243817AC1FC88B18004052D0 /* GroupedTextField.swift in Sources */,
 				24D360DE1FAA5D3800BBBAED /* String+Utils.swift in Sources */,
+				24BF7B6B1FF674100013BA23 /* FetchedResultsControllerSource.swift in Sources */,
 				241FD9651FA8FFAD00FBD750 /* UINavigationBar+Utils.swift in Sources */,
 				2448D4A61FA8E07E00DAB97E /* ApiRoutes.swift in Sources */,
 				249DD6DE1FC8A3D4006DA46E /* User+StudIp.swift in Sources */,
@@ -1973,6 +1990,7 @@
 				24D2DA201FD04431006FC700 /* StoreViewModel.swift in Sources */,
 				24D2DA1E1FD03B98006FC700 /* StoreService.swift in Sources */,
 				24830AA91FD9F324006A1927 /* UITableViewCell+Utils.swift in Sources */,
+				24BF7B6D1FF6741E0013BA23 /* FetchedResultsControllerDataSourceSection.swift in Sources */,
 				2469EF681FCE1D1C008A122B /* CacheService.swift in Sources */,
 				244EB5F21FEFDD7F006BE633 /* SettingsViewModel.swift in Sources */,
 				24D3610A1FAA5E2300BBBAED /* SemesterState.swift in Sources */,
@@ -1982,6 +2000,7 @@
 				24D360CE1FAA5AFE00BBBAED /* CDConvertible.swift in Sources */,
 				243817A81FC88A4C004052D0 /* BorderlessNavigationController.swift in Sources */,
 				2448D48F1FA8DEE800DAB97E /* FileManager+Utils.swift in Sources */,
+				24BF7B651FF661AF0013BA23 /* FetchedResultsControllerDelegateHelper.swift in Sources */,
 				242B035F1FD7220800863B08 /* UIFont+Mutations.swift in Sources */,
 				24D360CC1FAA5AFE00BBBAED /* CDIdentifiable.swift in Sources */,
 				24A6C14B1FD75A0A004BBEA5 /* StudKit.xcdatamodeld in Sources */,
@@ -1998,6 +2017,7 @@
 				24D9EF561FB7559C006776B7 /* SemesterListViewModel.swift in Sources */,
 				2422660B1FE3D62500FA7CA6 /* AnnouncementResponse.swift in Sources */,
 				245B6AE11FCB39BF00302CD0 /* OrganizationRecord.swift in Sources */,
+				24BF7B671FF673650013BA23 /* FetchedResultsControllerDelegate.swift in Sources */,
 				24D360F61FAA5DE800BBBAED /* File.swift in Sources */,
 				24D361661FAA648B00BBBAED /* SignInViewModel.swift in Sources */,
 				24E4B9A41FF25E8C0061983C /* Constants.swift in Sources */,
