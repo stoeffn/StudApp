@@ -8,37 +8,37 @@
 
 extension Date {
     /// The amount of years from another date.
-    func years(from date: Date) -> Int {
+    func years(since date: Date) -> Int {
         return Calendar.current.dateComponents([.year], from: date, to: self).year ?? 0
     }
 
     /// The amount of months from another date.
-    func months(from date: Date) -> Int {
+    func months(since date: Date) -> Int {
         return Calendar.current.dateComponents([.month], from: date, to: self).month ?? 0
     }
 
     /// The amount of weeks from another date.
-    func weeks(from date: Date) -> Int {
+    func weeks(since date: Date) -> Int {
         return Calendar.current.dateComponents([.weekOfYear], from: date, to: self).weekOfYear ?? 0
     }
 
     /// The amount of days from another date.
-    func days(from date: Date) -> Int {
+    func days(since date: Date) -> Int {
         return Calendar.current.dateComponents([.day], from: date, to: self).day ?? 0
     }
 
     /// The amount of hours from another date.
-    func hours(from date: Date) -> Int {
+    func hours(since date: Date) -> Int {
         return Calendar.current.dateComponents([.hour], from: date, to: self).hour ?? 0
     }
 
     /// The amount of minutes from another date.
-    func minutes(from date: Date) -> Int {
+    func minutes(since date: Date) -> Int {
         return Calendar.current.dateComponents([.minute], from: date, to: self).minute ?? 0
     }
 
     /// The amount of seconds from another date.
-    func seconds(from date: Date) -> Int {
+    func seconds(since date: Date) -> Int {
         return Calendar.current.dateComponents([.second], from: date, to: self).second ?? 0
     }
 }
@@ -102,7 +102,7 @@ public extension Date {
     ///
     /// - returns: "yesterday", "today", and "tomorrow", the weekdays for the next week, or defaults to a long date
     func formatted(asRelativeDateFrom date: Date) -> String {
-        switch days(from: date) {
+        switch days(since: date) {
         case -1: return "Yesterday".localized
         case 0: return "Today".localized
         case 1: return "Tomorrow".localized

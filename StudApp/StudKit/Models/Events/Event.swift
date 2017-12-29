@@ -49,6 +49,6 @@ public final class Event: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdata
 
 extension Event {
     @objc var daysSince1970: Int {
-        return startsAt.days(from: Date(timeIntervalSince1970: 0))
+        return startsAt.days(since: Date(timeIntervalSince1970: 0))
     }
 }

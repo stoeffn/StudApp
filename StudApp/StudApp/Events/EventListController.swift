@@ -36,6 +36,8 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
             tableView.scrollToRow(at: nowIndexPath, at: .top, animated: true)
         }
 
+        updateDateTabBar()
+
         viewModel.update()
     }
 
@@ -45,6 +47,8 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         if let nowIndexPath = viewModel.nowIndexPath {
             tableView.scrollToRow(at: nowIndexPath, at: .top, animated: true)
         }
+
+        updateDateTabBarSelection()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -96,6 +100,17 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
     @IBOutlet var dateTabBar: DateTabBar!
 
+    private func updateDateTabBar() {
+        dateTabBar.startsAt = viewModel[sectionAt: 0]
+        dateTabBar.endsAt = viewModel[sectionAt: viewModel.numberOfSections - 1]
+        dateTabBar.reloadData()
+    }
+
+    private func updateDateTabBarSelection() {
+        guard let indexPath = tableView.topMostIndexPath else { return }
+        dateTabBar.selectedDate = viewModel[sectionAt: indexPath.section]
+    }
+
     // MARK: - Table View Data Source
 
     override func numberOfSections(in _: UITableView) -> Int {
@@ -120,5 +135,23 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: DateHeader.typeIdentifier)
         (header as? DateHeader)?.date = viewModel[sectionAt: section]
         return header
+    }
+
+    // MARK: - Scroll View Delegate
+
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        updateDateTabBarSelection()
+    }
+
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        //dayTabBarUpdatesContinuously = true
+    }
+
+    // MARK: - Reacting to Data Changes
+
+    func dataDidChange<Source>(in _: Source) {
+        tableView.endUpdates()
+        updateDateTabBar()
+        updateDateTabBarSelection()
     }
 }

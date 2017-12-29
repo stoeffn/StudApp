@@ -26,7 +26,26 @@ public final class DateTabBar: UIView {
 
     public var endsAt: Date = Calendar.current.date(byAdding: .day, value: 7, to: Date()) ?? Date()
 
-    public var selectedDate: Date = Date()
+    public var selectedDate: Date? {
+        get {
+            guard
+                let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first,
+                let selectedCell = collectionView.cellForItem(at: selectedIndexPath) as? DateTabBarCell
+            else { return nil }
+            return selectedCell.date
+        }
+        set {
+            guard newValue != selectedDate else { return }
+            guard let newValue = newValue, newValue.days(since: startsAt) <= endsAt.days(since: startsAt) else {
+                if let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first {
+                    collectionView.deselectItem(at: selectedIndexPath, animated: true)
+                }
+                return
+            }
+            let indexPath = IndexPath(row: max(newValue.days(since: startsAt), 0), section: 0)
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+        }
+    }
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -64,7 +83,7 @@ extension DateTabBar: UICollectionViewDataSource {
     }
 
     public func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-        return endsAt.days(from: startsAt)
+        return endsAt.days(since: startsAt)
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
