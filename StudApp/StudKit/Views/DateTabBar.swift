@@ -36,13 +36,14 @@ public final class DateTabBar: UIView {
         }
         set {
             guard newValue != selectedDate else { return }
-            guard let newValue = newValue, newValue.days(since: startsAt) <= endsAt.days(since: startsAt) else {
+            let index = newValue?.days(since: startsAt) ?? 0
+            guard index >= 0 && index < collectionView.numberOfItems(inSection: 0) else {
                 if let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first {
                     collectionView.deselectItem(at: selectedIndexPath, animated: true)
                 }
                 return
             }
-            let indexPath = IndexPath(row: max(newValue.days(since: startsAt), 0), section: 0)
+            let indexPath = IndexPath(row: index, section: 0)
             collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         }
     }

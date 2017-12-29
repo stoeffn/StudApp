@@ -103,20 +103,21 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
     // MARK: - User Interface
 
-    @IBOutlet weak var dateTabBarContainer: UIView!
+    @IBOutlet var dateTabBarContainer: UIView!
 
     @IBOutlet weak var dateTabBar: DateTabBar!
 
     private func updateDateTabBar() {
-        dateTabBar?.startsAt = viewModel[sectionAt: 0]
-        dateTabBar?.endsAt = viewModel[sectionAt: viewModel.numberOfSections - 1]
-        dateTabBar?.reloadData()
+        guard dateTabBar != nil, viewModel.numberOfSections > 0 else { return }
+        dateTabBar.startsAt = viewModel[sectionAt: 0].startOfDay
+        dateTabBar.endsAt = viewModel[sectionAt: viewModel.numberOfSections - 1].startOfDay
+        dateTabBar.reloadData()
         updateDateTabBarSelection()
     }
 
     private func updateDateTabBarSelection() {
         guard let indexPath = tableView.topMostIndexPath else { return }
-        dateTabBar?.selectedDate = viewModel[sectionAt: indexPath.section]
+        dateTabBar.selectedDate = viewModel[sectionAt: indexPath.section]
     }
 
     // MARK: - Table View Data Source
