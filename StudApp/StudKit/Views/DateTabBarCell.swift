@@ -94,7 +94,7 @@ final class DateTabBarCell: UICollectionViewCell {
     }
 
     var date: Date? {
-        didSet { updateAppearance() }
+        didSet { updateAppearance(animated: false) }
     }
 
     private var selectedBackgroundCircleTransform: CGAffineTransform {
