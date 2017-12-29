@@ -36,9 +36,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
             tableView.scrollToRow(at: nowIndexPath, at: .top, animated: true)
         }
 
-        dateTabBar.isDateEnabled = viewModel.contains
-        dateTabBar.didSelectDate = didSelect
-        updateDateTabBar()
+        reloadDateTabBar()
 
         viewModel.update()
     }
@@ -107,12 +105,13 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
     @IBOutlet weak var dateTabBar: DateTabBar!
 
-    private func updateDateTabBar() {
+    private func reloadDateTabBar() {
         guard dateTabBar != nil, viewModel.numberOfSections > 0 else { return }
+        dateTabBar.isDateEnabled = viewModel.contains
+        dateTabBar.didSelectDate = didSelect
         dateTabBar.startsAt = viewModel[sectionAt: 0]
         dateTabBar.endsAt = viewModel[sectionAt: viewModel.numberOfSections - 1]
         dateTabBar.reloadData()
-        updateDateTabBarSelection()
     }
 
     private func updateDateTabBarSelection() {
@@ -163,7 +162,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
     func dataDidChange<Source>(in _: Source) {
         tableView.endUpdates()
-        updateDateTabBar()
+        reloadDateTabBar()
         updateDateTabBarSelection()
     }
 }
