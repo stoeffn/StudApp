@@ -78,7 +78,7 @@ final class SemesterHeader: UITableViewHeaderFooterView {
     }
 
     private func setGlyphRotation(isCollapsed: Bool, animated: Bool = true) {
-        let duration = animated ? 0.3 : 0
+        let duration = animated ? UI.defaultAnimationDuration : 0
         let animator = UIViewPropertyAnimator(duration: duration, curve: .easeInOut) {
             self.glyphImageView.transform = CGAffineTransform(rotationAngle: isCollapsed ? 0 : .pi / 2)
         }

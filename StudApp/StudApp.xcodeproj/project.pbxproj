@@ -51,6 +51,8 @@
 		243CC3131FE0495300FE7376 /* Store.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 243CC3121FE0495300FE7376 /* Store.storyboard */; };
 		2446F9741FC8D16900D6AB6C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		2446F9751FC8D1C400D6AB6C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
+		2447FB631FF68D8B000EA6BE /* DateTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447FB621FF68D8B000EA6BE /* DateTabBar.swift */; };
+		2447FB651FF69272000EA6BE /* DateTabBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447FB641FF69272000EA6BE /* DateTabBarCell.swift */; };
 		2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */; };
 		2448D4141FA8DA2400DAB97E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2448D4131FA8DA2400DAB97E /* Assets.xcassets */; };
 		2448D4221FA8DA2400DAB97E /* StudAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4211FA8DA2400DAB97E /* StudAppTests.swift */; };
@@ -397,6 +399,8 @@
 		243CC3101FE0491B00FE7376 /* StoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreController.swift; sourceTree = "<group>"; };
 		243CC3121FE0495300FE7376 /* Store.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Store.storyboard; sourceTree = "<group>"; };
 		2446F9731FC8D16900D6AB6C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		2447FB621FF68D8B000EA6BE /* DateTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTabBar.swift; sourceTree = "<group>"; };
+		2447FB641FF69272000EA6BE /* DateTabBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTabBarCell.swift; sourceTree = "<group>"; };
 		2448D4091FA8DA2400DAB97E /* StudApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2448D4131FA8DA2400DAB97E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1477,11 +1481,13 @@
 		24E626721FA9203E0040F9F7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				24BF7B621FF325470013BA23 /* BadgeLabel.swift */,
+				2447FB621FF68D8B000EA6BE /* DateTabBar.swift */,
+				2447FB641FF69272000EA6BE /* DateTabBarCell.swift */,
 				241FD9661FA9022400FBD750 /* FilledButton.swift */,
 				241FD9681FA9087900FBD750 /* GroupedTextField.swift */,
 				24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */,
 				24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */,
-				24BF7B621FF325470013BA23 /* BadgeLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2089,6 +2095,7 @@
 				245B6AE11FCB39BF00302CD0 /* OrganizationRecord.swift in Sources */,
 				24BF7B671FF673650013BA23 /* FetchedResultsControllerDelegate.swift in Sources */,
 				24D360F61FAA5DE800BBBAED /* File.swift in Sources */,
+				2447FB651FF69272000EA6BE /* DateTabBarCell.swift in Sources */,
 				24D361661FAA648B00BBBAED /* SignInViewModel.swift in Sources */,
 				24E4B9A41FF25E8C0061983C /* Constants.swift in Sources */,
 				24D360E81FAA5D7600BBBAED /* Course.swift in Sources */,
@@ -2107,6 +2114,7 @@
 				24D361151FAA5F0E00BBBAED /* CollectionResponse.swift in Sources */,
 				242266081FE3D45F00FA7CA6 /* Announcement.swift in Sources */,
 				24E4B9A61FF260240061983C /* ObjectIdentifier.swift in Sources */,
+				2447FB631FF68D8B000EA6BE /* DateTabBar.swift in Sources */,
 				243817A71FC88A49004052D0 /* SignInController.swift in Sources */,
 				24D360ED1FAA5DC500BBBAED /* Transforms.swift in Sources */,
 				24E4B9A81FF284830061983C /* BaseDirectories.swift in Sources */,

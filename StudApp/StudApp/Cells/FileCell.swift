@@ -89,7 +89,7 @@ final class FileCell: UITableViewCell {
     }
 
     private func updateAvailability(_: Notification? = nil) {
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: UI.defaultAnimationDuration) {
             self.contentView.alpha = self.file.isAvailable ? 1 : 0.6
         }
     }
