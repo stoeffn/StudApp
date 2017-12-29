@@ -56,8 +56,8 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         }
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
 
         let navigationController = splitViewController?.detailNavigationController as? BorderlessNavigationController
         navigationController?.toolBarView = nil
@@ -108,15 +108,15 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     @IBOutlet weak var dateTabBar: DateTabBar!
 
     private func updateDateTabBar() {
-        dateTabBar.startsAt = viewModel[sectionAt: 0]
-        dateTabBar.endsAt = viewModel[sectionAt: viewModel.numberOfSections - 1]
-        dateTabBar.reloadData()
+        dateTabBar?.startsAt = viewModel[sectionAt: 0]
+        dateTabBar?.endsAt = viewModel[sectionAt: viewModel.numberOfSections - 1]
+        dateTabBar?.reloadData()
         updateDateTabBarSelection()
     }
 
     private func updateDateTabBarSelection() {
         guard let indexPath = tableView.topMostIndexPath else { return }
-        dateTabBar.selectedDate = viewModel[sectionAt: indexPath.section]
+        dateTabBar?.selectedDate = viewModel[sectionAt: indexPath.section]
     }
 
     // MARK: - Table View Data Source
