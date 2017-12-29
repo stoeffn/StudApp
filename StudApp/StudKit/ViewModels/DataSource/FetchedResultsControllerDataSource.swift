@@ -11,9 +11,7 @@ import CoreData
 protocol FetchedResultsControllerDataSource: FetchedResultsControllerSource, DataSource, FetchedResultsControllerDelegate {
     var delegate: DataSourceDelegate? { get }
 
-    func section(from sectionInfo: NSFetchedResultsSectionInfo) -> Section
-
-    func sectionInfo(from section: Section) -> NSFetchedResultsSectionInfo
+    func section(from sectionInfo: NSFetchedResultsSectionInfo) -> Section?
 }
 
 extension FetchedResultsControllerDataSource {
@@ -60,5 +58,39 @@ extension FetchedResultsControllerDataSource {
 
     public func controllerDidChangeContent() {
         delegate?.dataDidChange(in: self)
+    }
+}
+
+extension FetchedResultsControllerDataSource {
+    public var numberOfSections: Int {
+        return controller.sections?.count ?? 0
+    }
+
+    public func numberOfRows(inSection index: Int) -> Int {
+        return controller.sections?[index].numberOfObjects ?? 0
+    }
+
+    public subscript(sectionAt index: Int) -> Section {
+        guard
+            let sectionInfo = controller.sections?[index],
+            let section = section(from: sectionInfo)
+        else { fatalError() }
+        return section
+    }
+
+    public subscript(rowAt indexPath: IndexPath) -> Row {
+        return row(from: controller.object(at: indexPath))
+    }
+
+    public func indexPath(for row: Row) -> IndexPath? {
+        return controller.indexPath(forObject: object(from: row))
+    }
+
+    public var sectionIndexTitles: [String]? {
+        return controller.sectionIndexTitles
+    }
+
+    public func section(forSectionIndexTitle title: String, at index: Int) -> Int {
+        return controller.section(forSectionIndexTitle: title, at: index)
     }
 }
