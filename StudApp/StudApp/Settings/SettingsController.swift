@@ -86,13 +86,13 @@ final class SettingsController: UITableViewController, Routable {
         let confirmation = UIAlertController(confirmationWithAction: removeAllDownloadsCell.textLabel?.text,
                                              sourceView: removeAllDownloadsCell) { _ in
             try? self.viewModel.removeAllDownloads()
-            self.removeAllDownloadsCell.detailTextLabel?.text = self.viewModel.sizeOfDownloadsDirectory?.formattedAsByteCount ?? "—"
+            let downloadsSizeText = self.viewModel.sizeOfDownloadsDirectory?.formattedAsByteCount ?? "—"
+            self.removeAllDownloadsCell.detailTextLabel?.text = downloadsSizeText
         }
         present(confirmation, animated: true, completion: nil)
     }
 
     private func signOut() {
-        let confirmationTitle = "Really Sign Out?".localized
         let confirmation = UIAlertController(confirmationWithAction: signOutCell.textLabel?.text,
                                              sourceView: signOutCell) { _ in
             self.viewModel.signOut()

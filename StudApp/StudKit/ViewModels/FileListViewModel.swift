@@ -12,8 +12,12 @@ import CoreData
 ///
 /// In order to display initial data, you must call `fetch()`. Changes in the view context are automatically propagated to
 /// `delegate`. This class also supports updating data from the server.
-public final class FileListViewModel: NSObject {
+public final class FileListViewModel: FetchedResultsControllerDataSourceSection {
+    public typealias Row = File
+
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
+
+    lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
 
     public let course: Course
 
@@ -25,27 +29,28 @@ public final class FileListViewModel: NSObject {
     public init(course: Course) {
         self.course = course
         folder = nil
-        super.init()
 
-        controller.delegate = self
+        controller.delegate = fetchedResultControllerDelegateHelper
     }
 
     /// Creates a new file list view model for the given folder's contents.
     public init(folder: File) {
         course = folder.course
         self.folder = folder
-        super.init()
 
-        controller.delegate = self
+        controller.delegate = fetchedResultControllerDelegateHelper
     }
 
-    private(set) lazy var controller: NSFetchedResultsController<FileState>
-        = NSFetchedResultsController(fetchRequest: folder?.childrenFetchRequest ?? course.rootFilesFetchRequest,
-                                     managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+    private(set) lazy var controller: NSFetchedResultsController<FileState> = NSFetchedResultsController(
+        fetchRequest: folder?.childrenFetchRequest ?? course.rootFilesFetchRequest,
+        managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
 
-    /// Fetches initial data.
-    public func fetch() {
-        try? controller.performFetch()
+    func row(from object: FileState) -> File {
+        return object.file
+    }
+
+    func object(from row: File) -> FileState {
+        return row.state
     }
 
     /// Updates data from the server. Please note that this method not only updates one folder but the course's whole file tree.
@@ -61,54 +66,5 @@ public final class FileListViewModel: NSObject {
 
     public var title: String {
         return folder?.title ?? course.title
-    }
-
-    public func index(for file: File) -> Int? {
-        return controller.indexPath(forObject: file.state)?.row
-    }
-}
-
-// MARK: - Data Source Section
-
-extension FileListViewModel: DataSourceSection {
-    public typealias Row = File
-
-    public var numberOfRows: Int {
-        return controller.sections?.first?.numberOfObjects ?? 0
-    }
-
-    public subscript(rowAt index: Int) -> File {
-        return controller.object(at: IndexPath(row: index, section: 0)).file
-    }
-}
-
-// MARK: - Fetched Results Controller Delegate
-
-extension FileListViewModel: NSFetchedResultsControllerDelegate {
-    public func controllerWillChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
-        delegate?.dataWillChange(in: self)
-    }
-
-    public func controllerDidChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
-        delegate?.dataDidChange(in: self)
-    }
-
-    public func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange object: Any,
-                           at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        guard let state = object as? FileState else { fatalError() }
-        switch type {
-        case .insert:
-            guard let indexPath = newIndexPath else { return }
-            delegate?.data(changedIn: state.file, at: indexPath.row, change: .insert, in: self)
-        case .delete:
-            guard let indexPath = indexPath else { return }
-            delegate?.data(changedIn: state.file, at: indexPath.row, change: .delete, in: self)
-        case .update:
-            guard let indexPath = indexPath else { return }
-            delegate?.data(changedIn: state.file, at: indexPath.row, change: .update(state.file), in: self)
-        case .move:
-            guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
-            delegate?.data(changedIn: state.file, at: indexPath.row, change: .move(to: newIndexPath.row), in: self)
-        }
     }
 }

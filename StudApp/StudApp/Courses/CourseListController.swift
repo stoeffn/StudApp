@@ -165,8 +165,10 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     func data<Section: DataSourceSection>(changedInCourse course: Course, at index: Int, change: DataChange<Course, Int>,
                                           in section: Section) {
-        guard let courseListViewModel = section as? CourseListViewModel,
-            let sectionIndex = courseListViewModels.index(of: courseListViewModel) else { return }
+        guard
+            let courseListViewModel = section as? CourseListViewModel,
+            let sectionIndex = courseListViewModels.index(of: courseListViewModel)
+        else { return }
         let indexPath = IndexPath(row: index, section: sectionIndex)
         let cell = tableView.cellForRow(at: indexPath) as? CourseCell
 

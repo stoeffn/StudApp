@@ -86,7 +86,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: CourseHeader.typeIdentifier)
-        (header as? CourseHeader)?.course = viewModel[rowAt: IndexPath(row: 0, section: section)].course
+        (header as? CourseHeader)?.course = viewModel[sectionAt: section]
         return header
     }
 

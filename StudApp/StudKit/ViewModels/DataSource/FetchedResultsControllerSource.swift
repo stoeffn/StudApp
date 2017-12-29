@@ -23,12 +23,12 @@ protocol FetchedResultsControllerSource {
 }
 
 extension FetchedResultsControllerSource {
-    func transformObjectToRow(_ object: Object) -> Row {
+    func row(from object: Object) -> Row {
         guard let row = object as? Row else { fatalError() }
         return row
     }
 
-    func transformRowToObject(_ row: Row) -> Object {
+    func object(from row: Row) -> Object {
         guard let object = row as? Object else { fatalError() }
         return object
     }

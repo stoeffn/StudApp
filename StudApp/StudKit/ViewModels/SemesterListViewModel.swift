@@ -12,10 +12,12 @@ import CoreData
 ///
 /// In order to display initial data, you must call `fetch()`. Changes in the view context are automatically propagated to
 /// `delegate`. This class also supports updating data from the server.
-public final class SemesterListViewModel: NSObject {
+public final class SemesterListViewModel: FetchedResultsControllerDataSourceSection {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]
     private var fetchRequest: NSFetchRequest<SemesterState>
+
+    lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
 
     public weak var delegate: DataSourceSectionDelegate?
 
@@ -23,14 +25,20 @@ public final class SemesterListViewModel: NSObject {
     /// semesters.
     public init(fetchRequest: NSFetchRequest<SemesterState> = Semester.sortedFetchRequest) {
         self.fetchRequest = fetchRequest
-        super.init()
 
-        controller.delegate = self
+        controller.delegate = fetchedResultControllerDelegateHelper
     }
 
-    private(set) lazy var controller: NSFetchedResultsController<SemesterState>
-        = NSFetchedResultsController(fetchRequest: self.fetchRequest, managedObjectContext: coreDataService.viewContext,
-                                     sectionNameKeyPath: nil, cacheName: nil)
+    private(set) lazy var controller: NSFetchedResultsController<SemesterState> = NSFetchedResultsController(
+        fetchRequest: fetchRequest, managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+
+    func row(from object: SemesterState) -> Semester {
+        return object.semester
+    }
+
+    func object(from row: Semester) -> SemesterState {
+        return row.state
+    }
 
     /// Fetches initial data.
     public func fetch() {
@@ -45,51 +53,6 @@ public final class SemesterListViewModel: NSObject {
                 try? self.coreDataService.viewContext.saveWhenChanged()
                 handler?(result.replacingValue(()))
             }
-        }
-    }
-}
-
-// MARK: - Data Source Section
-
-extension SemesterListViewModel: DataSourceSection {
-    public typealias Row = Semester
-
-    public var numberOfRows: Int {
-        return controller.sections?.first?.numberOfObjects ?? 0
-    }
-
-    public subscript(rowAt index: Int) -> Semester {
-        return controller.object(at: IndexPath(row: index, section: 0)).semester
-    }
-}
-
-// MARK: - Fetched Results Controller Delegate
-
-extension SemesterListViewModel: NSFetchedResultsControllerDelegate {
-    public func controllerWillChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
-        delegate?.dataWillChange(in: self)
-    }
-
-    public func controllerDidChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
-        delegate?.dataDidChange(in: self)
-    }
-
-    public func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange object: Any, at indexPath: IndexPath?,
-                           for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        guard let state = object as? SemesterState else { fatalError() }
-        switch type {
-        case .insert:
-            guard let indexPath = newIndexPath else { return }
-            delegate?.data(changedIn: state.semester, at: indexPath.row, change: .insert, in: self)
-        case .delete:
-            guard let indexPath = indexPath else { return }
-            delegate?.data(changedIn: state.semester, at: indexPath.row, change: .delete, in: self)
-        case .update:
-            guard let indexPath = indexPath else { return }
-            delegate?.data(changedIn: state.semester, at: indexPath.row, change: .update(state.semester), in: self)
-        case .move:
-            guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
-            delegate?.data(changedIn: state.semester, at: indexPath.row, change: .move(to: newIndexPath.row), in: self)
         }
     }
 }
