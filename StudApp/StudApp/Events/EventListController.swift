@@ -24,12 +24,6 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
         tableView.register(DateHeader.self, forHeaderFooterViewReuseIdentifier: DateHeader.typeIdentifier)
         tableView.tableHeaderView = nil
-
-        dateTabBar.isDateEnabled = viewModel.contains
-        dateTabBar.didSelectDate = { date in
-            guard let sectionIndex = self.viewModel.sectionIndex(for: date) else { return }
-            self.tableView.scrollToRow(at: IndexPath(row: 0, section: sectionIndex), at: .top, animated: true)
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -42,6 +36,8 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
             tableView.scrollToRow(at: nowIndexPath, at: .top, animated: true)
         }
 
+        dateTabBar.isDateEnabled = viewModel.contains
+        dateTabBar.didSelectDate = didSelect
         updateDateTabBar()
 
         viewModel.update()
@@ -113,8 +109,8 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
     private func updateDateTabBar() {
         guard dateTabBar != nil, viewModel.numberOfSections > 0 else { return }
-        dateTabBar.startsAt = viewModel[sectionAt: 0].startOfDay
-        dateTabBar.endsAt = viewModel[sectionAt: viewModel.numberOfSections - 1].startOfDay
+        dateTabBar.startsAt = viewModel[sectionAt: 0]
+        dateTabBar.endsAt = viewModel[sectionAt: viewModel.numberOfSections - 1]
         dateTabBar.reloadData()
         updateDateTabBarSelection()
     }
@@ -122,6 +118,13 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     private func updateDateTabBarSelection() {
         guard let indexPath = tableView.topMostIndexPath else { return }
         dateTabBar.selectedDate = viewModel[sectionAt: indexPath.section]
+    }
+
+    // MARK: - User Interaction
+
+    private func didSelect(date: Date) {
+        guard let sectionIndex = self.viewModel.sectionIndex(for: date) else { return }
+        tableView.scrollToRow(at: IndexPath(row: 0, section: sectionIndex), at: .top, animated: true)
     }
 
     // MARK: - Table View Data Source
