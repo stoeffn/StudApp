@@ -53,8 +53,6 @@ final class DateTabBarCell: UICollectionViewCell {
     }()
 
     private func initUserInterface() {
-        widthAnchor.constraint(equalTo: heightAnchor, multiplier: 0.75).isActive = true
-
         initSelectedBackground()
         initLabels()
 
@@ -64,18 +62,18 @@ final class DateTabBarCell: UICollectionViewCell {
     private func initLabels() {
         addSubview(weekdayLabel)
         weekdayLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        weekdayLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -18).isActive = true
+        weekdayLabel.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
 
         addSubview(dateLabel)
         dateLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        dateLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 10).isActive = true
+        dateLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 8).isActive = true
     }
 
     private func initSelectedBackground() {
         addSubview(selectedBackgroundViewCircle)
         selectedBackgroundViewCircle.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        selectedBackgroundViewCircle.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 10).isActive = true
-        selectedBackgroundViewCircle.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5).isActive = true
+        selectedBackgroundViewCircle.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 8).isActive = true
+        selectedBackgroundViewCircle.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.7).isActive = true
         selectedBackgroundViewCircle.widthAnchor.constraint(equalTo: selectedBackgroundViewCircle.heightAnchor).isActive = true
     }
 
