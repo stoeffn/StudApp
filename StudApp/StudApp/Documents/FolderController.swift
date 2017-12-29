@@ -105,28 +105,8 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
             !cell.file.isFolder
         else { return }
 
-        downloadOrPreview(cell.file)
+        PreviewController.downloadOrPreview(cell.file, in: self)
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-
-    // MARK: - User Interface
-
-    private func downloadOrPreview(_ file: File) {
-        guard file.state.isMostRecentVersionDownloaded else {
-            file.download { result in
-                guard result.isFailure else { return }
-
-                let error = result.error?.localizedDescription ?? "Something went wrong downloading this document".localized
-                let alert = UIAlertController(title: error, message: nil, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
-            return
-        }
-
-        let previewController = PreviewController()
-        previewController.prepareDependencies(for: .preview(file, self))
-        present(previewController, animated: true, completion: nil)
     }
 
     // MARK: - User Interaction
