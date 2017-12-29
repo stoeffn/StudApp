@@ -56,7 +56,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14A-k0-KOd">
-                                    <rect key="frame" x="135" y="219.5" width="50" height="32"/>
+                                    <rect key="frame" x="135" y="218.5" width="50" height="32"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <state key="normal" title="Reload"/>
                                     <connections>
@@ -882,10 +882,10 @@ Gebäude 3703: Technische Informatik</string>
             </objects>
             <point key="canvasLocation" x="-554" y="132"/>
         </scene>
-        <!--Events-->
+        <!--EventList-->
         <scene sceneID="Mjx-uJ-OZv">
             <objects>
-                <viewControllerPlaceholder storyboardName="Events" id="LFZ-w3-fcw" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Events" referencedIdentifier="EventList" id="LFZ-w3-fcw" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FI5-O0-2Vu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2414" y="116"/>
