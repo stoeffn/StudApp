@@ -63,7 +63,7 @@ final class MainController: UITabBarController {
     // MARK: - User Interface
 
     private enum Tabs: Int {
-        case downloadList, courseList
+        case courseList, downloadList
     }
 
     var downloadListController: DownloadListController? {
