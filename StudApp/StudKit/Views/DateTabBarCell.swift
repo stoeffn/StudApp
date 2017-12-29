@@ -21,7 +21,7 @@ final class DateTabBarCell: UICollectionViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        selectedBackgroundViewCircle.layer.cornerRadius = selectedBackgroundViewCircle.bounds.size.width / 2
+        selectedBackgroundViewCircle.layer.cornerRadius = selectedBackgroundViewCircle.bounds.width / 2
     }
 
     // MARK: - User Interface

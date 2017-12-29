@@ -49,7 +49,7 @@ class BadgeLabel: UILabel {
 
     open override var intrinsicContentSize: CGSize {
         sizeToFit()
-        return CGSize(width: frame.size.width + insets.left + insets.right,
+        return CGSize(width: frame.width + insets.left + insets.right,
                       height: insets.top + font.pointSize + insets.bottom)
     }
 }

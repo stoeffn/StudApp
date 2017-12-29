@@ -87,7 +87,7 @@ public final class BorderlessNavigationController: UINavigationController {
     private var navigationBarBackgroundFrame: CGRect? {
         return navigationBar.subviews
             .map { $0.bounds }
-            .min { $0.size.height > $1.size.height }
+            .min { $0.height > $1.height }
     }
 
     /// Update the navigation bar background views' frames. Needs to be called every time the layout changes.

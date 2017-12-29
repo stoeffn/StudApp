@@ -81,13 +81,12 @@ public final class StudIpActivityIndicatorView: UIView {
     func applyStyles() {
         backgroundColor = .clear
 
-        let width = bounds.size.width
         outerCircle.frame = bounds
         outerCircle.path = UIBezierPath(ovalIn: bounds).cgPath
-        outerCircle.lineWidth = width / 5.7
+        outerCircle.lineWidth = bounds.width / 5.7
         layer.addSublayer(outerCircle)
 
-        innerCircle.path = UIBezierPath(ovalIn: bounds.insetBy(dx: width / 3.5, dy: width / 3.5)).cgPath
+        innerCircle.path = UIBezierPath(ovalIn: bounds.insetBy(dx: bounds.width / 3.5, dy: bounds.width / 3.5)).cgPath
         layer.addSublayer(innerCircle)
     }
 
