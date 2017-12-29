@@ -21,10 +21,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="j9h-FY-E2G" customClass="DateTabBar" customModule="StudKit">
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="cTW-w1-ovj">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j9h-FY-E2G" customClass="DateTabBar" customModule="StudKit">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Pu-He-8n3">
+                                            <rect key="frame" x="0.0" y="63.5" width="375" height="0.5"/>
+                                            <color key="backgroundColor" red="0.69796198606491089" green="0.69808381795883179" blue="0.69795435667037964" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="0.5" id="57Q-w3-x9G"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="4Pu-He-8n3" firstAttribute="leading" secondItem="j9h-FY-E2G" secondAttribute="leading" id="Qvg-Ox-exc"/>
+                                        <constraint firstAttribute="trailing" secondItem="4Pu-He-8n3" secondAttribute="trailing" id="Wii-av-Bca"/>
+                                        <constraint firstAttribute="bottom" secondItem="4Pu-He-8n3" secondAttribute="bottom" id="fbQ-q5-SOj"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="j9h-FY-E2G" secondAttribute="trailing" id="KYX-PI-eiW"/>
+                                <constraint firstAttribute="bottom" secondItem="j9h-FY-E2G" secondAttribute="bottom" id="LrQ-PA-pQr"/>
+                                <constraint firstItem="j9h-FY-E2G" firstAttribute="leading" secondItem="cTW-w1-ovj" secondAttribute="leading" id="dva-nJ-kHo"/>
+                                <constraint firstItem="j9h-FY-E2G" firstAttribute="top" secondItem="cTW-w1-ovj" secondAttribute="top" id="r5q-id-Hjr"/>
+                            </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EventCell" rowHeight="104" id="UCc-jC-NTc" customClass="EventCell" customModule="StudApp" customModuleProvider="target">
@@ -161,6 +187,7 @@ Gebäude 3703: Technische Informatik</string>
                     <navigationItem key="navigationItem" title="Events" id="fF8-aA-dA2"/>
                     <connections>
                         <outlet property="dateTabBar" destination="j9h-FY-E2G" id="2NE-I2-WhG"/>
+                        <outlet property="dateTabBarContainer" destination="cTW-w1-ovj" id="6tw-We-ywq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qP7-tu-KHp" userLabel="First Responder" sceneMemberID="firstResponder"/>

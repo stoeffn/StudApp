@@ -36,7 +36,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         super.viewWillAppear(animated)
 
         let navigationController = splitViewController?.detailNavigationController as? BorderlessNavigationController
-        navigationController?.toolBarView = dateTabBar
+        navigationController?.toolBarView = dateTabBarContainer
 
         if let nowIndexPath = viewModel.nowIndexPath {
             tableView.scrollToRow(at: nowIndexPath, at: .top, animated: true)
@@ -52,9 +52,8 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
         if let nowIndexPath = viewModel.nowIndexPath {
             tableView.scrollToRow(at: nowIndexPath, at: .top, animated: true)
+            updateDateTabBarSelection()
         }
-
-        updateDateTabBarSelection()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -72,7 +71,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
         coordinator.animate(alongsideTransition: { _ in }, completion: { _ in
             let navigationController = self.splitViewController?.detailNavigationController as? BorderlessNavigationController
-            navigationController?.toolBarView = self.dateTabBar
+            navigationController?.toolBarView = self.dateTabBarContainer
         })
     }
 
@@ -104,7 +103,9 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
     // MARK: - User Interface
 
-    @IBOutlet var dateTabBar: DateTabBar!
+    @IBOutlet weak var dateTabBarContainer: UIView!
+
+    @IBOutlet weak var dateTabBar: DateTabBar!
 
     private func updateDateTabBar() {
         dateTabBar.startsAt = viewModel[sectionAt: 0]
