@@ -22,7 +22,7 @@ final class SettingsController: UITableViewController, Routable {
 
         downloadsCell.textLabel?.text = "Downloads".localized
         downloadsCell.detailTextLabel?.text = viewModel.sizeOfDownloadsDirectory?.formattedAsByteCount ?? "—"
-        removeDownloadsCell.textLabel?.text = "Remove All Downloads".localized
+        removeAllDownloadsCell.textLabel?.text = "Remove All Downloads".localized
 
         signOutCell.textLabel?.text = "Sign Out".localized
     }
@@ -56,24 +56,22 @@ final class SettingsController: UITableViewController, Routable {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch tableView.cellForRow(at: indexPath) {
-        case removeDownloadsCell?:
-            try? viewModel.removeAllDownloads()
-            downloadsCell.detailTextLabel?.text = viewModel.sizeOfDownloadsDirectory?.formattedAsByteCount ?? "—"
-            tableView.deselectRow(at: indexPath, animated: true)
+        case removeAllDownloadsCell?:
+            removeAllDownloads()
         case signOutCell?:
-            viewModel.signOut()
-            dismiss(animated: true, completion: nil)
-            presentingViewController?.performSegue(withRoute: .signIn)
+            signOut()
         default:
             break
         }
+
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     // MARK: - User Interface
 
     @IBOutlet weak var downloadsCell: UITableViewCell!
 
-    @IBOutlet weak var removeDownloadsCell: UITableViewCell!
+    @IBOutlet weak var removeAllDownloadsCell: UITableViewCell!
 
     @IBOutlet weak var signOutCell: UITableViewCell!
 
@@ -82,5 +80,25 @@ final class SettingsController: UITableViewController, Routable {
     @IBAction
     func doneButtonTapped(_: Any) {
         dismiss(animated: true, completion: nil)
+    }
+
+    private func removeAllDownloads() {
+        let confirmation = UIAlertController(confirmationWithAction: removeAllDownloadsCell.textLabel?.text,
+                                             sourceView: removeAllDownloadsCell) { _ in
+            try? self.viewModel.removeAllDownloads()
+            self.removeAllDownloadsCell.detailTextLabel?.text = self.viewModel.sizeOfDownloadsDirectory?.formattedAsByteCount ?? "—"
+        }
+        present(confirmation, animated: true, completion: nil)
+    }
+
+    private func signOut() {
+        let confirmationTitle = "Really Sign Out?".localized
+        let confirmation = UIAlertController(confirmationWithAction: signOutCell.textLabel?.text,
+                                             sourceView: signOutCell) { _ in
+            self.viewModel.signOut()
+            self.dismiss(animated: true, completion: nil)
+            self.presentingViewController?.performSegue(withRoute: .signIn)
+        }
+        present(confirmation, animated: true, completion: nil)
     }
 }
