@@ -88,11 +88,15 @@ final class DateTabBarCell: UICollectionViewCell {
     }
 
     var isEnabled: Bool = true {
-        didSet { updateAppearance() }
+        didSet { updateAppearance(animated: false) }
     }
 
     var date: Date? {
-        didSet { updateAppearance(animated: false) }
+        didSet {
+            weekdayLabel.text = date?.formatted(using: .shortWeekday)
+            dateLabel.text = String(date?.component(.day) ?? 0)
+            updateAppearance(animated: false)
+        }
     }
 
     private var selectedBackgroundCircleTransform: CGAffineTransform {
@@ -107,25 +111,28 @@ final class DateTabBarCell: UICollectionViewCell {
     }
 
     private func updateAppearance(animated: Bool = true) {
-        weekdayLabel.text = date?.formatted(using: .shortWeekday)
-        dateLabel.text = String(date?.component(.day) ?? 0)
+        isUserInteractionEnabled = isEnabled
 
         let duration = animated ? UI.defaultAnimationDuration : 0
         let textColor: UIColor = isEnabled ? .black : .lightGray
+        let highlightsCell = isEnabled && (isHighlighted || isSelected)
 
         // Set the color here because the `tintColor` is not set correctly during initialization.
         selectedBackgroundViewCircle.backgroundColor = tintColor
 
         UIView.transition(with: weekdayLabel, duration: duration, options: .transitionCrossDissolve, animations: {
-            self.weekdayLabel.textColor = self.isHighlighted || self.isSelected ? self.tintColor : textColor
+            self.weekdayLabel.textColor = highlightsCell ? self.tintColor : textColor
         }, completion: nil)
+
         UIView.transition(with: dateLabel, duration: duration, options: .transitionCrossDissolve, animations: {
-            self.dateLabel.textColor = self.isHighlighted || self.isSelected ? UIColor.white : textColor
+            self.dateLabel.textColor = highlightsCell ? UIColor.white : textColor
         }, completion: nil)
+
+        let animations = {
+            self.selectedBackgroundViewCircle.alpha = highlightsCell ? 1 : 0
+            self.selectedBackgroundViewCircle.transform = self.selectedBackgroundCircleTransform
+        }
         UIView.animate(withDuration: duration * 1.5, delay: 0, usingSpringWithDamping: 0.75, initialSpringVelocity: 0,
-                       options: [], animations: {
-                           self.selectedBackgroundViewCircle.alpha = self.isHighlighted || self.isSelected ? 1 : 0
-                           self.selectedBackgroundViewCircle.transform = self.selectedBackgroundCircleTransform
-        }, completion: nil)
+                       options: [], animations: animations, completion: nil)
     }
 }

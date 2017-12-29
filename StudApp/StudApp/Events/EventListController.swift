@@ -24,6 +24,8 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
         tableView.register(DateHeader.self, forHeaderFooterViewReuseIdentifier: DateHeader.typeIdentifier)
         tableView.tableHeaderView = nil
+
+        dateTabBar.isDateEnabled = viewModel.contains
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -139,12 +141,12 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
     // MARK: - Scroll View Delegate
 
-    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    override func scrollViewDidEndDecelerating(_: UIScrollView) {
         updateDateTabBarSelection()
     }
 
-    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        //dayTabBarUpdatesContinuously = true
+    override func scrollViewWillBeginDragging(_: UIScrollView) {
+        // dayTabBarUpdatesContinuously = true
     }
 
     // MARK: - Reacting to Data Changes

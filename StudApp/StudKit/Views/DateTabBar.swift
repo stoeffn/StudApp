@@ -73,6 +73,10 @@ public final class DateTabBar: UIView {
     public func reloadData() {
         collectionView.reloadData()
     }
+
+    // MARK: - Delegate
+
+    public var isDateEnabled: ((Date) -> Bool)?
 }
 
 // MARK: - Collection View Data Source
@@ -88,7 +92,10 @@ extension DateTabBar: UICollectionViewDataSource {
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DateTabBarCell.typeIdentifier, for: indexPath)
-        (cell as? DateTabBarCell)?.date = Calendar.current.date(byAdding: .day, value: indexPath.row, to: startsAt)
+        if let date = Calendar.current.date(byAdding: .day, value: indexPath.row, to: startsAt) {
+            (cell as? DateTabBarCell)?.date = date
+            (cell as? DateTabBarCell)?.isEnabled = isDateEnabled?(date) ?? true
+        }
         return cell
     }
 }
