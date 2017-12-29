@@ -23,6 +23,7 @@ final class MainController: UITabBarController {
         super.viewWillAppear(animated)
 
         tabBar.items?[Tabs.downloadList.rawValue].title = "Downloads".localized
+        tabBar.items?[Tabs.eventList.rawValue].title = "Events".localized
         tabBar.items?[Tabs.courseList.rawValue].title = "Courses".localized
 
         viewModel.updateCurrentUser()
@@ -63,7 +64,7 @@ final class MainController: UITabBarController {
     // MARK: - User Interface
 
     private enum Tabs: Int {
-        case courseList, downloadList
+        case courseList, eventList, downloadList
     }
 
     var downloadListController: DownloadListController? {

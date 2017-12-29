@@ -194,10 +194,12 @@ Gebäude 3703: Technische Informatik</string>
             </objects>
             <point key="canvasLocation" x="3479.1999999999998" y="-2.2488755622188905"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Events-->
         <scene sceneID="fNS-qS-1Pu">
             <objects>
                 <navigationController storyboardIdentifier="EventListNavigation" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QhU-F7-a2o" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Events" image="EventsTabBarGlyph" landscapeImage="EventsLandscapeTabBarGlyph" largeContentSizeImage="EventsGlyph" id="BsL-ez-XaG"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aX3-Iw-ACZ">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -211,5 +213,10 @@ Gebäude 3703: Technische Informatik</string>
             <point key="canvasLocation" x="2709" y="-2"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="EventsGlyph" width="512" height="512"/>
+        <image name="EventsLandscapeTabBarGlyph" width="18" height="18"/>
+        <image name="EventsTabBarGlyph" width="25" height="25"/>
+    </resources>
     <color key="tintColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
