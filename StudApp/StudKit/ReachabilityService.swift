@@ -20,16 +20,12 @@ public final class ReachabilityService: ByTypeNameIdentifiable {
             fatalError("Cannot create reachability service because `SCNetworkReachabilityCreateWithName` failed.")
         }
 
-        var context = SCNetworkReachabilityContext(version: 0, info: nil, retain: nil, release: nil, copyDescription: nil)
-        context.info = UnsafeMutableRawPointer(Unmanaged<ReachabilityService>.passUnretained(self).toOpaque())
+        let reference = UnsafeMutableRawPointer(Unmanaged<ReachabilityService>.passUnretained(self).toOpaque())
+        var context = SCNetworkReachabilityContext(version: 0, info: reference, retain: nil, release: nil, copyDescription: nil)
 
         let reachabilityCallback: SCNetworkReachabilityCallBack? = { _, flags, info in
             guard let info = info else { return }
-            let handler = Unmanaged<ReachabilityService>.fromOpaque(info).takeUnretainedValue()
-
-            DispatchQueue.main.async {
-                handler.reachabilityChanged(flags: flags)
-            }
+            Unmanaged<ReachabilityService>.fromOpaque(info).takeUnretainedValue().reachabilityChanged(flags: flags)
         }
 
         if !SCNetworkReachabilitySetCallback(reachability, reachabilityCallback, &context) {
@@ -39,11 +35,9 @@ public final class ReachabilityService: ByTypeNameIdentifiable {
             fatalError("Cannot create reachability service because `SCNetworkReachabilitySetDispatchQueue` failed.")
         }
 
-        DispatchQueue.main.async {
-            var flags = SCNetworkReachabilityFlags()
-            SCNetworkReachabilityGetFlags(reachability, &flags)
-            self.reachabilityChanged(flags: flags)
-        }
+        var flags = SCNetworkReachabilityFlags()
+        SCNetworkReachabilityGetFlags(reachability, &flags)
+        self.reachabilityChanged(flags: flags)
     }
 
     private func reachabilityChanged(flags: SCNetworkReachabilityFlags) {

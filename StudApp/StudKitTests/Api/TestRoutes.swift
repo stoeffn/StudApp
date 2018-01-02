@@ -93,7 +93,7 @@ enum TestRoutes: String, TestableApiRoutes {
                 return TestRoutes.collection0Data
             case "5":
                 if self == .failingCollection {
-                    throw "Failing test route."
+                    throw NSError(domain: "abc", code: 0)
                 }
                 return TestRoutes.collection1Data
             case "10":

@@ -18,7 +18,7 @@ final class ResultTests: XCTestCase {
     }
 
     func testInit_Error_Failure() {
-        let result = Result(42, error: "Error")
+        let result = Result(42, error: NSError(domain: "abc", code: 0))
         XCTAssertNil(result.value)
         XCTAssertFalse(result.isSuccess)
         XCTAssertTrue(result.isFailure)
