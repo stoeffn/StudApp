@@ -48,6 +48,9 @@
 		243CC3131FE0495300FE7376 /* Store.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 243CC3121FE0495300FE7376 /* Store.storyboard */; };
 		2446F9741FC8D16900D6AB6C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		2446F9751FC8D1C400D6AB6C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
+		2447FBCA1FFBA320000EA6BE /* OAuth1Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447FBC71FFBA31E000EA6BE /* OAuth1Routes.swift */; };
+		2447FBCB1FFBA320000EA6BE /* OAuth1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447FBC81FFBA31F000EA6BE /* OAuth1.swift */; };
+		2447FBCC1FFBA320000EA6BE /* OAuth1StudIpRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447FBC91FFBA31F000EA6BE /* OAuth1StudIpRoutes.swift */; };
 		2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */; };
 		2448D4141FA8DA2400DAB97E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2448D4131FA8DA2400DAB97E /* Assets.xcassets */; };
 		2448D4221FA8DA2400DAB97E /* StudAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4211FA8DA2400DAB97E /* StudAppTests.swift */; };
@@ -382,6 +385,10 @@
 		243CC3101FE0491B00FE7376 /* StoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreController.swift; sourceTree = "<group>"; };
 		243CC3121FE0495300FE7376 /* Store.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Store.storyboard; sourceTree = "<group>"; };
 		2446F9731FC8D16900D6AB6C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		2447FBC71FFBA31E000EA6BE /* OAuth1Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth1Routes.swift; sourceTree = "<group>"; };
+		2447FBC81FFBA31F000EA6BE /* OAuth1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth1.swift; sourceTree = "<group>"; };
+		2447FBC91FFBA31F000EA6BE /* OAuth1StudIpRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth1StudIpRoutes.swift; sourceTree = "<group>"; };
+		2447FBCE1FFBA360000EA6BE /* module.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
 		2448D4091FA8DA2400DAB97E /* StudApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2448D4131FA8DA2400DAB97E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -758,9 +765,18 @@
 			path = Store;
 			sourceTree = "<group>";
 		};
+		2447FBCD1FFBA352000EA6BE /* CommonCrypto */ = {
+			isa = PBXGroup;
+			children = (
+				2447FBCE1FFBA360000EA6BE /* module.map */,
+			);
+			path = CommonCrypto;
+			sourceTree = "<group>";
+		};
 		2448D4001FA8DA2400DAB97E = {
 			isa = PBXGroup;
 			children = (
+				2447FBCD1FFBA352000EA6BE /* CommonCrypto */,
 				2448D40B1FA8DA2400DAB97E /* StudApp */,
 				2448D4201FA8DA2400DAB97E /* StudAppTests */,
 				2448D42B1FA8DA2400DAB97E /* StudAppUITests */,
@@ -961,6 +977,8 @@
 				2448D4A31FA8E07E00DAB97E /* Api.swift */,
 				2448D49E1FA8E07E00DAB97E /* ApiRoutes.swift */,
 				2448D4A11FA8E07E00DAB97E /* HttpMethod.swift */,
+				2447FBC81FFBA31F000EA6BE /* OAuth1.swift */,
+				2447FBC71FFBA31E000EA6BE /* OAuth1Routes.swift */,
 				2448D49D1FA8E07E00DAB97E /* Result+Api.swift */,
 			);
 			path = Api;
@@ -1260,6 +1278,7 @@
 				247793641FC891EE00090F4D /* Users */,
 				24D361131FAA5F0E00BBBAED /* CollectionResponse.swift */,
 				24D361141FAA5F0E00BBBAED /* Api+CollectionResponse.swift */,
+				2447FBC91FFBA31F000EA6BE /* OAuth1StudIpRoutes.swift */,
 				24D361101FAA5F0500BBBAED /* StudIpRoutes.swift */,
 				24D3610F1FAA5F0500BBBAED /* StudIpService.swift */,
 				24D360EC1FAA5DC500BBBAED /* Transforms.swift */,
@@ -1971,6 +1990,7 @@
 				24D360DE1FAA5D3800BBBAED /* String+Utils.swift in Sources */,
 				24BF7B6B1FF674100013BA23 /* FetchedResultsControllerSource.swift in Sources */,
 				241FD9651FA8FFAD00FBD750 /* UINavigationBar+Utils.swift in Sources */,
+				2447FBCA1FFBA320000EA6BE /* OAuth1Routes.swift in Sources */,
 				2448D4A61FA8E07E00DAB97E /* ApiRoutes.swift in Sources */,
 				249DD6DE1FC8A3D4006DA46E /* User+StudIp.swift in Sources */,
 				24D360FF1FAA5E0800BBBAED /* User.swift in Sources */,
@@ -2023,6 +2043,7 @@
 				24FD785C1FBF45030072F860 /* Targets+NSPersistentHistory.swift in Sources */,
 				24D361081FAA5E2300BBBAED /* SemesterResponse.swift in Sources */,
 				24D361001FAA5E0800BBBAED /* UserResponse.swift in Sources */,
+				2447FBCB1FFBA320000EA6BE /* OAuth1.swift in Sources */,
 				241C67EA1FCDFAC700F4A099 /* App.swift in Sources */,
 				24D361111FAA5F0500BBBAED /* StudIpService.swift in Sources */,
 				246F3AC91FAC879C00A477FF /* DataSourceSection.swift in Sources */,
@@ -2049,6 +2070,7 @@
 				246F3AC61FAC879C00A477FF /* DataSource.swift in Sources */,
 				24D360CF1FAA5AFE00BBBAED /* CDCreatable.swift in Sources */,
 				242266121FE3EE7B00FA7CA6 /* AnnouncementResponse+CDConvertible.swift in Sources */,
+				2447FBCC1FFBA320000EA6BE /* OAuth1StudIpRoutes.swift in Sources */,
 				24D361161FAA5F0E00BBBAED /* Api+CollectionResponse.swift in Sources */,
 				246F3AC51FAC879C00A477FF /* DataChange.swift in Sources */,
 				2469EF6B1FCF4D07008A122B /* ActionCell.swift in Sources */,
@@ -2477,6 +2499,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = CommonCrypto;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2507,6 +2530,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SWIFT_INCLUDE_PATHS = CommonCrypto;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
