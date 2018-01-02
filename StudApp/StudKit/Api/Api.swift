@@ -59,7 +59,7 @@ class Api<Routes: ApiRoutes> {
     }
 
     /// Returns a request for the `URL` given and an HTTP method.
-    func request(for url: URL, method: HttpMethod) -> URLRequest {
+    func request(for url: URL, method: HttpMethods) -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         return request

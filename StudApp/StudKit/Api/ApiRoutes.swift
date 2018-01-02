@@ -16,7 +16,7 @@ protocol ApiRoutes: Hashable {
     var type: Decodable.Type? { get }
 
     /// HTTP method this route should use. Defaults to `.get`.
-    var method: HttpMethod { get }
+    var method: HttpMethods { get }
 
     /// `API` will not repeat requests to the same route before the last request time to the route plus its expiration time
     /// interval. Thus, unnecassary round-trips and data usage can be saved. Defaults to `0`.
@@ -46,7 +46,7 @@ extension ApiRoutes {
         return nil
     }
 
-    var method: HttpMethod {
+    var method: HttpMethods {
         return .get
     }
 
