@@ -13,7 +13,5 @@ extension UserDefaults {
 
     static let apiUrl = "apiUrl"
 
-    static let authenticationRealm = "authenticationRealm"
-
     static let userIdKey = "userId"
 }

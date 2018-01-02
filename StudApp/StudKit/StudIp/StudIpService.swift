@@ -14,9 +14,8 @@ public final class StudIpService {
     init(api: Api<StudIpRoutes>? = nil) {
         let storageService = ServiceContainer.default[StorageService.self]
         let apiUrl = storageService.defaults.url(forKey: UserDefaults.apiUrl)
-        let authenticationRealm = storageService.defaults.string(forKey: UserDefaults.authenticationRealm)
 
-        self.api = api ?? Api<StudIpRoutes>(baseUrl: apiUrl, realm: authenticationRealm)
+        self.api = api ?? Api<StudIpRoutes>(baseUrl: apiUrl)
     }
 
     /// Whether the user is currently signed in.
@@ -24,11 +23,7 @@ public final class StudIpService {
     /// - Warning: This does not garantuee that the credential is actually correct as this implementation only relies on a
     ///            credential being stored. Thus, the password might have changed in the meantime.
     public var isSignedIn: Bool {
-        guard let protectionSpace = api.protectionSpace,
-            let credential = URLCredentialStorage.shared.defaultCredential(for: protectionSpace),
-            let user = credential.user
-        else { return false }
-        return !user.isEmpty
+        fatalError("TODO")
     }
 
     /// Stud.IP-id of the currently signed in user.
@@ -64,30 +59,12 @@ public final class StudIpService {
     func signIn(withUsername username: String, password: String, into organization: OrganizationRecord,
                 handler: @escaping ResultHandler<User>) {
         api.baseUrl = organization.apiUrl
-        api.realm = organization.authenticationRealm
-
-        guard let protectionSpace = api.protectionSpace else {
-            fatalError("Cannot create protection space for API.")
-        }
-
-        if let credential = URLCredentialStorage.shared.defaultCredential(for: protectionSpace) {
-            URLCredentialStorage.shared.remove(credential, for: protectionSpace)
-        }
-
-        let credential = URLCredential(user: username, password: password, persistence: .forSession)
-        URLCredentialStorage.shared.setDefaultCredential(credential, for: protectionSpace)
 
         api.request(.discovery) { result in
-            URLCredentialStorage.shared.remove(credential, for: protectionSpace)
-
             guard result.isSuccess else { return handler(result.replacingValue(nil)) }
-
-            let validatedCredential = URLCredential(user: username, password: password, persistence: .permanent)
-            URLCredentialStorage.shared.setDefaultCredential(validatedCredential, for: protectionSpace)
 
             let storageService = ServiceContainer.default[StorageService.self]
             storageService.defaults.set(self.api.baseUrl, forKey: UserDefaults.apiUrl)
-            storageService.defaults.set(self.api.realm, forKey: UserDefaults.authenticationRealm)
 
             let coreDataService = ServiceContainer.default[CoreDataService.self]
             User.updateCurrent(in: coreDataService.viewContext) { result in
@@ -98,18 +75,12 @@ public final class StudIpService {
                 NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
             }
         }
+
+        fatalError("TODO")
     }
 
     /// Removes the default credential used for authentication, replaces it with an empty credential, and clears the data base.
     func signOut() {
-        if let protectionSpace = api.protectionSpace {
-            guard let credential = URLCredentialStorage.shared.defaultCredential(for: protectionSpace) else { return }
-            URLCredentialStorage.shared.remove(credential, for: protectionSpace)
-
-            let emptyCredential = URLCredential(user: "", password: "", persistence: .permanent)
-            URLCredentialStorage.shared.setDefaultCredential(emptyCredential, for: protectionSpace)
-        }
-
         userId = nil
 
         api.removeLastRouteAccesses()
@@ -127,5 +98,7 @@ public final class StudIpService {
             NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
             NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
         }
+
+        fatalError("TODO")
     }
 }

@@ -24,17 +24,12 @@
 class Api<Routes: ApiRoutes> {
     private let defaultPort = 443
     private let session: URLSession
-    private let authenticationMethod: String?
     private var lastRouteAccesses = [Routes: Date]()
 
     /// Base `URL` of all requests this instance issues. Any route paths will be appended to it.
-    ///
-    /// - Warning: The application will crash when `nil` and trying to issue a request.
     var baseUrl: URL?
 
-    /// When using authentication, sometimes you also need to specify a realm apart from just a username and password. This
-    /// realm will be used for ceating this API's `protectionSpace`.
-    var realm: String?
+    var authorizing: ApiAuthorizing?
 
     /// Creates a new API wrapper at `baseUrl`.
     ///
@@ -44,26 +39,10 @@ class Api<Routes: ApiRoutes> {
     ///            password. This realm will be used for ceating this API's `protectionSpace`.
     ///   - session: URL Session, which defaults to the shared session.
     ///   - authenticationMethod: URL Authentication Method, which default to HTTP Basic Authentication.
-    init(baseUrl: URL? = nil, realm: String? = nil, session: URLSession = .shared,
-         authenticationMethod: String = NSURLAuthenticationMethodHTTPBasic) {
+    init(baseUrl: URL? = nil, authorizing: ApiAuthorizing? = nil, session: URLSession = .shared) {
         self.baseUrl = baseUrl
-        self.realm = realm
+        self.authorizing = authorizing
         self.session = session
-        self.authenticationMethod = authenticationMethod
-    }
-
-    /// This API's protection space, which is created using the base URL's components as well as the realm and URL
-    /// Authentication Method given at initialization.
-    ///
-    /// - Remark: If the base URL does not include an explicit port, the default HTTPS port will be used.
-    var protectionSpace: URLProtectionSpace? {
-        guard
-            let host = baseUrl?.host,
-            let scheme = baseUrl?.scheme
-        else { return nil }
-
-        return URLProtectionSpace(host: host, port: baseUrl?.port ?? defaultPort, protocol: scheme,
-                                  realm: realm, authenticationMethod: authenticationMethod)
     }
 
     /// Returns the full `URL` for `route`, consisting of the base `URL` as well as the route's path and query parameters.
@@ -73,10 +52,10 @@ class Api<Routes: ApiRoutes> {
         var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
         components?.queryItems = parameters
 
-        guard let urlWithParamters = components?.url else {
+        guard let urlWithParameters = components?.url else {
             fatalError("Cannot construct URL with query parameters for route '\(route)'.")
         }
-        return urlWithParamters
+        return urlWithParameters
     }
 
     /// Returns a request for the `URL` given and an HTTP method.
