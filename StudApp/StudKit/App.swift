@@ -12,11 +12,11 @@ public enum App {
     public enum Links {
         // MARK: Website
 
-        public static let website = URL(string: "https://www.studapp.eu/")
+        public static let website = URL(string: "https://studapp.stoeff.de/")
 
-        public static let help = URL(string: "https://www.studapp.eu/help")
+        public static let help = URL(string: "https://studapp.stoeff.de/help")
 
-        public static let privacyPolicy = URL(string: "https://www.studapp.eu/privacy")
+        public static let privacyPolicy = URL(string: "https://studapp.stoeff.de/privacy")
 
         public static let termsOfUse = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")
 
