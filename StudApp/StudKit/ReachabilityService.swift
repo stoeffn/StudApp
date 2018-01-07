@@ -15,6 +15,7 @@ public class ReachabilityService: ByTypeNameIdentifiable {
 
     init(host: String?) {
         guard let host = host else { return }
+        return
 
         guard let reachability = SCNetworkReachabilityCreateWithName(nil, host) else {
             fatalError("Cannot create reachability service because `SCNetworkReachabilityCreateWithName` failed.")

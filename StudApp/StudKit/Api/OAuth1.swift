@@ -53,7 +53,7 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
         let keyAndValue = rawKeyAndValue.split(separator: "=", maxSplits: 1)
         guard
             let rawKey = keyAndValue.first,
-            let value = keyAndValue.last,
+            let value = keyAndValue.last?.removingPercentEncoding,
             let key = CodingKeys(rawValue: String(rawKey))
         else { return nil }
         return (key, String(value))

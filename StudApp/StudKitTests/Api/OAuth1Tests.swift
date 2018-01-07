@@ -13,6 +13,30 @@ final class OAuth1Tests: XCTestCase {
     private let oAuth1 = OAuth1(api: MockApi<StudIpOAuth1Routes>(
         baseUrl: URL(string: "https://www.example.com/")!), consumerKey: "dpf43f3p2l4k3l03", consumerSecret: "kd94hf93k423kf44")
 
+    // MARK: - Coding
+
+    func testDecodeParameter_Nonce() {
+        let parameter = oAuth1.decodeParameter(fromRawKeyAndValue: "oauth_nonce=1191242096")
+        XCTAssertEqual(parameter?.0, .nonce)
+        XCTAssertEqual(parameter?.1, "1191242096")
+    }
+
+    func testDecodeParameter_Token() {
+        let parameter = oAuth1.decodeParameter(fromRawKeyAndValue: "oauth_token=cool%21")
+        XCTAssertEqual(parameter?.0, .token)
+        XCTAssertEqual(parameter?.1, "cool!")
+    }
+
+    func testDecodeParameters() {
+        let data = "oauth_nonce=1191242096&oauth_token=cool%21&oauth_version=42".data(using: .utf8)!
+        let parameters = try! oAuth1.decodeParameters(fromResponseData: data)
+        XCTAssertEqual(parameters, [
+            .nonce: "1191242096",
+            .token: "cool!",
+            .version: "42",
+        ])
+    }
+
     // MARK: - Signing Requests
 
     func testSignatureBaseForRequest_Post() {
