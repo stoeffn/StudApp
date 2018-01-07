@@ -9,20 +9,38 @@
 import SystemConfiguration
 
 public class ReachabilityService: ByTypeNameIdentifiable {
-    public static let notificationName = NSNotification.Name(rawValue: "\(typeIdentifier).ReachabilityChanged")
-
     public private(set) var currentReachabilityFlags: SCNetworkReachabilityFlags = []
 
-    init(host: String?) {
-        guard let host = host else { return }
-        return
+    private var reachability: SCNetworkReachability
 
-        guard let reachability = SCNetworkReachabilityCreateWithName(nil, host) else {
+    init() {
+        guard let reachability = SCNetworkReachabilityCreateWithName(nil, "apple.com") else {
             fatalError("Cannot create reachability service because `SCNetworkReachabilityCreateWithName` failed.")
         }
+        self.reachability = reachability
+    }
 
-        let reference = UnsafeMutableRawPointer(Unmanaged<ReachabilityService>.passUnretained(self).toOpaque())
-        var context = SCNetworkReachabilityContext(version: 0, info: reference, retain: nil, release: nil, copyDescription: nil)
+    deinit {
+        deactivate()
+    }
+
+    public var isActive: Bool = false {
+        didSet {
+            guard isActive != oldValue else { return }
+            isActive ? activate() : deactivate()
+        }
+    }
+
+    public func update() {
+        var flags = SCNetworkReachabilityFlags()
+        SCNetworkReachabilityGetFlags(reachability, &flags)
+        reachabilityChanged(flags: flags)
+    }
+
+    private func activate() {
+        let selfReference = UnsafeMutableRawPointer(Unmanaged<ReachabilityService>.passUnretained(self).toOpaque())
+        var context = SCNetworkReachabilityContext(version: 0, info: nil, retain: nil, release: nil, copyDescription: nil)
+        context.info = selfReference
 
         let reachabilityCallback: SCNetworkReachabilityCallBack? = { _, flags, info in
             guard let info = info else { return }
@@ -30,21 +48,30 @@ public class ReachabilityService: ByTypeNameIdentifiable {
         }
 
         if !SCNetworkReachabilitySetCallback(reachability, reachabilityCallback, &context) {
-            fatalError("Cannot create reachability service because `SCNetworkReachabilitySetCallback` failed.")
+            fatalError("Cannot activate reachability service because `SCNetworkReachabilitySetCallback` failed.")
         }
         if !SCNetworkReachabilitySetDispatchQueue(reachability, DispatchQueue.main) {
-            fatalError("Cannot create reachability service because `SCNetworkReachabilitySetDispatchQueue` failed.")
+            fatalError("Cannot activate reachability service because `SCNetworkReachabilitySetDispatchQueue` failed.")
         }
 
-        var flags = SCNetworkReachabilityFlags()
-        SCNetworkReachabilityGetFlags(reachability, &flags)
-        reachabilityChanged(flags: flags)
+        update()
+    }
+
+    private func deactivate() {
+        SCNetworkReachabilitySetCallback(reachability, nil, nil)
+        SCNetworkReachabilitySetDispatchQueue(reachability, nil)
+
+        currentReachabilityFlags = []
     }
 
     private func reachabilityChanged(flags: SCNetworkReachabilityFlags) {
         guard currentReachabilityFlags != flags else { return }
         currentReachabilityFlags = flags
 
-        NotificationCenter.default.post(name: ReachabilityService.notificationName, object: currentReachabilityFlags)
+        NotificationCenter.default.post(name: .reachabilityChanged, object: currentReachabilityFlags)
     }
+}
+
+extension Notification.Name {
+    public static let reachabilityChanged = Notification.Name(rawValue: "ReachabilityChanged")
 }

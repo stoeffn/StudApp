@@ -65,7 +65,7 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
         return Dictionary(uniqueKeysWithValues: keysAndValues)
     }
 
-    // MARK: -
+    // MARK: - Making Authorization Requests
 
     var authorizationUrl: URL? {
         let parameters = [URLQueryItem(name: CodingKeys.token.rawValue, value: token)]

@@ -24,8 +24,8 @@ final class FileCell: UITableViewCell {
     }
 
     private func initObservers() {
-        observer = NotificationCenter.default.addObserver(forName: ReachabilityService.notificationName, object: nil,
-                                                          queue: nil, using: updateAvailability)
+        observer = NotificationCenter.default.addObserver(forName: .reachabilityChanged, object: nil, queue: nil,
+                                                          using: updateAvailability)
     }
 
     private var observer: NSObjectProtocol!

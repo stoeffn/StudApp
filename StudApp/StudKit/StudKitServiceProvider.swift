@@ -23,7 +23,9 @@ public class StudKitServiceProvider: ServiceProvider {
     }
 
     func provideReachabilityService() -> ReachabilityService {
-        return ReachabilityService(host: "apple.com")
+        let service = ReachabilityService()
+        service.isActive = true
+        return service
     }
 
     func provideJsonDecoder() -> JSONDecoder {

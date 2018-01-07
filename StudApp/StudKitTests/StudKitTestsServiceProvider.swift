@@ -10,7 +10,7 @@
 
 final class StudKitTestsServiceProvider: StudKitServiceProvider {
     override func provideReachabilityService() -> ReachabilityService {
-        return ReachabilityService(host: nil)
+        return ReachabilityService()
     }
 
     override func provideCoreDataService() -> CoreDataService {
