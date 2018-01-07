@@ -113,7 +113,7 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
             .consumerKey: consumerKey,
             .nonce: nonce,
             .signatureMethod: signatureMethod,
-            .timestamp: String(timestamp.timeIntervalSince1970),
+            .timestamp: String(Int(timestamp.timeIntervalSince1970)),
             .version: version,
         ]
     }
@@ -134,14 +134,22 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
 
     // MARK: - Signing Requests
 
-    var signingKey: String {
+    private let allowedSignatureEncodingCharacters: CharacterSet = {
+        var set = CharacterSet(charactersIn: "-_.~")
+        set.formUnion(.uppercaseLetters)
+        set.formUnion(.lowercaseLetters)
+        set.formUnion(.decimalDigits)
+        return set
+    }()
+
+    private var signingKey: String {
         return "\(consumerSecret)&\(tokenSecret ?? "")"
     }
 
     func signature(for request: URLRequest, key: String, nonce: String, timestamp: Date) -> String? {
         guard let base = signatureBase(for: request, nonce: nonce, timestamp: timestamp) else { return nil }
         return signature(for: base, key: key)?
-            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+            .addingPercentEncoding(withAllowedCharacters: allowedSignatureEncodingCharacters)
     }
 
     func signatureBase(for request: URLRequest, nonce: String, timestamp: Date) -> String? {
@@ -149,22 +157,28 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
             let url = request.url,
             let normalizedUrl = normalizedUrl(url),
             let httpMethod = request.httpMethod,
-            let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
-            let queryParameters = components.queryItems
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
         else { return nil }
 
         let authorizationParameters = self.authorizationParameters(nonce: nonce, timestamp: timestamp)
             .map { URLQueryItem(name: $0.key.rawValue, value: $0.value) }
-        let parameters = authorizationParameters + queryParameters
+        let parameters = authorizationParameters + (components.queryItems ?? [])
 
         let encodedParameters = parameters
-            .sorted { $0.name > $1.name }
-            .map { "\($0.name):\($0.value ?? "")" }
-            .flatMap { $0.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) }
+            .sorted {
+                guard $0.name != $1.name else {
+                    return $0.value ?? "" < $1.value ?? ""
+                }
+                return $0.name < $1.name
+            }
+            .map { parameter in
+                let value = parameter.value?.addingPercentEncoding(withAllowedCharacters: allowedSignatureEncodingCharacters)
+                return "\(parameter.name)=\(value ?? "")"
+            }
             .joined(separator: "&")
 
         return [httpMethod, normalizedUrl.absoluteString, encodedParameters]
-            .flatMap { $0.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) }
+            .flatMap { $0.addingPercentEncoding(withAllowedCharacters: allowedSignatureEncodingCharacters) }
             .joined(separator: "&")
     }
 
