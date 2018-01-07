@@ -19,12 +19,6 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
     private var tokenSecret: String?
     private var isAuthorized = false
 
-    // MARK: - Errors
-
-    enum Errors: Error {
-        case test
-    }
-
     // MARK: - Life Cycle
 
     init(api: Api<Routes> = Api<Routes>(), consumerKey: String, consumerSecret: String) {
@@ -60,7 +54,10 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
     }
 
     func decodeParameters(fromResponseData data: Data) throws -> [CodingKeys: String] {
-        guard let response = String(data: data, encoding: .utf8) else { throw Errors.test }
+        guard let response = String(data: data, encoding: .utf8) else {
+            let context = DecodingError.Context(codingPath: [], debugDescription: "Data could not be converted to string.")
+            throw DecodingError.dataCorrupted(context)
+        }
         let keysAndValues = response
             .split(separator: "&")
             .map(String.init)

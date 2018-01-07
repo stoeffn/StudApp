@@ -37,12 +37,56 @@ final class OAuth1Tests: XCTestCase {
         ])
     }
 
+    // MARK: - Generating the Authorization Parameters and Header
+
+    func testNormalizedUrl_Normal() {
+        let normalizedUrl = oAuth1.normalizedUrl(URL(string: "https://www.example.com/api/kittens")!)
+        XCTAssertEqual(normalizedUrl?.absoluteString, "https://www.example.com/api/kittens")
+    }
+
+    func testNormalizedUrl_StandardPort() {
+        let normalizedUrl = oAuth1.normalizedUrl(URL(string: "https://www.example.com:443/api/kittens")!)
+        XCTAssertEqual(normalizedUrl?.absoluteString, "https://www.example.com:443/api/kittens")
+    }
+
+    func testNormalizedUrl_NonStandardPort() {
+        let normalizedUrl = oAuth1.normalizedUrl(URL(string: "https://www.example.com:42/api/kittens")!)
+        XCTAssertEqual(normalizedUrl?.absoluteString, "https://www.example.com:42/api/kittens")
+    }
+
+    func testNormalizedUrl_QueryParameters() {
+        let normalizedUrl = oAuth1.normalizedUrl(URL(string: "https://www.example.com/api/kittens?test=abc&test=def")!)
+        XCTAssertEqual(normalizedUrl?.absoluteString, "https://www.example.com/api/kittens")
+    }
+
+    func testAuthorizationParametersForRequest() {
+        let timestamp = Date(timeIntervalSince1970: 1_191_242_096)
+        var request = URLRequest(url: URL(string: "https://www.example.com/dispatch.php/api/oauth/request_token")!)
+        request.httpMethod = "POST"
+        let parameters = oAuth1.authorizationParameters(for: request, nonce: "kllo9940pd9333jh", timestamp: timestamp)
+        XCTAssertEqual(parameters, [
+            .consumerKey: "dpf43f3p2l4k3l03",
+            .nonce: "kllo9940pd9333jh",
+            .signature: "5KgYgs7aqtCigdHY4ddU3VuSWD4%3D",
+            .signatureMethod: "HMAC-SHA1",
+            .timestamp: "1191242096",
+            .version: "1.0",
+        ])
+    }
+
+    func testAuthorizationHeaderForRequest() {
+        var request = URLRequest(url: URL(string: "https://www.example.com/dispatch.php/api/oauth/request_token")!)
+        request.httpMethod = "POST"
+        let header = oAuth1.authorizationHeader(for: request)
+        XCTAssertTrue(header.starts(with: "OAuth version=\"1.0\", timestamp="), header)
+    }
+
     // MARK: - Signing Requests
 
     func testSignatureBaseForRequest_Post() {
+        let timestamp = Date(timeIntervalSince1970: 1_191_242_096)
         var request = URLRequest(url: URL(string: "https://www.example.com/dispatch.php/api/oauth/request_token")!)
         request.httpMethod = "POST"
-        let timestamp = Date(timeIntervalSince1970: 1_191_242_096)
         let base = oAuth1.signatureBase(for: request, nonce: "kllo9940pd9333jh", timestamp: timestamp)
         XCTAssertEqual(base, [
             "POST&https%3A%2F%2Fwww.example.com%2Fdispatch.php%2Fapi%2Foauth%2Frequest_token&oauth_consumer_key",
@@ -52,9 +96,9 @@ final class OAuth1Tests: XCTestCase {
     }
 
     func testSignatureBaseForRequest_QueryParameters() {
+        let timestamp = Date(timeIntervalSince1970: 1_191_242_096)
         var request = URLRequest(url: URL(string: "https://www.example.com/api/kittens?test=abc&something=cool!")!)
         request.httpMethod = "GET"
-        let timestamp = Date(timeIntervalSince1970: 1_191_242_096)
         let base = oAuth1.signatureBase(for: request, nonce: "kllo9940pd9333jh", timestamp: timestamp)
         XCTAssertEqual(base, [
             "GET&https%3A%2F%2Fwww.example.com%2Fapi%2Fkittens&oauth_consumer_key%3Ddpf43f3p2l4k3l03%26oauth_nonce",
@@ -64,9 +108,9 @@ final class OAuth1Tests: XCTestCase {
     }
 
     func testSignatureBaseForRequest_EmptyQueryParameters() {
+        let timestamp = Date(timeIntervalSince1970: 1_191_242_096)
         var request = URLRequest(url: URL(string: "https://www.example.com/api/kittens?empty=")!)
         request.httpMethod = "GET"
-        let timestamp = Date(timeIntervalSince1970: 1_191_242_096)
         let base = oAuth1.signatureBase(for: request, nonce: "kllo9940pd9333jh", timestamp: timestamp)
         XCTAssertEqual(base, [
             "GET&https%3A%2F%2Fwww.example.com%2Fapi%2Fkittens&empty%3D%26oauth_consumer_key",
