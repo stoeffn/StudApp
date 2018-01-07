@@ -23,7 +23,7 @@ public final class StudIpService {
     /// - Warning: This does not garantuee that the credential is actually correct as this implementation only relies on a
     ///            credential being stored. Thus, the password might have changed in the meantime.
     public var isSignedIn: Bool {
-        fatalError("TODO")
+        return false
     }
 
     /// Stud.IP-id of the currently signed in user.

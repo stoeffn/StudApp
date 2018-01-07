@@ -22,6 +22,10 @@ public class StudKitServiceProvider: ServiceProvider {
         return ContextService(currentTarget: currentTarget, extensionContext: extensionContext, openUrl: openUrl)
     }
 
+    func provideReachabilityService() -> ReachabilityService {
+        return ReachabilityService(host: "apple.com")
+    }
+
     func provideJsonDecoder() -> JSONDecoder {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .secondsSince1970
@@ -38,7 +42,7 @@ public class StudKitServiceProvider: ServiceProvider {
 
     public func registerServices(in container: ServiceContainer) {
         container[ContextService.self] = provideContextService()
-        container[ReachabilityService.self] = ReachabilityService()
+        container[ReachabilityService.self] = provideReachabilityService()
         container[CacheService.self] = CacheService()
         container[StoreService.self] = StoreService()
         container[JSONDecoder.self] = provideJsonDecoder()

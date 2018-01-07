@@ -9,6 +9,10 @@
 @testable import StudKit
 
 final class StudKitTestsServiceProvider: StudKitServiceProvider {
+    override func provideReachabilityService() -> ReachabilityService {
+        return ReachabilityService(host: nil)
+    }
+
     override func provideCoreDataService() -> CoreDataService {
         return CoreDataService(modelName: "StudKit", inMemory: true)
     }

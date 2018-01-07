@@ -8,15 +8,15 @@
 
 import SystemConfiguration
 
-public final class ReachabilityService: ByTypeNameIdentifiable {
+public class ReachabilityService: ByTypeNameIdentifiable {
     public static let notificationName = NSNotification.Name(rawValue: "\(typeIdentifier).ReachabilityChanged")
 
-    private let reachability = SCNetworkReachabilityCreateWithName(nil, "apple.com")
+    public private(set) var currentReachabilityFlags: SCNetworkReachabilityFlags = []
 
-    public private(set) var currentReachabilityFlags: SCNetworkReachabilityFlags!
+    init(host: String?) {
+        guard let host = host else { return }
 
-    init() {
-        guard let reachability = reachability else {
+        guard let reachability = SCNetworkReachabilityCreateWithName(nil, host) else {
             fatalError("Cannot create reachability service because `SCNetworkReachabilityCreateWithName` failed.")
         }
 
@@ -37,7 +37,7 @@ public final class ReachabilityService: ByTypeNameIdentifiable {
 
         var flags = SCNetworkReachabilityFlags()
         SCNetworkReachabilityGetFlags(reachability, &flags)
-        self.reachabilityChanged(flags: flags)
+        reachabilityChanged(flags: flags)
     }
 
     private func reachabilityChanged(flags: SCNetworkReachabilityFlags) {
