@@ -22,7 +22,6 @@
 /// - Remark: This class is not marked `final` in order to allow subclassing for mock implementations. Usually, you will not
 ///           need to subclass it.
 class Api<Routes: ApiRoutes> {
-    private let defaultPort = 443
     private let session: URLSession
     private var lastRouteAccesses = [Routes: Date]()
 
@@ -62,6 +61,8 @@ class Api<Routes: ApiRoutes> {
     func request(for url: URL, method: HttpMethods) -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
+        guard let authorizing = authorizing else { return request }
+        request.addValue(authorizing.authorizationHeader(for: request), forHTTPHeaderField: authorizing.autorizationHeaderField)
         return request
     }
 

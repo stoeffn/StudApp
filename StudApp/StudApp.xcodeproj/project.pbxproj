@@ -50,7 +50,9 @@
 		2446F9751FC8D1C400D6AB6C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		2447FBCA1FFBA320000EA6BE /* OAuth1Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447FBC71FFBA31E000EA6BE /* OAuth1Routes.swift */; };
 		2447FBCB1FFBA320000EA6BE /* OAuth1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447FBC81FFBA31F000EA6BE /* OAuth1.swift */; };
-		2447FBCC1FFBA320000EA6BE /* OAuth1StudIpRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447FBC91FFBA31F000EA6BE /* OAuth1StudIpRoutes.swift */; };
+		2447FBCC1FFBA320000EA6BE /* StudIpOAuth1Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447FBC91FFBA31F000EA6BE /* StudIpOAuth1Routes.swift */; };
+		2447FBD01FFBC719000EA6BE /* OAuth1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447FBCF1FFBC719000EA6BE /* OAuth1Tests.swift */; };
+		2447FBD21FFBC79C000EA6BE /* StudIpOAuth1Routes+TestableApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447FBD11FFBC79C000EA6BE /* StudIpOAuth1Routes+TestableApiRoutes.swift */; };
 		2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */; };
 		2448D4141FA8DA2400DAB97E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2448D4131FA8DA2400DAB97E /* Assets.xcassets */; };
 		2448D4221FA8DA2400DAB97E /* StudAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4211FA8DA2400DAB97E /* StudAppTests.swift */; };
@@ -72,7 +74,7 @@
 		2448D49B1FA8E01B00DAB97E /* Setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D49A1FA8E01B00DAB97E /* Setup.swift */; };
 		2448D4A51FA8E07E00DAB97E /* Result+Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D49D1FA8E07E00DAB97E /* Result+Api.swift */; };
 		2448D4A61FA8E07E00DAB97E /* ApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D49E1FA8E07E00DAB97E /* ApiRoutes.swift */; };
-		2448D4A91FA8E07E00DAB97E /* HttpMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4A11FA8E07E00DAB97E /* HttpMethod.swift */; };
+		2448D4A91FA8E07E00DAB97E /* HttpMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4A11FA8E07E00DAB97E /* HttpMethods.swift */; };
 		2448D4AB1FA8E07E00DAB97E /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4A31FA8E07E00DAB97E /* Api.swift */; };
 		2448D4B61FA8E0AB00DAB97E /* Result+ApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4AE1FA8E0AB00DAB97E /* Result+ApiTests.swift */; };
 		2448D4B71FA8E0AB00DAB97E /* ApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4AF1FA8E0AB00DAB97E /* ApiTests.swift */; };
@@ -238,6 +240,7 @@
 		24FD786E1FBF81EA0072F860 /* DownloadListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD786D1FBF81EA0072F860 /* DownloadListController.swift */; };
 		24FD78701FBF826D0072F860 /* DownloadListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD786F1FBF826D0072F860 /* DownloadListViewModel.swift */; };
 		24FD78721FC07C630072F860 /* UserDefaults+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78711FC07C630072F860 /* UserDefaults+Keys.swift */; };
+		24FE03ED1FFBE0D200BC4732 /* ApiAuthorizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE03EC1FFBE0D200BC4732 /* ApiAuthorizing.swift */; };
 		24FE89E11FB7661700A4A3C6 /* SemesterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E01FB7661700A4A3C6 /* SemesterItem.swift */; };
 		24FE89E31FB7674F00A4A3C6 /* SemesterEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E21FB7674F00A4A3C6 /* SemesterEnumerator.swift */; };
 		24FE89F41FB77BD100A4A3C6 /* Semester+FileProviderItemConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89F31FB77BD100A4A3C6 /* Semester+FileProviderItemConvertible.swift */; };
@@ -387,8 +390,10 @@
 		2446F9731FC8D16900D6AB6C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2447FBC71FFBA31E000EA6BE /* OAuth1Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth1Routes.swift; sourceTree = "<group>"; };
 		2447FBC81FFBA31F000EA6BE /* OAuth1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth1.swift; sourceTree = "<group>"; };
-		2447FBC91FFBA31F000EA6BE /* OAuth1StudIpRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth1StudIpRoutes.swift; sourceTree = "<group>"; };
+		2447FBC91FFBA31F000EA6BE /* StudIpOAuth1Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudIpOAuth1Routes.swift; sourceTree = "<group>"; };
 		2447FBCE1FFBA360000EA6BE /* module.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
+		2447FBCF1FFBC719000EA6BE /* OAuth1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuth1Tests.swift; sourceTree = "<group>"; };
+		2447FBD11FFBC79C000EA6BE /* StudIpOAuth1Routes+TestableApiRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudIpOAuth1Routes+TestableApiRoutes.swift"; sourceTree = "<group>"; };
 		2448D4091FA8DA2400DAB97E /* StudApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2448D4131FA8DA2400DAB97E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -417,7 +422,7 @@
 		2448D49A1FA8E01B00DAB97E /* Setup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Setup.swift; sourceTree = "<group>"; };
 		2448D49D1FA8E07E00DAB97E /* Result+Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Result+Api.swift"; sourceTree = "<group>"; };
 		2448D49E1FA8E07E00DAB97E /* ApiRoutes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiRoutes.swift; sourceTree = "<group>"; };
-		2448D4A11FA8E07E00DAB97E /* HttpMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethod.swift; sourceTree = "<group>"; };
+		2448D4A11FA8E07E00DAB97E /* HttpMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpMethods.swift; sourceTree = "<group>"; };
 		2448D4A31FA8E07E00DAB97E /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		2448D4AE1FA8E0AB00DAB97E /* Result+ApiTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Result+ApiTests.swift"; sourceTree = "<group>"; };
 		2448D4AF1FA8E0AB00DAB97E /* ApiTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiTests.swift; sourceTree = "<group>"; };
@@ -580,6 +585,7 @@
 		24FD786D1FBF81EA0072F860 /* DownloadListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadListController.swift; sourceTree = "<group>"; };
 		24FD786F1FBF826D0072F860 /* DownloadListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadListViewModel.swift; sourceTree = "<group>"; };
 		24FD78711FC07C630072F860 /* UserDefaults+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Keys.swift"; sourceTree = "<group>"; };
+		24FE03EC1FFBE0D200BC4732 /* ApiAuthorizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiAuthorizing.swift; sourceTree = "<group>"; };
 		24FE89DB1FB7653E00A4A3C6 /* FileProviderItemConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileProviderItemConvertible.swift; sourceTree = "<group>"; };
 		24FE89E01FB7661700A4A3C6 /* SemesterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterItem.swift; sourceTree = "<group>"; };
 		24FE89E21FB7674F00A4A3C6 /* SemesterEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterEnumerator.swift; sourceTree = "<group>"; };
@@ -975,8 +981,9 @@
 			isa = PBXGroup;
 			children = (
 				2448D4A31FA8E07E00DAB97E /* Api.swift */,
+				24FE03EC1FFBE0D200BC4732 /* ApiAuthorizing.swift */,
 				2448D49E1FA8E07E00DAB97E /* ApiRoutes.swift */,
-				2448D4A11FA8E07E00DAB97E /* HttpMethod.swift */,
+				2448D4A11FA8E07E00DAB97E /* HttpMethods.swift */,
 				2447FBC81FFBA31F000EA6BE /* OAuth1.swift */,
 				2447FBC71FFBA31E000EA6BE /* OAuth1Routes.swift */,
 				2448D49D1FA8E07E00DAB97E /* Result+Api.swift */,
@@ -987,9 +994,10 @@
 		2448D4AD1FA8E0A000DAB97E /* Api */ = {
 			isa = PBXGroup;
 			children = (
-				2448D4AF1FA8E0AB00DAB97E /* ApiTests.swift */,
 				2448D4B31FA8E0AB00DAB97E /* ApiRoutesTests.swift */,
+				2448D4AF1FA8E0AB00DAB97E /* ApiTests.swift */,
 				2448D4B01FA8E0AB00DAB97E /* MockApi.swift */,
+				2447FBCF1FFBC719000EA6BE /* OAuth1Tests.swift */,
 				2448D4AE1FA8E0AB00DAB97E /* Result+ApiTests.swift */,
 				2448D4B51FA8E0AB00DAB97E /* TestableApiRoutes.swift */,
 				2448D4B21FA8E0AB00DAB97E /* TestRoutes.swift */,
@@ -1278,7 +1286,7 @@
 				247793641FC891EE00090F4D /* Users */,
 				24D361131FAA5F0E00BBBAED /* CollectionResponse.swift */,
 				24D361141FAA5F0E00BBBAED /* Api+CollectionResponse.swift */,
-				2447FBC91FFBA31F000EA6BE /* OAuth1StudIpRoutes.swift */,
+				2447FBC91FFBA31F000EA6BE /* StudIpOAuth1Routes.swift */,
 				24D361101FAA5F0500BBBAED /* StudIpRoutes.swift */,
 				24D3610F1FAA5F0500BBBAED /* StudIpService.swift */,
 				24D360EC1FAA5DC500BBBAED /* Transforms.swift */,
@@ -1308,6 +1316,7 @@
 				24D3615B1FAA640100BBBAED /* Responses */,
 				24D3612A1FAA60E000BBBAED /* Api+CollectionResponseTests.swift */,
 				24D3612B1FAA60E000BBBAED /* CollectionResponseTests.swift */,
+				2447FBD11FFBC79C000EA6BE /* StudIpOAuth1Routes+TestableApiRoutes.swift */,
 				24D361291FAA60E000BBBAED /* StudIpRoutes+TestableApiRoutes.swift */,
 				24D3612C1FAA60E000BBBAED /* TransformsTests.swift */,
 			);
@@ -1970,7 +1979,7 @@
 				2448D4951FA8DF6000DAB97E /* StorageService.swift in Sources */,
 				2450AC751FDC4FBC004F1267 /* UITableView+Utils.swift in Sources */,
 				24D361121FAA5F0500BBBAED /* StudIpRoutes.swift in Sources */,
-				2448D4A91FA8E07E00DAB97E /* HttpMethod.swift in Sources */,
+				2448D4A91FA8E07E00DAB97E /* HttpMethods.swift in Sources */,
 				24CFB5D81FB24F4D00F30DEA /* UIViewController+Routes.swift in Sources */,
 				24D360F81FAA5DE800BBBAED /* FileResponse+CDConvertible.swift in Sources */,
 				2448D4771FA8DE2A00DAB97E /* ServiceContainer.swift in Sources */,
@@ -2018,6 +2027,7 @@
 				24A6C14B1FD75A0A004BBEA5 /* StudKit.xcdatamodeld in Sources */,
 				2448D45E1FA8DBA300DAB97E /* Result.swift in Sources */,
 				24D360CD1FAA5AFE00BBBAED /* CDUpdatable.swift in Sources */,
+				24FE03ED1FFBE0D200BC4732 /* ApiAuthorizing.swift in Sources */,
 				24FD785A1FBF3F030072F860 /* HistoryService.swift in Sources */,
 				24712BD81FB858CC0067E416 /* File+StudIp.swift in Sources */,
 				24D360F71FAA5DE800BBBAED /* FileState.swift in Sources */,
@@ -2070,7 +2080,7 @@
 				246F3AC61FAC879C00A477FF /* DataSource.swift in Sources */,
 				24D360CF1FAA5AFE00BBBAED /* CDCreatable.swift in Sources */,
 				242266121FE3EE7B00FA7CA6 /* AnnouncementResponse+CDConvertible.swift in Sources */,
-				2447FBCC1FFBA320000EA6BE /* OAuth1StudIpRoutes.swift in Sources */,
+				2447FBCC1FFBA320000EA6BE /* StudIpOAuth1Routes.swift in Sources */,
 				24D361161FAA5F0E00BBBAED /* Api+CollectionResponse.swift in Sources */,
 				246F3AC51FAC879C00A477FF /* DataChange.swift in Sources */,
 				2469EF6B1FCF4D07008A122B /* ActionCell.swift in Sources */,
@@ -2117,6 +2127,7 @@
 				24D361441FAA63C500BBBAED /* CourseServiceTests.swift in Sources */,
 				24FD78641FBF67720072F860 /* Array+AlgorithmsTests.swift in Sources */,
 				2448D47B1FA8DE4000DAB97E /* ServiceContainerTests.swift in Sources */,
+				2447FBD21FFBC79C000EA6BE /* StudIpOAuth1Routes+TestableApiRoutes.swift in Sources */,
 				2448D4B71FA8E0AB00DAB97E /* ApiTests.swift in Sources */,
 				24D3612D1FAA60E000BBBAED /* StudIpRoutes+TestableApiRoutes.swift in Sources */,
 				24FE8A141FB7B1A000A4A3C6 /* RangeIteratorTests.swift in Sources */,
@@ -2125,6 +2136,7 @@
 				24D3614B1FAA63CE00BBBAED /* FileResponseTests+Data.swift in Sources */,
 				2448D4BB1FA8E0AB00DAB97E /* ApiRoutesTests.swift in Sources */,
 				24D3614C1FAA63CE00BBBAED /* FileResponseTests.swift in Sources */,
+				2447FBD01FFBC719000EA6BE /* OAuth1Tests.swift in Sources */,
 				2448D4BD1FA8E0AB00DAB97E /* TestableApiRoutes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

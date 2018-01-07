@@ -56,7 +56,7 @@ public final class StudIpService {
     ///   - password: Stud.IP password.
     ///   - organization: Organization, which contains the API URL, to sign into.
     ///   - handler: Completion handler that is called after *every* step finished.
-    func signIn(withUsername username: String, password: String, into organization: OrganizationRecord,
+    func signIn(withUsername _: String, password _: String, into organization: OrganizationRecord,
                 handler: @escaping ResultHandler<User>) {
         api.baseUrl = organization.apiUrl
 

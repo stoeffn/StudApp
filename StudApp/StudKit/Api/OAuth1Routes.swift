@@ -8,4 +8,8 @@
 
 protocol OAuth1Routes: ApiRoutes {
     static var requestToken: Self { get }
+
+    static var authorize: Self { get }
+
+    static var accessToken: Self { get }
 }

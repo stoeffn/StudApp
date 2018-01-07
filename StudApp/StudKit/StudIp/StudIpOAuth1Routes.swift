@@ -9,5 +9,9 @@
 struct StudIpOAuth1Routes: OAuth1Routes {
     static let requestToken = StudIpOAuth1Routes(path: "dispatch.php/api/oauth/request_token")
 
+    static var authorize = StudIpOAuth1Routes(path: "dispatch.php/api/oauth/authorize")
+
+    static var accessToken = StudIpOAuth1Routes(path: "dispatch.php/api/oauth/access_token")
+
     let path: String
 }

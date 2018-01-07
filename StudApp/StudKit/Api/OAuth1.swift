@@ -79,7 +79,7 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
         api.request(.requestToken) { self.handleResponse(result: $0, handler: handler) }
     }
 
-    func createAccessToken(verifier: String, handler: @escaping ResultHandler<Void>) {
+    func createAccessToken(verifier _: String, handler: @escaping ResultHandler<Void>) {
         api.request(.accessToken) { self.handleResponse(result: $0, handler: handler) }
     }
 

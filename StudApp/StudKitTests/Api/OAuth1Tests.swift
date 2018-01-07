@@ -10,7 +10,8 @@ import XCTest
 @testable import StudKit
 
 final class OAuth1Tests: XCTestCase {
-    private let oAuth1 = OAuth1(api: MockApi<StudIpOAuth1Routes>(baseUrl: URL(string: "https://www.example.com/")!))
+    private let oAuth1 = OAuth1(api: MockApi<StudIpOAuth1Routes>(
+        baseUrl: URL(string: "https://www.example.com/")!), consumerKey: "consumer", consumerSecret: "secret")
 
     func testSignatureForMessage_Simple() {
         let signature = oAuth1.signature(for: "simon says", key: "abcedfg123456789")
@@ -25,10 +26,5 @@ final class OAuth1Tests: XCTestCase {
         ].joined()
         let signature = oAuth1.signature(for: message, key: "kd94hf93k423kf44&pfkkdhi9sl3r4s00")
         XCTAssertEqual(signature, "Gcg/323lvAsQ707p+y41y14qWfY=")
-    }
-
-    func testSignatureForRoute_NoParameters() {
-        let signature = oAuth1.signature(for: .requestToken, parameters: [], key: "")
-        XCTAssertEqual(signature, "NWQ1MWUzOThiZTk3NWY2Njg3NTZhOGI5ZjIwYTBiYjQxN2IxM2Q3ZA==")
     }
 }
