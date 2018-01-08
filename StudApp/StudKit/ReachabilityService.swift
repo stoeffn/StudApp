@@ -8,11 +8,15 @@
 
 import SystemConfiguration
 
-public class ReachabilityService: ByTypeNameIdentifiable {
-    public private(set) var currentReachabilityFlags: SCNetworkReachabilityFlags = []
-
+/// Service that provides information on network reachability with the ability to watch for changes and post corresponding
+/// notifications.
+public final class ReachabilityService {
     private var reachability: SCNetworkReachability
 
+    // MARK: - Life Cycle
+
+    /// Creates a new reachability service. In order to start watching for reachability changes, you must set `isActive` to
+    /// `true`.
     init() {
         guard let reachability = SCNetworkReachabilityCreateWithName(nil, "apple.com") else {
             fatalError("Cannot create reachability service because `SCNetworkReachabilityCreateWithName` failed.")
@@ -24,6 +28,16 @@ public class ReachabilityService: ByTypeNameIdentifiable {
         deactivate()
     }
 
+    // MARK: - Retrieving and Watching Reachability
+
+    /// Current reachability flag.
+    ///
+    /// If `isActive` is set to `false`, these flags may not be up-to-date. You can manually update them by calling `update()`.
+    public private(set) var currentReachabilityFlags: SCNetworkReachabilityFlags = []
+
+    /// Activates or deactivates automatically watching network reachability.
+    ///
+    /// Changes will be posted as `Notification.Name.reachabilityChanged`.
     public var isActive: Bool = false {
         didSet {
             guard isActive != oldValue else { return }
@@ -31,6 +45,7 @@ public class ReachabilityService: ByTypeNameIdentifiable {
         }
     }
 
+    /// Manually updates the current reachability flags. May trigger a notification.
     public func update() {
         var flags = SCNetworkReachabilityFlags()
         SCNetworkReachabilityGetFlags(reachability, &flags)
@@ -60,18 +75,27 @@ public class ReachabilityService: ByTypeNameIdentifiable {
     private func deactivate() {
         SCNetworkReachabilitySetCallback(reachability, nil, nil)
         SCNetworkReachabilitySetDispatchQueue(reachability, nil)
-
-        currentReachabilityFlags = []
     }
 
     private func reachabilityChanged(flags: SCNetworkReachabilityFlags) {
         guard currentReachabilityFlags != flags else { return }
         currentReachabilityFlags = flags
 
-        NotificationCenter.default.post(name: .reachabilityChanged, object: currentReachabilityFlags)
+        NotificationCenter.default.post(name: .reachabilityChanged, object: self, userInfo: [
+            Notification.Name.reachabilityChangedFlagsKey: currentReachabilityFlags
+        ])
     }
 }
 
+// MARK: - Notifications
+
 extension Notification.Name {
+    /// Invoked when network reachability changed. User info will contain the new reachability flags keyed by
+    ///  `reachabilityChangedFlagsKey`.
+    ///
+    /// - Remark: You need to create and activate a `ReachabilityService` first in order to start receiving notifications.
     public static let reachabilityChanged = Notification.Name(rawValue: "ReachabilityChanged")
+
+    /// User info key for `reachabilityChanged` flags.
+    public static let reachabilityChangedFlagsKey = "flags"
 }
