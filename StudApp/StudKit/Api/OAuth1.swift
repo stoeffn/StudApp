@@ -9,6 +9,7 @@
 import Foundation
 import CommonCrypto
 
+/// Provides the ability to authorize against an API that utilizes OAuth 1.0.
 final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
     private let version = "1.0"
     private let signatureMethod = "HMAC-SHA1"
@@ -67,11 +68,15 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
 
     // MARK: - Making Authorization Requests
 
+    /// URL to open in a web browser for requesting a user's permission to access protected resources.
+    ///
+    /// - Remark: You must first create a request token.
     var authorizationUrl: URL? {
         let parameters = [URLQueryItem(name: CodingKeys.token.rawValue, value: token)]
         return api.url(for: .authorize, parameters: parameters)
     }
 
+    /// Creates a request token that can be used for asking a user for permissions.
     func createRequestToken(handler: @escaping ResultHandler<Void>) {
         api.request(.requestToken) { self.handleResponse(result: $0, handler: handler) }
     }
@@ -80,6 +85,7 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
         api.request(.accessToken) { self.handleResponse(result: $0, handler: handler) }
     }
 
+    /// Tries to decode the result data as OAuth parameters and updates `token` and `tokenSecret` accordingly.
     private func handleResponse(result: Result<Data>, handler: @escaping ResultHandler<Void>) {
         guard let data = result.value else { return handler(.failure(result.error)) }
         do {
@@ -94,10 +100,12 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
 
     // MARK: - Generating the Authorization Parameters and Header
 
+    /// Creates a random nonce for the OAuth process.
     func nonce() -> String {
         return UUID().uuidString
     }
 
+    /// Normalizes `url` for request signing by removing default ports, query parameters, and fragments.
     func normalizedUrl(_ url: URL) -> URL? {
         guard var components = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return nil }
         components.queryItems = nil
@@ -105,6 +113,7 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
         return components.url
     }
 
+    /// Authorization parameters with the specified `nonce` and `timestamp`. Does not include a signature.
     func authorizationParameters(nonce: String, timestamp: Date) -> [CodingKeys: String] {
         return [
             .consumerKey: consumerKey,
@@ -115,6 +124,7 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
         ]
     }
 
+    /// Authorization parameters for a request and a given `nonce` and `timestamp`, including a signature.
     func authorizationParameters(for request: URLRequest, nonce: String, timestamp: Date) -> [CodingKeys: String] {
         var parameters = authorizationParameters(nonce: nonce, timestamp: timestamp)
         parameters[.signature] = signature(for: request, key: signingKey, nonce: nonce, timestamp: timestamp) ?? ""
@@ -179,6 +189,7 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
             .joined(separator: "&")
     }
 
+    /// Returns the HMAC-SHA1 signature for `data`, signed by `key`.
     func signature(for data: Data, key: Data) -> Data {
         let signature = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: Int(CC_SHA1_DIGEST_LENGTH))
         defer { signature.deallocate(capacity: Int(CC_SHA1_DIGEST_LENGTH)) }
@@ -192,6 +203,7 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
         return Data(bytes: signature, count: Int(CC_SHA1_DIGEST_LENGTH))
     }
 
+    /// Returns the HMAC-SHA1 signature for `message`, signed by `key` and encoded as a base64-string.
     func signature(for message: String, key: String) -> String? {
         guard
             let messageData = message.data(using: .utf8),

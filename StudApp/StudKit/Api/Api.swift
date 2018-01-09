@@ -6,7 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-/// Wrapper around `URLSession` that allows simple and easy access to an online API.
+/// Wrapper around `URLSession` that allows simple and easy access to an API.
 ///
 /// To use it, just create your own type, peferably an enumeration, implementing `ApiRoutes` and initialize an instance of this
 /// class with your routes and a base `URL`.
@@ -16,6 +16,8 @@
 /// `Api` also handles route expiry in order to protect against too many requests to one API route, thus reducing data usage. It
 /// works by keeping track of routes' last access times and comparing them to the current time as well as the routes' expiry
 /// policy. Please note that this information is local to one `Api` instance and not cached anywhere else.
+///
+/// You can also set `authorizing`, which is then used in order to authenticate and authorize against the API.
 ///
 /// Depending on the `URLSession` given on initialization, this class uses the default `URLCredentialStorage`.
 ///
@@ -28,6 +30,7 @@ class Api<Routes: ApiRoutes> {
     /// Base `URL` of all requests this instance issues. Any route paths will be appended to it.
     var baseUrl: URL?
 
+    /// Something that can provide an authorization header for authentication and authorization.
     var authorizing: ApiAuthorizing?
 
     /// Creates a new API wrapper at `baseUrl`.
