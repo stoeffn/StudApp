@@ -39,7 +39,8 @@ public final class StudIpService {
     }
 
     func authorizationUrl(for organization: OrganizationRecord, handler: @escaping ResultHandler<URL>) {
-        let oAuth1 = OAuth1<StudIpOAuth1Routes>(consumerKey: organization.consumerKey,
+        let oAuth1 = OAuth1<StudIpOAuth1Routes>(callbackUrl: App.signInCallbackUrl,
+                                                consumerKey: organization.consumerKey,
                                                 consumerSecret: organization.consumerSecret)
         oAuth1.baseUrl = organization.oauthApiUrl
         oAuth1.createRequestToken { result in

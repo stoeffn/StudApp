@@ -8,19 +8,14 @@
 
 import CloudKit
 
-/// Manages the sign-in view that allows a user to sign into his/her university's Stud.IP account.
-///
-/// The user interface should provide text fields for the username and the password as well as a button for signing in.
 public final class SignInViewModel {
     public enum State {
-        /// Initial state inviting the user to enter his/her credentials.
         case idle
 
-        /// The application is currently making a network request, i.e. trying to sign in. The view should show an
-        /// indication of that.
         case loading
 
-        /// There was an error signing in. The view should display the associated error.
+        case authorizing
+
         case failure(Error)
 
         /// User has been signed in successfully. The view should now show the application's main view.
@@ -28,17 +23,9 @@ public final class SignInViewModel {
     }
 
     public enum Errors: LocalizedError {
-        case noCredentials
-
-        case wrongCredentials
 
         public var errorDescription: String? {
-            switch self {
-            case .noCredentials:
-                return "Please enter your Stud.IP credentials".localized
-            case .wrongCredentials:
-                return "Please check your username and password".localized
-            }
+            fatalError()
         }
     }
 
@@ -59,26 +46,11 @@ public final class SignInViewModel {
         self.organization = organization
     }
 
-    /// Attempts to sign a user into his/her Stud.IP account after performing basic form validation.
-    public func attemptSignIn(withUsername username: String, password: String) {
-        guard !username.isEmpty && !password.isEmpty else {
-            state = .failure(Errors.noCredentials)
-            return
-        }
-
-        state = .loading
-        studIpService.signIn(withUsername: username, password: password, into: organization) { result in
-            switch result {
-            case .success:
-                self.state = .success
-                self.updateSemesters()
-            case let .failure(error):
-                self.state = .failure(error ?? Errors.wrongCredentials)
-            }
-        }
+    public func authorizationUrl(handler: @escaping ResultHandler<URL>) {
+        studIpService.authorizationUrl(for: organization, handler: handler)
     }
 
-    public func loadOrganizationIcon(handler: @escaping ResultHandler<UIImage>) {
+    public func organizationIcon(handler: @escaping ResultHandler<UIImage>) {
         let container = CKContainer(identifier: App.iCloudContainerIdentifier)
         container.database(with: .public).fetch(withRecordID: organization.recordId) { record, error in
             DispatchQueue.main.async {

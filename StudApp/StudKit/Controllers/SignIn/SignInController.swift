@@ -6,7 +6,9 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-final class SignInController: UITableViewController, UITextFieldDelegate, Routable {
+import SafariServices
+
+final class SignInController: UIViewController, Routable {
     private var contextService: ContextService!
     private var viewModel: SignInViewModel!
 
@@ -17,12 +19,10 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
 
         contextService = ServiceContainer.default[ContextService.self]
 
-        usernameField.placeholder = "Username".localized
-        passwordField.placeholder = "Password".localized
-        signInButton.setTitle("Sign In".localized, for: .normal)
-
-        NotificationCenter.default
-            .addObserver(self, selector: #selector(keyboardDidShow), name: .UIKeyboardDidShow, object: nil)
+        viewModel.authorizationUrl { result in
+            guard let url = result.value else { return }
+            self.authorize(at: url)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -32,8 +32,8 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
         iconView.image = organization.iconThumbnail
         titleLabel.text = organization.title
 
-        viewModel.loadOrganizationIcon { icon in
-            UIView.transition(with: self.tableView, duration: 0.1, options: .transitionCrossDissolve, animations: {
+        viewModel.organizationIcon { icon in
+            UIView.transition(with: self.view, duration: 0.1, options: .transitionCrossDissolve, animations: {
                 self.iconView.image = icon.value
             }, completion: nil)
         }
@@ -52,55 +52,43 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
 
     @IBOutlet weak var titleLabel: UILabel!
 
-    @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var activityIndicator: StudIpActivityIndicatorView!
 
-    @IBOutlet weak var passwordField: UITextField!
-
-    @IBOutlet weak var errorLabel: UILabel!
-
-    @IBOutlet weak var signInButton: UIButton!
-
-    private let errorMessageIndexPath = IndexPath(row: 2, section: 0)
+    /// Weakly typed because `@available` cannot be applied to properties.
+    private var authenticationSession: NSObject?
 
     var isLoading = false {
         didSet {
             guard isLoading != oldValue else { return }
-            isErrorCellHidden = isLoading
-            usernameField.isEnabled = !isLoading
-            passwordField.isEnabled = !isLoading
-            signInButton.isEnabled = !isLoading
             navigationItem.setActivityIndicatorHidden(!isLoading)
         }
     }
 
-    var isErrorCellHidden = true {
-        didSet {
-            guard isErrorCellHidden != oldValue else { return }
-            tableView.update {
-                if self.isErrorCellHidden {
-                    self.tableView.deleteRows(at: [self.errorMessageIndexPath], with: .middle)
-                } else {
-                    self.tableView.insertRows(at: [self.errorMessageIndexPath], with: .middle)
-                }
-            }
+    func authorize(at url: URL) {
+        guard #available(iOSApplicationExtension 11.0, *) else {
+            // TODO
+            fatalError()
         }
+
+        let session = SFAuthenticationSession(url: url, callbackURLScheme: nil, completionHandler: { (url, error) in
+            print(url, error)
+        })
+        session.start()
+
+        authenticationSession = session
     }
 
     func setState(_ state: SignInViewModel.State) {
-        switch state {
+        /*switch state {
         case .idle:
             isLoading = false
-            isErrorCellHidden = true
         case .loading:
             isLoading = true
-            isErrorCellHidden = true
         case let .failure(error):
-            errorLabel.text = error.localizedDescription
+            //errorLabel.text = error.localizedDescription
             isLoading = false
-            isErrorCellHidden = false
         case .success:
             isLoading = false
-            isErrorCellHidden = true
 
             switch contextService.currentTarget {
             case .app:
@@ -110,42 +98,10 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
             default:
                 break
             }
-        }
-    }
-
-    func scrollToBottom() {
-        let lastSectionIndex = tableView.numberOfSections - 1
-        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
-        let lastIndexPath = IndexPath(row: lastRowIndex, section: lastSectionIndex)
-        tableView.scrollToRow(at: lastIndexPath, at: .top, animated: true)
-    }
-
-    @objc
-    private dynamic func keyboardDidShow() {
-        scrollToBottom()
+        }*/
     }
 
     // MARK: - User Interaction
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        switch textField {
-        case usernameField:
-            passwordField.becomeFirstResponder()
-            scrollToBottom()
-        case passwordField:
-            guard let username = usernameField.text, let password = passwordField.text else { return false }
-            viewModel.attemptSignIn(withUsername: username, password: password)
-        default:
-            break
-        }
-        return false
-    }
-
-    @IBAction
-    private func signInButtonTapped(_: Any) {
-        guard let username = usernameField.text, let password = passwordField.text else { return }
-        viewModel.attemptSignIn(withUsername: username, password: password)
-    }
 
     @IBAction
     func moreButtonTapped(_ sender: Any) {
@@ -160,27 +116,5 @@ final class SignInController: UITableViewController, UITextFieldDelegate, Routab
         controller.addAction(UIAlertAction(title: "About".localized, style: .default, handler: showAboutView))
         controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
         present(controller, animated: true, completion: nil)
-    }
-
-    // MARK: - Table View Data Source
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let cellCount = super.tableView(tableView, numberOfRowsInSection: section)
-        return isErrorCellHidden ? cellCount - 1 : cellCount
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if isErrorCellHidden && indexPath >= errorMessageIndexPath {
-            return super.tableView(tableView, cellForRowAt: IndexPath(row: indexPath.row + 1, section: indexPath.section))
-        }
-        return super.tableView(tableView, cellForRowAt: indexPath)
-    }
-
-    // MARK: Table View Delegate
-
-    override func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
-        // Needs to be overriden in order to activate dynamic row sizing. This value is not set in interface builder because it
-        // would reset the rows' sizes to the default size in preview.
-        return UITableViewAutomaticDimension
     }
 }
