@@ -38,45 +38,13 @@ public final class StudIpService {
         }
     }
 
-    /// Tries to sign into Stud.IP using the credentials provided.
-    ///
-    /// ## How it works
-    ///  0. Remove current default credential if set.
-    ///  1. Create a new session credential with the provided username and password and save it as the default.
-    ///  2. Request the password-protected discovery route, which provides information on available routes.
-    ///  3. Remove session credential.
-    ///  4. Abort if credential was rejected or another error occured during the request.
-    ///  5. Create a permanent credential from the now validated username and password and save it as the default.
-    ///  6. Save the API base `URL` and authentication realm.
-    ///  7. Fetch the current user from the API and mark as the current user.
-    ///  8. Signal the root container that there are updates
-    ///
-    /// - Parameters:
-    ///   - username: Stud.IP username.
-    ///   - password: Stud.IP password.
-    ///   - organization: Organization, which contains the API URL, to sign into.
-    ///   - handler: Completion handler that is called after *every* step finished.
-    func signIn(withUsername _: String, password _: String, into organization: OrganizationRecord,
-                handler: @escaping ResultHandler<User>) {
-        api.baseUrl = organization.apiUrl
-
-        api.request(.discovery) { result in
-            guard result.isSuccess else { return handler(result.replacingValue(nil)) }
-
-            let storageService = ServiceContainer.default[StorageService.self]
-            storageService.defaults.set(self.api.baseUrl, forKey: UserDefaults.apiUrl)
-
-            let coreDataService = ServiceContainer.default[CoreDataService.self]
-            User.updateCurrent(in: coreDataService.viewContext) { result in
-                handler(result.replacingValue(result.value))
-            }
-
-            if #available(iOSApplicationExtension 11.0, *) {
-                NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
-            }
+    func authorizationUrl(for organization: OrganizationRecord, handler: @escaping ResultHandler<URL>) {
+        let oAuth1 = OAuth1<StudIpOAuth1Routes>(consumerKey: organization.consumerKey,
+                                                consumerSecret: organization.consumerSecret)
+        oAuth1.baseUrl = organization.oauthApiUrl
+        oAuth1.createRequestToken { result in
+            handler(result.replacingValue(oAuth1.authorizationUrl))
         }
-
-        fatalError("TODO")
     }
 
     /// Removes the default credential used for authentication, replaces it with an empty credential, and clears the data base.

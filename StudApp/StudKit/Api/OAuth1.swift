@@ -29,6 +29,11 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
         api.authorizing = self
     }
 
+    var baseUrl: URL? {
+        get { return api.baseUrl }
+        set { api.baseUrl = newValue }
+    }
+
     // MARK: - Coding
 
     enum CodingKeys: String, CodingKey {

@@ -33,7 +33,7 @@ public final class OrganizationListViewModel {
         var organizations = [OrganizationRecord]()
 
         let query = CKQuery(recordType: OrganizationRecord.recordType, predicate: NSPredicate(value: true))
-        let desiredKeys: [OrganizationRecord.Keys] = [.apiUrl, .authenticationRealm, .title, .iconThumbnail]
+        let desiredKeys: [OrganizationRecord.Keys] = [.apiUrl, .title, .iconThumbnail, .consumerKey, .consumerSecret]
 
         let operation = CKQueryOperation(query: query)
         operation.qualityOfService = .userInitiated
