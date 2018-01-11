@@ -14,6 +14,7 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
     private let version = "1.0"
     private let signatureMethod = "HMAC-SHA1"
     private let api: Api<Routes>
+    private let callbackUrl: URL?
     private let consumerKey: String
     private let consumerSecret: String
     private var token: String?
@@ -22,17 +23,24 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
 
     // MARK: - Life Cycle
 
-    init(api: Api<Routes> = Api<Routes>(), consumerKey: String, consumerSecret: String) {
+    init(api: Api<Routes> = Api<Routes>(), callbackUrl: URL? = nil, consumerKey: String, consumerSecret: String) {
         self.api = api
+        self.callbackUrl = callbackUrl
         self.consumerKey = consumerKey
         self.consumerSecret = consumerSecret
 
         api.authorizing = self
     }
 
+    var baseUrl: URL? {
+        get { return api.baseUrl }
+        set { api.baseUrl = newValue }
+    }
+
     // MARK: - Coding
 
     enum CodingKeys: String, CodingKey {
+        case callback = "oauth_callback"
         case consumerKey = "oauth_consumer_key"
         case nonce = "oauth_nonce"
         case signatureMethod = "oauth_signature_method"
@@ -114,8 +122,9 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
     }
 
     /// Authorization parameters with the specified `nonce` and `timestamp`. Does not include a signature.
-    func authorizationParameters(nonce: String, timestamp: Date) -> [CodingKeys: String] {
+    func authorizationParameters(nonce: String, timestamp: Date) -> [CodingKeys: String?] {
         return [
+            .callback: callbackUrl?.absoluteString,
             .consumerKey: consumerKey,
             .nonce: nonce,
             .signatureMethod: signatureMethod,
@@ -125,7 +134,7 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
     }
 
     /// Authorization parameters for a request and a given `nonce` and `timestamp`, including a signature.
-    func authorizationParameters(for request: URLRequest, nonce: String, timestamp: Date) -> [CodingKeys: String] {
+    func authorizationParameters(for request: URLRequest, nonce: String, timestamp: Date) -> [CodingKeys: String?] {
         var parameters = authorizationParameters(nonce: nonce, timestamp: timestamp)
         parameters[.signature] = signature(for: request, key: signingKey, nonce: nonce, timestamp: timestamp) ?? ""
         return parameters
@@ -133,8 +142,8 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
 
     func authorizationHeader(for request: URLRequest) -> String {
         let parameters = authorizationParameters(for: request, nonce: nonce(), timestamp: Date())
-            .sorted { $0.key.rawValue > $1.key.rawValue }
-            .map { "\($0.key)=\"\($0.value)\"" }
+            .sorted { $0.key.rawValue < $1.key.rawValue }
+            .map { "\($0.key.rawValue)=\"\($0.value ?? "")\"" }
             .joined(separator: ", ")
         return "OAuth \(parameters)"
     }
