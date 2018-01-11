@@ -10,7 +10,7 @@ import CloudKit
 
 public struct OrganizationRecord {
     enum Keys: String {
-        case apiUrl, authenticationRealm, title, iconThumbnail, icon
+        case apiUrl, authenticationRealm, consumerKey, consumerSecret, title, iconThumbnail, icon
     }
 
     public static let recordType: String = "Organization"
@@ -20,6 +20,10 @@ public struct OrganizationRecord {
     let apiUrl: URL
 
     let authenticationRealm: String
+
+    let consumerKey: String
+
+    let consumerSecret: String
 
     public let title: String
 
@@ -38,6 +42,8 @@ extension OrganizationRecord {
             let apiUrlString = record[Keys.apiUrl.rawValue] as? String,
             let apiUrl = URL(string: apiUrlString),
             let authenticationRealm = record[Keys.authenticationRealm.rawValue] as? String,
+            let consumerKey = record[Keys.consumerKey.rawValue] as? String,
+            let consumerSecret = record[Keys.consumerSecret.rawValue] as? String,
             let title = record[Keys.title.rawValue] as? String,
             let iconThumbnailAsset = record[Keys.iconThumbnail.rawValue] as? CKAsset
         else { return nil }
@@ -47,6 +53,8 @@ extension OrganizationRecord {
         recordId = record.recordID
         self.apiUrl = apiUrl
         self.authenticationRealm = authenticationRealm
+        self.consumerKey = consumerKey
+        self.consumerSecret = consumerSecret
         self.title = title
         iconUrl = iconAsset?.fileURL
         iconThumbnailUrl = iconThumbnailAsset.fileURL
