@@ -19,7 +19,7 @@ public struct OrganizationRecord {
 
     let apiUrl: URL
 
-    let authenticationRealm: String
+    let authenticationRealm: String?
 
     let consumerKey: String
 
@@ -31,9 +31,9 @@ public struct OrganizationRecord {
 
     public lazy var icon: UIImage? = UIImage(contentsOfFile: iconUrl?.path ?? "")
 
-    private let iconThumbnailUrl: URL
+    private let iconThumbnailUrl: URL?
 
-    public lazy var iconThumbnail: UIImage? = UIImage(contentsOfFile: iconThumbnailUrl.path)
+    public lazy var iconThumbnail: UIImage? = UIImage(contentsOfFile: iconThumbnailUrl?.path ?? "")
 }
 
 extension OrganizationRecord {
@@ -41,22 +41,21 @@ extension OrganizationRecord {
         guard record.recordType == OrganizationRecord.recordType,
             let apiUrlString = record[Keys.apiUrl.rawValue] as? String,
             let apiUrl = URL(string: apiUrlString),
-            let authenticationRealm = record[Keys.authenticationRealm.rawValue] as? String,
             let consumerKey = record[Keys.consumerKey.rawValue] as? String,
             let consumerSecret = record[Keys.consumerSecret.rawValue] as? String,
-            let title = record[Keys.title.rawValue] as? String,
-            let iconThumbnailAsset = record[Keys.iconThumbnail.rawValue] as? CKAsset
+            let title = record[Keys.title.rawValue] as? String
         else { return nil }
 
+        let iconThumbnailAsset = record[Keys.iconThumbnail.rawValue] as? CKAsset
         let iconAsset = record[Keys.icon.rawValue] as? CKAsset
 
         recordId = record.recordID
         self.apiUrl = apiUrl
-        self.authenticationRealm = authenticationRealm
+        authenticationRealm = record[Keys.authenticationRealm.rawValue] as? String
         self.consumerKey = consumerKey
         self.consumerSecret = consumerSecret
         self.title = title
         iconUrl = iconAsset?.fileURL
-        iconThumbnailUrl = iconThumbnailAsset.fileURL
+        iconThumbnailUrl = iconThumbnailAsset?.fileURL
     }
 }
