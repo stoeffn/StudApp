@@ -123,8 +123,8 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
 
     func authorizationHeader(for request: URLRequest) -> String {
         let parameters = authorizationParameters(for: request, nonce: nonce(), timestamp: Date())
-            .sorted { $0.key.rawValue > $1.key.rawValue }
-            .map { "\($0.key)=\"\($0.value)\"" }
+            .sorted { $0.key.rawValue < $1.key.rawValue }
+            .map { "\($0.key.rawValue)=\"\($0.value)\"" }
             .joined(separator: ", ")
         return "OAuth \(parameters)"
     }

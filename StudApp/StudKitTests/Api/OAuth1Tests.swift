@@ -78,7 +78,7 @@ final class OAuth1Tests: XCTestCase {
         var request = URLRequest(url: URL(string: "https://www.example.com/dispatch.php/api/oauth/request_token")!)
         request.httpMethod = "POST"
         let header = oAuth1.authorizationHeader(for: request)
-        XCTAssertTrue(header.starts(with: "OAuth version=\"1.0\", timestamp="), header)
+        XCTAssertTrue(header.starts(with: "OAuth oauth_consumer_key=\"dpf43f3p2l4k3l03\", oauth_nonce="), header)
     }
 
     // MARK: - Signing Requests
