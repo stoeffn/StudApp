@@ -21,6 +21,8 @@ public enum App {
 
     public static let feedbackMailAddress = "studapp@stoeffn.de"
 
+    public static let signInCallbackUrl = URL(string: "https://studapp.stoeffn.de/sign-in")
+
     static let kitBundle = Bundle(for: StudKitServiceProvider.self)
 
     static let groupIdentifier = "group.SteffenRyll.StudKit"
