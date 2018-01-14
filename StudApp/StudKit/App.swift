@@ -26,6 +26,9 @@ public enum App {
     /// Email address to send app feedback to.
     public static let feedbackMailAddress = "studapp@stoeffn.de"
 
+    /// URL scheme registered with this application.
+    public static let scheme = "studapp"
+
     /// URL that is opened in response to a successful authorization
     public static let signInCallbackUrl = URL(string: "https://studapp.stoeffn.de/sign-in")
 

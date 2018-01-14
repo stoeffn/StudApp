@@ -70,7 +70,7 @@ final class SignInController: UIViewController, Routable {
             fatalError()
         }
 
-        let session = SFAuthenticationSession(url: url, callbackURLScheme: nil, completionHandler: { (url, error) in
+        let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme, completionHandler: { (url, error) in
             print(url, error)
         })
         session.start()
