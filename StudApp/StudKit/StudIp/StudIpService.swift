@@ -38,6 +38,10 @@ public final class StudIpService {
         }
     }
 
+    func signIn(authorizing: ApiAuthorizing) {
+        api.authorizing = authorizing
+    }
+
     /// Removes the default credential used for authentication, replaces it with an empty credential, and clears the data base.
     func signOut() {
         userId = nil

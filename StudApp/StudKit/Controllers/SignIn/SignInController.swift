@@ -43,7 +43,6 @@ final class SignInController: UIViewController, Routable {
         guard case let .signIntoOrganization(organization) = route else { fatalError() }
 
         viewModel = SignInViewModel(organization: organization)
-        viewModel.stateChanged = setState
     }
 
     // MARK: - User Interface
@@ -70,38 +69,29 @@ final class SignInController: UIViewController, Routable {
             fatalError()
         }
 
-        let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme, completionHandler: { (url, error) in
+        let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { (url, _) in
+            self.authenticationSession = nil
+
             guard let url = url else { return }
             self.viewModel.handleAuthorizationCallback(url: url, handler: { result in
-                print(result)
+                guard result.isSuccess else { return }
+                self.dismiss()
             })
-        })
+        }
         session.start()
 
         authenticationSession = session
     }
 
-    func setState(_ state: SignInViewModel.State) {
-        /*switch state {
-        case .idle:
-            isLoading = false
-        case .loading:
-            isLoading = true
-        case let .failure(error):
-            //errorLabel.text = error.localizedDescription
-            isLoading = false
-        case .success:
-            isLoading = false
-
-            switch contextService.currentTarget {
-            case .app:
-                dismiss(animated: true, completion: nil)
-            case .fileProviderUI:
-                contextService.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
-            default:
-                break
-            }
-        }*/
+    func dismiss() {
+        switch contextService.currentTarget {
+        case .app:
+            dismiss(animated: true, completion: nil)
+        case .fileProviderUI:
+            contextService.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+        default:
+            break
+        }
     }
 
     // MARK: - User Interaction

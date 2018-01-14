@@ -9,19 +9,6 @@
 import CloudKit
 
 public final class SignInViewModel {
-    public enum State {
-        case idle
-
-        case loading
-
-        case authorizing
-
-        case failure(Error)
-
-        /// User has been signed in successfully. The view should now show the application's main view.
-        case success
-    }
-
     public enum Errors: LocalizedError {
 
         public var errorDescription: String? {
@@ -35,32 +22,11 @@ public final class SignInViewModel {
 
     public let organization: OrganizationRecord
 
-    /// Current state of the sign-in process, which should be respected by the user interface.
-    public var state: State = .idle {
-        didSet { stateChanged?(state) }
-    }
-
-    /// This handler is called every time `state` changes.
-    public var stateChanged: ((State) -> Void)?
-
     public init(organization: OrganizationRecord) {
         self.organization = organization
 
         oAuth1 = OAuth1<StudIpOAuth1Routes>(baseUrl: organization.oAuthApiUrl, callbackUrl: App.signInCallbackUrl,
                                             consumerKey: organization.consumerKey, consumerSecret: organization.consumerSecret)
-    }
-
-    public func authorizationUrl(handler: @escaping ResultHandler<URL>) {
-        oAuth1.createRequestToken { result in
-            handler(result.replacingValue(self.oAuth1.authorizationUrl))
-        }
-    }
-
-    public func handleAuthorizationCallback(url: URL, handler: @escaping ResultHandler<Void>) {
-        oAuth1.createAccessToken(fromAuthorizationCallbackUrl: url) { result in
-            // TODO: Set authorizing to Stud.IP service and save credentials in keychain.
-            handler(result)
-        }
     }
 
     public func organizationIcon(handler: @escaping ResultHandler<UIImage>) {
@@ -71,10 +37,24 @@ public final class SignInViewModel {
                     let record = record,
                     var organization = OrganizationRecord(from: record),
                     let icon = organization.icon
-                else { return handler(.failure(error)) }
+                    else { return handler(.failure(error)) }
 
                 handler(.success(icon))
             }
+        }
+    }
+
+    public func authorizationUrl(handler: @escaping ResultHandler<URL>) {
+        oAuth1.createRequestToken { result in
+            handler(result.replacingValue(self.oAuth1.authorizationUrl))
+        }
+    }
+
+    public func handleAuthorizationCallback(url: URL, handler: @escaping ResultHandler<Void>) {
+        oAuth1.createAccessToken(fromAuthorizationCallbackUrl: url) { result in
+            self.studIpService.signIn(authorizing: self.oAuth1)
+            self.updateSemesters()
+            handler(result)
         }
     }
 

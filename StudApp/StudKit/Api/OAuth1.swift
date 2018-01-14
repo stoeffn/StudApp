@@ -113,7 +113,10 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
         }
         self.verifier = verifier
 
-        api.request(.accessToken) { self.handleResponse(result: $0, handler: handler) }
+        api.request(.accessToken) { result in
+            self.handleResponse(result: result, handler: handler)
+            self.isAuthorized = result.isSuccess
+        }
     }
 
     /// Tries to decode the result data as OAuth parameters and updates `token` and `tokenSecret` accordingly.
