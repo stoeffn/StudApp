@@ -52,7 +52,7 @@ public final class SignInViewModel {
 
     public func handleAuthorizationCallback(url: URL, handler: @escaping ResultHandler<Void>) {
         oAuth1.createAccessToken(fromAuthorizationCallbackUrl: url) { result in
-            self.studIpService.signIn(authorizing: self.oAuth1)
+            self.studIpService.sign(into: self.organization, authorizing: self.oAuth1)
             self.updateSemesters()
             handler(result)
         }

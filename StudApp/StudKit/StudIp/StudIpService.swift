@@ -23,7 +23,7 @@ public final class StudIpService {
     /// - Warning: This does not garantuee that the credential is actually correct as this implementation only relies on a
     ///            credential being stored. Thus, the password might have changed in the meantime.
     public var isSignedIn: Bool {
-        return false
+        return api.authorizing != nil
     }
 
     /// Stud.IP-id of the currently signed in user.
@@ -38,7 +38,8 @@ public final class StudIpService {
         }
     }
 
-    func signIn(authorizing: ApiAuthorizing) {
+    func sign(into organization: OrganizationRecord, authorizing: ApiAuthorizing) {
+        api.baseUrl = organization.apiUrl
         api.authorizing = authorizing
     }
 
