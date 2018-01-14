@@ -10,6 +10,9 @@ import Foundation
 import CommonCrypto
 
 /// Provides the ability to authorize against an API that utilizes OAuth 1.0.
+///
+/// - Remark: For reference, see the [official RFC](https://tools.ietf.org/html/rfc5849#section-3.3) and
+///           [Authentication Sandbox](http://lti.tools/oauth/).
 final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
     private let version = "1.0"
     private let signatureMethod = "HMAC-SHA1"
@@ -19,17 +22,23 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
     private let consumerSecret: String
     private var token: String?
     private var tokenSecret: String?
+    private var verifier: String?
     private var isAuthorized = false
 
     // MARK: - Life Cycle
 
-    init(api: Api<Routes> = Api<Routes>(), callbackUrl: URL? = nil, consumerKey: String, consumerSecret: String) {
+    init(api: Api<Routes>, callbackUrl: URL? = nil, consumerKey: String, consumerSecret: String) {
         self.api = api
         self.callbackUrl = callbackUrl
         self.consumerKey = consumerKey
         self.consumerSecret = consumerSecret
 
         api.authorizing = self
+    }
+
+    convenience init(baseUrl: URL? = nil, callbackUrl: URL? = nil, consumerKey: String, consumerSecret: String) {
+        let api = Api<Routes>(baseUrl: baseUrl)
+        self.init(api: api, callbackUrl: callbackUrl, consumerKey: consumerKey, consumerSecret: consumerSecret)
     }
 
     var baseUrl: URL? {
@@ -74,6 +83,13 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
         return Dictionary(uniqueKeysWithValues: keysAndValues)
     }
 
+    func decodeVerifier(fromAuthorizationCallbackUrl url: URL) -> String? {
+        return URLComponents(url: url, resolvingAgainstBaseURL: false)?
+            .queryItems?
+            .first { $0.name == CodingKeys.verifier.rawValue }?
+            .value
+    }
+
     // MARK: - Making Authorization Requests
 
     /// URL to open in a web browser for requesting a user's permission to access protected resources.
@@ -89,7 +105,14 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
         api.request(.requestToken) { self.handleResponse(result: $0, handler: handler) }
     }
 
-    func createAccessToken(verifier _: String, handler: @escaping ResultHandler<Void>) {
+    func createAccessToken(fromAuthorizationCallbackUrl url: URL, handler: @escaping ResultHandler<Void>) {
+        guard let verifier = decodeVerifier(fromAuthorizationCallbackUrl: url) else {
+            let context = DecodingError.Context(codingPath: [CodingKeys.verifier], debugDescription: "")
+            let error = DecodingError.keyNotFound(CodingKeys.verifier, context)
+            return handler(.failure(error))
+        }
+        self.verifier = verifier
+
         api.request(.accessToken) { self.handleResponse(result: $0, handler: handler) }
     }
 
@@ -129,6 +152,8 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
             .nonce: nonce,
             .signatureMethod: signatureMethod,
             .timestamp: String(Int(timestamp.timeIntervalSince1970)),
+            .token: token,
+            .verifier: verifier,
             .version: version,
         ]
     }

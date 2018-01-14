@@ -71,7 +71,10 @@ final class SignInController: UIViewController, Routable {
         }
 
         let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme, completionHandler: { (url, error) in
-            print(url, error)
+            guard let url = url else { return }
+            self.viewModel.handleAuthorizationCallback(url: url, handler: { result in
+                print(result)
+            })
         })
         session.start()
 

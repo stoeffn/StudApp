@@ -7,11 +7,13 @@
 //
 
 struct StudIpOAuth1Routes: OAuth1Routes {
-    static let requestToken = StudIpOAuth1Routes(path: "request_token")
+    static let requestToken = StudIpOAuth1Routes(path: "request_token", method: .post)
 
-    static var authorize = StudIpOAuth1Routes(path: "authorize")
+    static var authorize = StudIpOAuth1Routes(path: "authorize", method: .get)
 
-    static var accessToken = StudIpOAuth1Routes(path: "access_token")
+    static var accessToken = StudIpOAuth1Routes(path: "access_token", method: .post)
 
     let path: String
+
+    let method: HttpMethods
 }

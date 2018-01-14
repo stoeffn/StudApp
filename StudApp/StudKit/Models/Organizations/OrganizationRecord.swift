@@ -35,7 +35,7 @@ public struct OrganizationRecord {
 
     public lazy var iconThumbnail: UIImage? = UIImage(contentsOfFile: iconThumbnailUrl?.path ?? "")
 
-    var oauthApiUrl: URL {
+    var oAuthApiUrl: URL {
         return apiUrl.deletingLastPathComponent().appendingPathComponent("dispatch.php/api/oauth")
     }
 }

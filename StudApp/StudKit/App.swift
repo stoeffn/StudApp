@@ -29,7 +29,10 @@ public enum App {
     /// URL scheme registered with this application.
     public static let scheme = "studapp"
 
-    /// URL that is opened in response to a successful authorization
+    /// URL that is opened in response to a successful authorization.
+    ///
+    /// This URL automatically redirects to `studapp://sign-in` including all query parameters. Unfortunately, this redirection
+    /// is neccessary because Stud.IP does not support custom schemes.
     public static let signInCallbackUrl = URL(string: "https://studapp.stoeffn.de/sign-in")
 
     /// Apple App Id as used by the App Store.

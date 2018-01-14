@@ -38,16 +38,6 @@ public final class StudIpService {
         }
     }
 
-    func authorizationUrl(for organization: OrganizationRecord, handler: @escaping ResultHandler<URL>) {
-        let oAuth1 = OAuth1<StudIpOAuth1Routes>(callbackUrl: App.signInCallbackUrl,
-                                                consumerKey: organization.consumerKey,
-                                                consumerSecret: organization.consumerSecret)
-        oAuth1.baseUrl = organization.oauthApiUrl
-        oAuth1.createRequestToken { result in
-            handler(result.replacingValue(oAuth1.authorizationUrl))
-        }
-    }
-
     /// Removes the default credential used for authentication, replaces it with an empty credential, and clears the data base.
     func signOut() {
         userId = nil

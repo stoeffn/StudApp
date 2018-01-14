@@ -31,6 +31,7 @@ public final class SignInViewModel {
 
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]
+    private let oAuth1: OAuth1<StudIpOAuth1Routes>
 
     public let organization: OrganizationRecord
 
@@ -44,10 +45,22 @@ public final class SignInViewModel {
 
     public init(organization: OrganizationRecord) {
         self.organization = organization
+
+        oAuth1 = OAuth1<StudIpOAuth1Routes>(baseUrl: organization.oAuthApiUrl, callbackUrl: App.signInCallbackUrl,
+                                            consumerKey: organization.consumerKey, consumerSecret: organization.consumerSecret)
     }
 
     public func authorizationUrl(handler: @escaping ResultHandler<URL>) {
-        studIpService.authorizationUrl(for: organization, handler: handler)
+        oAuth1.createRequestToken { result in
+            handler(result.replacingValue(self.oAuth1.authorizationUrl))
+        }
+    }
+
+    public func handleAuthorizationCallback(url: URL, handler: @escaping ResultHandler<Void>) {
+        oAuth1.createAccessToken(fromAuthorizationCallbackUrl: url) { result in
+            // TODO: Set authorizing to Stud.IP service and save credentials in keychain.
+            handler(result)
+        }
     }
 
     public func organizationIcon(handler: @escaping ResultHandler<UIImage>) {
