@@ -37,7 +37,7 @@ public final class SignInViewModel {
                     let record = record,
                     var organization = OrganizationRecord(from: record),
                     let icon = organization.icon
-                    else { return handler(.failure(error)) }
+                else { return handler(.failure(error)) }
 
                 handler(.success(icon))
             }

@@ -12,7 +12,7 @@ import XCTest
 final class OAuth1Tests: XCTestCase {
     private let oAuth1 = OAuth1(api: MockApi<StudIpOAuth1Routes>(
         baseUrl: URL(string: "https://www.example.com/")!), callbackUrl: App.signInCallbackUrl,
-        consumerKey: "dpf43f3p2l4k3l03", consumerSecret: "kd94hf93k423kf44")
+    consumerKey: "dpf43f3p2l4k3l03", consumerSecret: "kd94hf93k423kf44")
 
     // MARK: - Coding
 

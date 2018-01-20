@@ -82,7 +82,7 @@ public final class ReachabilityService {
         currentReachabilityFlags = flags
 
         NotificationCenter.default.post(name: .reachabilityChanged, object: self, userInfo: [
-            Notification.Name.reachabilityChangedFlagsKey: currentReachabilityFlags
+            Notification.Name.reachabilityChangedFlagsKey: currentReachabilityFlags,
         ])
     }
 }

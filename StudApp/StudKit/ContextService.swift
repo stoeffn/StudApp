@@ -6,7 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-/// Provides information about the current application context, e.g. 
+/// Provides information about the current application context, e.g.
 public final class ContextService {
     public let currentTarget: Targets
     public let extensionContext: NSExtensionContext?

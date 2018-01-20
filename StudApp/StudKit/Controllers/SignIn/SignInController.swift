@@ -65,11 +65,11 @@ final class SignInController: UIViewController, Routable {
 
     func authorize(at url: URL) {
         guard #available(iOSApplicationExtension 11.0, *) else {
-            // TODO
+            // TODO:
             fatalError()
         }
 
-        let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { (url, _) in
+        let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { url, _ in
             self.authenticationSession = nil
 
             guard let url = url else { return }
