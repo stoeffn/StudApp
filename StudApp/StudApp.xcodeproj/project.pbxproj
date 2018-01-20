@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		240B65C02013AB7900E3C417 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240B65BF2013AB7800E3C417 /* KeychainPasswordItem.swift */; };
 		241C67E51FCDD78100F4A099 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E41FCDD78100F4A099 /* AboutViewModel.swift */; };
 		241C67EA1FCDFAC700F4A099 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E91FCDFAC700F4A099 /* App.swift */; };
 		241FD9651FA8FFAD00FBD750 /* UINavigationBar+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9641FA8FFAD00FBD750 /* UINavigationBar+Utils.swift */; };
@@ -346,6 +347,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		240B65BF2013AB7800E3C417 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
 		241C67E41FCDD78100F4A099 /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
 		241C67E71FCDEA3700F4A099 /* ThanksNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThanksNoteCell.swift; sourceTree = "<group>"; };
 		241C67E91FCDFAC700F4A099 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -869,6 +871,7 @@
 				24712BE91FB8B48A0067E416 /* ByTypeNameIdentifiable.swift */,
 				2469EF671FCE1D1C008A122B /* CacheService.swift */,
 				24A8EDDD1FCCBC93007C1CCF /* ContextService.swift */,
+				240B65BF2013AB7800E3C417 /* KeychainPasswordItem.swift */,
 				24FE8A111FB7B0D100A4A3C6 /* RangeIterator.swift */,
 				244EB5E61FEED260006BE633 /* ReachabilityService.swift */,
 				2448D45D1FA8DBA300DAB97E /* Result.swift */,
@@ -2029,6 +2032,7 @@
 				24BF7B651FF661AF0013BA23 /* FetchedResultsControllerDelegateHelper.swift in Sources */,
 				242B035F1FD7220800863B08 /* UIFont+Mutations.swift in Sources */,
 				24D360CC1FAA5AFE00BBBAED /* CDIdentifiable.swift in Sources */,
+				240B65C02013AB7900E3C417 /* KeychainPasswordItem.swift in Sources */,
 				24A6C14B1FD75A0A004BBEA5 /* StudKit.xcdatamodeld in Sources */,
 				2448D45E1FA8DBA300DAB97E /* Result.swift in Sources */,
 				24D360CD1FAA5AFE00BBBAED /* CDUpdatable.swift in Sources */,
