@@ -15,8 +15,6 @@ public enum Routes {
 
     case signIn
 
-    case signIntoOrganization(OrganizationRecord)
-
     case preview(File, QLPreviewControllerDelegate?)
 
     case course(Course)
@@ -53,7 +51,6 @@ public enum Routes {
         case .about: return "about"
         case .settings: return "settings"
         case .signIn: return "signIn"
-        case .signIntoOrganization: return "signIntoOrganization"
         case .preview: return "preview"
         case .course: return "course"
         case .emptyCourse: return "emptyCourse"
