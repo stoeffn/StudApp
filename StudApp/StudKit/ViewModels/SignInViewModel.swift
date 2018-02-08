@@ -22,12 +22,17 @@ public final class SignInViewModel {
 
     public let organization: OrganizationRecord
 
+    // MARK: - Life Cycle
+
     public init(organization: OrganizationRecord) {
         self.organization = organization
 
-        oAuth1 = OAuth1<StudIpOAuth1Routes>(baseUrl: organization.oAuthApiUrl, callbackUrl: App.signInCallbackUrl,
+        oAuth1 = OAuth1<StudIpOAuth1Routes>(service: StudIpService.serviceName, callbackUrl: App.signInCallbackUrl,
                                             consumerKey: organization.consumerKey, consumerSecret: organization.consumerSecret)
+        oAuth1.baseUrl = organization.apiUrl
     }
+
+    // MARK: - Providing Metadata
 
     public func organizationIcon(handler: @escaping ResultHandler<UIImage>) {
         let container = CKContainer(identifier: App.iCloudContainerIdentifier)
@@ -44,6 +49,8 @@ public final class SignInViewModel {
         }
     }
 
+    // MARK: - Signing In
+
     public func authorizationUrl(handler: @escaping ResultHandler<URL>) {
         oAuth1.createRequestToken { result in
             handler(result.replacingValue(self.oAuth1.authorizationUrl))
@@ -52,9 +59,12 @@ public final class SignInViewModel {
 
     public func handleAuthorizationCallback(url: URL, handler: @escaping ResultHandler<Void>) {
         oAuth1.createAccessToken(fromAuthorizationCallbackUrl: url) { result in
-            self.studIpService.sign(into: self.organization, authorizing: self.oAuth1)
-            self.updateSemesters()
-            handler(result)
+            guard result.isSuccess else { return handler(result) }
+
+            self.studIpService.signIn(apiUrl: self.organization.apiUrl, authorizing: self.oAuth1) { result in
+                self.updateSemesters()
+                handler(result.replacingValue(()))
+            }
         }
     }
 
