@@ -80,11 +80,8 @@
 
 // MARK: Signing In
 
-"Username" = "Username";
-"Password" = "Password";
-"Sign In" = "Sign In";
-"Please enter your Stud.IP credentials" = "Please enter your Stud.IP credentials";
-"Please check your username and password" = "Please check your username and password";
+"It seems like your organization does not support StudApp anymore." = "It seems your this organization does not support StudApp anymore.";
+"There was an error authorizing StudApp to access your organization." = "There was an error authorizing StudApp to access your organization.";
 
 // MARK: Color Picker
 

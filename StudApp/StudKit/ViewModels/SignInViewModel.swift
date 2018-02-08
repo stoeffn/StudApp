@@ -10,9 +10,16 @@ import CloudKit
 
 public final class SignInViewModel {
     public enum Errors: LocalizedError {
+        case invalidConsumerKey
+        case authorizationFailed
 
         public var errorDescription: String? {
-            fatalError()
+            switch self {
+            case .invalidConsumerKey:
+                return "It seems like your organization does not support StudApp anymore.".localized
+            case .authorizationFailed:
+                return "There was an error authorizing StudApp to access your organization.".localized
+            }
         }
     }
 
@@ -53,13 +60,19 @@ public final class SignInViewModel {
 
     public func authorizationUrl(handler: @escaping ResultHandler<URL>) {
         try? oAuth1.createRequestToken { result in
+            guard result.isSuccess else {
+                return handler(.failure(result.error ?? Errors.invalidConsumerKey))
+            }
+
             handler(result.replacingValue(self.oAuth1.authorizationUrl))
         }
     }
 
     public func handleAuthorizationCallback(url: URL, handler: @escaping ResultHandler<Void>) {
         try? oAuth1.createAccessToken(fromAuthorizationCallbackUrl: url) { result in
-            guard result.isSuccess else { return handler(result) }
+            guard result.isSuccess else {
+                return handler(.failure(result.error ?? Errors.authorizationFailed))
+            }
 
             self.studIpService.signIn(apiUrl: self.organization.apiUrl, authorizing: self.oAuth1) { result in
                 self.updateSemesters()
