@@ -8,6 +8,7 @@
 
 import FileProviderUI
 import UIKit
+import BulletinBoard
 
 final class OrganizationListController: UITableViewController, Routable, DataSourceSectionDelegate {
     private var contextService: ContextService!
@@ -71,6 +72,18 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         }
     }
 
+    // MARK: - Table View Delegate
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        guard case .success(let organizations) = viewModel.state else { return }
+
+        organizationBulletinItem.organization = organizations[indexPath.row]
+        bulletinManager.prepare()
+        bulletinManager.presentBulletin(above: self)
+    }
+
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -80,6 +93,14 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     // MARK: - User Interface
 
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+
+    lazy var organizationBulletinItem: OrganizationBulletinItem = OrganizationBulletinItem()
+
+    lazy var bulletinManager: BulletinManager = {
+        let manager = BulletinManager(rootItem: organizationBulletinItem)
+        manager.backgroundViewStyle = .blurredDark
+        return manager
+    }()
 
     private func updateUserInterface(_: OrganizationListViewModel.State? = nil) {
         UIView.transition(with: tableView, duration: 0.1, options: .transitionCrossDissolve, animations: {

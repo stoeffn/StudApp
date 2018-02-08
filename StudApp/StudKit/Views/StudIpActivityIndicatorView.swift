@@ -12,6 +12,10 @@ import UIKit
 public final class StudIpActivityIndicatorView: UIView {
     // MARK: - Life Cycle
 
+    convenience init() {
+        self.init(frame: .zero)
+    }
+
     public override init(frame: CGRect) {
         super.init(frame: frame)
         applyStyles()
