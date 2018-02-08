@@ -24,22 +24,24 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
     private var tokenSecret: String?
     private var verifier: String?
 
-    private(set) var isAuthorized = false
+    let service: String
+
+    private(set) var isAuthorized: Bool
 
     // MARK: - Life Cycle
 
-    init(api: Api<Routes>, callbackUrl: URL? = nil, consumerKey: String, consumerSecret: String) {
-        self.api = api
+    init(service: String, api: Api<Routes>? = nil, callbackUrl: URL? = nil, consumerKey: String, consumerSecret: String,
+         token: String? = nil, tokenSecret: String? = nil, isAuthorized: Bool = false) {
+        self.service = service
+        self.api = api ?? Api<Routes>()
         self.callbackUrl = callbackUrl
         self.consumerKey = consumerKey
         self.consumerSecret = consumerSecret
+        self.token = token
+        self.tokenSecret = tokenSecret
+        self.isAuthorized = isAuthorized
 
-        api.authorizing = self
-    }
-
-    convenience init(baseUrl: URL? = nil, callbackUrl: URL? = nil, consumerKey: String, consumerSecret: String) {
-        let api = Api<Routes>(baseUrl: baseUrl)
-        self.init(api: api, callbackUrl: callbackUrl, consumerKey: consumerKey, consumerSecret: consumerSecret)
+        self.api.authorizing = self
     }
 
     var baseUrl: URL? {
@@ -52,6 +54,7 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
     enum CodingKeys: String, CodingKey {
         case callback = "oauth_callback"
         case consumerKey = "oauth_consumer_key"
+        case consumerSecret = "oauth_consumer_secret"
         case nonce = "oauth_nonce"
         case signatureMethod = "oauth_signature_method"
         case signature = "oauth_signature"
@@ -115,8 +118,8 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
         self.verifier = verifier
 
         api.request(.accessToken) { result in
-            self.handleResponse(result: result, handler: handler)
             self.isAuthorized = result.isSuccess
+            self.handleResponse(result: result, handler: handler)
         }
     }
 
@@ -248,5 +251,41 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
             let keyData = key.data(using: .utf8)
         else { return nil }
         return signature(for: messageData, key: keyData).base64EncodedString()
+    }
+}
+
+// MARK: - Persisting
+
+extension OAuth1: PersistableApiAuthorizing {
+    convenience init(fromPersistedService service: String) throws {
+        let consumerKey = try KeychainPasswordItem(service: service, account: CodingKeys.consumerKey.rawValue).readPassword()
+        let consumerSecret = try KeychainPasswordItem(service: service, account: CodingKeys.consumerSecret.rawValue).readPassword()
+        let token = try KeychainPasswordItem(service: service, account: CodingKeys.token.rawValue).readPassword()
+        let tokenSecret = try KeychainPasswordItem(service: service, account: CodingKeys.tokenSecret.rawValue).readPassword()
+
+        self.init(service: service, consumerKey: consumerKey, consumerSecret: consumerSecret, token: token,
+                  tokenSecret: tokenSecret, isAuthorized: true)
+    }
+
+    func persistCredentials() throws {
+        guard
+            isAuthorized,
+            let token = token,
+            let tokenSecret = tokenSecret
+        else {
+            return
+        }
+
+        try KeychainPasswordItem(service: service, account: CodingKeys.consumerKey.rawValue).save(password: consumerKey)
+        try KeychainPasswordItem(service: service, account: CodingKeys.consumerSecret.rawValue).save(password: consumerSecret)
+        try KeychainPasswordItem(service: service, account: CodingKeys.token.rawValue).save(password: token)
+        try KeychainPasswordItem(service: service, account: CodingKeys.tokenSecret.rawValue).save(password: tokenSecret)
+    }
+
+    func removeCredentials() throws {
+        try KeychainPasswordItem(service: service, account: CodingKeys.consumerKey.rawValue).delete()
+        try KeychainPasswordItem(service: service, account: CodingKeys.consumerSecret.rawValue).delete()
+        try KeychainPasswordItem(service: service, account: CodingKeys.token.rawValue).delete()
+        try KeychainPasswordItem(service: service, account: CodingKeys.tokenSecret.rawValue).delete()
     }
 }

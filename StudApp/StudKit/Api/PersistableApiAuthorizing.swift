@@ -7,7 +7,7 @@
 //
 
 protocol PersistableApiAuthorizing: ApiAuthorizing {
-    init?(fromPersistedService service: String)
+    init(fromPersistedService service: String) throws
 
     var service: String { get }
 
