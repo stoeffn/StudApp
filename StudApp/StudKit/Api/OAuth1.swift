@@ -28,6 +28,13 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
 
     private(set) var isAuthorized: Bool
 
+    // MARK: - Errors
+
+    enum Errors: Error {
+        case alreadyAuthorized
+        case notAuthorized
+    }
+
     // MARK: - Life Cycle
 
     init(service: String, api: Api<Routes>? = nil, callbackUrl: URL? = nil, consumerKey: String, consumerSecret: String,
@@ -98,18 +105,22 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
 
     /// URL to open in a web browser for requesting a user's permission to access protected resources.
     ///
-    /// - Remark: You must first create a request token.
+    /// - Precondition: You must first create a request token. Otherwise, this property is `nil`.
     var authorizationUrl: URL? {
         let parameters = [URLQueryItem(name: CodingKeys.token.rawValue, value: token)]
         return api.url(for: .authorize, parameters: parameters)
     }
 
     /// Creates a request token that can be used for asking a user for permissions.
-    func createRequestToken(handler: @escaping ResultHandler<Void>) {
+    func createRequestToken(handler: @escaping ResultHandler<Void>) throws {
+        guard !isAuthorized else { throw Errors.alreadyAuthorized }
+
         api.request(.requestToken) { self.handleResponse(result: $0, handler: handler) }
     }
 
-    func createAccessToken(fromAuthorizationCallbackUrl url: URL, handler: @escaping ResultHandler<Void>) {
+    func createAccessToken(fromAuthorizationCallbackUrl url: URL, handler: @escaping ResultHandler<Void>) throws {
+        guard !isAuthorized else { throw Errors.alreadyAuthorized }
+
         guard let verifier = decodeVerifier(fromAuthorizationCallbackUrl: url) else {
             let context = DecodingError.Context(codingPath: [CodingKeys.verifier], debugDescription: "")
             let error = DecodingError.keyNotFound(CodingKeys.verifier, context)
@@ -268,13 +279,7 @@ extension OAuth1: PersistableApiAuthorizing {
     }
 
     func persistCredentials() throws {
-        guard
-            isAuthorized,
-            let token = token,
-            let tokenSecret = tokenSecret
-        else {
-            return
-        }
+        guard isAuthorized, let token = token, let tokenSecret = tokenSecret else { throw Errors.notAuthorized }
 
         try KeychainPasswordItem(service: service, account: CodingKeys.consumerKey.rawValue).save(password: consumerKey)
         try KeychainPasswordItem(service: service, account: CodingKeys.consumerSecret.rawValue).save(password: consumerSecret)

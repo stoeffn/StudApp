@@ -52,13 +52,13 @@ public final class SignInViewModel {
     // MARK: - Signing In
 
     public func authorizationUrl(handler: @escaping ResultHandler<URL>) {
-        oAuth1.createRequestToken { result in
+        try? oAuth1.createRequestToken { result in
             handler(result.replacingValue(self.oAuth1.authorizationUrl))
         }
     }
 
     public func handleAuthorizationCallback(url: URL, handler: @escaping ResultHandler<Void>) {
-        oAuth1.createAccessToken(fromAuthorizationCallbackUrl: url) { result in
+        try? oAuth1.createAccessToken(fromAuthorizationCallbackUrl: url) { result in
             guard result.isSuccess else { return handler(result) }
 
             self.studIpService.signIn(apiUrl: self.organization.apiUrl, authorizing: self.oAuth1) { result in
