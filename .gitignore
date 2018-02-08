@@ -18,3 +18,7 @@ Packages/
 Package.pins
 Package.resolved
 .build/
+
+### Carthage ###
+
+StudApp/Carthage/
