@@ -23,7 +23,8 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
     private var token: String?
     private var tokenSecret: String?
     private var verifier: String?
-    private var isAuthorized = false
+
+    private(set) var isAuthorized = false
 
     // MARK: - Life Cycle
 

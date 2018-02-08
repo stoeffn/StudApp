@@ -15,6 +15,10 @@ protocol ApiAuthorizing {
     ///
     /// - Remark: This method should be invoked after the request is fully configured as it may depend on other parameters.
     func authorizationHeader(for request: URLRequest) -> String
+
+    /// Whether the client is authorized to use the API. May return `false` e.g. if the authorizer is in an initialization
+    /// phase.
+    var isAuthorized: Bool { get }
 }
 
 extension ApiAuthorizing {
