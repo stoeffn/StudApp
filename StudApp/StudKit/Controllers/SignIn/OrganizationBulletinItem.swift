@@ -7,8 +7,10 @@
 //
 
 import BulletinBoard
+import SafariServices
 
 final class OrganizationBulletinItem: BulletinItem {
+    private var contextService = ServiceContainer.default[ContextService.self]
     private var viewModel: SignInViewModel!
 
     var manager: BulletinManager?
@@ -27,11 +29,18 @@ final class OrganizationBulletinItem: BulletinItem {
 
             viewModel = SignInViewModel(organization: organization)
             viewModel.organizationIcon { self.iconView.image = $0.value ?? self.iconView.image }
+            viewModel.authorizationUrl { result in
+                guard let url = result.value else { return }
+                self.authorize(at: url)
+            }
 
             titleLabel.text = organization.title
             iconView.image = organization.iconThumbnail
         }
     }
+
+    /// Weakly typed because `@available` cannot be applied to properties.
+    private var authenticationSession: NSObject?
 
     // MARK: - Life Cycle
 
@@ -77,5 +86,30 @@ final class OrganizationBulletinItem: BulletinItem {
 
     func makeArrangedSubviews() -> [UIView] {
         return [titleLabel, contentView]
+    }
+
+    func authorize(at url: URL) {
+        guard #available(iOSApplicationExtension 11.0, *) else {
+            // TODO:
+            fatalError()
+        }
+
+        let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { url, error in
+            self.authenticationSession = nil
+
+            guard (error as? SFAuthenticationError)?.code == .canceledLogin else {
+                self.manager?.dismissBulletin()
+                return
+            }
+
+            guard let url = url else { return }
+            self.viewModel.handleAuthorizationCallback(url: url, handler: { result in
+                guard result.isSuccess else { return }
+                print("Ready")
+            })
+        }
+        session.start()
+
+        authenticationSession = session
     }
 }
