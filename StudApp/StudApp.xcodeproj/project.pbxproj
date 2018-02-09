@@ -213,7 +213,6 @@
 		24D361621FAA641600BBBAED /* semesterCollection.json in Resources */ = {isa = PBXBuildFile; fileRef = 24D3615E1FAA641500BBBAED /* semesterCollection.json */; };
 		24D361631FAA641600BBBAED /* courseCollection+20.json in Resources */ = {isa = PBXBuildFile; fileRef = 24D3615F1FAA641600BBBAED /* courseCollection+20.json */; };
 		24D361661FAA648B00BBBAED /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361651FAA648B00BBBAED /* SignInViewModel.swift */; };
-		24D3BE39202DFBAD00AF2FE5 /* Hero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D3BE38202DFBAD00AF2FE5 /* Hero.framework */; };
 		24D3BE3C202E123600AF2FE5 /* SFSafariViewController+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3BE3B202E123600AF2FE5 /* SFSafariViewController+Notifications.swift */; };
 		24D7293D1FC736120097777F /* FileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7293C1FC736120097777F /* FileCell.swift */; };
 		24D729411FC7490C0097777F /* Int+ByteCountFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D729401FC7490C0097777F /* Int+ByteCountFormatting.swift */; };
@@ -635,7 +634,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24D3BE39202DFBAD00AF2FE5 /* Hero.framework in Frameworks */,
 				245B6AD61FCB327800302CD0 /* StoreKit.framework in Frameworks */,
 				2448D4541FA8DB1E00DAB97E /* StudKit.framework in Frameworks */,
 				2446F9741FC8D16900D6AB6C /* CloudKit.framework in Frameworks */,
@@ -1618,7 +1616,6 @@
 				2448D4071FA8DA2400DAB97E /* Resources */,
 				2448D4591FA8DB1E00DAB97E /* Embed Frameworks */,
 				24D9EF9A1FB75819006776B7 /* Embed App Extensions */,
-				2469F81A202CEB4A007FB3B6 /* Copy Carthage Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1915,22 +1912,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2469F81A202CEB4A007FB3B6 /* Copy Carthage Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Hero.framework",
-			);
-			name = "Copy Carthage Frameworks";
-			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Hero.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
 		24BDEF6A1FB738DB00635F22 /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
