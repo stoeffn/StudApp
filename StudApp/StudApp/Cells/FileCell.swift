@@ -15,20 +15,13 @@ final class FileCell: UITableViewCell {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        initObservers()
+        initNotificationObservers()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        initObservers()
+        initNotificationObservers()
     }
-
-    private func initObservers() {
-        observer = NotificationCenter.default.addObserver(forName: .reachabilityDidChange, object: nil, queue: nil,
-                                                          using: updateAvailability)
-    }
-
-    private var observer: NSObjectProtocol!
 
     var file: File! {
         didSet {
@@ -51,8 +44,8 @@ final class FileCell: UITableViewCell {
             activityIndicator?.isHidden = !file.state.isDownloading
             downloadGlyph?.isHidden = !file.isDownloadable
 
-            updateAvailability()
             updateSubtitleHiddenStates()
+            updateReachabilityIndicator()
         }
     }
 
@@ -88,10 +81,22 @@ final class FileCell: UITableViewCell {
         downloadCountContainer.isHidden = file.isFolder || frame.size.width < 512
     }
 
-    private func updateAvailability(_: Notification? = nil) {
+    func updateReachabilityIndicator() {
         UIView.animate(withDuration: 0.3) {
             self.contentView.alpha = self.file.isAvailable ? 1 : 0.6
         }
+    }
+
+    // MARK: - Notifications
+
+    private func initNotificationObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityDidChange(notification:)),
+                                               name: .reachabilityDidChange, object: nil)
+    }
+
+    @objc
+    private func reachabilityDidChange(notification: Notification) {
+        updateReachabilityIndicator()
     }
 
     // MARK: - User Interaction

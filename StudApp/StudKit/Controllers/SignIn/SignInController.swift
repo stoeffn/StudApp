@@ -18,6 +18,9 @@ final class SignInController: UIViewController, Routable {
         super.viewDidLoad()
 
         contextService = ServiceContainer.default[ContextService.self]
+
+        NotificationCenter.default.addObserver(self, selector: #selector(safariViewControllerDidLoadAppUrl(notification:)),
+                                               name: .safariViewControllerDidLoadAppUrl, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -149,8 +152,7 @@ final class SignInController: UIViewController, Routable {
         isLoading = true
 
         guard #available(iOSApplicationExtension 11.0, *) else {
-            // TODO:
-            fatalError()
+            return present(SFSafariViewController(url: url), animated: true, completion: nil)
         }
 
         let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { url, _ in
@@ -182,5 +184,14 @@ final class SignInController: UIViewController, Routable {
             }
             self.dismissSignIn()
         })
+    }
+
+    // MARK: - Notifications
+
+    @objc
+    private func safariViewControllerDidLoadAppUrl(notification: Notification) {
+        guard let url = notification.userInfo?[Notification.Name.safariViewControllerDidLoadAppUrlKey] as? URL else { return }
+        navigationController?.popViewController(animated: true)
+        finishAuthorization(withCallbackUrl: url)
     }
 }
