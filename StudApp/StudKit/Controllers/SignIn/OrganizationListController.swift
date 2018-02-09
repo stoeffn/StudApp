@@ -21,19 +21,15 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
 
         contextService = ServiceContainer.default[ContextService.self]
 
+        viewModel.stateChanged = updateUserInterface
+        viewModel.fetch()
+
         navigationItem.title = "Choose Your Organization".localized
         navigationItem.backBarButtonItem?.title = "Organizations".localized
 
         if contextService.currentTarget != .fileProviderUI {
             navigationItem.leftBarButtonItem = nil
         }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        viewModel.stateChanged = updateUserInterface
-        viewModel.fetch()
     }
 
     func prepareDependencies(for route: Routes) {
