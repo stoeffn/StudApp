@@ -113,7 +113,6 @@
 		2469F815202CE8D0007FB3B6 /* BulletinBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2469F813202CE6FF007FB3B6 /* BulletinBoard.framework */; };
 		2469F816202CE9C3007FB3B6 /* BulletinBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2469F813202CE6FF007FB3B6 /* BulletinBoard.framework */; };
 		2469F817202CE9CE007FB3B6 /* BulletinBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2469F813202CE6FF007FB3B6 /* BulletinBoard.framework */; };
-		2469F81C202CECB3007FB3B6 /* OrganizationBulletinItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469F81B202CECB3007FB3B6 /* OrganizationBulletinItem.swift */; };
 		246F3ABA1FAC7BEA00A477FF /* discovery.json in Resources */ = {isa = PBXBuildFile; fileRef = 246F3AB91FAC7BEA00A477FF /* discovery.json */; };
 		246F3AC51FAC879C00A477FF /* DataChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3ABE1FAC879C00A477FF /* DataChange.swift */; };
 		246F3AC61FAC879C00A477FF /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3ABF1FAC879C00A477FF /* DataSource.swift */; };
@@ -461,7 +460,6 @@
 		2469EF6C1FCF4D19008A122B /* ActivityIndicatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorCell.swift; sourceTree = "<group>"; };
 		2469F80F202CB8A0007FB3B6 /* PersistableApiAuthorizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistableApiAuthorizing.swift; sourceTree = "<group>"; };
 		2469F813202CE6FF007FB3B6 /* BulletinBoard.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BulletinBoard.framework; path = Carthage/Build/iOS/BulletinBoard.framework; sourceTree = "<group>"; };
-		2469F81B202CECB3007FB3B6 /* OrganizationBulletinItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationBulletinItem.swift; sourceTree = "<group>"; };
 		246F3AB91FAC7BEA00A477FF /* discovery.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = discovery.json; sourceTree = "<group>"; };
 		246F3ABE1FAC879C00A477FF /* DataChange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataChange.swift; sourceTree = "<group>"; };
 		246F3ABF1FAC879C00A477FF /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
@@ -1102,7 +1100,6 @@
 		2477935F1FC890C100090F4D /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
-				2469F81B202CECB3007FB3B6 /* OrganizationBulletinItem.swift */,
 				245B6ADB1FCB355D00302CD0 /* OrganizationCell.swift */,
 				245B6AD91FCB351F00302CD0 /* OrganizationListController.swift */,
 				243014251FA8FE2800680253 /* SignInController.swift */,
@@ -2103,7 +2100,6 @@
 				24E4B9A61FF260240061983C /* ObjectIdentifier.swift in Sources */,
 				243817A71FC88A49004052D0 /* SignInController.swift in Sources */,
 				24D360ED1FAA5DC500BBBAED /* Transforms.swift in Sources */,
-				2469F81C202CECB3007FB3B6 /* OrganizationBulletinItem.swift in Sources */,
 				24E4B9A81FF284830061983C /* BaseDirectories.swift in Sources */,
 				24CFB5D61FB24F4D00F30DEA /* Routable.swift in Sources */,
 				2448D4A51FA8E07E00DAB97E /* Result+Api.swift in Sources */,
