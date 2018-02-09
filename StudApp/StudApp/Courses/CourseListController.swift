@@ -93,6 +93,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         let cell = tableView.dequeueReusableCell(withIdentifier: CourseCell.typeIdentifier, for: indexPath)
         cell.setDisclosureIndicatorHidden(for: splitViewController)
         (cell as? CourseCell)?.course = courseListViewModels[indexPath.section][rowAt: indexPath.row]
+        (cell as? CourseCell)?.presentColorPicker = presentColorPicker
         return cell
     }
 
@@ -115,6 +116,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         return action == #selector(CustomMenuItems.color(_:))
     }
 
+    /// Empty implementation that is needed in order for the menu to appear.
     override func tableView(_: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender _: Any?) {
         return
     }
@@ -214,14 +216,18 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         }
     }
 
+    private func presentColorPicker(for cell: CourseCell) {
+        let route = Routes.colorPicker(sender: cell) { id, _ in
+            cell.course.state.colorId = id
+            self.presentedViewController?.dismiss(animated: true, completion: nil)
+        }
+        performSegue(withRoute: route)
+    }
+
     @available(iOS 11.0, *)
     private func colorAction(for cell: CourseCell, at _: IndexPath) -> UIContextualAction {
         func colorActionHandler(_: UIContextualAction, _: UIView, success: @escaping (Bool) -> Void) {
-            let route = Routes.colorPicker(sender: cell) { id, _ in
-                cell.course.state.colorId = id
-                self.presentedViewController?.dismiss(animated: true, completion: nil)
-            }
-            performSegue(withRoute: route)
+            self.presentColorPicker(for: cell)
             success(true)
         }
 

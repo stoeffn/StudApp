@@ -22,6 +22,8 @@ final class CourseCell: UITableViewCell {
         }
     }
 
+    var presentColorPicker: ((CourseCell) -> Void)?
+
     // MARK: - User Interface
 
     @IBOutlet weak var colorView: UIView!
@@ -44,7 +46,8 @@ final class CourseCell: UITableViewCell {
 
     // MARK: - User Interaction
 
-    /// Empty dummy implementation that is needed for the menu item to appear.
     @objc
-    func color(_: Any?) {}
+    func color(_: Any?) {
+        presentColorPicker?(self)
+    }
 }
