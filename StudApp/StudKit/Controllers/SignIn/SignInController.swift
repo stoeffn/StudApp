@@ -21,13 +21,6 @@ final class SignInController: UIViewController, Routable {
 
         NotificationCenter.default.addObserver(self, selector: #selector(safariViewControllerDidLoadAppUrl(notification:)),
                                                name: .safariViewControllerDidLoadAppUrl, object: nil)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        areOrganizationViewsHidden = false
-        isLoading = true
 
         var organization = viewModel.organization
         iconView.image = organization.iconThumbnail
@@ -40,6 +33,13 @@ final class SignInController: UIViewController, Routable {
         }
 
         startAuthorization()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        areOrganizationViewsHidden = false
+        isLoading = true
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -144,6 +144,7 @@ final class SignInController: UIViewController, Routable {
                 }))
                 return self.present(alert, animated: true, completion: nil)
             }
+
             self.authorize(at: url)
         }
     }
@@ -168,10 +169,12 @@ final class SignInController: UIViewController, Routable {
 
     private func finishAuthorization(withCallbackUrl url: URL) {
         isLoading = true
-        self.viewModel.handleAuthorizationCallback(url: url, handler: { result in
+        viewModel.handleAuthorizationCallback(url: url) { result in
             self.isLoading = false
 
             guard result.isSuccess else {
+                self.isLoading = false
+
                 let message = result.error?.localizedDescription
                 let alert = UIAlertController(title: "Error Signing In".localized, message: message, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Retry".localized, style: .default, handler: { _ in
@@ -182,8 +185,9 @@ final class SignInController: UIViewController, Routable {
                 }))
                 return self.present(alert, animated: true, completion: nil)
             }
+
             self.dismissSignIn()
-        })
+        }
     }
 
     // MARK: - Notifications

@@ -80,7 +80,7 @@
 
 // MARK: Signing In
 
-"Error Signing In" = "There Was an Error Signing In";
+"Error Signing In" = "Error Signing In";
 "It seems like your organization does not support StudApp anymore." = "It seems your this organization does not support StudApp anymore.";
 "There was an error authorizing StudApp to access your organization." = "There was an error authorizing StudApp to access your organization.";
 

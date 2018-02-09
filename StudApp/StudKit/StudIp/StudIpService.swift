@@ -59,6 +59,8 @@ public final class StudIpService {
     }
 
     func signIn(apiUrl: URL, authorizing: ApiAuthorizing, handler: @escaping ResultHandler<User>) {
+        signOut()
+
         api.baseUrl = apiUrl
         api.authorizing = authorizing
 

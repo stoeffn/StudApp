@@ -95,7 +95,7 @@ final class FileCell: UITableViewCell {
     }
 
     @objc
-    private func reachabilityDidChange(notification: Notification) {
+    private func reachabilityDidChange(notification _: Notification) {
         updateReachabilityIndicator()
     }
 

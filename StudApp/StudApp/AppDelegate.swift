@@ -80,7 +80,7 @@ extension AppDelegate: UIApplicationDelegate {
 
     // MARK: Opening a URL-Specified Resource
 
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
+    func application(_: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
         guard
             let sourceApplication = options[.sourceApplication] as? String,
             sourceApplication == safariServicesBundleIdentifier
