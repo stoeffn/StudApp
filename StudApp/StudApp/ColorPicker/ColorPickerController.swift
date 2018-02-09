@@ -33,6 +33,18 @@ final class ColorPickerController: UICollectionViewController, Routable {
         viewModel = ColorPickerViewModel(handler: handler)
     }
 
+    // MARK: - User Interface
+
+    public func addBackgroundView(withEffect effect: UIVisualEffect) {
+        let backgroundView = UIVisualEffectView(effect: effect)
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        view.insertSubview(backgroundView, at: 0)
+        backgroundView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        backgroundView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        backgroundView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+    }
+
     // MARK: - Collection View Data Source
 
     override func numberOfSections(in _: UICollectionView) -> Int {

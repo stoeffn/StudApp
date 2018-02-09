@@ -26,7 +26,6 @@
 		242B03701FD7464C00863B08 /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B036F1FD7464C00863B08 /* ColorCell.swift */; };
 		242B03721FD7467D00863B08 /* GlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B03711FD7467D00863B08 /* GlowView.swift */; };
 		242B03741FD7470200863B08 /* ColorPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B03731FD7470200863B08 /* ColorPickerViewModel.swift */; };
-		242B03761FD7471D00863B08 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B03751FD7471D00863B08 /* UIViewController+Utils.swift */; };
 		2432ABB71FE98BF000346226 /* AnnouncementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2432ABB61FE98BF000346226 /* AnnouncementCell.swift */; };
 		2432ABB91FE98D2900346226 /* AnnouncementListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2432ABB81FE98D2900346226 /* AnnouncementListViewModel.swift */; };
 		2432ABBB1FEBA2C500346226 /* AnnouncementController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2432ABBA1FEBA2C500346226 /* AnnouncementController.swift */; };
@@ -374,7 +373,6 @@
 		242B036F1FD7464C00863B08 /* ColorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
 		242B03711FD7467D00863B08 /* GlowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlowView.swift; sourceTree = "<group>"; };
 		242B03731FD7470200863B08 /* ColorPickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewModel.swift; sourceTree = "<group>"; };
-		242B03751FD7471D00863B08 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
 		243014251FA8FE2800680253 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		2432ABB61FE98BF000346226 /* AnnouncementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementCell.swift; sourceTree = "<group>"; };
 		2432ABB81FE98D2900346226 /* AnnouncementListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementListViewModel.swift; sourceTree = "<group>"; };
@@ -699,7 +697,6 @@
 				244EB5EA1FEFBEFA006BE633 /* UISplitViewController+Utils.swift */,
 				2450AC741FDC4FBC004F1267 /* UITableView+Utils.swift */,
 				24830AA81FD9F324006A1927 /* UITableViewCell+Utils.swift */,
-				242B03751FD7471D00863B08 /* UIViewController+Utils.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -2102,7 +2099,6 @@
 				243CC2BE1FDF0A7F00FE7376 /* CDSortable.swift in Sources */,
 				24E525C11FED8650000FB71A /* NSUserActivity+Utils.swift in Sources */,
 				24D360DF1FAA5D3800BBBAED /* String+HTML.swift in Sources */,
-				242B03761FD7471D00863B08 /* UIViewController+Utils.swift in Sources */,
 				246F3ACA1FAC879C00A477FF /* DataSourceDelegate.swift in Sources */,
 				24D361071FAA5E2300BBBAED /* Semester+StudIp.swift in Sources */,
 				243817AA1FC88B11004052D0 /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */,

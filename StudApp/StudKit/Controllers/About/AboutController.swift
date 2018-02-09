@@ -12,6 +12,7 @@ import SafariServices
 final class AboutController: UITableViewController, Routable {
     private let contextService = ServiceContainer.default[ContextService.self]
     private var viewModel: AboutViewModel!
+    private var completionHandler: (() -> Void)?
 
     // MARK: - Life Cycle
 
@@ -32,6 +33,11 @@ final class AboutController: UITableViewController, Routable {
         rateAppCell.textLabel?.text = "Rate StudApp".localized
     }
 
+    func prepareDependencies(for route: Routes) {
+        guard case let .about(handler) = route else { fatalError() }
+        completionHandler = handler
+    }
+
     // MARK: - User Interface
 
     @IBOutlet weak var titleLabel: UILabel!
@@ -46,7 +52,7 @@ final class AboutController: UITableViewController, Routable {
 
     @IBAction
     func doneButtonTapped(_: Any) {
-        dismiss(animated: true, completion: nil)
+        completionHandler?()
     }
 
     @IBAction
