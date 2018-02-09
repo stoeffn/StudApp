@@ -19,18 +19,13 @@ final class SignInController: UIViewController, Routable {
         super.viewDidLoad()
 
         contextService = ServiceContainer.default[ContextService.self]
-
-        viewModel.authorizationUrl { result in
-            guard let url = result.value else {
-                // TODO: Handle error
-                return
-            }
-            self.authorize(at: url)
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        areOrganizationViewsHidden = false
+        isLoading = true
 
         var organization = viewModel.organization
         iconView.image = organization.iconThumbnail
@@ -41,6 +36,22 @@ final class SignInController: UIViewController, Routable {
                 self.iconView.image = icon.value
             }, completion: nil)
         }
+
+        viewModel.authorizationUrl { result in
+            guard let url = result.value else {
+                // TODO: Handle error
+                self.isLoading = false
+                return
+            }
+            self.authorize(at: url)
+        }
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        areOrganizationViewsHidden = true
+        isLoading = false
     }
 
     func prepareDependencies(for route: Routes) {
@@ -60,38 +71,36 @@ final class SignInController: UIViewController, Routable {
     /// Weakly typed because `@available` cannot be applied to properties.
     private var authenticationSession: NSObject?
 
-    var isLoading = false {
+    var areOrganizationViewsHidden: Bool = true {
         didSet {
-            guard isLoading != oldValue else { return }
-            navigationItem.setActivityIndicatorHidden(!isLoading)
+            guard areOrganizationViewsHidden != oldValue else { return }
+
+            iconView.transform = areOrganizationViewsHidden ? .identity : CGAffineTransform(scaleX: 0.1, y: 0.1)
+            iconView.alpha = areOrganizationViewsHidden ? 1 : 0
+            titleLabel.alpha = areOrganizationViewsHidden ? 1 : 0
+
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0,
+                           options: .curveEaseOut, animations: {
+                self.iconView.transform = self.areOrganizationViewsHidden ? CGAffineTransform(scaleX: 0.1, y: 0.1) : .identity
+                self.iconView.alpha = self.areOrganizationViewsHidden ? 0 : 1
+                self.titleLabel.alpha = self.areOrganizationViewsHidden ? 0 : 1
+            }, completion: nil)
         }
     }
 
-    func authorize(at url: URL) {
-        guard #available(iOSApplicationExtension 11.0, *) else {
-            // TODO:
-            fatalError()
+    var isLoading: Bool = false {
+        didSet {
+            guard isLoading != oldValue else { return }
+
+            activityIndicator.transform = isLoading ? CGAffineTransform(scaleX: 0.1, y: 0.1) : .identity
+            activityIndicator.alpha = isLoading ? 0 : 1
+
+            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0,
+                           options: .curveEaseOut, animations: {
+                self.activityIndicator.transform = self.isLoading ? .identity : CGAffineTransform(scaleX: 0.1, y: 0.1)
+                self.activityIndicator.alpha = self.isLoading ? 1 : 0
+            }, completion: nil)
         }
-
-        let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { url, _ in
-            self.authenticationSession = nil
-
-            guard let url = url else {
-                self.dismiss(animated: true, completion: nil)
-                return
-            }
-
-            self.viewModel.handleAuthorizationCallback(url: url, handler: { result in
-                guard result.isSuccess else {
-                    // TODO: Handle error
-                    return
-                }
-                self.dismissSignIn()
-            })
-        }
-        session.start()
-
-        authenticationSession = session
     }
 
     func dismissSignIn() {
@@ -101,7 +110,7 @@ final class SignInController: UIViewController, Routable {
         case .fileProviderUI:
             contextService.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
         default:
-            break
+            fatalError()
         }
     }
 
@@ -120,5 +129,36 @@ final class SignInController: UIViewController, Routable {
         controller.addAction(UIAlertAction(title: "About".localized, style: .default, handler: showAboutView))
         controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
         present(controller, animated: true, completion: nil)
+    }
+
+    func authorize(at url: URL) {
+        isLoading = true
+
+        guard #available(iOSApplicationExtension 11.0, *) else {
+            // TODO:
+            fatalError()
+        }
+
+        let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { url, _ in
+            self.authenticationSession = nil
+
+            guard let url = url else {
+                self.dismiss(animated: true, completion: nil)
+                return
+            }
+
+            self.viewModel.handleAuthorizationCallback(url: url, handler: { result in
+                self.isLoading = false
+
+                guard result.isSuccess else {
+                    // TODO: Handle error
+                    return
+                }
+                self.dismissSignIn()
+            })
+        }
+        session.start()
+
+        authenticationSession = session
     }
 }
