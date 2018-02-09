@@ -18,6 +18,9 @@ protocol ApiRoutes: Hashable {
     /// HTTP method this route should use. Defaults to `.get`.
     var method: HttpMethods { get }
 
+    /// HTTP body. Defaults to `nil`.
+    var body: Data? { get }
+
     /// `API` will not repeat requests to the same route before the last request time to the route plus its expiration time
     /// interval. Thus, unnecassary round-trips and data usage can be saved. Defaults to `0`.
     var expiresAfter: TimeInterval { get }
@@ -48,6 +51,10 @@ extension ApiRoutes {
 
     var method: HttpMethods {
         return .get
+    }
+
+    var body: Data? {
+        return nil
     }
 
     var expiresAfter: TimeInterval {

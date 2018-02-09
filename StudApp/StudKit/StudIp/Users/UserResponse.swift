@@ -31,18 +31,18 @@ struct UserResponse: Decodable {
     }
 
     init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        id = try values.decodeIfPresent(String.self, forKey: .id)
-            ?? values.decode(String.self, forKey: .userId)
-        pictureUrl = try values.decodeIfPresent(URL.self, forKey: .pictureUrl)
+        id = try container.decodeIfPresent(String.self, forKey: .id) ?? container.decode(String.self, forKey: .userId)
+        pictureUrl = try container.decodeIfPresent(URL.self, forKey: .pictureUrl)
 
-        let name = try values.nestedContainer(keyedBy: NameKeys.self, forKey: .name)
-        username = try name.decode(String.self, forKey: .username)
-        givenName = try name.decode(String.self, forKey: .givenName)
-        familyName = try name.decode(String.self, forKey: .familyName)
-        rawNamePrefix = try name.decode(String.self, forKey: .rawNamePrefix)
-        rawNameSuffix = try name.decode(String.self, forKey: .rawNameSuffix)
+        let nameContainer = try container.nestedContainer(keyedBy: NameKeys.self, forKey: .name)
+
+        username = try nameContainer.decode(String.self, forKey: .username)
+        givenName = try nameContainer.decode(String.self, forKey: .givenName)
+        familyName = try nameContainer.decode(String.self, forKey: .familyName)
+        rawNamePrefix = try nameContainer.decode(String.self, forKey: .rawNamePrefix)
+        rawNameSuffix = try nameContainer.decode(String.self, forKey: .rawNameSuffix)
     }
 
     init(id: String, username: String, givenName: String, familyName: String, rawNamePrefix: String = "",

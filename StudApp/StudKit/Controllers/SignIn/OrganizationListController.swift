@@ -7,6 +7,7 @@
 //
 
 import FileProviderUI
+import SafariServices
 import UIKit
 
 final class OrganizationListController: UITableViewController, Routable, DataSourceSectionDelegate {
@@ -25,6 +26,7 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         viewModel.fetch()
 
         navigationItem.title = "Choose Your Organization".localized
+        navigationItem.hidesBackButton = true
         navigationItem.backBarButtonItem?.title = "Organizations".localized
 
         if contextService.currentTarget != .fileProviderUI {
@@ -111,11 +113,19 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
             performSegue(withRoute: route)
         }
 
+        func showHelpView(_: UIAlertAction) {
+            guard let url = App.Links.help else { return }
+            let controller = SFSafariViewController(url: url)
+            controller.preferredControlTintColor = UI.Colors.tint
+            present(controller, animated: true, completion: nil)
+        }
+
         let barButtonItem = sender as? UIBarButtonItem
 
         let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         controller.popoverPresentationController?.barButtonItem = barButtonItem
         controller.addAction(UIAlertAction(title: "About".localized, style: .default, handler: showAboutView))
+        controller.addAction(UIAlertAction(title: "Help".localized, style: .default, handler: showHelpView))
         controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
         present(controller, animated: true, completion: nil)
     }

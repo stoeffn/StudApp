@@ -6,6 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import SafariServices
 import StudKit
 
 final class MainController: UITabBarController {
@@ -95,6 +96,13 @@ final class MainController: UITabBarController {
             performSegue(withRoute: route)
         }
 
+        func showHelpView(_: UIAlertAction) {
+            guard let url = App.Links.help else { return }
+            let controller = SFSafariViewController(url: url)
+            controller.preferredControlTintColor = UI.Colors.tint
+            present(controller, animated: true, completion: nil)
+        }
+
         func showSettingsView(_: UIAlertAction) {
             performSegue(withRoute: .settings(handler: presentedSettings))
         }
@@ -106,6 +114,7 @@ final class MainController: UITabBarController {
         let controller = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
         controller.popoverPresentationController?.barButtonItem = barButtonItem
         controller.addAction(UIAlertAction(title: "About".localized, style: .default, handler: showAboutView))
+        controller.addAction(UIAlertAction(title: "Help".localized, style: .default, handler: showHelpView))
         controller.addAction(UIAlertAction(title: "Settings".localized, style: .default, handler: showSettingsView))
         controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
         present(controller, animated: true, completion: nil)

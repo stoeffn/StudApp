@@ -9,13 +9,13 @@
 import UIKit
 
 @IBDesignable
-final class FilledButton: UIButton {
+public final class FilledButton: UIButton {
     // MARK: - User Interface
 
     private var enabledBackgroundColor: UIColor?
     private let disabledBackgroundColor: UIColor = .lightGray
 
-    override var isEnabled: Bool {
+    public override var isEnabled: Bool {
         didSet {
             // Cache original background color before setting to disabled color.
             if enabledBackgroundColor == nil {
@@ -27,7 +27,7 @@ final class FilledButton: UIButton {
         }
     }
 
-    override var isHighlighted: Bool {
+    public override var isHighlighted: Bool {
         didSet {
             UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
                 let alpha: CGFloat = self.isHighlighted ? 0.6 : 1
@@ -38,7 +38,7 @@ final class FilledButton: UIButton {
     }
 
     @IBInspectable
-    var cornerRadius: CGFloat = UI.defaultCornerRadius {
+    public var cornerRadius: CGFloat = UI.defaultCornerRadius {
         didSet {
             layer.cornerRadius = cornerRadius
         }

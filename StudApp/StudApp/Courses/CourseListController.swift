@@ -203,6 +203,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
         emptyViewTitleLabel.text = "It Looks Like There Are No Semesters".localized
         emptyViewSubtitleLabel.text = "You can try to reload the semesters from Stud.IP.".localized
+        emptyViewActionButton.setTitle("Reload".localized, for: .normal)
 
         tableView.backgroundView = viewModel.isEmpty ? emptyView : nil
         tableView.separatorStyle = viewModel.isEmpty ? .none : .singleLine

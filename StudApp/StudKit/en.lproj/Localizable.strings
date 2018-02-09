@@ -10,6 +10,8 @@
 "Cancel" = "Cancel";
 "Share" = "Share";
 "Retry" = "Retry";
+"Reload" = "Reload";
+"Dismiss" = "Dismiss";
 "Remove" = "Remove";
 "Sign Out" = "Sign Out";
 "Send Feedback" = "Send Feedback";
@@ -17,15 +19,24 @@
 
 // MARK: Generic Errors
 
+"Something Went Wrong" = "Something Went Wrong";
+"Something Went Wrong Continuing Your Activity." = "Something Went Wrong Continuing Your Activity.";
 "There seems to be a problem with the internet connection." = "There seems to be a problem with the internet connection.";
 "Unfortunately, there was an internal error." = "Unfortunately, there was an internal error. Please contact app support if this occurs repeatedly.";
-"Something went wrong continuing your activity." = "Something went wrong continuing your activity.";
+
+// MARK: Generic Terms
+
+"Website" = "Website";
+"Help" = "Help";
+"Privacy Policy" = "Privacy Policy";
+"Terms of Use" = "Terms of Use";
 
 // MARK: About
 
 "About" = "About";
 "Feedback for %@" = "Feedback for %@";
 "Rate StudApp" = "Rate StudApp";
+"Manage Subscriptions…" = "Manage Subscriptions…";
 "We would appreciate your review on the App Store!" = "We would appreciate your review on the App Store!";
 "Could not launch App Store" = "Could not launch App Store";
 "It would be kind if you rated StudApp anyway by opening the App Store manually." = "It would be kind if you rated StudApp anyway by opening the App Store manually.";
@@ -38,6 +49,39 @@
 "Remove All Downloads" = "Remove All Downloads";
 "This accounts for the combined sizes of all documents that you have downloaded." = "This accounts for the combined sizes of all documents that you have downloaded.";
 "They are not backed up by iTunes or iCloud." = "They are not backed up by iTunes or iCloud.";
+
+// MARK: Signing In
+
+"Username" = "Username";
+"Password" = "Password";
+"Sign In" = "Sign In";
+"Please enter your Stud.IP credentials" = "Please enter your Stud.IP credentials";
+"Please check your username and password" = "Please check your username and password";
+
+// MARK: Verification
+
+"Verifying Your Purchase…" = "Verifying Your Purchase…";
+"Something Went Wrong Veryifying Your Purchase" = "Something Went Wrong Veryifying Your Purchase";
+"Thank You for Supporting StudApp!" = "Thank You for Supporting StudApp!";
+"Please open StudApp" = "Please open StudApp";
+
+// MARK: Store
+
+"Access all your Stud.IP courses and documents, including unlimited offline documents." = "Access all your Stud.IP courses and documents, including unlimited offline documents.";
+"Start Free Trial" = "Start Free Trial";
+"%@ for six months after a 1-month trial" = "%@ for six months after a 1-month trial";
+"——— or ———" = "——— or ———";
+"Unlock All Features" = "Unlock All Features";
+"Unlock All Features for %@" = "Unlock All Features for %@";
+"Restore Purchase" = "Restore Purchase";
+"Your Purchase is Deferred" = "Your Purchase is Deferred";
+"A family member might have to approve this puchase." = "A family member might have to approve this puchase.";
+"The former option is an auto-renewing subscription, whereas the latter is a one-time payment." = "The former option is an auto-renewing subscription, whereas the latter is a one-time payment.";
+"View our Privacy Policy and Terms of Use." = "View our Privacy Policy and Terms of Use.";
+"auto-renewing subscription" = "auto-renewing subscription";
+"Payment will be charged to your iTunes account," = "Payment will be charged to your iTunes account,";
+"and your account will be charged for renewal 24 hours prior to the end of the current period." = "and your account will be charged for renewal 24 hours prior to the end of the current period.";
+"Auto-renewal may be turned off at any time by going to your iTunes account settings after purchase." = "Auto-renewal may be turned off at any time by going to your iTunes account settings after purchase.";
 
 // MARK: User Menu
 

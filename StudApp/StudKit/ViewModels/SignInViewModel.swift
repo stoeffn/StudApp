@@ -24,6 +24,7 @@ public final class SignInViewModel {
     }
 
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
+    private let storeService = ServiceContainer.default[StoreService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]
     private let oAuth1: OAuth1<StudIpOAuth1Routes>
 
@@ -34,7 +35,7 @@ public final class SignInViewModel {
     public init(organization: OrganizationRecord) {
         self.organization = organization
 
-        oAuth1 = OAuth1<StudIpOAuth1Routes>(service: StudIpService.serviceName, callbackUrl: App.signInCallbackUrl,
+        oAuth1 = OAuth1<StudIpOAuth1Routes>(service: StudIpService.serviceName, callbackUrl: App.Links.signInCallback,
                                             consumerKey: organization.consumerKey, consumerSecret: organization.consumerSecret)
         oAuth1.baseUrl = organization.apiUrl
     }
@@ -87,5 +88,13 @@ public final class SignInViewModel {
                 try? context.saveWhenChanged()
             }
         }
+    }
+
+    public var isAppUnlocked: Bool {
+        return storeService.state.isUnlocked
+    }
+
+    public var isStoreStateVerified: Bool {
+        return storeService.state.isVerifiedByServer
     }
 }

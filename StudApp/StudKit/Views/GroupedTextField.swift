@@ -9,15 +9,15 @@
 import UIKit
 
 @IBDesignable
-final class GroupedTextField: UITextField {
+public final class GroupedTextField: UITextField {
     // MARK: - Life Cycle
 
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         initUserInterface()
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         initUserInterface()
     }
@@ -31,7 +31,7 @@ final class GroupedTextField: UITextField {
     }
 
     @IBInspectable
-    var cornerRadius: CGFloat = UI.defaultCornerRadius {
+    public var cornerRadius: CGFloat = UI.defaultCornerRadius {
         didSet {
             layer.cornerRadius = cornerRadius
             layoutSubviews()
@@ -39,7 +39,7 @@ final class GroupedTextField: UITextField {
     }
 
     @IBInspectable
-    var position: String = Position.middle.rawValue {
+    public var position: String = Position.middle.rawValue {
         didSet {
             switch Position(rawValue: position) {
             case .top?:
@@ -60,17 +60,17 @@ final class GroupedTextField: UITextField {
         }
     }
 
-    override func textRect(forBounds bounds: CGRect) -> CGRect {
+    public override func textRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.insetBy(dx: cornerRadius, dy: cornerRadius / 2)
     }
 
-    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+    public override func editingRect(forBounds bounds: CGRect) -> CGRect {
         return textRect(forBounds: bounds)
     }
 
     // MARK: - Position
 
-    enum Position: String {
+    public enum Position: String {
         case top, middle, bottom
     }
 }

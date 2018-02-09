@@ -61,9 +61,11 @@ class Api<Routes: ApiRoutes> {
     }
 
     /// Returns a request for the `URL` given and an HTTP method.
-    func request(for url: URL, method: HttpMethods) -> URLRequest {
+    func request(for url: URL, method: HttpMethods, body: Data? = nil) -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
+        request.httpBody = body
+
         guard let authorizing = authorizing else { return request }
         request.addValue(authorizing.authorizationHeader(for: request), forHTTPHeaderField: authorizing.autorizationHeaderField)
         return request
@@ -115,7 +117,7 @@ class Api<Routes: ApiRoutes> {
             return nil
         }
 
-        let request = self.request(for: url, method: route.method)
+        let request = self.request(for: url, method: route.method, body: route.body)
         let task = session.dataTask(with: request) { data, response, error in
             let response = response as? HTTPURLResponse
             let result = Result(data, error: error, statusCode: response?.statusCode)
@@ -180,7 +182,7 @@ class Api<Routes: ApiRoutes> {
             return nil
         }
 
-        let request = self.request(for: url, method: route.method)
+        let request = self.request(for: url, method: route.method, body: route.body)
         let task = session.downloadTask(with: request) { url, response, error in
             let response = response as? HTTPURLResponse
             let result = Result(url, error: error, statusCode: response?.statusCode)

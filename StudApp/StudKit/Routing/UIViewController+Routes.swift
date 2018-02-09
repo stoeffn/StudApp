@@ -23,7 +23,7 @@ public extension UIViewController {
             let controller = navigationController.viewControllers.first as? Routable {
             controller.prepareDependencies(for: route)
         } else {
-            let destinationDescription = String(describing: type(of: self))
+            let destinationDescription = String(describing: type(of: destination))
             let errorMessage = """
             Cannot use route with identifier '\(route.segueIdentifier)' with destination view controller
             '\(destinationDescription)' as neither it nor its first child view controller conform to protocol Routable'.

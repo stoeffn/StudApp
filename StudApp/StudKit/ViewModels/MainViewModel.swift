@@ -9,6 +9,7 @@
 /// Manages applications main view.
 public final class MainViewModel {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
+    private let storeService = ServiceContainer.default[StoreService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]
 
     public init() {}
@@ -19,6 +20,14 @@ public final class MainViewModel {
     ///            credential being stored. Thus, the password might have changed in the meantime.
     public var isSignedIn: Bool {
         return studIpService.isSignedIn
+    }
+
+    public func verifyStoreState(handler: @escaping ResultHandler<Routes?>) {
+        storeService.verifyStateWithServer { result in
+            guard let state = result.value else { return handler(result.replacingValue(nil)) }
+            let route = !state.isUnlocked ? Routes.store : nil
+            handler(result.replacingValue(route))
+        }
     }
 
     /// Updates the current user if signed in.

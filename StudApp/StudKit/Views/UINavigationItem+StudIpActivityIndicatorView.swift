@@ -11,7 +11,7 @@ import UIKit
 /// Needed for "faking" a stored property in an extension.
 private var cachedRightBarButtonItemAssociationKey: UInt8 = 0
 
-extension UINavigationItem {
+public extension UINavigationItem {
     /// Cache for right bar button item used during loading indicator visibility.
     private var cachedRightBarButtonItem: UIBarButtonItem? {
         get {
@@ -25,7 +25,7 @@ extension UINavigationItem {
     /// Replaces the right bar button item with a activity indicator if enabled, restores the previous item otherwise.
     ///
     /// - Parameter hidden: Whether to hide loading indicator.
-    func setActivityIndicatorHidden(_ hidden: Bool) {
+    public func setActivityIndicatorHidden(_ hidden: Bool) {
         if !hidden {
             cachedRightBarButtonItem = rightBarButtonItem
             let frame = CGRect(x: 0, y: 0, width: 32, height: 32)

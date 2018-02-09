@@ -29,6 +29,10 @@ final class AboutController: UITableViewController, Routable {
             titleLabel.text = "\(appName) \(appVersionName)"
         }
         subtitleLabel.text = "by %@".localized(App.authorName)
+
+        websiteCell.textLabel?.text = "Website".localized
+        privacyCell.textLabel?.text = "Privacy Policy".localized
+
         sendFeedbackCell.textLabel?.text = "Send Feedback".localized
         rateAppCell.textLabel?.text = "Rate StudApp".localized
     }
@@ -44,9 +48,15 @@ final class AboutController: UITableViewController, Routable {
 
     @IBOutlet weak var subtitleLabel: UILabel!
 
+    @IBOutlet weak var websiteCell: UITableViewCell!
+
+    @IBOutlet weak var privacyCell: UITableViewCell!
+
     @IBOutlet weak var sendFeedbackCell: UITableViewCell!
 
     @IBOutlet weak var rateAppCell: UITableViewCell!
+
+    @IBOutlet weak var manageSubscriptionsCell: UITableViewCell!
 
     // MARK: - User Interaction
 
@@ -57,7 +67,7 @@ final class AboutController: UITableViewController, Routable {
 
     @IBAction
     func actionButtonTapped(_: Any) {
-        guard let appUrl = App.url else { return }
+        guard let appUrl = App.Links.appStore else { return }
 
         let controller = UIActivityViewController(activityItems: [appUrl], applicationActivities: nil)
         controller.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
@@ -67,14 +77,14 @@ final class AboutController: UITableViewController, Routable {
     // MARK: - Table View Data Source
 
     private enum Sections: Int {
-        case app, feedback, thanks
+        case app, links, feedback, manageSubscriptions, thanks
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch Sections(rawValue: section) {
         case .thanks?:
             return viewModel.numberOfRows
-        case .app?, .feedback?, nil:
+        case .app?, .links?, .feedback?, .manageSubscriptions?, nil:
             return super.tableView(tableView, numberOfRowsInSection: section)
         }
     }
@@ -85,7 +95,7 @@ final class AboutController: UITableViewController, Routable {
             let cell = tableView.dequeueReusableCell(withIdentifier: ThanksNoteCell.typeIdentifier, for: indexPath)
             (cell as? ThanksNoteCell)?.thanksNote = viewModel[rowAt: indexPath.row]
             return cell
-        case .app?, .feedback?, nil:
+        case .app?, .links?, .feedback?, .manageSubscriptions?, nil:
             return super.tableView(tableView, cellForRowAt: indexPath)
         }
     }
@@ -94,7 +104,7 @@ final class AboutController: UITableViewController, Routable {
         switch Sections(rawValue: section) {
         case .thanks?:
             return "Thanks to".localized
-        case .app?, .feedback?, nil:
+        case .app?, .links?, .feedback?, .manageSubscriptions?, nil:
             return nil
         }
     }
@@ -105,7 +115,7 @@ final class AboutController: UITableViewController, Routable {
             return "We would appreciate your review on the App Store!".localized
         case .thanks?:
             return "Without you, this app could not exist. Thank you ❤️".localized
-        case .app?, nil:
+        case .app?, .links?, .manageSubscriptions?, nil:
             return nil
         }
     }
@@ -133,16 +143,20 @@ final class AboutController: UITableViewController, Routable {
 
         switch Sections(rawValue: indexPath.section) {
         case .thanks?:
-            guard let url = viewModel[rowAt: indexPath.row].url else { return }
-
-            let safariController = SFSafariViewController(url: url)
-            safariController.preferredControlTintColor = UI.Colors.studBlue
-            present(safariController, animated: true, completion: nil)
+            openInSafari(viewModel[rowAt: indexPath.row].url)
+        case .links? where cell === websiteCell:
+            openInSafari(App.Links.website)
+        case .links? where cell === privacyCell:
+            openInSafari(App.Links.privacyPolicy)
         case .feedback? where cell === sendFeedbackCell:
             openFeedbackMailComposer()
             tableView.deselectRow(at: indexPath, animated: true)
         case .feedback? where cell === rateAppCell:
             openAppStoreReviewPage()
+            tableView.deselectRow(at: indexPath, animated: true)
+        case .manageSubscriptions?:
+            guard let url = App.Links.manageSubscriptions else { return }
+            contextService.openUrl?(url) { _ in }
             tableView.deselectRow(at: indexPath, animated: true)
         default:
             break
@@ -151,7 +165,7 @@ final class AboutController: UITableViewController, Routable {
 
     override func tableView(_: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
         switch Sections(rawValue: indexPath.section) {
-        case .feedback?:
+        case .links?, .feedback?:
             return true
         case .thanks?:
             return viewModel[rowAt: indexPath.row].url != nil
@@ -163,7 +177,7 @@ final class AboutController: UITableViewController, Routable {
     override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath,
                             withSender _: Any?) -> Bool {
         switch Sections(rawValue: indexPath.section) {
-        case .feedback?:
+        case .links?, .feedback?:
             return action == #selector(copy(_:))
         case .thanks?:
             guard viewModel[rowAt: indexPath.row].url != nil else { return false }
@@ -178,10 +192,14 @@ final class AboutController: UITableViewController, Routable {
         let cell = tableView.cellForRow(at: indexPath)
 
         switch Sections(rawValue: indexPath.section) {
+        case .links? where cell === websiteCell:
+            UIPasteboard.general.url = App.Links.website
+        case .links? where cell === privacyCell:
+            UIPasteboard.general.url = App.Links.privacyPolicy
         case .feedback? where cell === sendFeedbackCell:
             UIPasteboard.general.string = App.feedbackMailAddress
         case .feedback? where cell === rateAppCell:
-            UIPasteboard.general.url = App.reviewUrl
+            UIPasteboard.general.url = App.Links.review
         case .thanks?:
             UIPasteboard.general.url = viewModel[rowAt: indexPath.row].url
         default:
@@ -190,6 +208,14 @@ final class AboutController: UITableViewController, Routable {
     }
 
     // MARK: - Helpers
+
+    private func openInSafari(_ url: URL?) {
+        guard let url = url else { return }
+
+        let safariController = SFSafariViewController(url: url)
+        safariController.preferredControlTintColor = UI.Colors.studBlue
+        present(safariController, animated: true, completion: nil)
+    }
 
     private func openFeedbackMailComposer() {
         let mailController = MFMailComposeViewController()
@@ -203,12 +229,9 @@ final class AboutController: UITableViewController, Routable {
     }
 
     private func openAppStoreReviewPage() {
-        guard
-            let openUrl = contextService.openUrl,
-            let reviewUrl = App.reviewUrl
-        else { return }
+        guard let reviewUrl = App.Links.review else { return }
 
-        openUrl(reviewUrl) { success in
+        contextService.openUrl?(reviewUrl) { success in
             guard !success else { return }
 
             let title = "Could not launch App Store".localized

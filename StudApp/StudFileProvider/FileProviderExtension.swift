@@ -12,6 +12,7 @@ import StudKit
 
 final class FileProviderExtension: NSFileProviderExtension {
     private let coreDataService: CoreDataService
+    private let storeService: StoreService
     private let studIpService: StudIpService
 
     // MARK: - Life Cycle
@@ -20,6 +21,7 @@ final class FileProviderExtension: NSFileProviderExtension {
         ServiceContainer.default.register(providers: StudKitServiceProvider(currentTarget: .fileProvider))
 
         coreDataService = ServiceContainer.default[CoreDataService.self]
+        storeService = ServiceContainer.default[StoreService.self]
         studIpService = ServiceContainer.default[StudIpService.self]
 
         let historyService = ServiceContainer.default[HistoryService.self]

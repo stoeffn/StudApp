@@ -17,6 +17,12 @@ public enum Routes {
 
     case signIntoOrganization(OrganizationRecord, handler: (Result<Void>) -> Void)
 
+    case store
+
+    case disclaimer(String)
+
+    case verification
+
     case preview(File, QLPreviewControllerDelegate?)
 
     case course(Course)
@@ -35,6 +41,8 @@ public enum Routes {
             return UIStoryboard(name: "SignIn", bundle: App.kitBundle)
         case .emptyCourse:
             return UIStoryboard(name: "Courses", bundle: nil)
+        case .verification:
+            return UIStoryboard(name: "Verification", bundle: App.kitBundle)
         default:
             return nil
         }
@@ -44,6 +52,7 @@ public enum Routes {
         switch self {
         case .signIn: return "SignInNavigationController"
         case .emptyCourse: return "EmptyCourseController"
+        case .verification: return "VerificationNavigationController"
         default: return nil
         }
     }
@@ -53,6 +62,9 @@ public enum Routes {
         case .about: return "about"
         case .settings: return "settings"
         case .signIn: return "signIn"
+        case .store: return "store"
+        case .disclaimer: return "disclaimer"
+        case .verification: return "verification"
         case .signIntoOrganization: return "signIntoOrganization"
         case .preview: return "preview"
         case .course: return "course"

@@ -6,7 +6,6 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-import FileProviderUI
 import StudKit
 
 extension Routes {
@@ -18,8 +17,14 @@ extension Routes {
     }
 
     init?(error: Error) {
-        switch error {
-        case let error as NSFileProviderError where error == NSFileProviderError(.notAuthenticated):
+        guard
+            let error = error as? NSFileProviderError,
+            let rawReason = error.userInfo[NSFileProviderError.reasonKey] as? String,
+            let reason = NSFileProviderError.Reasons(rawValue: rawReason)
+        else { return nil }
+
+        switch reason {
+        case .notSignedIn:
             self = .signIn { result in
                 let context = ServiceContainer.default[ContextService.self]
 
@@ -29,8 +34,8 @@ extension Routes {
                 }
                 context.extensionContext?.cancelRequest(withError: error)
             }
-        default:
-            return nil
+        case .noVerifiedPurchase:
+            self = .verification
         }
     }
 }

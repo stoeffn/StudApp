@@ -28,6 +28,12 @@ public class StudKitServiceProvider: ServiceProvider {
         return service
     }
 
+    func provideJsonEncoder() -> JSONEncoder {
+        let decoder = JSONEncoder()
+        decoder.dateEncodingStrategy = .secondsSince1970
+        return decoder
+    }
+
     func provideJsonDecoder() -> JSONDecoder {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .secondsSince1970
@@ -38,16 +44,23 @@ public class StudKitServiceProvider: ServiceProvider {
         return CoreDataService(modelName: "StudKit", appGroupIdentifier: App.groupIdentifier)
     }
 
+    func provideStoreService() -> StoreService {
+        guard let verificationApiBaseUrl = URL(string: "https://studapp.stoeffn.de/api/v1") else { fatalError() }
+        let verificationApi = Api<StoreRoutes>(baseUrl: verificationApiBaseUrl)
+        return StoreService(verificationApi: verificationApi)
+    }
+
     func provideStudIpService() -> StudIpService {
         return StudIpService()
     }
 
     public func registerServices(in container: ServiceContainer) {
+        container[JSONEncoder.self] = provideJsonEncoder()
+        container[JSONDecoder.self] = provideJsonDecoder()
         container[ContextService.self] = provideContextService()
         container[ReachabilityService.self] = provideReachabilityService()
         container[CacheService.self] = CacheService()
-        container[StoreService.self] = StoreService()
-        container[JSONDecoder.self] = provideJsonDecoder()
+        container[StoreService.self] = provideStoreService()
         container[StorageService.self] = StorageService()
         container[CoreDataService.self] = provideCoreDataService()
         container[HistoryService.self] = HistoryService(currentTarget: currentTarget)

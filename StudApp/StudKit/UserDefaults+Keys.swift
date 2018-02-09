@@ -14,4 +14,6 @@ extension UserDefaults {
     static let apiUrlKey = "apiUrl"
 
     static let userIdKey = "userId"
+
+    static let storeStateKey = "storeState"
 }

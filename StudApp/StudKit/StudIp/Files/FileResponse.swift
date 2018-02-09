@@ -40,19 +40,19 @@ struct FileResponse: Decodable {
         case ownerPath = "author"
     }
 
-    init(folderId: String? = nil, fileId: String? = nil, name: String? = nil, coursePath: String,
-         parentId: String? = nil, children: [FileResponse] = [], title: String, creationDate: Date = Date(),
-         modificationDate: Date = Date(), size: Int? = nil, downloadCount: Int? = nil, rawSummary: String? = nil,
+    init(folderId: String? = nil, fileId: String? = nil, filename: String? = nil, coursePath: String,
+         parentId: String? = nil, children: [FileResponse] = [], title: String, createdAt: Date = Date(),
+         modifiedAt: Date = Date(), size: Int? = nil, downloadCount: Int? = nil, rawSummary: String? = nil,
          ownerPath: String? = nil) {
         self.folderId = folderId
         self.fileId = fileId
-        filename = name
+        self.filename = filename
         self.coursePath = coursePath
         self.parentId = parentId
         self.children = children
         self.title = title
-        createdAt = creationDate
-        modifiedAt = modificationDate
+        self.createdAt = createdAt
+        self.modifiedAt = modifiedAt
         self.size = size
         self.downloadCount = downloadCount
         self.rawSummary = rawSummary
@@ -74,12 +74,15 @@ struct FileResponse: Decodable {
         rawSummary = try values.decodeIfPresent(String.self, forKey: .rawSummary)
         ownerPath = try values.decodeIfPresent(String.self, forKey: .ownerPath)
 
-        if let childrenCollection = try? values.decodeIfPresent([String: FileResponse].self, forKey: .children),
-            let children = childrenCollection?.values {
-            self.children = Array(children)
-        } else {
-            children = []
+        guard
+            let childrenCollection = try? values.decodeIfPresent([String: FileResponse].self, forKey: .children),
+            let children = childrenCollection?.values
+        else {
+            self.children = []
+            return
         }
+
+        self.children = Array(children)
     }
 }
 
