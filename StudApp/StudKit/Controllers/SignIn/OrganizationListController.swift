@@ -72,6 +72,12 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         }
     }
 
+    // MARK: - Table View Delegate
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

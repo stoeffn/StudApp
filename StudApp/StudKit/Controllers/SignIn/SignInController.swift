@@ -20,7 +20,10 @@ final class SignInController: UIViewController, Routable {
         contextService = ServiceContainer.default[ContextService.self]
 
         viewModel.authorizationUrl { result in
-            guard let url = result.value else { return }
+            guard let url = result.value else {
+                // TODO: Handle error
+                return
+            }
             self.authorize(at: url)
         }
     }
@@ -72,10 +75,17 @@ final class SignInController: UIViewController, Routable {
         let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { url, _ in
             self.authenticationSession = nil
 
-            guard let url = url else { return }
+            guard let url = url else {
+                self.dismiss(animated: true, completion: nil)
+                return
+            }
+
             self.viewModel.handleAuthorizationCallback(url: url, handler: { result in
-                guard result.isSuccess else { return }
-                self.dismiss()
+                guard result.isSuccess else {
+                    // TODO: Handle error
+                    return
+                }
+                self.dismissSignIn()
             })
         }
         session.start()
@@ -83,10 +93,10 @@ final class SignInController: UIViewController, Routable {
         authenticationSession = session
     }
 
-    func dismiss() {
+    func dismissSignIn() {
         switch contextService.currentTarget {
         case .app:
-            dismiss(animated: true, completion: nil)
+            presentingViewController?.dismiss(animated: true, completion: nil)
         case .fileProviderUI:
             contextService.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
         default:
