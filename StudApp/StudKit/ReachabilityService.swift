@@ -81,8 +81,8 @@ public final class ReachabilityService {
         guard currentReachabilityFlags != flags else { return }
         currentReachabilityFlags = flags
 
-        NotificationCenter.default.post(name: .reachabilityChanged, object: self, userInfo: [
-            Notification.Name.reachabilityChangedFlagsKey: currentReachabilityFlags,
+        NotificationCenter.default.post(name: .reachabilityDidChange, object: self, userInfo: [
+            Notification.Name.reachabilityDidChangeFlagsKey: currentReachabilityFlags,
         ])
     }
 }
@@ -94,8 +94,8 @@ extension Notification.Name {
     ///  `reachabilityChangedFlagsKey`.
     ///
     /// - Remark: You need to create and activate a `ReachabilityService` first in order to start receiving notifications.
-    public static let reachabilityChanged = Notification.Name(rawValue: "ReachabilityChanged")
+    public static let reachabilityDidChange = Notification.Name(rawValue: "ReachabilityDidChange")
 
     /// User info key for `reachabilityChanged` flags.
-    public static let reachabilityChangedFlagsKey = "flags"
+    public static let reachabilityDidChangeFlagsKey = "flags"
 }

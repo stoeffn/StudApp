@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		240B65C02013AB7900E3C417 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240B65BF2013AB7800E3C417 /* KeychainPasswordItem.swift */; };
+		2419E69F202E144600BC5367 /* SafariServices+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2419E69D202E144200BC5367 /* SafariServices+Constants.swift */; };
 		241C67E51FCDD78100F4A099 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E41FCDD78100F4A099 /* AboutViewModel.swift */; };
 		241C67EA1FCDFAC700F4A099 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E91FCDFAC700F4A099 /* App.swift */; };
 		241FD9651FA8FFAD00FBD750 /* UINavigationBar+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9641FA8FFAD00FBD750 /* UINavigationBar+Utils.swift */; };
@@ -213,6 +214,7 @@
 		24D361631FAA641600BBBAED /* courseCollection+20.json in Resources */ = {isa = PBXBuildFile; fileRef = 24D3615F1FAA641600BBBAED /* courseCollection+20.json */; };
 		24D361661FAA648B00BBBAED /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361651FAA648B00BBBAED /* SignInViewModel.swift */; };
 		24D3BE39202DFBAD00AF2FE5 /* Hero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D3BE38202DFBAD00AF2FE5 /* Hero.framework */; };
+		24D3BE3C202E123600AF2FE5 /* SFSafariViewController+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3BE3B202E123600AF2FE5 /* SFSafariViewController+Notifications.swift */; };
 		24D7293D1FC736120097777F /* FileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7293C1FC736120097777F /* FileCell.swift */; };
 		24D729411FC7490C0097777F /* Int+ByteCountFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D729401FC7490C0097777F /* Int+ByteCountFormatting.swift */; };
 		24D729451FC74B600097777F /* PersonNameComponents+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D729441FC74B600097777F /* PersonNameComponents+Formatting.swift */; };
@@ -350,6 +352,7 @@
 
 /* Begin PBXFileReference section */
 		240B65BF2013AB7800E3C417 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
+		2419E69D202E144200BC5367 /* SafariServices+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SafariServices+Constants.swift"; sourceTree = "<group>"; };
 		241C67E41FCDD78100F4A099 /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
 		241C67E71FCDEA3700F4A099 /* ThanksNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThanksNoteCell.swift; sourceTree = "<group>"; };
 		241C67E91FCDFAC700F4A099 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -562,6 +565,7 @@
 		24D3615F1FAA641600BBBAED /* courseCollection+20.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "courseCollection+20.json"; sourceTree = "<group>"; };
 		24D361651FAA648B00BBBAED /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		24D3BE38202DFBAD00AF2FE5 /* Hero.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Hero.framework; path = Carthage/Build/iOS/Hero.framework; sourceTree = "<group>"; };
+		24D3BE3B202E123600AF2FE5 /* SFSafariViewController+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SFSafariViewController+Notifications.swift"; sourceTree = "<group>"; };
 		24D7293C1FC736120097777F /* FileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCell.swift; sourceTree = "<group>"; };
 		24D729401FC7490C0097777F /* Int+ByteCountFormatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+ByteCountFormatting.swift"; sourceTree = "<group>"; };
 		24D729441FC74B600097777F /* PersonNameComponents+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonNameComponents+Formatting.swift"; sourceTree = "<group>"; };
@@ -917,6 +921,7 @@
 		2448D45F1FA8DC1D00DAB97E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				24D3BE3A202E121300AF2FE5 /* SafariServices */,
 				24D360D11FAA5CB300BBBAED /* CoreData */,
 				24E4B9A21FF25E7B0061983C /* FileProvider */,
 				2448D48D1FA8DED000DAB97E /* Foundation */,
@@ -1422,6 +1427,15 @@
 				24D2DA1F1FD04431006FC700 /* StoreViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		24D3BE3A202E121300AF2FE5 /* SafariServices */ = {
+			isa = PBXGroup;
+			children = (
+				2419E69D202E144200BC5367 /* SafariServices+Constants.swift */,
+				24D3BE3B202E123600AF2FE5 /* SFSafariViewController+Notifications.swift */,
+			);
+			path = SafariServices;
 			sourceTree = "<group>";
 		};
 		24D9EF831FB75818006776B7 /* StudFileProvider */ = {
@@ -2046,6 +2060,7 @@
 				24D2DA201FD04431006FC700 /* StoreViewModel.swift in Sources */,
 				24D2DA1E1FD03B98006FC700 /* StoreService.swift in Sources */,
 				24830AA91FD9F324006A1927 /* UITableViewCell+Utils.swift in Sources */,
+				24D3BE3C202E123600AF2FE5 /* SFSafariViewController+Notifications.swift in Sources */,
 				24BF7B6D1FF6741E0013BA23 /* FetchedResultsControllerDataSourceSection.swift in Sources */,
 				2469EF681FCE1D1C008A122B /* CacheService.swift in Sources */,
 				244EB5F21FEFDD7F006BE633 /* SettingsViewModel.swift in Sources */,
@@ -2083,6 +2098,7 @@
 				24D360DC1FAA5D3800BBBAED /* Array+Set.swift in Sources */,
 				242B03741FD7470200863B08 /* ColorPickerViewModel.swift in Sources */,
 				2448D4AB1FA8E07E00DAB97E /* Api.swift in Sources */,
+				2419E69F202E144600BC5367 /* SafariServices+Constants.swift in Sources */,
 				2450AC6D1FDC1582004F1267 /* CourseViewModel.swift in Sources */,
 				246F3ACD1FAC881100A477FF /* CourseListViewModel.swift in Sources */,
 				24D361091FAA5E2300BBBAED /* Semester.swift in Sources */,
