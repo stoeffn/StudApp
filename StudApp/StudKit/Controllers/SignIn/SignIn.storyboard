@@ -32,7 +32,7 @@
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppIcon" translatesAutoresizingMaskIntoConstraints="NO" id="sY2-E4-hXN">
                                             <rect key="frame" x="91.5" y="128" width="192" height="192"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="sY2-E4-hXN" secondAttribute="height" multiplier="1:1" id="eRI-UZ-eGp"/>
                                                 <constraint firstAttribute="height" constant="150" id="gDa-g9-Nco">
@@ -55,7 +55,9 @@
                                             <rect key="frame" x="163.5" y="491" width="48" height="48"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="48" id="Ump-5W-y1K"/>
+                                                <constraint firstAttribute="width" constant="48" id="Ump-5W-y1K">
+                                                    <variation key="heightClass=compact" constant="32"/>
+                                                </constraint>
                                                 <constraint firstAttribute="width" secondItem="5Wy-xu-LIM" secondAttribute="height" multiplier="1:1" id="V54-hY-Yuf"/>
                                             </constraints>
                                         </view>
@@ -69,7 +71,7 @@
                                             <variation key="heightClass=regular" constant="128"/>
                                         </constraint>
                                         <constraint firstAttribute="bottom" secondItem="5Wy-xu-LIM" secondAttribute="bottom" constant="128" id="R5A-9e-5H9">
-                                            <variation key="heightClass=compact" constant="16"/>
+                                            <variation key="heightClass=compact" constant="24"/>
                                         </constraint>
                                         <constraint firstAttribute="trailing" secondItem="MFk-Mm-3qX" secondAttribute="trailing" constant="32" id="VWl-Xz-tnU">
                                             <variation key="widthClass=regular" constant="72"/>
@@ -139,27 +141,46 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrganizationCell" textLabel="BvG-4A-eTZ" imageView="Bd6-rx-gNE" style="IBUITableViewCellStyleDefault" id="ORc-qu-TMd" customClass="OrganizationCell" customModule="StudKit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="151.5" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrganizationCell" rowHeight="48" id="ORc-qu-TMd" customClass="OrganizationCell" customModule="StudKit" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="151.5" width="375" height="48"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ORc-qu-TMd" id="WYb-c9-lKF">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="47.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Organization Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="BvG-4A-eTZ">
-                                            <rect key="frame" x="56" y="0.0" width="303" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="AppIcon" translatesAutoresizingMaskIntoConstraints="NO" id="kzK-ZY-Guw">
+                                            <rect key="frame" x="16" y="7" width="34" height="34"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="kzK-ZY-Guw" secondAttribute="height" multiplier="1:1" id="AX1-Eo-Zqg"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="zZm-kD-31J"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="5"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Organization Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n90-pQ-UJ7">
+                                            <rect key="frame" x="58" y="11" width="147" height="26"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="MailTableViewGlyph" id="Bd6-rx-gNE">
-                                            <rect key="frame" x="16" y="9" width="25" height="25"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="n90-pQ-UJ7" firstAttribute="leading" secondItem="kzK-ZY-Guw" secondAttribute="trailing" constant="8" id="0CU-60-VjS"/>
+                                        <constraint firstItem="kzK-ZY-Guw" firstAttribute="leading" secondItem="WYb-c9-lKF" secondAttribute="leadingMargin" id="F7N-iK-0hz"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="kzK-ZY-Guw" secondAttribute="bottom" constant="-4" id="LWe-ld-LE0"/>
+                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="n90-pQ-UJ7" secondAttribute="trailing" id="QUP-8T-sqZ"/>
+                                        <constraint firstItem="n90-pQ-UJ7" firstAttribute="top" secondItem="WYb-c9-lKF" secondAttribute="topMargin" id="Yln-UG-M9q"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="n90-pQ-UJ7" secondAttribute="bottom" id="ok6-jH-SIu"/>
+                                        <constraint firstItem="kzK-ZY-Guw" firstAttribute="top" secondItem="WYb-c9-lKF" secondAttribute="topMargin" constant="-4" id="wue-tc-M7s"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="iconView" destination="kzK-ZY-Guw" id="dAr-UN-7qs"/>
+                                    <outlet property="titleLabel" destination="n90-pQ-UJ7" id="0gF-7t-FjB"/>
                                     <segue destination="VFe-kT-QwB" kind="presentation" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="TCx-cd-Y82">
                                         <segue key="commit" inheritsFrom="parent" id="d3V-4N-xuZ"/>
                                         <segue key="preview" inheritsFrom="commit" id="Hgt-et-zBm"/>
@@ -167,7 +188,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ActivityIndicatorCell" rowHeight="72" id="TWv-HA-864" customClass="ActivityIndicatorCell" customModule="StudKit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="195.5" width="375" height="72"/>
+                                <rect key="frame" x="0.0" y="199.5" width="375" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TWv-HA-864" id="xvn-ko-DqF">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="71.5"/>
@@ -190,7 +211,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ActionCell" rowHeight="125" id="SHW-lG-keo" customClass="ActionCell" customModule="StudKit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="267.5" width="375" height="125"/>
+                                <rect key="frame" x="0.0" y="271.5" width="375" height="125"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SHW-lG-keo" id="lMn-nc-ZTG">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
@@ -297,7 +318,6 @@
     </scenes>
     <resources>
         <image name="AppIcon" width="1024" height="1024"/>
-        <image name="MailTableViewGlyph" width="25" height="25"/>
         <image name="MoreBarButtonGlyph" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
