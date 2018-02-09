@@ -33,18 +33,11 @@ final class SignInController: UIViewController, Routable {
 
         viewModel.organizationIcon { icon in
             UIView.transition(with: self.view, duration: 0.1, options: .transitionCrossDissolve, animations: {
-                self.iconView.image = icon.value
+                self.iconView.image = icon.value ?? self.iconView.image
             }, completion: nil)
         }
 
-        viewModel.authorizationUrl { result in
-            guard let url = result.value else {
-                // TODO: Handle error
-                self.isLoading = false
-                return
-            }
-            self.authorize(at: url)
-        }
+        startAuthorization()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -131,7 +124,29 @@ final class SignInController: UIViewController, Routable {
         present(controller, animated: true, completion: nil)
     }
 
-    func authorize(at url: URL) {
+    // MARK: - Helpers
+
+    private func startAuthorization() {
+        isLoading = true
+        viewModel.authorizationUrl { result in
+            guard let url = result.value else {
+                self.isLoading = false
+
+                let message = result.error?.localizedDescription
+                let alert = UIAlertController(title: "Error Signing In".localized, message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Retry".localized, style: .default, handler: { _ in
+                    self.startAuthorization()
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: { _ in
+                    self.dismiss(animated: true, completion: nil)
+                }))
+                return self.present(alert, animated: true, completion: nil)
+            }
+            self.authorize(at: url)
+        }
+    }
+
+    private func authorize(at url: URL) {
         isLoading = true
 
         guard #available(iOSApplicationExtension 11.0, *) else {
@@ -142,23 +157,31 @@ final class SignInController: UIViewController, Routable {
         let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { url, _ in
             self.authenticationSession = nil
 
-            guard let url = url else {
-                self.dismiss(animated: true, completion: nil)
-                return
-            }
-
-            self.viewModel.handleAuthorizationCallback(url: url, handler: { result in
-                self.isLoading = false
-
-                guard result.isSuccess else {
-                    // TODO: Handle error
-                    return
-                }
-                self.dismissSignIn()
-            })
+            guard let url = url else { return self.dismiss(animated: true, completion: nil) }
+            self.finishAuthorization(withCallbackUrl: url)
         }
         session.start()
 
         authenticationSession = session
+    }
+
+    private func finishAuthorization(withCallbackUrl url: URL) {
+        isLoading = true
+        self.viewModel.handleAuthorizationCallback(url: url, handler: { result in
+            self.isLoading = false
+
+            guard result.isSuccess else {
+                let message = result.error?.localizedDescription
+                let alert = UIAlertController(title: "Error Signing In".localized, message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Retry".localized, style: .default, handler: { _ in
+                    self.finishAuthorization(withCallbackUrl: url)
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: { _ in
+                    self.dismiss(animated: true, completion: nil)
+                }))
+                return self.present(alert, animated: true, completion: nil)
+            }
+            self.dismissSignIn()
+        })
     }
 }
