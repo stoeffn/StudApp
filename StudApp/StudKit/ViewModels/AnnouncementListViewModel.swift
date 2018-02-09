@@ -15,9 +15,9 @@ public final class AnnouncementListViewModel: FetchedResultsControllerDataSource
 
     lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
 
-    public let course: Course
-
     public weak var delegate: DataSourceSectionDelegate?
+
+    public let course: Course
 
     public init(course: Course) {
         self.course = course
@@ -29,11 +29,11 @@ public final class AnnouncementListViewModel: FetchedResultsControllerDataSource
         fetchRequest: course.unexpiredAnnouncementsFetchRequest, managedObjectContext: coreDataService.viewContext,
         sectionNameKeyPath: nil, cacheName: nil)
 
-    public func update(handler: (ResultHandler<[Announcement]>)? = nil) {
+    public func update(handler: (ResultHandler<Void>)? = nil) {
         coreDataService.performBackgroundTask { context in
             self.course.updateAnnouncements(in: context) { result in
                 try? context.saveWhenChanged()
-                handler?(result)
+                handler?(result.replacingValue(()))
             }
         }
     }

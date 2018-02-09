@@ -31,6 +31,12 @@
 "Privacy Policy" = "Datenschutzhinweise";
 "Terms of Use" = "Nutzungsbedingungen";
 
+// MARK: Days
+
+"Yesterday" = "Gestern";
+"Today" = "Heute";
+"Tomorrow" = "Morgen";
+
 // MARK: About
 
 "About" = "Über";
@@ -132,3 +138,9 @@
 
 "Color" = "Farbe";
 "Choose Color" = "Farbe wählen";
+
+// MARK: Events
+
+"Events" = "Ereignisse";
+"All Events" = "Alle Ereignisse";
+"Canceled" = "Entfällt";

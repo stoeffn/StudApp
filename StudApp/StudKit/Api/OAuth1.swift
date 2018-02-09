@@ -108,7 +108,7 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
     /// - Precondition: You must first create a request token. Otherwise, this property is `nil`.
     var authorizationUrl: URL? {
         let parameters = [URLQueryItem(name: CodingKeys.token.rawValue, value: token)]
-        return api.url(for: .authorize, parameters: parameters)
+        return try? api.url(for: .authorize, parameters: parameters)
     }
 
     /// Creates a request token that can be used for asking a user for permissions.

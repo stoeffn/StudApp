@@ -41,7 +41,7 @@ final class FileCell: UITableViewCell {
             sizeLabel.text = file.size.formattedAsByteCount
             downloadCountLabel.text = "%dx".localized(file.downloadCount)
 
-            activityIndicator?.isHidden = !file.state.isDownloading
+            activityIndicator?.isHidden = file.isFolder || !file.state.isDownloading
             downloadGlyph?.isHidden = !file.isDownloadable
 
             updateSubtitleHiddenStates()
@@ -77,12 +77,12 @@ final class FileCell: UITableViewCell {
     func updateSubtitleHiddenStates() {
         guard let file = file else { return }
         userContainer.isHidden = file.owner == nil
-        sizeContainer.isHidden = file.isFolder || frame.size.width < 512
-        downloadCountContainer.isHidden = file.isFolder || frame.size.width < 512
+        sizeContainer.isHidden = file.isFolder || frame.width < 512
+        downloadCountContainer.isHidden = file.isFolder || frame.width < 512
     }
 
     func updateReachabilityIndicator() {
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: UI.defaultAnimationDuration) {
             self.contentView.alpha = self.file.isAvailable ? 1 : 0.6
         }
     }

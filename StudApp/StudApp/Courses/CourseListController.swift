@@ -209,7 +209,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         tableView.separatorStyle = viewModel.isEmpty ? .none : .singleLine
         tableView.bounces = !viewModel.isEmpty
 
-        if let navigationBarHeight = navigationController?.navigationBar.bounds.size.height {
+        if let navigationBarHeight = navigationController?.navigationBar.bounds.height {
             emptyViewTopConstraint.constant = navigationBarHeight * 2 + 32
         }
     }

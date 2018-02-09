@@ -145,7 +145,7 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
 
         switch state {
         case .idle:
-            UIView.animate(withDuration: 0.3) {
+            UIView.animate(withDuration: UI.defaultAnimationDuration) {
                 self.isLoading = false
                 self.updateTrialButton(withProduct: self.viewModel.subscriptionProduct)
                 self.updateUnlockButton(withProduct: self.viewModel.unlockProduct)

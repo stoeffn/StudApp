@@ -9,7 +9,7 @@
 import Foundation
 
 extension Data {
-    init(fromResource filename: String) {
+    init(fromJsonResource filename: String) {
         guard let url = Bundle(for: Setup.self).url(forResource: filename, withExtension: "json") else {
             fatalError("Error getting file path for resource '\(filename)'.")
         }

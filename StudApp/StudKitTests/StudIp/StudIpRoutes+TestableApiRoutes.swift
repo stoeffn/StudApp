@@ -13,20 +13,19 @@ extension StudIpRoutes: TestableApiRoutes {
         let offset = parameters.filter({ $0.name == "offset" }).first?.value ?? "0"
         switch self {
         case .discovery:
-            return Data(fromResource: "disovery")
+            return Data(fromJsonResource: "disovery")
         case .semesters:
-            return Data(fromResource: "semesterCollection")
+            return Data(fromJsonResource: "semesterCollection")
         case .courses:
             switch offset {
-            case "0": return Data(fromResource: "courseCollection")
-            case "20": return Data(fromResource: "courseCollection+20")
+            case "0": return Data(fromJsonResource: "courseCollection")
+            case "20": return Data(fromJsonResource: "courseCollection+20")
             default: fatalError("No Mock API data for route '\(self)' and offset '\(offset)'.")
             }
         case .filesInCourse:
-            switch offset {
-            case "0": return Data(fromResource: "fileCollection")
-            default: fatalError("No Mock API data for route '\(self)' and offset '\(offset)'.")
-            }
+            return Data(fromJsonResource: "fileCollection")
+        case .eventsInCourse:
+            return Data(fromJsonResource: "eventCollection")
         default: fatalError("No Mock API data for route '\(self)' and offset '\(offset)'.")
         }
     }

@@ -21,7 +21,7 @@ public final class BorderlessNavigationController: UINavigationController {
         view.insertSubview(navigationBarBackgroundBlurView, belowSubview: navigationBar)
         view.insertSubview(navigationBarBackgroundAlphaView, belowSubview: navigationBar)
 
-        updateNavigationBarBackgroundFrame()
+        updateLayout()
 
         usesDefaultAppearance = false
     }
@@ -29,7 +29,7 @@ public final class BorderlessNavigationController: UINavigationController {
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        updateNavigationBarBackgroundFrame()
+        updateLayout()
     }
 
     public override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -37,7 +37,7 @@ public final class BorderlessNavigationController: UINavigationController {
 
         /// Set the status bar background view, which makes for the blur effect, behind the status bar at all times.
         coordinator.animateAlongsideTransition(in: navigationController?.view, animation: { _ in
-            self.updateNavigationBarBackgroundFrame()
+            self.updateLayout()
         }, completion: nil)
     }
 
@@ -45,14 +45,27 @@ public final class BorderlessNavigationController: UINavigationController {
         super.viewDidLayoutSubviews()
 
         // Oddly, you have to update the navigation bar background frame manually here when utilizing readable layout guide.
-        updateNavigationBarBackgroundFrame()
+        updateLayout()
     }
 
     // MARK: - User Interface
 
     /// Any additional navigation bar height, e.g. due to a search bar.
     public var additionalHeight: CGFloat = 0 {
-        didSet { updateNavigationBarBackgroundFrame() }
+        didSet { updateLayout() }
+    }
+
+    public var toolBarView: UIView? {
+        willSet {
+            guard newValue != toolBarView else { return }
+            toolBarView?.removeFromSuperview()
+        }
+        didSet {
+            guard oldValue != toolBarView else { return }
+            updateLayout()
+            guard let toolBarView = toolBarView else { return }
+            navigationBarBackgroundBlurView.contentView.addSubview(toolBarView)
+        }
     }
 
     /// Whether to use the default navigation bar appearance with background and hairline.
@@ -61,7 +74,7 @@ public final class BorderlessNavigationController: UINavigationController {
             navigationBarBackgroundBlurView.isHidden = usesDefaultAppearance
             navigationBarBackgroundAlphaView.isHidden = usesDefaultAppearance
             navigationBar.setBackgroundHidden(!usesDefaultAppearance)
-            updateNavigationBarBackgroundFrame()
+            updateLayout()
         }
     }
 
@@ -95,14 +108,20 @@ public final class BorderlessNavigationController: UINavigationController {
     private var navigationBarBackgroundFrame: CGRect? {
         return navigationBar.subviews
             .map { $0.bounds }
-            .min { $0.size.height > $1.size.height }
+            .min { $0.height > $1.height }
     }
 
     /// Update the navigation bar background views' frames. Needs to be called every time the layout changes.
-    private func updateNavigationBarBackgroundFrame() {
-        guard let frame = navigationBarBackgroundFrame, !usesDefaultAppearance else { return }
-        let size = CGSize(width: frame.size.width, height: frame.size.height + additionalHeight)
-        navigationBarBackgroundBlurView.frame = CGRect(origin: frame.origin, size: size)
+    private func updateLayout() {
+        guard let navigationBarFrame = navigationBarBackgroundFrame else { return }
+        let toolBarViewHeight = toolBarView?.bounds.height ?? 0
+
+        toolBarView?.frame = CGRect(x: 0, y: navigationBarFrame.height,
+                                    width: navigationBarFrame.width, height: toolBarViewHeight)
+
+        let backgroundHeight = navigationBarFrame.height + toolBarViewHeight + additionalHeight
+        let backgroundSize = CGSize(width: navigationBarFrame.width, height: backgroundHeight)
+        navigationBarBackgroundBlurView.frame = CGRect(origin: navigationBarFrame.origin, size: backgroundSize)
     }
 }
 
@@ -111,7 +130,7 @@ public final class BorderlessNavigationController: UINavigationController {
 extension BorderlessNavigationController: UINavigationControllerDelegate {
     public func navigationController(_: UINavigationController, didShow _: UIViewController, animated: Bool) {
         UIView.animate(withDuration: animated ? 0.1 : 0) {
-            self.updateNavigationBarBackgroundFrame()
+            self.updateLayout()
         }
     }
 }

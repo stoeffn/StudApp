@@ -44,4 +44,35 @@ enum StudIp {
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .nilWhenEmpty
     }
+
+    static func decodeLocation<CodingKeys>(in container: KeyedDecodingContainer<CodingKeys>,
+                                           forKey key: KeyedDecodingContainer<CodingKeys>.Key) throws -> String? {
+        var charactersToTrim = CharacterSet.whitespacesAndNewlines
+        charactersToTrim.insert(charactersIn: "()")
+        return try container.decodeIfPresent(String.self, forKey: key)?
+            .replacingMatches(" *, *", with: "\n")
+            .replacingOccurrences(of: "Gebaeude", with: "Gebäude")
+            .trimmingCharacters(in: charactersToTrim)
+            .nilWhenEmpty
+    }
+
+    static func decodeCancellationReason<CodingKeys>(in container: KeyedDecodingContainer<CodingKeys>,
+                                                     forKey key: KeyedDecodingContainer<CodingKeys>.Key) throws -> String? {
+        do {
+            return try container.decode(String.self, forKey: key)
+        } catch {
+            return nil
+        }
+    }
+
+    static func decodeTimeIntervalStringAsDate<CodingKeys>(in container: KeyedDecodingContainer<CodingKeys>,
+                                                           forKey key: KeyedDecodingContainer<CodingKeys>.Key) throws -> Date {
+        let string = try container.decode(String.self, forKey: key)
+        guard let timeInterval = TimeInterval(string) else {
+            let context = DecodingError.Context(
+                codingPath: [key], debugDescription: "Cannot create time interval from '\(string)'", underlyingError: nil)
+            throw DecodingError.typeMismatch(TimeInterval.self, context)
+        }
+        return Date(timeIntervalSince1970: timeInterval)
+    }
 }

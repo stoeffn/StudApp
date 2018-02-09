@@ -9,6 +9,7 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -198,7 +199,10 @@
                                     <outlet property="titleLabel" destination="AGW-xi-pxG" id="OxN-7g-TK3"/>
                                     <outlet property="userContainer" destination="3BD-dk-dat" id="2Ia-Fi-dLt"/>
                                     <outlet property="userLabel" destination="bhY-HO-FLm" id="dm5-dk-dHL"/>
-                                    <segue destination="9OB-lI-obx" kind="show" identifier="folder" id="N6g-aE-vg6"/>
+                                    <segue destination="9OB-lI-obx" kind="show" identifier="folder" id="N6g-aE-vg6">
+                                        <segue key="commit" inheritsFrom="parent" id="bw7-sh-L0C"/>
+                                        <segue key="preview" inheritsFrom="commit" id="yzT-GG-9JB"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

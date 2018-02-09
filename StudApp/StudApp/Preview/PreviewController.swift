@@ -57,6 +57,26 @@ final class PreviewController: QLPreviewController, Routable {
     override func updateUserActivityState(_ activity: NSUserActivity) {
         activity.objectIdentifier = file.objectIdentifier
     }
+
+    // MARK: - Utilities
+
+    static func downloadOrPreview(_ file: File, in controller: UIViewController & QLPreviewControllerDelegate) {
+        guard file.state.isMostRecentVersionDownloaded else {
+            file.download { result in
+                guard result.isFailure else { return }
+
+                let error = result.error?.localizedDescription ?? "Something went wrong downloading this document".localized
+                let alert = UIAlertController(title: error, message: nil, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
+                controller.present(alert, animated: true, completion: nil)
+            }
+            return
+        }
+
+        let previewController = PreviewController()
+        previewController.prepareDependencies(for: .preview(file, controller))
+        controller.present(previewController, animated: true, completion: nil)
+    }
 }
 
 // MARK: - QuickLook Data Source

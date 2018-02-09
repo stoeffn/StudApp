@@ -44,6 +44,8 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdat
 
     @NSManaged public var announcements: Set<Announcement>
 
+    @NSManaged public var events: Set<Event>
+
     @NSManaged public var state: CourseState
 
     // MARK: - Life Cycle
@@ -82,6 +84,11 @@ extension Course {
     public var unexpiredAnnouncementsFetchRequest: NSFetchRequest<Announcement> {
         let predicate = NSPredicate(format: "%@ IN courses AND expiresAt >= %@", self, Date() as CVarArg)
         return Announcement.fetchRequest(predicate: predicate, sortDescriptors: Announcement.defaultSortDescriptors)
+    }
+
+    public var eventsFetchRequest: NSFetchRequest<Event> {
+        let predicate = NSPredicate(format: "course == %@", self)
+        return Event.fetchRequest(predicate: predicate, sortDescriptors: Event.defaultSortDescriptors)
     }
 }
 

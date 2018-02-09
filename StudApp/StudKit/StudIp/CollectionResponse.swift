@@ -24,10 +24,15 @@ struct CollectionResponse<Element: Decodable>: Decodable {
     }
 
     public init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        let collection = try values.decode([String: Element].self, forKey: .collection)
-        items = Array(collection.values)
-        pagination = try values.decode(Pagination.self, forKey: .pagination)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        do {
+            items = Array(try container.decode([String: Element].self, forKey: .collection).values)
+        } catch {
+            items = try container.decode([Element].self, forKey: .collection)
+        }
+
+        pagination = try container.decode(Pagination.self, forKey: .pagination)
     }
 
     let items: [Element]

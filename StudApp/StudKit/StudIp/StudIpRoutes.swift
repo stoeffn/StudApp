@@ -28,8 +28,11 @@ public enum StudIpRoutes: ApiRoutes {
     /// Returns the contents of a file with the given id.
     case fileContents(forFileId: String)
 
-    /// Returns a list of unexpired announcements for the course with the id given.
+    /// Returns a collection of unexpired announcements for the course with the id given.
     case announcementsInCourse(withId: String)
+
+    /// Returns a collection of all events for a course.
+    case eventsInCourse(withId: String)
 
     /// Returns the profile picture at the URL given.
     case profilePicture(URL)
@@ -53,6 +56,8 @@ public enum StudIpRoutes: ApiRoutes {
             return "file/\(fileId)/content"
         case let .announcementsInCourse(courseId):
             return "course/\(courseId)/news"
+        case let .eventsInCourse(courseId):
+            return "course/\(courseId)/events"
         case let .profilePicture(url):
             return url.path
         case .currentUser:
@@ -69,17 +74,18 @@ public enum StudIpRoutes: ApiRoutes {
         case .file: return FileResponse.self
         case .fileContents, .profilePicture: return nil
         case .announcementsInCourse: return CollectionResponse<AnnouncementResponse>.self
+        case .eventsInCourse: return CollectionResponse<EventResponse>.self
         case .currentUser: return UserResponse.self
         }
     }
 
     var expiresAfter: TimeInterval {
         switch self {
-        case .discovery:
+        case .discovery, .fileContents:
             return 0
-        case .courses, .filesInCourse, .file, .fileContents, .announcementsInCourse, .currentUser:
+        case .courses, .filesInCourse, .file, .announcementsInCourse, .currentUser:
             return 60
-        case .semesters, .profilePicture:
+        case .semesters, .profilePicture, .eventsInCourse:
             return 60 * 60
         }
     }

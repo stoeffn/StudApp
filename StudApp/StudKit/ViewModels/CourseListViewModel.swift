@@ -16,12 +16,14 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
     public typealias Row = Course
 
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
-    private let semester: Semester
+
     private let respectsCollapsedState: Bool
 
     lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
 
     public weak var delegate: DataSourceSectionDelegate?
+
+    public let semester: Semester
 
     /// Creates a new course list view model managing the given semester's courses.
     public init(semester: Semester, respectsCollapsedState: Bool = false) {
@@ -57,7 +59,6 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
         coreDataService.performBackgroundTask { context in
             Course.update(in: context) { result in
                 try? context.saveWhenChanged()
-                try? self.coreDataService.viewContext.saveWhenChanged()
                 handler?(result.replacingValue(()))
             }
         }

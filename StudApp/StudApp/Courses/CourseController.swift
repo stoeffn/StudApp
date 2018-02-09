@@ -39,13 +39,31 @@ final class CourseController: UITableViewController, Routable {
         navigationItem.title = viewModel.course.title
         navigationItem.prompt = viewModel.course.subtitle
 
-        (splitViewController?.detailNavigationController as? BorderlessNavigationController)?.usesDefaultAppearance = true
+        let navigationController = splitViewController?.detailNavigationController as? BorderlessNavigationController
+        navigationController?.usesDefaultAppearance = true
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        (splitViewController?.detailNavigationController as? BorderlessNavigationController)?.usesDefaultAppearance = false
+        let navigationController = splitViewController?.detailNavigationController as? BorderlessNavigationController
+        navigationController?.usesDefaultAppearance = false
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        guard self == navigationController?.topViewController else {
+            return super.viewWillTransition(to: size, with: coordinator)
+        }
+
+        let controller = splitViewController?.detailNavigationController as? BorderlessNavigationController
+        controller?.usesDefaultAppearance = false
+
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: { _ in
+            let controller = self.splitViewController?.detailNavigationController as? BorderlessNavigationController
+            controller?.usesDefaultAppearance = true
+        }, completion: nil)
     }
 
     private func configureViewModels(with course: Course) {
@@ -73,8 +91,7 @@ final class CourseController: UITableViewController, Routable {
     }
 
     override func decodeRestorableState(with coder: NSCoder) {
-        if
-            let restoredObjectIdentifier = coder.decodeObject(forKey: ObjectIdentifier.typeIdentifier) as? String,
+        if let restoredObjectIdentifier = coder.decodeObject(forKey: ObjectIdentifier.typeIdentifier) as? String,
             let course = Course.fetch(byObjectId: ObjectIdentifier(rawValue: restoredObjectIdentifier)) {
             configureViewModels(with: course)
         }
@@ -92,8 +109,10 @@ final class CourseController: UITableViewController, Routable {
 
     private let emptyCellIdentifier = "EmptyCell"
 
+    private let allEventsCellIdentifier = "AllEventsCell"
+
     private enum Sections: Int {
-        case info, announcements, documents
+        case info, announcements, documents, events
     }
 
     private func index<Section: DataSourceSection>(for section: Section) -> Sections? {
@@ -104,7 +123,7 @@ final class CourseController: UITableViewController, Routable {
     }
 
     override func numberOfSections(in _: UITableView) -> Int {
-        return 3
+        return 4
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -115,6 +134,8 @@ final class CourseController: UITableViewController, Routable {
             return announcementsViewModel.numberOfRows + 1
         case .documents?:
             return fileListViewModel.numberOfRows + 1
+        case .events?:
+            return 1
         case nil:
             fatalError()
         }
@@ -145,6 +166,10 @@ final class CourseController: UITableViewController, Routable {
             let cell = tableView.dequeueReusableCell(withIdentifier: FileCell.typeIdentifier, for: indexPath)
             (cell as? FileCell)?.file = fileListViewModel[rowAt: indexPath.row]
             return cell
+        case .events?:
+            let cell = tableView.dequeueReusableCell(withIdentifier: allEventsCellIdentifier, for: indexPath)
+            cell.textLabel?.text = "All Events".localized
+            return cell
         case nil:
             fatalError()
         }
@@ -165,6 +190,7 @@ final class CourseController: UITableViewController, Routable {
         case .info?: return nil
         case .announcements?: return "Announcements".localized
         case .documents?: return "Documents".localized
+        case .events?: return "Events".localized
         case nil: fatalError()
         }
     }
@@ -172,7 +198,7 @@ final class CourseController: UITableViewController, Routable {
     override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
         switch Sections(rawValue: section) {
         case .info?: return viewModel.course.summary
-        case .announcements?, .documents?: return nil
+        case .announcements?, .documents?, .events?: return nil
         case nil: fatalError()
         }
     }
@@ -206,7 +232,7 @@ final class CourseController: UITableViewController, Routable {
             default:
                 return false
             }
-        case nil:
+        case .events?, nil:
             fatalError()
         }
     }
@@ -222,7 +248,7 @@ final class CourseController: UITableViewController, Routable {
             UIPasteboard.general.string = announcementsViewModel[rowAt: indexPath.row].body
         case .documents?:
             break
-        case nil:
+        case .events?, nil:
             fatalError()
         }
     }
@@ -233,32 +259,12 @@ final class CourseController: UITableViewController, Routable {
             break
         case .documents? where !announcementsViewModel.isEmpty:
             guard let cell = tableView.cellForRow(at: indexPath) as? FileCell, !cell.file.isFolder else { return }
-            downloadOrPreview(cell.file)
+            PreviewController.downloadOrPreview(cell.file, in: self)
         default:
             break
         }
 
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-
-    // MARK: - User Interface
-
-    private func downloadOrPreview(_ file: File) {
-        guard file.state.isMostRecentVersionDownloaded else {
-            file.download { result in
-                guard result.isFailure else { return }
-
-                let error = result.error?.localizedDescription ?? "Something went wrong downloading this document".localized
-                let alert = UIAlertController(title: error, message: nil, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-            }
-            return
-        }
-
-        let previewController = PreviewController()
-        previewController.prepareDependencies(for: .preview(file, self))
-        present(previewController, animated: true, completion: nil)
     }
 
     // MARK: - User Interaction
@@ -293,6 +299,8 @@ final class CourseController: UITableViewController, Routable {
             performSegue(withRoute: route)
         case let cell as FileCell:
             prepare(for: .folder(cell.file), destination: segue.destination)
+        case let cell as UITableViewCell where cell.reuseIdentifier == allEventsCellIdentifier:
+            prepare(for: .eventsInCourse(viewModel.course), destination: segue.destination)
         default:
             prepareForRoute(using: segue, sender: sender)
         }

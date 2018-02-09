@@ -47,7 +47,7 @@ final class CourseHeader: UITableViewHeaderFooterView {
     }()
 
     private func initUserInterface() {
-        backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight))
+        backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
 
         addSubview(colorView)
 

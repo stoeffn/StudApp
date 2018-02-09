@@ -11,6 +11,8 @@ import CoreGraphics
 public enum UI {
     public static let defaultCornerRadius: CGFloat = 10
 
+    public static let defaultAnimationDuration = 0.3
+
     public enum Colors {
         public static let greyGlyph = UIColor(red: 0.78, green: 0.78, blue: 0.8, alpha: 1)
 

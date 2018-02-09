@@ -72,8 +72,8 @@ final class SignInController: UIViewController, Routable {
             iconView.alpha = areOrganizationViewsHidden ? 1 : 0
             titleLabel.alpha = areOrganizationViewsHidden ? 1 : 0
 
-            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0,
-                           options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: UI.defaultAnimationDuration, delay: 0, usingSpringWithDamping: 0.7,
+                           initialSpringVelocity: 0, options: .curveEaseOut, animations: {
                 self.iconView.transform = self.areOrganizationViewsHidden ? CGAffineTransform(scaleX: 0.1, y: 0.1) : .identity
                 self.iconView.alpha = self.areOrganizationViewsHidden ? 0 : 1
                 self.titleLabel.alpha = self.areOrganizationViewsHidden ? 0 : 1
@@ -88,8 +88,8 @@ final class SignInController: UIViewController, Routable {
             activityIndicator.transform = isLoading ? CGAffineTransform(scaleX: 0.1, y: 0.1) : .identity
             activityIndicator.alpha = isLoading ? 0 : 1
 
-            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0,
-                           options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: UI.defaultAnimationDuration, delay: 0, usingSpringWithDamping: 0.7,
+                           initialSpringVelocity: 0, options: .curveEaseOut, animations: {
                 self.activityIndicator.transform = self.isLoading ? .identity : CGAffineTransform(scaleX: 0.1, y: 0.1)
                 self.activityIndicator.alpha = self.isLoading ? 1 : 0
             }, completion: nil)

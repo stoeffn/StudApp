@@ -6,11 +6,9 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-import UIKit
+import StudKit
 
 final class ColorCell: UICollectionViewCell {
-    static let identifier = String(describing: ColorCell.self)
-
     // MARK: - Life Cycle
 
     override func awakeFromNib() {
