@@ -12,6 +12,7 @@ import UIKit
 final class OrganizationListController: UITableViewController, Routable, DataSourceSectionDelegate {
     private var contextService: ContextService!
     private var viewModel: OrganizationListViewModel!
+    private var completionHandler: ((Result<Void>) -> Void)?
 
     // MARK: - Life Cycle
 
@@ -19,8 +20,6 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         super.viewDidLoad()
 
         contextService = ServiceContainer.default[ContextService.self]
-
-        viewModel = OrganizationListViewModel()
 
         navigationItem.title = "Choose Your Organization".localized
         navigationItem.backBarButtonItem?.title = "Organizations".localized
@@ -35,6 +34,12 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
 
         viewModel.stateChanged = updateUserInterface
         viewModel.fetch()
+    }
+
+    func prepareDependencies(for route: Routes) {
+        guard case let .signIn(handler) = route else { fatalError() }
+        viewModel = OrganizationListViewModel()
+        completionHandler = handler
     }
 
     // MARK: - Table View Data Source
@@ -82,7 +87,8 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch sender {
         case let organizationCell as OrganizationCell:
-            prepare(for: .signIntoOrganization(organizationCell.organization), destination: segue.destination)
+            prepare(for: .signIntoOrganization(organizationCell.organization, handler: signedIntoOrganization),
+                    destination: segue.destination)
         default:
             prepareForRoute(using: segue, sender: sender)
         }
@@ -103,7 +109,10 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     @IBAction
     func moreButtonTapped(_ sender: Any) {
         func showAboutView(_: UIAlertAction) {
-            performSegue(withRoute: .about)
+            let route = Routes.about {
+                self.presentedViewController?.dismiss(animated: true, completion: nil)
+            }
+            performSegue(withRoute: route)
         }
 
         let barButtonItem = sender as? UIBarButtonItem
@@ -117,6 +126,14 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
 
     @IBAction
     func cancelButtonTapped(_: Any) {
-        contextService.extensionContext?.cancelRequest(withError: NSError(domain: "Cancel", code: 0))
+        completionHandler?(.failure(nil))
+    }
+
+    // MARK: - Completion Handlers
+
+    private func signedIntoOrganization(result: Result<Void>) {
+        presentedViewController?.dismiss(animated: true) {
+            self.completionHandler?(result)
+        }
     }
 }

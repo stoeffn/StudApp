@@ -32,7 +32,7 @@ final class MainController: UITabBarController {
         super.viewDidAppear(animated)
 
         if !viewModel.isSignedIn {
-            performSegue(withRoute: .signIn)
+            performSegue(withRoute: .signIn(handler: signedIn))
         }
     }
 
@@ -89,11 +89,14 @@ final class MainController: UITabBarController {
     @IBAction
     func userButtonTapped(_ sender: Any) {
         func showAboutView(_: UIAlertAction) {
-            performSegue(withRoute: .about)
+            let route = Routes.about {
+                self.presentedViewController?.dismiss(animated: true, completion: nil)
+            }
+            performSegue(withRoute: route)
         }
 
         func showSettingsView(_: UIAlertAction) {
-            performSegue(withRoute: .settings)
+            performSegue(withRoute: .settings(handler: presentedSettings))
         }
 
         guard let currentUser = viewModel.currentUser else { return }
@@ -106,5 +109,21 @@ final class MainController: UITabBarController {
         controller.addAction(UIAlertAction(title: "Settings".localized, style: .default, handler: showSettingsView))
         controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
         present(controller, animated: true, completion: nil)
+    }
+
+    // MARK: - Completion Handlers
+
+    private func signedIn(result: Result<Void>) {
+        if result.isSuccess {
+            presentedViewController?.dismiss(animated: true, completion: nil)
+        }
+    }
+
+    private func presentedSettings(result: SettingsResult) {
+        presentedViewController?.dismiss(animated: true) {
+            if result == .signedOut {
+                self.performSegue(withRoute: .signIn(handler: self.signedIn))
+            }
+        }
     }
 }

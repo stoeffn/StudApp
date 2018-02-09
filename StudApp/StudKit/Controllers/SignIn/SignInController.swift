@@ -9,15 +9,13 @@
 import SafariServices
 
 final class SignInController: UIViewController, Routable {
-    private var contextService: ContextService!
     private var viewModel: SignInViewModel!
+    private var completionHandler: ((Result<Void>) -> Void)?
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        contextService = ServiceContainer.default[ContextService.self]
 
         NotificationCenter.default.addObserver(self, selector: #selector(safariViewControllerDidLoadAppUrl(notification:)),
                                                name: .safariViewControllerDidLoadAppUrl, object: nil)
@@ -50,9 +48,9 @@ final class SignInController: UIViewController, Routable {
     }
 
     func prepareDependencies(for route: Routes) {
-        guard case let .signIntoOrganization(organization) = route else { fatalError() }
-
+        guard case let .signIntoOrganization(organization, handler) = route else { fatalError() }
         viewModel = SignInViewModel(organization: organization)
+        completionHandler = handler
     }
 
     // MARK: - User Interface
@@ -98,35 +96,7 @@ final class SignInController: UIViewController, Routable {
         }
     }
 
-    func dismissSignIn() {
-        switch contextService.currentTarget {
-        case .app:
-            presentingViewController?.dismiss(animated: true, completion: nil)
-        case .fileProviderUI:
-            contextService.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
-        default:
-            fatalError()
-        }
-    }
-
-    // MARK: - User Interaction
-
-    @IBAction
-    func moreButtonTapped(_ sender: Any) {
-        func showAboutView(_: UIAlertAction) {
-            performSegue(withRoute: .about)
-        }
-
-        let barButtonItem = sender as? UIBarButtonItem
-
-        let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        controller.popoverPresentationController?.barButtonItem = barButtonItem
-        controller.addAction(UIAlertAction(title: "About".localized, style: .default, handler: showAboutView))
-        controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
-        present(controller, animated: true, completion: nil)
-    }
-
-    // MARK: - Helpers
+    // MARK: - Authorizing the Application
 
     private func startAuthorization() {
         isLoading = true
@@ -140,7 +110,7 @@ final class SignInController: UIViewController, Routable {
                     self.startAuthorization()
                 }))
                 alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: { _ in
-                    self.dismiss(animated: true, completion: nil)
+                    self.completionHandler?(.failure(result.error))
                 }))
                 return self.present(alert, animated: true, completion: nil)
             }
@@ -156,10 +126,14 @@ final class SignInController: UIViewController, Routable {
             return present(SFSafariViewController(url: url), animated: true, completion: nil)
         }
 
-        let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { url, _ in
+        let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { url, error in
             self.authenticationSession = nil
 
-            guard let url = url else { return self.dismiss(animated: true, completion: nil) }
+            guard let url = url else {
+                self.completionHandler?(.failure(error))
+                return
+            }
+
             self.finishAuthorization(withCallbackUrl: url)
         }
         session.start()
@@ -181,12 +155,12 @@ final class SignInController: UIViewController, Routable {
                     self.finishAuthorization(withCallbackUrl: url)
                 }))
                 alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: { _ in
-                    self.dismiss(animated: true, completion: nil)
+                    self.completionHandler?(.failure((result.error)))
                 }))
                 return self.present(alert, animated: true, completion: nil)
             }
 
-            self.dismissSignIn()
+            self.completionHandler?(.success(()))
         }
     }
 

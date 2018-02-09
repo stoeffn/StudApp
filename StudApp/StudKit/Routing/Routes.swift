@@ -9,13 +9,13 @@
 import QuickLook
 
 public enum Routes {
-    case about
+    case about(handler: () -> Void)
 
-    case settings
+    case settings(handler: (SettingsResult) -> Void)
 
-    case signIn
+    case signIn(handler: (Result<Void>) -> Void)
 
-    case signIntoOrganization(OrganizationRecord)
+    case signIntoOrganization(OrganizationRecord, handler: (Result<Void>) -> Void)
 
     case preview(File, QLPreviewControllerDelegate?)
 
@@ -23,11 +23,11 @@ public enum Routes {
 
     case emptyCourse
 
-    case announcement(Announcement)
+    case announcement(Announcement, handler: () -> Void)
 
     case folder(File)
 
-    case colorPicker(sender: Any?, (Int, UIColor) -> Void)
+    case colorPicker(sender: Any?, handler: (Int, UIColor) -> Void)
 
     private var destinationStoryboard: UIStoryboard? {
         switch self {
@@ -72,4 +72,8 @@ public enum Routes {
         }
         return storyboard.instantiateViewController(withIdentifier: destinationIdentifier)
     }
+}
+
+public enum SettingsResult {
+    case none, signedOut
 }

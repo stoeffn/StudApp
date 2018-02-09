@@ -54,7 +54,6 @@ final class ColorPickerController: UICollectionViewController, Routable {
 
     override func collectionView(_: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.didSelectColor(atIndex: indexPath.row)
-        dismiss(animated: true, completion: nil)
     }
 }
 

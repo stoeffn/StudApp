@@ -20,7 +20,15 @@ extension Routes {
     init?(error: Error) {
         switch error {
         case let error as NSFileProviderError where error == NSFileProviderError(.notAuthenticated):
-            self = .signIn
+            self = .signIn { result in
+                let context = ServiceContainer.default[ContextService.self]
+
+                guard let error = result.error else {
+                    context.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
+                    return
+                }
+                context.extensionContext?.cancelRequest(withError: error)
+            }
         default:
             return nil
         }

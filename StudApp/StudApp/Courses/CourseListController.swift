@@ -218,6 +218,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         func colorActionHandler(_: UIContextualAction, _: UIView, success: @escaping (Bool) -> Void) {
             let route = Routes.colorPicker(sender: cell) { id, _ in
                 cell.course.state.colorId = id
+                self.presentedViewController?.dismiss(animated: true, completion: nil)
             }
             performSegue(withRoute: route)
             success(true)

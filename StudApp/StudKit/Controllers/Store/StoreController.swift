@@ -36,7 +36,8 @@ public final class StoreController: UITableViewController {
     @IBAction
     func moreButtonTapped(_ sender: Any) {
         func showAboutView(_: UIAlertAction) {
-            performSegue(withRoute: .about)
+            // TODO:
+            print("TODO")
         }
 
         func signOut(_: UIAlertAction) {
