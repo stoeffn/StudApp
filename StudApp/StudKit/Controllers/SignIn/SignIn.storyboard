@@ -11,9 +11,73 @@
         <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Sign In Controller-->
+        <scene sceneID="r0v-lZ-HFr">
+            <objects>
+                <viewController id="VFe-kT-QwB" customClass="SignInController" customModule="StudKit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="C20-wU-2DL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppIcon" translatesAutoresizingMaskIntoConstraints="NO" id="sY2-E4-hXN">
+                                <rect key="frame" x="91" y="96" width="192" height="192"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="sY2-E4-hXN" secondAttribute="height" multiplier="1:1" id="eRI-UZ-eGp"/>
+                                    <constraint firstAttribute="height" constant="192" id="gDa-g9-Nco"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="University Name" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFk-Mm-3qX">
+                                <rect key="frame" x="32" y="304" width="311" height="31.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Wy-xu-LIM" customClass="StudIpActivityIndicatorView" customModule="StudKit" customModuleProvider="target">
+                                <rect key="frame" x="171.5" y="367.5" width="32" height="32"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="Ump-5W-y1K"/>
+                                    <constraint firstAttribute="width" secondItem="5Wy-xu-LIM" secondAttribute="height" multiplier="1:1" id="V54-hY-Yuf"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xoh-tI-B1k" firstAttribute="trailing" secondItem="MFk-Mm-3qX" secondAttribute="trailing" constant="32" id="BGI-4X-9Ef"/>
+                            <constraint firstItem="sY2-E4-hXN" firstAttribute="width" secondItem="sY2-E4-hXN" secondAttribute="height" multiplier="1:1" id="M2I-gb-En0"/>
+                            <constraint firstItem="sY2-E4-hXN" firstAttribute="centerX" secondItem="xoh-tI-B1k" secondAttribute="centerX" id="SrG-fl-wsw"/>
+                            <constraint firstItem="5Wy-xu-LIM" firstAttribute="top" secondItem="MFk-Mm-3qX" secondAttribute="bottom" constant="32" id="VzR-xG-V5T"/>
+                            <constraint firstItem="sY2-E4-hXN" firstAttribute="width" secondItem="sY2-E4-hXN" secondAttribute="height" multiplier="1:1" id="gEK-X2-jhg"/>
+                            <constraint firstItem="MFk-Mm-3qX" firstAttribute="top" secondItem="sY2-E4-hXN" secondAttribute="bottom" constant="16" id="hg2-u7-eSj"/>
+                            <constraint firstItem="MFk-Mm-3qX" firstAttribute="leading" secondItem="xoh-tI-B1k" secondAttribute="leading" constant="32" id="mZP-CG-eBR"/>
+                            <constraint firstItem="sY2-E4-hXN" firstAttribute="top" secondItem="xoh-tI-B1k" secondAttribute="top" constant="32" id="qMi-s0-PuQ"/>
+                            <constraint firstItem="5Wy-xu-LIM" firstAttribute="centerX" secondItem="xoh-tI-B1k" secondAttribute="centerX" id="yYv-T5-MSA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xoh-tI-B1k"/>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="5Wy-xu-LIM" id="yz1-Sg-uZm"/>
+                        <outlet property="iconView" destination="sY2-E4-hXN" id="Z1R-YY-y2u"/>
+                        <outlet property="titleLabel" destination="MFk-Mm-3qX" id="Rfl-ab-3OG"/>
+                        <segue destination="waM-SL-7JR" kind="show" identifier="store" id="oba-S6-Wbq"/>
+                        <segue destination="myS-Lb-AhU" kind="presentation" identifier="about" modalPresentationStyle="formSheet" id="PNl-D0-kSg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AIE-UT-EQX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1352.8" y="608.54572713643188"/>
+        </scene>
         <!--About-->
         <scene sceneID="05I-eR-cld">
             <objects>
@@ -49,15 +113,15 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrganizationCell" textLabel="BvG-4A-eTZ" imageView="Bd6-rx-gNE" style="IBUITableViewCellStyleDefault" id="ORc-qu-TMd" customClass="OrganizationCell" customModule="StudKit" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="OrganizationCell" textLabel="BvG-4A-eTZ" imageView="Bd6-rx-gNE" style="IBUITableViewCellStyleDefault" id="ORc-qu-TMd" customClass="OrganizationCell" customModule="StudKit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="151.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ORc-qu-TMd" id="WYb-c9-lKF">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Organization Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="BvG-4A-eTZ">
-                                            <rect key="frame" x="56" y="0.0" width="303" height="43.5"/>
+                                            <rect key="frame" x="56" y="0.0" width="284" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
@@ -69,6 +133,12 @@
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="VFe-kT-QwB" kind="show" id="TCx-cd-Y82">
+                                        <segue key="commit" inheritsFrom="parent" id="d3V-4N-xuZ"/>
+                                        <segue key="preview" inheritsFrom="commit" id="Hgt-et-zBm"/>
+                                    </segue>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ActivityIndicatorCell" rowHeight="72" id="TWv-HA-864" customClass="ActivityIndicatorCell" customModule="StudKit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="195.5" width="375" height="72"/>
@@ -182,10 +252,30 @@
             </objects>
             <point key="canvasLocation" x="-73" y="609"/>
         </scene>
+        <!--About-->
+        <scene sceneID="ZjC-5e-NoS">
+            <objects>
+                <viewControllerPlaceholder storyboardName="About" id="myS-Lb-AhU" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nBC-me-csl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1353" y="999"/>
+        </scene>
+        <!--Store-->
+        <scene sceneID="ocK-Me-EVY">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Store" id="waM-SL-7JR" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JFH-Ii-JRj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1890" y="608"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="AppIcon" width="1024" height="1024"/>
         <image name="MailTableViewGlyph" width="25" height="25"/>
         <image name="MoreBarButtonGlyph" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="TCx-cd-Y82"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

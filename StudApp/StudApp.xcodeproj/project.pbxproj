@@ -33,6 +33,7 @@
 		243817991FC76BDC004052D0 /* StudFileProviderUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2438179E1FC76D1E004052D0 /* Routes+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438179D1FC76D1E004052D0 /* Routes+Utils.swift */; };
 		243817A11FC86203004052D0 /* StudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2448D43F1FA8DB1E00DAB97E /* StudKit.framework */; };
+		243817A71FC88A49004052D0 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243014251FA8FE2800680253 /* SignInController.swift */; };
 		243817A81FC88A4C004052D0 /* BorderlessNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD96E1FA9191500FBD750 /* BorderlessNavigationController.swift */; };
 		243817A91FC88B0E004052D0 /* StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */; };
 		243817AA1FC88B11004052D0 /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */; };
@@ -375,6 +376,7 @@
 		242B03711FD7467D00863B08 /* GlowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlowView.swift; sourceTree = "<group>"; };
 		242B03731FD7470200863B08 /* ColorPickerViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewModel.swift; sourceTree = "<group>"; };
 		242B03751FD7471D00863B08 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
+		243014251FA8FE2800680253 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		2432ABB61FE98BF000346226 /* AnnouncementCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementCell.swift; sourceTree = "<group>"; };
 		2432ABB81FE98D2900346226 /* AnnouncementListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementListViewModel.swift; sourceTree = "<group>"; };
 		2432ABBA1FEBA2C500346226 /* AnnouncementController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementController.swift; sourceTree = "<group>"; };
@@ -1103,6 +1105,7 @@
 				2469F81B202CECB3007FB3B6 /* OrganizationBulletinItem.swift */,
 				245B6ADB1FCB355D00302CD0 /* OrganizationCell.swift */,
 				245B6AD91FCB351F00302CD0 /* OrganizationListController.swift */,
+				243014251FA8FE2800680253 /* SignInController.swift */,
 				24E60B691FC8C76F000EDD2A /* SignIn.storyboard */,
 			);
 			path = SignIn;
@@ -2098,6 +2101,7 @@
 				24D361151FAA5F0E00BBBAED /* CollectionResponse.swift in Sources */,
 				242266081FE3D45F00FA7CA6 /* Announcement.swift in Sources */,
 				24E4B9A61FF260240061983C /* ObjectIdentifier.swift in Sources */,
+				243817A71FC88A49004052D0 /* SignInController.swift in Sources */,
 				24D360ED1FAA5DC500BBBAED /* Transforms.swift in Sources */,
 				2469F81C202CECB3007FB3B6 /* OrganizationBulletinItem.swift in Sources */,
 				24E4B9A81FF284830061983C /* BaseDirectories.swift in Sources */,
