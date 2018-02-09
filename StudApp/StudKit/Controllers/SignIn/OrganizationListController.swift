@@ -8,7 +8,6 @@
 
 import FileProviderUI
 import UIKit
-import BulletinBoard
 
 final class OrganizationListController: UITableViewController, Routable, DataSourceSectionDelegate {
     private var contextService: ContextService!

@@ -110,9 +110,6 @@
 		2469EF711FCF5DFD008A122B /* ThanksNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E71FCDEA3700F4A099 /* ThanksNoteCell.swift */; };
 		2469EF721FCF5E02008A122B /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24EBC4351FCDCA3200181455 /* About.storyboard */; };
 		2469F810202CB8A0007FB3B6 /* PersistableApiAuthorizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469F80F202CB8A0007FB3B6 /* PersistableApiAuthorizing.swift */; };
-		2469F815202CE8D0007FB3B6 /* BulletinBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2469F813202CE6FF007FB3B6 /* BulletinBoard.framework */; };
-		2469F816202CE9C3007FB3B6 /* BulletinBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2469F813202CE6FF007FB3B6 /* BulletinBoard.framework */; };
-		2469F817202CE9CE007FB3B6 /* BulletinBoard.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2469F813202CE6FF007FB3B6 /* BulletinBoard.framework */; };
 		246F3ABA1FAC7BEA00A477FF /* discovery.json in Resources */ = {isa = PBXBuildFile; fileRef = 246F3AB91FAC7BEA00A477FF /* discovery.json */; };
 		246F3AC51FAC879C00A477FF /* DataChange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3ABE1FAC879C00A477FF /* DataChange.swift */; };
 		246F3AC61FAC879C00A477FF /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3ABF1FAC879C00A477FF /* DataSource.swift */; };
@@ -215,6 +212,7 @@
 		24D361621FAA641600BBBAED /* semesterCollection.json in Resources */ = {isa = PBXBuildFile; fileRef = 24D3615E1FAA641500BBBAED /* semesterCollection.json */; };
 		24D361631FAA641600BBBAED /* courseCollection+20.json in Resources */ = {isa = PBXBuildFile; fileRef = 24D3615F1FAA641600BBBAED /* courseCollection+20.json */; };
 		24D361661FAA648B00BBBAED /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361651FAA648B00BBBAED /* SignInViewModel.swift */; };
+		24D3BE39202DFBAD00AF2FE5 /* Hero.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D3BE38202DFBAD00AF2FE5 /* Hero.framework */; };
 		24D7293D1FC736120097777F /* FileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7293C1FC736120097777F /* FileCell.swift */; };
 		24D729411FC7490C0097777F /* Int+ByteCountFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D729401FC7490C0097777F /* Int+ByteCountFormatting.swift */; };
 		24D729451FC74B600097777F /* PersonNameComponents+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D729441FC74B600097777F /* PersonNameComponents+Formatting.swift */; };
@@ -563,6 +561,7 @@
 		24D3615E1FAA641500BBBAED /* semesterCollection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = semesterCollection.json; sourceTree = "<group>"; };
 		24D3615F1FAA641600BBBAED /* courseCollection+20.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "courseCollection+20.json"; sourceTree = "<group>"; };
 		24D361651FAA648B00BBBAED /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		24D3BE38202DFBAD00AF2FE5 /* Hero.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Hero.framework; path = Carthage/Build/iOS/Hero.framework; sourceTree = "<group>"; };
 		24D7293C1FC736120097777F /* FileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCell.swift; sourceTree = "<group>"; };
 		24D729401FC7490C0097777F /* Int+ByteCountFormatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+ByteCountFormatting.swift"; sourceTree = "<group>"; };
 		24D729441FC74B600097777F /* PersonNameComponents+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonNameComponents+Formatting.swift"; sourceTree = "<group>"; };
@@ -623,7 +622,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2469F817202CE9CE007FB3B6 /* BulletinBoard.framework in Frameworks */,
 				243817A11FC86203004052D0 /* StudKit.framework in Frameworks */,
 				24A8EDDC1FCCBA58007C1CCF /* CloudKit.framework in Frameworks */,
 			);
@@ -633,7 +631,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2469F816202CE9C3007FB3B6 /* BulletinBoard.framework in Frameworks */,
+				24D3BE39202DFBAD00AF2FE5 /* Hero.framework in Frameworks */,
 				245B6AD61FCB327800302CD0 /* StoreKit.framework in Frameworks */,
 				2448D4541FA8DB1E00DAB97E /* StudKit.framework in Frameworks */,
 				2446F9741FC8D16900D6AB6C /* CloudKit.framework in Frameworks */,
@@ -658,7 +656,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2469F815202CE8D0007FB3B6 /* BulletinBoard.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -757,6 +754,7 @@
 		243817A01FC86203004052D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				24D3BE38202DFBAD00AF2FE5 /* Hero.framework */,
 				2469F813202CE6FF007FB3B6 /* BulletinBoard.framework */,
 				245B6AD51FCB327800302CD0 /* StoreKit.framework */,
 				2446F9731FC8D16900D6AB6C /* CloudKit.framework */,
@@ -1909,11 +1907,11 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/BulletinBoard.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Hero.framework",
 			);
 			name = "Copy Carthage Frameworks";
 			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/BulletinBoard.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Hero.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
