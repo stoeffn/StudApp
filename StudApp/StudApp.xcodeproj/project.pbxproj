@@ -29,8 +29,6 @@
 		243637081FE5602C001D1B86 /* StoreRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637071FE5602C001D1B86 /* StoreRoutes.swift */; };
 		2436370F1FE56F33001D1B86 /* StoreStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2436370E1FE56F33001D1B86 /* StoreStateTests.swift */; };
 		243637121FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637111FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift */; };
-		243637161FE585D9001D1B86 /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CC3101FE0491B00FE7376 /* StoreController.swift */; };
-		2436371B1FE58D6D001D1B86 /* Store.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 243CC3121FE0495300FE7376 /* Store.storyboard */; };
 		2436371C1FE5923C001D1B86 /* VerificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637191FE588D7001D1B86 /* VerificationController.swift */; };
 		243637211FE5A7C8001D1B86 /* Verification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 243637201FE5A7C8001D1B86 /* Verification.storyboard */; };
 		243817921FC76BDC004052D0 /* DocumentActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243817911FC76BDC004052D0 /* DocumentActionViewController.swift */; };
@@ -125,7 +123,6 @@
 		24712BF51FB8B80B0067E416 /* Date+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BF21FB8B80A0067E416 /* Date+Formatting.swift */; };
 		24712BF61FB8B80B0067E416 /* DateFormatter+Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BF31FB8B80B0067E416 /* DateFormatter+Shared.swift */; };
 		24801F451FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24801F441FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift */; };
-		24801F481FE6FD430064C748 /* DisclaimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24801F461FE6EDD10064C748 /* DisclaimerController.swift */; };
 		24830AA91FD9F324006A1927 /* UITableViewCell+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24830AA81FD9F324006A1927 /* UITableViewCell+Utils.swift */; };
 		24830AAB1FDC09EC006A1927 /* CourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24830AAA1FDC09EC006A1927 /* CourseController.swift */; };
 		248C023F202E4C34004CB8C9 /* SFSafariViewController+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C023D202E4C34004CB8C9 /* SFSafariViewController+Notifications.swift */; };
@@ -150,6 +147,9 @@
 		248C0265202E5C18004CB8C9 /* VerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C0264202E5C18004CB8C9 /* VerificationViewModel.swift */; };
 		248C0267202E5C31004CB8C9 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C0266202E5C31004CB8C9 /* ConfettiView.swift */; };
 		248C0269202E6393004CB8C9 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248C025A202E58A0004CB8C9 /* Settings.storyboard */; };
+		248C0271202E6DD8004CB8C9 /* Store.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248C026E202E6DD8004CB8C9 /* Store.storyboard */; };
+		248C0272202E6DD8004CB8C9 /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C026F202E6DD8004CB8C9 /* StoreController.swift */; };
+		248C0273202E6DD8004CB8C9 /* DisclaimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C0270202E6DD8004CB8C9 /* DisclaimerController.swift */; };
 		249DD6DE1FC8A3D4006DA46E /* User+StudIp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249DD6DD1FC8A3D4006DA46E /* User+StudIp.swift */; };
 		249DD6FB1FC8B896006DA46E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 249DD6FD1FC8B896006DA46E /* Localizable.strings */; };
 		24A6C14B1FD75A0A004BBEA5 /* StudKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24A6C1491FD75A0A004BBEA5 /* StudKit.xcdatamodeld */; };
@@ -416,8 +416,6 @@
 		243CC2C71FE037BE00FE7376 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		243CC2C91FE0390200FE7376 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		243CC2CC1FE0392700FE7376 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		243CC3101FE0491B00FE7376 /* StoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreController.swift; sourceTree = "<group>"; };
-		243CC3121FE0495300FE7376 /* Store.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Store.storyboard; sourceTree = "<group>"; };
 		2446F9731FC8D16900D6AB6C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2447FB621FF68D8B000EA6BE /* DateTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTabBar.swift; sourceTree = "<group>"; };
 		2447FB641FF69272000EA6BE /* DateTabBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTabBarCell.swift; sourceTree = "<group>"; };
@@ -498,7 +496,6 @@
 		24712BF31FB8B80B0067E416 /* DateFormatter+Shared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Shared.swift"; sourceTree = "<group>"; };
 		24712BF71FB8CD0B0067E416 /* CachingFileProviderEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingFileProviderEnumerator.swift; sourceTree = "<group>"; };
 		24801F441FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Utils.swift"; sourceTree = "<group>"; };
-		24801F461FE6EDD10064C748 /* DisclaimerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerController.swift; sourceTree = "<group>"; };
 		24830AA81FD9F324006A1927 /* UITableViewCell+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Utils.swift"; sourceTree = "<group>"; };
 		24830AAA1FDC09EC006A1927 /* CourseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseController.swift; sourceTree = "<group>"; };
 		248C023D202E4C34004CB8C9 /* SFSafariViewController+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SFSafariViewController+Notifications.swift"; sourceTree = "<group>"; };
@@ -520,6 +517,9 @@
 		248C0264202E5C18004CB8C9 /* VerificationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationViewModel.swift; sourceTree = "<group>"; };
 		248C0266202E5C31004CB8C9 /* ConfettiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		248C0268202E5EF8004CB8C9 /* module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
+		248C026E202E6DD8004CB8C9 /* Store.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Store.storyboard; sourceTree = "<group>"; };
+		248C026F202E6DD8004CB8C9 /* StoreController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreController.swift; sourceTree = "<group>"; };
+		248C0270202E6DD8004CB8C9 /* DisclaimerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclaimerController.swift; sourceTree = "<group>"; };
 		249DD6DD1FC8A3D4006DA46E /* User+StudIp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+StudIp.swift"; sourceTree = "<group>"; };
 		249DD6FC1FC8B896006DA46E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		24A6C14A1FD75A0A004BBEA5 /* StudKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StudKit.xcdatamodel; sourceTree = "<group>"; };
@@ -851,16 +851,6 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		243CC30F1FE0490800FE7376 /* Store */ = {
-			isa = PBXGroup;
-			children = (
-				24801F461FE6EDD10064C748 /* DisclaimerController.swift */,
-				243CC3101FE0491B00FE7376 /* StoreController.swift */,
-				243CC3121FE0495300FE7376 /* Store.storyboard */,
-			);
-			path = Store;
-			sourceTree = "<group>";
-		};
 		2447FBCD1FFBA352000EA6BE /* CommonCrypto */ = {
 			isa = PBXGroup;
 			children = (
@@ -914,7 +904,7 @@
 				241412E91FD30C8100DEE0AF /* Preview */,
 				248C0258202E58A0004CB8C9 /* Settings */,
 				247793581FC8901E00090F4D /* Semesters */,
-				243CC30F1FE0490800FE7376 /* Store */,
+				248C026D202E6DD8004CB8C9 /* Store */,
 				2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */,
 				2450AC761FDC6973004F1267 /* CustomMenuItems.swift */,
 				243CC2CA1FE0390200FE7376 /* LaunchScreen.storyboard */,
@@ -1326,6 +1316,16 @@
 				248C025A202E58A0004CB8C9 /* Settings.storyboard */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		248C026D202E6DD8004CB8C9 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				248C026E202E6DD8004CB8C9 /* Store.storyboard */,
+				248C026F202E6DD8004CB8C9 /* StoreController.swift */,
+				248C0270202E6DD8004CB8C9 /* DisclaimerController.swift */,
+			);
+			path = Store;
 			sourceTree = "<group>";
 		};
 		24ABFC461FD7141800CD1646 /* Courses */ = {
@@ -1971,6 +1971,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				248C0271202E6DD8004CB8C9 /* Store.storyboard in Resources */,
 				243CC2C81FE0390200FE7376 /* LaunchScreen.storyboard in Resources */,
 				2448D4141FA8DA2400DAB97E /* Assets.xcassets in Resources */,
 				248C0269202E6393004CB8C9 /* Settings.storyboard in Resources */,
@@ -1978,7 +1979,6 @@
 				24A6C14D1FD75C56004BBEA5 /* ColorPicker.storyboard in Resources */,
 				24ABFC481FD714AF00CD1646 /* Courses.storyboard in Resources */,
 				2450AC711FDC405E004F1267 /* Documents.storyboard in Resources */,
-				2436371B1FE58D6D001D1B86 /* Store.storyboard in Resources */,
 				24E60B621FC8C725000EDD2A /* Main.storyboard in Resources */,
 				24E60B681FC8C754000EDD2A /* Semesters.storyboard in Resources */,
 				24E2AD1A1FF2CECC001D3E27 /* Events.storyboard in Resources */,
@@ -2073,10 +2073,10 @@
 				242B03721FD7467D00863B08 /* GlowView.swift in Sources */,
 				248C025B202E58A0004CB8C9 /* SettingsController.swift in Sources */,
 				2450AC7A1FDC79B6004F1267 /* SafariActivity.swift in Sources */,
-				24801F481FE6FD430064C748 /* DisclaimerController.swift in Sources */,
 				24712BE81FB8B4420067E416 /* SemesterCell.swift in Sources */,
 				242B035B1FD71AB700863B08 /* CourseCell.swift in Sources */,
 				24FD786E1FBF81EA0072F860 /* DownloadListController.swift in Sources */,
+				248C0272202E6DD8004CB8C9 /* StoreController.swift in Sources */,
 				242B03701FD7464C00863B08 /* ColorCell.swift in Sources */,
 				243CC2C61FDF464800FE7376 /* EmptyCourseController.swift in Sources */,
 				248C0253202E5353004CB8C9 /* AnnouncementController.swift in Sources */,
@@ -2084,11 +2084,11 @@
 				244EB5E91FEEEFEB006BE633 /* CourseListSplitController.swift in Sources */,
 				24E525C31FEDB276000FB71A /* CourseHeader.swift in Sources */,
 				242B036A1FD745E800863B08 /* ColorPickerController.swift in Sources */,
-				243637161FE585D9001D1B86 /* StoreController.swift in Sources */,
 				242B035D1FD7213700863B08 /* SemesterHeader.swift in Sources */,
 				24BF7B611FF320970013BA23 /* DateHeader.swift in Sources */,
 				24D7293D1FC736120097777F /* FileCell.swift in Sources */,
 				245524E01FF2D8E400C18F92 /* EventListController.swift in Sources */,
+				248C0273202E6DD8004CB8C9 /* DisclaimerController.swift in Sources */,
 				24ABFC4A1FD714EF00CD1646 /* CourseListController.swift in Sources */,
 				2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */,
 				24830AAB1FDC09EC006A1927 /* CourseController.swift in Sources */,
