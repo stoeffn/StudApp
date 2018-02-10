@@ -10,7 +10,7 @@ import SafariServices
 
 final class SignInController: UIViewController, Routable {
     private var viewModel: SignInViewModel!
-    private var completionHandler: ((Result<Void>) -> Void)?
+    private var completionHandler: ((SignInResult) -> Void)?
 
     // MARK: - Life Cycle
 
@@ -110,12 +110,14 @@ final class SignInController: UIViewController, Routable {
                     self.startAuthorization()
                 }))
                 alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: { _ in
-                    self.completionHandler?(.failure(result.error))
+                    self.completionHandler?(.none)
                 }))
                 return self.present(alert, animated: true, completion: nil)
             }
 
-            self.authorize(at: url)
+            DispatchQueue.main.async {
+                self.authorize(at: url)
+            }
         }
     }
 
@@ -126,11 +128,11 @@ final class SignInController: UIViewController, Routable {
             return present(SFSafariViewController(url: url), animated: true, completion: nil)
         }
 
-        let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { url, error in
+        let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { url, _ in
             self.authenticationSession = nil
 
             guard let url = url else {
-                self.completionHandler?(.failure(error))
+                self.completionHandler?(.none)
                 return
             }
 
@@ -155,12 +157,12 @@ final class SignInController: UIViewController, Routable {
                     self.finishAuthorization(withCallbackUrl: url)
                 }))
                 alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: { _ in
-                    self.completionHandler?(.failure((result.error)))
+                    self.completionHandler?(.none)
                 }))
                 return self.present(alert, animated: true, completion: nil)
             }
 
-            self.completionHandler?(.success(()))
+            self.completionHandler?(.signedIn)
         }
     }
 

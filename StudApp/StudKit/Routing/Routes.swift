@@ -13,9 +13,9 @@ public enum Routes {
 
     case settings(handler: (SettingsResult) -> Void)
 
-    case signIn(handler: (Result<Void>) -> Void)
+    case signIn(handler: (SignInResult) -> Void)
 
-    case signIntoOrganization(OrganizationRecord, handler: (Result<Void>) -> Void)
+    case signIntoOrganization(OrganizationRecord, handler: (SignInResult) -> Void)
 
     case store
 
@@ -91,4 +91,8 @@ public enum Routes {
 
 public enum SettingsResult {
     case none, signedOut
+}
+
+public enum SignInResult {
+    case none, signedIn
 }

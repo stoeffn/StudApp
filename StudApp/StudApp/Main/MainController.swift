@@ -122,8 +122,8 @@ final class MainController: UITabBarController {
 
     // MARK: - Completion Handlers
 
-    private func signedIn(result: Result<Void>) {
-        if result.isSuccess {
+    private func signedIn(result: SignInResult) {
+        if result == .signedIn {
             presentedViewController?.dismiss(animated: true, completion: nil)
         }
     }

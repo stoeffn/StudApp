@@ -1,5 +1,5 @@
 //
-//  Routes+Utils.swift
+//  Routes+Actions.swift
 //  StudFileProviderUI
 //
 //  Created by Steffen Ryll on 06.09.17.
@@ -25,14 +25,11 @@ extension Routes {
 
         switch reason {
         case .notSignedIn:
-            self = .signIn { result in
+            self = .signIn { _ in
                 let context = ServiceContainer.default[ContextService.self]
-
-                guard let error = result.error else {
-                    context.extensionContext?.completeRequest(returningItems: nil, completionHandler: nil)
-                    return
+                context.extensionContext?.completeRequest(returningItems: nil) { _ in
+                    NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
                 }
-                context.extensionContext?.cancelRequest(withError: error)
             }
         case .noVerifiedPurchase:
             self = .verification

@@ -13,7 +13,7 @@ import UIKit
 final class OrganizationListController: UITableViewController, Routable, DataSourceSectionDelegate {
     private var contextService: ContextService!
     private var viewModel: OrganizationListViewModel!
-    private var completionHandler: ((Result<Void>) -> Void)?
+    private var completionHandler: ((SignInResult) -> Void)?
 
     // MARK: - Life Cycle
 
@@ -132,14 +132,16 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
 
     @IBAction
     func cancelButtonTapped(_: Any) {
-        completionHandler?(.failure(nil))
+        completionHandler?(.none)
     }
 
     // MARK: - Completion Handlers
 
-    private func signedIntoOrganization(result: Result<Void>) {
+    private func signedIntoOrganization(result: SignInResult) {
         presentedViewController?.dismiss(animated: true) {
-            self.completionHandler?(result)
+            if result == .signedIn {
+                self.completionHandler?(result)
+            }
         }
     }
 }
