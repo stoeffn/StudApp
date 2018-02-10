@@ -8,6 +8,7 @@
 
 import MessageUI
 import SafariServices
+import StoreKit
 
 final class AboutController: UITableViewController, Routable {
     private let contextService = ServiceContainer.default[ContextService.self]
@@ -37,6 +38,16 @@ final class AboutController: UITableViewController, Routable {
         rateAppCell.textLabel?.text = "Rate StudApp".localized
 
         tipCell.textLabel?.text = "Leave a Tip".localized
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        SKPaymentQueue.default().add(self)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        SKPaymentQueue.default().remove(self)
     }
 
     func prepareDependencies(for route: Routes) {
@@ -160,7 +171,8 @@ final class AboutController: UITableViewController, Routable {
             openAppStoreReviewPage()
             tableView.deselectRow(at: indexPath, animated: true)
         case .tip? where cell === tipCell:
-            break
+            presentTips()
+            tableView.deselectRow(at: indexPath, animated: true)
         case .thanks?:
             openInSafari(viewModel[rowAt: indexPath.row].url)
         default:
@@ -212,7 +224,13 @@ final class AboutController: UITableViewController, Routable {
         }
     }
 
-    // MARK: - Helpers
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        prepareForRoute(using: segue, sender: sender)
+    }
+
+    // MARK: - Opening Web Pages and Apps
 
     private func openInSafari(_ url: URL?) {
         guard let url = url else { return }
@@ -226,7 +244,7 @@ final class AboutController: UITableViewController, Routable {
         let mailController = MFMailComposeViewController()
         mailController.mailComposeDelegate = self
         mailController.setToRecipients([App.feedbackMailAddress])
-        mailController.setSubject("Feedback for %@".localized(titleLabel.text ?? "App"))
+        mailController.setSubject("Feedback for %@".localized(App.name ?? "App".localized))
 
         if MFMailComposeViewController.canSendMail() {
             present(mailController, animated: true, completion: nil)
@@ -246,9 +264,60 @@ final class AboutController: UITableViewController, Routable {
             self.present(alert, animated: true, completion: nil)
         }
     }
+
+    // MARK: - Leaving Tips
+
+    private func alertAction(for product: SKProduct) -> UIAlertAction {
+        let localizedPrice = NumberFormatter.localizedString(from: product.price, number: .currency)
+        let title = "\(product.localizedTitle) (\(localizedPrice))"
+
+        return UIAlertAction(title: title, style: .default) { _ in
+            self.navigationItem.setActivityIndicatorHidden(false)
+            self.viewModel.buy(product: product)
+        }
+    }
+
+    private func presentTips() {
+        navigationItem.setActivityIndicatorHidden(false)
+
+        viewModel.tipProducts { products in
+            self.navigationItem.setActivityIndicatorHidden(true)
+
+            let controller = UIAlertController(title: "Leave a Tip".localized, message: nil, preferredStyle: .alert)
+            products.map(self.alertAction).forEach(controller.addAction)
+            controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
+            self.present(controller, animated: true, completion: nil)
+        }
+    }
+
+    private func didLeaveTip() {
+        navigationItem.setActivityIndicatorHidden(true)
+
+        let message = "I am glad there are people like you who value the work put into apps.".localized
+        let controller = UIAlertController(title: "Thank You So Much!".localized, message: message, preferredStyle: .alert)
+        controller.addAction(UIAlertAction(title: "Okay".localized, style: .cancel) { _ in
+            self.presentedViewController?.dismiss(animated: true, completion: nil)
+        })
+        performSegue(withRoute: .confetti(alert: controller))
+    }
 }
 
-// MARK: - Mail Composer
+// MARK: - Observing Transactions
+
+extension AboutController: SKPaymentTransactionObserver {
+    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            switch transaction.transactionState {
+            case .purchased, .restored, .deferred:
+                self.didLeaveTip()
+            default:
+                break
+            }
+        }
+    }
+}
+
+// MARK: - Composong Feedback
 
 extension AboutController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith _: MFMailComposeResult,

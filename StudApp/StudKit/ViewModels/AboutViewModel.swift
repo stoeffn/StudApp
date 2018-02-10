@@ -8,7 +8,7 @@
 
 import StoreKit
 
-public final class AboutViewModel: NSObject {
+public final class AboutViewModel: NSObject, SKProductsRequestDelegate {
     // MARK: - Leaving Tips
 
     private var productsRequest: SKProductsRequest?
@@ -21,14 +21,17 @@ public final class AboutViewModel: NSObject {
 
         productsRequestCompletionHandler = completion
     }
-}
 
-extension AboutViewModel: SKProductsRequestDelegate {
     public func productsRequest(_: SKProductsRequest, didReceive response: SKProductsResponse) {
         productsRequestCompletionHandler?(response.products)
 
         productsRequest = nil
         productsRequestCompletionHandler = nil
+    }
+
+    public func buy(product: SKProduct) {
+        let payment = SKPayment(product: product)
+        SKPaymentQueue.default().add(payment)
     }
 }
 

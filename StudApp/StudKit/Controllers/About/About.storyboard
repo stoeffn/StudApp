@@ -241,6 +241,7 @@
                         <outlet property="tipCell" destination="a6I-Nw-2hH" id="qT8-Gs-Qfh"/>
                         <outlet property="titleLabel" destination="jQ0-8Q-JdH" id="GRw-OS-Wi9"/>
                         <outlet property="websiteCell" destination="2uk-r6-Psu" id="9e1-cr-8tk"/>
+                        <segue destination="sgt-Au-YVK" kind="presentation" identifier="confetti" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="gBo-hi-jIb"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xpl-8r-1C4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -262,6 +263,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="brv-An-DDD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-572" y="132"/>
+        </scene>
+        <!--Confetti-->
+        <scene sceneID="P5D-U2-4eJ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Confetti" id="sgt-Au-YVK" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ixy-xr-Moe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1260" y="131.78410794602701"/>
         </scene>
     </scenes>
     <resources>
