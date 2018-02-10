@@ -45,39 +45,44 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="University Name" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFk-Mm-3qX">
-                                            <rect key="frame" x="32" y="338.5" width="311" height="31.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="University Name That Might Be Quite Long" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MFk-Mm-3qX">
+                                            <rect key="frame" x="32" y="339" width="311" height="63.5"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Wy-xu-LIM" customClass="StudIpActivityIndicatorView" customModule="StudKit" customModuleProvider="target">
-                                            <rect key="frame" x="163.5" y="491" width="48" height="48"/>
+                                            <rect key="frame" x="169.5" y="535" width="36" height="36"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="48" id="Ump-5W-y1K">
-                                                    <variation key="heightClass=compact" constant="32"/>
+                                                    <variation key="widthClass=compact" constant="36"/>
+                                                    <variation key="heightClass=compact-widthClass=compact" constant="32"/>
                                                 </constraint>
                                                 <constraint firstAttribute="width" secondItem="5Wy-xu-LIM" secondAttribute="height" multiplier="1:1" id="V54-hY-Yuf"/>
                                             </constraints>
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="MFk-Mm-3qX" firstAttribute="firstBaseline" secondItem="sY2-E4-hXN" secondAttribute="baseline" multiplier="1.025" constant="35.5" symbolType="layoutAnchor" id="1OQ-Yf-TC1"/>
+                                        <constraint firstItem="MFk-Mm-3qX" firstAttribute="firstBaseline" secondItem="sY2-E4-hXN" secondAttribute="baseline" multiplier="1.025" constant="36" id="1OQ-Yf-TC1">
+                                            <variation key="heightClass=regular-widthClass=regular" constant="64"/>
+                                        </constraint>
                                         <constraint firstItem="sY2-E4-hXN" firstAttribute="centerX" secondItem="mXw-Vs-q3X" secondAttribute="centerX" id="1XO-rj-bjL"/>
                                         <constraint firstItem="5Wy-xu-LIM" firstAttribute="centerX" secondItem="mXw-Vs-q3X" secondAttribute="centerX" id="3HM-vV-YJy"/>
                                         <constraint firstItem="sY2-E4-hXN" firstAttribute="width" secondItem="sY2-E4-hXN" secondAttribute="height" multiplier="1:1" id="7fW-Bp-nkX"/>
-                                        <constraint firstItem="sY2-E4-hXN" firstAttribute="top" secondItem="mXw-Vs-q3X" secondAttribute="top" constant="48" id="C1e-el-252">
-                                            <variation key="heightClass=regular" constant="128"/>
+                                        <constraint firstItem="sY2-E4-hXN" firstAttribute="top" secondItem="mXw-Vs-q3X" secondAttribute="top" constant="196" id="C1e-el-252">
+                                            <variation key="widthClass=compact" constant="128"/>
+                                            <variation key="heightClass=compact-widthClass=compact" constant="24"/>
                                         </constraint>
                                         <constraint firstAttribute="bottom" secondItem="5Wy-xu-LIM" secondAttribute="bottom" constant="128" id="R5A-9e-5H9">
-                                            <variation key="heightClass=compact" constant="24"/>
+                                            <variation key="widthClass=compact" constant="96"/>
+                                            <variation key="heightClass=compact-widthClass=compact" constant="24"/>
                                         </constraint>
                                         <constraint firstAttribute="trailing" secondItem="MFk-Mm-3qX" secondAttribute="trailing" constant="32" id="VWl-Xz-tnU">
-                                            <variation key="widthClass=regular" constant="72"/>
+                                            <variation key="widthClass=regular" constant="128"/>
                                         </constraint>
                                         <constraint firstItem="MFk-Mm-3qX" firstAttribute="leading" secondItem="mXw-Vs-q3X" secondAttribute="leading" constant="32" id="fXz-QU-LWX">
-                                            <variation key="widthClass=regular" constant="72"/>
+                                            <variation key="widthClass=regular" constant="128"/>
                                         </constraint>
                                         <constraint firstItem="sY2-E4-hXN" firstAttribute="width" secondItem="sY2-E4-hXN" secondAttribute="height" multiplier="1:1" id="ilO-9W-ZJZ"/>
                                     </constraints>
