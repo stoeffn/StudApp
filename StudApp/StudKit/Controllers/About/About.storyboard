@@ -161,36 +161,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="" footerTitle="" id="PgT-EU-TbZ">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="Xbc-SP-SHt" imageView="okw-dk-zES" style="IBUITableViewCellStyleDefault" id="A0j-nI-ptW">
-                                        <rect key="frame" x="0.0" y="417" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="A0j-nI-ptW" id="woF-ZX-wTt">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Manage Subscriptions…" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="Xbc-SP-SHt">
-                                                    <rect key="frame" x="56" y="0.0" width="303" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <color key="textColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="ManageTableViewGlyph" id="okw-dk-zES">
-                                                    <rect key="frame" x="16" y="9" width="25" height="25"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection headerTitle="Thanks to" footerTitle="Without you, this app could not exist. Thank you ❤️" id="sTE-d9-Eoz">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ThanksCell" textLabel="xhX-r9-UEg" detailTextLabel="FAB-Mo-ny4" style="IBUITableViewCellStyleValue2" id="Pre-A1-8QT" customClass="ThanksNoteCell" customModule="StudKit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="524.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="444.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pre-A1-8QT" id="L1v-9x-Ifh">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -234,7 +208,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="manageSubscriptionsCell" destination="A0j-nI-ptW" id="rGF-7X-hRZ"/>
                         <outlet property="privacyCell" destination="axc-HH-V1k" id="dhC-6h-2SG"/>
                         <outlet property="rateAppCell" destination="JXh-el-PDW" id="Lnf-3w-5jD"/>
                         <outlet property="sendFeedbackCell" destination="kVr-Vb-jof" id="ToP-2O-FF3"/>
@@ -267,7 +240,6 @@
     <resources>
         <image name="AppIcon" width="1024" height="1024"/>
         <image name="MailTableViewGlyph" width="25" height="25"/>
-        <image name="ManageTableViewGlyph" width="25" height="25"/>
         <image name="PrivacyTableViewGlyph" width="25" height="25"/>
         <image name="RateTableViewGlyph" width="25" height="25"/>
         <image name="WebsiteTableViewGlyph" width="25" height="25"/>

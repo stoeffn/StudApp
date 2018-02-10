@@ -56,8 +56,6 @@ final class AboutController: UITableViewController, Routable {
 
     @IBOutlet weak var rateAppCell: UITableViewCell!
 
-    @IBOutlet weak var manageSubscriptionsCell: UITableViewCell!
-
     // MARK: - User Interaction
 
     @IBAction
@@ -77,14 +75,14 @@ final class AboutController: UITableViewController, Routable {
     // MARK: - Table View Data Source
 
     private enum Sections: Int {
-        case app, links, feedback, manageSubscriptions, thanks
+        case app, links, feedback, thanks
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch Sections(rawValue: section) {
         case .thanks?:
             return viewModel.numberOfRows
-        case .app?, .links?, .feedback?, .manageSubscriptions?, nil:
+        case .app?, .links?, .feedback?, nil:
             return super.tableView(tableView, numberOfRowsInSection: section)
         }
     }
@@ -95,7 +93,7 @@ final class AboutController: UITableViewController, Routable {
             let cell = tableView.dequeueReusableCell(withIdentifier: ThanksNoteCell.typeIdentifier, for: indexPath)
             (cell as? ThanksNoteCell)?.thanksNote = viewModel[rowAt: indexPath.row]
             return cell
-        case .app?, .links?, .feedback?, .manageSubscriptions?, nil:
+        case .app?, .links?, .feedback?, nil:
             return super.tableView(tableView, cellForRowAt: indexPath)
         }
     }
@@ -104,7 +102,7 @@ final class AboutController: UITableViewController, Routable {
         switch Sections(rawValue: section) {
         case .thanks?:
             return "Thanks to".localized
-        case .app?, .links?, .feedback?, .manageSubscriptions?, nil:
+        case .app?, .links?, .feedback?, nil:
             return nil
         }
     }
@@ -115,7 +113,7 @@ final class AboutController: UITableViewController, Routable {
             return "We would appreciate your review on the App Store!".localized
         case .thanks?:
             return "Without you, this app could not exist. Thank you ❤️".localized
-        case .app?, .links?, .manageSubscriptions?, nil:
+        case .app?, .links?, nil:
             return nil
         }
     }
@@ -153,10 +151,6 @@ final class AboutController: UITableViewController, Routable {
             tableView.deselectRow(at: indexPath, animated: true)
         case .feedback? where cell === rateAppCell:
             openAppStoreReviewPage()
-            tableView.deselectRow(at: indexPath, animated: true)
-        case .manageSubscriptions?:
-            guard let url = App.Links.manageSubscriptions else { return }
-            contextService.openUrl?(url) { _ in }
             tableView.deselectRow(at: indexPath, animated: true)
         default:
             break
