@@ -23,7 +23,6 @@
                         <segue destination="P8g-Nk-6wL" kind="presentation" identifier="about" modalPresentationStyle="formSheet" id="yVy-q8-doc"/>
                         <segue destination="zcl-3C-yl6" kind="presentation" identifier="settings" modalPresentationStyle="formSheet" id="sMd-bX-1dS"/>
                         <segue destination="AZc-n8-OsC" kind="relationship" relationship="viewControllers" id="g3S-Ak-cad"/>
-                        <segue destination="DTJ-2q-gFT" kind="relationship" relationship="viewControllers" id="IhO-K2-Hgl"/>
                         <segue destination="KYP-jD-J4O" kind="relationship" relationship="viewControllers" id="bFd-ds-8U0"/>
                     </connections>
                 </tabBarController>
@@ -37,7 +36,7 @@
                 <viewControllerPlaceholder storyboardName="SignIn" bundleIdentifier="SteffenRyll.StudKit" id="2bU-cg-kHC" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fcI-cX-vXc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="594" y="-209"/>
+            <point key="canvasLocation" x="594" y="-189"/>
         </scene>
         <!--Courses-->
         <scene sceneID="gB9-sw-zWL">
@@ -47,17 +46,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oxn-vo-iGe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="603" y="-169"/>
-        </scene>
-        <!--Events-->
-        <scene sceneID="y8c-EB-5GI">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Events" id="DTJ-2q-gFT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="E4d-li-srr"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="R3t-u6-nmY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="596" y="-130"/>
+            <point key="canvasLocation" x="603" y="-148"/>
         </scene>
         <!--About-->
         <scene sceneID="eSg-ig-br1">
@@ -65,7 +54,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="About" storyboardName="About" bundleIdentifier="SteffenRyll.StudKit" id="P8g-Nk-6wL" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zXO-Dm-wlW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="596" y="-41"/>
+            <point key="canvasLocation" x="596" y="-60"/>
         </scene>
         <!--Downloads-->
         <scene sceneID="xGE-gW-7nZ">
@@ -75,7 +64,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pTP-vX-G4w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="617" y="-85"/>
+            <point key="canvasLocation" x="617" y="-104"/>
         </scene>
         <!--Settings-->
         <scene sceneID="eg3-ct-J0P">
@@ -83,7 +72,7 @@
                 <viewControllerPlaceholder storyboardName="Settings" id="zcl-3C-yl6" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W6r-8b-C2K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="604" y="4"/>
+            <point key="canvasLocation" x="604" y="-15"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.32941176470588235" green="0.50588235294117645" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

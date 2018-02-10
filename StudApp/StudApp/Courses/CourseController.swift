@@ -123,7 +123,7 @@ final class CourseController: UITableViewController, Routable {
     }
 
     override func numberOfSections(in _: UITableView) -> Int {
-        return 4
+        return 3
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
