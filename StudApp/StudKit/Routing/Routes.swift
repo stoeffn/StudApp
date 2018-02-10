@@ -11,6 +11,8 @@ import QuickLook
 public enum Routes {
     case about(handler: () -> Void)
 
+    case confetti(alert: UIAlertController)
+
     case settings(handler: (SettingsResult) -> Void)
 
     case signIn(handler: (SignInResult) -> Void)
@@ -62,6 +64,7 @@ public enum Routes {
     public var segueIdentifier: String {
         switch self {
         case .about: return "about"
+        case .confetti: return "confetti"
         case .settings: return "settings"
         case .signIn: return "signIn"
         case .store: return "store"

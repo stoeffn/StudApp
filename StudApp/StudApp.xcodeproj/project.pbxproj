@@ -150,6 +150,8 @@
 		248C0271202E6DD8004CB8C9 /* Store.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248C026E202E6DD8004CB8C9 /* Store.storyboard */; };
 		248C0272202E6DD8004CB8C9 /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C026F202E6DD8004CB8C9 /* StoreController.swift */; };
 		248C0273202E6DD8004CB8C9 /* DisclaimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C0270202E6DD8004CB8C9 /* DisclaimerController.swift */; };
+		248C0276202F9E3A004CB8C9 /* ConfettiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C0275202F9E3A004CB8C9 /* ConfettiController.swift */; };
+		248C0278202F9F5B004CB8C9 /* Confetti.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248C0277202F9F5B004CB8C9 /* Confetti.storyboard */; };
 		249DD6DE1FC8A3D4006DA46E /* User+StudIp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249DD6DD1FC8A3D4006DA46E /* User+StudIp.swift */; };
 		249DD6FB1FC8B896006DA46E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 249DD6FD1FC8B896006DA46E /* Localizable.strings */; };
 		24A6C14B1FD75A0A004BBEA5 /* StudKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24A6C1491FD75A0A004BBEA5 /* StudKit.xcdatamodeld */; };
@@ -520,6 +522,8 @@
 		248C026E202E6DD8004CB8C9 /* Store.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Store.storyboard; sourceTree = "<group>"; };
 		248C026F202E6DD8004CB8C9 /* StoreController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreController.swift; sourceTree = "<group>"; };
 		248C0270202E6DD8004CB8C9 /* DisclaimerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclaimerController.swift; sourceTree = "<group>"; };
+		248C0275202F9E3A004CB8C9 /* ConfettiController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiController.swift; sourceTree = "<group>"; };
+		248C0277202F9F5B004CB8C9 /* Confetti.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Confetti.storyboard; sourceTree = "<group>"; };
 		249DD6DD1FC8A3D4006DA46E /* User+StudIp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+StudIp.swift"; sourceTree = "<group>"; };
 		249DD6FC1FC8B896006DA46E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		24A6C14A1FD75A0A004BBEA5 /* StudKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StudKit.xcdatamodel; sourceTree = "<group>"; };
@@ -844,6 +848,7 @@
 			isa = PBXGroup;
 			children = (
 				24EBC4341FCDCA0000181455 /* About */,
+				248C0274202F9E25004CB8C9 /* Confetti */,
 				2477935F1FC890C100090F4D /* SignIn */,
 				2436371F1FE5A7A9001D1B86 /* Verification */,
 				241FD96E1FA9191500FBD750 /* BorderlessNavigationController.swift */,
@@ -1326,6 +1331,15 @@
 				248C0270202E6DD8004CB8C9 /* DisclaimerController.swift */,
 			);
 			path = Store;
+			sourceTree = "<group>";
+		};
+		248C0274202F9E25004CB8C9 /* Confetti */ = {
+			isa = PBXGroup;
+			children = (
+				248C0275202F9E3A004CB8C9 /* ConfettiController.swift */,
+				248C0277202F9F5B004CB8C9 /* Confetti.storyboard */,
+			);
+			path = Confetti;
 			sourceTree = "<group>";
 		};
 		24ABFC461FD7141800CD1646 /* Courses */ = {
@@ -2007,6 +2021,7 @@
 				243637211FE5A7C8001D1B86 /* Verification.storyboard in Resources */,
 				2469EF6E1FCF5BC9008A122B /* Assets.xcassets in Resources */,
 				2469EF721FCF5E02008A122B /* About.storyboard in Resources */,
+				248C0278202F9F5B004CB8C9 /* Confetti.storyboard in Resources */,
 				249DD6FB1FC8B896006DA46E /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2210,6 +2225,7 @@
 				24D361661FAA648B00BBBAED /* SignInViewModel.swift in Sources */,
 				24E4B9A41FF25E8C0061983C /* Constants.swift in Sources */,
 				248C0247202E4C58004CB8C9 /* ReachabilityService.swift in Sources */,
+				248C0276202F9E3A004CB8C9 /* ConfettiController.swift in Sources */,
 				24D360E81FAA5D7600BBBAED /* Course.swift in Sources */,
 				24D360DC1FAA5D3800BBBAED /* Array+Set.swift in Sources */,
 				242B03741FD7470200863B08 /* ColorPickerViewModel.swift in Sources */,
