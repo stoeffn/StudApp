@@ -232,6 +232,7 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
         }
 
         let controller = SFSafariViewController(url: url)
+        controller.preferredControlTintColor = UI.Colors.studBlue
         present(controller, animated: true, completion: nil)
         return false
     }

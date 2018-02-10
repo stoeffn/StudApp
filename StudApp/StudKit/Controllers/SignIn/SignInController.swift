@@ -8,7 +8,7 @@
 
 import SafariServices
 
-final class SignInController: UIViewController, Routable {
+final class SignInController: UIViewController, Routable, SFSafariViewControllerDelegate {
     private var viewModel: SignInViewModel!
     private var completionHandler: ((SignInResult) -> Void)?
 
@@ -125,7 +125,10 @@ final class SignInController: UIViewController, Routable {
         isLoading = true
 
         guard #available(iOSApplicationExtension 11.0, *) else {
-            return present(SFSafariViewController(url: url), animated: true, completion: nil)
+            let controller = SFSafariViewController(url: url)
+            controller.delegate = self
+            controller.preferredControlTintColor = UI.Colors.studBlue
+            return present(controller, animated: true, completion: nil)
         }
 
         let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { url, _ in
@@ -171,7 +174,12 @@ final class SignInController: UIViewController, Routable {
     @objc
     private func safariViewControllerDidLoadAppUrl(notification: Notification) {
         guard let url = notification.userInfo?[Notification.Name.safariViewControllerDidLoadAppUrlKey] as? URL else { return }
-        navigationController?.popViewController(animated: true)
-        finishAuthorization(withCallbackUrl: url)
+        presentedViewController?.dismiss(animated: true) {
+            self.finishAuthorization(withCallbackUrl: url)
+        }
+    }
+
+    func safariViewControllerDidFinish(_: SFSafariViewController) {
+        completionHandler?(.none)
     }
 }

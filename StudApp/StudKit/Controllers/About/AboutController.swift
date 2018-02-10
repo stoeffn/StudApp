@@ -206,9 +206,9 @@ final class AboutController: UITableViewController, Routable {
     private func openInSafari(_ url: URL?) {
         guard let url = url else { return }
 
-        let safariController = SFSafariViewController(url: url)
-        safariController.preferredControlTintColor = UI.Colors.studBlue
-        present(safariController, animated: true, completion: nil)
+        let controller = SFSafariViewController(url: url)
+        controller.preferredControlTintColor = UI.Colors.studBlue
+        present(controller, animated: true, completion: nil)
     }
 
     private func openFeedbackMailComposer() {
