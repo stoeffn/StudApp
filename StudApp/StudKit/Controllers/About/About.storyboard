@@ -161,7 +161,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="" footerTitle="If you really like this app you can leave a tip to support further development. Thank you so much!" id="APa-2m-LEr">
+                            <tableViewSection headerTitle="" footerTitle="If you really like this app you can leave a tip to support further development. Thank you so much for even considering!" id="APa-2m-LEr">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="Jd5-22-Tdj" imageView="wjL-jv-qGZ" style="IBUITableViewCellStyleDefault" id="a6I-Nw-2hH">
                                         <rect key="frame" x="0.0" y="417" width="375" height="44"/>
@@ -173,7 +173,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Leave a Tip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="Jd5-22-Tdj">
                                                     <rect key="frame" x="56" y="0.0" width="303" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -190,7 +190,7 @@
                             <tableViewSection headerTitle="Thanks to" footerTitle="Without you, this app could not exist. Thank you ❤️" id="sTE-d9-Eoz">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ThanksCell" textLabel="xhX-r9-UEg" detailTextLabel="FAB-Mo-ny4" style="IBUITableViewCellStyleValue2" id="Pre-A1-8QT" customClass="ThanksNoteCell" customModule="StudKit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="552.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="568.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pre-A1-8QT" id="L1v-9x-Ifh">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>

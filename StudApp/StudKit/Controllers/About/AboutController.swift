@@ -118,7 +118,7 @@ final class AboutController: UITableViewController, Routable {
         case .tip?:
             return [
                 "If you really like this app you can leave a tip to support further development.".localized,
-                "Thank you so much!".localized
+                "Thank you so much for even considering!".localized
             ].joined(separator: " ")
         case .thanks?:
             return "Without you, this app could not exist. Thank you ❤️".localized
