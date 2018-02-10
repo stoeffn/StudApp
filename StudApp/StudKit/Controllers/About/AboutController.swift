@@ -35,6 +35,8 @@ final class AboutController: UITableViewController, Routable {
 
         sendFeedbackCell.textLabel?.text = "Send Feedback".localized
         rateAppCell.textLabel?.text = "Rate StudApp".localized
+
+        tipCell.textLabel?.text = "Leave a Tip".localized
     }
 
     func prepareDependencies(for route: Routes) {
@@ -56,6 +58,8 @@ final class AboutController: UITableViewController, Routable {
 
     @IBOutlet weak var rateAppCell: UITableViewCell!
 
+    @IBOutlet weak var tipCell: UITableViewCell!
+
     // MARK: - User Interaction
 
     @IBAction
@@ -75,14 +79,14 @@ final class AboutController: UITableViewController, Routable {
     // MARK: - Table View Data Source
 
     private enum Sections: Int {
-        case app, links, feedback, thanks
+        case app, links, feedback, tip, thanks
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch Sections(rawValue: section) {
         case .thanks?:
             return viewModel.numberOfRows
-        case .app?, .links?, .feedback?, nil:
+        case .app?, .links?, .tip?, .feedback?, nil:
             return super.tableView(tableView, numberOfRowsInSection: section)
         }
     }
@@ -93,7 +97,7 @@ final class AboutController: UITableViewController, Routable {
             let cell = tableView.dequeueReusableCell(withIdentifier: ThanksNoteCell.typeIdentifier, for: indexPath)
             (cell as? ThanksNoteCell)?.thanksNote = viewModel[rowAt: indexPath.row]
             return cell
-        case .app?, .links?, .feedback?, nil:
+        case .app?, .links?, .tip?, .feedback?, nil:
             return super.tableView(tableView, cellForRowAt: indexPath)
         }
     }
@@ -102,7 +106,7 @@ final class AboutController: UITableViewController, Routable {
         switch Sections(rawValue: section) {
         case .thanks?:
             return "Thanks to".localized
-        case .app?, .links?, .feedback?, nil:
+        case .app?, .links?, .tip?, .feedback?, nil:
             return nil
         }
     }
@@ -111,6 +115,11 @@ final class AboutController: UITableViewController, Routable {
         switch Sections(rawValue: section) {
         case .feedback?:
             return "We would appreciate your review on the App Store!".localized
+        case .tip?:
+            return [
+                "If you really like this app you can leave a tip to support further development.".localized,
+                "Thank you so much!".localized
+            ].joined(separator: " ")
         case .thanks?:
             return "Without you, this app could not exist. Thank you ❤️".localized
         case .app?, .links?, nil:
@@ -140,8 +149,6 @@ final class AboutController: UITableViewController, Routable {
         let cell = tableView.cellForRow(at: indexPath)
 
         switch Sections(rawValue: indexPath.section) {
-        case .thanks?:
-            openInSafari(viewModel[rowAt: indexPath.row].url)
         case .links? where cell === websiteCell:
             openInSafari(App.Links.website)
         case .links? where cell === privacyCell:
@@ -152,6 +159,10 @@ final class AboutController: UITableViewController, Routable {
         case .feedback? where cell === rateAppCell:
             openAppStoreReviewPage()
             tableView.deselectRow(at: indexPath, animated: true)
+        case .tip? where cell === tipCell:
+            break
+        case .thanks?:
+            openInSafari(viewModel[rowAt: indexPath.row].url)
         default:
             break
         }

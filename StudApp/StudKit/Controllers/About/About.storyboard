@@ -161,10 +161,36 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="" footerTitle="If you really like this app you can leave a tip to support further development. Thank you so much!" id="APa-2m-LEr">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="Jd5-22-Tdj" imageView="wjL-jv-qGZ" style="IBUITableViewCellStyleDefault" id="a6I-Nw-2hH">
+                                        <rect key="frame" x="0.0" y="417" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="a6I-Nw-2hH" id="QsH-FQ-E2G">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Leave a Tip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="Jd5-22-Tdj">
+                                                    <rect key="frame" x="56" y="0.0" width="303" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="TipTableViewGlyph" id="wjL-jv-qGZ">
+                                                    <rect key="frame" x="16" y="9" width="25" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="Thanks to" footerTitle="Without you, this app could not exist. Thank you ❤️" id="sTE-d9-Eoz">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ThanksCell" textLabel="xhX-r9-UEg" detailTextLabel="FAB-Mo-ny4" style="IBUITableViewCellStyleValue2" id="Pre-A1-8QT" customClass="ThanksNoteCell" customModule="StudKit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="444.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="552.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pre-A1-8QT" id="L1v-9x-Ifh">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -212,6 +238,7 @@
                         <outlet property="rateAppCell" destination="JXh-el-PDW" id="Lnf-3w-5jD"/>
                         <outlet property="sendFeedbackCell" destination="kVr-Vb-jof" id="ToP-2O-FF3"/>
                         <outlet property="subtitleLabel" destination="DUJ-55-7Tc" id="pTO-pF-ugW"/>
+                        <outlet property="tipCell" destination="a6I-Nw-2hH" id="qT8-Gs-Qfh"/>
                         <outlet property="titleLabel" destination="jQ0-8Q-JdH" id="GRw-OS-Wi9"/>
                         <outlet property="websiteCell" destination="2uk-r6-Psu" id="9e1-cr-8tk"/>
                     </connections>
@@ -242,6 +269,7 @@
         <image name="MailTableViewGlyph" width="25" height="25"/>
         <image name="PrivacyTableViewGlyph" width="25" height="25"/>
         <image name="RateTableViewGlyph" width="25" height="25"/>
+        <image name="TipTableViewGlyph" width="25" height="25"/>
         <image name="WebsiteTableViewGlyph" width="25" height="25"/>
     </resources>
     <color key="tintColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
