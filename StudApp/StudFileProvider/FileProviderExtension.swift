@@ -73,7 +73,11 @@ final class FileProviderExtension: NSFileProviderExtension {
 
     override func enumerator(for containerItemIdentifier: NSFileProviderItemIdentifier) throws -> NSFileProviderEnumerator {
         guard #available(iOS 11.0, *) else { fatalError() }
-        guard studIpService.isSignedIn else { throw NSFileProviderError(.notAuthenticated) }
+        guard studIpService.isSignedIn else {
+            throw NSFileProviderError(.notAuthenticated, userInfo: [
+                NSFileProviderError.reasonKey: NSFileProviderError.Reasons.notSignedIn.rawValue
+            ])
+        }
 
         let objectIdentifier = ObjectIdentifier(rawValue: containerItemIdentifier.rawValue)
 
