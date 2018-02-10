@@ -9,11 +9,19 @@
 import StoreKit
 
 public final class StoreService: NSObject {
+    // MARK: - Products
+
+    static let subscriptionProductIdentifier = "SteffenRyll.StudApp.Subscription"
+
+    static let unlockProductIdentifier = "SteffenRyll.StudApp.Unlock"
+
+    static let tipProductIdentifiers: Set = [
+        "SteffenRyll.StudApp.Tips.Small",
+        "SteffenRyll.StudApp.Tips.Medium",
+        "SteffenRyll.StudApp.Tips.Large"
+    ]
+
     // MARK: - Constants
-
-    let subscriptionProductIdentifier = "SteffenRyll.StudApp.Subscription"
-
-    let unlockProductIdentifier = "SteffenRyll.StudApp.Unlock"
 
     let verificationApi: Api<StoreRoutes>
 
@@ -31,7 +39,7 @@ public final class StoreService: NSObject {
         SKPaymentQueue.default().remove(self)
     }
 
-    // MARK: - Managing State
+    // MARK: - Providing and Verifying State
 
     public private(set) lazy var state = State.fromDefaults ?? .locked
 
@@ -57,16 +65,23 @@ public final class StoreService: NSObject {
     }
 }
 
-// MARK: - Payment Transaction Observer
+// MARK: - Processing Transactions
 
 extension StoreService: SKPaymentTransactionObserver {
     public func paymentQueue(_: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
-            updateState(using: transaction)
+            switch transaction.transactionIdentifier {
+            case StoreService.subscriptionProductIdentifier?, StoreService.unlockProductIdentifier?:
+                updateState(with: transaction)
+            case _ where StoreService.tipProductIdentifiers.contains(transaction.transactionIdentifier ?? ""):
+                processTip(with: transaction)
+            default:
+                break
+            }
         }
     }
 
-    func updateState(using transaction: SKPaymentTransaction) {
+    func updateState(with transaction: SKPaymentTransaction) {
         switch transaction.transactionState {
         case .purchased:
             state = .unlocked(verifiedByServer: false)
@@ -81,6 +96,15 @@ extension StoreService: SKPaymentTransactionObserver {
         case .deferred:
             state = .deferred
             state.toDefaults()
+        default:
+            break
+        }
+    }
+
+    func processTip(with transaction: SKPaymentTransaction) {
+        switch transaction.transactionState {
+        case .purchased, .restored:
+            SKPaymentQueue.default().finishTransaction(transaction)
         default:
             break
         }

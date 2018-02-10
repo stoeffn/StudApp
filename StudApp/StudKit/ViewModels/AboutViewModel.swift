@@ -6,31 +6,51 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import StoreKit
+
+public final class AboutViewModel: NSObject {
+    // MARK: - Leaving Tips
+
+    private var productsRequest: SKProductsRequest?
+    private var productsRequestCompletionHandler: (([SKProduct]) -> Void)?
+
+    public func tipProducts(completion: @escaping ([SKProduct]) -> Void) {
+        productsRequest = SKProductsRequest(productIdentifiers: StoreService.tipProductIdentifiers)
+        productsRequest?.delegate = self
+        productsRequest?.start()
+
+        productsRequestCompletionHandler = completion
+    }
+}
+
+extension AboutViewModel: SKProductsRequestDelegate {
+    public func productsRequest(_: SKProductsRequest, didReceive response: SKProductsResponse) {
+        productsRequestCompletionHandler?(response.products)
+
+        productsRequest = nil
+        productsRequestCompletionHandler = nil
+    }
+}
+
+// MARK: - Thanking People
+
 public typealias ThanksNote = (title: String, description: String, url: URL?)
 
-public final class AboutViewModel {
-    // MARK: - Life Cycle
+extension AboutViewModel: DataSourceSection {
+    public typealias Row = ThanksNote
 
-    public init() {}
-
-    // MARK: - Data
-
-    private let thanksNotes: [ThanksNote] = [
+    private static let thanksNotes: [ThanksNote] = [
         (title: "Julian Lobe", description: "Beta-Tester, QA-Man, and Friend", url: nil),
         (title: "Cornelis Kater", description: "Support and Communication", url: URL(string: "http://ckater.de/")),
         (title: "Stud.IP e.V.", description: "Development of APIs", url: URL(string: "http://studip.de/")),
         (title: "icons8", description: "Glyphs", url: URL(string: "https://icons8.com/")),
     ]
-}
-
-extension AboutViewModel: DataSourceSection {
-    public typealias Row = ThanksNote
 
     public var numberOfRows: Int {
-        return thanksNotes.count
+        return AboutViewModel.thanksNotes.count
     }
 
     public subscript(rowAt index: Int) -> ThanksNote {
-        return thanksNotes[index]
+        return AboutViewModel.thanksNotes[index]
     }
 }

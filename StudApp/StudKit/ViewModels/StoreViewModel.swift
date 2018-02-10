@@ -51,8 +51,8 @@ public final class StoreViewModel: NSObject {
         state = .loadingProducts
 
         productsRequest = SKProductsRequest(productIdentifiers: [
-            storeService.subscriptionProductIdentifier,
-            storeService.unlockProductIdentifier,
+            StoreService.subscriptionProductIdentifier,
+            StoreService.unlockProductIdentifier,
         ])
         productsRequest?.delegate = self
         productsRequest?.start()
@@ -87,8 +87,8 @@ public final class StoreViewModel: NSObject {
 
 extension StoreViewModel: SKProductsRequestDelegate {
     public func productsRequest(_: SKProductsRequest, didReceive response: SKProductsResponse) {
-        subscriptionProduct = response.products.first { $0.productIdentifier == storeService.subscriptionProductIdentifier }
-        unlockProduct = response.products.first { $0.productIdentifier == storeService.unlockProductIdentifier }
+        subscriptionProduct = response.products.first { $0.productIdentifier == StoreService.subscriptionProductIdentifier }
+        unlockProduct = response.products.first { $0.productIdentifier == StoreService.unlockProductIdentifier }
 
         state = storeService.state.isDeferred ? .deferred : .idle
         productsRequest = nil
