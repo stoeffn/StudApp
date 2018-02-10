@@ -141,16 +141,20 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     func data<Section: DataSourceSection>(changedIn row: Section.Row, at index: Int, change: DataChange<Section.Row, Int>,
                                           in section: Section) {
-        if let semester = row as? Semester, let change = change as? DataChange<Semester, Int> {
-            data(changedInSemester: semester, at: index, change: change)
-        } else if let course = row as? Course, let change = change as? DataChange<Course, Int> {
-            data(changedInCourse: course, at: index, change: change, in: section)
+        switch section {
+        case is SemesterListViewModel:
+            data(changedInSemester: row as? Semester, at: index, change: change as? DataChange<Semester, Int> ?? .delete)
+        case is CourseListViewModel:
+            data(changedInCourse: row as? Course, at: index, change: change as? DataChange<Course, Int> ?? .delete, in: section)
+        default:
+            return
         }
     }
 
-    func data(changedInSemester semester: Semester, at index: Int, change: DataChange<Semester, Int>) {
+    func data(changedInSemester semester: Semester?, at index: Int, change: DataChange<Semester, Int>) {
         switch change {
         case .insert:
+            guard let semester = semester else { return }
             courseListViewModels.insert(courseListViewModel(for: semester), at: index)
             tableView.insertSections(IndexSet(integer: index), with: .middle)
         case .delete:
@@ -165,12 +169,12 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         }
     }
 
-    func data<Section: DataSourceSection>(changedInCourse course: Course, at index: Int, change: DataChange<Course, Int>,
+    func data<Section: DataSourceSection>(changedInCourse course: Course?, at index: Int, change: DataChange<Course, Int>,
                                           in section: Section) {
         guard
             let courseListViewModel = section as? CourseListViewModel,
             let sectionIndex = courseListViewModels.index(of: courseListViewModel)
-        else { return }
+        else { fatalError() }
         let indexPath = IndexPath(row: index, section: sectionIndex)
         let cell = tableView.cellForRow(at: indexPath) as? CourseCell
 
