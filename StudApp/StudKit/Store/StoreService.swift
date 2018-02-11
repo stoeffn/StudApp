@@ -16,9 +16,11 @@ public final class StoreService: NSObject {
     static let unlockProductIdentifier = "SteffenRyll.StudApp.Unlock"
 
     static let tipProductIdentifiers: Set = [
+        "SteffenRyll.StudApp.Tips.ExtraSmall",
         "SteffenRyll.StudApp.Tips.Small",
         "SteffenRyll.StudApp.Tips.Medium",
-        "SteffenRyll.StudApp.Tips.Large"
+        "SteffenRyll.StudApp.Tips.Large",
+        "SteffenRyll.StudApp.Tips.ExtraLarge"
     ]
 
     // MARK: - Constants
