@@ -20,8 +20,6 @@ final class AboutController: UITableViewController, Routable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewModel = AboutViewModel()
-
         navigationItem.title = "About".localized
 
         tableView.register(ThanksNoteCell.self, forCellReuseIdentifier: ThanksNoteCell.typeIdentifier)
@@ -40,19 +38,12 @@ final class AboutController: UITableViewController, Routable {
         tipCell.textLabel?.text = "Leave a Tip".localized
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        SKPaymentQueue.default().add(self)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        SKPaymentQueue.default().remove(self)
-    }
-
     func prepareDependencies(for route: Routes) {
         guard case let .about(handler) = route else { fatalError() }
         completionHandler = handler
+
+        viewModel = AboutViewModel()
+        viewModel.leaveTipCompletionHandler = didLeaveTip
     }
 
     // MARK: - User Interface
@@ -273,7 +264,7 @@ final class AboutController: UITableViewController, Routable {
 
         return UIAlertAction(title: title, style: .default) { _ in
             self.navigationItem.setActivityIndicatorHidden(false)
-            self.viewModel.buy(product: product)
+            self.viewModel.leaveTip(with: product)
         }
     }
 
@@ -290,29 +281,28 @@ final class AboutController: UITableViewController, Routable {
         }
     }
 
-    private func didLeaveTip() {
-        navigationItem.setActivityIndicatorHidden(true)
+    private func didLeaveTip(with transaction: SKPaymentTransaction) {
+        switch transaction.transactionState {
+        case .purchased, .restored, .deferred:
+            navigationItem.setActivityIndicatorHidden(true)
 
-        let message = "I am glad there are people like you who value the work put into apps.".localized
-        let controller = UIAlertController(title: "Thank You So Much!".localized, message: message, preferredStyle: .alert)
-        controller.addAction(UIAlertAction(title: "Okay".localized, style: .cancel) { _ in
-            self.presentedViewController?.dismiss(animated: true, completion: nil)
-        })
-        performSegue(withRoute: .confetti(alert: controller))
-    }
-}
+            let message = "I am glad there are people like you who value the work put into apps.".localized
+            let controller = UIAlertController(title: "Thank You So Much!".localized, message: message, preferredStyle: .alert)
+            controller.addAction(UIAlertAction(title: "Okay".localized, style: .cancel) { _ in
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+                    self.presentedViewController?.dismiss(animated: true, completion: nil)
+                }
+            })
+            performSegue(withRoute: .confetti(alert: controller))
+        case .failed:
+            navigationItem.setActivityIndicatorHidden(true)
 
-// MARK: - Observing Transactions
-
-extension AboutController: SKPaymentTransactionObserver {
-    func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
-        for transaction in transactions {
-            switch transaction.transactionState {
-            case .purchased, .restored, .deferred:
-                self.didLeaveTip()
-            default:
-                break
-            }
+            let message = "It would be kind if you retried in a little bit.".localized
+            let controller = UIAlertController(title: "Something Went Wrong".localized, message: message, preferredStyle: .alert)
+            controller.addAction(UIAlertAction(title: "Okay".localized, style: .cancel, handler: nil))
+            self.present(controller, animated: true, completion: nil)
+        default:
+            break
         }
     }
 }

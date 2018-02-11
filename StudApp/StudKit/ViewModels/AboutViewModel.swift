@@ -9,29 +9,53 @@
 import StoreKit
 
 public final class AboutViewModel: NSObject, SKProductsRequestDelegate {
+    // MARK: - Life Cycle
+
+    public override init() {
+        super.init()
+        SKPaymentQueue.default().add(self)
+    }
+
+    deinit {
+        SKPaymentQueue.default().remove(self)
+    }
+
     // MARK: - Leaving Tips
 
-    private var productsRequest: SKProductsRequest?
-    private var productsRequestCompletionHandler: (([SKProduct]) -> Void)?
+    private var tipProductsRequest: SKProductsRequest?
+    private var tipProductsRequestCompletionHandler: (([SKProduct]) -> Void)?
+
+    public var leaveTipCompletionHandler: ((SKPaymentTransaction) -> Void)?
 
     public func tipProducts(completion: @escaping ([SKProduct]) -> Void) {
-        productsRequest = SKProductsRequest(productIdentifiers: StoreService.tipProductIdentifiers)
-        productsRequest?.delegate = self
-        productsRequest?.start()
+        tipProductsRequest = SKProductsRequest(productIdentifiers: StoreService.tipProductIdentifiers)
+        tipProductsRequest?.delegate = self
+        tipProductsRequest?.start()
 
-        productsRequestCompletionHandler = completion
+        tipProductsRequestCompletionHandler = completion
     }
 
     public func productsRequest(_: SKProductsRequest, didReceive response: SKProductsResponse) {
-        productsRequestCompletionHandler?(response.products)
+        tipProductsRequestCompletionHandler?(response.products)
 
-        productsRequest = nil
-        productsRequestCompletionHandler = nil
+        tipProductsRequest = nil
+        tipProductsRequestCompletionHandler = nil
     }
 
-    public func buy(product: SKProduct) {
+    public func leaveTip(with product: SKProduct) {
         let payment = SKPayment(product: product)
         SKPaymentQueue.default().add(payment)
+    }
+}
+
+// MARK: - Observing Transactions
+
+extension AboutViewModel: SKPaymentTransactionObserver {
+    public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+        for transaction in transactions {
+            guard StoreService.tipProductIdentifiers.contains(transaction.payment.productIdentifier) else { continue }
+            leaveTipCompletionHandler?(transaction)
+        }
     }
 }
 

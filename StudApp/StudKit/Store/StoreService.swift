@@ -70,10 +70,10 @@ public final class StoreService: NSObject {
 extension StoreService: SKPaymentTransactionObserver {
     public func paymentQueue(_: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
-            switch transaction.transactionIdentifier {
-            case StoreService.subscriptionProductIdentifier?, StoreService.unlockProductIdentifier?:
+            switch transaction.payment.productIdentifier {
+            case StoreService.subscriptionProductIdentifier, StoreService.unlockProductIdentifier:
                 updateState(with: transaction)
-            case _ where StoreService.tipProductIdentifiers.contains(transaction.transactionIdentifier ?? ""):
+            case _ where StoreService.tipProductIdentifiers.contains(transaction.payment.productIdentifier):
                 processTip(with: transaction)
             default:
                 break
