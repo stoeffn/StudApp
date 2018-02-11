@@ -274,8 +274,15 @@ final class AboutController: UITableViewController, Routable {
         viewModel.tipProducts { products in
             self.navigationItem.setActivityIndicatorHidden(true)
 
-            let controller = UIAlertController(title: "Leave a Tip".localized, message: nil, preferredStyle: .alert)
-            products.map(self.alertAction).forEach(controller.addAction)
+            let message = [
+                "If you really like this app you can leave a tip to support further development.".localized,
+                "Thank you so much for even considering!".localized
+            ].joined(separator: " ")
+            let controller = UIAlertController(title: "Leave a Tip".localized, message: message, preferredStyle: .alert)
+            products
+                .sorted { $0.price.decimalValue < $1.price.decimalValue }
+                .map(self.alertAction)
+                .forEach(controller.addAction)
             controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
             self.present(controller, animated: true, completion: nil)
         }
