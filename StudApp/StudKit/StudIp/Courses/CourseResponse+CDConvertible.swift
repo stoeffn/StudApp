@@ -22,10 +22,9 @@ extension CourseResponse: CDConvertible {
             .flatMap { try $0.coreDataModel(in: context) as? User }
             .set
 
-        if let beginSemester = try Semester.fetch(byId: beginSemesterId, in: context) {
-            let endSemester = try Semester.fetch(byId: endSemesterId, in: context)
-            course.semesters = try Semester.fetch(from: beginSemester, to: endSemester, in: context).set
-        }
+        let beginSemester = try Semester.fetch(byId: beginSemesterId, in: context)
+        let endSemester = try Semester.fetch(byId: endSemesterId, in: context)
+        course.semesters = try Semester.fetch(from: beginSemester, to: endSemester, in: context).set
 
         return course
     }

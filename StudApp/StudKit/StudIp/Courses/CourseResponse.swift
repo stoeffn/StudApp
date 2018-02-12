@@ -15,7 +15,7 @@ struct CourseResponse: Decodable {
     private let rawLocation: String?
     private let rawSummary: String?
     private let rawLecturers: [String: UserResponse]
-    private let beginSemesterPath: String
+    private let beginSemesterPath: String?
     private let endSemesterPath: String?
 
     enum CodingKeys: String, CodingKey {
@@ -31,7 +31,7 @@ struct CourseResponse: Decodable {
     }
 
     init(id: String, rawNumber: String? = nil, title: String, rawSubtitle: String? = nil, rawLocation: String? = nil,
-         rawSummary: String? = nil, rawLecturers: [String: UserResponse] = [:], beginSemesterPath: String = "",
+         rawSummary: String? = nil, rawLecturers: [String: UserResponse] = [:], beginSemesterPath: String? = nil,
          endSemesterPath: String? = nil) {
         self.id = id
         self.rawNumber = rawNumber

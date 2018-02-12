@@ -50,11 +50,11 @@ public extension Semester {
 // MARK: - Core Data Operations
 
 extension Semester {
-    public static func fetch(from beginSemester: Semester, to endSemester: Semester? = nil,
+    public static func fetch(from beginSemester: Semester? = nil, to endSemester: Semester? = nil,
                              in context: NSManagedObjectContext) throws -> [Semester] {
+        let beginsAt = beginSemester?.beginsAt ?? .distantPast
         let endsAt = endSemester?.endsAt ?? .distantFuture
-        let predicate = NSPredicate(format: "beginsAt >= %@ AND endsAt <= %@",
-                                    beginSemester.beginsAt as CVarArg, endsAt as CVarArg)
+        let predicate = NSPredicate(format: "beginsAt >= %@ AND endsAt <= %@", beginsAt as CVarArg, endsAt as CVarArg)
         let request = fetchRequest(predicate: predicate, sortDescriptors: defaultSortDescriptors)
         return try context.fetch(request)
     }

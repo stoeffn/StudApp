@@ -38,7 +38,7 @@ extension Result where Value == Data {
             let value = try decoder.decode(type, from: value)
             return replacingValue(value)
         } catch {
-            return replacingValue(nil)
+            return .failure(error)
         }
     }
 }
