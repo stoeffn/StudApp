@@ -45,7 +45,7 @@ struct UserResponse: Decodable {
         rawNameSuffix = try nameContainer.decode(String.self, forKey: .rawNameSuffix)
     }
 
-    init(id: String, username: String, givenName: String, familyName: String, rawNamePrefix: String = "",
+    init(id: String, username: String = "", givenName: String = "", familyName: String = "", rawNamePrefix: String = "",
          rawNameSuffix: String = "", pictureUrl: URL? = nil) {
         self.id = id
         self.username = username

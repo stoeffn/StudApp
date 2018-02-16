@@ -17,6 +17,21 @@ struct FolderResponse: IdentifiableResponse {
     let summary: String?
     let folders: Set<FolderResponse>
     let documents: Set<DocumentResponse>
+
+    init(id: String, courseId: String, parentId: String? = nil, userId: String? = nil, name: String = "",
+         createdAt: Date = .distantPast, modifiedAt: Date = .distantPast, summary: String? = nil,
+         folders: Set<FolderResponse> = [], documents: Set<DocumentResponse> = []) {
+        self.id = id
+        self.courseId = courseId
+        self.parentId = parentId
+        self.userId = userId
+        self.name = name
+        self.createdAt = createdAt
+        self.modifiedAt = modifiedAt
+        self.summary = summary
+        self.folders = folders
+        self.documents = documents
+    }
 }
 
 // MARK: - Coding

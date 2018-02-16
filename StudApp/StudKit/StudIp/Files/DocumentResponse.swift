@@ -18,6 +18,19 @@ struct DocumentResponse: IdentifiableResponse {
     let summary: String?
     let size: Int?
     let downloadCount: Int?
+
+    init(id: String, parentId: String, userId: String? = nil, name: String = "", createdAt: Date = .distantPast,
+         modifiedAt: Date = .distantPast, summary: String? = nil, size: Int? = nil, downloadCount: Int? = nil) {
+        self.id = id
+        self.parentId = parentId
+        self.userId = userId
+        self.name = name
+        self.createdAt = createdAt
+        self.modifiedAt = modifiedAt
+        self.summary = summary
+        self.size = size
+        self.downloadCount = downloadCount
+    }
 }
 
 // MARK: - Coding
