@@ -20,10 +20,10 @@ final class DocumentResponseTests: XCTestCase {
     override func setUp() {
         context = StudKitTestsServiceProvider(currentTarget: .tests).provideCoreDataService().viewContext
 
-        _ = try! FolderResponse(id: "1", courseId: "0").coreDataModel(in: context)
-        _ = try! FolderResponse(id: "7", courseId: "0").coreDataModel(in: context)
+        _ = try! FolderResponse(id: "F1", courseId: "C0").coreDataModel(in: context)
+        _ = try! FolderResponse(id: "F7", courseId: "C0").coreDataModel(in: context)
 
-        _ = try! UserResponse(id: "2").coreDataModel(in: context)
+        _ = try! UserResponse(id: "U2").coreDataModel(in: context)
     }
 
     // MARK: - Coding
@@ -60,25 +60,25 @@ final class DocumentResponseTests: XCTestCase {
 
     func testCoreDataObject_Document1() {
         let file = try! DocumentResponseTests.document1.coreDataModel(in: context) as! File
-        XCTAssertEqual(file.id, "0")
+        XCTAssertEqual(file.id, "F0")
         XCTAssertEqual(file.name, "file.pdf")
         XCTAssertEqual(file.typeIdentifier, kUTTypePDF as String)
         XCTAssertEqual(file.size, 1024)
-        XCTAssertEqual(file.parent?.id, "1")
+        XCTAssertEqual(file.parent?.id, "F1")
         XCTAssertEqual(file.createdAt, Date(timeIntervalSince1970: 10))
         XCTAssertEqual(file.modifiedAt, Date(timeIntervalSince1970: 20))
         XCTAssertEqual(file.downloadCount, 42)
         XCTAssertEqual(file.summary, "Sümmary")
-        XCTAssertEqual(file.owner?.id, "2")
+        XCTAssertEqual(file.owner?.id, "U2")
     }
 
     func testCoreDataObject_Document2() {
         let file = try! DocumentResponseTests.document2.coreDataModel(in: context) as! File
-        XCTAssertEqual(file.id, "8")
+        XCTAssertEqual(file.id, "F8")
         XCTAssertEqual(file.name, "image.png")
         XCTAssertEqual(file.typeIdentifier, kUTTypePNG as String)
         XCTAssertEqual(file.size, -1)
-        XCTAssertEqual(file.parent?.id, "7")
+        XCTAssertEqual(file.parent?.id, "F7")
         XCTAssertEqual(file.createdAt, Date(timeIntervalSince1970: 1))
         XCTAssertEqual(file.modifiedAt, Date(timeIntervalSince1970: 2))
         XCTAssertEqual(file.downloadCount, -1)

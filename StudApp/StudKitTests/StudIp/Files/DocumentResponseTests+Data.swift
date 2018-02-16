@@ -47,10 +47,10 @@ extension DocumentResponseTests {
         }
     """.data(using: .utf8)!
 
-    static let document1 = DocumentResponse(id: "0", parentId: "1", userId: "2", name: "file.pdf",
+    static let document1 = DocumentResponse(id: "F0", parentId: "F1", userId: "U2", name: "file.pdf",
                                             createdAt: Date(timeIntervalSince1970: 10), modifiedAt: Date(timeIntervalSince1970: 20),
                                             summary: "Sümmary", size: 1024, downloadCount: 42)
 
-    static let document2 = DocumentResponse(id: "8", parentId: "7", name: "image.png", createdAt: Date(timeIntervalSince1970: 1),
+    static let document2 = DocumentResponse(id: "F8", parentId: "F7", name: "image.png", createdAt: Date(timeIntervalSince1970: 1),
                                             modifiedAt: Date(timeIntervalSince1970: 2))
 }

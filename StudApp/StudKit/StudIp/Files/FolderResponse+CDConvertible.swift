@@ -24,6 +24,8 @@ extension FolderResponse: CDConvertible {
         file.name = name
         file.createdAt = createdAt
         file.modifiedAt = modifiedAt
+        file.size = -1
+        file.downloadCount = -1
         file.summary = summary
         file.children = Set(folders).union(documents)
         file.children.forEach { $0.course = file.course }

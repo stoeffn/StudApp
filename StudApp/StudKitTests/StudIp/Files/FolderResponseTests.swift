@@ -6,11 +6,26 @@
 //  Copyright © 2018 Steffen Ryll. All rights reserved.
 //
 
+import CoreData
+import MobileCoreServices
 import XCTest
 @testable import StudKit
 
 final class FolderResponseTests: XCTestCase {
     let decoder = ServiceContainer.default[JSONDecoder.self]
+    var context: NSManagedObjectContext!
+
+    // MARK: - Life Cycle
+
+    override func setUp() {
+        context = StudKitTestsServiceProvider(currentTarget: .tests).provideCoreDataService().viewContext
+
+        _ = try! CourseResponse(id: "C0", title: "Course").coreDataModel(in: context)
+
+        _ = try! UserResponse(id: "U0").coreDataModel(in: context)
+    }
+
+    // MARK: - Coding
 
     func testInit_RootFolderData_RootFolder() {
         let folder = try! decoder.decode(FolderResponse.self, from: FolderResponseTests.rootFolderData)
@@ -52,5 +67,55 @@ final class FolderResponseTests: XCTestCase {
         XCTAssertNil(folder.summary)
         XCTAssertEqual(folder.folders.count, 1)
         XCTAssertEqual(folder.documents.count, 1)
+    }
+
+    // MARK: - Converting to Core Data Objects
+
+    func testCoreDataObject_RootFolder() {
+        let file = try! FolderResponseTests.rootFolder.coreDataModel(in: context) as! File
+        XCTAssertEqual(file.id, "F0")
+        XCTAssertEqual(file.name, "")
+        XCTAssertEqual(file.typeIdentifier, kUTTypeFolder as String)
+        XCTAssertEqual(file.size, -1)
+        XCTAssertEqual(file.course.id, "C0")
+        XCTAssertNil(file.parent)
+        XCTAssertEqual(file.downloadCount, -1)
+        XCTAssertNil(file.summary)
+        XCTAssertNil(file.owner)
+        XCTAssertEqual(file.children.count, 1)
+        XCTAssertEqual(file.children.first?.course.id, file.course.id)
+    }
+
+    func testCoreDataObject_EmptyFolder() {
+        _ = try! FolderResponseTests.rootFolder.coreDataModel(in: context) as! File
+        let file = try! FolderResponseTests.emptyFolder.coreDataModel(in: context) as! File
+        XCTAssertEqual(file.id, "F1")
+        XCTAssertEqual(file.name, "Empty")
+        XCTAssertEqual(file.typeIdentifier, kUTTypeFolder as String)
+        XCTAssertEqual(file.size, -1)
+        XCTAssertEqual(file.course.id, "C0")
+        XCTAssertEqual(file.parent?.id, "F0")
+        XCTAssertEqual(file.downloadCount, -1)
+        XCTAssertNil(file.summary)
+        XCTAssertNil(file.owner)
+        XCTAssertEqual(file.children.count, 0)
+    }
+
+    func testCoreDataObject_Folder() {
+        _ = try! FolderResponseTests.rootFolder.coreDataModel(in: context) as! File
+        let file = try! FolderResponseTests.folder.coreDataModel(in: context) as! File
+        XCTAssertEqual(file.id, "F2")
+        XCTAssertEqual(file.name, "Name")
+        XCTAssertEqual(file.typeIdentifier, kUTTypeFolder as String)
+        XCTAssertEqual(file.size, -1)
+        XCTAssertEqual(file.course.id, "C0")
+        XCTAssertEqual(file.parent?.id, "F0")
+        XCTAssertEqual(file.createdAt, Date(timeIntervalSince1970: 1))
+        XCTAssertEqual(file.modifiedAt, Date(timeIntervalSince1970: 2))
+        XCTAssertEqual(file.downloadCount, -1)
+        XCTAssertEqual(file.summary, "Sümmary")
+        XCTAssertEqual(file.owner?.id, "U0")
+        XCTAssertEqual(file.children.count, 1)
+        XCTAssertEqual(file.children.first?.course.id, file.course.id)
     }
 }
