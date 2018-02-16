@@ -8,9 +8,6 @@
 
 /// Selection of API routes exposed by the Stud.IP API.
 public enum StudIpRoutes: ApiRoutes {
-    /// Contains information on available routes and access restrictions.
-    case discovery
-
     /// Returns all semesters, usually starting about ten years in the past and ending one year in the
     /// future.
     case semesters
@@ -18,12 +15,11 @@ public enum StudIpRoutes: ApiRoutes {
     /// Returns all courses that a user with the given id is enrolled in.
     case courses(forUserId: String)
 
-    /// Returns the complete file tree for a course with the given id, including all folder and document
-    /// meta data.
-    case filesInCourse(withId: String)
+    /// Returns the root folder along with its first-level children.
+    case rootFolderForCourse(withId: String)
 
-    /// Returns meta data for a single file with first-level children in case of a folder.
-    case file(withId: String)
+    /// Returns a folder along with its first-level children.
+    case folder(withId: String)
 
     /// Returns the contents of a file with the given id.
     case fileContents(forFileId: String)
@@ -42,18 +38,16 @@ public enum StudIpRoutes: ApiRoutes {
 
     var path: String {
         switch self {
-        case .discovery:
-            return "discovery"
         case .semesters:
             return "semesters"
         case let .courses(userId):
             return "user/\(userId)/courses"
-        case let .filesInCourse(courseId):
-            return "course/\(courseId)/files"
-        case let .file(folderId):
-            return "file/\(folderId)"
+        case let .rootFolderForCourse(courseId):
+            return "course/\(courseId)/top_folder"
+        case let .folder(folderId):
+            return "folder/\(folderId)"
         case let .fileContents(fileId):
-            return "file/\(fileId)/content"
+            return "file/\(fileId)/download"
         case let .announcementsInCourse(courseId):
             return "course/\(courseId)/news"
         case let .eventsInCourse(courseId):
@@ -67,11 +61,10 @@ public enum StudIpRoutes: ApiRoutes {
 
     var type: Decodable.Type? {
         switch self {
-        case .discovery: return [String: [String: String]].self
         case .semesters: return CollectionResponse<SemesterResponse>.self
         case .courses: return CollectionResponse<CourseResponse>.self
-        case .filesInCourse: return CollectionResponse<FileResponse>.self
-        case .file: return FileResponse.self
+        case .rootFolderForCourse: return FolderResponse.self
+        case .folder: return FolderResponse.self
         case .fileContents, .profilePicture: return nil
         case .announcementsInCourse: return CollectionResponse<AnnouncementResponse>.self
         case .eventsInCourse: return CollectionResponse<EventResponse>.self
@@ -81,9 +74,9 @@ public enum StudIpRoutes: ApiRoutes {
 
     var expiresAfter: TimeInterval {
         switch self {
-        case .discovery, .fileContents:
+        case .fileContents:
             return 0
-        case .courses, .filesInCourse, .file, .announcementsInCourse, .currentUser:
+        case .courses, .rootFolderForCourse, .folder, .announcementsInCourse, .currentUser:
             return 60
         case .semesters, .profilePicture, .eventsInCourse:
             return 60 * 60
