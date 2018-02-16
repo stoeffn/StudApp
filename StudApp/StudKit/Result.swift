@@ -79,9 +79,27 @@ public enum Result<Value> {
     /// Applies a transform to a result value if it is a `success`.
     ///
     /// - Parameter transform: Transform to apply to `value`.
+    /// - Returns: `.failure` if this result is a failure or `transform` throws. Otherwise, a result with the transformed value
+    ///            is returned.
+    func map<NewValue>(_ transform: (Value) throws -> NewValue) -> Result<NewValue> {
+        switch self {
+        case let .success(value):
+            do {
+                return .success(try transform(value))
+            } catch {
+                return .failure(error)
+            }
+        case let .failure(error):
+            return .failure(error)
+        }
+    }
+
+    /// Applies a transform to a result value if it is a `success`.
+    ///
+    /// - Parameter transform: Transform to apply to `value`.
     /// - Returns: `.failure` if this result is a failure, `transform` throws, or `transform` returns `nil`. Otherwise, a result
     ///            with the transformed value is returned.
-    func map<NewValue>(_ transform: (Value) throws -> NewValue?) -> Result<NewValue> {
+    func compactMap<NewValue>(_ transform: (Value) throws -> NewValue?) -> Result<NewValue> {
         switch self {
         case let .success(value):
             do {
