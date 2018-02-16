@@ -267,7 +267,7 @@
 		24E60B681FC8C754000EDD2A /* Semesters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B671FC8C754000EDD2A /* Semesters.storyboard */; };
 		24E60B6A1FC8C76F000EDD2A /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B691FC8C76F000EDD2A /* SignIn.storyboard */; };
 		24E60B6C1FC8C77F000EDD2A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B6B1FC8C77F000EDD2A /* MainInterface.storyboard */; };
-		24FD785A1FBF3F030072F860 /* HistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78591FBF3F030072F860 /* HistoryService.swift */; };
+		24FD785A1FBF3F030072F860 /* PersistentHistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78591FBF3F030072F860 /* PersistentHistoryService.swift */; };
 		24FD785C1FBF45030072F860 /* Targets+NSPersistentHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */; };
 		24FD785E1FBF45B10072F860 /* Targets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785D1FBF45B10072F860 /* Targets.swift */; };
 		24FD78601FBF4D330072F860 /* NSPersistentHistoryToken+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785F1FBF4D330072F860 /* NSPersistentHistoryToken+Utils.swift */; };
@@ -647,7 +647,7 @@
 		24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudIpActivityIndicatorView.swift; sourceTree = "<group>"; };
 		24EBC4351FCDCA3200181455 /* About.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
 		24EBC4371FCDCA4300181455 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
-		24FD78591FBF3F030072F860 /* HistoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryService.swift; sourceTree = "<group>"; };
+		24FD78591FBF3F030072F860 /* PersistentHistoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentHistoryService.swift; sourceTree = "<group>"; };
 		24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Targets+NSPersistentHistory.swift"; sourceTree = "<group>"; };
 		24FD785D1FBF45B10072F860 /* Targets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Targets.swift; sourceTree = "<group>"; };
 		24FD785F1FBF4D330072F860 /* NSPersistentHistoryToken+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPersistentHistoryToken+Utils.swift"; sourceTree = "<group>"; };
@@ -1398,7 +1398,7 @@
 				2477936A1FC892D300090F4D /* Users */,
 				24E4B9A71FF284830061983C /* BaseDirectories.swift */,
 				24D361171FAA5F6200BBBAED /* CoreDataService.swift */,
-				24FD78591FBF3F030072F860 /* HistoryService.swift */,
+				24FD78591FBF3F030072F860 /* PersistentHistoryService.swift */,
 				24E4B9A51FF260240061983C /* ObjectIdentifier.swift */,
 				2448D4941FA8DF6000DAB97E /* StorageService.swift */,
 				24A6C1491FD75A0A004BBEA5 /* StudKit.xcdatamodeld */,
@@ -2225,7 +2225,7 @@
 				24A6C14B1FD75A0A004BBEA5 /* StudKit.xcdatamodeld in Sources */,
 				24D360CD1FAA5AFE00BBBAED /* CDUpdatable.swift in Sources */,
 				24FE03ED1FFBE0D200BC4732 /* ApiAuthorizing.swift in Sources */,
-				24FD785A1FBF3F030072F860 /* HistoryService.swift in Sources */,
+				24FD785A1FBF3F030072F860 /* PersistentHistoryService.swift in Sources */,
 				2407A07B1FF2B75A006D41C5 /* Event.swift in Sources */,
 				24712BD81FB858CC0067E416 /* File+StudIp.swift in Sources */,
 				24D360F71FAA5DE800BBBAED /* FileState.swift in Sources */,

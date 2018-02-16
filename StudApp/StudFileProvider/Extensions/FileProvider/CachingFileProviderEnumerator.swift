@@ -25,7 +25,7 @@ import StudKit
 /// - Remark: This class is not generic so it can implement an Objective C protocol.
 open class CachingFileProviderEnumerator: NSObject {
     public let coreDataService = ServiceContainer.default[CoreDataService.self]
-    public let historyService = ServiceContainer.default[HistoryService.self]
+    public let historyService = ServiceContainer.default[PersistentHistoryService.self]
     public let cache = FileProviderEnumeratorChangeCache()
 
     // MARK: - Providing Items

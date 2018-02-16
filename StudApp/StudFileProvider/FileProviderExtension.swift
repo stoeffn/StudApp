@@ -24,7 +24,7 @@ final class FileProviderExtension: NSFileProviderExtension {
         storeService = ServiceContainer.default[StoreService.self]
         studIpService = ServiceContainer.default[StudIpService.self]
 
-        let historyService = ServiceContainer.default[HistoryService.self]
+        let historyService = ServiceContainer.default[PersistentHistoryService.self]
         try? historyService.mergeHistory(into: coreDataService.viewContext)
         try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
     }

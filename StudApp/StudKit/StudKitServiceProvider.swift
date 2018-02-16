@@ -63,7 +63,7 @@ public class StudKitServiceProvider: ServiceProvider {
         container[StoreService.self] = provideStoreService()
         container[StorageService.self] = StorageService()
         container[CoreDataService.self] = provideCoreDataService()
-        container[HistoryService.self] = HistoryService(currentTarget: currentTarget)
+        container[PersistentHistoryService.self] = PersistentHistoryService(currentTarget: currentTarget)
         container[StudIpService.self] = provideStudIpService()
     }
 }

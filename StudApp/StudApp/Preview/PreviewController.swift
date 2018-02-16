@@ -11,7 +11,7 @@ import StudKit
 
 final class PreviewController: QLPreviewController, Routable {
     private var coreDataService = ServiceContainer.default[CoreDataService.self]
-    private var historyService = ServiceContainer.default[HistoryService.self]
+    private var historyService = ServiceContainer.default[PersistentHistoryService.self]
 
     // MARK: - Life Cycle
 

@@ -13,7 +13,7 @@ final class AppDelegate: UIResponder {
     private let openUrl = { UIApplication.shared.open($0, options: [:], completionHandler: $1) }
 
     private var coreDataService: CoreDataService!
-    private var historyService: HistoryService!
+    private var historyService: PersistentHistoryService!
     private var studIpService: StudIpService!
 
     var window: UIWindow?
@@ -28,7 +28,7 @@ extension AppDelegate: UIApplicationDelegate {
         ServiceContainer.default.register(providers: StudKitServiceProvider(currentTarget: .app, openUrl: openUrl))
 
         coreDataService = ServiceContainer.default[CoreDataService.self]
-        historyService = ServiceContainer.default[HistoryService.self]
+        historyService = ServiceContainer.default[PersistentHistoryService.self]
         studIpService = ServiceContainer.default[StudIpService.self]
 
         return true

@@ -1,5 +1,5 @@
 //
-//  HistoryService.swift
+//  PersistentHistoryService.swift
 //  StudKit
 //
 //  Created by Steffen Ryll on 17.11.17.
@@ -8,7 +8,7 @@
 
 import CoreData
 
-/// Manages Core Data persistent history.
+/// Manages Core Data Persistent History.
 ///
 /// When using Core Data in multiple targets, e.g. an app as well as a file provider, it is crucial to merge changes from one
 /// target into another because otherwise you would end up with inconsistent state. To that end, this Apple introduced
@@ -16,7 +16,7 @@ import CoreData
 /// advantage of this feature by providing a simple interface for merging and deleting history. The latter is needed to free up
 /// space after the history has been consumed by all targets. It uses history transactions' timestamps in order to determine
 /// what to delete.
-public final class HistoryService {
+public final class PersistentHistoryService {
     /// Current target, whose last transaction timestamp is used and modified.
     private var currentTarget: Targets
 
@@ -53,9 +53,12 @@ public final class HistoryService {
 
         let historyFetchRequest = NSPersistentHistoryChangeRequest
             .fetchHistory(after: currentTarget.lastHistoryTransactionTimestamp ?? .distantPast)
-        guard let historyResult = try context.execute(historyFetchRequest) as? NSPersistentHistoryResult,
-            let history = historyResult.result as? [NSPersistentHistoryTransaction] else {
-            fatalError("Cannot convert persistent history fetch result to transaction.")
+
+        guard
+            let historyResult = try context.execute(historyFetchRequest) as? NSPersistentHistoryResult,
+            let history = historyResult.result as? [NSPersistentHistoryTransaction]
+        else {
+            fatalError("Cannot convert persistent history fetch result to transactions.")
         }
 
         for transaction in history {
