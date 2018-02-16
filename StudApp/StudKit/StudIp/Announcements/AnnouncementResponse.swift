@@ -61,3 +61,27 @@ extension AnnouncementResponse {
         return coursePaths.flatMap { StudIp.transformIdPath($0) }
     }
 }
+
+// MARK: - Converting to a Core Data Object
+
+extension AnnouncementResponse {
+    func coreDataObject(in context: NSManagedObjectContext) throws -> Announcement {
+        // TODO: Move to parsing
+        guard
+            let createdAt = createdAt,
+            let modifiedAt = modifiedAt,
+            let expiresAt = expiresAt
+        else { throw NSError(domain: Announcement.entity.rawValue, code: 0) }
+
+        let (announcement, _) = try Announcement.fetch(byId: id, orCreateIn: context)
+        let courses = try Course.fetch(byIds: courseIds, in: context)
+        announcement.id = id
+        announcement.courses = Set(courses)
+        announcement.createdAt = createdAt
+        announcement.modifiedAt = modifiedAt
+        announcement.expiresAt = expiresAt
+        announcement.title = title
+        announcement.body = body
+        return announcement
+    }
+}

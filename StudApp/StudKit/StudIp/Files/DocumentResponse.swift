@@ -6,11 +6,11 @@
 //  Copyright © 2018 Steffen Ryll. All rights reserved.
 //
 
+import CoreData
 import MobileCoreServices
 
 struct DocumentResponse: IdentifiableResponse {
     let id: String
-    let parentId: String
     let userId: String?
     let name: String
     let createdAt: Date
@@ -19,10 +19,9 @@ struct DocumentResponse: IdentifiableResponse {
     let size: Int?
     let downloadCount: Int?
 
-    init(id: String, parentId: String, userId: String? = nil, name: String = "", createdAt: Date = .distantPast,
-         modifiedAt: Date = .distantPast, summary: String? = nil, size: Int? = nil, downloadCount: Int? = nil) {
+    init(id: String, userId: String? = nil, name: String = "", createdAt: Date = .distantPast, modifiedAt: Date = .distantPast,
+         summary: String? = nil, size: Int? = nil, downloadCount: Int? = nil) {
         self.id = id
-        self.parentId = parentId
         self.userId = userId
         self.name = name
         self.createdAt = createdAt
@@ -38,7 +37,6 @@ struct DocumentResponse: IdentifiableResponse {
 extension DocumentResponse: Decodable {
     enum CodingKeys: String, CodingKey {
         case id
-        case parentId = "folder_id"
         case userId = "user_id"
         case name
         case createdAt = "mkdate"
@@ -50,9 +48,7 @@ extension DocumentResponse: Decodable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-
         id = try container.decode(String.self, forKey: .id)
-        parentId = try container.decode(String.self, forKey: .parentId)
         userId = try container.decode(String.self, forKey: .userId)
         name = try container.decode(String.self, forKey: .name)
         createdAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .createdAt)
@@ -70,5 +66,25 @@ extension DocumentResponse {
         guard let fileExtension = name.components(separatedBy: ".").last else { return "" }
         let typeIdentifier = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension as CFString, nil)
         return typeIdentifier?.takeRetainedValue() as String? ?? ""
+    }
+}
+
+// MARK: - Converting to a Core Data Object
+
+extension DocumentResponse {
+    func coreDataObject(course: Course, parent: File, in context: NSManagedObjectContext) throws -> File {
+        let (file, _) = try File.fetch(byId: id, orCreateIn: context)
+        file.id = id
+        file.typeIdentifier = typeIdentifier
+        file.course = course
+        file.parent = parent
+        file.owner = try User.fetch(byId: userId, in: context)
+        file.name = name
+        file.createdAt = createdAt
+        file.modifiedAt = modifiedAt
+        file.size = size ?? -1
+        file.downloadCount = downloadCount ?? -1
+        file.summary = summary
+        return file
     }
 }

@@ -6,6 +6,8 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import CoreData
+
 /// Represents a decoded course object as returned by the API.
 struct CourseResponse: Decodable {
     let id: String
@@ -74,5 +76,27 @@ extension CourseResponse {
 
     var endSemesterId: String? {
         return StudIp.transformIdPath(endSemesterPath)
+    }
+}
+
+// MARK: - Converting to a Core Data Object
+
+extension CourseResponse {
+    @discardableResult
+    func coreDataObject(in context: NSManagedObjectContext) throws -> Course {
+        let (course, _) = try Course.fetch(byId: id, orCreateIn: context)
+        let beginSemester = try Semester.fetch(byId: beginSemesterId, in: context)
+        let endSemester = try Semester.fetch(byId: endSemesterId, in: context)
+        let semesters = try Semester.fetch(from: beginSemester, to: endSemester, in: context)
+        let lecturers = try self.lecturers.map { try $0.coreDataObject(in: context) }
+        course.id = id
+        course.number = number
+        course.title = title
+        course.subtitle = subtitle
+        course.summary = summary
+        course.location = location
+        course.lecturers = Set(lecturers)
+        course.semesters = Set(semesters)
+        return course
     }
 }
