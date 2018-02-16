@@ -66,10 +66,29 @@ public enum Result<Value> {
     ///
     /// - Remarks: This might be useful when transforming the result's data before returning it. The same rules as in
     ///            the initializer apply for `value` being `nil`.
+    @available(*, deprecated)
     func replacingValue<NewValue>(_ value: NewValue?) -> Result<NewValue> {
         switch self {
         case .success:
             return Result<NewValue>(value)
+        case let .failure(error):
+            return .failure(error)
+        }
+    }
+
+    /// Applies a transform to a result value if it is a `success`.
+    ///
+    /// - Parameter transform: Transform to apply to `value`.
+    /// - Returns: `.failure` if this result is a failure, `transform` throws, or `transform` returns `nil`. Otherwise, a result
+    ///            with the transformed value is returned.
+    func map<NewValue>(_ transform: (Value) throws -> NewValue?) -> Result<NewValue> {
+        switch self {
+        case let .success(value):
+            do {
+                return Result<NewValue>(try transform(value))
+            } catch {
+                return .failure(error)
+            }
         case let .failure(error):
             return .failure(error)
         }
