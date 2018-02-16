@@ -16,7 +16,30 @@ extension Course {
         guard let userId = studIpService.userId else { return }
 
         studIpService.api.requestCollection(.courses(forUserId: userId)) { (result: Result<[CourseResponse]>) in
-            handler(result.map { try updateCourses(from: $0, in: context) })
+            let result = result.map { try updateCourses(from: $0, in: context) }
+            let group = DispatchGroup()
+            var error = result.error
+
+            result.value?.forEach { course in
+                group.enter()
+
+                studIpService.api.requestDecoded(.rootFolderForCourse(withId: course.id)) { (result: Result<FolderResponse>) in
+                    let result = result.map { try File.updateFolder(from: $0, in: context) }
+                    result.value?.name = course.title // Make sure the root folder has the same name as the course and is not empty.
+                    course.rootFolder = result.value ?? course.rootFolder
+
+                    error = result.error
+                    group.leave()
+                }
+            }
+
+            group.notify(queue: .main) {
+                if let error = error {
+                    handler(.failure(error))
+                } else {
+                    handler(result)
+                }
+            }
         }
     }
 
@@ -40,15 +63,6 @@ extension Course {
         }
 
         return courses
-    }
-
-    public func updateRootFolder(in context: NSManagedObjectContext, handler: @escaping ResultHandler<File>) {
-        let studIpService = ServiceContainer.default[StudIpService.self]
-        studIpService.api.requestDecoded(.rootFolderForCourse(withId: id)) { (result: Result<FolderResponse>) in
-            let result = result.map { try File.updateFolder(from: $0, in: context) }
-            self.rootFolder = result.value ?? self.rootFolder
-            handler(result)
-        }
     }
 
     public func updateAnnouncements(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Announcement]>) {

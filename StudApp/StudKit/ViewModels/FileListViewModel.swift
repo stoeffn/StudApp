@@ -42,14 +42,13 @@ public final class FileListViewModel: FetchedResultsControllerDataSourceSection 
         return row.state
     }
 
-    /// Updates data from the server. Please note that this method not only updates one folder but the course's whole file tree.
+    /// Updates data from the server.
     public func update(handler: ResultHandler<Void>? = nil) {
-        // TODO
-        /*coreDataService.performBackgroundTask { context in
-            self.folder.updateFiles(in: context) { result in
+        coreDataService.performBackgroundTask { context in
+            self.folder.update(in: context) { result in
                 try? context.saveWhenChanged()
-                handler?(result.replacingValue(()))
+                handler?(result.map { _ in () })
             }
-        }*/
+        }
     }
 }

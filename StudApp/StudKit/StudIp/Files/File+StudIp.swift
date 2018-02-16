@@ -31,6 +31,10 @@ extension File {
         return folder
     }
 
+    public func update(in context: NSManagedObjectContext, handler: @escaping ResultHandler<File>) {
+        File.updateFolder(withId: id, in: context, handler: handler)
+    }
+
     @discardableResult
     public func download(handler: @escaping ResultHandler<URL>) -> Progress? {
         guard !state.isMostRecentVersionDownloaded else {

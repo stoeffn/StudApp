@@ -51,8 +51,6 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdat
     public required convenience init(createIn context: NSManagedObjectContext) {
         self.init(context: context)
         state = CourseState(createIn: context)
-
-        rootFolder = File(createEmptyFolderInContext: context)
     }
 
     // MARK: - Sorting

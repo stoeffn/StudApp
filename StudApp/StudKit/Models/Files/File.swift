@@ -75,19 +75,6 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
         state = FileState(createIn: context)
     }
 
-    /// Convenience initializer for creating an empty folder.
-    public convenience init(createEmptyFolderInContext context: NSManagedObjectContext) {
-        self.init(createIn: context)
-
-        id = UUID().uuidString
-        name = ""
-        typeIdentifier = kUTTypeFolder as String
-        size = -1
-        createdAt = .distantPast
-        modifiedAt = .distantPast
-        downloadCount = -1
-    }
-
     // MARK: Sorting
 
     static let defaultSortDescriptors = [
@@ -174,6 +161,7 @@ public extension File {
 
     /// File name without extension.
     public var title: String {
+        guard !isFolder else { return name }
         return name
             .split(separator: ".")
             .dropLast()
