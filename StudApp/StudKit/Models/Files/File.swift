@@ -121,6 +121,16 @@ extension File {
         return FileState.fetchRequest(predicate: predicate, sortDescriptors: FileState.defaultSortDescriptors,
                                       relationshipKeyPathsForPrefetching: ["file"])
     }
+
+    public var foldersFetchRequest: NSFetchRequest<File> {
+        let predicate = NSPredicate(format: "parent == %@ AND typeIdentifier == %@", self, kUTTypeFolder as String)
+        return File.fetchRequest(predicate: predicate, sortDescriptors: File.defaultSortDescriptors)
+    }
+
+    public var documentsFetchRequest: NSFetchRequest<File> {
+        let predicate = NSPredicate(format: "parent == %@ AND typeIdentifier != %@", self, kUTTypeFolder as String)
+        return File.fetchRequest(predicate: predicate, sortDescriptors: File.defaultSortDescriptors)
+    }
 }
 
 // MARK: - Utilities

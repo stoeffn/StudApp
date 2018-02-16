@@ -13,12 +13,14 @@ extension Semester {
                               handler: @escaping ResultHandler<[Semester]>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestCollection(.semesters, ignoreLastAccess: !enforce) { (result: Result<[SemesterResponse]>) in
-            handler(result.map { try updateSemesters(from: $0, in: context) })
+            let result = result.map { try update(fetchRequest(), with: $0, in: context) }
+            handler(result)
         }
     }
 
-    static func updateSemesters(from response: [SemesterResponse], in context: NSManagedObjectContext) throws -> [Semester] {
-        let semesters = try Semester.update(using: response, in: context)
+    static func update(_ existingObjects: NSFetchRequest<Semester>, with response: [SemesterResponse],
+                       in context: NSManagedObjectContext) throws -> [Semester] {
+        let semesters = try Semester.update(existingObjects, with: response, in: context) { try $0.coreDataObject(in: context) }
 
         if #available(iOSApplicationExtension 11.0, *) {
             NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }

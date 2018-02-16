@@ -15,8 +15,6 @@
 		242266081FE3D45F00FA7CA6 /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242266071FE3D45F00FA7CA6 /* Announcement.swift */; };
 		2422660B1FE3D62500FA7CA6 /* AnnouncementResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422660A1FE3D62500FA7CA6 /* AnnouncementResponse.swift */; };
 		242266101FE3D9E400FA7CA6 /* AnnouncementResponseTests+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2422660F1FE3D9E400FA7CA6 /* AnnouncementResponseTests+Data.swift */; };
-		242266121FE3EE7B00FA7CA6 /* AnnouncementResponse+CDConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242266111FE3EE7B00FA7CA6 /* AnnouncementResponse+CDConvertible.swift */; };
-		242A99041FF2CB76003108E3 /* EventResponse+CDConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242A99031FF2CB76003108E3 /* EventResponse+CDConvertible.swift */; };
 		242B035B1FD71AB700863B08 /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B035A1FD71AB700863B08 /* CourseCell.swift */; };
 		242B035D1FD7213700863B08 /* SemesterHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B035C1FD7213700863B08 /* SemesterHeader.swift */; };
 		242B035F1FD7220800863B08 /* UIFont+Mutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B035E1FD7220800863B08 /* UIFont+Mutations.swift */; };
@@ -125,8 +123,6 @@
 		24801F451FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24801F441FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift */; };
 		24830AA91FD9F324006A1927 /* UITableViewCell+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24830AA81FD9F324006A1927 /* UITableViewCell+Utils.swift */; };
 		24830AAB1FDC09EC006A1927 /* CourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24830AAA1FDC09EC006A1927 /* CourseController.swift */; };
-		2486D9282036F69000692FF2 /* DocumentResponse+CDConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2486D9272036F69000692FF2 /* DocumentResponse+CDConvertible.swift */; };
-		2486D92A2036F6A100692FF2 /* FolderResponse+CDConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2486D9292036F6A100692FF2 /* FolderResponse+CDConvertible.swift */; };
 		2486D92C2036FCC100692FF2 /* IdentifiableResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2486D92B2036FCC100692FF2 /* IdentifiableResponse.swift */; };
 		248C023F202E4C34004CB8C9 /* SFSafariViewController+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C023D202E4C34004CB8C9 /* SFSafariViewController+Notifications.swift */; };
 		248C0240202E4C34004CB8C9 /* SafariServices+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C023E202E4C34004CB8C9 /* SafariServices+Constants.swift */; };
@@ -184,7 +180,6 @@
 		24D2DA201FD04431006FC700 /* StoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D2DA1F1FD04431006FC700 /* StoreViewModel.swift */; };
 		24D360CC1FAA5AFE00BBBAED /* CDIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */; };
 		24D360CD1FAA5AFE00BBBAED /* CDUpdatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C61FAA5AFE00BBBAED /* CDUpdatable.swift */; };
-		24D360CE1FAA5AFE00BBBAED /* CDConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C71FAA5AFE00BBBAED /* CDConvertible.swift */; };
 		24D360CF1FAA5AFE00BBBAED /* CDCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C81FAA5AFE00BBBAED /* CDCreatable.swift */; };
 		24D360D01FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C91FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift */; };
 		24D360D31FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360D21FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift */; };
@@ -197,14 +192,11 @@
 		24D360E71FAA5D7600BBBAED /* Course+StudIp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360E21FAA5D7500BBBAED /* Course+StudIp.swift */; };
 		24D360E81FAA5D7600BBBAED /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360E31FAA5D7500BBBAED /* Course.swift */; };
 		24D360E91FAA5D7600BBBAED /* CourseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360E41FAA5D7500BBBAED /* CourseResponse.swift */; };
-		24D360EA1FAA5D7600BBBAED /* CourseResponse+CDConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360E51FAA5D7500BBBAED /* CourseResponse+CDConvertible.swift */; };
 		24D360ED1FAA5DC500BBBAED /* Transforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360EC1FAA5DC500BBBAED /* Transforms.swift */; };
 		24D360F61FAA5DE800BBBAED /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360F11FAA5DE800BBBAED /* File.swift */; };
 		24D360F71FAA5DE800BBBAED /* FileState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360F21FAA5DE800BBBAED /* FileState.swift */; };
-		24D360FE1FAA5E0800BBBAED /* UserResponse+CDConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360FB1FAA5E0800BBBAED /* UserResponse+CDConvertible.swift */; };
 		24D360FF1FAA5E0800BBBAED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360FC1FAA5E0800BBBAED /* User.swift */; };
 		24D361001FAA5E0800BBBAED /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360FD1FAA5E0800BBBAED /* UserResponse.swift */; };
-		24D361061FAA5E2300BBBAED /* SemesterResponse+CDConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361011FAA5E2200BBBAED /* SemesterResponse+CDConvertible.swift */; };
 		24D361071FAA5E2300BBBAED /* Semester+StudIp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361021FAA5E2200BBBAED /* Semester+StudIp.swift */; };
 		24D361081FAA5E2300BBBAED /* SemesterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361031FAA5E2300BBBAED /* SemesterResponse.swift */; };
 		24D361091FAA5E2300BBBAED /* Semester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361041FAA5E2300BBBAED /* Semester.swift */; };
@@ -394,8 +386,6 @@
 		2422660A1FE3D62500FA7CA6 /* AnnouncementResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementResponse.swift; sourceTree = "<group>"; };
 		2422660D1FE3D9A900FA7CA6 /* AnnouncementResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementResponseTests.swift; sourceTree = "<group>"; };
 		2422660F1FE3D9E400FA7CA6 /* AnnouncementResponseTests+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnnouncementResponseTests+Data.swift"; sourceTree = "<group>"; };
-		242266111FE3EE7B00FA7CA6 /* AnnouncementResponse+CDConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AnnouncementResponse+CDConvertible.swift"; sourceTree = "<group>"; };
-		242A99031FF2CB76003108E3 /* EventResponse+CDConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventResponse+CDConvertible.swift"; sourceTree = "<group>"; };
 		242B035A1FD71AB700863B08 /* CourseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 		242B035C1FD7213700863B08 /* SemesterHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterHeader.swift; sourceTree = "<group>"; };
 		242B035E1FD7220800863B08 /* UIFont+Mutations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Mutations.swift"; sourceTree = "<group>"; };
@@ -505,8 +495,6 @@
 		24801F441FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Utils.swift"; sourceTree = "<group>"; };
 		24830AA81FD9F324006A1927 /* UITableViewCell+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Utils.swift"; sourceTree = "<group>"; };
 		24830AAA1FDC09EC006A1927 /* CourseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseController.swift; sourceTree = "<group>"; };
-		2486D9272036F69000692FF2 /* DocumentResponse+CDConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentResponse+CDConvertible.swift"; sourceTree = "<group>"; };
-		2486D9292036F6A100692FF2 /* FolderResponse+CDConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FolderResponse+CDConvertible.swift"; sourceTree = "<group>"; };
 		2486D92B2036FCC100692FF2 /* IdentifiableResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableResponse.swift; sourceTree = "<group>"; };
 		248C023D202E4C34004CB8C9 /* SFSafariViewController+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SFSafariViewController+Notifications.swift"; sourceTree = "<group>"; };
 		248C023E202E4C34004CB8C9 /* SafariServices+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SafariServices+Constants.swift"; sourceTree = "<group>"; };
@@ -561,7 +549,6 @@
 		24D2DA1F1FD04431006FC700 /* StoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewModel.swift; sourceTree = "<group>"; };
 		24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDIdentifiable.swift; sourceTree = "<group>"; };
 		24D360C61FAA5AFE00BBBAED /* CDUpdatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDUpdatable.swift; sourceTree = "<group>"; };
-		24D360C71FAA5AFE00BBBAED /* CDConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDConvertible.swift; sourceTree = "<group>"; };
 		24D360C81FAA5AFE00BBBAED /* CDCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDCreatable.swift; sourceTree = "<group>"; };
 		24D360C91FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFetchRequestResult+Utils.swift"; sourceTree = "<group>"; };
 		24D360D21FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMangedObjectContext+Utils.swift"; sourceTree = "<group>"; };
@@ -574,14 +561,11 @@
 		24D360E21FAA5D7500BBBAED /* Course+StudIp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Course+StudIp.swift"; sourceTree = "<group>"; };
 		24D360E31FAA5D7500BBBAED /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		24D360E41FAA5D7500BBBAED /* CourseResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseResponse.swift; sourceTree = "<group>"; };
-		24D360E51FAA5D7500BBBAED /* CourseResponse+CDConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CourseResponse+CDConvertible.swift"; sourceTree = "<group>"; };
 		24D360EC1FAA5DC500BBBAED /* Transforms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transforms.swift; sourceTree = "<group>"; };
 		24D360F11FAA5DE800BBBAED /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		24D360F21FAA5DE800BBBAED /* FileState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileState.swift; sourceTree = "<group>"; };
-		24D360FB1FAA5E0800BBBAED /* UserResponse+CDConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserResponse+CDConvertible.swift"; sourceTree = "<group>"; };
 		24D360FC1FAA5E0800BBBAED /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		24D360FD1FAA5E0800BBBAED /* UserResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
-		24D361011FAA5E2200BBBAED /* SemesterResponse+CDConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SemesterResponse+CDConvertible.swift"; sourceTree = "<group>"; };
 		24D361021FAA5E2200BBBAED /* Semester+StudIp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Semester+StudIp.swift"; sourceTree = "<group>"; };
 		24D361031FAA5E2300BBBAED /* SemesterResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SemesterResponse.swift; sourceTree = "<group>"; };
 		24D361041FAA5E2300BBBAED /* Semester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Semester.swift; sourceTree = "<group>"; };
@@ -749,7 +733,6 @@
 			isa = PBXGroup;
 			children = (
 				2407A07D1FF2B982006D41C5 /* EventResponse.swift */,
-				242A99031FF2CB76003108E3 /* EventResponse+CDConvertible.swift */,
 			);
 			path = Events;
 			sourceTree = "<group>";
@@ -789,7 +772,6 @@
 			isa = PBXGroup;
 			children = (
 				2422660A1FE3D62500FA7CA6 /* AnnouncementResponse.swift */,
-				242266111FE3EE7B00FA7CA6 /* AnnouncementResponse+CDConvertible.swift */,
 			);
 			path = Announcements;
 			sourceTree = "<group>";
@@ -1207,9 +1189,7 @@
 			children = (
 				24712BD71FB858CC0067E416 /* File+StudIp.swift */,
 				24B091EA2036EC6A00A5037A /* DocumentResponse.swift */,
-				2486D9272036F69000692FF2 /* DocumentResponse+CDConvertible.swift */,
 				24B091EC2036EC7500A5037A /* FolderResponse.swift */,
-				2486D9292036F6A100692FF2 /* FolderResponse+CDConvertible.swift */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -1218,7 +1198,6 @@
 			isa = PBXGroup;
 			children = (
 				24D360FD1FAA5E0800BBBAED /* UserResponse.swift */,
-				24D360FB1FAA5E0800BBBAED /* UserResponse+CDConvertible.swift */,
 				249DD6DD1FC8A3D4006DA46E /* User+StudIp.swift */,
 			);
 			path = Users;
@@ -1228,7 +1207,6 @@
 			isa = PBXGroup;
 			children = (
 				24D361031FAA5E2300BBBAED /* SemesterResponse.swift */,
-				24D361011FAA5E2200BBBAED /* SemesterResponse+CDConvertible.swift */,
 				24D361021FAA5E2200BBBAED /* Semester+StudIp.swift */,
 			);
 			path = Semesters;
@@ -1238,7 +1216,6 @@
 			isa = PBXGroup;
 			children = (
 				24D360E41FAA5D7500BBBAED /* CourseResponse.swift */,
-				24D360E51FAA5D7500BBBAED /* CourseResponse+CDConvertible.swift */,
 				24D360E21FAA5D7500BBBAED /* Course+StudIp.swift */,
 			);
 			path = Courses;
@@ -1405,7 +1382,6 @@
 		24D360D11FAA5CB300BBBAED /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				24D360C71FAA5AFE00BBBAED /* CDConvertible.swift */,
 				24D360C81FAA5AFE00BBBAED /* CDCreatable.swift */,
 				24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */,
 				243CC2BD1FDF0A7F00FE7376 /* CDSortable.swift */,
@@ -2156,9 +2132,7 @@
 				241C67E51FCDD78100F4A099 /* AboutViewModel.swift in Sources */,
 				24712BEA1FB8B48A0067E416 /* ByTypeNameIdentifiable.swift in Sources */,
 				243817A91FC88B0E004052D0 /* StudIpActivityIndicatorView.swift in Sources */,
-				24D360EA1FAA5D7600BBBAED /* CourseResponse+CDConvertible.swift in Sources */,
 				24712BF61FB8B80B0067E416 /* DateFormatter+Shared.swift in Sources */,
-				24D361061FAA5E2300BBBAED /* SemesterResponse+CDConvertible.swift in Sources */,
 				24D360E71FAA5D7600BBBAED /* Course+StudIp.swift in Sources */,
 				243817AB1FC88B15004052D0 /* FilledButton.swift in Sources */,
 				245B6ADC1FCB355D00302CD0 /* OrganizationCell.swift in Sources */,
@@ -2177,11 +2151,9 @@
 				243CC2C21FDF2ED900FE7376 /* UIAlertController+Utils.swift in Sources */,
 				2448D4971FA8DFB200DAB97E /* StudKitServiceProvider.swift in Sources */,
 				2469EF6D1FCF4D19008A122B /* ActivityIndicatorCell.swift in Sources */,
-				242A99041FF2CB76003108E3 /* EventResponse+CDConvertible.swift in Sources */,
 				24712BF41FB8B80B0067E416 /* DateComponentsFormatter+Shared.swift in Sources */,
 				24FD78701FBF826D0072F860 /* DownloadListViewModel.swift in Sources */,
 				24CFB5D71FB24F4D00F30DEA /* Routes.swift in Sources */,
-				2486D9282036F69000692FF2 /* DocumentResponse+CDConvertible.swift in Sources */,
 				24E2AD1D1FF2D5B0001D3E27 /* EventListViewModel.swift in Sources */,
 				248C0260202E5BB6004CB8C9 /* OAuth1.swift in Sources */,
 				243817AC1FC88B18004052D0 /* GroupedTextField.swift in Sources */,
@@ -2215,7 +2187,6 @@
 				24FD78601FBF4D330072F860 /* NSPersistentHistoryToken+Utils.swift in Sources */,
 				2469EF701FCF5DF9008A122B /* AboutController.swift in Sources */,
 				24FD785E1FBF45B10072F860 /* Targets.swift in Sources */,
-				24D360CE1FAA5AFE00BBBAED /* CDConvertible.swift in Sources */,
 				243817A81FC88A4C004052D0 /* BorderlessNavigationController.swift in Sources */,
 				2448D48F1FA8DEE800DAB97E /* FileManager+Utils.swift in Sources */,
 				242B035F1FD7220800863B08 /* UIFont+Mutations.swift in Sources */,
@@ -2227,7 +2198,6 @@
 				2407A07B1FF2B75A006D41C5 /* Event.swift in Sources */,
 				24712BD81FB858CC0067E416 /* File+StudIp.swift in Sources */,
 				24D360F71FAA5DE800BBBAED /* FileState.swift in Sources */,
-				24D360FE1FAA5E0800BBBAED /* UserResponse+CDConvertible.swift in Sources */,
 				24FE8A161FB8527E00A4A3C6 /* FileListViewModel.swift in Sources */,
 				243817AF1FC88B2B004052D0 /* UI.swift in Sources */,
 				2407A07E1FF2B982006D41C5 /* EventResponse.swift in Sources */,
@@ -2261,7 +2231,6 @@
 				24D361151FAA5F0E00BBBAED /* CollectionResponse.swift in Sources */,
 				242266081FE3D45F00FA7CA6 /* Announcement.swift in Sources */,
 				24E4B9A61FF260240061983C /* ObjectIdentifier.swift in Sources */,
-				2486D92A2036F6A100692FF2 /* FolderResponse+CDConvertible.swift in Sources */,
 				2447FB631FF68D8B000EA6BE /* DateTabBar.swift in Sources */,
 				243817A71FC88A49004052D0 /* SignInController.swift in Sources */,
 				24D360ED1FAA5DC500BBBAED /* Transforms.swift in Sources */,
@@ -2285,7 +2254,6 @@
 				242B03631FD7221900863B08 /* UIColor+Utils.swift in Sources */,
 				246F3AC61FAC879C00A477FF /* DataSource.swift in Sources */,
 				24D360CF1FAA5AFE00BBBAED /* CDCreatable.swift in Sources */,
-				242266121FE3EE7B00FA7CA6 /* AnnouncementResponse+CDConvertible.swift in Sources */,
 				24D361161FAA5F0E00BBBAED /* Api+CollectionResponse.swift in Sources */,
 				246F3AC51FAC879C00A477FF /* DataChange.swift in Sources */,
 				248C0265202E5C18004CB8C9 /* VerificationViewModel.swift in Sources */,

@@ -9,16 +9,27 @@
 import CoreData
 
 /// Something that can be updated in Core Data.
-protocol CDUpdatable {}
+protocol CDUpdatable: CDIdentifiable {}
 
 // MARK: - Default Implementation
 
 extension CDUpdatable where Self: NSManagedObject {
-    /// Updates core data objects of this type using the result given. This includes inserting objects that are new in `result`
-    /// and updating properties of existing objects by overriding properties.
-    @discardableResult
-    static func update<Model: CDConvertible>(using models: [Model], in context: NSManagedObjectContext) throws -> [Self] {
-        // TODO: Add ability to remove stale objects.
-        return try models.flatMap { try $0.coreDataObject(in: context) as? Self }
+    static func update<Value, Values: Sequence>(_ existingObjectsFetchRequest: NSFetchRequest<Self>? = nil,
+                                                with values: Values, in context: NSManagedObjectContext,
+                                                transform: (Value) throws -> Self) throws -> [Self] where Values.Element == Value {
+        let existingObjectsFetchRequest = existingObjectsFetchRequest ?? Self.fetchRequest(predicate: NSPredicate(value: false))
+        existingObjectsFetchRequest.propertiesToFetch = ["id"]
+
+        let existingObjects = try context.fetch(existingObjectsFetchRequest)
+        let existingIds = existingObjects.map { $0.id }
+
+        let updatedObjects = try values.map(transform)
+        let updatedIds = updatedObjects.map { $0.id }
+
+        let deletedIds = Set(existingIds).subtracting(updatedIds)
+        let deletedObjects = existingObjects.filter { deletedIds.contains($0.id) }
+        deletedObjects.forEach(context.delete)
+
+        return updatedObjects
     }
 }

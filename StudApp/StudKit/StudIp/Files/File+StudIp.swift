@@ -13,12 +13,16 @@ extension File {
     public static func updateFolder(withId id: String, in context: NSManagedObjectContext, handler: @escaping ResultHandler<File>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestDecoded(.folder(withId: id)) { (result: Result<FolderResponse>) in
-            handler(result.map { try updateFolder(from: $0, in: context) })
+            let result = result.compactMap { response -> File? in
+                guard let folder = try File.fetch(byId: id, in: context) else { return nil }
+                return try updateFolder(from: response, course: folder.course, in: context)
+            }
+            handler(result)
         }
     }
 
-    static func updateFolder(from response: FolderResponse, in context: NSManagedObjectContext) throws -> File {
-        guard let folder = try File.update(using: [response], in: context).first else { fatalError() }
+    static func updateFolder(from response: FolderResponse, course: Course, in context: NSManagedObjectContext) throws -> File {
+        let folder = try response.coreDataObject(course: course, in: context)
 
         CSSearchableIndex.default().indexSearchableItems(folder.searchableChildrenItems) { _ in }
 

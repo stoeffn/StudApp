@@ -16,35 +16,14 @@ extension Course {
         guard let userId = studIpService.userId else { return }
 
         studIpService.api.requestCollection(.courses(forUserId: userId)) { (result: Result<[CourseResponse]>) in
-            let result = result.map { try updateCourses(from: $0, in: context) }
-            let group = DispatchGroup()
-            var error = result.error
-
-            result.value?.forEach { course in
-                group.enter()
-
-                studIpService.api.requestDecoded(.rootFolderForCourse(withId: course.id)) { (result: Result<FolderResponse>) in
-                    let result = result.map { try File.updateFolder(from: $0, in: context) }
-                    result.value?.name = course.title // Make sure the root folder has the same name as the course and is not empty.
-                    course.rootFolder = result.value ?? course.rootFolder
-
-                    error = result.error
-                    group.leave()
-                }
-            }
-
-            group.notify(queue: .main) {
-                if let error = error {
-                    handler(.failure(error))
-                } else {
-                    handler(result)
-                }
-            }
+            let result = result.map { try update(fetchRequest(), with: $0, in: context) }
+            handler(result)
         }
     }
 
-    static func updateCourses(from response: [CourseResponse], in context: NSManagedObjectContext) throws -> [Course] {
-        let courses = try Course.update(using: response, in: context)
+    static func update(_ existingObjects: NSFetchRequest<Course>, with response: [CourseResponse],
+                       in context: NSManagedObjectContext) throws -> [Course] {
+        let courses = try Course.update(existingObjects, with: response, in: context) { try $0.coreDataObject(in: context) }
 
         CSSearchableIndex.default().indexSearchableItems(courses.map { $0.searchableItem }) { _ in }
 
@@ -68,7 +47,12 @@ extension Course {
     public func updateAnnouncements(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Announcement]>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestCollection(.announcementsInCourse(withId: id)) { (result: Result<[AnnouncementResponse]>) in
-            handler(result.map { try Announcement.update(using: $0, in: context) })
+            let result = result.map { announcementResponses in
+                try Announcement.update(self.announcementsFetchRequest, with: announcementResponses, in: context) { response in
+                    try response.coreDataObject(in: context)
+                }
+            }
+            handler(result)
         }
     }
 
@@ -76,8 +60,11 @@ extension Course {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestCollection(.eventsInCourse(withId: id)) { (result: Result<[EventResponse]>) in
             guard let course = context.object(with: self.objectID) as? Course else { fatalError() }
-            let result = result.map { try Event.update(using: $0, in: context) }
-            result.value?.forEach { $0.course = course }
+            let result = result.map { eventResponses in
+                try Event.update(course.eventsFetchRequest, with: eventResponses, in: context) { response in
+                    try response.coreDataObject(course: course, in: context)
+                }
+            }
             handler(result)
         }
     }
