@@ -160,6 +160,12 @@
 		24A8EDDE1FCCBC93007C1CCF /* ContextService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A8EDDD1FCCBC93007C1CCF /* ContextService.swift */; };
 		24ABFC481FD714AF00CD1646 /* Courses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24ABFC471FD714AF00CD1646 /* Courses.storyboard */; };
 		24ABFC4A1FD714EF00CD1646 /* CourseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABFC491FD714EF00CD1646 /* CourseListController.swift */; };
+		24B091EB2036EC6A00A5037A /* DocumentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B091EA2036EC6A00A5037A /* DocumentResponse.swift */; };
+		24B091ED2036EC7500A5037A /* FolderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B091EC2036EC7500A5037A /* FolderResponse.swift */; };
+		24B091EF2036ED2400A5037A /* DocumentResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B091EE2036ED2400A5037A /* DocumentResponseTests.swift */; };
+		24B091F12036EE2200A5037A /* DocumentResponseTests+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B091F02036EE2200A5037A /* DocumentResponseTests+Data.swift */; };
+		24B091F32036EFE400A5037A /* FolderResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B091F22036EFE400A5037A /* FolderResponseTests.swift */; };
+		24B091F52036EFEF00A5037A /* FolderResponseTests+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B091F42036EFEF00A5037A /* FolderResponseTests+Data.swift */; };
 		24BF7B611FF320970013BA23 /* DateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF7B601FF320970013BA23 /* DateHeader.swift */; };
 		24BF7B631FF325470013BA23 /* BadgeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF7B621FF325470013BA23 /* BadgeLabel.swift */; };
 		24BF7B671FF673650013BA23 /* FetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF7B661FF673650013BA23 /* FetchedResultsControllerDelegate.swift */; };
@@ -531,6 +537,12 @@
 		24A8EDDD1FCCBC93007C1CCF /* ContextService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextService.swift; sourceTree = "<group>"; };
 		24ABFC471FD714AF00CD1646 /* Courses.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Courses.storyboard; sourceTree = "<group>"; };
 		24ABFC491FD714EF00CD1646 /* CourseListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListController.swift; sourceTree = "<group>"; };
+		24B091EA2036EC6A00A5037A /* DocumentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentResponse.swift; sourceTree = "<group>"; };
+		24B091EC2036EC7500A5037A /* FolderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderResponse.swift; sourceTree = "<group>"; };
+		24B091EE2036ED2400A5037A /* DocumentResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentResponseTests.swift; sourceTree = "<group>"; };
+		24B091F02036EE2200A5037A /* DocumentResponseTests+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentResponseTests+Data.swift"; sourceTree = "<group>"; };
+		24B091F22036EFE400A5037A /* FolderResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderResponseTests.swift; sourceTree = "<group>"; };
+		24B091F42036EFEF00A5037A /* FolderResponseTests+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FolderResponseTests+Data.swift"; sourceTree = "<group>"; };
 		24BF7B601FF320970013BA23 /* DateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHeader.swift; sourceTree = "<group>"; };
 		24BF7B621FF325470013BA23 /* BadgeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeLabel.swift; sourceTree = "<group>"; };
 		24BF7B641FF661AF0013BA23 /* FetchedResultsControllerDelegateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerDelegateHelper.swift; sourceTree = "<group>"; };
@@ -1198,6 +1210,8 @@
 				24D360F51FAA5DE800BBBAED /* FileResponse.swift */,
 				24D360F31FAA5DE800BBBAED /* FileResponse+CDConvertible.swift */,
 				24712BD71FB858CC0067E416 /* File+StudIp.swift */,
+				24B091EA2036EC6A00A5037A /* DocumentResponse.swift */,
+				24B091EC2036EC7500A5037A /* FolderResponse.swift */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -1282,6 +1296,10 @@
 			children = (
 				24D361491FAA63CE00BBBAED /* FileResponseTests.swift */,
 				24D361481FAA63CE00BBBAED /* FileResponseTests+Data.swift */,
+				24B091EE2036ED2400A5037A /* DocumentResponseTests.swift */,
+				24B091F02036EE2200A5037A /* DocumentResponseTests+Data.swift */,
+				24B091F22036EFE400A5037A /* FolderResponseTests.swift */,
+				24B091F42036EFEF00A5037A /* FolderResponseTests+Data.swift */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -2185,6 +2203,7 @@
 				24D2DA201FD04431006FC700 /* StoreViewModel.swift in Sources */,
 				24D2DA1E1FD03B98006FC700 /* StoreService.swift in Sources */,
 				248C024B202E4EA4004CB8C9 /* NSUserActivity+Utils.swift in Sources */,
+				24B091ED2036EC7500A5037A /* FolderResponse.swift in Sources */,
 				24830AA91FD9F324006A1927 /* UITableViewCell+Utils.swift in Sources */,
 				24BF7B6D1FF6741E0013BA23 /* FetchedResultsControllerDataSourceSection.swift in Sources */,
 				2469EF681FCE1D1C008A122B /* CacheService.swift in Sources */,
@@ -2229,6 +2248,7 @@
 				24D360E81FAA5D7600BBBAED /* Course.swift in Sources */,
 				24D360DC1FAA5D3800BBBAED /* Array+Set.swift in Sources */,
 				242B03741FD7470200863B08 /* ColorPickerViewModel.swift in Sources */,
+				24B091EB2036EC6A00A5037A /* DocumentResponse.swift in Sources */,
 				248C0240202E4C34004CB8C9 /* SafariServices+Constants.swift in Sources */,
 				2448D4AB1FA8E07E00DAB97E /* Api.swift in Sources */,
 				2450AC6D1FDC1582004F1267 /* CourseViewModel.swift in Sources */,
@@ -2283,12 +2303,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				24D361461FAA63C500BBBAED /* CourseFileTests.swift in Sources */,
+				24B091F12036EE2200A5037A /* DocumentResponseTests+Data.swift in Sources */,
 				24D361301FAA60E000BBBAED /* TransformsTests.swift in Sources */,
 				245524E51FF2E13C00C18F92 /* EventResponseTests.swift in Sources */,
 				24D361581FAA63DF00BBBAED /* UserTests.swift in Sources */,
 				24D361251FAA5FF500BBBAED /* Array+SetTests.swift in Sources */,
 				2448D4931FA8DF1A00DAB97E /* FileManager+UtilsTests.swift in Sources */,
 				24D361351FAA633000BBBAED /* FetchableTests.swift in Sources */,
+				24B091EF2036ED2400A5037A /* DocumentResponseTests.swift in Sources */,
 				24D361511FAA63D800BBBAED /* SemesterResponseTests.swift in Sources */,
 				24D361591FAA63DF00BBBAED /* UserResponseTests.swift in Sources */,
 				2448D4BA1FA8E0AB00DAB97E /* TestRoutes.swift in Sources */,
@@ -2316,6 +2338,7 @@
 				24D361521FAA63D800BBBAED /* SemesterResponseTests+Data.swift in Sources */,
 				24D361421FAA63C500BBBAED /* CourseTests.swift in Sources */,
 				2448D49B1FA8E01B00DAB97E /* Setup.swift in Sources */,
+				24B091F32036EFE400A5037A /* FolderResponseTests.swift in Sources */,
 				24D361441FAA63C500BBBAED /* CourseServiceTests.swift in Sources */,
 				24FD78641FBF67720072F860 /* Array+AlgorithmsTests.swift in Sources */,
 				2448D47B1FA8DE4000DAB97E /* ServiceContainerTests.swift in Sources */,
@@ -2326,6 +2349,7 @@
 				24D3612E1FAA60E000BBBAED /* Api+CollectionResponseTests.swift in Sources */,
 				24D3614B1FAA63CE00BBBAED /* FileResponseTests+Data.swift in Sources */,
 				2448D4BB1FA8E0AB00DAB97E /* ApiRoutesTests.swift in Sources */,
+				24B091F52036EFEF00A5037A /* FolderResponseTests+Data.swift in Sources */,
 				24D3614C1FAA63CE00BBBAED /* FileResponseTests.swift in Sources */,
 				2448D4BD1FA8E0AB00DAB97E /* TestableApiRoutes.swift in Sources */,
 				248C0257202E576D004CB8C9 /* (null) in Sources */,
