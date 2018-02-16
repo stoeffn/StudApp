@@ -73,7 +73,7 @@ final class CourseController: UITableViewController, Routable {
         announcementsViewModel.delegate = self
         announcementsViewModel.fetch()
 
-        fileListViewModel = FileListViewModel(folder: course.rootFolder)
+        fileListViewModel = FileListViewModel(filesContaining: course)
         fileListViewModel.delegate = self
         fileListViewModel.fetch()
     }

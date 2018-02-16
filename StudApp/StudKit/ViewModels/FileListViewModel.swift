@@ -21,17 +21,17 @@ public final class FileListViewModel: FetchedResultsControllerDataSourceSection 
 
     public weak var delegate: DataSourceSectionDelegate?
 
-    public let folder: File
+    public let filesContaining: FilesContaining
 
     /// Creates a new file list view model for the given folder's contents.
-    public init(folder: File) {
-        self.folder = folder
+    public init(filesContaining: FilesContaining) {
+        self.filesContaining = filesContaining
 
         controller.delegate = fetchedResultControllerDelegateHelper
     }
 
     private(set) lazy var controller: NSFetchedResultsController<FileState> = NSFetchedResultsController(
-        fetchRequest: folder.childrenStatesFetchRequest, managedObjectContext: coreDataService.viewContext,
+        fetchRequest: filesContaining.childFileStatesFetchRequest, managedObjectContext: coreDataService.viewContext,
         sectionNameKeyPath: nil, cacheName: nil)
 
     func row(from object: FileState) -> File {
@@ -45,7 +45,7 @@ public final class FileListViewModel: FetchedResultsControllerDataSourceSection 
     /// Updates data from the server.
     public func update(handler: ResultHandler<Void>? = nil) {
         coreDataService.performBackgroundTask { context in
-            self.folder.update(in: context) { result in
+            self.filesContaining.updateChildFiles(in: context) { result in
                 try? context.saveWhenChanged()
                 handler?(result.map { _ in () })
             }

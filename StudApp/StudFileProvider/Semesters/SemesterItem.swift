@@ -28,9 +28,7 @@ final class SemesterItem: NSObject, NSFileProviderItem {
         lastUsedDate = semester.state.lastUsedAt
 
         tagData = semester.state.tagData
-        favoriteRank = !semester.state.isUnranked
-            ? semester.state.favoriteRank as NSNumber
-            : nil
+        favoriteRank = !semester.state.isUnranked ? semester.state.favoriteRank as NSNumber : nil
     }
 
     convenience init(from semester: Semester) {

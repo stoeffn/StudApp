@@ -35,7 +35,7 @@ extension File {
         return folder
     }
 
-    public func update(in context: NSManagedObjectContext, handler: @escaping ResultHandler<File>) {
+    public func updateChildFiles(in context: NSManagedObjectContext, handler: @escaping ResultHandler<File>) {
         File.updateFolder(withId: id, in: context, handler: handler)
     }
 

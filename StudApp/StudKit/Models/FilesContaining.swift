@@ -9,10 +9,16 @@
 import CoreData
 import MobileCoreServices
 
-protocol FilesContaining: CVarArg { }
+public protocol FilesContaining: CVarArg {
+    var objectIdentifier: ObjectIdentifier { get }
+
+    var title: String { get }
+
+    func updateChildFiles(in context: NSManagedObjectContext, handler: @escaping ResultHandler<File>)
+}
 
 extension FilesContaining {
-    public var childrenStatesFetchRequest: NSFetchRequest<FileState> {
+    public var childFileStatesFetchRequest: NSFetchRequest<FileState> {
         let predicate = NSPredicate(format: "file.parent == %@", self)
         return FileState.fetchRequest(predicate: predicate, sortDescriptors: FileState.defaultSortDescriptors,
                                       relationshipKeyPathsForPrefetching: ["file"])

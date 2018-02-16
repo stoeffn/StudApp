@@ -44,6 +44,10 @@ extension Course {
         return courses
     }
 
+    public func updateChildFiles(in context: NSManagedObjectContext, handler: @escaping ResultHandler<File>) {
+        // TODO
+    }
+
     public func updateAnnouncements(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Announcement]>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestCollection(.announcementsInCourse(withId: id)) { (result: Result<[AnnouncementResponse]>) in

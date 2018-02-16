@@ -69,12 +69,17 @@ extension FolderResponse: Decodable {
 extension FolderResponse {
     func coreDataObject(course: Course, parent: File? = nil, in context: NSManagedObjectContext) throws -> File {
         let (file, _) = try File.fetch(byId: id, orCreateIn: context)
-        let folders = try File.update(parent?.foldersFetchRequest, with: self.folders, in: context) { response in
+
+        let existingFolders = parent?.childFoldersFetchRequest ?? course.childFoldersFetchRequest
+        let folders = try File.update(existingFolders, with: self.folders, in: context) { response in
             try response.coreDataObject(course: course, parent: file, in: context)
         }
-        let documents = try File.update(parent?.documentsFetchRequest, with: self.documents, in: context) { response in
+
+        let existingDocuments = parent?.childDocumentsFetchRequest ?? course.childDocumentsFetchRequest
+        let documents = try File.update(existingDocuments, with: self.documents, in: context) { response in
             try response.coreDataObject(course: course, parent: file, in: context)
         }
+
         file.id = id
         file.typeIdentifier = kUTTypeFolder as String
         file.parent = parent

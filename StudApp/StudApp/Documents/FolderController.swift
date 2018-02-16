@@ -19,7 +19,7 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
 
         registerForPreviewing(with: self, sourceView: tableView)
 
-        navigationItem.title = viewModel.folder.title
+        navigationItem.title = viewModel.filesContaining.title
 
         if #available(iOS 11.0, *) {
             tableView.dragDelegate = self
@@ -36,7 +36,7 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
     func prepareDependencies(for route: Routes) {
         guard case let .folder(folder) = route else { fatalError() }
 
-        viewModel = FileListViewModel(folder: folder)
+        viewModel = FileListViewModel(filesContaining: folder)
         viewModel.delegate = self
         viewModel.fetch()
     }
@@ -44,14 +44,14 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
     // MARK: - Restoration
 
     override func encodeRestorableState(with coder: NSCoder) {
-        coder.encode(viewModel.folder.objectIdentifier.rawValue, forKey: ObjectIdentifier.typeIdentifier)
+        coder.encode(viewModel.filesContaining.objectIdentifier.rawValue, forKey: ObjectIdentifier.typeIdentifier)
         super.encode(with: coder)
     }
 
     override func decodeRestorableState(with coder: NSCoder) {
         if let restoredObjectIdentifier = coder.decodeObject(forKey: ObjectIdentifier.typeIdentifier) as? String,
             let folder = File.fetch(byObjectId: ObjectIdentifier(rawValue: restoredObjectIdentifier)) {
-            viewModel = FileListViewModel(folder: folder)
+            viewModel = FileListViewModel(filesContaining: folder)
             viewModel.delegate = self
             viewModel.fetch()
         }
@@ -109,7 +109,8 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
 
     @IBAction
     func actionButtonTapped(_: Any) {
-        let url = viewModel.folder.localUrl(in: .fileProvider)
+        guard let folder = viewModel.filesContaining as? File else { return }
+        let url = folder.localUrl(in: .fileProvider)
         let controller = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         controller.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         present(controller, animated: true, completion: nil)

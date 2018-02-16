@@ -27,9 +27,7 @@ final class CourseItem: NSObject, NSFileProviderItem {
         ownerNameComponents = course.lecturers.first?.nameComponents
 
         tagData = course.state.tagData
-        favoriteRank = !course.state.isUnranked
-            ? course.state.favoriteRank as NSNumber
-            : nil
+        favoriteRank = !course.state.isUnranked ? course.state.favoriteRank as NSNumber : nil
     }
 
     convenience init(from course: Course) {
@@ -37,7 +35,7 @@ final class CourseItem: NSObject, NSFileProviderItem {
         let parentItemIdentifier = NSFileProviderItemIdentifier(rawValue: parentObjectIdentifier.rawValue)
 
         let childItemCount = course.state.areFilesFetchedFromRemote
-            ? try? course.managedObjectContext?.count(for: course.rootFolder.childrenStatesFetchRequest) ?? 0
+            ? try? course.managedObjectContext?.count(for: course.childFileStatesFetchRequest) ?? 0
             : nil
 
         self.init(from: course, childItemCount: childItemCount, parentItemIdentifier: parentItemIdentifier)
