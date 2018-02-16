@@ -52,7 +52,7 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdat
         self.init(context: context)
         state = CourseState(createIn: context)
         rootFolder = File(createIn: context)
-        rootFolder.title = title
+        rootFolder.name = title
     }
 
     // MARK: - Sorting

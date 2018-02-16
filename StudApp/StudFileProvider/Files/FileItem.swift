@@ -15,7 +15,7 @@ final class FileItem: NSObject, NSFileProviderItem {
 
     init(from file: File, parentItemIdentifier: NSFileProviderItemIdentifier) {
         itemIdentifier = NSFileProviderItemIdentifier(rawValue: file.objectIdentifier.rawValue)
-        filename = file.sanitizedTitleWithExtension
+        filename = file.name
         typeIdentifier = file.typeIdentifier
         capabilities = file.isFolder
             ? [.allowsReading, .allowsContentEnumerating]

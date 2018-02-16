@@ -19,15 +19,12 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
 
     @NSManaged public var id: String
 
-    /// Internal file name including a file extension as selected by the owner. You may want to use `title` in user interfaces
-    /// as it is more human-readable.
+    /// File name including a file extension as selected by the owner. You may want to use `title` in user interfaces
+    /// as it does not include the file name extension.
     @NSManaged public var name: String
 
     /// Uniform type identifier for this file, chosen by the system based on the file name's extension.
     @NSManaged public var typeIdentifier: String
-
-    /// Custom title, which you may prefer over `name` in user interfaces as it is human-readable.
-    @NSManaged public var title: String
 
     // MARK: Managing Content
 
@@ -162,15 +159,12 @@ public extension File {
             .appendingPathComponent(name, isDirectory: isFolder)
     }
 
-    /// File name extension as retrieved from the internal file name.
-    public var `extension`: String {
-        let pathExtension = URL(string: name)?.pathExtension.nilWhenEmpty
-        return pathExtension.map { ".\($0)" } ?? ""
-    }
-
-    /// Human-readable file title with extension that only contains valid file name characters.
-    public var sanitizedTitleWithExtension: String {
-        return title.sanitizedAsFilename + `extension`
+    /// File name without extension.
+    public var title: String {
+        return name
+            .split(separator: ".")
+            .dropLast()
+            .joined(separator: ".")
     }
 }
 
