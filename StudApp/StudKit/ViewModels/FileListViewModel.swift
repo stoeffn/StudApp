@@ -21,29 +21,18 @@ public final class FileListViewModel: FetchedResultsControllerDataSourceSection 
 
     public weak var delegate: DataSourceSectionDelegate?
 
-    public let course: Course
-
-    public let folder: File?
-
-    /// Creates a new file list view model for the given course's root files.
-    public init(course: Course) {
-        self.course = course
-        folder = nil
-
-        controller.delegate = fetchedResultControllerDelegateHelper
-    }
+    public let folder: File
 
     /// Creates a new file list view model for the given folder's contents.
     public init(folder: File) {
-        course = folder.course
         self.folder = folder
 
         controller.delegate = fetchedResultControllerDelegateHelper
     }
 
     private(set) lazy var controller: NSFetchedResultsController<FileState> = NSFetchedResultsController(
-        fetchRequest: folder?.childrenFetchRequest ?? course.rootFilesFetchRequest,
-        managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchRequest: folder.childrenFetchRequest, managedObjectContext: coreDataService.viewContext,
+        sectionNameKeyPath: nil, cacheName: nil)
 
     func row(from object: FileState) -> File {
         return object.file
@@ -55,15 +44,12 @@ public final class FileListViewModel: FetchedResultsControllerDataSourceSection 
 
     /// Updates data from the server. Please note that this method not only updates one folder but the course's whole file tree.
     public func update(handler: ResultHandler<Void>? = nil) {
-        coreDataService.performBackgroundTask { context in
-            self.course.updateFiles(in: context) { result in
+        // TODO
+        /*coreDataService.performBackgroundTask { context in
+            self.folder.updateFiles(in: context) { result in
                 try? context.saveWhenChanged()
                 handler?(result.replacingValue(()))
             }
-        }
-    }
-
-    public var title: String {
-        return folder?.title ?? course.title
+        }*/
     }
 }

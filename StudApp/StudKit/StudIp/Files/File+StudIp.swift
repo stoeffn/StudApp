@@ -11,7 +11,7 @@ import CoreSpotlight
 
 extension File {
     public func updateChildren(in context: NSManagedObjectContext, handler: @escaping ResultHandler<File>) {
-        let studIpService = ServiceContainer.default[StudIpService.self]
+        /*let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestDecoded(.file(withId: id)) { (result: Result<FileResponse>) in
             guard let models = result.value else { return handler(result.replacingValue(nil)) }
 
@@ -32,7 +32,7 @@ extension File {
             } catch {
                 handler(.failure(error))
             }
-        }
+        }*/
     }
 
     @discardableResult

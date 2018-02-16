@@ -47,7 +47,7 @@ extension Course {
 
     public func updateFiles(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[File]>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
-        studIpService.api.requestCollection(.filesInCourse(withId: id)) { (result: Result<[FileResponse]>) in
+        /*studIpService.api.requestCollection(.filesInCourse(withId: id)) { (result: Result<[FileResponse]>) in
             guard let models = result.value else { return handler(result.replacingValue(nil)) }
 
             do {
@@ -68,7 +68,7 @@ extension Course {
             } catch {
                 handler(.failure(error))
             }
-        }
+        }*/
     }
 
     public func updateAnnouncements(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Announcement]>) {
