@@ -6,7 +6,7 @@
 //  Copyright © 2018 Steffen Ryll. All rights reserved.
 //
 
-struct FolderResponse: Decodable {
+struct FolderResponse {
     let id: String
     let courseId: String
     let parentId: String?
@@ -15,9 +15,25 @@ struct FolderResponse: Decodable {
     let createdAt: Date
     let modifiedAt: Date
     let summary: String?
-    let folders: [FolderResponse]
-    let documents: [DocumentResponse]
+    let folders: Set<FolderResponse>
+    let documents: Set<DocumentResponse>
+}
 
+// MARK: - Hashing
+
+extension FolderResponse: Hashable {
+    var hashValue: Int {
+        return id.hashValue
+    }
+
+    static func == (lhs: FolderResponse, rhs: FolderResponse) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
+// MARK: - Coding
+
+extension FolderResponse: Decodable {
     enum CodingKeys: String, CodingKey {
         case id
         case courseId = "range_id"
@@ -42,7 +58,7 @@ struct FolderResponse: Decodable {
         createdAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .createdAt)
         modifiedAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .modifiedAt)
         summary = try container.decodeIfPresent(String.self, forKey: .summary)?.nilWhenEmpty
-        folders = try container.decodeIfPresent([FolderResponse].self, forKey: .folders) ?? []
-        documents = try container.decodeIfPresent([DocumentResponse].self, forKey: .documents) ?? []
+        folders = try container.decodeIfPresent(Set<FolderResponse>.self, forKey: .folders) ?? []
+        documents = try container.decodeIfPresent(Set<DocumentResponse>.self, forKey: .documents) ?? []
     }
 }

@@ -6,7 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-struct EventResponse: Decodable {
+struct EventResponse {
     let id: String
     let startsAt: Date
     let endsAt: Date
@@ -15,7 +15,11 @@ struct EventResponse: Decodable {
     let location: String?
     let summary: String?
     let category: String?
+}
 
+// MARK: - Coding
+
+extension EventResponse: Decodable {
     enum CodingKeys: String, CodingKey {
         case id = "event_id"
         case startsAt = "start"

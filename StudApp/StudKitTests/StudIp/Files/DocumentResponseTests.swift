@@ -23,6 +23,7 @@ final class DocumentResponseTests: XCTestCase {
         XCTAssertEqual(document.modifiedAt.debugDescription, "2014-03-21 18:31:58 +0000")
         XCTAssertEqual(document.summary, "Sümmary")
         XCTAssertEqual(document.downloadCount, 64)
+        XCTAssertEqual(document.size, nil)
         XCTAssertEqual(document.typeIdentifier, kUTTypePNG as String)
     }
 }

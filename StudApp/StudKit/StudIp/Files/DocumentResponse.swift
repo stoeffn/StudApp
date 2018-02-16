@@ -8,7 +8,7 @@
 
 import MobileCoreServices
 
-struct DocumentResponse: Decodable {
+struct DocumentResponse {
     let id: String
     let parentId: String
     let userId: String?
@@ -16,8 +16,25 @@ struct DocumentResponse: Decodable {
     let createdAt: Date
     let modifiedAt: Date
     let summary: String?
+    let size: Int?
     let downloadCount: Int?
+}
 
+// MARK: - Hashing
+
+extension DocumentResponse: Hashable {
+    var hashValue: Int {
+        return id.hashValue
+    }
+
+    static func == (lhs: DocumentResponse, rhs: DocumentResponse) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
+// MARK: - Coding
+
+extension DocumentResponse: Decodable {
     enum CodingKeys: String, CodingKey {
         case id
         case parentId = "folder_id"
@@ -26,6 +43,7 @@ struct DocumentResponse: Decodable {
         case createdAt = "mkdate"
         case modifiedAt = "chdate"
         case summary = "description"
+        case size
         case downloadCount = "downloads"
     }
 
@@ -39,7 +57,8 @@ struct DocumentResponse: Decodable {
         createdAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .createdAt)
         modifiedAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .modifiedAt)
         summary = try container.decodeIfPresent(String.self, forKey: .summary)?.nilWhenEmpty
-        downloadCount = Int(try container.decode(String.self, forKey: .downloadCount))
+        size = Int(try container.decodeIfPresent(String.self, forKey: .size) ?? "")
+        downloadCount = Int(try container.decodeIfPresent(String.self, forKey: .downloadCount) ?? "")
     }
 }
 
