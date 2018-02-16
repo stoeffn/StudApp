@@ -88,7 +88,7 @@ extension File {
         let studIpService = ServiceContainer.default[StudIpService.self]
         guard
             let baseUrl = studIpService.api.baseUrl?.deletingLastPathComponent(),
-            let url = URL(string: "\(baseUrl)/sendfile.php?force_download=1&type=0&file_id=\(id)&file_name=\(name)")
+            let url = URL(string: "\(baseUrl)/download/force_download/0/\(id)/\(name)")
         else { return nil }
         return url
     }
