@@ -123,6 +123,7 @@
 		24801F451FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24801F441FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift */; };
 		24830AA91FD9F324006A1927 /* UITableViewCell+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24830AA81FD9F324006A1927 /* UITableViewCell+Utils.swift */; };
 		24830AAB1FDC09EC006A1927 /* CourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24830AAA1FDC09EC006A1927 /* CourseController.swift */; };
+		2485259F20378AAB00BC4CAB /* FilesContaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485259E20378AAB00BC4CAB /* FilesContaining.swift */; };
 		2486D92C2036FCC100692FF2 /* IdentifiableResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2486D92B2036FCC100692FF2 /* IdentifiableResponse.swift */; };
 		248C023F202E4C34004CB8C9 /* SFSafariViewController+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C023D202E4C34004CB8C9 /* SFSafariViewController+Notifications.swift */; };
 		248C0240202E4C34004CB8C9 /* SafariServices+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C023E202E4C34004CB8C9 /* SafariServices+Constants.swift */; };
@@ -495,6 +496,7 @@
 		24801F441FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Utils.swift"; sourceTree = "<group>"; };
 		24830AA81FD9F324006A1927 /* UITableViewCell+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Utils.swift"; sourceTree = "<group>"; };
 		24830AAA1FDC09EC006A1927 /* CourseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseController.swift; sourceTree = "<group>"; };
+		2485259E20378AAB00BC4CAB /* FilesContaining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilesContaining.swift; sourceTree = "<group>"; };
 		2486D92B2036FCC100692FF2 /* IdentifiableResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableResponse.swift; sourceTree = "<group>"; };
 		248C023D202E4C34004CB8C9 /* SFSafariViewController+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SFSafariViewController+Notifications.swift"; sourceTree = "<group>"; };
 		248C023E202E4C34004CB8C9 /* SafariServices+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SafariServices+Constants.swift"; sourceTree = "<group>"; };
@@ -1371,6 +1373,7 @@
 				2477936A1FC892D300090F4D /* Users */,
 				24E4B9A71FF284830061983C /* BaseDirectories.swift */,
 				24D361171FAA5F6200BBBAED /* CoreDataService.swift */,
+				2485259E20378AAB00BC4CAB /* FilesContaining.swift */,
 				24FD78591FBF3F030072F860 /* PersistentHistoryService.swift */,
 				24E4B9A51FF260240061983C /* ObjectIdentifier.swift */,
 				2448D4941FA8DF6000DAB97E /* StorageService.swift */,
@@ -2138,6 +2141,7 @@
 				245B6ADC1FCB355D00302CD0 /* OrganizationCell.swift in Sources */,
 				248C0245202E4C58004CB8C9 /* RangeIterator.swift in Sources */,
 				2448D4951FA8DF6000DAB97E /* StorageService.swift in Sources */,
+				2485259F20378AAB00BC4CAB /* FilesContaining.swift in Sources */,
 				2450AC751FDC4FBC004F1267 /* UITableView+Utils.swift in Sources */,
 				24D361121FAA5F0500BBBAED /* StudIpRoutes.swift in Sources */,
 				2448D4A91FA8E07E00DAB97E /* HttpMethods.swift in Sources */,

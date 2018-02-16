@@ -84,7 +84,7 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
 
 // MARK: - Core Data Operations
 
-extension File {
+extension File: FilesContaining {
     // MARK: Fetching
 
     public static func downloadedPredicate(forSearchTerm searchTerm: String? = nil) -> NSPredicate {
@@ -114,22 +114,6 @@ extension File {
         ] + FileState.defaultSortDescriptors
         return FileState.fetchRequest(predicate: downloadedPredicate(), sortDescriptors: sortDescriptors,
                                       relationshipKeyPathsForPrefetching: ["file"])
-    }
-
-    public var childrenStatesFetchRequest: NSFetchRequest<FileState> {
-        let predicate = NSPredicate(format: "file.parent == %@", self)
-        return FileState.fetchRequest(predicate: predicate, sortDescriptors: FileState.defaultSortDescriptors,
-                                      relationshipKeyPathsForPrefetching: ["file"])
-    }
-
-    public var foldersFetchRequest: NSFetchRequest<File> {
-        let predicate = NSPredicate(format: "parent == %@ AND typeIdentifier == %@", self, kUTTypeFolder as String)
-        return File.fetchRequest(predicate: predicate, sortDescriptors: File.defaultSortDescriptors)
-    }
-
-    public var documentsFetchRequest: NSFetchRequest<File> {
-        let predicate = NSPredicate(format: "parent == %@ AND typeIdentifier != %@", self, kUTTypeFolder as String)
-        return File.fetchRequest(predicate: predicate, sortDescriptors: File.defaultSortDescriptors)
     }
 }
 

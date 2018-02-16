@@ -62,7 +62,7 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdat
 
 // MARK: - Core Data Operations
 
-extension Course {
+extension Course: FilesContaining {
     /// Request for fetching all announcements for this course.
     public var announcementsFetchRequest: NSFetchRequest<Announcement> {
         let predicate = NSPredicate(format: "%@ IN courses", self)
