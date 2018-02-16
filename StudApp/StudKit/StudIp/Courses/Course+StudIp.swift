@@ -45,7 +45,14 @@ extension Course {
     }
 
     public func updateChildFiles(in context: NSManagedObjectContext, handler: @escaping ResultHandler<File>) {
-        // TODO
+        let studIpService = ServiceContainer.default[StudIpService.self]
+        studIpService.api.requestDecoded(.rootFolderForCourse(withId: id)) { (result: Result<FolderResponse>) in
+            let result = result.map { response -> File in
+                guard let course = context.object(with: self.objectID) as? Course else { fatalError() }
+                return try File.updateFolder(from: response, course: course, in: context)
+            }
+            handler(result)
+        }
     }
 
     public func updateAnnouncements(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Announcement]>) {
@@ -63,9 +70,9 @@ extension Course {
     public func updateEvents(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Event]>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestCollection(.eventsInCourse(withId: id)) { (result: Result<[EventResponse]>) in
-            guard let course = context.object(with: self.objectID) as? Course else { fatalError() }
-            let result = result.map { eventResponses in
-                try Event.update(course.eventsFetchRequest, with: eventResponses, in: context) { response in
+            let result = result.map { eventResponses -> [Event] in
+                guard let course = context.object(with: self.objectID) as? Course else { fatalError() }
+                return try Event.update(course.eventsFetchRequest, with: eventResponses, in: context) { response in
                     try response.coreDataObject(course: course, in: context)
                 }
             }
