@@ -32,7 +32,7 @@ final class FileEnumerator: CachingFileProviderEnumerator {
 
         switch object {
         case let course as Course:
-            viewModel = FileListViewModel(course: course)
+            viewModel = FileListViewModel(folder: course.rootFolder)
         case let folder as File:
             viewModel = FileListViewModel(folder: folder)
         default:
