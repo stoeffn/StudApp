@@ -64,11 +64,11 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdat
 
 extension Course: FilesContaining {
     public var childFilesPredicate: NSPredicate {
-        return NSPredicate(format: "parent == NIL")
+        return NSPredicate(format: "course == %@ AND parent == NIL", self)
     }
 
     public var childFileStatesPredicate: NSPredicate {
-        return NSPredicate(format: "file.parent == NIL")
+        return NSPredicate(format: "file.course == %@ AND file.parent == NIL", self)
     }
 
     /// Request for fetching all announcements for this course.

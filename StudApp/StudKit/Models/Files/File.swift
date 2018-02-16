@@ -86,11 +86,11 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
 
 extension File: FilesContaining {
     public var childFilesPredicate: NSPredicate {
-        return NSPredicate(format: "parent == %@", self)
+        return NSPredicate(format: "course == %@ AND parent == %@", self.course, self)
     }
 
     public var childFileStatesPredicate: NSPredicate {
-        return NSPredicate(format: "file.parent == %@", self)
+        return NSPredicate(format: "file.course == %@ AND file.parent == %@", self.course, self)
     }
 
     public static func downloadedPredicate(forSearchTerm searchTerm: String? = nil) -> NSPredicate {
