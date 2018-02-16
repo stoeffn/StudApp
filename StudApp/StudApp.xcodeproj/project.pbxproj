@@ -127,6 +127,7 @@
 		24830AAB1FDC09EC006A1927 /* CourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24830AAA1FDC09EC006A1927 /* CourseController.swift */; };
 		2486D9282036F69000692FF2 /* DocumentResponse+CDConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2486D9272036F69000692FF2 /* DocumentResponse+CDConvertible.swift */; };
 		2486D92A2036F6A100692FF2 /* FolderResponse+CDConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2486D9292036F6A100692FF2 /* FolderResponse+CDConvertible.swift */; };
+		2486D92C2036FCC100692FF2 /* IdentifiableResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2486D92B2036FCC100692FF2 /* IdentifiableResponse.swift */; };
 		248C023F202E4C34004CB8C9 /* SFSafariViewController+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C023D202E4C34004CB8C9 /* SFSafariViewController+Notifications.swift */; };
 		248C0240202E4C34004CB8C9 /* SafariServices+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C023E202E4C34004CB8C9 /* SafariServices+Constants.swift */; };
 		248C0245202E4C58004CB8C9 /* RangeIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C0241202E4C57004CB8C9 /* RangeIterator.swift */; };
@@ -510,6 +511,7 @@
 		24830AAA1FDC09EC006A1927 /* CourseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseController.swift; sourceTree = "<group>"; };
 		2486D9272036F69000692FF2 /* DocumentResponse+CDConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentResponse+CDConvertible.swift"; sourceTree = "<group>"; };
 		2486D9292036F6A100692FF2 /* FolderResponse+CDConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FolderResponse+CDConvertible.swift"; sourceTree = "<group>"; };
+		2486D92B2036FCC100692FF2 /* IdentifiableResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableResponse.swift; sourceTree = "<group>"; };
 		248C023D202E4C34004CB8C9 /* SFSafariViewController+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SFSafariViewController+Notifications.swift"; sourceTree = "<group>"; };
 		248C023E202E4C34004CB8C9 /* SafariServices+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SafariServices+Constants.swift"; sourceTree = "<group>"; };
 		248C0241202E4C57004CB8C9 /* RangeIterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeIterator.swift; sourceTree = "<group>"; };
@@ -1440,6 +1442,7 @@
 				247793641FC891EE00090F4D /* Users */,
 				24D361131FAA5F0E00BBBAED /* CollectionResponse.swift */,
 				24D361141FAA5F0E00BBBAED /* Api+CollectionResponse.swift */,
+				2486D92B2036FCC100692FF2 /* IdentifiableResponse.swift */,
 				248C0262202E5BE5004CB8C9 /* StudIpOAuth1Routes.swift */,
 				24D361101FAA5F0500BBBAED /* StudIpRoutes.swift */,
 				24D3610F1FAA5F0500BBBAED /* StudIpService.swift */,
@@ -2156,6 +2159,7 @@
 			files = (
 				24D360E91FAA5D7600BBBAED /* CourseResponse.swift in Sources */,
 				24D360D01FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift in Sources */,
+				2486D92C2036FCC100692FF2 /* IdentifiableResponse.swift in Sources */,
 				242B03611FD7220F00863B08 /* UIColor+Adjustments.swift in Sources */,
 				2469EF711FCF5DFD008A122B /* ThanksNoteCell.swift in Sources */,
 				24D360DD1FAA5D3800BBBAED /* Set+Array.swift in Sources */,

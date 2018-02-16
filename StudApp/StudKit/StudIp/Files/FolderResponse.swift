@@ -6,7 +6,7 @@
 //  Copyright © 2018 Steffen Ryll. All rights reserved.
 //
 
-struct FolderResponse {
+struct FolderResponse: IdentifiableResponse {
     let id: String
     let courseId: String
     let parentId: String?
@@ -17,18 +17,6 @@ struct FolderResponse {
     let summary: String?
     let folders: Set<FolderResponse>
     let documents: Set<DocumentResponse>
-}
-
-// MARK: - Hashing
-
-extension FolderResponse: Hashable {
-    var hashValue: Int {
-        return id.hashValue
-    }
-
-    static func == (lhs: FolderResponse, rhs: FolderResponse) -> Bool {
-        return lhs.id == rhs.id
-    }
 }
 
 // MARK: - Coding

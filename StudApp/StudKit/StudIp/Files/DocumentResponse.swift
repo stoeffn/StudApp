@@ -8,7 +8,7 @@
 
 import MobileCoreServices
 
-struct DocumentResponse {
+struct DocumentResponse: IdentifiableResponse {
     let id: String
     let parentId: String
     let userId: String?
@@ -18,18 +18,6 @@ struct DocumentResponse {
     let summary: String?
     let size: Int?
     let downloadCount: Int?
-}
-
-// MARK: - Hashing
-
-extension DocumentResponse: Hashable {
-    var hashValue: Int {
-        return id.hashValue
-    }
-
-    static func == (lhs: DocumentResponse, rhs: DocumentResponse) -> Bool {
-        return lhs.id == rhs.id
-    }
 }
 
 // MARK: - Coding
