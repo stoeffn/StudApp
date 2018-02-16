@@ -69,10 +69,10 @@ extension CourseResponse {
     }
 
     var beginSemesterId: String? {
-        return StudIp.transformIdPath(beginSemesterPath, idComponentIndex: 2)
+        return StudIp.transformIdPath(beginSemesterPath)
     }
 
     var endSemesterId: String? {
-        return StudIp.transformIdPath(endSemesterPath, idComponentIndex: 2)
+        return StudIp.transformIdPath(endSemesterPath)
     }
 }

@@ -15,16 +15,16 @@ enum StudIp {
     /// - "/api/rooms/abc", 2 -> "abc"
     /// - "/api/rooms/abc/test", 2 -> "abc"
     /// - "api/rooms/", 2 -> `nil`
-    static func transformIdPath(_ path: String?, idComponentIndex: Int) -> String? {
+    static func transformIdPath(_ path: String?) -> String? {
         guard let path = path else { return nil }
+        guard !path.starts(with: "$") else { return String(path.dropFirst()) }
 
-        guard path.first != "$" else { return String(path.dropFirst()) }
-
-        let components = path
-            .trimmingCharacters(in: CharacterSet(charactersIn: "/"))
-            .components(separatedBy: "/")
-        guard components.count > idComponentIndex else { return nil }
-        return components[idComponentIndex].nilWhenEmpty
+        guard
+            let regex = try? NSRegularExpression(pattern: "[a-f0-9]{32}", options: []),
+            let match = regex.firstMatch(in: path, options: [], range: NSRange(location: 0, length: path.count)),
+            let range = Range(match.range, in: path)
+        else { return nil }
+        return String(path[range])
     }
 
     /// Returns the input with trimmed whitespace.
