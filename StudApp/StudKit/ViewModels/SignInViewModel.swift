@@ -65,7 +65,7 @@ public final class SignInViewModel {
                 return handler(.failure(result.error ?? Errors.invalidConsumerKey))
             }
 
-            handler(result.replacingValue(self.oAuth1.authorizationUrl))
+            handler(result.compactMap { _ in self.oAuth1.authorizationUrl })
         }
     }
 
@@ -77,7 +77,7 @@ public final class SignInViewModel {
 
             self.studIpService.signIn(apiUrl: self.organization.apiUrl, authorizing: self.oAuth1) { result in
                 self.updateSemesters()
-                handler(result.replacingValue(()))
+                handler(result.map { _ in () })
             }
         }
     }

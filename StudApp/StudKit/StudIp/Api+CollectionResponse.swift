@@ -53,7 +53,7 @@ extension Api {
         requestCollectionPage(route, afterOffset: offset, itemsPerRequest: itemsPerRequest,
                               ignoreLastAccess: ignoreLastAccess) { (result: Result<CollectionResponse<Value>>) in
             guard let collection = result.value else {
-                defer { handler(result.replacingValue(nil)) }
+                defer { handler(.failure(result.error)) }
                 guard case Api.Errors.routeNotExpired? = result.error else { return }
                 return self.removeLastAccess(for: route)
             }
@@ -63,7 +63,7 @@ extension Api {
             if let offset = collection.pagination.nextOffset {
                 self.requestCollection(route, afterOffset: offset, ignoreLastAccess: true, items: items, handler: handler)
             } else {
-                handler(result.replacingValue(items))
+                handler(result.map { _ in items })
             }
         }
     }

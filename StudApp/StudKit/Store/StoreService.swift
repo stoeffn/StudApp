@@ -62,7 +62,7 @@ public final class StoreService: NSObject {
         verificationApi.requestDecoded(.verify(receipt: data)) { (result: Result<State>) in
             self.state = result.value?.markedAsVerifiedByServer ?? self.state
             self.state.toDefaults()
-            handler(result.replacingValue(self.state))
+            handler(result.map { _ in self.state })
         }
     }
 }

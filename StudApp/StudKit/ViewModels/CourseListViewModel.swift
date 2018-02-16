@@ -59,7 +59,7 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
         coreDataService.performBackgroundTask { context in
             Course.update(in: context) { result in
                 try? context.saveWhenChanged()
-                handler?(result.replacingValue(()))
+                handler?(result.map { _ in })
             }
         }
     }

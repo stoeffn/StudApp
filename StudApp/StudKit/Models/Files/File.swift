@@ -134,11 +134,6 @@ public extension File {
         return typeIdentifier == kUTTypeFolder as String
     }
 
-    /// Flat list of all children, including this file.
-    public var allChildren: [File] {
-        return [self] + children.flatMap { $0.allChildren }
-    }
-
     // TODO: Provide a lightweight alternative for retrieving icons
     public func documentController(handler: @escaping (UIDocumentInteractionController) -> Void) {
         let cacheService = ServiceContainer.default[CacheService.self]
@@ -216,7 +211,7 @@ extension File {
     }
 
     public var searchableChildrenItems: [CSSearchableItem] {
-        return allChildren
+        return children
             .filter { !$0.isFolder }
             .map { $0.searchableItem }
     }

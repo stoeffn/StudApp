@@ -10,29 +10,25 @@ import CoreData
 import CoreSpotlight
 
 extension File {
-    public func updateChildren(in context: NSManagedObjectContext, handler: @escaping ResultHandler<File>) {
-        /*let studIpService = ServiceContainer.default[StudIpService.self]
-        studIpService.api.requestDecoded(.file(withId: id)) { (result: Result<FileResponse>) in
-            guard let models = result.value else { return handler(result.replacingValue(nil)) }
+    public static func updateFolder(withId id: String, in context: NSManagedObjectContext, handler: @escaping ResultHandler<File>) {
+        let studIpService = ServiceContainer.default[StudIpService.self]
+        studIpService.api.requestDecoded(.folder(withId: id)) { (result: Result<FolderResponse>) in
+            handler(result.map { try updateFolder(from: $0, in: context) })
+        }
+    }
 
-            do {
-                let updatedFile = try File.update(using: [models], in: context).first
+    static func updateFolder(from response: FolderResponse, in context: NSManagedObjectContext) throws -> File {
+        guard let folder = try File.update(using: [response], in: context).first else { fatalError() }
 
-                if let searchableItems = updatedFile?.searchableChildrenItems {
-                    CSSearchableIndex.default().indexSearchableItems(searchableItems) { _ in }
-                }
+        CSSearchableIndex.default().indexSearchableItems(folder.searchableChildrenItems) { _ in }
 
-                if #available(iOSApplicationExtension 11.0, *) {
-                    let itemIdentifier = NSFileProviderItemIdentifier(rawValue: self.objectIdentifier.rawValue)
-                    NSFileProviderManager.default.signalEnumerator(for: itemIdentifier) { _ in }
-                    NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
-                }
+        if #available(iOSApplicationExtension 11.0, *) {
+            let itemIdentifier = NSFileProviderItemIdentifier(rawValue: folder.objectIdentifier.rawValue)
+            NSFileProviderManager.default.signalEnumerator(for: itemIdentifier) { _ in }
+            NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+        }
 
-                handler(result.replacingValue(updatedFile))
-            } catch {
-                handler(.failure(error))
-            }
-        }*/
+        return folder
     }
 
     @discardableResult

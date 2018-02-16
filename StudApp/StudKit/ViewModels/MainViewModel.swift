@@ -24,9 +24,7 @@ public final class MainViewModel {
 
     public func verifyStoreState(handler: @escaping ResultHandler<Routes?>) {
         storeService.verifyStateWithServer { result in
-            guard let state = result.value else { return handler(result.replacingValue(nil)) }
-            let route = !state.isUnlocked ? Routes.store : nil
-            handler(result.replacingValue(route))
+            handler(result.map { !$0.isUnlocked ? Routes.store : nil })
         }
     }
 

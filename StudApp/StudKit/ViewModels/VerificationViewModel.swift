@@ -13,8 +13,7 @@ public final class VerificationViewModel {
 
     public func verifyStoreState(handler: @escaping ResultHandler<Bool>) {
         storeService.verifyStateWithServer { result in
-            guard let state = result.value else { return handler(result.replacingValue(nil)) }
-            handler(result.replacingValue(state.isUnlocked))
+            handler(result.map { $0.isUnlocked })
         }
     }
 

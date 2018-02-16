@@ -50,7 +50,7 @@ public final class SemesterListViewModel: FetchedResultsControllerDataSourceSect
         coreDataService.performBackgroundTask { context in
             Semester.update(in: context, enforce: enforce) { result in
                 try? context.saveWhenChanged()
-                handler?(result.replacingValue(()))
+                handler?(result.map { _ in () })
             }
         }
     }

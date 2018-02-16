@@ -28,12 +28,9 @@ extension User {
     static func updateCurrent(in context: NSManagedObjectContext, handler: @escaping ResultHandler<User>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestDecoded(.currentUser) { (result: Result<UserResponse>) in
-            guard
-                let model = result.value,
-                let updatedUser = try? User.update(using: [model], in: context).first
-            else { return handler(result.replacingValue(nil)) }
-            updatedUser?.makeCurrent()
-            handler(result.replacingValue(updatedUser))
+            let result = result.compactMap { try User.update(using: [$0], in: context).first }
+            result.value?.makeCurrent()
+            handler(result)
         }
     }
 }

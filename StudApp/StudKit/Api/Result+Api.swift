@@ -30,15 +30,7 @@ extension Result where Value == Data {
     ///
     /// - Parameter type: Expected object type.
     func decoded<Value: Decodable>(_ type: Value.Type) -> Result<Value> {
-        guard case let .success(value) = self else {
-            return replacingValue(nil)
-        }
-        do {
-            let decoder = ServiceContainer.default[JSONDecoder.self]
-            let value = try decoder.decode(type, from: value)
-            return replacingValue(value)
-        } catch {
-            return .failure(error)
-        }
+        let decoder = ServiceContainer.default[JSONDecoder.self]
+        return map { try decoder.decode(type, from: $0) }
     }
 }

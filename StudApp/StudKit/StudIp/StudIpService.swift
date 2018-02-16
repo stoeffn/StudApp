@@ -72,14 +72,14 @@ public final class StudIpService {
         User.updateCurrent(in: coreDataService.viewContext) { result in
             guard result.isSuccess else {
                 self.signOut()
-                return handler(result.replacingValue(result.value))
+                return handler(result)
             }
 
             if #available(iOSApplicationExtension 11.0, *) {
                 NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
             }
 
-            handler(result.replacingValue(result.value))
+            handler(result)
         }
     }
 

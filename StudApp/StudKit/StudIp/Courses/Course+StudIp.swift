@@ -16,91 +16,55 @@ extension Course {
         guard let userId = studIpService.userId else { return }
 
         studIpService.api.requestCollection(.courses(forUserId: userId)) { (result: Result<[CourseResponse]>) in
-            guard let models = result.value else { return handler(result.replacingValue(nil)) }
-
-            do {
-                let updatedCourses = try Course.update(using: models, in: context)
-
-                let searchableItems = updatedCourses.map { $0.searchableItem }
-                CSSearchableIndex.default().indexSearchableItems(searchableItems) { _ in }
-
-                try? Semester.fetchNonHidden(in: context).forEach { semester in
-                    semester.state.areCoursesFetchedFromRemote = true
-
-                    if #available(iOSApplicationExtension 11.0, *) {
-                        let itemidentifier = NSFileProviderItemIdentifier(rawValue: semester.objectIdentifier.rawValue)
-                        NSFileProviderManager.default.signalEnumerator(for: itemidentifier) { _ in }
-                    }
-                }
-
-                if #available(iOSApplicationExtension 11.0, *) {
-                    NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
-                    NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
-                }
-
-                handler(result.replacingValue(updatedCourses))
-            } catch {
-                handler(.failure(error))
-            }
+            handler(result.map { try updateCourses(from: $0, in: context) })
         }
     }
 
-    public func updateFiles(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[File]>) {
-        let studIpService = ServiceContainer.default[StudIpService.self]
-        /*studIpService.api.requestCollection(.filesInCourse(withId: id)) { (result: Result<[FileResponse]>) in
-            guard let models = result.value else { return handler(result.replacingValue(nil)) }
+    static func updateCourses(from response: [CourseResponse], in context: NSManagedObjectContext) throws -> [Course] {
+        let courses = try Course.update(using: response, in: context)
 
-            do {
-                let updatedFiles = try File.update(using: models, in: context)
+        CSSearchableIndex.default().indexSearchableItems(courses.map { $0.searchableItem }) { _ in }
 
-                let searchableItems = updatedFiles.flatMap { $0.searchableChildrenItems }
-                CSSearchableIndex.default().indexSearchableItems(searchableItems) { _ in }
+        try? Semester.fetchNonHidden(in: context).forEach { semester in
+            semester.state.areCoursesFetchedFromRemote = true
 
-                self.state.areFilesFetchedFromRemote = true
-
-                if #available(iOSApplicationExtension 11.0, *) {
-                    let itemIdentifier = NSFileProviderItemIdentifier(rawValue: self.objectIdentifier.rawValue)
-                    NSFileProviderManager.default.signalEnumerator(for: itemIdentifier) { _ in }
-                    NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
-                }
-
-                handler(result.replacingValue(updatedFiles))
-            } catch {
-                handler(.failure(error))
+            if #available(iOSApplicationExtension 11.0, *) {
+                let itemidentifier = NSFileProviderItemIdentifier(rawValue: semester.objectIdentifier.rawValue)
+                NSFileProviderManager.default.signalEnumerator(for: itemidentifier) { _ in }
             }
-        }*/
+        }
+
+        if #available(iOSApplicationExtension 11.0, *) {
+            NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
+            NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+        }
+
+        return courses
+    }
+
+    public func updateRootFolder(in context: NSManagedObjectContext, handler: @escaping ResultHandler<File>) {
+        let studIpService = ServiceContainer.default[StudIpService.self]
+        studIpService.api.requestDecoded(.rootFolderForCourse(withId: id)) { (result: Result<FolderResponse>) in
+            let result = result.map { try File.updateFolder(from: $0, in: context) }
+            self.rootFolder = result.value ?? self.rootFolder
+            handler(result)
+        }
     }
 
     public func updateAnnouncements(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Announcement]>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestCollection(.announcementsInCourse(withId: id)) { (result: Result<[AnnouncementResponse]>) in
-            guard let models = result.value else { return handler(result.replacingValue(nil)) }
-
-            do {
-                let updatedAnnouncements = try Announcement.update(using: models, in: context)
-                handler(result.replacingValue(updatedAnnouncements))
-            } catch {
-                handler(.failure(error))
-            }
+            handler(result.map { try Announcement.update(using: $0, in: context) })
         }
     }
 
     public func updateEvents(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Event]>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestCollection(.eventsInCourse(withId: id)) { (result: Result<[EventResponse]>) in
-            guard
-                let models = result.value,
-                let course = context.object(with: self.objectID) as? Course
-            else { return handler(result.replacingValue(nil)) }
-
-            do {
-                let updatedEvents = try Event.update(using: models, in: context)
-
-                updatedEvents.forEach { $0.course = course }
-                handler(result.replacingValue(updatedEvents))
-            } catch {
-                handler(.failure(error))
-            }
+            guard let course = context.object(with: self.objectID) as? Course else { fatalError() }
+            let result = result.map { try Event.update(using: $0, in: context) }
+            result.value?.forEach { $0.course = course }
+            handler(result)
         }
     }
 

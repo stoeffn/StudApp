@@ -33,7 +33,7 @@ public final class AnnouncementListViewModel: FetchedResultsControllerDataSource
         coreDataService.performBackgroundTask { context in
             self.course.updateAnnouncements(in: context) { result in
                 try? context.saveWhenChanged()
-                handler?(result.replacingValue(()))
+                handler?(result.map { _ in () })
             }
         }
     }

@@ -44,7 +44,7 @@ public final class EventListViewModel: FetchedResultsControllerDataSource {
         coreDataService.performBackgroundTask { context in
             self.course.updateEvents(in: context) { result in
                 try? context.saveWhenChanged()
-                handler?(result.replacingValue(()))
+                handler?(result.map { _ in () })
             }
         }
     }

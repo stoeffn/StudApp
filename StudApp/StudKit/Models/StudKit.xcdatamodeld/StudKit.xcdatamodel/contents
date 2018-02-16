@@ -26,8 +26,8 @@
         <attribute name="title" attributeType="String" minValueString="1" syncable="YES"/>
         <relationship name="announcements" toMany="YES" deletionRule="Cascade" destinationEntity="Announcement" inverseName="courses" inverseEntity="Announcement" syncable="YES"/>
         <relationship name="events" toMany="YES" deletionRule="Cascade" destinationEntity="Event" inverseName="course" inverseEntity="Event" syncable="YES"/>
-        <relationship name="folder" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="File" inverseName="course" inverseEntity="File" syncable="YES"/>
         <relationship name="lecturers" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="lecturedCourses" inverseEntity="User" syncable="YES"/>
+        <relationship name="rootFolder" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="File" inverseName="course" inverseEntity="File" syncable="YES"/>
         <relationship name="semesters" toMany="YES" deletionRule="Nullify" destinationEntity="Semester" inverseName="courses" inverseEntity="Semester" syncable="YES"/>
         <relationship name="state" maxCount="1" deletionRule="Cascade" destinationEntity="CourseState" inverseName="course" inverseEntity="CourseState" syncable="YES"/>
         <fetchIndex name="byId">
@@ -77,7 +77,7 @@
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="typeIdentifier" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="children" toMany="YES" deletionRule="Cascade" destinationEntity="File" inverseName="parent" inverseEntity="File" syncable="YES"/>
-        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="folder" inverseEntity="Course" syncable="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="rootFolder" inverseEntity="Course" syncable="YES"/>
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="files" inverseEntity="User" syncable="YES"/>
         <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="File" inverseName="children" inverseEntity="File" syncable="YES"/>
         <relationship name="state" maxCount="1" deletionRule="Cascade" destinationEntity="FileState" inverseName="file" inverseEntity="FileState" syncable="YES"/>

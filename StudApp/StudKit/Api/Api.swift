@@ -235,19 +235,14 @@ class Api<Routes: ApiRoutes> {
     func download(_ route: Routes, to destination: URL, parameters: [URLQueryItem] = [], startsResumed: Bool = true,
                   queue: DispatchQueue = .main, handler: @escaping ResultHandler<URL>) -> URLSessionTask? {
         return download(route, parameters: parameters, startsResumed: startsResumed) { result in
-            guard let url = result.value, result.isSuccess else { return handler(result) }
-            do {
+            let result = result.map { url -> URL in
                 try FileManager.default.createIntermediateDirectories(forFileAt: destination)
                 try? FileManager.default.removeItem(at: destination)
                 try FileManager.default.moveItem(at: url, to: destination)
-
-                queue.async {
-                    handler(result.replacingValue(destination))
-                }
-            } catch {
-                queue.async {
-                    handler(.failure(error))
-                }
+                return destination
+            }
+            queue.async {
+                handler(result)
             }
         }
     }
