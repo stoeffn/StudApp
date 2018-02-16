@@ -78,7 +78,7 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
     // MARK: Sorting
 
     static let defaultSortDescriptors = [
-        NSSortDescriptor(keyPath: \File.title, ascending: true),
+        NSSortDescriptor(keyPath: \File.name, ascending: true),
     ]
 }
 
@@ -205,7 +205,7 @@ extension File {
                                 attributeSet: searchableItemAttributes)
     }
 
-    public var searchableChildrenItems: [CSSearchableItem] {
+    public var searchableChildItems: [CSSearchableItem] {
         return children
             .filter { !$0.isFolder }
             .map { $0.searchableItem }

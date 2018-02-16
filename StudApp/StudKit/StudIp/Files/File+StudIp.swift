@@ -24,7 +24,7 @@ extension File {
     static func updateFolder(from response: FolderResponse, course: Course, in context: NSManagedObjectContext) throws -> File {
         let folder = try response.coreDataObject(course: course, in: context)
 
-        CSSearchableIndex.default().indexSearchableItems(folder.searchableChildrenItems) { _ in }
+        CSSearchableIndex.default().indexSearchableItems(folder.searchableChildItems) { _ in }
 
         if #available(iOSApplicationExtension 11.0, *) {
             let itemIdentifier = NSFileProviderItemIdentifier(rawValue: folder.objectIdentifier.rawValue)
