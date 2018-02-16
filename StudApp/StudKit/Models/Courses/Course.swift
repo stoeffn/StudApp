@@ -63,6 +63,14 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdat
 // MARK: - Core Data Operations
 
 extension Course: FilesContaining {
+    public var childFilesPredicate: NSPredicate {
+        return NSPredicate(format: "parent == NIL")
+    }
+
+    public var childFileStatesPredicate: NSPredicate {
+        return NSPredicate(format: "file.parent == NIL")
+    }
+
     /// Request for fetching all announcements for this course.
     public var announcementsFetchRequest: NSFetchRequest<Announcement> {
         let predicate = NSPredicate(format: "%@ IN courses", self)

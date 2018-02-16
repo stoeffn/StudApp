@@ -85,7 +85,13 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
 // MARK: - Core Data Operations
 
 extension File: FilesContaining {
-    // MARK: Fetching
+    public var childFilesPredicate: NSPredicate {
+        return NSPredicate(format: "parent == %@", self)
+    }
+
+    public var childFileStatesPredicate: NSPredicate {
+        return NSPredicate(format: "file.parent == %@", self)
+    }
 
     public static func downloadedPredicate(forSearchTerm searchTerm: String? = nil) -> NSPredicate {
         let downloadedPredicate = NSPredicate(format: "downloadedAt != NIL")
