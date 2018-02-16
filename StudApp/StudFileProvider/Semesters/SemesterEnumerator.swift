@@ -10,7 +10,7 @@ import StudKit
 
 /// Enumerates all visible semesters.
 final class SemesterEnumerator: CachingFileProviderEnumerator {
-    private let viewModel = SemesterListViewModel(fetchRequest: Semester.nonHiddenFetchRequest)
+    private let viewModel = SemesterListViewModel(fetchRequest: Semester.visibleStatesFetchRequest)
 
     // MARK: - Life Cycle
 

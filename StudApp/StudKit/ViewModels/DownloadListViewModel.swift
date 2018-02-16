@@ -29,7 +29,7 @@ public final class DownloadListViewModel: FetchedResultsControllerDataSource {
     }
 
     private(set) lazy var controller: NSFetchedResultsController<FileState> = NSFetchedResultsController(
-        fetchRequest: File.downloadedFetchRequest, managedObjectContext: coreDataService.viewContext,
+        fetchRequest: File.downloadedStatesFetchRequest, managedObjectContext: coreDataService.viewContext,
         sectionNameKeyPath: "file.course.title", cacheName: nil)
 
     func section(from sectionInfo: NSFetchedResultsSectionInfo) -> Course? {

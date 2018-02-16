@@ -31,7 +31,7 @@ public final class FileListViewModel: FetchedResultsControllerDataSourceSection 
     }
 
     private(set) lazy var controller: NSFetchedResultsController<FileState> = NSFetchedResultsController(
-        fetchRequest: folder.childrenFetchRequest, managedObjectContext: coreDataService.viewContext,
+        fetchRequest: folder.childrenStatesFetchRequest, managedObjectContext: coreDataService.viewContext,
         sectionNameKeyPath: nil, cacheName: nil)
 
     func row(from object: FileState) -> File {

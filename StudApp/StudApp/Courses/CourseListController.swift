@@ -17,7 +17,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewModel = SemesterListViewModel(fetchRequest: Semester.nonHiddenFetchRequest)
+        viewModel = SemesterListViewModel(fetchRequest: Semester.visibleStatesFetchRequest)
         viewModel.delegate = self
         viewModel.fetch()
 

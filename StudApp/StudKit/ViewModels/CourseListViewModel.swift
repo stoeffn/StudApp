@@ -35,7 +35,7 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
     }
 
     private(set) lazy var controller: NSFetchedResultsController<CourseState> = NSFetchedResultsController(
-        fetchRequest: semester.coursesFetchRequest, managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil,
+        fetchRequest: semester.coursesStatesFetchRequest, managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil,
         cacheName: nil)
 
     func row(from object: CourseState) -> Course {
@@ -50,7 +50,7 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
     public func fetch() {
         controller.fetchRequest.predicate = isCollapsed && respectsCollapsedState
             ? NSPredicate(value: false)
-            : semester.coursesFetchRequest.predicate
+            : semester.coursesStatesFetchRequest.predicate
         try? controller.performFetch()
     }
 

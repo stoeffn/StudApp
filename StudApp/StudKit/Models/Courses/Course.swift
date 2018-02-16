@@ -34,7 +34,7 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdat
 
     @NSManaged public var lecturers: Set<User>
 
-    @NSManaged public var rootFolder: File
+    @NSManaged public var files: Set<File>
 
     /// As a course can span multiple semesters, there is a set of semesters. However, most courses exist in one semester only.
     /// It is also important to know that—if contained in semesters `A` and `C`—a course should also be contained in `B`.

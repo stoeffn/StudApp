@@ -27,7 +27,7 @@ extension Course {
 
         CSSearchableIndex.default().indexSearchableItems(courses.map { $0.searchableItem }) { _ in }
 
-        try? Semester.fetchNonHidden(in: context).forEach { semester in
+        try? Semester.fetchVisibleStates(in: context).forEach { semester in
             semester.state.areCoursesFetchedFromRemote = true
 
             if #available(iOSApplicationExtension 11.0, *) {

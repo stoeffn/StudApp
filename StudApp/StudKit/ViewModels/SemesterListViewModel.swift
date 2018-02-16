@@ -23,7 +23,7 @@ public final class SemesterListViewModel: FetchedResultsControllerDataSourceSect
 
     /// Creates a new semester list view model managing the semesters in returned by the request given, which defaults to all
     /// semesters.
-    public init(fetchRequest: NSFetchRequest<SemesterState> = Semester.sortedFetchRequest) {
+    public init(fetchRequest: NSFetchRequest<SemesterState> = Semester.statesFetchRequest) {
         self.fetchRequest = fetchRequest
 
         controller.delegate = fetchedResultControllerDelegateHelper

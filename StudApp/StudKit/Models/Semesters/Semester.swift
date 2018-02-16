@@ -59,23 +59,23 @@ extension Semester {
         return try context.fetch(request)
     }
 
-    public static var sortedFetchRequest: NSFetchRequest<SemesterState> {
+    public static var statesFetchRequest: NSFetchRequest<SemesterState> {
         return SemesterState.fetchRequest(predicate: NSPredicate(value: true),
                                           sortDescriptors: SemesterState.defaultSortDescriptors,
                                           relationshipKeyPathsForPrefetching: ["semester"])
     }
 
-    public static var nonHiddenFetchRequest: NSFetchRequest<SemesterState> {
+    public static var visibleStatesFetchRequest: NSFetchRequest<SemesterState> {
         let predicate = NSPredicate(format: "isHidden == NO")
         return SemesterState.fetchRequest(predicate: predicate, sortDescriptors: SemesterState.defaultSortDescriptors,
                                           relationshipKeyPathsForPrefetching: ["semester"])
     }
 
-    public static func fetchNonHidden(in context: NSManagedObjectContext) throws -> [Semester] {
-        return try context.fetch(nonHiddenFetchRequest).map { $0.semester }
+    public static func fetchVisibleStates(in context: NSManagedObjectContext) throws -> [Semester] {
+        return try context.fetch(visibleStatesFetchRequest).map { $0.semester }
     }
 
-    public var coursesFetchRequest: NSFetchRequest<CourseState> {
+    public var coursesStatesFetchRequest: NSFetchRequest<CourseState> {
         let predicate = NSPredicate(format: "%@ IN course.semesters", self)
         return CourseState.fetchRequest(predicate: predicate, sortDescriptors: CourseState.defaultSortDescriptors,
                                         relationshipKeyPathsForPrefetching: ["course"])

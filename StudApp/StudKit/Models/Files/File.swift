@@ -108,7 +108,7 @@ extension File {
         ])
     }
 
-    public static var downloadedFetchRequest: NSFetchRequest<FileState> {
+    public static var downloadedStatesFetchRequest: NSFetchRequest<FileState> {
         let sortDescriptors = [
             NSSortDescriptor(keyPath: \FileState.file.course.title, ascending: true),
         ] + FileState.defaultSortDescriptors
@@ -116,7 +116,7 @@ extension File {
                                       relationshipKeyPathsForPrefetching: ["file"])
     }
 
-    public var childrenFetchRequest: NSFetchRequest<FileState> {
+    public var childrenStatesFetchRequest: NSFetchRequest<FileState> {
         let predicate = NSPredicate(format: "file.parent == %@", self)
         return FileState.fetchRequest(predicate: predicate, sortDescriptors: FileState.defaultSortDescriptors,
                                       relationshipKeyPathsForPrefetching: ["file"])
