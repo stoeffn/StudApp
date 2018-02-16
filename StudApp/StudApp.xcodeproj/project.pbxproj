@@ -125,6 +125,8 @@
 		24801F451FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24801F441FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift */; };
 		24830AA91FD9F324006A1927 /* UITableViewCell+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24830AA81FD9F324006A1927 /* UITableViewCell+Utils.swift */; };
 		24830AAB1FDC09EC006A1927 /* CourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24830AAA1FDC09EC006A1927 /* CourseController.swift */; };
+		2486D9282036F69000692FF2 /* DocumentResponse+CDConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2486D9272036F69000692FF2 /* DocumentResponse+CDConvertible.swift */; };
+		2486D92A2036F6A100692FF2 /* FolderResponse+CDConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2486D9292036F6A100692FF2 /* FolderResponse+CDConvertible.swift */; };
 		248C023F202E4C34004CB8C9 /* SFSafariViewController+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C023D202E4C34004CB8C9 /* SFSafariViewController+Notifications.swift */; };
 		248C0240202E4C34004CB8C9 /* SafariServices+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C023E202E4C34004CB8C9 /* SafariServices+Constants.swift */; };
 		248C0245202E4C58004CB8C9 /* RangeIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C0241202E4C57004CB8C9 /* RangeIterator.swift */; };
@@ -506,6 +508,8 @@
 		24801F441FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Utils.swift"; sourceTree = "<group>"; };
 		24830AA81FD9F324006A1927 /* UITableViewCell+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Utils.swift"; sourceTree = "<group>"; };
 		24830AAA1FDC09EC006A1927 /* CourseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseController.swift; sourceTree = "<group>"; };
+		2486D9272036F69000692FF2 /* DocumentResponse+CDConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentResponse+CDConvertible.swift"; sourceTree = "<group>"; };
+		2486D9292036F6A100692FF2 /* FolderResponse+CDConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FolderResponse+CDConvertible.swift"; sourceTree = "<group>"; };
 		248C023D202E4C34004CB8C9 /* SFSafariViewController+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SFSafariViewController+Notifications.swift"; sourceTree = "<group>"; };
 		248C023E202E4C34004CB8C9 /* SafariServices+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SafariServices+Constants.swift"; sourceTree = "<group>"; };
 		248C0241202E4C57004CB8C9 /* RangeIterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeIterator.swift; sourceTree = "<group>"; };
@@ -1211,7 +1215,9 @@
 				24D360F31FAA5DE800BBBAED /* FileResponse+CDConvertible.swift */,
 				24712BD71FB858CC0067E416 /* File+StudIp.swift */,
 				24B091EA2036EC6A00A5037A /* DocumentResponse.swift */,
+				2486D9272036F69000692FF2 /* DocumentResponse+CDConvertible.swift */,
 				24B091EC2036EC7500A5037A /* FolderResponse.swift */,
+				2486D9292036F6A100692FF2 /* FolderResponse+CDConvertible.swift */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -2184,6 +2190,7 @@
 				24712BF41FB8B80B0067E416 /* DateComponentsFormatter+Shared.swift in Sources */,
 				24FD78701FBF826D0072F860 /* DownloadListViewModel.swift in Sources */,
 				24CFB5D71FB24F4D00F30DEA /* Routes.swift in Sources */,
+				2486D9282036F69000692FF2 /* DocumentResponse+CDConvertible.swift in Sources */,
 				24E2AD1D1FF2D5B0001D3E27 /* EventListViewModel.swift in Sources */,
 				248C0260202E5BB6004CB8C9 /* OAuth1.swift in Sources */,
 				243817AC1FC88B18004052D0 /* GroupedTextField.swift in Sources */,
@@ -2264,6 +2271,7 @@
 				24D361151FAA5F0E00BBBAED /* CollectionResponse.swift in Sources */,
 				242266081FE3D45F00FA7CA6 /* Announcement.swift in Sources */,
 				24E4B9A61FF260240061983C /* ObjectIdentifier.swift in Sources */,
+				2486D92A2036F6A100692FF2 /* FolderResponse+CDConvertible.swift in Sources */,
 				2447FB631FF68D8B000EA6BE /* DateTabBar.swift in Sources */,
 				243817A71FC88A49004052D0 /* SignInController.swift in Sources */,
 				24D360ED1FAA5DC500BBBAED /* Transforms.swift in Sources */,
