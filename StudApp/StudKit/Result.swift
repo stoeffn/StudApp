@@ -62,20 +62,6 @@ public enum Result<Value> {
         }
     }
 
-    /// Returns a new result, keeping the error if set and replacing the value.
-    ///
-    /// - Remarks: This might be useful when transforming the result's data before returning it. The same rules as in
-    ///            the initializer apply for `value` being `nil`.
-    @available(*, deprecated)
-    func replacingValue<NewValue>(_ value: NewValue?) -> Result<NewValue> {
-        switch self {
-        case .success:
-            return Result<NewValue>(value)
-        case let .failure(error):
-            return .failure(error)
-        }
-    }
-
     /// Applies a transform to a result value if it is a `success`.
     ///
     /// - Parameter transform: Transform to apply to `value`.
