@@ -18,7 +18,7 @@ final class SemesterServiceTests: XCTestCase {
 
         try! SemesterResponse(id: "135de7259e0862cbcd3878e038253776", title: "Old title", beginsAt: .distantFuture,
                               endsAt: .distantFuture, coursesBeginAt: .distantFuture, coursesEndAt: .distantFuture)
-            .coreDataModel(in: context)
+            .coreDataObject(in: context)
 
         try! context!.save()
     }

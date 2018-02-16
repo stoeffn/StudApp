@@ -10,7 +10,7 @@ import CoreData
 
 extension SemesterResponse: CDConvertible {
     @discardableResult
-    func coreDataModel(in context: NSManagedObjectContext) throws -> NSManagedObject {
+    func coreDataObject(in context: NSManagedObjectContext) throws -> NSManagedObject {
         let (semester, isNew) = try Semester.fetch(byId: id, orCreateIn: context)
         semester.id = id
         semester.title = title

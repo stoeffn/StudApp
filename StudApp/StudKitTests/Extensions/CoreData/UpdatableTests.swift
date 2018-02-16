@@ -16,8 +16,8 @@ final class UpdatableTests: XCTestCase {
     override func setUp() {
         context = StudKitTestsServiceProvider(currentTarget: .tests).provideCoreDataService().viewContext
 
-        try! CourseResponse(id: "0", title: "A").coreDataModel(in: context)
-        try! CourseResponse(id: "1", title: "Course 2").coreDataModel(in: context)
+        try! CourseResponse(id: "0", title: "A").coreDataObject(in: context)
+        try! CourseResponse(id: "1", title: "Course 2").coreDataObject(in: context)
 
         try! FileResponse(folderId: "file.pdf", fileId: "file", coursePath: "$1", title: "File").coreDataModel(in: context)
 
@@ -34,9 +34,9 @@ final class UpdatableTests: XCTestCase {
     }
 
     func testMerge_Courses_Merged() {
-        try! CourseResponse(id: "2", title: "Course").coreDataModel(in: context)
+        try! CourseResponse(id: "2", title: "Course").coreDataObject(in: context)
         try! context.save()
-        try! CourseResponse(id: "2", title: "Updated Course").coreDataModel(in: context)
+        try! CourseResponse(id: "2", title: "Updated Course").coreDataObject(in: context)
         try! context.save()
 
         let course = try! Course.fetch(byId: "2", in: context)

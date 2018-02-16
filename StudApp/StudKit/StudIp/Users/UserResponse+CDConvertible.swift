@@ -10,7 +10,7 @@ import CoreData
 
 extension UserResponse: CDConvertible {
     @discardableResult
-    func coreDataModel(in context: NSManagedObjectContext) throws -> NSManagedObject {
+    func coreDataObject(in context: NSManagedObjectContext) throws -> NSManagedObject {
         let (user, _) = try User.fetch(byId: id, orCreateIn: context)
         user.id = id
         user.username = username

@@ -16,8 +16,8 @@ final class FetchableTests: XCTestCase {
     override func setUp() {
         context = StudKitTestsServiceProvider(currentTarget: .tests).provideCoreDataService().viewContext
 
-        try! CourseResponse(id: "0", title: "A").coreDataModel(in: context)
-        try! CourseResponse(id: "1", title: "B").coreDataModel(in: context)
+        try! CourseResponse(id: "0", title: "A").coreDataObject(in: context)
+        try! CourseResponse(id: "1", title: "B").coreDataObject(in: context)
     }
 
     func testFetch_All_Courses() {

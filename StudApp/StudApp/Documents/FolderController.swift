@@ -100,11 +100,7 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard
-            let cell = tableView.cellForRow(at: indexPath) as? FileCell,
-            !cell.file.isFolder
-        else { return }
-
+        guard let cell = tableView.cellForRow(at: indexPath) as? FileCell, !cell.file.isFolder else { return }
         PreviewController.downloadOrPreview(cell.file, in: self)
         tableView.deselectRow(at: indexPath, animated: true)
     }

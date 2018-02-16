@@ -20,9 +20,9 @@ final class FolderResponseTests: XCTestCase {
     override func setUp() {
         context = StudKitTestsServiceProvider(currentTarget: .tests).provideCoreDataService().viewContext
 
-        _ = try! CourseResponse(id: "C0", title: "Course").coreDataModel(in: context)
+        _ = try! CourseResponse(id: "C0", title: "Course").coreDataObject(in: context)
 
-        _ = try! UserResponse(id: "U0").coreDataModel(in: context)
+        _ = try! UserResponse(id: "U0").coreDataObject(in: context)
     }
 
     // MARK: - Coding
@@ -72,7 +72,7 @@ final class FolderResponseTests: XCTestCase {
     // MARK: - Converting to Core Data Objects
 
     func testCoreDataObject_RootFolder() {
-        let file = try! FolderResponseTests.rootFolder.coreDataModel(in: context) as! File
+        let file = try! FolderResponseTests.rootFolder.coreDataObject(in: context) as! File
         XCTAssertEqual(file.id, "F0")
         XCTAssertEqual(file.name, "")
         XCTAssertEqual(file.typeIdentifier, kUTTypeFolder as String)
@@ -87,8 +87,8 @@ final class FolderResponseTests: XCTestCase {
     }
 
     func testCoreDataObject_EmptyFolder() {
-        _ = try! FolderResponseTests.rootFolder.coreDataModel(in: context) as! File
-        let file = try! FolderResponseTests.emptyFolder.coreDataModel(in: context) as! File
+        _ = try! FolderResponseTests.rootFolder.coreDataObject(in: context) as! File
+        let file = try! FolderResponseTests.emptyFolder.coreDataObject(in: context) as! File
         XCTAssertEqual(file.id, "F1")
         XCTAssertEqual(file.name, "Empty")
         XCTAssertEqual(file.typeIdentifier, kUTTypeFolder as String)
@@ -102,8 +102,8 @@ final class FolderResponseTests: XCTestCase {
     }
 
     func testCoreDataObject_Folder() {
-        _ = try! FolderResponseTests.rootFolder.coreDataModel(in: context) as! File
-        let file = try! FolderResponseTests.folder.coreDataModel(in: context) as! File
+        _ = try! FolderResponseTests.rootFolder.coreDataObject(in: context) as! File
+        let file = try! FolderResponseTests.folder.coreDataObject(in: context) as! File
         XCTAssertEqual(file.id, "F2")
         XCTAssertEqual(file.name, "Name")
         XCTAssertEqual(file.typeIdentifier, kUTTypeFolder as String)

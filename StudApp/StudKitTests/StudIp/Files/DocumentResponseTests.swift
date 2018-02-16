@@ -20,10 +20,10 @@ final class DocumentResponseTests: XCTestCase {
     override func setUp() {
         context = StudKitTestsServiceProvider(currentTarget: .tests).provideCoreDataService().viewContext
 
-        _ = try! FolderResponse(id: "F1", courseId: "C0").coreDataModel(in: context)
-        _ = try! FolderResponse(id: "F7", courseId: "C0").coreDataModel(in: context)
+        _ = try! FolderResponse(id: "F1", courseId: "C0").coreDataObject(in: context)
+        _ = try! FolderResponse(id: "F7", courseId: "C0").coreDataObject(in: context)
 
-        _ = try! UserResponse(id: "U2").coreDataModel(in: context)
+        _ = try! UserResponse(id: "U2").coreDataObject(in: context)
     }
 
     // MARK: - Coding
@@ -59,7 +59,7 @@ final class DocumentResponseTests: XCTestCase {
     // MARK: - Converting to Core Data Objects
 
     func testCoreDataObject_Document1() {
-        let file = try! DocumentResponseTests.document1.coreDataModel(in: context) as! File
+        let file = try! DocumentResponseTests.document1.coreDataObject(in: context) as! File
         XCTAssertEqual(file.id, "F0")
         XCTAssertEqual(file.name, "file.pdf")
         XCTAssertEqual(file.typeIdentifier, kUTTypePDF as String)
@@ -73,7 +73,7 @@ final class DocumentResponseTests: XCTestCase {
     }
 
     func testCoreDataObject_Document2() {
-        let file = try! DocumentResponseTests.document2.coreDataModel(in: context) as! File
+        let file = try! DocumentResponseTests.document2.coreDataObject(in: context) as! File
         XCTAssertEqual(file.id, "F8")
         XCTAssertEqual(file.name, "image.png")
         XCTAssertEqual(file.typeIdentifier, kUTTypePNG as String)

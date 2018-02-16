@@ -8,7 +8,7 @@
 
 import CoreData
 
-/// Something that can be updated in core data.
+/// Something that can be updated in Core Data.
 protocol CDUpdatable {}
 
 // MARK: - Default Implementation
@@ -19,6 +19,6 @@ extension CDUpdatable where Self: NSManagedObject {
     @discardableResult
     static func update<Model: CDConvertible>(using models: [Model], in context: NSManagedObjectContext) throws -> [Self] {
         // TODO: Add ability to remove stale objects.
-        return try models.flatMap { try $0.coreDataModel(in: context) as? Self }
+        return try models.flatMap { try $0.coreDataObject(in: context) as? Self }
     }
 }

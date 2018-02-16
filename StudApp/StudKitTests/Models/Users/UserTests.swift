@@ -19,7 +19,7 @@ final class UserTests: XCTestCase {
     }
 
     func testInit_UserModel_User() {
-        let user = try! UserResponseTests.user.coreDataModel(in: context) as! User
+        let user = try! UserResponseTests.user.coreDataObject(in: context) as! User
         XCTAssertEqual(user.id, "0")
         XCTAssertEqual(user.username, "username")
         XCTAssertEqual(user.givenName, "First Name")
@@ -29,7 +29,7 @@ final class UserTests: XCTestCase {
     }
 
     func testNameComponents_User_Name() {
-        let user = try! UserResponseTests.user.coreDataModel(in: context) as! User
+        let user = try! UserResponseTests.user.coreDataObject(in: context) as! User
         XCTAssertEqual(user.nameComponents.description,
                        "namePrefix: Prefix givenName: First Name familyName: Last Name nameSuffix: Suffix ")
     }

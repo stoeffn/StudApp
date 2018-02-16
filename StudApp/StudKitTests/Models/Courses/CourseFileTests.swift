@@ -18,7 +18,7 @@ final class FileServiceTests: XCTestCase {
         context = StudKitTestsServiceProvider(currentTarget: .tests).provideCoreDataService().viewContext
 
         course = try! CourseResponse(id: "a2c88e905abf322d1868640859f13c99", title: "Course")
-            .coreDataModel(in: context!) as! Course
+            .coreDataObject(in: context!) as! Course
 
         try! FileResponse(fileId: "123456784c20d3c1931649b979ecd73e", filename: "f.pdf",
                           coursePath: "$a2c88e905abf322d1868640859f13c99", title: "Current").coreDataModel(in: context!)

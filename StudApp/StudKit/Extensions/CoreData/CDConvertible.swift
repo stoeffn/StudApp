@@ -16,5 +16,5 @@ protocol CDConvertible {
     /// - Parameter context: Managed object context.
     /// - Returns: Converted core data managed object.
     @discardableResult
-    func coreDataModel(in context: NSManagedObjectContext) throws -> NSManagedObject
+    func coreDataObject(in context: NSManagedObjectContext) throws -> NSManagedObject
 }

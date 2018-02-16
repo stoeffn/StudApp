@@ -9,7 +9,7 @@
 import CoreData
 
 extension AnnouncementResponse: CDConvertible {
-    func coreDataModel(in context: NSManagedObjectContext) throws -> NSManagedObject {
+    func coreDataObject(in context: NSManagedObjectContext) throws -> NSManagedObject {
         guard
             let createdAt = createdAt,
             let modifiedAt = modifiedAt,

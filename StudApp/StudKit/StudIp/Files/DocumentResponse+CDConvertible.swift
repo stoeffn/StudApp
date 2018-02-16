@@ -9,7 +9,7 @@
 import CoreData
 
 extension DocumentResponse: CDConvertible {
-    func coreDataModel(in context: NSManagedObjectContext) throws -> NSManagedObject {
+    func coreDataObject(in context: NSManagedObjectContext) throws -> NSManagedObject {
         let (file, _) = try File.fetch(byId: id, orCreateIn: context)
         file.id = id
         file.typeIdentifier = typeIdentifier
