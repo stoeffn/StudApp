@@ -17,12 +17,12 @@ struct FolderResponse: IdentifiableResponse {
     let createdAt: Date
     let modifiedAt: Date
     let summary: String?
-    let folders: Set<FolderResponse>
-    let documents: Set<DocumentResponse>
+    let folders: Set<FolderResponse>?
+    let documents: Set<DocumentResponse>?
 
     init(id: String, courseId: String, userId: String? = nil, name: String = "",
          createdAt: Date = .distantPast, modifiedAt: Date = .distantPast, summary: String? = nil,
-         folders: Set<FolderResponse> = [], documents: Set<DocumentResponse> = []) {
+         folders: Set<FolderResponse>? = nil, documents: Set<DocumentResponse>? = nil) {
         self.id = id
         self.courseId = courseId
         self.userId = userId
@@ -59,8 +59,8 @@ extension FolderResponse: Decodable {
         createdAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .createdAt)
         modifiedAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .modifiedAt)
         summary = try container.decodeIfPresent(String.self, forKey: .summary)?.nilWhenEmpty
-        folders = try container.decodeIfPresent(Set<FolderResponse>.self, forKey: .folders) ?? []
-        documents = try container.decodeIfPresent(Set<DocumentResponse>.self, forKey: .documents) ?? []
+        folders = try container.decodeIfPresent(Set<FolderResponse>.self, forKey: .folders)
+        documents = try container.decodeIfPresent(Set<DocumentResponse>.self, forKey: .documents)
     }
 }
 
@@ -69,17 +69,8 @@ extension FolderResponse: Decodable {
 extension FolderResponse {
     func coreDataObject(course: Course, parent: File? = nil, in context: NSManagedObjectContext) throws -> File {
         let (file, _) = try File.fetch(byId: id, orCreateIn: context)
-
-        let existingFolders = parent?.childFoldersFetchRequest ?? course.childFoldersFetchRequest
-        let folders = try File.update(existingFolders, with: self.folders, in: context) { response in
-            try response.coreDataObject(course: course, parent: file, in: context)
-        }
-
-        let existingDocuments = parent?.childDocumentsFetchRequest ?? course.childDocumentsFetchRequest
-        let documents = try File.update(existingDocuments, with: self.documents, in: context) { response in
-            try response.coreDataObject(course: course, parent: file, in: context)
-        }
-
+        let folders = try self.folders(file: file, course: course, parent: parent, in: context)
+        let documents = try self.documents(file: file, course: course, parent: parent, in: context)
         file.id = id
         file.typeIdentifier = kUTTypeFolder as String
         file.parent = parent
@@ -93,5 +84,21 @@ extension FolderResponse {
         file.summary = summary
         file.children = Set(folders).union(documents)
         return file
+    }
+
+    func folders(file: File, course: Course, parent: File? = nil, in context: NSManagedObjectContext) throws -> [File] {
+        guard let folders = folders else { return [] }
+        let existingFolders = parent?.childFoldersFetchRequest ?? course.childFoldersFetchRequest
+        return try File.update(existingFolders, with: folders, in: context) { response in
+            try response.coreDataObject(course: course, parent: file, in: context)
+        }
+    }
+
+    func documents(file: File, course: Course, parent: File? = nil, in context: NSManagedObjectContext) throws -> [File] {
+        guard let documents = documents else { return [] }
+        let existingDocuments = parent?.childDocumentsFetchRequest ?? course.childDocumentsFetchRequest
+        return try File.update(existingDocuments, with: documents, in: context) { response in
+            try response.coreDataObject(course: course, parent: file, in: context)
+        }
     }
 }
