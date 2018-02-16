@@ -20,6 +20,7 @@ public final class StudIpService {
     convenience init() {
         self.init(api: Api<StudIpRoutes>())
 
+        guard let apiUrl = self.apiUrl else { return }
         let oAuth1 = try? OAuth1<StudIpOAuth1Routes>(fromPersistedService: StudIpService.serviceName)
         oAuth1?.baseUrl = apiUrl
 
