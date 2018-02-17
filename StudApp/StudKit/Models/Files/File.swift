@@ -161,11 +161,9 @@ public extension File {
 
     /// File name without extension.
     public var title: String {
-        guard !isFolder else { return name }
-        return name
-            .split(separator: ".")
-            .dropLast()
-            .joined(separator: ".")
+        return URL(string: name)?
+            .deletingPathExtension()
+            .lastPathComponent ?? name
     }
 }
 
