@@ -49,7 +49,7 @@ public final class SemesterListViewModel: FetchedResultsControllerDataSourceSect
     public func update(enforce: Bool = false, handler: ResultHandler<Void>? = nil) {
         coreDataService.performBackgroundTask { context in
             Semester.update(in: context, enforce: enforce) { result in
-                try? context.saveWhenChanged()
+                try? context.saveAndWaitWhenChanged()
                 handler?(result.map { _ in () })
             }
         }

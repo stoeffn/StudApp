@@ -31,7 +31,7 @@ public final class MainViewModel {
     /// Updates the current user if signed in.
     public func updateCurrentUser(handler: (ResultHandler<User>)? = nil) {
         User.updateCurrent(in: coreDataService.viewContext) { result in
-            try? self.coreDataService.viewContext.saveWhenChanged()
+            try? self.coreDataService.viewContext.saveAndWaitWhenChanged()
             handler?(result)
         }
     }

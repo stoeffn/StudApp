@@ -32,7 +32,7 @@ public final class AnnouncementListViewModel: FetchedResultsControllerDataSource
     public func update(handler: (ResultHandler<Void>)? = nil) {
         coreDataService.performBackgroundTask { context in
             self.course.updateAnnouncements(in: context) { result in
-                try? context.saveWhenChanged()
+                try? context.saveAndWaitWhenChanged()
                 handler?(result.map { _ in () })
             }
         }

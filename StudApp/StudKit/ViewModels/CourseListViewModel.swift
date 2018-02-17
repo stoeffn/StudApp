@@ -58,7 +58,7 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
     public func update(handler: ResultHandler<Void>? = nil) {
         coreDataService.performBackgroundTask { context in
             Course.update(in: context) { result in
-                try? context.saveWhenChanged()
+                try? context.saveAndWaitWhenChanged()
                 handler?(result.map { _ in })
             }
         }

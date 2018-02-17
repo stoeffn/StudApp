@@ -59,7 +59,7 @@ public final class SemesterState: NSManagedObject, CDCreatable, CDSortable {
             newValue != oldValue
         else { return }
 
-        try? managedObjectContext?.saveWhenChanged()
+        try? managedObjectContext?.saveAndWaitWhenChanged()
 
         if #available(iOSApplicationExtension 11.0, *) {
             NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }

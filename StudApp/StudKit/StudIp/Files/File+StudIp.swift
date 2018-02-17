@@ -62,7 +62,7 @@ extension File {
             }
 
             self.state.downloadedAt = downloadDate
-            try? self.managedObjectContext?.saveWhenChanged()
+            try? self.managedObjectContext?.saveAndWaitWhenChanged()
 
             return handler(.success(self.localUrl(in: .fileProvider)))
         }
@@ -85,7 +85,7 @@ extension File {
         state.downloadedAt = nil
         try? FileManager.default.removeItem(at: localUrl(in: .downloads))
         try? FileManager.default.removeItem(at: localUrl(in: .fileProvider))
-        try managedObjectContext?.saveWhenChanged()
+        try managedObjectContext?.saveAndWaitWhenChanged()
     }
 
     public var url: URL? {

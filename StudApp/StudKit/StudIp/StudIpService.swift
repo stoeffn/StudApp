@@ -94,7 +94,7 @@ public final class StudIpService {
 
         let coreDataService = ServiceContainer.default[CoreDataService.self]
         try? coreDataService.removeAllObjects(in: coreDataService.viewContext)
-        try? coreDataService.viewContext.saveWhenChanged()
+        try? coreDataService.viewContext.saveAndWaitWhenChanged()
 
         let storageService = ServiceContainer.default[StorageService.self]
         try? storageService.removeAllDownloads()

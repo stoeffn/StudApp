@@ -48,7 +48,7 @@ extension AppDelegate: UIApplicationDelegate {
     // MARK: Responding to App State Changes and System Events
 
     func applicationDidEnterBackground(_: UIApplication) {
-        try? coreDataService.viewContext.saveWhenChanged()
+        try? coreDataService.viewContext.saveAndWaitWhenChanged()
     }
 
     func applicationWillEnterForeground(_: UIApplication) {
@@ -57,7 +57,7 @@ extension AppDelegate: UIApplicationDelegate {
     }
 
     func applicationWillTerminate(_: UIApplication) {
-        try? coreDataService.viewContext.saveWhenChanged()
+        try? coreDataService.viewContext.saveAndWaitWhenChanged()
     }
 
     // MARK: Managing App State Restoration

@@ -16,7 +16,7 @@ public extension NSManagedObjectContext {
     /// context’s parent store is another managed object context, then `save()` only updates managed objects in that parent
     /// store. To commit changes to the external store, you must save changes in the chain of contexts up to and including the
     /// context whose parent is the persistent store coordinator.
-    func saveWhenChanged() throws {
+    func saveAndWaitWhenChanged() throws {
         guard hasChanges else { return }
 
         var saveError: Error?

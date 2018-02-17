@@ -85,7 +85,7 @@ public final class SignInViewModel {
     private func updateSemesters() {
         coreDataService.performBackgroundTask { context in
             Semester.update(in: context) { _ in
-                try? context.saveWhenChanged()
+                try? context.saveAndWaitWhenChanged()
             }
         }
     }

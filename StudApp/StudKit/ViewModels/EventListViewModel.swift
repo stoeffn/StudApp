@@ -43,7 +43,7 @@ public final class EventListViewModel: FetchedResultsControllerDataSource {
     public func update(handler: (ResultHandler<Void>)? = nil) {
         coreDataService.performBackgroundTask { context in
             self.course.updateEvents(in: context) { result in
-                try? context.saveWhenChanged()
+                try? context.saveAndWaitWhenChanged()
                 handler?(result.map { _ in () })
             }
         }
