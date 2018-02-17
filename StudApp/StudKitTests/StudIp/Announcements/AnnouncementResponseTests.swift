@@ -58,7 +58,7 @@ final class AnnouncementResponseTests: XCTestCase {
 
     // MARK: - Converting to a Core Data Object
 
-    func testCoreDataObject() {
+    func testCoreDataObject_Announcement0() {
         let announcement = try! AnnouncementResponseTests.announcement0.coreDataObject(in: context)
         XCTAssertEqual(announcement.id, "A0")
         XCTAssertEqual(Set(announcement.courses.map { $0.id }), ["C0", "C1"])
