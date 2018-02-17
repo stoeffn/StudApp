@@ -10,6 +10,8 @@ import XCTest
 @testable import StudKit
 
 final class ResultTests: XCTestCase {
+    // MARK: - Initializing
+
     func testInit_Value_Success() {
         let result = Result(42)
         XCTAssertEqual(result.value, 42)
@@ -30,6 +32,8 @@ final class ResultTests: XCTestCase {
         XCTAssertFalse(result.isSuccess)
         XCTAssertTrue(result.isFailure)
     }
+
+    // MARK: - Mapping
 
     func testMap_Value() {
         let result = Result(42).map { String($0) }

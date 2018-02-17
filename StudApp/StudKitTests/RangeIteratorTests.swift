@@ -22,6 +22,8 @@ final class RangeIteratorTests: XCTestCase {
         }
     }
 
+    // MARK: - Iterating
+
     func test_Range_Iterated() {
         var iterator = RangeIterator(range: -2 ..< 2) { $0 }
         XCTAssertEqual(iterator.next(), -2)

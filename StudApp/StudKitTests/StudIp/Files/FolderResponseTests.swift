@@ -12,8 +12,8 @@ import XCTest
 @testable import StudKit
 
 final class FolderResponseTests: XCTestCase {
-    let decoder = ServiceContainer.default[JSONDecoder.self]
-    var context: NSManagedObjectContext!
+    private let decoder = ServiceContainer.default[JSONDecoder.self]
+    private var context: NSManagedObjectContext!
 
     // MARK: - Life Cycle
 

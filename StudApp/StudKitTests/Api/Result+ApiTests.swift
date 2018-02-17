@@ -14,6 +14,8 @@ final class ResultApiTests: XCTestCase {
         let id: Int
     }
 
+    // MARK: - Initializing
+
     func testInit_200_Success() {
         let result = Result(42, statusCode: 200)
         XCTAssertEqual(result.value, 42)
@@ -43,6 +45,8 @@ final class ResultApiTests: XCTestCase {
         XCTAssertTrue(result.isFailure)
     }
 
+    // MARK: - Mapping
+
     func testMap_Value_Success() {
         let result = Result(42, statusCode: 200).map { _ in "Hello, World!" }
         XCTAssertEqual(result.value, "Hello, World!")
@@ -56,6 +60,8 @@ final class ResultApiTests: XCTestCase {
         XCTAssertFalse(result.isSuccess)
         XCTAssertTrue(result.isFailure)
     }
+
+    // MARK: - Coding
 
     func testDecoded_Data_Sucess() {
         let result = Result("{\"id\": 42}".data(using: .utf8), statusCode: 200).decoded(Test.self)

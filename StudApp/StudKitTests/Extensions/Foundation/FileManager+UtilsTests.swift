@@ -10,7 +10,9 @@ import XCTest
 @testable import StudKit
 
 final class FileManagerExtensionsTests: XCTestCase {
-    let storageService = ServiceContainer.default[StorageService.self]
+    private let storageService = ServiceContainer.default[StorageService.self]
+
+    // MARK: - Life Cycle
 
     override func setUp() {
         let testFolder = BaseDirectories.downloads.url.appendingPathComponent("test", isDirectory: true)
@@ -21,6 +23,8 @@ final class FileManagerExtensionsTests: XCTestCase {
         let testFolder = BaseDirectories.downloads.url.appendingPathComponent("test", isDirectory: true)
         try? FileManager.default.removeItem(at: testFolder)
     }
+
+    // MARK: - Creating Intermediate Directories
 
     func testCreateIntermediateDirectories_NewUrl_Created() {
         let testFolderUrl = BaseDirectories.downloads.url.appendingPathComponent("test", isDirectory: true)

@@ -10,8 +10,8 @@ import XCTest
 @testable import StudKit
 
 final class CollectionResponseTests: XCTestCase {
-    let decoder = ServiceContainer.default[JSONDecoder.self]
-    let data = """
+    private let decoder = ServiceContainer.default[JSONDecoder.self]
+    private let data = """
         {
             "collection": {
                 "abc": "123",
@@ -24,6 +24,8 @@ final class CollectionResponseTests: XCTestCase {
             }
         }
     """.data(using: .utf8)!
+
+    // MARK: - Coding
 
     func testDecodeCollection() {
         let collection = try! decoder.decode(CollectionResponse<String>.self, from: data)
@@ -40,6 +42,8 @@ final class CollectionResponseTests: XCTestCase {
         XCTAssertEqual(collection.pagination.offset, 0)
         XCTAssertEqual(collection.pagination.limit, 32)
     }
+
+    // MARK: - Calculating the Next Offset
 
     func testNextOffset_0_5() {
         let pagination = CollectionResponse<String>.Pagination(total: 11, offset: 0, limit: 5)

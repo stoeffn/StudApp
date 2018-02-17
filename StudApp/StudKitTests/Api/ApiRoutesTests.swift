@@ -10,9 +10,11 @@ import XCTest
 @testable import StudKit
 
 final class ApiRoutesTests: XCTestCase {
-    struct Routes: ApiRoutes {
+    private struct Routes: ApiRoutes {
         let path: String = ""
     }
+
+    // MARK: - Types
 
     func testType_Nil() {
         XCTAssertNil(Routes().type)

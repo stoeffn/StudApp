@@ -11,7 +11,7 @@ import XCTest
 @testable import StudKit
 
 final class CDIdentifiableTests: XCTestCase {
-    var context: NSManagedObjectContext!
+    private var context: NSManagedObjectContext!
 
     // MARK: - Life Cycle
 

@@ -12,6 +12,8 @@ import XCTest
 final class ApiCollectionResponseTests: XCTestCase {
     private let api = MockApi<TestRoutes>(baseUrl: URL(string: "https://example.com")!)
 
+    // MARK: - Requesting Collections
+
     func testRequestCollection_Request0_Response0() {
         api.requestCollectionPage(.collection) { (result: Result<CollectionResponse<Test>>) in
             XCTAssertTrue(result.isSuccess)

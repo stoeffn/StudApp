@@ -12,19 +12,21 @@ import StudKit
 protocol TestProtocol {}
 
 final class ServiceContainerTests: XCTestCase {
-    final class TestClass: TestProtocol {}
+    private final class TestClass: TestProtocol {}
 
-    final class GenericTestClass<Value>: TestProtocol {}
+    private final class GenericTestClass<Value>: TestProtocol {}
 
-    struct TestStruct: TestProtocol {
+    private struct TestStruct: TestProtocol {
         let id: String
     }
 
-    final class TestProvider: ServiceProvider {
+    private final class TestProvider: ServiceProvider {
         func registerServices(in container: ServiceContainer) {
             container[String.self] = "123"
         }
     }
+
+    // MARK: - Subscripting
 
     func testSubscript_class_class() {
         let container = ServiceContainer()
@@ -57,6 +59,8 @@ final class ServiceContainerTests: XCTestCase {
 
         XCTAssertTrue((container[TestProtocol.self] as! TestStruct).id == test.id)
     }
+
+    // MARK: - Providing Services
 
     func testInit_provider_string() {
         let container = ServiceContainer(providers: TestProvider())

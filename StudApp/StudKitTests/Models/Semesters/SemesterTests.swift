@@ -41,14 +41,14 @@ final class SemesterTests: XCTestCase {
     }
 
     func testFetchFrom_1to3_123() {
-        let from = try! Semester.fetch(byId: "1", in: context)
-        let to = try! Semester.fetch(byId: "3", in: context)
+        let from = try! Semester.fetch(byId: "S1", in: context)
+        let to = try! Semester.fetch(byId: "S3", in: context)
         let semesters = try! Semester.fetch(from: from!, to: to, in: context)
         XCTAssertEqual(Set(semesters.map { $0.id }), ["S1", "S2", "S3"])
     }
 
     func testFetchFrom_2_23() {
-        let from = try! Semester.fetch(byId: "2", in: context)
+        let from = try! Semester.fetch(byId: "S2", in: context)
         let semesters = try! Semester.fetch(from: from!, in: context)
         XCTAssertEqual(Set(semesters.map { $0.id }), ["S2", "S3"])
     }

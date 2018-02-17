@@ -11,7 +11,9 @@ import XCTest
 @testable import StudKit
 
 final class NSFetchRequestResultUtilsTests: XCTestCase {
-    var context: NSManagedObjectContext!
+    private var context: NSManagedObjectContext!
+
+    // MARK: - Life Cycle
 
     override func setUp() {
         context = StudKitTestsServiceProvider(currentTarget: .tests).provideCoreDataService().viewContext
@@ -19,6 +21,8 @@ final class NSFetchRequestResultUtilsTests: XCTestCase {
         try! CourseResponse(id: "C0").coreDataObject(in: context)
         try! CourseResponse(id: "C1").coreDataObject(in: context)
     }
+
+    // MARK: - Fetching
 
     func testFetch_All() {
         let courses = try! Course.fetch(in: context)
