@@ -49,7 +49,10 @@ extension Course {
         studIpService.api.requestDecoded(.rootFolderForCourse(withId: id)) { (result: Result<FolderResponse>) in
             let result = result.map { response -> File in
                 guard let course = context.object(with: self.objectID) as? Course else { fatalError() }
-                return try File.updateFolder(from: response, course: course, in: context)
+                let folder = try File.updateFolder(from: response, course: course, in: context)
+                folder.children.removeAll()
+                context.delete(folder)
+                return folder
             }
             handler(result)
         }
