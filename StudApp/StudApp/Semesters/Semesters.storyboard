@@ -54,7 +54,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="21M-Rg-kwj">
-                                    <rect key="frame" x="162.5" y="183.5" width="50" height="32"/>
+                                    <rect key="frame" x="162.5" y="184" width="50" height="32"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <state key="normal" title="Reload"/>
                                     <connections>
@@ -156,7 +156,7 @@
         <!--Semesters-->
         <scene sceneID="1Rz-lA-yYv">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dbq-bM-eAu" customClass="BorderlessNavigationController" customModule="StudKit" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dbq-bM-eAu" customClass="BorderlessNavigationController" customModule="StudKitUI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Semesters" image="tabBarItem:7my-5k-oCp:image" landscapeImage="tabBarItem:7my-5k-oCp:landscapeImage" id="7my-5k-oCp"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>

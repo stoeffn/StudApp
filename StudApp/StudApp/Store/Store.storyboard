@@ -330,7 +330,7 @@
         <!--Borderless Navigation Controller-->
         <scene sceneID="HSy-6M-8Cs">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pr1-5v-DVs" customClass="BorderlessNavigationController" customModule="StudKit" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pr1-5v-DVs" customClass="BorderlessNavigationController" customModule="StudKitUI" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="C8j-Bl-WQL">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
