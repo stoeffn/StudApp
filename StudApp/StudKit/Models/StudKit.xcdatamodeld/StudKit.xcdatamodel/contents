@@ -8,6 +8,7 @@
         <attribute name="modifiedAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" attributeType="String" minValueString="1" syncable="YES"/>
         <relationship name="courses" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="announcements" inverseEntity="Course" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="createdAnnouncements" inverseEntity="User" syncable="YES"/>
         <fetchIndex name="byId">
             <fetchIndexElement property="id" type="Binary" order="ascending"/>
         </fetchIndex>
@@ -77,7 +78,7 @@
         <attribute name="typeIdentifier" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="children" toMany="YES" deletionRule="Cascade" destinationEntity="File" inverseName="parent" inverseEntity="File" syncable="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="files" inverseEntity="Course" syncable="YES"/>
-        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="files" inverseEntity="User" syncable="YES"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="ownedFiles" inverseEntity="User" syncable="YES"/>
         <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="File" inverseName="children" inverseEntity="File" syncable="YES"/>
         <relationship name="state" maxCount="1" deletionRule="Cascade" destinationEntity="FileState" inverseName="file" inverseEntity="FileState" syncable="YES"/>
         <fetchIndex name="byId">
@@ -132,8 +133,9 @@
         <attribute name="nameSuffix" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pictureModifiedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="username" attributeType="String" minValueString="1" syncable="YES"/>
-        <relationship name="files" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="owner" inverseEntity="File" syncable="YES"/>
+        <relationship name="createdAnnouncements" toMany="YES" deletionRule="Nullify" destinationEntity="Announcement" inverseName="user" inverseEntity="Announcement" syncable="YES"/>
         <relationship name="lecturedCourses" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="lecturers" inverseEntity="Course" syncable="YES"/>
+        <relationship name="ownedFiles" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="owner" inverseEntity="File" syncable="YES"/>
         <fetchIndex name="byId">
             <fetchIndexElement property="id" type="Binary" order="ascending"/>
         </fetchIndex>
@@ -144,7 +146,7 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Announcement" positionX="-8703" positionY="-2070" width="128" height="30"/>
+        <element name="Announcement" positionX="-8703" positionY="-2070" width="128" height="165"/>
         <element name="Course" positionX="-8568" positionY="-2218" width="128" height="225"/>
         <element name="CourseState" positionX="-8354" positionY="-2142" width="128" height="135"/>
         <element name="Event" positionX="-8703" positionY="-2070" width="128" height="180"/>
@@ -152,6 +154,6 @@
         <element name="FileState" positionX="-8199" positionY="-1836" width="128" height="135"/>
         <element name="Semester" positionX="-8748" positionY="-2188" width="128" height="165"/>
         <element name="SemesterState" positionX="-8910" positionY="-2121" width="128" height="150"/>
-        <element name="User" positionX="-8748" positionY="-1924" width="128" height="180"/>
+        <element name="User" positionX="-8748" positionY="-1924" width="128" height="195"/>
     </elements>
 </model>

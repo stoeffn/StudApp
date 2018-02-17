@@ -52,7 +52,7 @@ extension AnnouncementResponse: Decodable {
         let rawCourseIds = try container.decode(Set<String>.self, forKey: .courseIds)
         id = try container.decode(String.self, forKey: .id)
         courseIds = Set(rawCourseIds.flatMap { StudIp.transform(idPath: $0) })
-        userId = try container.decodeIfPresent(String.self, forKey: .userId)
+        userId = try container.decodeIfPresent(String.self, forKey: .userId)?.nilWhenEmpty
         createdAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .createdAt)
         modifiedAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .modifiedAt)
         expiresAfter = TimeInterval(try container.decode(String.self, forKey: .expiresAfter)) ?? 0
@@ -71,6 +71,7 @@ extension AnnouncementResponse {
         let courses = try Course.fetch(byIds: courseIds, in: context)
         announcement.id = id
         announcement.courses = Set(courses)
+        announcement.user = try User.fetch(byId: userId, in: context)
         announcement.createdAt = createdAt
         announcement.modifiedAt = modifiedAt
         announcement.expiresAt = expiresAt
