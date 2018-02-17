@@ -50,8 +50,14 @@ extension Course {
             let result = result.map { response -> File in
                 guard let course = context.object(with: self.objectID) as? Course else { fatalError() }
                 let folder = try File.updateFolder(from: response, course: course, in: context)
-                folder.children.removeAll()
+
+                // Set each of the child files' parents to `nil`, making them root files themselves and delete the original
+                // root folder afterwards. The order is important this is a cascading relationship. All this is to make all
+                // files in a course's root folder appear at the root level instead of nested inside an folder with the same
+                // name as the course, which would be redundant.
+                folder.children.forEach { $0.parent = nil }
                 context.delete(folder)
+
                 return folder
             }
             completion(result)
