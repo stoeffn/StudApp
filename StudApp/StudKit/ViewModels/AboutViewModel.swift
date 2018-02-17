@@ -69,7 +69,8 @@ extension AboutViewModel: DataSourceSection {
 
     private static let thanksNotes: [ThanksNote] = [
         (title: "Julian Lobe", description: "Beta-Tester, QA-Man, and Friend", url: nil),
-        (title: "Cornelis Kater", description: "Support and Communication", url: URL(string: "http://ckater.de/")),
+        (title: "Cornelis Kater", description: "Support and Communication", url: nil),
+        (title: "Rasmus Fuhse", description: "API Support and Technical Expertise", url: nil),
         (title: "Stud.IP e.V.", description: "Development of APIs", url: URL(string: "http://studip.de/")),
         (title: "icons8", description: "Glyphs", url: URL(string: "https://icons8.com/")),
     ]
