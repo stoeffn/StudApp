@@ -11,6 +11,7 @@ import CoreData
 struct AnnouncementResponse: IdentifiableResponse {
     let id: String
     let courseIds: Set<String>
+    let userId: String?
     let createdAt: Date
     let modifiedAt: Date
     let expiresAfter: TimeInterval
@@ -18,10 +19,11 @@ struct AnnouncementResponse: IdentifiableResponse {
     let title: String
     let body: String
 
-    init(id: String, courseIds: Set<String> = [], createdAt: Date = .distantPast, modifiedAt: Date = .distantPast,
-         expiresAfter: TimeInterval = 0, title: String = "", body: String = "") {
+    init(id: String, courseIds: Set<String> = [], userId: String? = nil, createdAt: Date = .distantPast,
+         modifiedAt: Date = .distantPast, expiresAfter: TimeInterval = 0, title: String = "", body: String = "") {
         self.id = id
         self.courseIds = courseIds
+        self.userId = userId
         self.createdAt = createdAt
         self.modifiedAt = modifiedAt
         self.expiresAfter = expiresAfter
@@ -37,6 +39,7 @@ extension AnnouncementResponse: Decodable {
     enum CodingKeys: String, CodingKey {
         case id = "news_id"
         case courseIds = "ranges"
+        case userId = "user_id"
         case createdAt = "mkdate"
         case modifiedAt = "chdate"
         case expiresAfter = "expire"
@@ -49,6 +52,7 @@ extension AnnouncementResponse: Decodable {
         let rawCourseIds = try container.decode(Set<String>.self, forKey: .courseIds)
         id = try container.decode(String.self, forKey: .id)
         courseIds = Set(rawCourseIds.flatMap { StudIp.transform(idPath: $0) })
+        userId = try container.decodeIfPresent(String.self, forKey: .userId)
         createdAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .createdAt)
         modifiedAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .modifiedAt)
         expiresAfter = TimeInterval(try container.decode(String.self, forKey: .expiresAfter)) ?? 0
