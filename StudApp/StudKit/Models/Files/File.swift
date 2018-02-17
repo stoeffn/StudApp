@@ -93,11 +93,11 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
 
 extension File: FilesContaining {
     public var childFilesPredicate: NSPredicate {
-        return NSPredicate(format: "course == %@ AND parent == %@", self.course, self)
+        return NSPredicate(format: "course == %@ AND parent == %@", course, self)
     }
 
     public var childFileStatesPredicate: NSPredicate {
-        return NSPredicate(format: "file.course == %@ AND file.parent == %@", self.course, self)
+        return NSPredicate(format: "file.course == %@ AND file.parent == %@", course, self)
     }
 
     public static func downloadedPredicate(forSearchTerm searchTerm: String? = nil) -> NSPredicate {

@@ -6,8 +6,8 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-import XCTest
 @testable import StudKit
+import XCTest
 
 final class ApiRoutesTests: XCTestCase {
     private struct Routes: ApiRoutes {

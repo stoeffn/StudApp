@@ -9,6 +9,7 @@
 import StoreKit
 
 public final class StoreService: NSObject {
+
     // MARK: - Products
 
     static let subscriptionProductIdentifier = "SteffenRyll.StudApp.Subscription"
@@ -20,7 +21,7 @@ public final class StoreService: NSObject {
         "SteffenRyll.StudApp.Tips.Small",
         "SteffenRyll.StudApp.Tips.Medium",
         "SteffenRyll.StudApp.Tips.Large",
-        "SteffenRyll.StudApp.Tips.ExtraLarge"
+        "SteffenRyll.StudApp.Tips.ExtraLarge",
     ]
 
     // MARK: - Constants

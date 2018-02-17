@@ -60,11 +60,11 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
 
     // MARK: - User Interface
 
-    @IBOutlet weak var iconView: UIImageView!
+    @IBOutlet var iconView: UIImageView!
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet var titleLabel: UILabel!
 
-    @IBOutlet weak var activityIndicator: StudIpActivityIndicatorView!
+    @IBOutlet var activityIndicator: StudIpActivityIndicatorView!
 
     /// Weakly typed because `@available` cannot be applied to properties.
     private var authenticationSession: NSObject?
@@ -79,9 +79,9 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
 
             UIView.animate(withDuration: UI.defaultAnimationDuration, delay: 0, usingSpringWithDamping: 0.7,
                            initialSpringVelocity: 0, options: .curveEaseOut, animations: {
-                self.iconView.transform = self.areOrganizationViewsHidden ? CGAffineTransform(scaleX: 0.1, y: 0.1) : .identity
-                self.iconView.alpha = self.areOrganizationViewsHidden ? 0 : 1
-                self.titleLabel.alpha = self.areOrganizationViewsHidden ? 0 : 1
+                               self.iconView.transform = self.areOrganizationViewsHidden ? CGAffineTransform(scaleX: 0.1, y: 0.1) : .identity
+                               self.iconView.alpha = self.areOrganizationViewsHidden ? 0 : 1
+                               self.titleLabel.alpha = self.areOrganizationViewsHidden ? 0 : 1
             }, completion: nil)
         }
     }
@@ -95,8 +95,8 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
 
             UIView.animate(withDuration: UI.defaultAnimationDuration, delay: 0, usingSpringWithDamping: 0.7,
                            initialSpringVelocity: 0, options: .curveEaseOut, animations: {
-                self.activityIndicator.transform = self.isLoading ? .identity : CGAffineTransform(scaleX: 0.1, y: 0.1)
-                self.activityIndicator.alpha = self.isLoading ? 1 : 0
+                               self.activityIndicator.transform = self.isLoading ? .identity : CGAffineTransform(scaleX: 0.1, y: 0.1)
+                               self.activityIndicator.alpha = self.isLoading ? 1 : 0
             }, completion: nil)
         }
     }

@@ -11,7 +11,7 @@ import StudKit
 import StudKitUI
 
 final class DocumentActionViewController: FPUIActionExtensionViewController {
-    @IBOutlet weak var containerView: UIView!
+    @IBOutlet var containerView: UIView!
 
     // MARK: - Life Cycle
 

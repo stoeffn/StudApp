@@ -6,8 +6,8 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-import Foundation
 import CommonCrypto
+import Foundation
 
 /// Provides the ability to authorize against an API that utilizes OAuth 1.0.
 ///

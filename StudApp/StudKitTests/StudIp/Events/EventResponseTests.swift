@@ -7,8 +7,8 @@
 //
 
 import CoreData
-import XCTest
 @testable import StudKit
+import XCTest
 
 final class EventResponseTests: XCTestCase {
     private let decoder = ServiceContainer.default[JSONDecoder.self]

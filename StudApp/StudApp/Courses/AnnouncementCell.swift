@@ -19,13 +19,13 @@ final class AnnouncementCell: UITableViewCell {
 
     // MARK: - User Interface
 
-    @IBOutlet weak var colorView: UIView!
+    @IBOutlet var colorView: UIView!
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet var titleLabel: UILabel!
 
-    @IBOutlet weak var createdAtGlyph: UIImageView!
+    @IBOutlet var createdAtGlyph: UIImageView!
 
-    @IBOutlet weak var createdAtLabel: UILabel!
+    @IBOutlet var createdAtLabel: UILabel!
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)

@@ -6,9 +6,9 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import QuickLook
 import StudKit
 import StudKitUI
-import QuickLook
 
 final class DownloadListController: UITableViewController, DataSourceDelegate {
     private var viewModel: DownloadListViewModel!
@@ -166,9 +166,9 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
     @IBOutlet var emptyViewTopConstraint: NSLayoutConstraint!
 
-    @IBOutlet weak var emptyViewTitleLabel: UILabel!
+    @IBOutlet var emptyViewTitleLabel: UILabel!
 
-    @IBOutlet weak var emptyViewSubtitleLabel: UILabel!
+    @IBOutlet var emptyViewSubtitleLabel: UILabel!
 
     private func updateEmptyView() {
         guard view != nil else { return }

@@ -6,8 +6,8 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-import XCTest
 @testable import StudKit
+import XCTest
 
 final class FileManagerExtensionsTests: XCTestCase {
     private let storageService = ServiceContainer.default[StorageService.self]

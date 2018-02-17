@@ -6,9 +6,9 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import QuickLook
 import StudKit
 import StudKitUI
-import QuickLook
 
 final class FolderController: UITableViewController, DataSourceSectionDelegate, Routable {
     private var viewModel: FileListViewModel!

@@ -9,6 +9,7 @@
 import StoreKit
 
 public final class StoreViewModel: NSObject {
+
     // MARK: - State
 
     public enum State {

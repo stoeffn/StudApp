@@ -10,6 +10,7 @@ import UIKit
 
 @IBDesignable
 public final class StudIpActivityIndicatorView: UIView {
+
     // MARK: - Life Cycle
 
     convenience init() {

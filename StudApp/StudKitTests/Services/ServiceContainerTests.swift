@@ -6,8 +6,8 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-import XCTest
 import StudKit
+import XCTest
 
 protocol TestProtocol {}
 

@@ -7,6 +7,7 @@
 //
 
 struct KeychainPasswordItem {
+
     // MARK: - Errors
 
     enum Errors: Error {

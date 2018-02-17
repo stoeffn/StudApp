@@ -9,6 +9,7 @@
 import StudKit
 
 final class CourseCell: UITableViewCell {
+
     // MARK: - Life Cycle
 
     var course: Course! {
@@ -26,13 +27,13 @@ final class CourseCell: UITableViewCell {
 
     // MARK: - User Interface
 
-    @IBOutlet weak var colorView: UIView!
+    @IBOutlet var colorView: UIView!
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet var titleLabel: UILabel!
 
-    @IBOutlet weak var lecturersGlyph: UIImageView!
+    @IBOutlet var lecturersGlyph: UIImageView!
 
-    @IBOutlet weak var lecturersLabel: UILabel!
+    @IBOutlet var lecturersLabel: UILabel!
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)

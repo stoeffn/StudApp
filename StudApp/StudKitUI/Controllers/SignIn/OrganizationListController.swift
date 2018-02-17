@@ -94,7 +94,7 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
 
     // MARK: - User Interface
 
-    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet var cancelButton: UIBarButtonItem!
 
     private func updateUserInterface(_: OrganizationListViewModel.State? = nil) {
         UIView.transition(with: tableView, duration: 0.1, options: .transitionCrossDissolve, animations: {

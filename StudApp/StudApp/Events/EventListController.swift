@@ -104,7 +104,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
     @IBOutlet var dateTabBarContainer: UIView!
 
-    @IBOutlet weak var dateTabBar: DateTabBar!
+    @IBOutlet var dateTabBar: DateTabBar!
 
     private func reloadDateTabBar() {
         guard dateTabBar != nil, viewModel.numberOfSections > 0 else { return }

@@ -32,7 +32,7 @@ final class AnnouncementController: UIViewController, Routable {
 
     // MARK: - User Interface
 
-    @IBOutlet weak var bodyView: UITextView!
+    @IBOutlet var bodyView: UITextView!
 
     // MARK: - User Interaction
 

@@ -40,15 +40,15 @@ public final class VerificationController: UIViewController, Routable {
 
     // MARK: - User Interface
 
-    @IBOutlet weak var activityIndicator: StudIpActivityIndicatorView!
+    @IBOutlet var activityIndicator: StudIpActivityIndicatorView!
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet var titleLabel: UILabel!
 
-    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet var subtitleLabel: UILabel!
 
-    @IBOutlet weak var actionButton: UIButton!
+    @IBOutlet var actionButton: UIButton!
 
-    @IBOutlet weak var confettiView: ConfettiView!
+    @IBOutlet var confettiView: ConfettiView!
 
     private func show(_ error: Error?) {
         activityIndicator.isHidden = true

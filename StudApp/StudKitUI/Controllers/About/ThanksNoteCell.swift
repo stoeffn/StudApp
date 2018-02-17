@@ -9,6 +9,7 @@
 import StudKit
 
 final class ThanksNoteCell: UITableViewCell {
+
     // MARK: - Life Cycle
 
     override init(style _: UITableViewCellStyle, reuseIdentifier: String?) {

@@ -75,7 +75,7 @@ final class FileProviderExtension: NSFileProviderExtension {
         guard #available(iOS 11.0, *) else { fatalError() }
         guard studIpService.isSignedIn else {
             throw NSFileProviderError(.notAuthenticated, userInfo: [
-                NSFileProviderError.reasonKey: NSFileProviderError.Reasons.notSignedIn.rawValue
+                NSFileProviderError.reasonKey: NSFileProviderError.Reasons.notSignedIn.rawValue,
             ])
         }
 

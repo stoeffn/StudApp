@@ -60,19 +60,19 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
 
     // MARK: - User Interface
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet var titleLabel: UILabel!
 
-    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet var subtitleLabel: UILabel!
 
-    @IBOutlet weak var trialButton: FilledButton!
+    @IBOutlet var trialButton: FilledButton!
 
-    @IBOutlet weak var orLabel: UILabel!
+    @IBOutlet var orLabel: UILabel!
 
-    @IBOutlet weak var unlockButton: FilledButton!
+    @IBOutlet var unlockButton: FilledButton!
 
-    @IBOutlet weak var restoreButton: UIButton!
+    @IBOutlet var restoreButton: UIButton!
 
-    @IBOutlet weak var disclaimerView: UITextView!
+    @IBOutlet var disclaimerView: UITextView!
 
     private lazy var deferralAlert = UIAlertController(title: "Your Purchase is Deferred".localized,
                                                        message: "A family member might have to approve this puchase.".localized,
@@ -173,7 +173,7 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
     @IBAction
     func moreButtonTapped(_ sender: Any) {
         func showAboutView(_: UIAlertAction) {
-            // TODO
+            // TODO:
         }
 
         func showHelpView(_: UIAlertAction) {
@@ -185,7 +185,7 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
 
         func signOut(_: UIAlertAction) {
             viewModel.signOut()
-            // TODO
+            // TODO:
         }
 
         let barButtonItem = sender as? UIBarButtonItem

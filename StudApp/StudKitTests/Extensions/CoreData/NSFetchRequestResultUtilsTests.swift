@@ -7,8 +7,8 @@
 //
 
 import CoreData
-import XCTest
 @testable import StudKit
+import XCTest
 
 final class NSFetchRequestResultUtilsTests: XCTestCase {
     private var context: NSManagedObjectContext!

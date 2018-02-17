@@ -74,11 +74,11 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
 
     @IBOutlet var emptyViewTopConstraint: NSLayoutConstraint!
 
-    @IBOutlet weak var emptyViewTitleLabel: UILabel!
+    @IBOutlet var emptyViewTitleLabel: UILabel!
 
-    @IBOutlet weak var emptyViewSubtitleLabel: UILabel!
+    @IBOutlet var emptyViewSubtitleLabel: UILabel!
 
-    @IBOutlet weak var emptyViewActionButton: UIButton!
+    @IBOutlet var emptyViewActionButton: UIButton!
 
     private func updateEmptyView() {
         guard view != nil else { return }

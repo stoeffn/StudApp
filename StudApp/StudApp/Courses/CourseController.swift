@@ -7,9 +7,9 @@
 //
 
 import MobileCoreServices
+import QuickLook
 import StudKit
 import StudKitUI
-import QuickLook
 
 final class CourseController: UITableViewController, Routable {
     private var viewModel: CourseViewModel!

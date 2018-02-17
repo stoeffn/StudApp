@@ -9,6 +9,7 @@
 import UIKit
 
 final class EmptyCourseController: UIViewController {
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -20,7 +21,7 @@ final class EmptyCourseController: UIViewController {
 
     // MARK: - User Interface
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet var titleLabel: UILabel!
 
-    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet var subtitleLabel: UILabel!
 }

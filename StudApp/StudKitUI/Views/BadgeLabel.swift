@@ -9,6 +9,7 @@
 /// A `UILabel` made to look like a badge or tag by setting the corner radius and insets automatically.
 @IBDesignable
 class BadgeLabel: UILabel {
+
     // MARK: - Life Cycle
 
     public required init?(coder aDecoder: NSCoder) {

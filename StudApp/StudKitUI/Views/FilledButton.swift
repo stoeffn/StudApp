@@ -10,6 +10,7 @@ import UIKit
 
 @IBDesignable
 public final class FilledButton: UIButton {
+
     // MARK: - User Interface
 
     private var enabledBackgroundColor: UIColor?

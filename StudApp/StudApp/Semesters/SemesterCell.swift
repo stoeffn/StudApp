@@ -9,6 +9,7 @@
 import StudKit
 
 final class SemesterCell: UITableViewCell {
+
     // MARK: - Life Cycle
 
     var semester: Semester! {
@@ -21,11 +22,11 @@ final class SemesterCell: UITableViewCell {
 
     // MARK: - User Interface
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet var titleLabel: UILabel!
 
-    @IBOutlet weak var monthRangeLabel: UILabel!
+    @IBOutlet var monthRangeLabel: UILabel!
 
-    @IBOutlet weak var isHiddenSwitch: UISwitch!
+    @IBOutlet var isHiddenSwitch: UISwitch!
 
     // MARK: - User Interaction
 

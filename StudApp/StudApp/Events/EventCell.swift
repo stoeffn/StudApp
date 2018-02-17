@@ -10,6 +10,7 @@ import StudKit
 import StudKitUI
 
 final class EventCell: UITableViewCell {
+
     // MARK: - Life Cycle
 
     var event: Event! {
@@ -33,18 +34,18 @@ final class EventCell: UITableViewCell {
 
     // MARK: - User Interface
 
-    @IBOutlet weak var startsAtLabel: UILabel!
-    @IBOutlet weak var endsAtLabel: UILabel!
+    @IBOutlet var startsAtLabel: UILabel!
+    @IBOutlet var endsAtLabel: UILabel!
 
-    @IBOutlet weak var colorView: UIView!
+    @IBOutlet var colorView: UIView!
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet var titleLabel: UILabel!
 
-    @IBOutlet weak var cancellationContainer: UIStackView!
-    @IBOutlet weak var cancellationLabel: UILabel!
-    @IBOutlet weak var cancellationReasonLabel: UILabel!
+    @IBOutlet var cancellationContainer: UIStackView!
+    @IBOutlet var cancellationLabel: UILabel!
+    @IBOutlet var cancellationReasonLabel: UILabel!
 
-    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet var locationLabel: UILabel!
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)

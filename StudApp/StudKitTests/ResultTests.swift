@@ -6,10 +6,11 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-import XCTest
 @testable import StudKit
+import XCTest
 
 final class ResultTests: XCTestCase {
+
     // MARK: - Initializing
 
     func testInit_Value_Success() {

@@ -6,8 +6,8 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-import XCTest
 @testable import StudKit
+import XCTest
 
 final class CollectionResponseTests: XCTestCase {
     private let decoder = ServiceContainer.default[JSONDecoder.self]

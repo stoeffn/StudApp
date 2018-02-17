@@ -49,19 +49,19 @@ final class AboutController: UITableViewController, Routable {
 
     // MARK: - User Interface
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet var titleLabel: UILabel!
 
-    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet var subtitleLabel: UILabel!
 
-    @IBOutlet weak var websiteCell: UITableViewCell!
+    @IBOutlet var websiteCell: UITableViewCell!
 
-    @IBOutlet weak var privacyCell: UITableViewCell!
+    @IBOutlet var privacyCell: UITableViewCell!
 
-    @IBOutlet weak var sendFeedbackCell: UITableViewCell!
+    @IBOutlet var sendFeedbackCell: UITableViewCell!
 
-    @IBOutlet weak var rateAppCell: UITableViewCell!
+    @IBOutlet var rateAppCell: UITableViewCell!
 
-    @IBOutlet weak var tipCell: UITableViewCell!
+    @IBOutlet var tipCell: UITableViewCell!
 
     // MARK: - User Interaction
 
@@ -121,7 +121,7 @@ final class AboutController: UITableViewController, Routable {
         case .tip?:
             return [
                 "If you really like this app you can leave a tip to support further development.".localized,
-                "Thank you so much for even considering!".localized
+                "Thank you so much for even considering!".localized,
             ].joined(separator: " ")
         case .thanks?:
             return "Without you, this app could not exist. Thank you ❤️".localized
@@ -277,7 +277,7 @@ final class AboutController: UITableViewController, Routable {
 
             let message = [
                 "If you really like this app you can leave a tip to support further development.".localized,
-                "Thank you so much for even considering!".localized
+                "Thank you so much for even considering!".localized,
             ].joined(separator: " ")
             let controller = UIAlertController(title: "Leave a Tip".localized, message: message, preferredStyle: .alert)
             products
@@ -308,7 +308,7 @@ final class AboutController: UITableViewController, Routable {
             let message = "It would be kind if you retried in a little bit.".localized
             let controller = UIAlertController(title: "Something Went Wrong".localized, message: message, preferredStyle: .alert)
             controller.addAction(UIAlertAction(title: "Okay".localized, style: .cancel, handler: nil))
-            self.present(controller, animated: true, completion: nil)
+            present(controller, animated: true, completion: nil)
         default:
             break
         }

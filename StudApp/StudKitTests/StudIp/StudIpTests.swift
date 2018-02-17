@@ -6,10 +6,11 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-import XCTest
 @testable import StudKit
+import XCTest
 
 final class TransformsTests: XCTestCase {
+
     // MARK: - Transforming Id Paths
 
     func testTransformIdPath_IdPath() {

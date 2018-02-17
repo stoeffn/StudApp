@@ -6,8 +6,8 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-import StudKit
 import QuickLook
+import StudKit
 
 public enum Routes {
     case about(completion: () -> Void)

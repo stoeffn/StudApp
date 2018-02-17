@@ -10,6 +10,7 @@ import StudKitUI
 
 @IBDesignable
 final class GlowView: UIView {
+
     // MARK: - Life Cycle
 
     override init(frame: CGRect) {

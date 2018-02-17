@@ -8,8 +8,8 @@
 
 import CoreData
 import MobileCoreServices
-import XCTest
 @testable import StudKit
+import XCTest
 
 final class FolderResponseTests: XCTestCase {
     private let decoder = ServiceContainer.default[JSONDecoder.self]

@@ -76,11 +76,11 @@ final class SettingsController: UITableViewController, Routable {
 
     // MARK: - User Interface
 
-    @IBOutlet weak var downloadsCell: UITableViewCell!
+    @IBOutlet var downloadsCell: UITableViewCell!
 
-    @IBOutlet weak var removeAllDownloadsCell: UITableViewCell!
+    @IBOutlet var removeAllDownloadsCell: UITableViewCell!
 
-    @IBOutlet weak var signOutCell: UITableViewCell!
+    @IBOutlet var signOutCell: UITableViewCell!
 
     // MARK: - User Interaction
 

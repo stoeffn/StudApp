@@ -9,6 +9,7 @@
 import StudKit
 
 final class ColorCell: UICollectionViewCell {
+
     // MARK: - Life Cycle
 
     override func awakeFromNib() {
@@ -18,7 +19,7 @@ final class ColorCell: UICollectionViewCell {
 
     // MARK: - User Interface
 
-    @IBOutlet weak var glowView: GlowView!
+    @IBOutlet var glowView: GlowView!
 
     private func initUserInterface() {
         clipsToBounds = false

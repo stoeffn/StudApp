@@ -56,24 +56,24 @@ final class FileCell: UITableViewCell {
         didSet { updateSubtitleHiddenStates() }
     }
 
-    @IBOutlet weak var iconView: UIImageView!
+    @IBOutlet var iconView: UIImageView!
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet var titleLabel: UILabel!
 
-    @IBOutlet weak var modifiedAtContainer: UIStackView!
-    @IBOutlet weak var modifiedAtLabel: UILabel!
+    @IBOutlet var modifiedAtContainer: UIStackView!
+    @IBOutlet var modifiedAtLabel: UILabel!
 
-    @IBOutlet weak var userContainer: UIStackView!
-    @IBOutlet weak var userLabel: UILabel!
+    @IBOutlet var userContainer: UIStackView!
+    @IBOutlet var userLabel: UILabel!
 
-    @IBOutlet weak var sizeContainer: UIStackView!
-    @IBOutlet weak var sizeLabel: UILabel!
+    @IBOutlet var sizeContainer: UIStackView!
+    @IBOutlet var sizeLabel: UILabel!
 
-    @IBOutlet weak var downloadCountContainer: UIStackView!
-    @IBOutlet weak var downloadCountLabel: UILabel!
+    @IBOutlet var downloadCountContainer: UIStackView!
+    @IBOutlet var downloadCountLabel: UILabel!
 
-    @IBOutlet weak var activityIndicator: StudIpActivityIndicatorView?
-    @IBOutlet weak var downloadGlyph: UIImageView?
+    @IBOutlet var activityIndicator: StudIpActivityIndicatorView?
+    @IBOutlet var downloadGlyph: UIImageView?
 
     func updateSubtitleHiddenStates() {
         guard let file = file else { return }

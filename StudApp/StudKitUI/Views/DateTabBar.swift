@@ -10,6 +10,7 @@ import StudKit
 
 @IBDesignable
 public final class DateTabBar: UIView {
+
     // MARK: - Life Cycle
 
     public override init(frame: CGRect) {

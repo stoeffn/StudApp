@@ -9,6 +9,7 @@
 import StoreKit
 
 public final class AboutViewModel: NSObject, SKProductsRequestDelegate {
+
     // MARK: - Life Cycle
 
     public override init() {
@@ -51,7 +52,7 @@ public final class AboutViewModel: NSObject, SKProductsRequestDelegate {
 // MARK: - Observing Transactions
 
 extension AboutViewModel: SKPaymentTransactionObserver {
-    public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+    public func paymentQueue(_: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
             guard StoreService.tipProductIdentifiers.contains(transaction.payment.productIdentifier) else { continue }
             leaveTipCompletion?(transaction)

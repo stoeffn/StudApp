@@ -82,7 +82,7 @@ extension UserResponse {
             let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
             let timestampString = components.queryItems?.first?.value,
             let timestamp = Double(timestampString)
-            else { return nil }
+        else { return nil }
         return Date(timeIntervalSince1970: timestamp)
     }
 }

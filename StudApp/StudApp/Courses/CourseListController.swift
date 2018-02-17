@@ -199,11 +199,11 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     @IBOutlet var emptyViewTopConstraint: NSLayoutConstraint!
 
-    @IBOutlet weak var emptyViewTitleLabel: UILabel!
+    @IBOutlet var emptyViewTitleLabel: UILabel!
 
-    @IBOutlet weak var emptyViewSubtitleLabel: UILabel!
+    @IBOutlet var emptyViewSubtitleLabel: UILabel!
 
-    @IBOutlet weak var emptyViewActionButton: UIButton!
+    @IBOutlet var emptyViewActionButton: UIButton!
 
     private func updateEmptyView() {
         guard view != nil else { return }
@@ -232,7 +232,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     @available(iOS 11.0, *)
     private func colorAction(for cell: CourseCell, at _: IndexPath) -> UIContextualAction {
         func colorActionHandler(_: UIContextualAction, _: UIView, success: @escaping (Bool) -> Void) {
-            self.presentColorPicker(for: cell)
+            presentColorPicker(for: cell)
             success(true)
         }
 

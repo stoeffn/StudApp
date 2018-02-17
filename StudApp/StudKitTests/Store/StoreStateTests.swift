@@ -6,8 +6,8 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-import XCTest
 @testable import StudKit
+import XCTest
 
 final class StoreStateTests: XCTestCase {
     private let encoder = ServiceContainer.default[JSONEncoder.self]

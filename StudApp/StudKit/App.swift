@@ -8,9 +8,11 @@
 
 /// Provides constants regarding app information.
 public enum App {
+
     // MARK: - Links
 
     public enum Links {
+
         // MARK: Website
 
         public static let website = URL(string: "https://studapp.stoeffn.de/")

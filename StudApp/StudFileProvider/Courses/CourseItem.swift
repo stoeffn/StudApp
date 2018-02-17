@@ -12,6 +12,7 @@ import StudKit
 
 @available(iOSApplicationExtension 11.0, *)
 final class CourseItem: NSObject, NSFileProviderItem {
+
     // MARK: - Life Cycle
 
     init(from course: Course, childItemCount: Int?, parentItemIdentifier: NSFileProviderItemIdentifier = .rootContainer) {

@@ -9,6 +9,7 @@
 import StudKit
 
 final class OrganizationCell: UITableViewCell {
+
     // MARK: - Life Cycle
 
     var organization: OrganizationRecord! {
@@ -20,7 +21,7 @@ final class OrganizationCell: UITableViewCell {
 
     // MARK: - User Interface
 
-    @IBOutlet weak var iconView: UIImageView!
+    @IBOutlet var iconView: UIImageView!
 
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet var titleLabel: UILabel!
 }

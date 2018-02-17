@@ -10,6 +10,7 @@ import UIKit
 
 @IBDesignable
 public final class GroupedTextField: UITextField {
+
     // MARK: - Life Cycle
 
     public override init(frame: CGRect) {

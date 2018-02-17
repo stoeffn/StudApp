@@ -6,8 +6,8 @@
 //  Copyright © 2018 Steffen Ryll. All rights reserved.
 //
 
-import XCTest
 @testable import StudKit
+import XCTest
 
 final class OAuth1Tests: XCTestCase {
     private static let serviceName = "test"

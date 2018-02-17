@@ -27,7 +27,7 @@ struct AnnouncementResponse: IdentifiableResponse {
         self.createdAt = createdAt
         self.modifiedAt = modifiedAt
         self.expiresAfter = expiresAfter
-        self.expiresAt = createdAt + expiresAfter
+        expiresAt = createdAt + expiresAfter
         self.title = title
         self.body = body
     }
