@@ -85,6 +85,7 @@ extension CDIdentifiable where Self: NSFetchRequestResult {
 // MARK: - Updating Objects
 
 extension CDIdentifiable where Self: NSManagedObject {
+    @discardableResult
     static func update<Value, Values: Sequence>(_ existingObjectsFetchRequest: NSFetchRequest<Self>? = nil,
                                                 with values: Values, in context: NSManagedObjectContext,
                                                 transform: (Value) throws -> Self) throws -> [Self] where Values.Element == Value {
