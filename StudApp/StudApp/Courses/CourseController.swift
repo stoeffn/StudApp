@@ -255,7 +255,7 @@ final class CourseController: UITableViewController, Routable {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch Sections(rawValue: indexPath.section) {
-        case .documents? where !announcementsViewModel.isEmpty:
+        case .documents?:
             guard let cell = tableView.cellForRow(at: indexPath) as? FileCell, !cell.file.isFolder else { return }
             PreviewController.downloadOrPreview(cell.file, in: self)
         default:
