@@ -7,6 +7,7 @@
 //
 
 import StudKit
+import StudKitUI
 
 final class AnnouncementController: UIViewController, Routable {
     private var announcement: Announcement!

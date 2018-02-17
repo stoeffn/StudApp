@@ -6,7 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-import StudKit
+import StudKitUI
 
 final class CourseListSplitController: UISplitViewController {
     // MARK: - Life Cycle

@@ -7,6 +7,7 @@
 //
 
 import StudKit
+import StudKitUI
 
 extension Routes {
     init?(actionIdentifier: String, itemIdentifiers _: [NSFileProviderItemIdentifier]) {

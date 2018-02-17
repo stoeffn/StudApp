@@ -93,7 +93,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="20I-iW-8ae" customClass="FilledButton" customModule="StudKit">
+                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="20I-iW-8ae" customClass="FilledButton" customModule="StudKitUI">
                                                     <rect key="frame" x="32" y="8" width="311" height="64"/>
                                                     <color key="backgroundColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -149,7 +149,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="J94-G1-rVT" customClass="FilledButton" customModule="StudKit">
+                                                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="J94-G1-rVT" customClass="FilledButton" customModule="StudKitUI">
                                                     <rect key="frame" x="32" y="0.0" width="311" height="50"/>
                                                     <color key="backgroundColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
@@ -314,7 +314,7 @@
         <!--OrganizationList-->
         <scene sceneID="aIc-Np-gYb">
             <objects>
-                <viewControllerPlaceholder storyboardName="SignIn" bundleIdentifier="SteffenRyll.StudKit" referencedIdentifier="OrganizationList" id="bKG-5c-oAr" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="SignIn" bundleIdentifier="SteffenRyll.StudKitUI" referencedIdentifier="OrganizationList" id="bKG-5c-oAr" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aRe-hV-dpb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3102" y="560"/>
@@ -322,7 +322,7 @@
         <!--About-->
         <scene sceneID="eTk-wU-fSm">
             <objects>
-                <viewControllerPlaceholder storyboardName="About" bundleIdentifier="SteffenRyll.StudKit" id="Hy6-tN-9FA" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="About" bundleIdentifier="SteffenRyll.StudKitUI" id="Hy6-tN-9FA" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c4P-cP-kAN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3052" y="658"/>
@@ -348,7 +348,7 @@
         <!--Verification-->
         <scene sceneID="pmM-Lx-1hO">
             <objects>
-                <viewControllerPlaceholder storyboardName="SignIn" bundleIdentifier="SteffenRyll.StudKit" referencedIdentifier="Verification" id="FfA-wm-Wx4" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="SignIn" bundleIdentifier="SteffenRyll.StudKitUI" referencedIdentifier="Verification" id="FfA-wm-Wx4" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7qm-n3-jNU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3078" y="608"/>

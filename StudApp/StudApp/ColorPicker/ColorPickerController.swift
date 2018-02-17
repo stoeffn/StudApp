@@ -7,9 +7,10 @@
 //
 
 import StudKit
+import StudKitUI
 
 final class ColorPickerController: UICollectionViewController, Routable {
-    private var viewModel: ColorPickerViewModel!
+    private var viewModel: ColorPickerViewModel<UIColor>!
 
     // MARK: - Life Cycle
 
@@ -28,9 +29,9 @@ final class ColorPickerController: UICollectionViewController, Routable {
     }
 
     func prepareDependencies(for route: Routes) {
-        guard case let .colorPicker(_, handler) = route else { fatalError() }
+        guard case let .colorPicker(_, completion) = route else { fatalError() }
 
-        viewModel = ColorPickerViewModel(completion: handler)
+        viewModel = ColorPickerViewModel(colors: UI.Colors.pickerColors, completion: completion)
     }
 
     // MARK: - User Interface

@@ -18,11 +18,3 @@ public extension ByTypeNameIdentifiable {
             .first ?? typeName
     }
 }
-
-// MARK: - Conformances
-
-extension UITableViewCell: ByTypeNameIdentifiable {}
-
-extension UITableViewHeaderFooterView: ByTypeNameIdentifiable {}
-
-extension UICollectionViewCell: ByTypeNameIdentifiable {}

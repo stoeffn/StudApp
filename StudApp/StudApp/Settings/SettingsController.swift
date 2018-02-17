@@ -7,6 +7,7 @@
 //
 
 import StudKit
+import StudKitUI
 
 final class SettingsController: UITableViewController, Routable {
     private var viewModel: SettingsViewModel!

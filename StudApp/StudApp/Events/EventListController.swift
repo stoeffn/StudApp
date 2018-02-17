@@ -7,6 +7,7 @@
 //
 
 import StudKit
+import StudKitUI
 
 final class EventListController: UITableViewController, DataSourceDelegate, Routable {
     private var viewModel: EventListViewModel!

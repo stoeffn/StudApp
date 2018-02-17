@@ -25,7 +25,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j9h-FY-E2G" customClass="DateTabBar" customModule="StudKit">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j9h-FY-E2G" customClass="DateTabBar" customModule="StudKitUI">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Pu-He-8n3">
@@ -120,17 +120,17 @@ Gebäude 3703: Technische Informatik</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ea3-F0-kRL">
-                                                            <rect key="frame" x="0.0" y="47.5" width="106" height="16"/>
+                                                            <rect key="frame" x="0.0" y="47.5" width="122" height="17"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Canceled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfa-A6-v9I" customClass="BadgeLabel" customModule="StudKit">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="57" height="16"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Canceled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfa-A6-v9I" customClass="BadgeLabel" customModule="StudKitUI">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="65" height="17"/>
                                                                     <color key="backgroundColor" red="0.83921568629999999" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reason" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRd-4L-eOE" customClass="BadgeLabel" customModule="StudKit">
-                                                                    <rect key="frame" x="61" y="0.0" width="45" height="16"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reason" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRd-4L-eOE" customClass="BadgeLabel" customModule="StudKitUI">
+                                                                    <rect key="frame" x="69" y="0.0" width="53" height="17"/>
                                                                     <color key="backgroundColor" white="0.59999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -215,8 +215,8 @@ Gebäude 3703: Technische Informatik</string>
     </scenes>
     <resources>
         <image name="EventsGlyph" width="512" height="512"/>
-        <image name="EventsLandscapeTabBarGlyph" width="18" height="18"/>
-        <image name="EventsTabBarGlyph" width="25" height="25"/>
+        <image name="EventsLandscapeTabBarGlyph" width="17" height="17"/>
+        <image name="EventsTabBarGlyph" width="23" height="23"/>
     </resources>
     <color key="tintColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

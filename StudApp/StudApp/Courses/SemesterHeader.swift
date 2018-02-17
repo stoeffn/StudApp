@@ -7,6 +7,7 @@
 //
 
 import StudKit
+import StudKitUI
 
 final class SemesterHeader: UITableViewHeaderFooterView {
     static let height: CGFloat = 42

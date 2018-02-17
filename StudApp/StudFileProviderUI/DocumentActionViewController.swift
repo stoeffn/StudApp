@@ -8,6 +8,7 @@
 
 import FileProviderUI
 import StudKit
+import StudKitUI
 
 final class DocumentActionViewController: FPUIActionExtensionViewController {
     @IBOutlet weak var containerView: UIView!

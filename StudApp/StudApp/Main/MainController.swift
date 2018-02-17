@@ -8,6 +8,7 @@
 
 import SafariServices
 import StudKit
+import StudKitUI
 
 final class MainController: UITabBarController {
     private var viewModel: MainViewModel!

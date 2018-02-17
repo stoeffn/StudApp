@@ -7,6 +7,7 @@
 //
 
 import StudKit
+import StudKitUI
 
 final class FileCell: UITableViewCell {
     private let reachabilityService = ServiceContainer.default[ReachabilityService.self]

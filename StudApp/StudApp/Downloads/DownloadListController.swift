@@ -7,6 +7,7 @@
 //
 
 import StudKit
+import StudKitUI
 import QuickLook
 
 final class DownloadListController: UITableViewController, DataSourceDelegate {

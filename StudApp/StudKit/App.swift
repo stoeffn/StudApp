@@ -81,5 +81,5 @@ public enum App {
     // MARK: - Bundles
 
     /// Bundle of the `StudKit` framework.
-    static let kitBundle = Bundle(for: StudKitServiceProvider.self)
+    public static let kitBundle = Bundle(for: StudKitServiceProvider.self)
 }

@@ -33,7 +33,7 @@
         <!--SignIn-->
         <scene sceneID="ZlC-YF-5hX">
             <objects>
-                <viewControllerPlaceholder storyboardName="SignIn" bundleIdentifier="SteffenRyll.StudKit" id="2bU-cg-kHC" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="SignIn" bundleIdentifier="SteffenRyll.StudKitUI" id="2bU-cg-kHC" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fcI-cX-vXc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="594" y="-189"/>
@@ -51,7 +51,7 @@
         <!--About-->
         <scene sceneID="eSg-ig-br1">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="About" storyboardName="About" bundleIdentifier="SteffenRyll.StudKit" id="P8g-Nk-6wL" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="About" storyboardName="About" bundleIdentifier="SteffenRyll.StudKitUI" id="P8g-Nk-6wL" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zXO-Dm-wlW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="596" y="-60"/>

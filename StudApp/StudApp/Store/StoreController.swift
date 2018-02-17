@@ -9,6 +9,7 @@
 import SafariServices
 import StoreKit
 import StudKit
+import StudKitUI
 
 public final class StoreController: UITableViewController, UITextViewDelegate, Routable {
     private var viewModel: StoreViewModel!

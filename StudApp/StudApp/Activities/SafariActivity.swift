@@ -8,6 +8,7 @@
 
 import SafariServices
 import StudKit
+import StudKitUI
 
 final class SafariActivity: UIActivity, ByTypeNameIdentifiable {
     private weak var controller: UIViewController?

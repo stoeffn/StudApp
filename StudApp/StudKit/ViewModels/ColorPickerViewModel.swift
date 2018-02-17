@@ -6,16 +6,17 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-public final class ColorPickerViewModel: DataSourceSection {
-    public typealias Row = (key: Int, value: UIColor)
+public final class ColorPickerViewModel<Color>: DataSourceSection {
+    public typealias Row = (key: Int, value: Color)
 
     private let colors: [Row]
-    private var completion: (Int, UIColor) -> Void
+    private var completion: (Int, Color) -> Void
 
-    public init(completion: @escaping (Int, UIColor) -> Void) {
-        let colors = UI.Colors.pickerColors.enumerated().sorted { $0.element.key < $1.element.key }.map { $1 }
+    public init(colors: [Int: Color], completion: @escaping (Int, Color) -> Void) {
+        self.colors = colors.enumerated()
+            .sorted { $0.element.key < $1.element.key }
+            .map { $1 }
         self.completion = completion
-        self.colors = Array(colors)
     }
 
     public var numberOfRows: Int {

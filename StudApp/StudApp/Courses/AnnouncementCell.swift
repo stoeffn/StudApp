@@ -7,6 +7,7 @@
 //
 
 import StudKit
+import StudKitUI
 
 final class AnnouncementCell: UITableViewCell {
     var announcement: Announcement! {

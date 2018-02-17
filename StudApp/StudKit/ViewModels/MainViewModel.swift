@@ -22,12 +22,6 @@ public final class MainViewModel {
         return studIpService.isSignedIn
     }
 
-    public func verifyStoreState(completion: @escaping ResultHandler<Routes?>) {
-        storeService.verifyStateWithServer { result in
-            completion(result.map { !$0.isUnlocked ? Routes.store : nil })
-        }
-    }
-
     /// Updates the current user if signed in.
     public func updateCurrentUser(completion: (ResultHandler<User>)? = nil) {
         User.updateCurrent(in: coreDataService.viewContext) { result in

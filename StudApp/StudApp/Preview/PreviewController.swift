@@ -8,6 +8,7 @@
 
 import QuickLook
 import StudKit
+import StudKitUI
 
 final class PreviewController: QLPreviewController, Routable {
     private var coreDataService = ServiceContainer.default[CoreDataService.self]

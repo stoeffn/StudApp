@@ -27,6 +27,8 @@ public final class OrganizationListViewModel {
     /// This handler is called every time `state` changes.
     public var stateChanged: ((State) -> Void)?
 
+    public init() {}
+
     public func fetch() {
         state = .loading
 

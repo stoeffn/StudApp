@@ -6,7 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-import UIKit
+import StudKitUI
 
 @IBDesignable
 final class GlowView: UIView {

@@ -7,6 +7,7 @@
 //
 
 import StudKit
+import StudKitUI
 
 final class CourseListController: UITableViewController, DataSourceSectionDelegate {
     private var viewModel: SemesterListViewModel!

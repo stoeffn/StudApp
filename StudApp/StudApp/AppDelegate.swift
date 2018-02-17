@@ -7,6 +7,7 @@
 //
 
 import StudKit
+import StudKitUI
 
 @UIApplicationMain
 final class AppDelegate: UIResponder {
