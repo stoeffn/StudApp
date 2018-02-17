@@ -69,8 +69,8 @@ extension FolderResponse: Decodable {
 extension FolderResponse {
     func coreDataObject(course: Course, parent: File? = nil, in context: NSManagedObjectContext) throws -> File {
         let (file, _) = try File.fetch(byId: id, orCreateIn: context)
-        let folders = try self.folders(file: file, course: course, parent: parent, in: context)
-        let documents = try self.documents(file: file, course: course, parent: parent, in: context)
+        let folders = try self.folders(file: file, course: course, in: context)
+        let documents = try self.documents(file: file, course: course, in: context)
         file.id = id
         file.typeIdentifier = kUTTypeFolder as String
         file.parent = parent
@@ -86,18 +86,16 @@ extension FolderResponse {
         return file
     }
 
-    func folders(file: File, course: Course, parent: File? = nil, in context: NSManagedObjectContext) throws -> [File] {
+    func folders(file: File, course: Course, in context: NSManagedObjectContext) throws -> [File] {
         guard let folders = folders else { return [] }
-        let existingFolders = parent?.childFoldersFetchRequest ?? course.childFoldersFetchRequest
-        return try File.update(existingFolders, with: folders, in: context) { response in
+        return try File.update(file.childFoldersFetchRequest, with: folders, in: context) { response in
             try response.coreDataObject(course: course, parent: file, in: context)
         }
     }
 
-    func documents(file: File, course: Course, parent: File? = nil, in context: NSManagedObjectContext) throws -> [File] {
+    func documents(file: File, course: Course, in context: NSManagedObjectContext) throws -> [File] {
         guard let documents = documents else { return [] }
-        let existingDocuments = parent?.childDocumentsFetchRequest ?? course.childDocumentsFetchRequest
-        return try File.update(existingDocuments, with: documents, in: context) { response in
+        return try File.update(file.childDocumentsFetchRequest, with: documents, in: context) { response in
             try response.coreDataObject(course: course, parent: file, in: context)
         }
     }
