@@ -32,6 +32,12 @@ public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDUpd
     static let defaultSortDescriptors = [
         NSSortDescriptor(keyPath: \Semester.beginsAt, ascending: false),
     ]
+
+    // MARK: - Describing
+
+    public override var description: String {
+        return "<Semester id: \(id), title: \(title)>"
+    }
 }
 
 // MARK: - Utilities

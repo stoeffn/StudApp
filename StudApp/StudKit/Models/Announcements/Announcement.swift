@@ -31,4 +31,10 @@ public final class Announcement: NSManagedObject, CDCreatable, CDIdentifiable, C
     static let defaultSortDescriptors = [
         NSSortDescriptor(keyPath: \Announcement.createdAt, ascending: false),
     ]
+
+    // MARK: - Describing
+
+    public override var description: String {
+        return "<Announcement id: \(id), courses: \(courses), title: \(title)>"
+    }
 }

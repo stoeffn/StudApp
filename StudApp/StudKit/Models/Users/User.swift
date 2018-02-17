@@ -33,6 +33,12 @@ public final class User: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
     static let defaultSortDescriptors = [
         NSSortDescriptor(keyPath: \User.username, ascending: true),
     ]
+
+    // MARK: - Describing
+
+    public override var description: String {
+        return "<User id: \(id), username: \(username)>"
+    }
 }
 
 // MARK: - Utilities

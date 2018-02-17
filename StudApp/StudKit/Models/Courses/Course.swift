@@ -58,6 +58,12 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdat
     static let defaultSortDescriptors = [
         NSSortDescriptor(keyPath: \Course.title, ascending: true),
     ]
+
+    // MARK: - Describing
+
+    public override var description: String {
+        return "<Course id: \(id), semesters: \(semesters), title: \(title)>"
+    }
 }
 
 // MARK: - Core Data Operations

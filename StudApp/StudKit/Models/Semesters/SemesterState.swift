@@ -44,6 +44,12 @@ public final class SemesterState: NSManagedObject, CDCreatable, CDSortable {
         NSSortDescriptor(keyPath: \SemesterState.semester.beginsAt, ascending: false),
     ]
 
+    // MARK: - Describing
+
+    public override var description: String {
+        return "<SemesterState: \(semester)>"
+    }
+
     // MARK: - Events
 
     private func isHiddenChanged(_: _KeyValueCodingAndObserving, change: NSKeyValueObservedChange<Bool>) {

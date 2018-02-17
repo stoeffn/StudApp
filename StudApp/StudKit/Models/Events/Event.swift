@@ -38,11 +38,17 @@ public final class Event: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdata
 
     @NSManaged public var category: String?
 
-    // MARK: Sorting
+    // MARK: - Sorting
 
     static let defaultSortDescriptors = [
         NSSortDescriptor(keyPath: \Event.startsAt, ascending: true),
     ]
+
+    // MARK: - Describing
+
+    public override var description: String {
+        return "<Event id: \(id), course: \(course.id)>"
+    }
 }
 
 // MARK: - Utilities

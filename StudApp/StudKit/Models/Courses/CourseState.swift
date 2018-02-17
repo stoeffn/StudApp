@@ -37,6 +37,12 @@ public final class CourseState: NSManagedObject, CDCreatable, CDSortable {
         NSSortDescriptor(keyPath: \CourseState.colorId, ascending: true),
         NSSortDescriptor(keyPath: \CourseState.course.title, ascending: true),
     ]
+
+    // MARK: - Describing
+
+    public override var description: String {
+        return "<CourseState: \(course)>"
+    }
 }
 
 // MARK: - Utilities

@@ -30,6 +30,12 @@ public final class FileState: NSManagedObject, CDCreatable, CDSortable {
     static let defaultSortDescriptors = [
         NSSortDescriptor(keyPath: \FileState.file.name, ascending: true),
     ]
+
+    // MARK: - Describing
+
+    public override var description: String {
+        return "<FileState: \(file)>"
+    }
 }
 
 // MARK: - Utilites

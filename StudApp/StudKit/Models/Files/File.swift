@@ -75,11 +75,18 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatab
         state = FileState(createIn: context)
     }
 
-    // MARK: Sorting
+    // MARK: - Sorting
 
     static let defaultSortDescriptors = [
         NSSortDescriptor(keyPath: \File.name, ascending: true),
     ]
+
+    // MARK: - Describing
+
+    public override var description: String {
+        let type = isFolder ? "Folder" : "Document"
+        return "<\(type) id: \(id), course: \(course), parent: \(parent?.description ?? "—"), title: \(title)>"
+    }
 }
 
 // MARK: - Core Data Operations
