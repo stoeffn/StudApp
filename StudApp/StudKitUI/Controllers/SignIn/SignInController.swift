@@ -79,7 +79,8 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
 
             UIView.animate(withDuration: UI.defaultAnimationDuration, delay: 0, usingSpringWithDamping: 0.7,
                            initialSpringVelocity: 0, options: .curveEaseOut, animations: {
-                               self.iconView.transform = self.areOrganizationViewsHidden ? CGAffineTransform(scaleX: 0.1, y: 0.1) : .identity
+                               self.iconView.transform = self.areOrganizationViewsHidden
+                                   ? CGAffineTransform(scaleX: 0.1, y: 0.1) : .identity
                                self.iconView.alpha = self.areOrganizationViewsHidden ? 0 : 1
                                self.titleLabel.alpha = self.areOrganizationViewsHidden ? 0 : 1
             }, completion: nil)

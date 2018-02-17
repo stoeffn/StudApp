@@ -42,7 +42,6 @@
 		243CC2C61FDF464800FE7376 /* EmptyCourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CC2C51FDF464800FE7376 /* EmptyCourseController.swift */; };
 		243CC2C81FE0390200FE7376 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 243CC2CA1FE0390200FE7376 /* LaunchScreen.storyboard */; };
 		2446F9741FC8D16900D6AB6C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
-		2446F9751FC8D1C400D6AB6C /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		2448D40D1FA8DA2400DAB97E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */; };
 		2448D4141FA8DA2400DAB97E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2448D4131FA8DA2400DAB97E /* Assets.xcassets */; };
 		2448D4221FA8DA2400DAB97E /* StudAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4211FA8DA2400DAB97E /* StudAppTests.swift */; };
@@ -185,6 +184,7 @@
 		248C0273202E6DD8004CB8C9 /* DisclaimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C0270202E6DD8004CB8C9 /* DisclaimerController.swift */; };
 		249DD6DE1FC8A3D4006DA46E /* User+StudIp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249DD6DD1FC8A3D4006DA46E /* User+StudIp.swift */; };
 		249DD6FB1FC8B896006DA46E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 249DD6FD1FC8B896006DA46E /* Localizable.strings */; };
+		24A5BEEB2038C72A00F5F531 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		24A6C14B1FD75A0A004BBEA5 /* StudKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24A6C1491FD75A0A004BBEA5 /* StudKit.xcdatamodeld */; };
 		24A6C14D1FD75C56004BBEA5 /* ColorPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24A6C14C1FD75C56004BBEA5 /* ColorPicker.storyboard */; };
 		24A8EDDC1FCCBA58007C1CCF /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
@@ -670,9 +670,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24A8EDDC1FCCBA58007C1CCF /* CloudKit.framework in Frameworks */,
 				24390EE920389CCF0064E49A /* StudKit.framework in Frameworks */,
 				247CC295203896DE0067207B /* StudKitUI.framework in Frameworks */,
-				24A8EDDC1FCCBA58007C1CCF /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,9 +680,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				247CC290203896C70067207B /* StudKitUI.framework in Frameworks */,
-				2448D4541FA8DB1E00DAB97E /* StudKit.framework in Frameworks */,
 				2446F9741FC8D16900D6AB6C /* CloudKit.framework in Frameworks */,
+				2448D4541FA8DB1E00DAB97E /* StudKit.framework in Frameworks */,
+				247CC290203896C70067207B /* StudKitUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,8 +727,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24A5BEEB2038C72A00F5F531 /* CloudKit.framework in Frameworks */,
 				24390EF72038C1150064E49A /* StudKit.framework in Frameworks */,
-				2446F9751FC8D1C400D6AB6C /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
