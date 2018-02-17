@@ -65,8 +65,6 @@ extension FolderResponse {
     @discardableResult
     func coreDataObject(course: Course, parent: File? = nil, in context: NSManagedObjectContext) throws -> File {
         let (file, _) = try File.fetch(byId: id, orCreateIn: context)
-        let folders = try self.folders(file: file, course: course, in: context)
-        let documents = try self.documents(file: file, course: course, in: context)
         file.typeIdentifier = kUTTypeFolder as String
         file.parent = parent
         file.course = course
@@ -77,6 +75,8 @@ extension FolderResponse {
         file.size = -1
         file.downloadCount = -1
         file.summary = summary
+        let folders = try self.folders(file: file, course: course, in: context)
+        let documents = try self.documents(file: file, course: course, in: context)
         file.children = Set(folders).union(documents)
         return file
     }
