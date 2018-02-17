@@ -8,7 +8,7 @@
 
 import CoreData
 
-protocol FetchedResultsControllerSource {
+public protocol FetchedResultsControllerSource {
     associatedtype Object: NSFetchRequestResult
 
     associatedtype Row
@@ -22,13 +22,13 @@ protocol FetchedResultsControllerSource {
     func object(from row: Row) -> Object
 }
 
-extension FetchedResultsControllerSource {
-    func row(from object: Object) -> Row {
+public extension FetchedResultsControllerSource {
+    public func row(from object: Object) -> Row {
         guard let row = object as? Row else { fatalError() }
         return row
     }
 
-    func object(from row: Row) -> Object {
+    public func object(from row: Row) -> Object {
         guard let object = row as? Object else { fatalError() }
         return object
     }

@@ -26,7 +26,7 @@ public protocol DataSource: Sequence {
 
 // MARK: - Default Implementation
 
-extension DataSource {
+public extension DataSource {
     public var sectionIndexTitles: [String]? {
         return nil
     }

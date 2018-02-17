@@ -17,7 +17,7 @@ public final class FileListViewModel: FetchedResultsControllerDataSourceSection 
 
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
 
-    lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
+    public private(set) lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
 
     public weak var delegate: DataSourceSectionDelegate?
 
@@ -30,15 +30,15 @@ public final class FileListViewModel: FetchedResultsControllerDataSourceSection 
         controller.delegate = fetchedResultControllerDelegateHelper
     }
 
-    private(set) lazy var controller: NSFetchedResultsController<FileState> = NSFetchedResultsController(
+    public private(set) lazy var controller: NSFetchedResultsController<FileState> = NSFetchedResultsController(
         fetchRequest: filesContaining.childFileStatesFetchRequest, managedObjectContext: coreDataService.viewContext,
         sectionNameKeyPath: nil, cacheName: nil)
 
-    func row(from object: FileState) -> File {
+    public func row(from object: FileState) -> File {
         return object.file
     }
 
-    func object(from row: File) -> FileState {
+    public func object(from row: File) -> FileState {
         return row.state
     }
 

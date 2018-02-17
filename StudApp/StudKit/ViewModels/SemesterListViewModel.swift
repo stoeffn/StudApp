@@ -17,7 +17,7 @@ public final class SemesterListViewModel: FetchedResultsControllerDataSourceSect
     private let studIpService = ServiceContainer.default[StudIpService.self]
     private var fetchRequest: NSFetchRequest<SemesterState>
 
-    lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
+    public private(set) lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
 
     public weak var delegate: DataSourceSectionDelegate?
 
@@ -29,14 +29,14 @@ public final class SemesterListViewModel: FetchedResultsControllerDataSourceSect
         controller.delegate = fetchedResultControllerDelegateHelper
     }
 
-    private(set) lazy var controller: NSFetchedResultsController<SemesterState> = NSFetchedResultsController(
+    public private(set) lazy var controller: NSFetchedResultsController<SemesterState> = NSFetchedResultsController(
         fetchRequest: fetchRequest, managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
 
-    func row(from object: SemesterState) -> Semester {
+    public func row(from object: SemesterState) -> Semester {
         return object.semester
     }
 
-    func object(from row: Semester) -> SemesterState {
+    public func object(from row: Semester) -> SemesterState {
         return row.state
     }
 

@@ -8,7 +8,12 @@
 
 import CoreData
 
-extension FetchedResultsControllerDataSourceSection {
+public protocol FetchedResultsControllerDataSourceSection: FetchedResultsControllerSource, DataSourceSection,
+    FetchedResultsControllerDelegate {
+    var delegate: DataSourceSectionDelegate? { get }
+}
+
+public extension FetchedResultsControllerDataSourceSection {
     public func controller(didChange _: NSFetchedResultsSectionInfo, atSectionIndex _: Int,
                            for _: NSFetchedResultsChangeType) {}
 
@@ -42,12 +47,7 @@ extension FetchedResultsControllerDataSourceSection {
     }
 }
 
-protocol FetchedResultsControllerDataSourceSection: FetchedResultsControllerSource, DataSourceSection,
-    FetchedResultsControllerDelegate {
-    var delegate: DataSourceSectionDelegate? { get }
-}
-
-extension FetchedResultsControllerDataSourceSection {
+public extension FetchedResultsControllerDataSourceSection {
     public var numberOfRows: Int {
         return controller.sections?.first?.numberOfObjects ?? 0
     }

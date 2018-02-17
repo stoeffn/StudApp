@@ -185,6 +185,11 @@
 		249DD6DE1FC8A3D4006DA46E /* User+StudIp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249DD6DD1FC8A3D4006DA46E /* User+StudIp.swift */; };
 		249DD6FB1FC8B896006DA46E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 249DD6FD1FC8B896006DA46E /* Localizable.strings */; };
 		24A5BEEB2038C72A00F5F531 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
+		24A5BEED2038D44E00F5F531 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A5BEEC2038D44D00F5F531 /* CoreData.framework */; };
+		24A5BEEE2038D45700F5F531 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A5BEEC2038D44D00F5F531 /* CoreData.framework */; };
+		24A5BEEF2038D46100F5F531 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A5BEEC2038D44D00F5F531 /* CoreData.framework */; };
+		24A5BEF02038D46900F5F531 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A5BEEC2038D44D00F5F531 /* CoreData.framework */; };
+		24A5BEF12038D47100F5F531 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A5BEEC2038D44D00F5F531 /* CoreData.framework */; };
 		24A6C14B1FD75A0A004BBEA5 /* StudKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24A6C1491FD75A0A004BBEA5 /* StudKit.xcdatamodeld */; };
 		24A6C14D1FD75C56004BBEA5 /* ColorPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24A6C14C1FD75C56004BBEA5 /* ColorPicker.storyboard */; };
 		24A8EDDC1FCCBA58007C1CCF /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
@@ -537,6 +542,7 @@
 		248C0277202F9F5B004CB8C9 /* Confetti.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Confetti.storyboard; sourceTree = "<group>"; };
 		249DD6DD1FC8A3D4006DA46E /* User+StudIp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+StudIp.swift"; sourceTree = "<group>"; };
 		249DD6FC1FC8B896006DA46E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		24A5BEEC2038D44D00F5F531 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		24A6C14A1FD75A0A004BBEA5 /* StudKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StudKit.xcdatamodel; sourceTree = "<group>"; };
 		24A6C14C1FD75C56004BBEA5 /* ColorPicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ColorPicker.storyboard; sourceTree = "<group>"; };
 		24A8EDDD1FCCBC93007C1CCF /* ContextService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextService.swift; sourceTree = "<group>"; };
@@ -670,6 +676,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24A5BEF02038D46900F5F531 /* CoreData.framework in Frameworks */,
 				24A8EDDC1FCCBA58007C1CCF /* CloudKit.framework in Frameworks */,
 				24390EE920389CCF0064E49A /* StudKit.framework in Frameworks */,
 				247CC295203896DE0067207B /* StudKitUI.framework in Frameworks */,
@@ -680,6 +687,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24A5BEF12038D47100F5F531 /* CoreData.framework in Frameworks */,
 				2446F9741FC8D16900D6AB6C /* CloudKit.framework in Frameworks */,
 				2448D4541FA8DB1E00DAB97E /* StudKit.framework in Frameworks */,
 				247CC290203896C70067207B /* StudKitUI.framework in Frameworks */,
@@ -704,6 +712,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24A5BEED2038D44E00F5F531 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -719,6 +728,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24A5BEEE2038D45700F5F531 /* CoreData.framework in Frameworks */,
 				24390EE820389C1E0064E49A /* StudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -727,6 +737,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24A5BEEF2038D46100F5F531 /* CoreData.framework in Frameworks */,
 				24A5BEEB2038C72A00F5F531 /* CloudKit.framework in Frameworks */,
 				24390EF72038C1150064E49A /* StudKit.framework in Frameworks */,
 			);
@@ -843,6 +854,7 @@
 		243817A01FC86203004052D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				24A5BEEC2038D44D00F5F531 /* CoreData.framework */,
 				2469F813202CE6FF007FB3B6 /* BulletinBoard.framework */,
 				245B6AD51FCB327800302CD0 /* StoreKit.framework */,
 				2446F9731FC8D16900D6AB6C /* CloudKit.framework */,

@@ -24,7 +24,7 @@ public extension DataSourceSection {
 
 // MARK: - Iterating
 
-extension DataSourceSection {
+public extension DataSourceSection {
     public typealias Iterator = RangeIterator<Row>
 
     public func makeIterator() -> Iterator {

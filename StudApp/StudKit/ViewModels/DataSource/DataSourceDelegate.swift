@@ -21,13 +21,13 @@ public protocol DataSourceDelegate: class {
 // MARK: - Default Implementation
 
 public extension DataSourceDelegate {
-    func dataWillChange<Source: DataSource>(in _: Source) {}
+    public func dataWillChange<Source: DataSource>(in _: Source) {}
 
-    func dataDidChange<Source: DataSource>(in _: Source) {}
+    public func dataDidChange<Source: DataSource>(in _: Source) {}
 
-    func data<Source: DataSource>(changedIn _: Source.Row, at _: IndexPath, change _: DataChange<Source.Row, IndexPath>,
-                                  in _: Source) {}
+    public func data<Source: DataSource>(changedIn _: Source.Row, at _: IndexPath, change _: DataChange<Source.Row, IndexPath>,
+                                         in _: Source) {}
 
-    func data<Source: DataSource>(changedIn _: Source.Section?, at _: Int, change _: DataChange<Source.Section?, Int>,
-                                  in _: Source) {}
+    public func data<Source: DataSource>(changedIn _: Source.Section?, at _: Int, change _: DataChange<Source.Section?, Int>,
+                                         in _: Source) {}
 }

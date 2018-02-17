@@ -19,7 +19,7 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
 
     private let respectsCollapsedState: Bool
 
-    lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
+    public private(set) lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
 
     public weak var delegate: DataSourceSectionDelegate?
 
@@ -34,15 +34,15 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
         controller.delegate = fetchedResultControllerDelegateHelper
     }
 
-    private(set) lazy var controller: NSFetchedResultsController<CourseState> = NSFetchedResultsController(
-        fetchRequest: semester.coursesStatesFetchRequest, managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil,
-        cacheName: nil)
+    public private(set) lazy var controller: NSFetchedResultsController<CourseState> = NSFetchedResultsController(
+        fetchRequest: semester.coursesStatesFetchRequest, managedObjectContext: coreDataService.viewContext,
+        sectionNameKeyPath: nil, cacheName: nil)
 
-    func row(from object: CourseState) -> Course {
+    public func row(from object: CourseState) -> Course {
         return object.course
     }
 
-    func object(from row: Course) -> CourseState {
+    public func object(from row: Course) -> CourseState {
         return row.state
     }
 

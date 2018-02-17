@@ -13,7 +13,7 @@ public final class AnnouncementListViewModel: FetchedResultsControllerDataSource
 
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
 
-    lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
+    public private(set) lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
 
     public weak var delegate: DataSourceSectionDelegate?
 
@@ -25,7 +25,7 @@ public final class AnnouncementListViewModel: FetchedResultsControllerDataSource
         controller.delegate = fetchedResultControllerDelegateHelper
     }
 
-    private(set) lazy var controller: NSFetchedResultsController<Announcement> = NSFetchedResultsController(
+    public private(set) lazy var controller: NSFetchedResultsController<Announcement> = NSFetchedResultsController(
         fetchRequest: course.unexpiredAnnouncementsFetchRequest, managedObjectContext: coreDataService.viewContext,
         sectionNameKeyPath: nil, cacheName: nil)
 

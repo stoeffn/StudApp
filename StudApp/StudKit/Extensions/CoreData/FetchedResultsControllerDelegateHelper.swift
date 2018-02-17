@@ -8,28 +8,28 @@
 
 import CoreData
 
-final class FetchedResultsControllerDelegateHelper: NSObject, NSFetchedResultsControllerDelegate {
+public final class FetchedResultsControllerDelegateHelper: NSObject, NSFetchedResultsControllerDelegate {
     private weak var delegate: FetchedResultsControllerDelegate?
 
-    init(delegate: FetchedResultsControllerDelegate) {
+    public init(delegate: FetchedResultsControllerDelegate) {
         self.delegate = delegate
     }
 
-    func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?,
-                    for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+    public func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?,
+                           for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         delegate?.controller(didChange: anObject, at: indexPath, for: type, newIndexPath: newIndexPath)
     }
 
-    func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo,
-                    atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+    public func controller(_: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo,
+                           atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
         delegate?.controller(didChange: sectionInfo, atSectionIndex: sectionIndex, for: type)
     }
 
-    func controllerWillChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
+    public func controllerWillChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
         delegate?.controllerWillChangeContent()
     }
 
-    func controllerDidChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
+    public func controllerDidChangeContent(_: NSFetchedResultsController<NSFetchRequestResult>) {
         delegate?.controllerDidChangeContent()
     }
 }

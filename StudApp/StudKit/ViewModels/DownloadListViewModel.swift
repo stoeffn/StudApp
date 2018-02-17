@@ -19,7 +19,7 @@ public final class DownloadListViewModel: FetchedResultsControllerDataSource {
 
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
 
-    lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
+    public private(set) lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
 
     public weak var delegate: DataSourceDelegate?
 
@@ -28,19 +28,19 @@ public final class DownloadListViewModel: FetchedResultsControllerDataSource {
         controller.delegate = fetchedResultControllerDelegateHelper
     }
 
-    private(set) lazy var controller: NSFetchedResultsController<FileState> = NSFetchedResultsController(
+    public private(set) lazy var controller: NSFetchedResultsController<FileState> = NSFetchedResultsController(
         fetchRequest: File.downloadedStatesFetchRequest, managedObjectContext: coreDataService.viewContext,
         sectionNameKeyPath: "file.course.title", cacheName: nil)
 
-    func section(from sectionInfo: NSFetchedResultsSectionInfo) -> Course? {
+    public func section(from sectionInfo: NSFetchedResultsSectionInfo) -> Course? {
         return (sectionInfo.objects?.first as? FileState)?.file.course
     }
 
-    func row(from object: FileState) -> File {
+    public func row(from object: FileState) -> File {
         return object.file
     }
 
-    func object(from row: File) -> FileState {
+    public func object(from row: File) -> FileState {
         return row.state
     }
 

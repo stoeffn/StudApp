@@ -8,7 +8,7 @@
 
 import CoreData
 
-protocol FetchedResultsControllerDelegate: class {
+public protocol FetchedResultsControllerDelegate: class {
     func controller(didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType,
                     newIndexPath: IndexPath?)
 

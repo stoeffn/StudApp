@@ -15,7 +15,7 @@ public final class EventListViewModel: FetchedResultsControllerDataSource {
 
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
 
-    lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
+    public private(set) lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
 
     public weak var delegate: DataSourceDelegate?
 
@@ -27,12 +27,12 @@ public final class EventListViewModel: FetchedResultsControllerDataSource {
         controller.delegate = fetchedResultControllerDelegateHelper
     }
 
-    private(set) lazy var controller: NSFetchedResultsController<Event>
+    public private(set) lazy var controller: NSFetchedResultsController<Event>
         = NSFetchedResultsController(fetchRequest: course.eventsFetchRequest,
                                      managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: "daysSince1970",
                                      cacheName: nil)
 
-    func section(from sectionInfo: NSFetchedResultsSectionInfo) -> Section? {
+    public func section(from sectionInfo: NSFetchedResultsSectionInfo) -> Section? {
         return (sectionInfo.objects?.first as? Event)?.startsAt.startOfDay
     }
 
