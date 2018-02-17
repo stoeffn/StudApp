@@ -66,6 +66,7 @@ extension SemesterResponse {
         semester.endsAt = endsAt
         semester.coursesBeginAt = coursesBeginAt
         semester.coursesEndAt = coursesEndAt
+        semester.summary = summary
         semester.state.isHidden = isNew ? !semester.isCurrent : semester.state.isHidden
         return semester
     }

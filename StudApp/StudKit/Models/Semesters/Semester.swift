@@ -18,6 +18,7 @@ public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDUpd
     @NSManaged public var endsAt: Date
     @NSManaged public var coursesBeginAt: Date
     @NSManaged public var coursesEndAt: Date
+    @NSManaged public var summary: String?
 
     @NSManaged public var courses: Set<Course>
     @NSManaged public var state: SemesterState

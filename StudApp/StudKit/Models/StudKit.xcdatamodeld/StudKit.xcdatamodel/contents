@@ -104,6 +104,7 @@
         <attribute name="coursesEndAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="endsAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" attributeType="String" minValueString="1" syncable="YES"/>
+        <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <relationship name="courses" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="semesters" inverseEntity="Course" syncable="YES"/>
         <relationship name="state" maxCount="1" deletionRule="Cascade" destinationEntity="SemesterState" inverseName="semester" inverseEntity="SemesterState" syncable="YES"/>
@@ -152,7 +153,7 @@
         <element name="Event" positionX="-8703" positionY="-2070" width="128" height="180"/>
         <element name="File" positionX="-8381" positionY="-1971" width="128" height="240"/>
         <element name="FileState" positionX="-8199" positionY="-1836" width="128" height="135"/>
-        <element name="Semester" positionX="-8748" positionY="-2188" width="128" height="165"/>
+        <element name="Semester" positionX="-8748" positionY="-2188" width="128" height="180"/>
         <element name="SemesterState" positionX="-8910" positionY="-2121" width="128" height="150"/>
         <element name="User" positionX="-8748" positionY="-1924" width="128" height="195"/>
     </elements>
