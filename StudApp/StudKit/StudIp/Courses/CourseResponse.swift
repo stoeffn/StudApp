@@ -73,7 +73,6 @@ extension CourseResponse {
         let endSemester = try Semester.fetch(byId: endSemesterId, in: context)
         let semesters = try Semester.fetch(from: beginSemester, to: endSemester, in: context)
         let lecturers = try self.lecturers.map { try $0.coreDataObject(in: context) }
-        course.id = id
         course.number = number
         course.title = title
         course.subtitle = subtitle

@@ -67,7 +67,6 @@ extension UserResponse {
     @discardableResult
     func coreDataObject(in context: NSManagedObjectContext) throws -> User {
         let (user, _) = try User.fetch(byId: id, orCreateIn: context)
-        user.id = id
         user.username = username
         user.givenName = givenName
         user.familyName = familyName

@@ -64,7 +64,6 @@ extension EventResponse {
     @discardableResult
     func coreDataObject(course: Course, in context: NSManagedObjectContext) throws -> Event {
         let (event, _) = try Event.fetch(byId: id, orCreateIn: context)
-        event.id = id
         event.course = course
         event.startsAt = startsAt
         event.endsAt = endsAt

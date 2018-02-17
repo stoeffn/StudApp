@@ -69,7 +69,6 @@ extension AnnouncementResponse {
     func coreDataObject(in context: NSManagedObjectContext) throws -> Announcement {
         let (announcement, _) = try Announcement.fetch(byId: id, orCreateIn: context)
         let courses = try Course.fetch(byIds: courseIds, in: context)
-        announcement.id = id
         announcement.courses = Set(courses)
         announcement.user = try User.fetch(byId: userId, in: context)
         announcement.createdAt = createdAt

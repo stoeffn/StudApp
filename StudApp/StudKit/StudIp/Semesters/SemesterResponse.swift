@@ -60,7 +60,6 @@ extension SemesterResponse {
     @discardableResult
     func coreDataObject(in context: NSManagedObjectContext) throws -> Semester {
         let (semester, isNew) = try Semester.fetch(byId: id, orCreateIn: context)
-        semester.id = id
         semester.title = title
         semester.beginsAt = beginsAt
         semester.endsAt = endsAt

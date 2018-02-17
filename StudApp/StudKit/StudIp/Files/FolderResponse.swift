@@ -67,7 +67,6 @@ extension FolderResponse {
         let (file, _) = try File.fetch(byId: id, orCreateIn: context)
         let folders = try self.folders(file: file, course: course, in: context)
         let documents = try self.documents(file: file, course: course, in: context)
-        file.id = id
         file.typeIdentifier = kUTTypeFolder as String
         file.parent = parent
         file.course = course

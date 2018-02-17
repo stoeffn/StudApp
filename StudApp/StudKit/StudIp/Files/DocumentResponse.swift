@@ -65,7 +65,6 @@ extension DocumentResponse {
     @discardableResult
     func coreDataObject(course: Course, parent: File, in context: NSManagedObjectContext) throws -> File {
         let (file, _) = try File.fetch(byId: id, orCreateIn: context)
-        file.id = id
         file.typeIdentifier = typeIdentifier
         file.course = course
         file.parent = parent
