@@ -111,12 +111,11 @@ extension FolderResponseTests {
         }
     """.data(using: .utf8)!
 
-    static let rootFolder = FolderResponse(id: "F0", courseId: "C0", folders: [emptyFolder], documents: [])
+    static let rootFolder = FolderResponse(id: "F0", folders: [emptyFolder], documents: [])
 
-    static let emptyFolder = FolderResponse(id: "F1", courseId: "C0", parentId: "F0", name: "Empty")
+    static let emptyFolder = FolderResponse(id: "F1", name: "Empty")
 
-    static let folder = FolderResponse(id: "F2", courseId: "C0", parentId: "F0", userId: "U0", name: "Name",
-                                       createdAt: Date(timeIntervalSince1970: 1), modifiedAt: Date(timeIntervalSince1970: 2),
-                                       summary: "Sümmary",
+    static let folder = FolderResponse(id: "F2", userId: "U0", name: "Name", createdAt: Date(timeIntervalSince1970: 1),
+                                       modifiedAt: Date(timeIntervalSince1970: 2), summary: "Sümmary",
                                        documents: [DocumentResponseTests.document1])
 }

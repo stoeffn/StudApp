@@ -49,7 +49,7 @@ extension DocumentResponse: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
-        userId = try container.decodeIfPresent(String.self, forKey: .userId)
+        userId = try container.decodeIfPresent(String.self, forKey: .userId)?.nilWhenEmpty
         name = try container.decode(String.self, forKey: .name)
         createdAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .createdAt)
         modifiedAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .modifiedAt)

@@ -21,6 +21,8 @@ final class AnnouncementResponseTests: XCTestCase {
 
         try! CourseResponse(id: "C0").coreDataObject(in: context)
         try! CourseResponse(id: "C1").coreDataObject(in: context)
+
+        try! UserResponse(id: "U0").coreDataObject(in: context)
     }
 
     // MARK: - Coding

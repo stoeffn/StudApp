@@ -11,7 +11,6 @@ import MobileCoreServices
 
 struct FolderResponse: IdentifiableResponse {
     let id: String
-    let courseId: String
     let userId: String?
     let name: String
     let createdAt: Date
@@ -20,11 +19,9 @@ struct FolderResponse: IdentifiableResponse {
     let folders: Set<FolderResponse>?
     let documents: Set<DocumentResponse>?
 
-    init(id: String, courseId: String, userId: String? = nil, name: String = "",
-         createdAt: Date = .distantPast, modifiedAt: Date = .distantPast, summary: String? = nil,
-         folders: Set<FolderResponse>? = nil, documents: Set<DocumentResponse>? = nil) {
+    init(id: String, userId: String? = nil, name: String = "", createdAt: Date = .distantPast, modifiedAt: Date = .distantPast,
+         summary: String? = nil, folders: Set<FolderResponse>? = nil, documents: Set<DocumentResponse>? = nil) {
         self.id = id
-        self.courseId = courseId
         self.userId = userId
         self.name = name
         self.createdAt = createdAt
@@ -40,7 +37,6 @@ struct FolderResponse: IdentifiableResponse {
 extension FolderResponse: Decodable {
     enum CodingKeys: String, CodingKey {
         case id
-        case courseId = "range_id"
         case userId = "user_id"
         case name
         case createdAt = "mkdate"
@@ -53,7 +49,6 @@ extension FolderResponse: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
-        courseId = try container.decode(String.self, forKey: .courseId)
         userId = try container.decodeIfPresent(String.self, forKey: .userId)?.nilWhenEmpty
         name = try container.decode(String.self, forKey: .name)
         createdAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .createdAt)
