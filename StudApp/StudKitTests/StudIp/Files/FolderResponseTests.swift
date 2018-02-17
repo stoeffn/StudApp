@@ -61,6 +61,12 @@ final class FolderResponseTests: XCTestCase {
         XCTAssertEqual(folder.documents?.count, 1)
     }
 
+    func testInit_RootFolderResponse() {
+        let folder = try! decoder.decode(FolderResponse.self, fromResource: "rootFolder")
+        XCTAssertEqual(folder.folders?.count, 19)
+        XCTAssertEqual(folder.documents?.count, 1)
+    }
+
     // MARK: - Converting to Core Data Objects
 
     func testCoreDataObject_RootFolder() {

@@ -44,6 +44,11 @@ final class SemesterResponseTests: XCTestCase {
         XCTAssertNil(semester.summary)
     }
 
+    func testInit_SemesterCollection() {
+        let collection = try! decoder.decode(CollectionResponse<SemesterResponse>.self, fromResource: "semesterCollection")
+        XCTAssertEqual(collection.items.count, 20)
+    }
+
     // MARK: - Converting to a Core Data Object
 
     func testCoreDataObject_Semester0() {

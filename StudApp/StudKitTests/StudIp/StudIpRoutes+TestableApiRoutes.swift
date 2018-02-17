@@ -12,8 +12,6 @@ extension StudIpRoutes: TestableApiRoutes {
     func testData(for parameters: [URLQueryItem]) throws -> Data {
         let offset = parameters.filter({ $0.name == "offset" }).first?.value ?? "0"
         switch self {
-        case .discovery:
-            return Data(fromJsonResource: "disovery")
         case .semesters:
             return Data(fromJsonResource: "semesterCollection")
         case .courses:
@@ -22,7 +20,7 @@ extension StudIpRoutes: TestableApiRoutes {
             case "20": return Data(fromJsonResource: "courseCollection+20")
             default: fatalError("No Mock API data for route '\(self)' and offset '\(offset)'.")
             }
-        case .filesInCourse:
+        case .rootFolderForCourse:
             return Data(fromJsonResource: "fileCollection")
         case .eventsInCourse:
             return Data(fromJsonResource: "eventCollection")
