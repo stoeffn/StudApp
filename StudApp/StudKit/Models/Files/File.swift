@@ -178,15 +178,15 @@ public extension File {
 
 extension File {
     public var keywords: Set<String> {
-        let fileKeyWords = [owner?.givenName, owner?.familyName].flatMap { $0 }.set
-        return fileKeyWords.union(course.keywords)
+        let fileKeywords = [owner?.givenName, owner?.familyName].flatMap { $0 }
+        return Set(fileKeywords).union(course.keywords)
     }
 
     public var searchableItemAttributes: CSSearchableItemAttributeSet {
         let attributes = CSSearchableItemAttributeSet(itemContentType: typeIdentifier)
 
         attributes.displayName = title
-        attributes.keywords = keywords.array
+        attributes.keywords = Array(keywords)
         attributes.relatedUniqueIdentifier = objectIdentifier.rawValue
         attributes.title = title
 

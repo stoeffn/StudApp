@@ -63,7 +63,7 @@ final class FolderResponseTests: XCTestCase {
 
     func testInit_RootFolderResponse() {
         let folder = try! decoder.decode(FolderResponse.self, fromResource: "rootFolder")
-        XCTAssertEqual(folder.folders?.count, 19)
+        XCTAssertEqual(folder.folders?.count, 72)
         XCTAssertEqual(folder.documents?.count, 1)
     }
 

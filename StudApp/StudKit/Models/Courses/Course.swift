@@ -99,17 +99,17 @@ extension Course: FilesContaining {
 
 extension Course {
     public var keywords: Set<String> {
-        let courseKeyWords = [number].flatMap { $0 }.set
-        let lecturersKeywords = lecturers.flatMap { [$0.givenName, $0.familyName] }.set
-        let semestersKeywords = semesters.map { $0.title }.set
-        return courseKeyWords.union(lecturersKeywords).union(semestersKeywords)
+        let courseKeywords = [number].flatMap { $0 }
+        let lecturersKeywords = lecturers.flatMap { [$0.givenName, $0.familyName] }
+        let semestersKeywords = semesters.map { $0.title }
+        return Set(courseKeywords).union(lecturersKeywords).union(semestersKeywords)
     }
 
     public var searchableItemAttributes: CSSearchableItemAttributeSet {
         let attributes = CSSearchableItemAttributeSet(itemContentType: kUTTypeFolder as String)
 
         attributes.displayName = title
-        attributes.keywords = keywords.array
+        attributes.keywords = Array(keywords)
         attributes.relatedUniqueIdentifier = objectIdentifier.rawValue
         attributes.title = title
 
