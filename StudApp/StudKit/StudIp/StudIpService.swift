@@ -59,7 +59,7 @@ public final class StudIpService {
         return api.authorizing?.isAuthorized ?? false
     }
 
-    func signIn(apiUrl: URL, authorizing: ApiAuthorizing, handler: @escaping ResultHandler<User>) {
+    func signIn(apiUrl: URL, authorizing: ApiAuthorizing, completion: @escaping ResultHandler<User>) {
         signOut()
 
         api.baseUrl = apiUrl
@@ -73,14 +73,14 @@ public final class StudIpService {
         User.updateCurrent(in: coreDataService.viewContext) { result in
             guard result.isSuccess else {
                 self.signOut()
-                return handler(result)
+                return completion(result)
             }
 
             if #available(iOSApplicationExtension 11.0, *) {
                 NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
             }
 
-            handler(result)
+            completion(result)
         }
     }
 

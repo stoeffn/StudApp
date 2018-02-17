@@ -55,11 +55,11 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
     }
 
     /// Updates data from the server.
-    public func update(handler: ResultHandler<Void>? = nil) {
+    public func update(completion: ResultHandler<Void>? = nil) {
         coreDataService.performBackgroundTask { context in
             Course.update(in: context) { result in
                 try? context.saveAndWaitWhenChanged()
-                handler?(result.map { _ in })
+                completion?(result.map { _ in })
             }
         }
     }

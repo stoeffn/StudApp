@@ -17,19 +17,19 @@ extension Api {
     ///   - itemsPerRequest: Number of items you want to receive from the API in one response. Defaults to
     ///                      `defaultNumberOfItemsPerRequest`.
     ///   - ignoreLastAccess: Whether to ignore the route's expiry policy. Defaults to `false`.
-    ///   - handler: Completion handler receiving a result with the decoded collection response containing a list of decoded
-    ///              data.
+    ///   - completion: Completion handler receiving a result with the decoded collection response containing a list of decoded
+    ///                 data.
     /// - Returns: URL task in its resumed state or `nil` if the route is not expired.
     /// - Precondition: `route`'s type must not be `nil`.
     /// - Remark: At the moment, this method supports JSON decoding only.
     @discardableResult
     func requestCollectionPage<Result>(_ route: Routes, afterOffset offset: Int = 0,
                                        itemsPerRequest: Int = defaultNumberOfItemsPerRequest, ignoreLastAccess: Bool = false,
-                                       handler: @escaping ResultHandler<CollectionResponse<Result>>) -> URLSessionTask? {
+                                       completion: @escaping ResultHandler<CollectionResponse<Result>>) -> URLSessionTask? {
         let offsetQuery = URLQueryItem(name: "offset", value: String(offset))
         let limitQuery = URLQueryItem(name: "limit", value: String(itemsPerRequest))
         return requestDecoded(route, parameters: [offsetQuery, limitQuery], ignoreLastAccess: ignoreLastAccess) { result in
-            handler(result)
+            completion(result)
         }
     }
 
@@ -42,18 +42,18 @@ extension Api {
     ///                      `defaultNumberOfItemsPerRequest`.
     ///   - initialItems: Items that were already received from the API. As this method calls itself recursively, this argument
     ///                   is used for appending data from previous requests. Usually, you should use its default empty value.
-    ///   - handler: Completion handler receiving a result with the decoded collection contents.
+    ///   - completion: Completion handler receiving a result with the decoded collection contents.
     /// - Precondition: `route`'s type must not be `nil`.
     /// - Remark: At the moment, this method supports JSON decoding only. Due to issueing multiple requests, this method does
     ///           not return a single session task.
     func requestCollection<Value: Decodable>(_ route: Routes, afterOffset offset: Int = 0,
                                              itemsPerRequest: Int = defaultNumberOfItemsPerRequest,
                                              ignoreLastAccess: Bool = false, items initialItems: [Value] = [],
-                                             handler: @escaping ResultHandler<[Value]>) {
+                                             completion: @escaping ResultHandler<[Value]>) {
         requestCollectionPage(route, afterOffset: offset, itemsPerRequest: itemsPerRequest,
                               ignoreLastAccess: ignoreLastAccess) { (result: Result<CollectionResponse<Value>>) in
             guard let collection = result.value else {
-                defer { handler(.failure(result.error)) }
+                defer { completion(.failure(result.error)) }
                 guard case Api.Errors.routeNotExpired? = result.error else { return }
                 return self.removeLastAccess(for: route)
             }
@@ -61,9 +61,9 @@ extension Api {
             let items = initialItems + collection.items
 
             if let offset = collection.pagination.nextOffset {
-                self.requestCollection(route, afterOffset: offset, ignoreLastAccess: true, items: items, handler: handler)
+                self.requestCollection(route, afterOffset: offset, ignoreLastAccess: true, items: items, completion: completion)
             } else {
-                handler(result.map { _ in items })
+                completion(result.map { _ in items })
             }
         }
     }

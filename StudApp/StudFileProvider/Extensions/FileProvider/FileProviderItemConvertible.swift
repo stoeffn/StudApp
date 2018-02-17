@@ -19,7 +19,7 @@ public protocol FileProviderItemConvertible: class {
 
     func localUrl(in directory: BaseDirectories) -> URL
 
-    func provide(at url: URL, handler: ((Error?) -> Void)?)
+    func provide(at url: URL, completion: ((Error?) -> Void)?)
 }
 
 // MARK: - Operating on File Items

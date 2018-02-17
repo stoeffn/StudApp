@@ -138,7 +138,7 @@ final class FileProviderExtension: NSFileProviderExtension {
             return
         }
 
-        object.provide(at: url, handler: completionHandler)
+        object.provide(at: url, completion: completionHandler)
     }
 
     override func stopProvidingItem(at url: URL) {

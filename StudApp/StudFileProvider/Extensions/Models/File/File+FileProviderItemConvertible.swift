@@ -18,13 +18,13 @@ extension File: FileProviderItemConvertible {
         return FileItem(from: self)
     }
 
-    public func provide(at url: URL, handler: ((Error?) -> Void)?) {
+    public func provide(at url: URL, completion: ((Error?) -> Void)?) {
         guard !isFolder else {
             do {
                 try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
-                handler?(nil)
+                completion?(nil)
             } catch {
-                handler?(error)
+                completion?(error)
             }
             return
         }
@@ -32,9 +32,9 @@ extension File: FileProviderItemConvertible {
         download { result in
             guard result.isSuccess else {
                 if #available(iOSApplicationExtension 11.0, *) {
-                    handler?(NSFileProviderError(.serverUnreachable))
+                    completion?(NSFileProviderError(.serverUnreachable))
                 } else {
-                    handler?(FileProviderExtension.Errors.serverUnreachable)
+                    completion?(FileProviderExtension.Errors.serverUnreachable)
                 }
                 return
             }
@@ -43,9 +43,9 @@ extension File: FileProviderItemConvertible {
                 try? FileManager.default.removeItem(at: url)
                 try FileManager.default.createIntermediateDirectories(forFileAt: url)
                 try FileManager.default.copyItem(at: self.localUrl(in: .downloads), to: url)
-                handler?(nil)
+                completion?(nil)
             } catch {
-                handler?(error)
+                completion?(error)
             }
         }
     }

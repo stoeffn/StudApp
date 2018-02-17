@@ -11,13 +11,13 @@ import CoreSpotlight
 import FileProvider
 
 extension Course {
-    public static func update(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Course]>) {
+    public static func update(in context: NSManagedObjectContext, completion: @escaping ResultHandler<[Course]>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         guard let userId = studIpService.userId else { return }
 
         studIpService.api.requestCollection(.courses(forUserId: userId)) { (result: Result<[CourseResponse]>) in
             let result = result.map { try update(fetchRequest(), with: $0, in: context) }
-            handler(result)
+            completion(result)
         }
     }
 
@@ -44,7 +44,7 @@ extension Course {
         return courses
     }
 
-    public func updateChildFiles(in context: NSManagedObjectContext, handler: @escaping ResultHandler<File>) {
+    public func updateChildFiles(in context: NSManagedObjectContext, completion: @escaping ResultHandler<File>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestDecoded(.rootFolderForCourse(withId: id)) { (result: Result<FolderResponse>) in
             let result = result.map { response -> File in
@@ -54,11 +54,11 @@ extension Course {
                 context.delete(folder)
                 return folder
             }
-            handler(result)
+            completion(result)
         }
     }
 
-    public func updateAnnouncements(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Announcement]>) {
+    public func updateAnnouncements(in context: NSManagedObjectContext, completion: @escaping ResultHandler<[Announcement]>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestCollection(.announcementsInCourse(withId: id)) { (result: Result<[AnnouncementResponse]>) in
             let result = result.map { announcementResponses in
@@ -66,11 +66,11 @@ extension Course {
                     try response.coreDataObject(in: context)
                 }
             }
-            handler(result)
+            completion(result)
         }
     }
 
-    public func updateEvents(in context: NSManagedObjectContext, handler: @escaping ResultHandler<[Event]>) {
+    public func updateEvents(in context: NSManagedObjectContext, completion: @escaping ResultHandler<[Event]>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestCollection(.eventsInCourse(withId: id)) { (result: Result<[EventResponse]>) in
             let result = result.map { eventResponses -> [Event] in
@@ -79,7 +79,7 @@ extension Course {
                     try response.coreDataObject(course: course, in: context)
                 }
             }
-            handler(result)
+            completion(result)
         }
     }
 

@@ -42,7 +42,7 @@ public final class SignInViewModel {
 
     // MARK: - Providing Metadata
 
-    public func organizationIcon(handler: @escaping ResultHandler<UIImage>) {
+    public func organizationIcon(completion: @escaping ResultHandler<UIImage>) {
         let container = CKContainer(identifier: App.iCloudContainerIdentifier)
         container.database(with: .public).fetch(withRecordID: organization.recordId) { record, error in
             DispatchQueue.main.async {
@@ -50,34 +50,34 @@ public final class SignInViewModel {
                     let record = record,
                     var organization = OrganizationRecord(from: record),
                     let icon = organization.icon
-                else { return handler(.failure(error)) }
+                else { return completion(.failure(error)) }
 
-                handler(.success(icon))
+                completion(.success(icon))
             }
         }
     }
 
     // MARK: - Signing In
 
-    public func authorizationUrl(handler: @escaping ResultHandler<URL>) {
+    public func authorizationUrl(completion: @escaping ResultHandler<URL>) {
         try? oAuth1.createRequestToken { result in
             guard result.isSuccess else {
-                return handler(.failure(result.error ?? Errors.invalidConsumerKey))
+                return completion(.failure(result.error ?? Errors.invalidConsumerKey))
             }
 
-            handler(result.compactMap { _ in self.oAuth1.authorizationUrl })
+            completion(result.compactMap { _ in self.oAuth1.authorizationUrl })
         }
     }
 
-    public func handleAuthorizationCallback(url: URL, handler: @escaping ResultHandler<Void>) {
+    public func handleAuthorizationCallback(url: URL, completion: @escaping ResultHandler<Void>) {
         try? oAuth1.createAccessToken(fromAuthorizationCallbackUrl: url) { result in
             guard result.isSuccess else {
-                return handler(.failure(result.error ?? Errors.authorizationFailed))
+                return completion(.failure(result.error ?? Errors.authorizationFailed))
             }
 
             self.studIpService.signIn(apiUrl: self.organization.apiUrl, authorizing: self.oAuth1) { result in
                 self.updateSemesters()
-                handler(result.map { _ in () })
+                completion(result.map { _ in () })
             }
         }
     }

@@ -112,38 +112,38 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
     }
 
     /// Creates a request token that can be used for asking a user for permissions.
-    func createRequestToken(handler: @escaping ResultHandler<Void>) throws {
+    func createRequestToken(completion: @escaping ResultHandler<Void>) throws {
         guard !isAuthorized else { throw Errors.alreadyAuthorized }
 
-        api.request(.requestToken) { self.handleResponse(result: $0, handler: handler) }
+        api.request(.requestToken) { self.handleResponse(result: $0, completion: completion) }
     }
 
-    func createAccessToken(fromAuthorizationCallbackUrl url: URL, handler: @escaping ResultHandler<Void>) throws {
+    func createAccessToken(fromAuthorizationCallbackUrl url: URL, completion: @escaping ResultHandler<Void>) throws {
         guard !isAuthorized else { throw Errors.alreadyAuthorized }
 
         guard let verifier = decodeVerifier(fromAuthorizationCallbackUrl: url) else {
             let context = DecodingError.Context(codingPath: [CodingKeys.verifier], debugDescription: "")
             let error = DecodingError.keyNotFound(CodingKeys.verifier, context)
-            return handler(.failure(error))
+            return completion(.failure(error))
         }
         self.verifier = verifier
 
         api.request(.accessToken) { result in
             self.isAuthorized = result.isSuccess
-            self.handleResponse(result: result, handler: handler)
+            self.handleResponse(result: result, completion: completion)
         }
     }
 
     /// Tries to decode the result data as OAuth parameters and updates `token` and `tokenSecret` accordingly.
-    private func handleResponse(result: Result<Data>, handler: @escaping ResultHandler<Void>) {
-        guard let data = result.value else { return handler(.failure(result.error)) }
+    private func handleResponse(result: Result<Data>, completion: @escaping ResultHandler<Void>) {
+        guard let data = result.value else { return completion(.failure(result.error)) }
         do {
             let parameters = try decodeParameters(fromResponseData: data)
             token = parameters[.token]
             tokenSecret = parameters[.tokenSecret]
-            handler(.success(()))
+            completion(.success(()))
         } catch {
-            handler(.failure(error))
+            completion(.failure(error))
         }
     }
 

@@ -22,17 +22,17 @@ public final class MainViewModel {
         return studIpService.isSignedIn
     }
 
-    public func verifyStoreState(handler: @escaping ResultHandler<Routes?>) {
+    public func verifyStoreState(completion: @escaping ResultHandler<Routes?>) {
         storeService.verifyStateWithServer { result in
-            handler(result.map { !$0.isUnlocked ? Routes.store : nil })
+            completion(result.map { !$0.isUnlocked ? Routes.store : nil })
         }
     }
 
     /// Updates the current user if signed in.
-    public func updateCurrentUser(handler: (ResultHandler<User>)? = nil) {
+    public func updateCurrentUser(completion: (ResultHandler<User>)? = nil) {
         User.updateCurrent(in: coreDataService.viewContext) { result in
             try? self.coreDataService.viewContext.saveAndWaitWhenChanged()
-            handler?(result)
+            completion?(result)
         }
     }
 

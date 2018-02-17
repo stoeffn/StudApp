@@ -30,7 +30,7 @@ final class ColorPickerController: UICollectionViewController, Routable {
     func prepareDependencies(for route: Routes) {
         guard case let .colorPicker(_, handler) = route else { fatalError() }
 
-        viewModel = ColorPickerViewModel(handler: handler)
+        viewModel = ColorPickerViewModel(completion: handler)
     }
 
     // MARK: - User Interface

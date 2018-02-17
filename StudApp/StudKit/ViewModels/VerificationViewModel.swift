@@ -11,9 +11,9 @@ public final class VerificationViewModel {
 
     public init() {}
 
-    public func verifyStoreState(handler: @escaping ResultHandler<Bool>) {
+    public func verifyStoreState(completion: @escaping ResultHandler<Bool>) {
         storeService.verifyStateWithServer { result in
-            handler(result.map { $0.isUnlocked })
+            completion(result.map { $0.isUnlocked })
         }
     }
 

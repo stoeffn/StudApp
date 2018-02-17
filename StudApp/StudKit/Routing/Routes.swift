@@ -9,15 +9,15 @@
 import QuickLook
 
 public enum Routes {
-    case about(handler: () -> Void)
+    case about(completion: () -> Void)
 
     case confetti(alert: UIAlertController)
 
-    case settings(handler: (SettingsResult) -> Void)
+    case settings(completion: (SettingsResult) -> Void)
 
-    case signIn(handler: (SignInResult) -> Void)
+    case signIn(completion: (SignInResult) -> Void)
 
-    case signIntoOrganization(OrganizationRecord, handler: (SignInResult) -> Void)
+    case signIntoOrganization(OrganizationRecord, completion: (SignInResult) -> Void)
 
     case store
 
@@ -31,13 +31,13 @@ public enum Routes {
 
     case emptyCourse
 
-    case announcement(Announcement, handler: () -> Void)
+    case announcement(Announcement, completion: () -> Void)
 
     case eventsInCourse(Course)
 
     case folder(File)
 
-    case colorPicker(sender: Any?, handler: (Int, UIColor) -> Void)
+    case colorPicker(sender: Any?, completion: (Int, UIColor) -> Void)
 
     private var destinationStoryboard: UIStoryboard? {
         switch self {

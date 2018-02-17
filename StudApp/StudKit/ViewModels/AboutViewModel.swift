@@ -23,23 +23,23 @@ public final class AboutViewModel: NSObject, SKProductsRequestDelegate {
     // MARK: - Leaving Tips
 
     private var tipProductsRequest: SKProductsRequest?
-    private var tipProductsRequestCompletionHandler: (([SKProduct]) -> Void)?
+    private var tipProductsRequestCompletion: (([SKProduct]) -> Void)?
 
-    public var leaveTipCompletionHandler: ((SKPaymentTransaction) -> Void)?
+    public var leaveTipCompletion: ((SKPaymentTransaction) -> Void)?
 
     public func tipProducts(completion: @escaping ([SKProduct]) -> Void) {
         tipProductsRequest = SKProductsRequest(productIdentifiers: StoreService.tipProductIdentifiers)
         tipProductsRequest?.delegate = self
         tipProductsRequest?.start()
 
-        tipProductsRequestCompletionHandler = completion
+        tipProductsRequestCompletion = completion
     }
 
     public func productsRequest(_: SKProductsRequest, didReceive response: SKProductsResponse) {
-        tipProductsRequestCompletionHandler?(response.products)
+        tipProductsRequestCompletion?(response.products)
 
         tipProductsRequest = nil
-        tipProductsRequestCompletionHandler = nil
+        tipProductsRequestCompletion = nil
     }
 
     public func leaveTip(with product: SKProduct) {
@@ -54,7 +54,7 @@ extension AboutViewModel: SKPaymentTransactionObserver {
     public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
             guard StoreService.tipProductIdentifiers.contains(transaction.payment.productIdentifier) else { continue }
-            leaveTipCompletionHandler?(transaction)
+            leaveTipCompletion?(transaction)
         }
     }
 }

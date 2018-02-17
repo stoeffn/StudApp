@@ -10,10 +10,10 @@ public final class CacheService {
     private lazy var documentInteractionControllers = NSCache<NSURL, UIDocumentInteractionController>()
 
     public func documentInteractionController(forUrl url: URL, name: String,
-                                              handler: @escaping (UIDocumentInteractionController) -> Void) {
+                                              completion: @escaping (UIDocumentInteractionController) -> Void) {
         if let controller = documentInteractionControllers.object(forKey: url as NSURL) {
             controller.name = name
-            return handler(controller)
+            return completion(controller)
         }
 
         DispatchQueue.global(qos: .background).async {
@@ -23,7 +23,7 @@ public final class CacheService {
             DispatchQueue.main.async {
                 self.documentInteractionControllers.setObject(controller, forKey: url as NSURL)
 
-                handler(controller)
+                completion(controller)
             }
         }
     }

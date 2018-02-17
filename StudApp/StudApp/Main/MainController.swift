@@ -33,7 +33,7 @@ final class MainController: UITabBarController {
         super.viewDidAppear(animated)
 
         if !viewModel.isSignedIn {
-            performSegue(withRoute: .signIn(handler: signedIn))
+            performSegue(withRoute: .signIn(completion: signedIn))
         }
     }
 
@@ -104,7 +104,7 @@ final class MainController: UITabBarController {
         }
 
         func showSettingsView(_: UIAlertAction) {
-            performSegue(withRoute: .settings(handler: presentedSettings))
+            performSegue(withRoute: .settings(completion: presentedSettings))
         }
 
         guard let currentUser = viewModel.currentUser else { return }
@@ -131,7 +131,7 @@ final class MainController: UITabBarController {
     private func presentedSettings(result: SettingsResult) {
         presentedViewController?.dismiss(animated: true) {
             if result == .signedOut {
-                self.performSegue(withRoute: .signIn(handler: self.signedIn))
+                self.performSegue(withRoute: .signIn(completion: self.signedIn))
             }
         }
     }

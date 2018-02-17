@@ -10,7 +10,7 @@ import StudKit
 
 final class SettingsController: UITableViewController, Routable {
     private var viewModel: SettingsViewModel!
-    private var completionHandler: ((SettingsResult) -> Void)?
+    private var completion: ((SettingsResult) -> Void)?
 
     // MARK: - Life Cycle
 
@@ -30,7 +30,7 @@ final class SettingsController: UITableViewController, Routable {
 
     func prepareDependencies(for route: Routes) {
         guard case let .settings(handler) = route else { fatalError() }
-        completionHandler = handler
+        completion = handler
     }
 
     // MARK: - Table View Data Source
@@ -85,7 +85,7 @@ final class SettingsController: UITableViewController, Routable {
 
     @IBAction
     func doneButtonTapped(_: Any) {
-        completionHandler?(.none)
+        completion?(.none)
     }
 
     private func removeAllDownloads() {
@@ -102,7 +102,7 @@ final class SettingsController: UITableViewController, Routable {
         let confirmation = UIAlertController(confirmationWithAction: signOutCell.textLabel?.text,
                                              sourceView: signOutCell) { _ in
             self.viewModel.signOut()
-            self.completionHandler?(.signedOut)
+            self.completion?(.signedOut)
         }
         present(confirmation, animated: true, completion: nil)
     }

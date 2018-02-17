@@ -25,12 +25,12 @@ extension User {
         return try fetch(byId: currentUserId, in: context)
     }
 
-    static func updateCurrent(in context: NSManagedObjectContext, handler: @escaping ResultHandler<User>) {
+    static func updateCurrent(in context: NSManagedObjectContext, completion: @escaping ResultHandler<User>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestDecoded(.currentUser) { (result: Result<UserResponse>) in
             let result = result.map { try $0.coreDataObject(in: context) }
             result.value?.makeCurrent()
-            handler(result)
+            completion(result)
         }
     }
 }

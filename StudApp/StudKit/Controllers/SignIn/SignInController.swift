@@ -11,7 +11,7 @@ import SafariServices
 final class SignInController: UIViewController, Routable, SFSafariViewControllerDelegate {
     private var contextService: ContextService!
     private var viewModel: SignInViewModel!
-    private var completionHandler: ((SignInResult) -> Void)?
+    private var completion: ((SignInResult) -> Void)?
 
     // MARK: - Life Cycle
 
@@ -51,9 +51,10 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
     }
 
     func prepareDependencies(for route: Routes) {
-        guard case let .signIntoOrganization(organization, handler) = route else { fatalError() }
+        guard case let .signIntoOrganization(organization, completion) = route else { fatalError() }
+        self.completion = completion
+
         viewModel = SignInViewModel(organization: organization)
-        completionHandler = handler
     }
 
     // MARK: - User Interface
@@ -113,7 +114,7 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
                     self.startAuthorization()
                 }))
                 alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: { _ in
-                    self.completionHandler?(.none)
+                    self.completion?(.none)
                 }))
                 return self.present(alert, animated: true, completion: nil)
             }
@@ -138,7 +139,7 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
             self.authenticationSession = nil
 
             guard let url = url else {
-                self.completionHandler?(.none)
+                self.completion?(.none)
                 return
             }
 
@@ -163,12 +164,12 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
                     self.finishAuthorization(withCallbackUrl: url)
                 }))
                 alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: { _ in
-                    self.completionHandler?(.none)
+                    self.completion?(.none)
                 }))
                 return self.present(alert, animated: true, completion: nil)
             }
 
-            self.completionHandler?(.signedIn)
+            self.completion?(.signedIn)
         }
     }
 
@@ -183,6 +184,6 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
     }
 
     func safariViewControllerDidFinish(_: SFSafariViewController) {
-        completionHandler?(.none)
+        completion?(.none)
     }
 }

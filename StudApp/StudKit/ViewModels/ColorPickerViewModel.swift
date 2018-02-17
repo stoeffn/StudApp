@@ -10,13 +10,11 @@ public final class ColorPickerViewModel: DataSourceSection {
     public typealias Row = (key: Int, value: UIColor)
 
     private let colors: [Row]
+    private var completion: (Int, UIColor) -> Void
 
-    public var handler: (Int, UIColor) -> Void
-
-    public init(handler: @escaping (Int, UIColor) -> Void) {
+    public init(completion: @escaping (Int, UIColor) -> Void) {
         let colors = UI.Colors.pickerColors.enumerated().sorted { $0.element.key < $1.element.key }.map { $1 }
-
-        self.handler = handler
+        self.completion = completion
         self.colors = Array(colors)
     }
 
@@ -29,6 +27,6 @@ public final class ColorPickerViewModel: DataSourceSection {
     }
 
     public func didSelectColor(atIndex index: Int) {
-        handler(colors[index].key, colors[index].value)
+        completion(colors[index].key, colors[index].value)
     }
 }
