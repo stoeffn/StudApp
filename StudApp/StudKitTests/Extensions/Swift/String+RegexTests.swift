@@ -10,7 +10,23 @@ import XCTest
 @testable import StudKit
 
 final class StringRegexTests: XCTestCase {
-    func testReplaceMatches() {
-        XCTAssertEqual("This is an 'awesome' test!".replacingMatches(" is ", with: " was "), "This was an 'awesome' test!")
+    func testReplacingMatches_Match() {
+        XCTAssertEqual(try! "This is an 'awesome' test!".replacingMatches(for: " is ", with: " was "), "This was an 'awesome' test!")
+    }
+
+    func testReplacingMatches_Throw() {
+        XCTAssertThrowsError(try "This is another test.".replacingMatches(for: "[", with: "abc"))
+    }
+
+    func testFirstMatch_Match() {
+        XCTAssertEqual(try! "This is another test.".firstMatch(for: " [a-z]+ "), " is ")
+    }
+
+    func testFirstMatch_NoMatch() {
+        XCTAssertNil(try! "This is another test.".firstMatch(for: "[0-9]"))
+    }
+
+    func testFirstMatch_Throw() {
+        XCTAssertThrowsError(try "This is another test.".firstMatch(for: "["))
     }
 }
