@@ -6,6 +6,8 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+@testable import StudKit
+
 extension EventResponseTests {
     static let eventData = """
         {
@@ -48,4 +50,8 @@ extension EventResponseTests {
             "canceled": "Weihnachtsferien 2016"
         }
     """.data(using: .utf8)!
+
+    static let event0 = EventResponse(id: "E0", startsAt: Date(timeIntervalSince1970: 1), endsAt: Date(timeIntervalSince1970: 2),
+                                      isCanceled: true, cancellationReason: "Reason", location: "Location", summary: "Summary",
+                                      category: "Category")
 }

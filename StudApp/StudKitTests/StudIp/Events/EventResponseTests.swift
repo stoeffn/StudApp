@@ -6,11 +6,21 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import CoreData
 import XCTest
 @testable import StudKit
 
 final class EventResponseTests: XCTestCase {
     let decoder = ServiceContainer.default[JSONDecoder.self]
+    var context: NSManagedObjectContext!
+
+    // MARK: - Life Cycle
+
+    override func setUp() {
+        context = StudKitTestsServiceProvider(currentTarget: .tests).provideCoreDataService().viewContext
+    }
+
+    // MARK: - Coding
 
     func testInit_EventData_Event() {
         let event = try! decoder.decode(EventResponse.self, from: EventResponseTests.eventData)
@@ -51,5 +61,21 @@ final class EventResponseTests: XCTestCase {
     func testInit_EventCollection_Events() {
         let collection = try! decoder.decode(CollectionResponse<EventResponse>.self, fromResource: "eventCollection")
         XCTAssertEqual(collection.items.count, 63)
+    }
+
+    // MARK: - Converting to a Core Data Object
+
+    func testCoreDataObject_Event0() {
+        let course = try! CourseResponse(id: "C0").coreDataObject(in: context)
+        let event = try! EventResponseTests.event0.coreDataObject(course: course, in: context)
+        XCTAssertEqual(event.id, "E0")
+        XCTAssertEqual(event.course.id, "C0")
+        XCTAssertEqual(event.startsAt, Date(timeIntervalSince1970: 1))
+        XCTAssertEqual(event.endsAt, Date(timeIntervalSince1970: 2))
+        XCTAssertTrue(event.isCanceled)
+        XCTAssertEqual(event.cancellationReason, "Reason")
+        XCTAssertEqual(event.location, "Location")
+        XCTAssertEqual(event.summary, "Summary")
+        XCTAssertEqual(event.category, "Category")
     }
 }
