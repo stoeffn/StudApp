@@ -43,33 +43,29 @@ final class ResultApiTests: XCTestCase {
         XCTAssertTrue(result.isFailure)
     }
 
-    func testReplacingValue_Value_Success() {
-        let result = Result(42, statusCode: 200)
-            .replacingValue("Hello, World!")
+    func testMap_Value_Success() {
+        let result = Result(42, statusCode: 200).map { _ in "Hello, World!" }
         XCTAssertEqual(result.value, "Hello, World!")
         XCTAssertTrue(result.isSuccess)
         XCTAssertFalse(result.isFailure)
     }
 
-    func testReplacingValue_Nil_Failure() {
-        let result: Result<String> = Result(42, statusCode: 200)
-            .replacingValue(nil)
+    func testCompactMap_Nil_Failure() {
+        let result: Result<String> = Result(42, statusCode: 200).compactMap { _ in nil }
         XCTAssertNil(result.value)
         XCTAssertFalse(result.isSuccess)
         XCTAssertTrue(result.isFailure)
     }
 
     func testDecoded_Data_Sucess() {
-        let result = Result("{\"id\": 42}".data(using: .utf8), statusCode: 200)
-            .decoded(Test.self)
+        let result = Result("{\"id\": 42}".data(using: .utf8), statusCode: 200).decoded(Test.self)
         XCTAssertEqual(result.value?.id, 42)
         XCTAssertTrue(result.isSuccess)
         XCTAssertFalse(result.isFailure)
     }
 
     func testDecoded_Data_Failure() {
-        let result = Result("Hello, World!".data(using: .utf8), statusCode: 200)
-            .decoded(Test.self)
+        let result = Result("Hello, World!".data(using: .utf8), statusCode: 200).decoded(Test.self)
         XCTAssertNil(result.value)
         XCTAssertFalse(result.isSuccess)
         XCTAssertTrue(result.isFailure)
