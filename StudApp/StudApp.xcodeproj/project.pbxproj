@@ -36,6 +36,7 @@
 		24390EF42038A7A80064E49A /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361551FAA63DF00BBBAED /* UserTests.swift */; };
 		24390EF52038AB170064E49A /* Course+StudIpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3613F1FAA63C500BBBAED /* Course+StudIpTests.swift */; };
 		24390EF62038AF840064E49A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2448D4131FA8DA2400DAB97E /* Assets.xcassets */; };
+		24390EF72038C1150064E49A /* StudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2448D43F1FA8DB1E00DAB97E /* StudKit.framework */; };
 		243CC2BE1FDF0A7F00FE7376 /* CDSortable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CC2BD1FDF0A7F00FE7376 /* CDSortable.swift */; };
 		243CC2C01FDF19BB00FE7376 /* UserActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CC2BF1FDF19BB00FE7376 /* UserActivities.swift */; };
 		243CC2C61FDF464800FE7376 /* EmptyCourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CC2C51FDF464800FE7376 /* EmptyCourseController.swift */; };
@@ -726,6 +727,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24390EF72038C1150064E49A /* StudKit.framework in Frameworks */,
 				2446F9751FC8D1C400D6AB6C /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
