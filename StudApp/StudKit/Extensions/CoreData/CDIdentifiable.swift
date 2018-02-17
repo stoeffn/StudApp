@@ -13,7 +13,7 @@ public protocol CDIdentifiable {
     static var entity: ObjectIdentifier.Entites { get }
 
     /// Identifier that uniquely identifies this object.
-    var id: String { get }
+    var id: String { get set }
 }
 
 // MARK: - Utilities
@@ -37,6 +37,13 @@ public extension CDIdentifiable where Self: NSFetchRequestResult {
     }
 }
 
+public extension CDIdentifiable where Self: CDCreatable {
+    init(createWithId id: String, in context: NSManagedObjectContext) {
+        self.init(createIn: context)
+        self.id = id
+    }
+}
+
 public extension CDIdentifiable where Self: NSFetchRequestResult & CDCreatable {
     /// Fetches an object by the identifier given. If there is no match, a new object will be created.
     ///
@@ -46,7 +53,7 @@ public extension CDIdentifiable where Self: NSFetchRequestResult & CDCreatable {
     /// - Returns: Tuple containing the object and a boolean indicating whether it was newly created during this operation.
     static func fetch(byId id: String, orCreateIn context: NSManagedObjectContext) throws -> (Self, isNew: Bool) {
         let result = try fetch(byId: id, in: context).map { ($0, isNew: false) }
-        return result ?? (Self(createIn: context), isNew: true)
+        return result ?? (Self(createWithId: id, in: context), isNew: true)
     }
 }
 

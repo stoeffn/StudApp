@@ -10,7 +10,7 @@ import XCTest
 @testable import StudKit
 
 final class TransformsTests: XCTestCase {
-    // MARK: Transforming Id Paths
+    // MARK: - Transforming Id Paths
 
     func testTransformIdPath_IdPath() {
         XCTAssertEqual(StudIp.transform(idPath: "/api.php/semester/1927f2b86d6b185aa6c6697810ad42f1"),
@@ -39,7 +39,7 @@ final class TransformsTests: XCTestCase {
         XCTAssertEqual(StudIp.transform(idPath: "U20"), "U20")
     }
 
-    // MARK: Transforming Course Numbers
+    // MARK: - Transforming Course Numbers
 
     func testTransformCourseNumber_Padding() {
         XCTAssertEqual(StudIp.transform(courseNumber: "   123 "), "123")
@@ -49,7 +49,7 @@ final class TransformsTests: XCTestCase {
         XCTAssertEqual(StudIp.transform(courseNumber: "    "), nil)
     }
 
-    // MARK: Transforming Course Summaries
+    // MARK: - Transforming Course Summaries
 
     func testTransformCourseSummary_Tag() {
         XCTAssertEqual(StudIp.transform(courseSummary: "Test <b>&#64;abc</b> "), "Test @abc")
@@ -67,7 +67,7 @@ final class TransformsTests: XCTestCase {
         XCTAssertEqual(StudIp.transform(courseSummary: " <strong>  T&ouml;st</strong> Literatur: "), "Töst")
     }
 
-    // MARK: Transforming Locations
+    // MARK: - Transforming Locations
 
     func testTransformLocation_Whitespace() {
         XCTAssertEqual(StudIp.transform(location: " Room E001  "), "Room E001")
