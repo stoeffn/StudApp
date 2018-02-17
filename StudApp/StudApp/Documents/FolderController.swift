@@ -33,6 +33,15 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
         viewModel.update()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        let navigationController = splitViewController?.detailNavigationController as? BorderlessNavigationController
+        UIView.animate(withDuration: 0.1) {
+            navigationController?.updateLayout()
+        }
+    }
+
     func prepareDependencies(for route: Routes) {
         guard case let .folder(folder) = route else { fatalError() }
 

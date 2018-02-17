@@ -239,14 +239,11 @@ final class CourseController: UITableViewController, Routable {
 
     override func tableView(_: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender _: Any?) {
         switch Sections(rawValue: indexPath.section) {
-        case .info?:
-            if action == #selector(copy(_:)) {
-                let titleAndValue = viewModel[rowAt: indexPath.row]
-                UIPasteboard.general.string = titleAndValue.value
-            }
+        case .info? where action == #selector(copy(_:)):
+            UIPasteboard.general.string = viewModel[rowAt: indexPath.row].value
         case .announcements?:
             UIPasteboard.general.string = announcementsViewModel[rowAt: indexPath.row].body
-        case .documents?:
+        case .info?, .documents?:
             break
         case .events?, nil:
             fatalError()

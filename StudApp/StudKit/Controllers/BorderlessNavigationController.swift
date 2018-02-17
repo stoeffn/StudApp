@@ -16,8 +16,6 @@ public final class BorderlessNavigationController: UINavigationController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        delegate = self
-
         view.insertSubview(navigationBarBackgroundBlurView, belowSubview: navigationBar)
         view.insertSubview(navigationBarBackgroundAlphaView, belowSubview: navigationBar)
 
@@ -112,7 +110,7 @@ public final class BorderlessNavigationController: UINavigationController {
     }
 
     /// Update the navigation bar background views' frames. Needs to be called every time the layout changes.
-    private func updateLayout() {
+    public func updateLayout() {
         guard let navigationBarFrame = navigationBarBackgroundFrame else { return }
         let toolBarViewHeight = toolBarView?.bounds.height ?? 0
 
@@ -120,17 +118,10 @@ public final class BorderlessNavigationController: UINavigationController {
                                     width: navigationBarFrame.width, height: toolBarViewHeight)
 
         let backgroundHeight = navigationBarFrame.height + toolBarViewHeight + additionalHeight
-        let backgroundSize = CGSize(width: navigationBarFrame.width, height: backgroundHeight)
-        navigationBarBackgroundBlurView.frame = CGRect(origin: navigationBarFrame.origin, size: backgroundSize)
-    }
-}
+        let backgroundSize = CGSize(width: 1024, height: backgroundHeight)
+        let backgroundFrame = CGRect(origin: navigationBarFrame.origin, size: backgroundSize)
 
-// MARK: - Navigation Bar Delegate
-
-extension BorderlessNavigationController: UINavigationControllerDelegate {
-    public func navigationController(_: UINavigationController, didShow _: UIViewController, animated: Bool) {
-        UIView.animate(withDuration: animated ? 0.1 : 0) {
-            self.updateLayout()
-        }
+        navigationBarBackgroundBlurView.frame = backgroundFrame
+        navigationBarBackgroundAlphaView.frame = backgroundFrame
     }
 }
