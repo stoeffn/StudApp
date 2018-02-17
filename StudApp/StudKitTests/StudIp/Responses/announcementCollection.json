@@ -1,0 +1,49 @@
+{
+    "collection": {
+        "\/studip\/api.php\/news\/255220265abb0d968428b8e5fea256cc": {
+            "news_id": "255220265abb0d968428b8e5fea256cc",
+            "topic": "Service-Release Stud.IP 3.5.3 veröffentlicht",
+            "body": "<!--HTML-->\n\n\n\n<p>Das Stud.IP Release 3.5.3 steht bei <a class=\"link-extern\" href=\"http:\/\/sourceforge.net\/projects\/studip\/files\/Stud.IP\/3.5\/\">Sourceforge<\/a> zum Download bereit.<\/p>\n\n<div>Es wurden <a href=\"https:\/\/develop.studip.de\/trac\/query?milestone=Stud.IP+3.5.3\" class=\"link-extern\">87 Fehler<\/a> gegenüber der Version 3.5.2 behoben.<\/div>",
+            "date": "1514329200",
+            "user_id": "0e5487512b84adfe83fc3fef055658f0",
+            "expire": "8204340",
+            "allow_comments": "1",
+            "chdate": "1514390131",
+            "chdate_uid": "",
+            "mkdate": "1484144909",
+            "body_html": "<div class=\"formatted-content\">\n\n\n\n<p>Das Stud.IP Release 3.5.3 steht bei <a class=\"link-extern\" href=\"http:\/\/sourceforge.net\/projects\/studip\/files\/Stud.IP\/3.5\/\">Sourceforge<\/a> zum Download bereit.<\/p>\n\n<div>Es wurden <a href=\"https:\/\/develop.studip.de\/trac\/query?milestone=Stud.IP+3.5.3\" class=\"link-extern\">87 Fehler<\/a> gegenüber der Version 3.5.2 behoben.<\/div><\/div>",
+            "comments": "\/studip\/api.php\/news\/255220265abb0d968428b8e5fea256cc\/comments",
+            "comments_count": 0,
+            "ranges": [
+                       "\/studip\/api.php\/TODO\/4498a5bc62d7974d0a0ac3e97aca5296\/news",
+                       "\/studip\/api.php\/course\/a70c45ca747f0ab2ea4acbb17398d370\/news",
+                       "\/studip\/api.php\/studip\/news"
+                       ]
+        },
+        "\/studip\/api.php\/news\/92c958f6b548145dd657e6e17f1b6e8f": {
+            "news_id": "92c958f6b548145dd657e6e17f1b6e8f",
+            "topic": "Zeitplan für Stud.IP 4.1",
+            "body": "<!--HTML-->\n\n<ul><li>Neue StEPs für die 4.1 eingereicht spätestens bis zum 3. November<\/li>\n\t<li>Initiale Votings für StEPs spätestens 17. bis 30. November<\/li>\n\t<li>Fertigstellung der angenommenen StEPs und letztes Einchecken von TICs bis 15. Dezember<\/li>\n\t<li>finale Tests und letzte Vetos der QM-Beauftragten spätestens: 18. Dezember bis 12. Januar<\/li>\n\t<li>Bugfixing, Nachbesserungen: 15. Januar bis 2. Februar<\/li>\n\t<li><strong>Übernahme fertiger StEPs aus den dev-branches, Ausbau abgelehnter TICs, Übersetzung: 5. bis 22. Februar<\/strong><\/li>\n\t<li>Ausbranchen von 4.1 und 4.1-local: 23. Februar<\/li>\n\t<li>Update Beta-Test-Installationen: ab 26. Februar<\/li>\n\t<li>Packen Release: ab 3. April<\/li>\n<\/ul>",
+            "date": "1502143200",
+            "user_id": "0e5487512b84adfe83fc3fef055658f0",
+            "expire": "22982340",
+            "allow_comments": "1",
+            "chdate": "1517856397",
+            "chdate_uid": "",
+            "mkdate": "1502191272",
+            "body_html": "<div class=\"formatted-content\">\n\n<ul><li>Neue StEPs für die 4.1 eingereicht spätestens bis zum 3. November<\/li>\n\t<li>Initiale Votings für StEPs spätestens 17. bis 30. November<\/li>\n\t<li>Fertigstellung der angenommenen StEPs und letztes Einchecken von TICs bis 15. Dezember<\/li>\n\t<li>finale Tests und letzte Vetos der QM-Beauftragten spätestens: 18. Dezember bis 12. Januar<\/li>\n\t<li>Bugfixing, Nachbesserungen: 15. Januar bis 2. Februar<\/li>\n\t<li><strong>Übernahme fertiger StEPs aus den dev-branches, Ausbau abgelehnter TICs, Übersetzung: 5. bis 22. Februar<\/strong><\/li>\n\t<li>Ausbranchen von 4.1 und 4.1-local: 23. Februar<\/li>\n\t<li>Update Beta-Test-Installationen: ab 26. Februar<\/li>\n\t<li>Packen Release: ab 3. April<\/li>\n<\/ul><\/div>",
+            "comments": "\/studip\/api.php\/news\/92c958f6b548145dd657e6e17f1b6e8f\/comments",
+            "comments_count": 0,
+            "ranges": [
+                       "\/studip\/api.php\/TODO\/4498a5bc62d7974d0a0ac3e97aca5296\/news",
+                       "\/studip\/api.php\/course\/a70c45ca747f0ab2ea4acbb17398d370\/news",
+                       "\/studip\/api.php\/studip\/news"
+                       ]
+        }
+    },
+    "pagination": {
+        "total": 2,
+        "offset": 0,
+        "limit": 20
+    }
+}
