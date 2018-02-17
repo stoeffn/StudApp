@@ -11,42 +11,12 @@ import XCTest
 @testable import StudKit
 
 final class FileTests: XCTestCase {
-    let decoder = ServiceContainer.default[JSONDecoder.self]
-    var context: NSManagedObjectContext!
+    private let decoder = ServiceContainer.default[JSONDecoder.self]
+    private var context: NSManagedObjectContext!
+
+    // MARK: - Life Cycle
 
     override func setUp() {
         context = StudKitTestsServiceProvider(currentTarget: .tests).provideCoreDataService().viewContext
-
-        try! CourseResponse(id: "0", title: "A").coreDataObject(in: context)
-        try! CourseResponse(id: "a2c88e905abf322d1868640859f13c99", title: "B").coreDataObject(in: context)
-
-        try! UserResponse(id: "0", username: "A", givenName: "Test", familyName: "User").coreDataObject(in: context)
-    }
-
-    func testInit_FileModel_File() {
-        let folder = try! FileResponseTests.folder.coreDataModel(in: context) as! File
-        let document = folder.children.first
-
-        XCTAssertEqual(folder.id, "0")
-        XCTAssertEqual(folder.title, "Folder")
-        XCTAssertEqual(folder.owner, nil)
-        XCTAssertEqual(folder.course.id, "0")
-        XCTAssertNotNil(document)
-        XCTAssertEqual(document?.id, "1")
-        XCTAssertEqual(document?.size, 42)
-        XCTAssertEqual(document?.downloadCount, 142)
-        XCTAssertEqual(document?.owner?.id, "0")
-        XCTAssertEqual(document?.course.id, "0")
-        XCTAssertEqual(document?.parent?.id, "0")
-        XCTAssertNotNil(folder.state)
-        XCTAssertNotNil(document?.state)
-    }
-
-    func testInit_Collection_Files() {
-        let files = try! decoder.decode(CollectionResponse<FileResponse>.self, fromResource: "fileCollection").items
-            .flatMap { try! $0.coreDataModel(in: context) as? File }
-
-        XCTAssertEqual(files.count, 6)
-        XCTAssertEqual(files.first?.children.count, 12)
     }
 }
