@@ -251,7 +251,6 @@
 		24FD785A1FBF3F030072F860 /* PersistentHistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78591FBF3F030072F860 /* PersistentHistoryService.swift */; };
 		24FD785C1FBF45030072F860 /* Targets+NSPersistentHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */; };
 		24FD785E1FBF45B10072F860 /* Targets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785D1FBF45B10072F860 /* Targets.swift */; };
-		24FD78601FBF4D330072F860 /* NSPersistentHistoryToken+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785F1FBF4D330072F860 /* NSPersistentHistoryToken+Utils.swift */; };
 		24FD786E1FBF81EA0072F860 /* DownloadListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD786D1FBF81EA0072F860 /* DownloadListController.swift */; };
 		24FD78701FBF826D0072F860 /* DownloadListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD786F1FBF826D0072F860 /* DownloadListViewModel.swift */; };
 		24FD78721FC07C630072F860 /* UserDefaults+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78711FC07C630072F860 /* UserDefaults+Keys.swift */; };
@@ -617,7 +616,6 @@
 		24FD78591FBF3F030072F860 /* PersistentHistoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentHistoryService.swift; sourceTree = "<group>"; };
 		24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Targets+NSPersistentHistory.swift"; sourceTree = "<group>"; };
 		24FD785D1FBF45B10072F860 /* Targets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Targets.swift; sourceTree = "<group>"; };
-		24FD785F1FBF4D330072F860 /* NSPersistentHistoryToken+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPersistentHistoryToken+Utils.swift"; sourceTree = "<group>"; };
 		24FD786D1FBF81EA0072F860 /* DownloadListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadListController.swift; sourceTree = "<group>"; };
 		24FD786F1FBF826D0072F860 /* DownloadListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadListViewModel.swift; sourceTree = "<group>"; };
 		24FD78711FC07C630072F860 /* UserDefaults+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Keys.swift"; sourceTree = "<group>"; };
@@ -1371,7 +1369,6 @@
 				24BF7B641FF661AF0013BA23 /* FetchedResultsControllerDelegateHelper.swift */,
 				24D360C91FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift */,
 				24D360D21FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift */,
-				24FD785F1FBF4D330072F860 /* NSPersistentHistoryToken+Utils.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -2162,7 +2159,6 @@
 				248C0250202E523C004CB8C9 /* AnnouncementListViewModel.swift in Sources */,
 				248C023F202E4C34004CB8C9 /* SFSafariViewController+Notifications.swift in Sources */,
 				243637081FE5602C001D1B86 /* StoreRoutes.swift in Sources */,
-				24FD78601FBF4D330072F860 /* NSPersistentHistoryToken+Utils.swift in Sources */,
 				2469EF701FCF5DF9008A122B /* AboutController.swift in Sources */,
 				24FD785E1FBF45B10072F860 /* Targets.swift in Sources */,
 				243817A81FC88A4C004052D0 /* BorderlessNavigationController.swift in Sources */,
