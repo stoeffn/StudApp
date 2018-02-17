@@ -12,7 +12,7 @@ import MobileCoreServices
 import QuickLook
 
 @objc(File)
-public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDUpdatable, CDSortable {
+public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDSortable {
     public static var entity = ObjectIdentifier.Entites.file
 
     // MARK: Identification

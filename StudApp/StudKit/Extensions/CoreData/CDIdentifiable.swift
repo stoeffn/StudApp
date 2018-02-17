@@ -16,7 +16,7 @@ public protocol CDIdentifiable {
     var id: String { get set }
 }
 
-// MARK: - Utilities
+// MARK: - Fetching Objects
 
 public extension CDIdentifiable where Self: NSFetchRequestResult {
     /// Fetches an object by the identifier given.
@@ -37,12 +37,16 @@ public extension CDIdentifiable where Self: NSFetchRequestResult {
     }
 }
 
+// MARK: - Creating Objects
+
 public extension CDIdentifiable where Self: CDCreatable {
     init(createWithId id: String, in context: NSManagedObjectContext) {
         self.init(createIn: context)
         self.id = id
     }
 }
+
+// MARK: - Fetching and Creating Objects
 
 public extension CDIdentifiable where Self: NSFetchRequestResult & CDCreatable {
     /// Fetches an object by the identifier given. If there is no match, a new object will be created.
@@ -56,6 +60,8 @@ public extension CDIdentifiable where Self: NSFetchRequestResult & CDCreatable {
         return result ?? (Self(createWithId: id, in: context), isNew: true)
     }
 }
+
+// MARK: - Managing Object Identifiers
 
 extension CDIdentifiable {
     public var objectIdentifier: ObjectIdentifier {
@@ -73,5 +79,28 @@ extension CDIdentifiable where Self: NSFetchRequestResult {
             let object = try? Self.fetch(byId: id, in: context)
         else { return nil }
         return object
+    }
+}
+
+// MARK: - Updating Objects
+
+extension CDIdentifiable where Self: NSManagedObject {
+    static func update<Value, Values: Sequence>(_ existingObjectsFetchRequest: NSFetchRequest<Self>? = nil,
+                                                with values: Values, in context: NSManagedObjectContext,
+                                                transform: (Value) throws -> Self) throws -> [Self] where Values.Element == Value {
+        let existingObjectsFetchRequest = existingObjectsFetchRequest ?? Self.fetchRequest(predicate: NSPredicate(value: false))
+        existingObjectsFetchRequest.propertiesToFetch = ["id"]
+
+        let existingObjects = try context.fetch(existingObjectsFetchRequest)
+        let existingIds = existingObjects.map { $0.id }
+
+        let updatedObjects = try values.map(transform)
+        let updatedIds = updatedObjects.map { $0.id }
+
+        let deletedIds = Set(existingIds).subtracting(updatedIds)
+        let deletedObjects = existingObjects.filter { deletedIds.contains($0.id) }
+        deletedObjects.forEach(context.delete)
+
+        return updatedObjects
     }
 }

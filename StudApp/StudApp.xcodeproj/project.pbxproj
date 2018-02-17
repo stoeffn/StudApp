@@ -189,7 +189,6 @@
 		24D2DA1E1FD03B98006FC700 /* StoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D2DA1D1FD03B98006FC700 /* StoreService.swift */; };
 		24D2DA201FD04431006FC700 /* StoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D2DA1F1FD04431006FC700 /* StoreViewModel.swift */; };
 		24D360CC1FAA5AFE00BBBAED /* CDIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */; };
-		24D360CD1FAA5AFE00BBBAED /* CDUpdatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C61FAA5AFE00BBBAED /* CDUpdatable.swift */; };
 		24D360CF1FAA5AFE00BBBAED /* CDCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C81FAA5AFE00BBBAED /* CDCreatable.swift */; };
 		24D360D01FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C91FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift */; };
 		24D360D31FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360D21FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift */; };
@@ -537,7 +536,6 @@
 		24D2DA1D1FD03B98006FC700 /* StoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreService.swift; sourceTree = "<group>"; };
 		24D2DA1F1FD04431006FC700 /* StoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewModel.swift; sourceTree = "<group>"; };
 		24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDIdentifiable.swift; sourceTree = "<group>"; };
-		24D360C61FAA5AFE00BBBAED /* CDUpdatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDUpdatable.swift; sourceTree = "<group>"; };
 		24D360C81FAA5AFE00BBBAED /* CDCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDCreatable.swift; sourceTree = "<group>"; };
 		24D360C91FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFetchRequestResult+Utils.swift"; sourceTree = "<group>"; };
 		24D360D21FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMangedObjectContext+Utils.swift"; sourceTree = "<group>"; };
@@ -570,7 +568,6 @@
 		24D3612B1FAA60E000BBBAED /* CollectionResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionResponseTests.swift; sourceTree = "<group>"; };
 		24D3612C1FAA60E000BBBAED /* StudIpTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudIpTests.swift; sourceTree = "<group>"; };
 		24D361321FAA632F00BBBAED /* NSFetchRequestResultUtilsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSFetchRequestResultUtilsTests.swift; sourceTree = "<group>"; };
-		24D361331FAA633000BBBAED /* UpdatableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatableTests.swift; sourceTree = "<group>"; };
 		24D361341FAA633000BBBAED /* CDIdentifiableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDIdentifiableTests.swift; sourceTree = "<group>"; };
 		24D3613D1FAA63C400BBBAED /* CourseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTests.swift; sourceTree = "<group>"; };
 		24D3613E1FAA63C500BBBAED /* CourseResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseResponseTests.swift; sourceTree = "<group>"; };
@@ -1364,7 +1361,6 @@
 				24D360C81FAA5AFE00BBBAED /* CDCreatable.swift */,
 				24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */,
 				243CC2BD1FDF0A7F00FE7376 /* CDSortable.swift */,
-				24D360C61FAA5AFE00BBBAED /* CDUpdatable.swift */,
 				24BF7B661FF673650013BA23 /* FetchedResultsControllerDelegate.swift */,
 				24BF7B641FF661AF0013BA23 /* FetchedResultsControllerDelegateHelper.swift */,
 				24D360C91FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift */,
@@ -1424,7 +1420,6 @@
 			children = (
 				24D361321FAA632F00BBBAED /* NSFetchRequestResultUtilsTests.swift */,
 				24D361341FAA633000BBBAED /* CDIdentifiableTests.swift */,
-				24D361331FAA633000BBBAED /* UpdatableTests.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -2166,7 +2161,6 @@
 				242B035F1FD7220800863B08 /* UIFont+Mutations.swift in Sources */,
 				24D360CC1FAA5AFE00BBBAED /* CDIdentifiable.swift in Sources */,
 				24A6C14B1FD75A0A004BBEA5 /* StudKit.xcdatamodeld in Sources */,
-				24D360CD1FAA5AFE00BBBAED /* CDUpdatable.swift in Sources */,
 				24FE03ED1FFBE0D200BC4732 /* ApiAuthorizing.swift in Sources */,
 				24FD785A1FBF3F030072F860 /* PersistentHistoryService.swift in Sources */,
 				2407A07B1FF2B75A006D41C5 /* Event.swift in Sources */,
