@@ -67,6 +67,7 @@ extension FolderResponse: Decodable {
 // MARK: - Converting to a Core Data Object
 
 extension FolderResponse {
+    @discardableResult
     func coreDataObject(course: Course, parent: File? = nil, in context: NSManagedObjectContext) throws -> File {
         let (file, _) = try File.fetch(byId: id, orCreateIn: context)
         let folders = try self.folders(file: file, course: course, in: context)

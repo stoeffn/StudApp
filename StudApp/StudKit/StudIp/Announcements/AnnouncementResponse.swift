@@ -8,71 +8,61 @@
 
 import CoreData
 
-struct AnnouncementResponse: Decodable {
+struct AnnouncementResponse: IdentifiableResponse {
     let id: String
-    private let coursePaths: [String]
-    private let rawCreatedAt: String
-    private let rawModifiedAt: String
-    private let rawExpiresAfter: String
+    let courseIds: Set<String>
+    let createdAt: Date
+    let modifiedAt: Date
+    let expiresAfter: TimeInterval
+    let expiresAt: Date
     let title: String
     let body: String
 
-    enum CodingKeys: String, CodingKey {
-        case id = "news_id"
-        case coursePaths = "ranges"
-        case rawCreatedAt = "mkdate"
-        case rawModifiedAt = "chdate"
-        case rawExpiresAfter = "expire"
-        case title = "topic"
-        case body
-    }
-
-    init(id: String, coursePaths: [String] = [], rawCreatedAt: String, rawModifiedAt: String, rawExpiresAfter: String,
-         title: String, body: String = "") {
+    init(id: String, courseIds: Set<String> = [], createdAt: Date = .distantPast, modifiedAt: Date = .distantPast,
+         expiresAfter: TimeInterval = 0, title: String = "", body: String = "") {
         self.id = id
-        self.coursePaths = coursePaths
-        self.rawCreatedAt = rawCreatedAt
-        self.rawModifiedAt = rawModifiedAt
-        self.rawExpiresAfter = rawExpiresAfter
+        self.courseIds = courseIds
+        self.createdAt = createdAt
+        self.modifiedAt = modifiedAt
+        self.expiresAfter = expiresAfter
+        self.expiresAt = createdAt + expiresAfter
         self.title = title
         self.body = body
     }
 }
 
-// MARK: - Utilities
+// MARK: - Coding
 
-extension AnnouncementResponse {
-    var createdAt: Date? {
-        guard let interval = TimeInterval(rawCreatedAt) else { return nil }
-        return Date(timeIntervalSince1970: interval)
+extension AnnouncementResponse: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case id = "news_id"
+        case courseIds = "ranges"
+        case createdAt = "mkdate"
+        case modifiedAt = "chdate"
+        case expiresAfter = "expire"
+        case title = "topic"
+        case body
     }
 
-    var modifiedAt: Date? {
-        guard let interval = TimeInterval(rawModifiedAt) else { return nil }
-        return Date(timeIntervalSince1970: interval)
-    }
-
-    var expiresAt: Date? {
-        guard let createdAt = createdAt else { return nil }
-        return createdAt + TimeInterval(rawExpiresAfter)!
-    }
-
-    var courseIds: [String] {
-        return coursePaths.flatMap { StudIp.transformIdPath($0) }
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let rawCourseIds = try container.decode(Set<String>.self, forKey: .courseIds)
+        id = try container.decode(String.self, forKey: .id)
+        courseIds = Set(rawCourseIds.flatMap { StudIp.transform(idPath: $0) })
+        createdAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .createdAt)
+        modifiedAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .modifiedAt)
+        expiresAfter = TimeInterval(try container.decode(String.self, forKey: .expiresAfter)) ?? 0
+        expiresAt = createdAt + expiresAfter
+        title = try container.decode(String.self, forKey: .title)
+        body = try container.decode(String.self, forKey: .body)
     }
 }
 
 // MARK: - Converting to a Core Data Object
 
 extension AnnouncementResponse {
+    @discardableResult
     func coreDataObject(in context: NSManagedObjectContext) throws -> Announcement {
-        // TODO: Move to parsing
-        guard
-            let createdAt = createdAt,
-            let modifiedAt = modifiedAt,
-            let expiresAt = expiresAt
-        else { throw NSError(domain: Announcement.entity.rawValue, code: 0) }
-
         let (announcement, _) = try Announcement.fetch(byId: id, orCreateIn: context)
         let courses = try Course.fetch(byIds: courseIds, in: context)
         announcement.id = id

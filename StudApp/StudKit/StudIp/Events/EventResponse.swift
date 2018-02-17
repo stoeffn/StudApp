@@ -8,7 +8,7 @@
 
 import CoreData
 
-struct EventResponse {
+struct EventResponse: IdentifiableResponse {
     let id: String
     let startsAt: Date
     let endsAt: Date
@@ -17,6 +17,18 @@ struct EventResponse {
     let location: String?
     let summary: String?
     let category: String?
+
+    init(id: String, startsAt: Date = .distantPast, endsAt: Date = .distantPast, isCanceled: Bool = false,
+         cancellationReason: String? = nil, location: String? = nil, summary: String? = nil, category: String? = nil) {
+        self.id = id
+        self.startsAt = startsAt
+        self.endsAt = endsAt
+        self.isCanceled = isCanceled
+        self.cancellationReason = cancellationReason
+        self.location = location
+        self.summary = summary
+        self.category = category
+    }
 }
 
 // MARK: - Coding
@@ -39,8 +51,8 @@ extension EventResponse: Decodable {
         startsAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .startsAt)
         endsAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .endsAt)
         isCanceled = try container.decodeIfPresent(Bool.self, forKey: .isCanceled) ?? false
-        cancellationReason = try StudIp.decodeCancellationReason(in: container, forKey: .cancellationReason)
-        location = isCanceled ? nil : try StudIp.decodeLocation(in: container, forKey: .location)
+        cancellationReason = try? container.decode(String.self, forKey: .cancellationReason)
+        location = isCanceled ? nil : StudIp.transform(location: try container.decodeIfPresent(String.self, forKey: .location))
         summary = try container.decodeIfPresent(String.self, forKey: .summary)?.nilWhenEmpty
         category = try container.decodeIfPresent(String.self, forKey: .category)?.nilWhenEmpty
     }

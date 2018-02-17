@@ -8,74 +8,58 @@
 
 import CoreData
 
-/// Represents a decoded course object as returned by the API.
-struct CourseResponse: Decodable {
+struct CourseResponse: IdentifiableResponse {
     let id: String
-    private let rawNumber: String?
+    let number: String?
     let title: String
-    private let rawSubtitle: String?
-    private let rawLocation: String?
-    private let rawSummary: String?
-    private let rawLecturers: [String: UserResponse]
-    private let beginSemesterPath: String?
-    private let endSemesterPath: String?
+    let subtitle: String?
+    let location: String?
+    let summary: String?
+    let lecturers: Set<UserResponse>
+    let beginSemesterId: String?
+    let endSemesterId: String?
 
-    enum CodingKeys: String, CodingKey {
-        case id = "course_id"
-        case rawNumber = "number"
-        case title
-        case rawSubtitle = "subtitle"
-        case rawLocation = "location"
-        case rawSummary = "description"
-        case rawLecturers = "lecturers"
-        case beginSemesterPath = "start_semester"
-        case endSemesterPath = "end_semester"
-    }
-
-    init(id: String, rawNumber: String? = nil, title: String, rawSubtitle: String? = nil, rawLocation: String? = nil,
-         rawSummary: String? = nil, rawLecturers: [String: UserResponse] = [:], beginSemesterPath: String? = nil,
-         endSemesterPath: String? = nil) {
+    init(id: String, number: String? = nil, title: String = "", subtitle: String? = nil, location: String? = nil,
+         summary: String? = nil, lecturers: Set<UserResponse> = [], beginSemesterId: String? = nil, endSemesterId: String? = nil) {
         self.id = id
-        self.rawNumber = rawNumber
+        self.number = number
         self.title = title
-        self.rawSubtitle = rawSubtitle
-        self.rawLocation = rawLocation
-        self.rawSummary = rawSummary
-        self.rawLecturers = rawLecturers
-        self.beginSemesterPath = beginSemesterPath
-        self.endSemesterPath = endSemesterPath
+        self.subtitle = subtitle
+        self.location = location
+        self.summary = summary
+        self.lecturers = lecturers
+        self.beginSemesterId = beginSemesterId
+        self.endSemesterId = endSemesterId
     }
 }
 
-// MARK: - Utilities
+// MARK: - Coding
 
-extension CourseResponse {
-    var number: String? {
-        return StudIp.transformCourseNumber(rawNumber)
+extension CourseResponse: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case id = "course_id"
+        case number
+        case title
+        case subtitle
+        case location
+        case summary = "description"
+        case lecturers
+        case beginSemesterId = "start_semester"
+        case endSemesterId = "end_semester"
     }
 
-    var subtitle: String? {
-        return rawSubtitle?.nilWhenEmpty
-    }
-
-    var location: String? {
-        return rawLocation?.nilWhenEmpty
-    }
-
-    var summary: String? {
-        return StudIp.transformCourseSummary(rawSummary)
-    }
-
-    var lecturers: [UserResponse] {
-        return Array(rawLecturers.values)
-    }
-
-    var beginSemesterId: String? {
-        return StudIp.transformIdPath(beginSemesterPath)
-    }
-
-    var endSemesterId: String? {
-        return StudIp.transformIdPath(endSemesterPath)
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let rawLecturers = try container.decodeIfPresent([String: UserResponse].self, forKey: .lecturers)
+        id = try container.decode(String.self, forKey: .id)
+        number = StudIp.transform(courseNumber: try container.decodeIfPresent(String.self, forKey: .number))
+        title = try container.decode(String.self, forKey: .title)
+        subtitle = try container.decodeIfPresent(String.self, forKey: .subtitle)?.nilWhenEmpty
+        location = StudIp.transform(location: try container.decodeIfPresent(String.self, forKey: .location))
+        summary = StudIp.transform(courseSummary: try container.decodeIfPresent(String.self, forKey: .summary))
+        lecturers = rawLecturers.map { Set($0.values) } ?? []
+        beginSemesterId = StudIp.transform(idPath: try container.decodeIfPresent(String.self, forKey: .beginSemesterId))
+        endSemesterId = StudIp.transform(idPath: try container.decodeIfPresent(String.self, forKey: .endSemesterId))
     }
 }
 

@@ -49,7 +49,7 @@ extension DocumentResponse: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
-        userId = try container.decode(String.self, forKey: .userId)
+        userId = try container.decodeIfPresent(String.self, forKey: .userId)
         name = try container.decode(String.self, forKey: .name)
         createdAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .createdAt)
         modifiedAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .modifiedAt)
@@ -59,19 +59,10 @@ extension DocumentResponse: Decodable {
     }
 }
 
-// MARK: - Utilities
-
-extension DocumentResponse {
-    var typeIdentifier: String {
-        guard let fileExtension = name.components(separatedBy: ".").last else { return "" }
-        let typeIdentifier = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension as CFString, nil)
-        return typeIdentifier?.takeRetainedValue() as String? ?? ""
-    }
-}
-
 // MARK: - Converting to a Core Data Object
 
 extension DocumentResponse {
+    @discardableResult
     func coreDataObject(course: Course, parent: File, in context: NSManagedObjectContext) throws -> File {
         let (file, _) = try File.fetch(byId: id, orCreateIn: context)
         file.id = id
@@ -86,5 +77,11 @@ extension DocumentResponse {
         file.downloadCount = downloadCount ?? -1
         file.summary = summary
         return file
+    }
+
+    var typeIdentifier: String {
+        guard let fileExtension = name.components(separatedBy: ".").last else { return "" }
+        let typeIdentifier = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension as CFString, nil)
+        return typeIdentifier?.takeRetainedValue() as String? ?? ""
     }
 }

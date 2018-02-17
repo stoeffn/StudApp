@@ -31,7 +31,7 @@ public extension CDIdentifiable where Self: NSFetchRequestResult {
         return try context.fetch(Self.fetchRequest(predicate: predicate)).first
     }
 
-    public static func fetch(byIds ids: [String], in context: NSManagedObjectContext) throws -> [Self] {
+    public static func fetch(byIds ids: Set<String>, in context: NSManagedObjectContext) throws -> [Self] {
         let predicate = NSPredicate(format: "id IN %@", ids)
         return try context.fetch(Self.fetchRequest(predicate: predicate))
     }

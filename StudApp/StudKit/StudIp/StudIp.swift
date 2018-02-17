@@ -1,5 +1,5 @@
 //
-//  Transforms.swift
+//  StudIp.swift
 //  StudKit
 //
 //  Created by Steffen Ryll on 04.09.17.
@@ -7,37 +7,29 @@
 //
 
 enum StudIp {
-    /// Returns the id from a path with an id as its last component.
-    ///
-    /// For testing purposes, paths starting with "$" will be returned completely, except for the leading dollar sign.
-    ///
-    /// ## Examples
-    /// - "/api/rooms/abc", 2 -> "abc"
-    /// - "/api/rooms/abc/test", 2 -> "abc"
-    /// - "api/rooms/", 2 -> `nil`
-    static func transformIdPath(_ path: String?) -> String? {
-        guard let path = path else { return nil }
-        guard !path.starts(with: "$") else { return String(path.dropFirst()) }
+    // MARK: - Custom Transforms
 
+    static func transform(idPath: String?) -> String? {
         guard
+            let idPath = idPath,
             let regex = try? NSRegularExpression(pattern: "[a-f0-9]{32}", options: []),
-            let match = regex.firstMatch(in: path, options: [], range: NSRange(location: 0, length: path.count)),
-            let range = Range(match.range, in: path)
+            let match = regex.firstMatch(in: idPath, options: [], range: NSRange(location: 0, length: idPath.count)),
+            let range = Range(match.range, in: idPath)
         else { return nil }
-        return String(path[range])
+        return String(idPath[range])
     }
 
     /// Returns the input with trimmed whitespace.
-    static func transformCourseNumber(_ rawNumber: String?) -> String? {
-        return rawNumber?
+    static func transform(courseNumber: String?) -> String? {
+        return courseNumber?
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .nilWhenEmpty
     }
 
     /// Returns the input, decoding HTML characters, removing HTML tags and special prefixes, as well as
     /// trimming whitespace.
-    static func transformCourseSummary(_ summary: String?) -> String? {
-        return summary?
+    static func transform(courseSummary: String?) -> String? {
+        return courseSummary?
             .replacingMatches("<[^>]+>", with: "")
             .replacingMatches("Literatur: *$", with: "")
             .decodedHTML
@@ -45,25 +37,17 @@ enum StudIp {
             .nilWhenEmpty
     }
 
-    static func decodeLocation<CodingKeys>(in container: KeyedDecodingContainer<CodingKeys>,
-                                           forKey key: KeyedDecodingContainer<CodingKeys>.Key) throws -> String? {
+    static func transform(location: String?) -> String? {
         var charactersToTrim = CharacterSet.whitespacesAndNewlines
         charactersToTrim.insert(charactersIn: "()")
-        return try container.decodeIfPresent(String.self, forKey: key)?
+        return location?
             .replacingMatches(" *, *", with: "\n")
             .replacingOccurrences(of: "Gebaeude", with: "Gebäude")
             .trimmingCharacters(in: charactersToTrim)
             .nilWhenEmpty
     }
 
-    static func decodeCancellationReason<CodingKeys>(in container: KeyedDecodingContainer<CodingKeys>,
-                                                     forKey key: KeyedDecodingContainer<CodingKeys>.Key) throws -> String? {
-        do {
-            return try container.decode(String.self, forKey: key)
-        } catch {
-            return nil
-        }
-    }
+    // MARK: - Custom Decoding
 
     static func decodeTimeIntervalStringAsDate<CodingKeys>(in container: KeyedDecodingContainer<CodingKeys>,
                                                            forKey key: KeyedDecodingContainer<CodingKeys>.Key) throws -> Date {

@@ -8,23 +8,23 @@
 
 import CoreData
 
-struct UserResponse {
+struct UserResponse: IdentifiableResponse {
     let id: String
     let username: String
     let givenName: String
     let familyName: String
-    private let rawNamePrefix: String
-    private let rawNameSuffix: String
-    private let pictureUrl: URL?
+    let namePrefix: String?
+    let nameSuffix: String?
+    let pictureUrl: URL?
 
-    init(id: String, username: String = "", givenName: String = "", familyName: String = "", rawNamePrefix: String = "",
-         rawNameSuffix: String = "", pictureUrl: URL? = nil) {
+    init(id: String, username: String = "", givenName: String = "", familyName: String = "", namePrefix: String? = nil,
+         nameSuffix: String? = nil, pictureUrl: URL? = nil) {
         self.id = id
         self.username = username
         self.givenName = givenName
         self.familyName = familyName
-        self.rawNamePrefix = rawNamePrefix
-        self.rawNameSuffix = rawNameSuffix
+        self.namePrefix = namePrefix
+        self.nameSuffix = nameSuffix
         self.pictureUrl = pictureUrl
     }
 }
@@ -41,10 +41,10 @@ extension UserResponse: Decodable {
 
     enum NameKeys: String, CodingKey {
         case username
-        case givenName = "given"
-        case familyName = "family"
-        case rawNamePrefix = "prefix"
-        case rawNameSuffix = "suffix"
+        case given
+        case family
+        case prefix
+        case suffix
     }
 
     init(from decoder: Decoder) throws {
@@ -54,32 +54,10 @@ extension UserResponse: Decodable {
 
         let nameContainer = try container.nestedContainer(keyedBy: NameKeys.self, forKey: .name)
         username = try nameContainer.decode(String.self, forKey: .username)
-        givenName = try nameContainer.decode(String.self, forKey: .givenName)
-        familyName = try nameContainer.decode(String.self, forKey: .familyName)
-        rawNamePrefix = try nameContainer.decode(String.self, forKey: .rawNamePrefix)
-        rawNameSuffix = try nameContainer.decode(String.self, forKey: .rawNameSuffix)
-    }
-}
-
-// MARK: - Utilities
-
-extension UserResponse {
-    var namePrefix: String? {
-        return rawNamePrefix.nilWhenEmpty
-    }
-
-    var nameSuffix: String? {
-        return rawNameSuffix.nilWhenEmpty
-    }
-
-    var pictureModifiedAt: Date? {
-        guard let url = pictureUrl,
-            !url.path.contains("/nobody_"),
-            let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
-            let timestampString = components.queryItems?.first?.value,
-            let timestamp = Double(timestampString)
-        else { return nil }
-        return Date(timeIntervalSince1970: timestamp)
+        givenName = try nameContainer.decode(String.self, forKey: .given)
+        familyName = try nameContainer.decode(String.self, forKey: .family)
+        namePrefix = try nameContainer.decodeIfPresent(String.self, forKey: .prefix)?.nilWhenEmpty
+        nameSuffix = try nameContainer.decodeIfPresent(String.self, forKey: .suffix)?.nilWhenEmpty
     }
 }
 
@@ -97,5 +75,15 @@ extension UserResponse {
         user.nameSuffix = nameSuffix
         user.pictureModifiedAt = pictureModifiedAt
         return user
+    }
+
+    var pictureModifiedAt: Date? {
+        guard let url = pictureUrl,
+            !url.path.contains("/nobody_"),
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+            let timestampString = components.queryItems?.first?.value,
+            let timestamp = Double(timestampString)
+            else { return nil }
+        return Date(timeIntervalSince1970: timestamp)
     }
 }

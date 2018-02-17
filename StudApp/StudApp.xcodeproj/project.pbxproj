@@ -193,7 +193,7 @@
 		24D360E71FAA5D7600BBBAED /* Course+StudIp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360E21FAA5D7500BBBAED /* Course+StudIp.swift */; };
 		24D360E81FAA5D7600BBBAED /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360E31FAA5D7500BBBAED /* Course.swift */; };
 		24D360E91FAA5D7600BBBAED /* CourseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360E41FAA5D7500BBBAED /* CourseResponse.swift */; };
-		24D360ED1FAA5DC500BBBAED /* Transforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360EC1FAA5DC500BBBAED /* Transforms.swift */; };
+		24D360ED1FAA5DC500BBBAED /* StudIp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360EC1FAA5DC500BBBAED /* StudIp.swift */; };
 		24D360F61FAA5DE800BBBAED /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360F11FAA5DE800BBBAED /* File.swift */; };
 		24D360F71FAA5DE800BBBAED /* FileState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360F21FAA5DE800BBBAED /* FileState.swift */; };
 		24D360FF1FAA5E0800BBBAED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360FC1FAA5E0800BBBAED /* User.swift */; };
@@ -563,7 +563,7 @@
 		24D360E21FAA5D7500BBBAED /* Course+StudIp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Course+StudIp.swift"; sourceTree = "<group>"; };
 		24D360E31FAA5D7500BBBAED /* Course.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		24D360E41FAA5D7500BBBAED /* CourseResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseResponse.swift; sourceTree = "<group>"; };
-		24D360EC1FAA5DC500BBBAED /* Transforms.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transforms.swift; sourceTree = "<group>"; };
+		24D360EC1FAA5DC500BBBAED /* StudIp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudIp.swift; sourceTree = "<group>"; };
 		24D360F11FAA5DE800BBBAED /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		24D360F21FAA5DE800BBBAED /* FileState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileState.swift; sourceTree = "<group>"; };
 		24D360FC1FAA5E0800BBBAED /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -1413,7 +1413,7 @@
 				248C0262202E5BE5004CB8C9 /* StudIpOAuth1Routes.swift */,
 				24D361101FAA5F0500BBBAED /* StudIpRoutes.swift */,
 				24D3610F1FAA5F0500BBBAED /* StudIpService.swift */,
-				24D360EC1FAA5DC500BBBAED /* Transforms.swift */,
+				24D360EC1FAA5DC500BBBAED /* StudIp.swift */,
 			);
 			path = StudIp;
 			sourceTree = "<group>";
@@ -2237,7 +2237,7 @@
 				24E4B9A61FF260240061983C /* ObjectIdentifier.swift in Sources */,
 				2447FB631FF68D8B000EA6BE /* DateTabBar.swift in Sources */,
 				243817A71FC88A49004052D0 /* SignInController.swift in Sources */,
-				24D360ED1FAA5DC500BBBAED /* Transforms.swift in Sources */,
+				24D360ED1FAA5DC500BBBAED /* StudIp.swift in Sources */,
 				24D4627B1FE1C4F200DE3B3A /* StoreService+State.swift in Sources */,
 				24CFB5D61FB24F4D00F30DEA /* Routable.swift in Sources */,
 				2448D4A51FA8E07E00DAB97E /* Result+Api.swift in Sources */,
