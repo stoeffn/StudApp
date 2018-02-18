@@ -23,7 +23,16 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
 
     public weak var delegate: DataSourceSectionDelegate?
 
-    public let semester: Semester
+    public let semester: Semester?
+
+    /// Creates a new course list view model managing all courses.
+    public init() {
+        semester = nil
+        respectsCollapsedState = false
+        isCollapsed = false
+
+        controller.delegate = fetchedResultControllerDelegateHelper
+    }
 
     /// Creates a new course list view model managing the given semester's courses.
     public init(semester: Semester, respectsCollapsedState: Bool = false) {
@@ -35,8 +44,8 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
     }
 
     public private(set) lazy var controller: NSFetchedResultsController<CourseState> = NSFetchedResultsController(
-        fetchRequest: semester.coursesStatesFetchRequest, managedObjectContext: coreDataService.viewContext,
-        sectionNameKeyPath: nil, cacheName: nil)
+        fetchRequest: semester?.coursesStatesFetchRequest ?? CourseState.fetchRequest(),
+        managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
 
     public func row(from object: CourseState) -> Course {
         return object.course
@@ -50,7 +59,7 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
     public func fetch() {
         controller.fetchRequest.predicate = isCollapsed && respectsCollapsedState
             ? NSPredicate(value: false)
-            : semester.coursesStatesFetchRequest.predicate
+            : semester?.coursesStatesFetchRequest.predicate ?? NSPredicate(value: true)
         try? controller.performFetch()
     }
 

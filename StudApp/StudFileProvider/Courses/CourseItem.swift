@@ -15,13 +15,11 @@ final class CourseItem: NSObject, NSFileProviderItem {
 
     // MARK: - Life Cycle
 
-    init(from course: Course, childItemCount: Int?, parentItemIdentifier: NSFileProviderItemIdentifier = .rootContainer) {
+    init(from course: Course, childItemCount: Int?) {
         itemIdentifier = NSFileProviderItemIdentifier(rawValue: course.objectIdentifier.rawValue)
         filename = course.title.sanitizedAsFilename
 
         self.childItemCount = childItemCount as NSNumber?
-
-        self.parentItemIdentifier = parentItemIdentifier
 
         lastUsedDate = course.state.lastUsedAt
 
@@ -32,14 +30,11 @@ final class CourseItem: NSObject, NSFileProviderItem {
     }
 
     convenience init(from course: Course) {
-        guard let parentObjectIdentifier = course.semesters.first?.objectIdentifier else { fatalError() }
-        let parentItemIdentifier = NSFileProviderItemIdentifier(rawValue: parentObjectIdentifier.rawValue)
-
         let childItemCount = course.state.areFilesFetchedFromRemote
             ? try? course.managedObjectContext?.count(for: course.childFileStatesFetchRequest) ?? 0
             : nil
 
-        self.init(from: course, childItemCount: childItemCount, parentItemIdentifier: parentItemIdentifier)
+        self.init(from: course, childItemCount: childItemCount)
     }
 
     // MARK: - File Provider Item Conformance
@@ -62,7 +57,7 @@ final class CourseItem: NSObject, NSFileProviderItem {
 
     // MARK: Specifying Content Location
 
-    let parentItemIdentifier: NSFileProviderItemIdentifier
+    let parentItemIdentifier = NSFileProviderItemIdentifier.rootContainer
 
     // MARK: Tracking Usage
 
