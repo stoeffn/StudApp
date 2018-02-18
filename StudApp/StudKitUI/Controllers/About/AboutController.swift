@@ -290,6 +290,8 @@ final class AboutController: UITableViewController, Routable {
     }
 
     private func didLeaveTip(with transaction: SKPaymentTransaction) {
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
+
         switch transaction.transactionState {
         case .purchased, .restored, .deferred:
             navigationItem.setActivityIndicatorHidden(true)

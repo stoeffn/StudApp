@@ -71,7 +71,8 @@ final class PreviewController: QLPreviewController, Routable {
                 alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
                 controller.present(alert, animated: true, completion: nil)
             }
-            return
+
+            return UINotificationFeedbackGenerator().notificationOccurred(.success)
         }
 
         let previewController = PreviewController()

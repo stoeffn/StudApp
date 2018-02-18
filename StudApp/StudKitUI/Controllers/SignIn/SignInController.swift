@@ -171,6 +171,7 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
                 return self.present(alert, animated: true, completion: nil)
             }
 
+            UINotificationFeedbackGenerator().notificationOccurred(.success)
             self.completion?(.signedIn)
         }
     }

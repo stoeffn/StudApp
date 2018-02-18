@@ -117,5 +117,7 @@ final class SemesterHeader: UITableViewHeaderFooterView {
         semester.state.isCollapsed = !semester.state.isCollapsed
         courseListViewModel?.isCollapsed = semester.state.isCollapsed
         isCollapsed = semester.state.isCollapsed
+
+        UISelectionFeedbackGenerator().selectionChanged()
     }
 }

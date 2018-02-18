@@ -28,6 +28,7 @@ public final class ColorPickerViewModel<Color>: DataSourceSection {
     }
 
     public func didSelectColor(atIndex index: Int) {
+        UISelectionFeedbackGenerator().selectionChanged()
         completion(colors[index].key, colors[index].value)
     }
 }
