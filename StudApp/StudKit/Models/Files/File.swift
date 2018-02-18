@@ -107,7 +107,7 @@ extension File: FilesContaining {
 
         let trimmedSearchTerm = searchTerm.trimmingCharacters(in: .whitespacesAndNewlines)
 
-        let similarTitlePredicate = NSPredicate(format: "file.title CONTAINS[cd] %@", trimmedSearchTerm)
+        let similarTitlePredicate = NSPredicate(format: "file.name CONTAINS[cd] %@", trimmedSearchTerm)
         let similarCourseTitlePredicate = NSPredicate(format: "file.course.title CONTAINS[cd] %@", trimmedSearchTerm)
         let similarOwnerFamilyNamePredicate = NSPredicate(format: "file.owner.familyName CONTAINS[cd] %@", trimmedSearchTerm)
         let similarOwnerGivenNamePredicate = NSPredicate(format: "file.owner.givenName CONTAINS[cd] %@", trimmedSearchTerm)
