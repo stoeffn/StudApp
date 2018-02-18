@@ -80,9 +80,3 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
         }
     }
 }
-
-extension CourseListViewModel: Equatable {
-    public static func == (lhs: CourseListViewModel, rhs: CourseListViewModel) -> Bool {
-        return lhs.semester == rhs.semester
-    }
-}

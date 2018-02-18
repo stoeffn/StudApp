@@ -11,7 +11,7 @@ import StudKitUI
 
 final class CourseListController: UITableViewController, DataSourceSectionDelegate {
     private var viewModel: SemesterListViewModel!
-    private var courseListViewModels: [CourseListViewModel]!
+    private var courseListViewModels: [String: CourseListViewModel] = [:]
 
     // MARK: - Life Cycle
 
@@ -21,8 +21,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         viewModel = SemesterListViewModel(fetchRequest: Semester.visibleStatesFetchRequest)
         viewModel.delegate = self
         viewModel.fetch()
-
-        courseListViewModels = viewModel.map(courseListViewModel)
+        _ = viewModel.map(courseListViewModel)
 
         navigationItem.title = "Courses".localized
 
@@ -76,7 +75,8 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return courseListViewModels[section].numberOfRows
+        let semester = viewModel[rowAt: section]
+        return courseListViewModel(for: semester).numberOfRows
     }
 
     override func tableView(_: UITableView, heightForHeaderInSection _: Int) -> CGFloat {
@@ -85,25 +85,20 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SemesterHeader.typeIdentifier)
-        (header as? SemesterHeader)?.semester = viewModel[rowAt: section]
-        (header as? SemesterHeader)?.courseListViewModel = courseListViewModels[section]
+        let semester = viewModel[rowAt: section]
+        (header as? SemesterHeader)?.semester = semester
+        (header as? SemesterHeader)?.courseListViewModel = courseListViewModel(for: semester)
         return header
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CourseCell.typeIdentifier, for: indexPath)
+        let semester = viewModel[rowAt: indexPath.section]
+        let course = courseListViewModel(for: semester)[rowAt: indexPath.row]
         cell.setDisclosureIndicatorHidden(for: splitViewController)
-        (cell as? CourseCell)?.course = courseListViewModels[indexPath.section][rowAt: indexPath.row]
+        (cell as? CourseCell)?.course = course
         (cell as? CourseCell)?.presentColorPicker = presentColorPicker
         return cell
-    }
-
-    private func courseListViewModel(for semester: Semester) -> CourseListViewModel {
-        let viewModel = CourseListViewModel(semester: semester, respectsCollapsedState: true)
-        viewModel.delegate = self
-        viewModel.fetch()
-        viewModel.update()
-        return viewModel
     }
 
     // MARK: - Table View Delegate
@@ -155,17 +150,12 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     func data(changedInSemester semester: Semester?, at index: Int, change: DataChange<Semester, Int>) {
         switch change {
         case .insert:
-            guard let semester = semester else { return }
-            courseListViewModels.insert(courseListViewModel(for: semester), at: index)
             tableView.insertSections(IndexSet(integer: index), with: .automatic)
         case .delete:
-            courseListViewModels.remove(at: index)
             tableView.deleteSections(IndexSet(integer: index), with: .automatic)
         case .update:
             break
         case let .move(newIndex):
-            let courseListViewModel = courseListViewModels.remove(at: index)
-            courseListViewModels.insert(courseListViewModel, at: newIndex)
             tableView.moveSection(index, toSection: newIndex)
         }
     }
@@ -174,8 +164,8 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
                                           in section: Section) {
         guard
             let courseListViewModel = section as? CourseListViewModel,
-            let sectionIndex = courseListViewModels.index(of: courseListViewModel)
-        else { fatalError() }
+            let sectionIndex = self.index(for: courseListViewModel)
+        else { return }
 
         let indexPath = IndexPath(row: index, section: sectionIndex)
 
@@ -193,6 +183,45 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
             tableView.moveRow(at: indexPath, to: newIndexPath)
             cell?.course = course
         }
+    }
+
+    func dataDidChange<Section: DataSourceSection>(in _: Section) {
+        pruneCourseListViewModels()
+        tableView.endUpdates()
+    }
+
+    // MARK: - Managing Course List View Models
+
+    private func courseListViewModel(for semester: Semester) -> CourseListViewModel {
+        if let viewModel = courseListViewModels[semester.id] { return viewModel }
+
+        let viewModel = CourseListViewModel(semester: semester, respectsCollapsedState: true)
+        viewModel.delegate = self
+        viewModel.fetch()
+        viewModel.update()
+
+        courseListViewModels[semester.id] = viewModel
+
+        return viewModel
+    }
+
+    private func index(for courseListViewModel: CourseListViewModel) -> Int? {
+        for index in 0 ..< tableView.numberOfSections {
+            guard
+                let header = tableView.headerView(forSection: index) as? SemesterHeader,
+                header.courseListViewModel === courseListViewModel
+            else { continue }
+            return index
+        }
+        return nil
+    }
+
+    private func pruneCourseListViewModels() {
+        let existingSemesterIds = Set(viewModel.map { $0.id })
+        courseListViewModels
+            .map { $0.key }
+            .filter { !existingSemesterIds.contains($0) }
+            .forEach { courseListViewModels.removeValue(forKey: $0) }
     }
 
     // MARK: - User Interface
