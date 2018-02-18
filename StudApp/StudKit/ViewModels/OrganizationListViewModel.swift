@@ -34,7 +34,8 @@ public final class OrganizationListViewModel {
 
         var organizations = [OrganizationRecord]()
 
-        let query = CKQuery(recordType: OrganizationRecord.recordType, predicate: NSPredicate(value: true))
+        let predicate = NSPredicate(format: "isEnabled == TRUE")
+        let query = CKQuery(recordType: OrganizationRecord.recordType, predicate: predicate)
         let desiredKeys: [OrganizationRecord.Keys] = [.apiUrl, .title, .iconThumbnail, .consumerKey, .consumerSecret]
 
         let operation = CKQueryOperation(query: query)
