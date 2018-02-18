@@ -176,17 +176,19 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
             let courseListViewModel = section as? CourseListViewModel,
             let sectionIndex = courseListViewModels.index(of: courseListViewModel)
         else { fatalError() }
+
         let indexPath = IndexPath(row: index, section: sectionIndex)
-        let cell = tableView.cellForRow(at: indexPath) as? CourseCell
 
         switch change {
         case .insert:
-            tableView.insertRows(at: [indexPath], with: .automatic)
+            tableView.insertRows(at: [indexPath], with: .middle)
         case .delete:
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.deleteRows(at: [indexPath], with: .middle)
         case .update:
+            let cell = tableView.cellForRow(at: indexPath) as? CourseCell
             cell?.course = course
         case let .move(newIndex):
+            let cell = tableView.cellForRow(at: indexPath) as? CourseCell
             let newIndexPath = IndexPath(row: newIndex, section: sectionIndex)
             tableView.moveRow(at: indexPath, to: newIndexPath)
             cell?.course = course
