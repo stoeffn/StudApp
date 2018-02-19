@@ -22,6 +22,7 @@ public final class BorderlessNavigationController: UINavigationController {
 
         updateLayout()
 
+        view.clipsToBounds = true
         usesDefaultAppearance = false
     }
 

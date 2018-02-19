@@ -55,7 +55,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="fyl-2h-SyR" firstAttribute="leading" secondItem="X0M-6M-fk1" secondAttribute="leadingMargin" id="3Pz-dQ-dVb"/>
                                 <constraint firstItem="TMm-hn-B4O" firstAttribute="leading" secondItem="X0M-6M-fk1" secondAttribute="leadingMargin" id="5MD-vk-I1u"/>

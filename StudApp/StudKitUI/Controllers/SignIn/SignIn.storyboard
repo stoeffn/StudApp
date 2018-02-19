@@ -19,7 +19,7 @@
         <!--Sign In Controller-->
         <scene sceneID="r0v-lZ-HFr">
             <objects>
-                <viewController id="VFe-kT-QwB" customClass="SignInController" customModule="StudKit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="VFe-kT-QwB" customClass="SignInController" customModule="StudKitUI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="C20-wU-2DL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -51,7 +51,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Wy-xu-LIM" customClass="StudIpActivityIndicatorView" customModule="StudKit" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Wy-xu-LIM" customClass="StudIpActivityIndicatorView" customModule="StudKitUI" customModuleProvider="target">
                                             <rect key="frame" x="169.5" y="535" width="36" height="36"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -122,32 +122,33 @@
         <!--Choose Your Organization-->
         <scene sceneID="yCO-3G-g8A">
             <objects>
-                <tableViewController id="7Cl-OR-2Sy" customClass="OrganizationListController" customModule="StudKit" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="7Cl-OR-2Sy" customClass="OrganizationListController" customModule="StudKitUI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="QYh-3Q-84Z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="FVG-Pm-g43">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose the organization, university, or company you would like to sign into." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3de-75-mDO">
-                                    <rect key="frame" x="16" y="8" width="343" height="38"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose the organization, university, or company you would like to sign into." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3de-75-mDO">
+                                    <rect key="frame" x="16" y="16" width="343" height="38"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                     <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <constraints>
+                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="3de-75-mDO" secondAttribute="bottom" constant="8" id="7Gt-Op-Xuc"/>
                                 <constraint firstAttribute="trailingMargin" secondItem="3de-75-mDO" secondAttribute="trailing" constant="8" id="Fvi-kT-rx4"/>
-                                <constraint firstItem="3de-75-mDO" firstAttribute="top" secondItem="FVG-Pm-g43" secondAttribute="topMargin" id="hEf-vn-5kV"/>
+                                <constraint firstItem="3de-75-mDO" firstAttribute="top" secondItem="FVG-Pm-g43" secondAttribute="topMargin" constant="8" id="hEf-vn-5kV"/>
                                 <constraint firstItem="3de-75-mDO" firstAttribute="leading" secondItem="FVG-Pm-g43" secondAttribute="leadingMargin" constant="8" id="iLF-tL-fWr"/>
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrganizationCell" rowHeight="56" id="ORc-qu-TMd" customClass="OrganizationCell" customModule="StudKit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="151.5" width="375" height="56"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrganizationCell" rowHeight="56" id="ORc-qu-TMd" customClass="OrganizationCell" customModule="StudKitUI" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="139.5" width="375" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ORc-qu-TMd" id="WYb-c9-lKF">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
@@ -195,14 +196,14 @@
                                     </segue>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ActivityIndicatorCell" rowHeight="72" id="TWv-HA-864" customClass="ActivityIndicatorCell" customModule="StudKit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="207.5" width="375" height="72"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ActivityIndicatorCell" rowHeight="72" id="TWv-HA-864" customClass="ActivityIndicatorCell" customModule="StudKitUI" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="195.5" width="375" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TWv-HA-864" id="xvn-ko-DqF">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="71.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y0D-Tk-4Es" customClass="StudIpActivityIndicatorView" customModule="StudKit" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y0D-Tk-4Es" customClass="StudIpActivityIndicatorView" customModule="StudKitUI" customModuleProvider="target">
                                             <rect key="frame" x="170.5" y="19" width="34" height="34"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -218,8 +219,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ActionCell" rowHeight="125" id="SHW-lG-keo" customClass="ActionCell" customModule="StudKit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="279.5" width="375" height="125"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ActionCell" rowHeight="125" id="SHW-lG-keo" customClass="ActionCell" customModule="StudKitUI" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="267.5" width="375" height="125"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SHW-lG-keo" id="lMn-nc-ZTG">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
@@ -289,10 +290,10 @@
             </objects>
             <point key="canvasLocation" x="645.60000000000002" y="608.54572713643188"/>
         </scene>
-        <!--Borderless Navigation Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="6yh-zB-2Ps">
             <objects>
-                <navigationController storyboardIdentifier="SignInNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="nJg-0c-dPm" customClass="BorderlessNavigationController" customModule="StudKit" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SignInNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="nJg-0c-dPm" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FQZ-8j-RNu">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

@@ -19,7 +19,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="2bU-cg-kHC" kind="presentation" identifier="signIn" modalPresentationStyle="pageSheet" id="g2F-HD-as5"/>
+                        <segue destination="2bU-cg-kHC" kind="presentation" identifier="signIn" id="g2F-HD-as5"/>
                         <segue destination="P8g-Nk-6wL" kind="presentation" identifier="about" modalPresentationStyle="formSheet" id="yVy-q8-doc"/>
                         <segue destination="zcl-3C-yl6" kind="presentation" identifier="settings" modalPresentationStyle="formSheet" id="sMd-bX-1dS"/>
                         <segue destination="AZc-n8-OsC" kind="relationship" relationship="viewControllers" id="g3S-Ak-cad"/>

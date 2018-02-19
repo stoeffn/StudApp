@@ -56,7 +56,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14A-k0-KOd">
-                                    <rect key="frame" x="135" y="218.5" width="50" height="32"/>
+                                    <rect key="frame" x="135" y="219" width="50" height="32"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <state key="normal" title="Reload"/>
                                     <connections>
@@ -735,7 +735,7 @@ Gebäude 3703: Technische Informatik</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="trailingMargin" secondItem="XMZ-t0-4Wb" secondAttribute="trailing" id="9HK-Cc-0Z3"/>
                                     <constraint firstItem="7eK-eX-Dx6" firstAttribute="leading" secondItem="Ege-Kh-itC" secondAttribute="leadingMargin" id="RSr-Jr-URz"/>
@@ -749,7 +749,7 @@ Gebäude 3703: Technische Informatik</string>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="US3-sq-hQx" firstAttribute="trailing" secondItem="Ege-Kh-itC" secondAttribute="trailing" id="T3u-Ue-TjX"/>
                             <constraint firstItem="Ege-Kh-itC" firstAttribute="centerY" secondItem="OBs-ij-60P" secondAttribute="centerY" id="X06-8A-Gh6"/>
