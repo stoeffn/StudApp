@@ -44,24 +44,36 @@ extension Course {
         return courses
     }
 
-    public func updateChildFiles(in context: NSManagedObjectContext, completion: @escaping ResultHandler<File>) {
+    public func updateChildFiles(in context: NSManagedObjectContext, completion: @escaping ResultHandler<Set<File>>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestDecoded(.rootFolderForCourse(withId: id)) { (result: Result<FolderResponse>) in
-            let result = result.map { response -> File in
+            let result = result.map { response -> Set<File> in
                 guard let course = context.object(with: self.objectID) as? Course else { fatalError() }
-                let folder = try File.updateFolder(from: response, course: course, in: context)
-
-                // Set each of the child files' parents to `nil`, making them root files themselves and delete the original
-                // root folder afterwards. The order is important this is a cascading relationship. All this is to make all
-                // files in a course's root folder appear at the root level instead of nested inside an folder with the same
-                // name as the course, which would be redundant.
-                folder.children.forEach { $0.parent = nil }
-                context.delete(folder)
-
-                return folder
+                return try Course.updateChildFiles(from: response, course: course, in: context)
             }
             completion(result)
         }
+    }
+
+    private static func updateChildFiles(from response: FolderResponse, course: Course,
+                                         in context: NSManagedObjectContext) throws -> Set<File> {
+        let folders = try File.update(course.childFoldersFetchRequest, with: response.folders ?? [], in: context) { response in
+            try response.coreDataObject(course: course, parent: nil, in: context)
+        }
+        let documents = try File.update(course.childDocumentsFetchRequest, with: response.documents ?? [], in: context) { response in
+            try response.coreDataObject(course: course, parent: nil, in: context)
+        }
+
+        let searchableItems = documents.map { $0.searchableItem }
+        CSSearchableIndex.default().indexSearchableItems(searchableItems) { _ in }
+
+        if #available(iOSApplicationExtension 11.0, *) {
+            let itemIdentifier = NSFileProviderItemIdentifier(rawValue: course.objectIdentifier.rawValue)
+            NSFileProviderManager.default.signalEnumerator(for: itemIdentifier) { _ in }
+            NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+        }
+
+        return Set(folders).union(documents)
     }
 
     public func updateAnnouncements(in context: NSManagedObjectContext, completion: @escaping ResultHandler<[Announcement]>) {

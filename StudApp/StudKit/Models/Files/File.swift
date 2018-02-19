@@ -210,12 +210,6 @@ extension File {
                                 attributeSet: searchableItemAttributes)
     }
 
-    public var searchableChildItems: [CSSearchableItem] {
-        return children
-            .filter { !$0.isFolder }
-            .map { $0.searchableItem }
-    }
-
     public var userActivity: NSUserActivity {
         let activity = NSUserActivity(activityType: UserActivities.fileIdentifier)
         activity.isEligibleForHandoff = true

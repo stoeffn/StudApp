@@ -10,21 +10,25 @@ import CoreData
 import CoreSpotlight
 
 extension File {
-    public func updateChildFiles(in context: NSManagedObjectContext, completion: @escaping ResultHandler<File>) {
+    public func updateChildFiles(in context: NSManagedObjectContext, completion: @escaping ResultHandler<Set<File>>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestDecoded(.folder(withId: id)) { (result: Result<FolderResponse>) in
-            let result = result.map { response -> File in
+            let result = result.map { response -> Set<File> in
                 guard let folder = context.object(with: self.objectID) as? File else { fatalError() }
-                return try File.updateFolder(from: response, course: folder.course, in: context)
+                return try File.updateChildFiles(from: response, course: folder.course, in: context)
             }
             completion(result)
         }
     }
 
-    static func updateFolder(from response: FolderResponse, course: Course, in context: NSManagedObjectContext) throws -> File {
+    private static func updateChildFiles(from response: FolderResponse, course: Course,
+                                         in context: NSManagedObjectContext) throws -> Set<File> {
         let folder = try response.coreDataObject(course: course, in: context)
 
-        CSSearchableIndex.default().indexSearchableItems(folder.searchableChildItems) { _ in }
+        let searchableItems = folder.children
+            .filter { !$0.isFolder }
+            .map { $0.searchableItem }
+        CSSearchableIndex.default().indexSearchableItems(searchableItems) { _ in }
 
         if #available(iOSApplicationExtension 11.0, *) {
             let itemIdentifier = NSFileProviderItemIdentifier(rawValue: folder.objectIdentifier.rawValue)
@@ -32,7 +36,7 @@ extension File {
             NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
         }
 
-        return folder
+        return folder.children
     }
 
     @discardableResult
