@@ -64,34 +64,34 @@ extension FolderResponse: Decodable {
 extension FolderResponse {
     @discardableResult
     func coreDataObject(course: Course, parent: File? = nil, in context: NSManagedObjectContext) throws -> File {
-        let (file, _) = try File.fetch(byId: id, orCreateIn: context)
-        file.typeIdentifier = kUTTypeFolder as String
-        file.parent = parent
-        file.course = course
-        file.owner = try User.fetch(byId: userId, in: context)
-        file.name = name
-        file.createdAt = createdAt
-        file.modifiedAt = modifiedAt
-        file.size = -1
-        file.downloadCount = -1
-        file.summary = summary
-        let folders = try self.folders(file: file, course: course, in: context)
-        let documents = try self.documents(file: file, course: course, in: context)
-        file.children = Set(folders).union(documents)
-        return file
+        let (folder, _) = try File.fetch(byId: id, orCreateIn: context)
+        folder.typeIdentifier = kUTTypeFolder as String
+        folder.parent = parent ?? folder.parent
+        folder.course = course
+        folder.owner = try User.fetch(byId: userId, in: context)
+        folder.name = name
+        folder.createdAt = createdAt
+        folder.modifiedAt = modifiedAt
+        folder.size = -1
+        folder.downloadCount = -1
+        folder.summary = summary
+        let folders = try self.folders(parent: folder, course: course, in: context) ?? []
+        let documents = try self.documents(parent: folder, course: course, in: context) ?? []
+        folder.children = folder.children.union(folders).union(documents)
+        return folder
     }
 
-    func folders(file: File, course: Course, in context: NSManagedObjectContext) throws -> [File] {
-        guard let folders = folders else { return [] }
-        return try File.update(file.childFoldersFetchRequest, with: folders, in: context) { response in
-            try response.coreDataObject(course: course, parent: file, in: context)
+    func folders(parent: File, course: Course, in context: NSManagedObjectContext) throws -> [File]? {
+        guard let folders = folders else { return nil }
+        return try File.update(parent.childFoldersFetchRequest, with: folders, in: context) { response in
+            try response.coreDataObject(course: course, parent: parent, in: context)
         }
     }
 
-    func documents(file: File, course: Course, in context: NSManagedObjectContext) throws -> [File] {
-        guard let documents = documents else { return [] }
-        return try File.update(file.childDocumentsFetchRequest, with: documents, in: context) { response in
-            try response.coreDataObject(course: course, parent: file, in: context)
+    func documents(parent: File, course: Course, in context: NSManagedObjectContext) throws -> [File]? {
+        guard let documents = documents else { return nil }
+        return try File.update(parent.childDocumentsFetchRequest, with: documents, in: context) { response in
+            try response.coreDataObject(course: course, parent: parent, in: context)
         }
     }
 }

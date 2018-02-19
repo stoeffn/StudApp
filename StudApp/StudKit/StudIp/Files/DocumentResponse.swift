@@ -64,18 +64,18 @@ extension DocumentResponse: Decodable {
 extension DocumentResponse {
     @discardableResult
     func coreDataObject(course: Course, parent: File, in context: NSManagedObjectContext) throws -> File {
-        let (file, _) = try File.fetch(byId: id, orCreateIn: context)
-        file.typeIdentifier = typeIdentifier
-        file.course = course
-        file.parent = parent
-        file.owner = try User.fetch(byId: userId, in: context)
-        file.name = name
-        file.createdAt = createdAt
-        file.modifiedAt = modifiedAt
-        file.size = size ?? -1
-        file.downloadCount = downloadCount ?? -1
-        file.summary = summary
-        return file
+        let (document, _) = try File.fetch(byId: id, orCreateIn: context)
+        document.typeIdentifier = typeIdentifier
+        document.course = course
+        document.parent = parent
+        document.owner = try User.fetch(byId: userId, in: context)
+        document.name = name
+        document.createdAt = createdAt
+        document.modifiedAt = modifiedAt
+        document.size = size ?? -1
+        document.downloadCount = downloadCount ?? -1
+        document.summary = summary
+        return document
     }
 
     var typeIdentifier: String {

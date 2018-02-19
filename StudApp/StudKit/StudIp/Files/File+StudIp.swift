@@ -10,12 +10,12 @@ import CoreData
 import CoreSpotlight
 
 extension File {
-    public static func updateFolder(withId id: String, in context: NSManagedObjectContext, completion: @escaping ResultHandler<File>) {
+    public func updateChildFiles(in context: NSManagedObjectContext, completion: @escaping ResultHandler<File>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestDecoded(.folder(withId: id)) { (result: Result<FolderResponse>) in
-            let result = result.compactMap { response -> File? in
-                guard let folder = try File.fetch(byId: id, in: context) else { return nil }
-                return try updateFolder(from: response, course: folder.course, in: context)
+            let result = result.map { response -> File in
+                guard let folder = context.object(with: self.objectID) as? File else { fatalError() }
+                return try File.updateFolder(from: response, course: folder.course, in: context)
             }
             completion(result)
         }
@@ -33,10 +33,6 @@ extension File {
         }
 
         return folder
-    }
-
-    public func updateChildFiles(in context: NSManagedObjectContext, completion: @escaping ResultHandler<File>) {
-        File.updateFolder(withId: id, in: context, completion: completion)
     }
 
     @discardableResult
