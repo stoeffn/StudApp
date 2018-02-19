@@ -147,7 +147,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         }
     }
 
-    func data(changedInSemester semester: Semester?, at index: Int, change: DataChange<Semester, Int>) {
+    func data(changedInSemester _: Semester?, at index: Int, change: DataChange<Semester, Int>) {
         switch change {
         case .insert:
             tableView.insertSections(IndexSet(integer: index), with: .automatic)

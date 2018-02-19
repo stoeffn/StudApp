@@ -23,10 +23,11 @@ final class SettingsController: UITableViewController, Routable {
         navigationItem.title = "Settings".localized
 
         downloadsCell.textLabel?.text = "Downloads".localized
-        downloadsCell.detailTextLabel?.text = viewModel.sizeOfDownloadsDirectory?.formattedAsByteCount ?? "—"
         removeAllDownloadsCell.textLabel?.text = "Remove All Downloads".localized
 
         signOutCell.textLabel?.text = "Sign Out".localized
+
+        updateDownloadsSize()
     }
 
     func prepareDependencies(for route: Routes) {
@@ -82,6 +83,10 @@ final class SettingsController: UITableViewController, Routable {
 
     @IBOutlet var signOutCell: UITableViewCell!
 
+    private func updateDownloadsSize() {
+        downloadsCell.detailTextLabel?.text = viewModel.sizeOfDownloadsDirectory?.formattedAsByteCount ?? "—"
+    }
+
     // MARK: - User Interaction
 
     @IBAction
@@ -93,8 +98,7 @@ final class SettingsController: UITableViewController, Routable {
         let confirmation = UIAlertController(confirmationWithAction: removeAllDownloadsCell.textLabel?.text,
                                              sourceView: removeAllDownloadsCell) { _ in
             try? self.viewModel.removeAllDownloads()
-            let downloadsSizeText = self.viewModel.sizeOfDownloadsDirectory?.formattedAsByteCount ?? "—"
-            self.removeAllDownloadsCell.detailTextLabel?.text = downloadsSizeText
+            self.updateDownloadsSize()
         }
         present(confirmation, animated: true, completion: nil)
     }
