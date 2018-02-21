@@ -15,18 +15,21 @@ struct CourseResponse: IdentifiableResponse {
     let subtitle: String?
     let location: String?
     let summary: String?
+    let groupId: Int?
     let lecturers: Set<UserResponse>
     let beginSemesterId: String?
     let endSemesterId: String?
 
     init(id: String, number: String? = nil, title: String = "", subtitle: String? = nil, location: String? = nil,
-         summary: String? = nil, lecturers: Set<UserResponse> = [], beginSemesterId: String? = nil, endSemesterId: String? = nil) {
+         summary: String? = nil, groupId: Int? = nil, lecturers: Set<UserResponse> = [],
+         beginSemesterId: String? = nil, endSemesterId: String? = nil) {
         self.id = id
         self.number = number
         self.title = title
         self.subtitle = subtitle
         self.location = location
         self.summary = summary
+        self.groupId = groupId
         self.lecturers = lecturers
         self.beginSemesterId = beginSemesterId
         self.endSemesterId = endSemesterId
@@ -43,6 +46,7 @@ extension CourseResponse: Decodable {
         case subtitle
         case location
         case summary = "description"
+        case groupId = "group"
         case lecturers
         case beginSemesterId = "start_semester"
         case endSemesterId = "end_semester"
@@ -57,6 +61,7 @@ extension CourseResponse: Decodable {
         subtitle = try container.decodeIfPresent(String.self, forKey: .subtitle)?.nilWhenEmpty
         location = StudIp.transform(location: try container.decodeIfPresent(String.self, forKey: .location))
         summary = StudIp.transform(courseSummary: try container.decodeIfPresent(String.self, forKey: .summary))
+        groupId = try container.decodeIfPresent(Int.self, forKey: .groupId)
         lecturers = rawLecturers.map { Set($0.values) } ?? []
         beginSemesterId = StudIp.transform(idPath: try container.decodeIfPresent(String.self, forKey: .beginSemesterId))
         endSemesterId = StudIp.transform(idPath: try container.decodeIfPresent(String.self, forKey: .endSemesterId))
@@ -77,6 +82,7 @@ extension CourseResponse {
         course.title = title
         course.subtitle = subtitle
         course.summary = summary
+        course.state.colorId = groupId ?? 0
         course.location = location
         course.lecturers = Set(lecturers)
         course.semesters = Set(semesters)

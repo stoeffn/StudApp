@@ -17,6 +17,7 @@ extension CourseResponseTests {
             "subtitle": "Subtitle",
             "description": "<b>S&uuml;mmary</b>  Literatur: ",
             "location": "Location",
+            "group": 2,
             "start_semester": "S0",
             "end_semester": "S1",
             "lecturers": {
@@ -50,6 +51,6 @@ extension CourseResponseTests {
     """.data(using: .utf8)!
 
     static let course0 = CourseResponse(id: "C0", number: "123", title: "Title", subtitle: "Subtitle", location: "Location",
-                                        summary: "Summary", lecturers: [UserResponse(id: "U0")], beginSemesterId: "S0",
-                                        endSemesterId: "S1")
+                                        summary: "Summary", groupId: 2, lecturers: [UserResponse(id: "U0")],
+                                        beginSemesterId: "S0", endSemesterId: "S1")
 }
