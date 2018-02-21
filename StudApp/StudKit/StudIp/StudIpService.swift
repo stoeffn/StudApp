@@ -8,7 +8,7 @@
 
 import CoreSpotlight
 
-public final class StudIpService {
+public class StudIpService {
     static let serviceName = "studip"
 
     let api: Api<StudIpRoutes>

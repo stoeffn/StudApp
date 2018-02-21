@@ -22,4 +22,10 @@ final class StudAppUITests: XCTestCase {
         app.launchArguments = [uiTestsProcessArgument]
         app.launch()
     }
+
+    // MARK: - Testing
+
+    func testExample() {
+        wait(for: [], timeout: 5000)
+    }
 }

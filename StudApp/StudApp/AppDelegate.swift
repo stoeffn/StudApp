@@ -11,6 +11,7 @@ import StudKitUI
 
 @UIApplicationMain
 final class AppDelegate: UIResponder {
+    private var contextService: ContextService!
     private var coreDataService: CoreDataService!
     private var historyService: PersistentHistoryService!
     private var studIpService: StudIpService!
@@ -24,9 +25,10 @@ extension AppDelegate: UIApplicationDelegate {
     // MARK: Initializing the App
 
     func application(_: UIApplication, willFinishLaunchingWithOptions _: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
-        let serviceProvider = StudKitServiceProvider(currentTarget: .app, isRunningUiTests: isRunningUiTests, openUrl: openUrl)
+        let serviceProvider = StudKitServiceProvider(currentTarget: .app, isRunningUiTests: isRunningUiTests, openUrl: open)
         ServiceContainer.default.register(providers: serviceProvider)
 
+        contextService = ServiceContainer.default[ContextService.self]
         coreDataService = ServiceContainer.default[CoreDataService.self]
         historyService = ServiceContainer.default[PersistentHistoryService.self]
         studIpService = ServiceContainer.default[StudIpService.self]
@@ -63,11 +65,11 @@ extension AppDelegate: UIApplicationDelegate {
     // MARK: Managing App State Restoration
 
     func application(_: UIApplication, shouldSaveApplicationState _: NSCoder) -> Bool {
-        return studIpService.isSignedIn
+        return studIpService.isSignedIn && !contextService.isRunningUiTests
     }
 
     func application(_: UIApplication, shouldRestoreApplicationState _: NSCoder) -> Bool {
-        return studIpService.isSignedIn
+        return studIpService.isSignedIn && !contextService.isRunningUiTests
     }
 
     // MARK: Continuing User Activity and Handling Quick Actions
@@ -101,7 +103,7 @@ extension AppDelegate: UIApplicationDelegate {
         return ProcessInfo.processInfo.arguments.contains(AppDelegate.uiTestsProcessArgument)
     }
 
-    private var openUrl: ((URL, ((Bool) -> Void)?) -> Void) {
-        return { UIApplication.shared.open($0, options: [:], completionHandler: $1) }
+    private func open(url: URL, completion: ((Bool) -> Void)?) {
+        return UIApplication.shared.open(url, options: [:], completionHandler: completion)
     }
 }

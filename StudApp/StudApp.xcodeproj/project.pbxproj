@@ -80,6 +80,8 @@
 		245524E51FF2E13C00C18F92 /* EventResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245524E41FF2E13C00C18F92 /* EventResponseTests.swift */; };
 		245524E81FF2E18E00C18F92 /* eventCollection.json in Resources */ = {isa = PBXBuildFile; fileRef = 245524E71FF2E18E00C18F92 /* eventCollection.json */; };
 		245524EA1FF2E24300C18F92 /* EventResponseTests+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245524E91FF2E24300C18F92 /* EventResponseTests+Data.swift */; };
+		24557A0B203DE0D400492B74 /* MockResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24557A0A203DE0D400492B74 /* MockResponses.swift */; };
+		24557A0D203DE59700492B74 /* MockStudIpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24557A0C203DE59700492B74 /* MockStudIpService.swift */; };
 		245B6ADE1FCB381B00302CD0 /* OrganizationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6ADD1FCB381B00302CD0 /* OrganizationListViewModel.swift */; };
 		245B6AE11FCB39BF00302CD0 /* OrganizationRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6AE01FCB39BF00302CD0 /* OrganizationRecord.swift */; };
 		2467A8BC1FD307CE00F25720 /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2467A8BB1FD307CE00F25720 /* PreviewController.swift */; };
@@ -479,6 +481,8 @@
 		245524E41FF2E13C00C18F92 /* EventResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventResponseTests.swift; sourceTree = "<group>"; };
 		245524E71FF2E18E00C18F92 /* eventCollection.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = eventCollection.json; sourceTree = "<group>"; };
 		245524E91FF2E24300C18F92 /* EventResponseTests+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventResponseTests+Data.swift"; sourceTree = "<group>"; };
+		24557A0A203DE0D400492B74 /* MockResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockResponses.swift; sourceTree = "<group>"; };
+		24557A0C203DE59700492B74 /* MockStudIpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStudIpService.swift; sourceTree = "<group>"; };
 		245B6AD51FCB327800302CD0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		245B6AD91FCB351F00302CD0 /* OrganizationListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationListController.swift; sourceTree = "<group>"; };
 		245B6ADB1FCB355D00302CD0 /* OrganizationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationCell.swift; sourceTree = "<group>"; };
@@ -1491,10 +1495,12 @@
 				24D361131FAA5F0E00BBBAED /* CollectionResponse.swift */,
 				24D361141FAA5F0E00BBBAED /* Api+CollectionResponse.swift */,
 				2486D92B2036FCC100692FF2 /* IdentifiableResponse.swift */,
+				24557A0A203DE0D400492B74 /* MockResponses.swift */,
 				248C0262202E5BE5004CB8C9 /* StudIpOAuth1Routes.swift */,
 				24D361101FAA5F0500BBBAED /* StudIpRoutes.swift */,
 				24D3610F1FAA5F0500BBBAED /* StudIpService.swift */,
 				24D360EC1FAA5DC500BBBAED /* StudIp.swift */,
+				24557A0C203DE59700492B74 /* MockStudIpService.swift */,
 			);
 			path = StudIp;
 			sourceTree = "<group>";
@@ -2327,6 +2333,7 @@
 				24D4627B1FE1C4F200DE3B3A /* StoreService+State.swift in Sources */,
 				2448D4A51FA8E07E00DAB97E /* Result+Api.swift in Sources */,
 				24D360D31FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift in Sources */,
+				24557A0D203DE59700492B74 /* MockStudIpService.swift in Sources */,
 				243CC2BE1FDF0A7F00FE7376 /* CDSortable.swift in Sources */,
 				24D360DF1FAA5D3800BBBAED /* String+HTML.swift in Sources */,
 				248C0261202E5BB6004CB8C9 /* OAuth1Routes.swift in Sources */,
@@ -2340,6 +2347,7 @@
 				24D360CF1FAA5AFE00BBBAED /* CDCreatable.swift in Sources */,
 				24D361161FAA5F0E00BBBAED /* Api+CollectionResponse.swift in Sources */,
 				246F3AC51FAC879C00A477FF /* DataChange.swift in Sources */,
+				24557A0B203DE0D400492B74 /* MockResponses.swift in Sources */,
 				248C0265202E5C18004CB8C9 /* VerificationViewModel.swift in Sources */,
 				24FD78721FC07C630072F860 /* UserDefaults+Keys.swift in Sources */,
 				24D178EB1FB606B200EC5F4A /* MainViewModel.swift in Sources */,
