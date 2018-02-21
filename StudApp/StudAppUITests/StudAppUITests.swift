@@ -9,9 +9,17 @@
 import XCTest
 
 final class StudAppUITests: XCTestCase {
+    public let uiTestsProcessArgument = "uiTest"
+
+    // MARK: - Life Cycle
+
     override func setUp() {
         super.setUp()
+
         continueAfterFailure = false
-        XCUIApplication().launch()
+
+        let app = XCUIApplication()
+        app.launchArguments = [uiTestsProcessArgument]
+        app.launch()
     }
 }

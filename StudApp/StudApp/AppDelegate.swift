@@ -11,8 +11,6 @@ import StudKitUI
 
 @UIApplicationMain
 final class AppDelegate: UIResponder {
-    private let openUrl = { UIApplication.shared.open($0, options: [:], completionHandler: $1) }
-
     private var coreDataService: CoreDataService!
     private var historyService: PersistentHistoryService!
     private var studIpService: StudIpService!
@@ -23,11 +21,11 @@ final class AppDelegate: UIResponder {
 // MARK: - Application Delegate
 
 extension AppDelegate: UIApplicationDelegate {
-
     // MARK: Initializing the App
 
     func application(_: UIApplication, willFinishLaunchingWithOptions _: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
-        ServiceContainer.default.register(providers: StudKitServiceProvider(currentTarget: .app, openUrl: openUrl))
+        let serviceProvider = StudKitServiceProvider(currentTarget: .app, isRunningUiTests: isRunningUiTests, openUrl: openUrl)
+        ServiceContainer.default.register(providers: serviceProvider)
 
         coreDataService = ServiceContainer.default[CoreDataService.self]
         historyService = ServiceContainer.default[PersistentHistoryService.self]
@@ -93,5 +91,17 @@ extension AppDelegate: UIApplicationDelegate {
         ])
 
         return true
+    }
+
+    // MARK: - Helpers
+
+    private static let uiTestsProcessArgument = "uiTest"
+
+    private var isRunningUiTests: Bool {
+        return ProcessInfo.processInfo.arguments.contains(AppDelegate.uiTestsProcessArgument)
+    }
+
+    private var openUrl: ((URL, ((Bool) -> Void)?) -> Void) {
+        return { UIApplication.shared.open($0, options: [:], completionHandler: $1) }
     }
 }

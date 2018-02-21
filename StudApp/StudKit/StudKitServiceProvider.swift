@@ -8,18 +8,21 @@
 
 public class StudKitServiceProvider: ServiceProvider {
     private let currentTarget: Targets
+    private let isRunningUiTests: Bool
     private let extensionContext: NSExtensionContext?
     private let openUrl: ((URL, ((Bool) -> Void)?) -> Void)?
 
-    public init(currentTarget: Targets, extensionContext: NSExtensionContext? = nil,
+    public init(currentTarget: Targets, isRunningUiTests: Bool = false, extensionContext: NSExtensionContext? = nil,
                 openUrl: ((URL, ((Bool) -> Void)?) -> Void)? = nil) {
         self.currentTarget = currentTarget
+        self.isRunningUiTests = isRunningUiTests
         self.extensionContext = extensionContext
         self.openUrl = openUrl
     }
 
     func provideContextService() -> ContextService {
-        return ContextService(currentTarget: currentTarget, extensionContext: extensionContext, openUrl: openUrl)
+        return ContextService(currentTarget: currentTarget, isRunningUiTests: isRunningUiTests,
+                              extensionContext: extensionContext, openUrl: openUrl)
     }
 
     func provideReachabilityService() -> ReachabilityService {
