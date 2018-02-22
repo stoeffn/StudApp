@@ -61,6 +61,12 @@ extension OrganizationRecord {
         let (organization, _) = try Organization.fetch(byId: id, orCreateIn: context)
         organization.title = title
         organization.apiUrl = apiUrl.absoluteString
+
+        let keychainService = ServiceContainer.default[KeychainService.self]
+        let service = organization.objectIdentifier.rawValue
+        try keychainService.save(password: consumerKey, for: service, account: Keys.consumerKey.rawValue)
+        try keychainService.save(password: consumerSecret, for: service, account: Keys.consumerSecret.rawValue)
+
         return organization
     }
 }

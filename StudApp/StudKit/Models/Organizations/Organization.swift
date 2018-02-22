@@ -21,7 +21,7 @@ public final class Organization: NSManagedObject, CDCreatable, CDIdentifiable, C
 
     // MARK: Managing API Access
 
-    @NSManaged public var apiUrl: String?
+    @NSManaged public var apiUrl: String
 
     // MARK: Managing Content
 
