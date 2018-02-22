@@ -24,7 +24,6 @@
 		2436370F1FE56F33001D1B86 /* StoreStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2436370E1FE56F33001D1B86 /* StoreStateTests.swift */; };
 		243637121FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637111FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift */; };
 		243817921FC76BDC004052D0 /* DocumentActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243817911FC76BDC004052D0 /* DocumentActionViewController.swift */; };
-		243817991FC76BDC004052D0 /* StudFileProviderUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2438179E1FC76D1E004052D0 /* Routes+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438179D1FC76D1E004052D0 /* Routes+Actions.swift */; };
 		24390EE820389C1E0064E49A /* StudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2448D43F1FA8DB1E00DAB97E /* StudKit.framework */; };
 		24390EE920389CCF0064E49A /* StudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2448D43F1FA8DB1E00DAB97E /* StudKit.framework */; };
@@ -293,13 +292,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		243817971FC76BDC004052D0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2448D4011FA8DA2400DAB97E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2438178E1FC76BDC004052D0;
-			remoteInfo = StudFileProviderUI;
-		};
 		2448D41E1FA8DA2400DAB97E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2448D4011FA8DA2400DAB97E /* Project object */;
@@ -378,7 +370,6 @@
 			dstSubfolderSpec = 13;
 			files = (
 				24D9EF9E1FB75819006776B7 /* StudFileProvider.appex in Embed App Extensions */,
-				243817991FC76BDC004052D0 /* StudFileProviderUI.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1839,7 +1830,6 @@
 			dependencies = (
 				2448D4531FA8DB1E00DAB97E /* PBXTargetDependency */,
 				24D9EF9D1FB75819006776B7 /* PBXTargetDependency */,
-				243817981FC76BDC004052D0 /* PBXTargetDependency */,
 				247CC28F203896C70067207B /* PBXTargetDependency */,
 			);
 			name = StudApp;
@@ -2477,11 +2467,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		243817981FC76BDC004052D0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2438178E1FC76BDC004052D0 /* StudFileProviderUI */;
-			targetProxy = 243817971FC76BDC004052D0 /* PBXContainerItemProxy */;
-		};
 		2448D41F1FA8DA2400DAB97E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2448D4081FA8DA2400DAB97E /* StudApp */;
