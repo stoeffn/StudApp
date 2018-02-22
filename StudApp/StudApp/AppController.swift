@@ -1,5 +1,5 @@
 //
-//  MainController.swift
+//  AppController.swift
 //  StudApp
 //
 //  Created by Steffen Ryll on 07.11.17.
@@ -10,15 +10,15 @@ import SafariServices
 import StudKit
 import StudKitUI
 
-final class MainController: UITabBarController {
-    private var viewModel: MainViewModel!
+final class AppController: UITabBarController {
+    private var viewModel: AppViewModel!
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewModel = MainViewModel()
+        viewModel = AppViewModel()
     }
 
     override func viewWillAppear(_ animated: Bool) {

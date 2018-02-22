@@ -72,7 +72,7 @@ final class FileCell: UITableViewCell {
     @IBOutlet var downloadCountContainer: UIStackView!
     @IBOutlet var downloadCountLabel: UILabel!
 
-    @IBOutlet var activityIndicator: StudIpActivityIndicatorView?
+    @IBOutlet var activityIndicator: StudIpActivityIndicator?
     @IBOutlet var downloadGlyph: UIImageView?
 
     func updateSubtitleHiddenStates() {

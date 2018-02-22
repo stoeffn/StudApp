@@ -1,5 +1,5 @@
 //
-//  MainViewModel.swift
+//  AppViewModel.swift
 //  StudKit
 //
 //  Created by Steffen Ryll on 10.11.17.
@@ -7,7 +7,7 @@
 //
 
 /// Manages applications main view.
-public final class MainViewModel {
+public final class AppViewModel {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let storeService = ServiceContainer.default[StoreService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]

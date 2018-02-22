@@ -189,7 +189,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
     @IBAction
     func userButtonTapped(_ sender: Any) {
-        (tabBarController as? MainController)?.userButtonTapped(sender)
+        (tabBarController as? AppController)?.userButtonTapped(sender)
     }
 }
 
