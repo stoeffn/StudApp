@@ -21,16 +21,13 @@ public struct OrganizationRecord {
     let consumerKey: String
     let consumerSecret: String
     let title: String
-    let iconThumbnailUrl: URL?
 
-    init(id: String, apiUrl: URL? = nil, title: String = "", consumerKey: String = "", consumerSecret: String = "",
-         iconThumbnailUrl: URL? = nil) {
+    init(id: String, apiUrl: URL? = nil, title: String = "", consumerKey: String = "", consumerSecret: String = "") {
         self.id = id
         self.apiUrl = apiUrl ?? URL(string: "localhost")!
         self.title = title
         self.consumerKey = consumerKey
         self.consumerSecret = consumerSecret
-        self.iconThumbnailUrl = iconThumbnailUrl
     }
 }
 
@@ -44,14 +41,11 @@ extension OrganizationRecord {
             let title = record[Keys.title.rawValue] as? String
         else { return nil }
 
-        let iconThumbnailAsset = record[Keys.iconThumbnail.rawValue] as? CKAsset
-
         id = record.recordID.recordName
         self.apiUrl = apiUrl
         self.consumerKey = consumerKey
         self.consumerSecret = consumerSecret
         self.title = title
-        iconThumbnailUrl = iconThumbnailAsset?.fileURL
     }
 }
 
