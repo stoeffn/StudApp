@@ -164,7 +164,6 @@
 		248525AE20387CC800BC4CAB /* ResultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D44E1FA8DB1E00DAB97E /* ResultTests.swift */; };
 		2486D92C2036FCC100692FF2 /* IdentifiableResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2486D92B2036FCC100692FF2 /* IdentifiableResponse.swift */; };
 		248C0245202E4C58004CB8C9 /* RangeIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C0241202E4C57004CB8C9 /* RangeIterator.swift */; };
-		248C0246202E4C58004CB8C9 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C0242202E4C57004CB8C9 /* KeychainPasswordItem.swift */; };
 		248C0247202E4C58004CB8C9 /* ReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C0243202E4C57004CB8C9 /* ReachabilityService.swift */; };
 		248C0248202E4C58004CB8C9 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C0244202E4C57004CB8C9 /* Result.swift */; };
 		248C0249202E4DFC004CB8C9 /* FetchedResultsControllerDelegateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF7B641FF661AF0013BA23 /* FetchedResultsControllerDelegateHelper.swift */; };
@@ -518,7 +517,6 @@
 		248C023D202E4C34004CB8C9 /* SFSafariViewController+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SFSafariViewController+Notifications.swift"; sourceTree = "<group>"; };
 		248C023E202E4C34004CB8C9 /* SafariServices+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SafariServices+Constants.swift"; sourceTree = "<group>"; };
 		248C0241202E4C57004CB8C9 /* RangeIterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeIterator.swift; sourceTree = "<group>"; };
-		248C0242202E4C57004CB8C9 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
 		248C0243202E4C57004CB8C9 /* ReachabilityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
 		248C0244202E4C57004CB8C9 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		248C024A202E4EA3004CB8C9 /* NSUserActivity+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserActivity+Utils.swift"; sourceTree = "<group>"; };
@@ -987,7 +985,6 @@
 				24712BE91FB8B48A0067E416 /* ByTypeNameIdentifiable.swift */,
 				2469EF671FCE1D1C008A122B /* CacheService.swift */,
 				24A8EDDD1FCCBC93007C1CCF /* ContextService.swift */,
-				248C0242202E4C57004CB8C9 /* KeychainPasswordItem.swift */,
 				248C0241202E4C57004CB8C9 /* RangeIterator.swift */,
 				248C0243202E4C57004CB8C9 /* ReachabilityService.swift */,
 				248C0244202E4C57004CB8C9 /* Result.swift */,
@@ -2315,7 +2312,6 @@
 				24B091EB2036EC6A00A5037A /* DocumentResponse.swift in Sources */,
 				2448D4AB1FA8E07E00DAB97E /* Api.swift in Sources */,
 				2450AC6D1FDC1582004F1267 /* CourseViewModel.swift in Sources */,
-				248C0246202E4C58004CB8C9 /* KeychainPasswordItem.swift in Sources */,
 				246F3ACD1FAC881100A477FF /* CourseListViewModel.swift in Sources */,
 				24D361091FAA5E2300BBBAED /* Semester.swift in Sources */,
 				24FD785C1FBF45030072F860 /* Targets+NSPersistentHistory.swift in Sources */,
