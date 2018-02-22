@@ -72,26 +72,22 @@ final class ColorPickerController: UICollectionViewController, Routable {
 
 extension ColorPickerController: UICollectionViewDelegateFlowLayout {
     private static let inset: CGFloat = 4
-    private static let colorsPerRow = 4
+    private static let colorsPerRow = 3
 
-    func collectionView(_: UICollectionView, layout _: UICollectionViewLayout,
-                        insetForSectionAt _: Int) -> UIEdgeInsets {
+    func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, insetForSectionAt _: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: ColorPickerController.inset, left: ColorPickerController.inset,
                             bottom: ColorPickerController.inset, right: ColorPickerController.inset)
     }
 
-    func collectionView(_: UICollectionView, layout _: UICollectionViewLayout,
-                        minimumInteritemSpacingForSectionAt _: Int) -> CGFloat {
+    func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, minimumInteritemSpacingForSectionAt _: Int) -> CGFloat {
         return 0
     }
 
-    func collectionView(_: UICollectionView, layout _: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt _: Int) -> CGFloat {
+    func collectionView(_: UICollectionView, layout _: UICollectionViewLayout, minimumLineSpacingForSectionAt _: Int) -> CGFloat {
         return 0
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout _: UICollectionViewLayout,
-                        sizeForItemAt _: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout _: UICollectionViewLayout, sizeForItemAt _: IndexPath) -> CGSize {
         let effectiveWidth = collectionView.bounds.width - ColorPickerController.inset * 2
         let cellWidth = effectiveWidth / CGFloat(ColorPickerController.colorsPerRow)
         return CGSize(width: cellWidth, height: cellWidth)

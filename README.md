@@ -16,7 +16,7 @@ StudApp is an iOS application for the [Stud.IP](http://www.studip.de/) learning 
 * Complete offline availability
 * Integrates with iOS's native Files app
 * Integration into Spotlight search and Handoff
-* Usage of 3D Touch, Drag'n'Drop, Haptic feedvack, and more
+* Usage of 3D Touch, Drag'n'Drop, Haptic feedback, and more
 * Fully translated into English and German
 
 _TODO: Describe each feature in detail and provide screenshots_
