@@ -10,12 +10,12 @@ import CoreData
 
 struct MockResponses {
     lazy var semesters = [
-        SemesterResponse(id: "S0", title: "Winter 2016/17".localized, beginsAt: Date(timeIntervalSince1970: 1475338860),
-                         endsAt: Date(timeIntervalSince1970: 1488388860)),
-        SemesterResponse(id: "S1", title: "Summer 2017".localized, beginsAt: Date(timeIntervalSince1970: 1491004800),
-                         endsAt: Date(timeIntervalSince1970: 1504224000)),
-        SemesterResponse(id: "S2", title: "Winter 2017/18".localized, beginsAt: Date(timeIntervalSince1970: 1504282860),
-                         endsAt: Date(timeIntervalSince1970: 1519924860)),
+        SemesterResponse(id: "S0", title: "Winter 2016/17".localized, beginsAt: Date(timeIntervalSince1970: 1_475_338_860),
+                         endsAt: Date(timeIntervalSince1970: 1_488_388_860)),
+        SemesterResponse(id: "S1", title: "Summer 2017".localized, beginsAt: Date(timeIntervalSince1970: 1_491_004_800),
+                         endsAt: Date(timeIntervalSince1970: 1_504_224_000)),
+        SemesterResponse(id: "S2", title: "Winter 2017/18".localized, beginsAt: Date(timeIntervalSince1970: 1_504_282_860),
+                         endsAt: Date(timeIntervalSince1970: 1_519_924_860)),
     ]
 
     lazy var currentUser = UserResponse(id: "U0", username: "murphy", givenName: "Murphy", familyName: "Cooper")

@@ -29,7 +29,7 @@ final class ColorPickerController: UICollectionViewController, Routable {
     // MARK: - User Interaction
 
     @IBAction
-    func cancelButtonTapped(_ sender: Any) {
+    func cancelButtonTapped(_: Any) {
         dismiss(animated: true, completion: nil)
     }
 

@@ -22,6 +22,7 @@ final class AppDelegate: UIResponder {
 // MARK: - Application Delegate
 
 extension AppDelegate: UIApplicationDelegate {
+
     // MARK: Initializing the App
 
     func application(_: UIApplication, willFinishLaunchingWithOptions _: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
