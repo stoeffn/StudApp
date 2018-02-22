@@ -38,7 +38,7 @@ final class GlowView: UIView {
 
     @IBInspectable var color: UIColor? {
         didSet {
-            highlightColor = color?.lightened(by: 0.15)
+            highlightColor = color?.lightened(by: 0.1)
             layer.shadowColor = highlightColor?.cgColor
             backgroundColor = isHighlighted ? highlightColor : color
         }

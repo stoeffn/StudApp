@@ -18,7 +18,7 @@ final class EventCell: UITableViewCell {
             startsAtLabel.text = event.startsAt.formatted(using: .shortTime)
             endsAtLabel.text = event.endsAt.formatted(using: .shortTime)
 
-            colorView.backgroundColor = event.course.state.color
+            colorView.backgroundColor = event.course.color
 
             titleLabel.text = event.course.title
 
@@ -49,11 +49,11 @@ final class EventCell: UITableViewCell {
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
-        colorView.backgroundColor = event.course.state.color
+        colorView.backgroundColor = event.course.color
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        colorView.backgroundColor = event.course.state.color
+        colorView.backgroundColor = event.course.color
     }
 }

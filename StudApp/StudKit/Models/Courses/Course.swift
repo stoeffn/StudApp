@@ -15,12 +15,15 @@ import MobileCoreServices
 /// Besides containing some metadata such as a title and location, each course is alse the root node of a file structure.
 @objc(Course)
 public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDSortable {
-    public static var entity = ObjectIdentifier.Entites.course
+    public static let entity = ObjectIdentifier.Entites.course
 
     @NSManaged public var id: String
 
     /// Course number internal to Stud.IP that can also be used for identifying a course.
     @NSManaged public var number: String?
+
+    /// Identifier for this course's group, which determines the course's sorting and color.
+    @NSManaged public var groupId: Int
 
     @NSManaged public var title: String
 
@@ -56,6 +59,7 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDSorta
     // MARK: - Sorting
 
     static let defaultSortDescriptors = [
+        NSSortDescriptor(keyPath: \Course.groupId, ascending: true),
         NSSortDescriptor(keyPath: \Course.title, ascending: true),
     ]
 

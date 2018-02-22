@@ -145,7 +145,7 @@
 		247CC2BA203898540067207B /* GroupedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9681FA9087900FBD750 /* GroupedTextField.swift */; };
 		247CC2BB203898570067207B /* StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */; };
 		247CC2BC2038985A0067207B /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */; };
-		247CC2C1203898FA0067207B /* CourseState+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247CC2C0203898FA0067207B /* CourseState+Colors.swift */; };
+		247CC2C1203898FA0067207B /* Course+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247CC2C0203898FA0067207B /* Course+Colors.swift */; };
 		24801F451FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24801F441FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift */; };
 		24830AAB1FDC09EC006A1927 /* CourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24830AAA1FDC09EC006A1927 /* CourseController.swift */; };
 		2485259F20378AAB00BC4CAB /* FilesContaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485259E20378AAB00BC4CAB /* FilesContaining.swift */; };
@@ -505,7 +505,7 @@
 		247CC289203896C70067207B /* StudKitUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StudKitUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		247CC28B203896C70067207B /* StudKitUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudKitUI.h; sourceTree = "<group>"; };
 		247CC28C203896C70067207B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		247CC2C0203898FA0067207B /* CourseState+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CourseState+Colors.swift"; sourceTree = "<group>"; };
+		247CC2C0203898FA0067207B /* Course+Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Course+Colors.swift"; sourceTree = "<group>"; };
 		24801F441FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Utils.swift"; sourceTree = "<group>"; };
 		24830AA81FD9F324006A1927 /* UITableViewCell+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Utils.swift"; sourceTree = "<group>"; };
 		24830AAA1FDC09EC006A1927 /* CourseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseController.swift; sourceTree = "<group>"; };
@@ -1374,7 +1374,7 @@
 		247CC2BF203898E90067207B /* Courses */ = {
 			isa = PBXGroup;
 			children = (
-				247CC2C0203898FA0067207B /* CourseState+Colors.swift */,
+				247CC2C0203898FA0067207B /* Course+Colors.swift */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
@@ -2430,7 +2430,7 @@
 				247CC2A0203897E50067207B /* UIColor+Adjustments.swift in Sources */,
 				247CC2A92038980B0067207B /* AboutController.swift in Sources */,
 				247CC29F203897E20067207B /* UIAlertController+Utils.swift in Sources */,
-				247CC2C1203898FA0067207B /* CourseState+Colors.swift in Sources */,
+				247CC2C1203898FA0067207B /* Course+Colors.swift in Sources */,
 				247CC2A2203897EE0067207B /* UIFont+Mutations.swift in Sources */,
 				247CC2A4203897F40067207B /* UISplitViewController+Utils.swift in Sources */,
 				247CC2B5203898430067207B /* BadgeLabel.swift in Sources */,

@@ -10,7 +10,7 @@ import CoreData
 
 @objc(Semester)
 public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDSortable {
-    public static var entity = ObjectIdentifier.Entites.semester
+    public static let entity = ObjectIdentifier.Entites.semester
 
     @NSManaged public var id: String
     @NSManaged public var title: String
@@ -82,9 +82,9 @@ extension Semester {
         return try context.fetch(visibleStatesFetchRequest).map { $0.semester }
     }
 
-    public var coursesStatesFetchRequest: NSFetchRequest<CourseState> {
-        let predicate = NSPredicate(format: "%@ IN course.semesters", self)
-        return CourseState.fetchRequest(predicate: predicate, sortDescriptors: CourseState.defaultSortDescriptors,
-                                        relationshipKeyPathsForPrefetching: ["course"])
+    public var coursesFetchRequest: NSFetchRequest<Course> {
+        let predicate = NSPredicate(format: "%@ IN semesters", self)
+        return Course.fetchRequest(predicate: predicate, sortDescriptors: Course.defaultSortDescriptors,
+                                   relationshipKeyPathsForPrefetching: ["state"])
     }
 }

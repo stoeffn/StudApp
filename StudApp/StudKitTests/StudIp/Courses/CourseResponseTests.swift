@@ -68,7 +68,7 @@ final class CourseResponseTests: XCTestCase {
         XCTAssertEqual(course.title, "Title")
         XCTAssertEqual(course.subtitle, "Subtitle")
         XCTAssertEqual(course.summary, "Summary")
-        XCTAssertEqual(course.state.colorId, 2)
+        XCTAssertEqual(course.groupId, 2)
         XCTAssertEqual(course.location, "Location")
         XCTAssertEqual(Set(course.lecturers.map { $0.id }), ["U0"])
         XCTAssertEqual(Set(course.semesters.map { $0.id }), ["S0", "S1"])

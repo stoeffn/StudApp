@@ -254,7 +254,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     private func presentColorPicker(for cell: CourseCell) {
         let route = Routes.colorPicker(sender: cell) { id, _ in
-            cell.course.state.colorId = id
+            cell.course.groupId = id
             self.presentedViewController?.dismiss(animated: true, completion: nil)
         }
         performSegue(withRoute: route)

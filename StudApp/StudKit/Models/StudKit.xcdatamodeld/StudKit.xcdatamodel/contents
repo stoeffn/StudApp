@@ -19,6 +19,7 @@
         </uniquenessConstraints>
     </entity>
     <entity name="Course" representedClassName="Course" syncable="YES">
+        <attribute name="groupId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="String" minValueString="1" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
@@ -42,7 +43,6 @@
     </entity>
     <entity name="CourseState" representedClassName="CourseState" syncable="YES">
         <attribute name="areFilesFetchedFromRemote" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="colorId" attributeType="Integer 64" defaultValueString="-1" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="favoriteRank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lastUsedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="tagData" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -148,8 +148,8 @@
     </entity>
     <elements>
         <element name="Announcement" positionX="-8703" positionY="-2070" width="128" height="165"/>
-        <element name="Course" positionX="-8568" positionY="-2218" width="128" height="225"/>
-        <element name="CourseState" positionX="-8354" positionY="-2142" width="128" height="135"/>
+        <element name="Course" positionX="-8568" positionY="-2218" width="128" height="240"/>
+        <element name="CourseState" positionX="-8354" positionY="-2142" width="128" height="120"/>
         <element name="Event" positionX="-8703" positionY="-2070" width="128" height="180"/>
         <element name="File" positionX="-8381" positionY="-1971" width="128" height="240"/>
         <element name="FileState" positionX="-8199" positionY="-1836" width="128" height="135"/>

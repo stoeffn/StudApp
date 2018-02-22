@@ -13,7 +13,7 @@ public final class Event: NSManagedObject, CDCreatable, CDIdentifiable, CDSortab
 
     // MARK: Identification
 
-    public static var entity = ObjectIdentifier.Entites.event
+    public static let entity = ObjectIdentifier.Entites.event
 
     @NSManaged public var id: String
 

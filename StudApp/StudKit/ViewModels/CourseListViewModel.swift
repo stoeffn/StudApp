@@ -38,28 +38,20 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
     public init(semester: Semester, respectsCollapsedState: Bool = false) {
         self.semester = semester
         self.respectsCollapsedState = respectsCollapsedState
-        isCollapsed = semester.state.isCollapsed
 
+        isCollapsed = semester.state.isCollapsed
         controller.delegate = fetchedResultControllerDelegateHelper
     }
 
-    public private(set) lazy var controller: NSFetchedResultsController<CourseState> = NSFetchedResultsController(
-        fetchRequest: semester?.coursesStatesFetchRequest ?? CourseState.fetchRequest(),
+    public private(set) lazy var controller: NSFetchedResultsController<Course> = NSFetchedResultsController(
+        fetchRequest: semester?.coursesFetchRequest ?? Course.fetchRequest(),
         managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
-
-    public func row(from object: CourseState) -> Course {
-        return object.course
-    }
-
-    public func object(from row: Course) -> CourseState {
-        return row.state
-    }
 
     /// Fetches initial data.
     public func fetch() {
         controller.fetchRequest.predicate = isCollapsed && respectsCollapsedState
             ? NSPredicate(value: false)
-            : semester?.coursesStatesFetchRequest.predicate ?? NSPredicate(value: true)
+            : semester?.coursesFetchRequest.predicate ?? NSPredicate(value: true)
         try? controller.performFetch()
     }
 

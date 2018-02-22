@@ -1,5 +1,5 @@
 //
-//  CourseState+Colors.swift
+//  Course+Colors.swift
 //  StudKitUI
 //
 //  Created by Steffen Ryll on 17.02.18.
@@ -8,8 +8,8 @@
 
 import StudKit
 
-public extension CourseState {
+public extension Course {
     public var color: UIColor {
-        return UI.Colors.pickerColors[course.state.colorId] ?? UI.Colors.defaultPickerColor ?? UI.Colors.studBlue
+        return UI.Colors.pickerColors[groupId] ?? UI.Colors.studBlue
     }
 }

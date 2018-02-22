@@ -17,8 +17,6 @@ public final class CourseState: NSManagedObject, CDCreatable, CDSortable {
 
     @NSManaged public var tagData: Data?
 
-    @NSManaged public var colorId: Int
-
     @NSManaged public var areFilesFetchedFromRemote: Bool
 
     @NSManaged public var course: Course
@@ -34,7 +32,7 @@ public final class CourseState: NSManagedObject, CDCreatable, CDSortable {
     // MARK: - Sorting
 
     static let defaultSortDescriptors = [
-        NSSortDescriptor(keyPath: \CourseState.colorId, ascending: true),
+        NSSortDescriptor(keyPath: \CourseState.course.groupId, ascending: true),
         NSSortDescriptor(keyPath: \CourseState.course.title, ascending: true),
     ]
 

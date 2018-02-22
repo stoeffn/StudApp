@@ -13,9 +13,9 @@ import QuickLook
 
 @objc(File)
 public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDSortable {
-    public static var entity = ObjectIdentifier.Entites.file
-
     // MARK: Identification
+
+    public static let entity = ObjectIdentifier.Entites.file
 
     @NSManaged public var id: String
 
