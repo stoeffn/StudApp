@@ -7,33 +7,31 @@
 //
 
 import CloudKit
+import CoreData
 
 public struct OrganizationRecord {
     enum Keys: String {
-        case apiUrl, authenticationRealm, consumerKey, consumerSecret, title, iconThumbnail, icon
+        case apiUrl, consumerKey, consumerSecret, title, iconThumbnail, icon
     }
 
     public static let recordType: String = "Organization"
 
-    let recordId: CKRecordID
-
+    let id: String
     let apiUrl: URL
-
-    let authenticationRealm: String?
-
     let consumerKey: String
-
     let consumerSecret: String
+    let title: String
+    let iconThumbnailUrl: URL?
 
-    public let title: String
-
-    private let iconUrl: URL?
-
-    public lazy var icon: UIImage? = UIImage(contentsOfFile: iconUrl?.path ?? "")
-
-    private let iconThumbnailUrl: URL?
-
-    public lazy var iconThumbnail: UIImage? = UIImage(contentsOfFile: iconThumbnailUrl?.path ?? "")
+    init(id: String, apiUrl: URL? = nil, title: String = "", consumerKey: String = "", consumerSecret: String = "",
+         iconThumbnailUrl: URL? = nil) {
+        self.id = id
+        self.apiUrl = apiUrl ?? URL(string: "localhost")!
+        self.title = title
+        self.consumerKey = consumerKey
+        self.consumerSecret = consumerSecret
+        self.iconThumbnailUrl = iconThumbnailUrl
+    }
 }
 
 extension OrganizationRecord {
@@ -47,15 +45,22 @@ extension OrganizationRecord {
         else { return nil }
 
         let iconThumbnailAsset = record[Keys.iconThumbnail.rawValue] as? CKAsset
-        let iconAsset = record[Keys.icon.rawValue] as? CKAsset
 
-        recordId = record.recordID
+        id = record.recordID.recordName
         self.apiUrl = apiUrl
-        authenticationRealm = record[Keys.authenticationRealm.rawValue] as? String
         self.consumerKey = consumerKey
         self.consumerSecret = consumerSecret
         self.title = title
-        iconUrl = iconAsset?.fileURL
         iconThumbnailUrl = iconThumbnailAsset?.fileURL
+    }
+}
+
+extension OrganizationRecord {
+    @discardableResult
+    func coreDataObject(in context: NSManagedObjectContext) throws -> Organization {
+        let (organization, _) = try Organization.fetch(byId: id, orCreateIn: context)
+        organization.title = title
+        organization.apiUrl = apiUrl.absoluteString
+        return organization
     }
 }
