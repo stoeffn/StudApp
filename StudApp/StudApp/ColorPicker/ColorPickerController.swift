@@ -17,33 +17,20 @@ final class ColorPickerController: UICollectionViewController, Routable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        preferredContentSize = CGSize(width: 300, height: 300)
         navigationItem.title = "Choose Color".localized
-
-        addBackgroundView(withEffect: UIBlurEffect(style: .light))
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
-        preferredContentSize = collectionView?.contentSize ?? preferredContentSize
     }
 
     func prepareDependencies(for route: Routes) {
         guard case let .colorPicker(_, completion) = route else { fatalError() }
-
         viewModel = ColorPickerViewModel(colors: UI.Colors.pickerColors, completion: completion)
     }
 
-    // MARK: - User Interface
+    // MARK: - User Interaction
 
-    public func addBackgroundView(withEffect effect: UIVisualEffect) {
-        let backgroundView = UIVisualEffectView(effect: effect)
-        backgroundView.translatesAutoresizingMaskIntoConstraints = false
-        view.insertSubview(backgroundView, at: 0)
-        backgroundView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        backgroundView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        backgroundView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        backgroundView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+    @IBAction
+    func cancelButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
 
     // MARK: - Collection View Data Source
