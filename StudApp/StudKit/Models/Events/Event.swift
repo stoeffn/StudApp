@@ -17,6 +17,12 @@ public final class Event: NSManagedObject, CDCreatable, CDIdentifiable, CDSortab
 
     @NSManaged public var id: String
 
+    // MARK: Specifying Location
+
+    @NSManaged public var course: Course
+
+    @NSManaged public var organization: Organization
+
     // MARK: Managing Timing
 
     @NSManaged public var startsAt: Date
@@ -27,17 +33,13 @@ public final class Event: NSManagedObject, CDCreatable, CDIdentifiable, CDSortab
 
     @NSManaged public var cancellationReason: String?
 
-    // MARK: Specifying Location
+    // MARK: Managing Metadata
+
+    @NSManaged public var category: String?
 
     @NSManaged public var location: String?
 
-    @NSManaged public var course: Course
-
-    // MARK: Managing Metadata
-
     @NSManaged public var summary: String?
-
-    @NSManaged public var category: String?
 
     // MARK: - Sorting
 

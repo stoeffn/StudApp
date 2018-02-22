@@ -15,6 +15,9 @@ import MobileCoreServices
 /// Besides containing some metadata such as a title and location, each course is alse the root node of a file structure.
 @objc(Course)
 public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDSortable {
+
+    // MARK: Identification
+
     public static let entity = ObjectIdentifier.Entites.course
 
     @NSManaged public var id: String
@@ -22,32 +25,40 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDSorta
     /// Course number internal to Stud.IP that can also be used for identifying a course.
     @NSManaged public var number: String?
 
-    /// Identifier for this course's group, which determines the course's sorting and color.
-    @NSManaged public var groupId: Int
-
     @NSManaged public var title: String
 
-    @NSManaged public var subtitle: String?
+    // MARK: Specifying Location
 
-    /// Short description of the course and/or summary of its contents.
-    @NSManaged public var summary: String?
-
-    /// Describes where this course is held.
-    @NSManaged public var location: String?
-
-    @NSManaged public var lecturers: Set<User>
-
-    @NSManaged public var files: Set<File>
+    @NSManaged public var organization: Organization
 
     /// As a course can span multiple semesters, there is a set of semesters. However, most courses exist in one semester only.
     /// It is also important to know that—if contained in semesters `A` and `C`—a course should also be contained in `B`.
     @NSManaged public var semesters: Set<Semester>
 
+    // MARK: Managing Content
+
     @NSManaged public var announcements: Set<Announcement>
 
     @NSManaged public var events: Set<Event>
 
+    @NSManaged public var files: Set<File>
+
+    // MARK: Managing Metadata
+
+    /// Identifier for this course's group, which determines the course's sorting and color.
+    @NSManaged public var groupId: Int
+
+    @NSManaged public var lecturers: Set<User>
+
+    /// Describes where this course is held.
+    @NSManaged public var location: String?
+
     @NSManaged public var state: CourseState
+
+    @NSManaged public var subtitle: String?
+
+    /// Short description of the course and/or summary of its contents.
+    @NSManaged public var summary: String?
 
     // MARK: - Life Cycle
 

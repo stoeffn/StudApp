@@ -11,15 +11,22 @@ import CoreData
 /// Represents the current state of a course.
 @objc(CourseState)
 public final class CourseState: NSManagedObject, CDCreatable, CDSortable {
+
+    // MARK: Specifying Location
+
+    @NSManaged public var course: Course
+
+    // MARK: Tracking Usage
+
     @NSManaged public var lastUsedAt: Date?
+
+    // MARK: Managing Metadata
 
     @NSManaged public var favoriteRank: Int
 
     @NSManaged public var tagData: Data?
 
     @NSManaged public var areFilesFetchedFromRemote: Bool
-
-    @NSManaged public var course: Course
 
     // MARK: Life Cycle
 

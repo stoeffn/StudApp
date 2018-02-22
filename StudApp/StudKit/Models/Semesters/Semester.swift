@@ -10,18 +10,38 @@ import CoreData
 
 @objc(Semester)
 public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDSortable {
+
+    // MARK: Identifications
+
     public static let entity = ObjectIdentifier.Entites.semester
 
     @NSManaged public var id: String
+
     @NSManaged public var title: String
-    @NSManaged public var beginsAt: Date
-    @NSManaged public var endsAt: Date
-    @NSManaged public var coursesBeginAt: Date
-    @NSManaged public var coursesEndAt: Date
-    @NSManaged public var summary: String?
+
+    // MARK: Specifying Location
+
+    @NSManaged public var organization: Organization
 
     @NSManaged public var courses: Set<Course>
+
+    // MARK: Managing Timing
+
+    @NSManaged public var beginsAt: Date
+
+    @NSManaged public var endsAt: Date
+
+    @NSManaged public var coursesBeginAt: Date
+
+    @NSManaged public var coursesEndAt: Date
+
+    // MARK: Managing Metadata
+
+    @NSManaged public var summary: String?
+
     @NSManaged public var state: SemesterState
+
+    // MARK: - Life Cycle
 
     public required convenience init(createIn context: NSManagedObjectContext) {
         self.init(context: context)

@@ -205,6 +205,7 @@
 		24BF7B691FF673BF0013BA23 /* FetchedResultsControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF7B681FF673BF0013BA23 /* FetchedResultsControllerDataSource.swift */; };
 		24BF7B6B1FF674100013BA23 /* FetchedResultsControllerSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF7B6A1FF674100013BA23 /* FetchedResultsControllerSource.swift */; };
 		24BF7B6D1FF6741E0013BA23 /* FetchedResultsControllerDataSourceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF7B6C1FF6741E0013BA23 /* FetchedResultsControllerDataSourceSection.swift */; };
+		24CA6FEA203F503700171843 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA6FE9203F503700171843 /* Organization.swift */; };
 		24CFB5D11FB24E2500F30DEA /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D01FB24E2500F30DEA /* AppController.swift */; };
 		24D178EB1FB606B200EC5F4A /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D178EA1FB606B200EC5F4A /* AppViewModel.swift */; };
 		24D2DA1E1FD03B98006FC700 /* StoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D2DA1D1FD03B98006FC700 /* StoreService.swift */; };
@@ -558,6 +559,7 @@
 		24BF7B681FF673BF0013BA23 /* FetchedResultsControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerDataSource.swift; sourceTree = "<group>"; };
 		24BF7B6A1FF674100013BA23 /* FetchedResultsControllerSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerSource.swift; sourceTree = "<group>"; };
 		24BF7B6C1FF6741E0013BA23 /* FetchedResultsControllerDataSourceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerDataSourceSection.swift; sourceTree = "<group>"; };
+		24CA6FE9203F503700171843 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		24CFB5D01FB24E2500F30DEA /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 		24CFB5D31FB24F4C00F30DEA /* Routable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
 		24CFB5D41FB24F4C00F30DEA /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
@@ -1271,6 +1273,7 @@
 		245B6ADF1FCB39AD00302CD0 /* Organizations */ = {
 			isa = PBXGroup;
 			children = (
+				24CA6FE9203F503700171843 /* Organization.swift */,
 				245B6AE01FCB39BF00302CD0 /* OrganizationRecord.swift */,
 			);
 			path = Organizations;
@@ -2424,6 +2427,7 @@
 				241C67EA1FCDFAC700F4A099 /* App.swift in Sources */,
 				24D361111FAA5F0500BBBAED /* StudIpService.swift in Sources */,
 				246F3AC91FAC879C00A477FF /* DataSourceSection.swift in Sources */,
+				24CA6FEA203F503700171843 /* Organization.swift in Sources */,
 				24D361151FAA5F0E00BBBAED /* CollectionResponse.swift in Sources */,
 				242266081FE3D45F00FA7CA6 /* Announcement.swift in Sources */,
 				24E4B9A61FF260240061983C /* ObjectIdentifier.swift in Sources */,

@@ -10,11 +10,22 @@ import CoreData
 
 @objc(SemesterState)
 public final class SemesterState: NSManagedObject, CDCreatable, CDSortable {
+
+    // MARK: Specifying Location
+
+    @NSManaged public var semester: Semester
+
+    // MARK: Tracking Usage
+
     @NSManaged public var lastUsedAt: Date?
+
+    // MARK: Managing Metadata
 
     @NSManaged public var favoriteRank: Int
 
     @NSManaged public var tagData: Data?
+
+    // MARK: Managing State
 
     @NSManaged public var isHidden: Bool
 
@@ -22,7 +33,7 @@ public final class SemesterState: NSManagedObject, CDCreatable, CDSortable {
 
     @NSManaged public var areCoursesFetchedFromRemote: Bool
 
-    @NSManaged public var semester: Semester
+    // MARK: - Life Cycle
 
     var observations = [NSKeyValueObservation]()
 

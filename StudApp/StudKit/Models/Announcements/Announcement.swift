@@ -10,11 +10,22 @@ import CoreData
 
 @objc(Announcement)
 public final class Announcement: NSManagedObject, CDCreatable, CDIdentifiable, CDSortable {
+
+    // MARK: Identification
+
     public static let entity = ObjectIdentifier.Entites.announcement
 
     @NSManaged public var id: String
 
     @NSManaged public var title: String
+
+    // MARK: Specifying Location
+
+    @NSManaged public var courses: Set<Course>
+
+    @NSManaged public var organization: Organization
+
+    // MARK: Tracking Usage and Expiry
 
     @NSManaged public var createdAt: Date
 
@@ -22,11 +33,11 @@ public final class Announcement: NSManagedObject, CDCreatable, CDIdentifiable, C
 
     @NSManaged public var expiresAt: Date
 
+    // MARK: Managing Content and Ownership
+
     @NSManaged public var body: String
 
     @NSManaged public var user: User?
-
-    @NSManaged public var courses: Set<Course>
 
     // MARK: - Sorting
 

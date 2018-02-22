@@ -10,14 +10,28 @@ import CoreData
 
 @objc(FileState)
 public final class FileState: NSManagedObject, CDCreatable, CDSortable {
-    @NSManaged public var lastUsedAt: Date?
-    @NSManaged public var favoriteRank: Int
-    @NSManaged public var tagData: Data?
 
-    @NSManaged public var downloadedAt: Date?
-    @NSManaged public var isDownloading: Bool
+    // MARK: Specifying Location
 
     @NSManaged public var file: File
+
+    // MARK: Tracking Usage
+
+    @NSManaged public var lastUsedAt: Date?
+
+    // MARK: Managing Metadata
+
+    @NSManaged public var favoriteRank: Int
+
+    @NSManaged public var tagData: Data?
+
+    // MARK: Managing State
+
+    @NSManaged public var downloadedAt: Date?
+
+    @NSManaged public var isDownloading: Bool
+
+    // MARK: - Life Cycle
 
     public required convenience init(createIn context: NSManagedObjectContext) {
         self.init(context: context)

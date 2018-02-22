@@ -13,6 +13,7 @@ import QuickLook
 
 @objc(File)
 public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDSortable {
+
     // MARK: Identification
 
     public static let entity = ObjectIdentifier.Entites.file
@@ -26,6 +27,17 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
     /// Uniform type identifier for this file, chosen by the system based on the file name's extension.
     @NSManaged public var typeIdentifier: String
 
+    // MARK: Specifying Location
+
+    /// Course this file belongs to.
+    @NSManaged public var course: Course
+
+    /// Parent file, which should be a folder and contain this file. If a file has no parent folder, it is assumed to be in its
+    /// course's root.
+    @NSManaged public var parent: File?
+
+    @NSManaged public var organization: Organization
+
     // MARK: Managing Content
 
     /// Size of the file in bytes.
@@ -36,15 +48,6 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
 
     /// Files contained in this file in case of a folder.
     @NSManaged public var children: Set<File>
-
-    // MARK: Specifying Content Location
-
-    /// Course this file belongs to.
-    @NSManaged public var course: Course
-
-    /// Parent file, which should be a folder and contain this file. If a file has no parent folder, it is assumed to be in its
-    /// course's root.
-    @NSManaged public var parent: File?
 
     // MARK: Tracking Usage
 
@@ -60,13 +63,13 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
     ///            for folders.
     @NSManaged public var downloadCount: Int
 
-    /// File description.
-    @NSManaged public var summary: String?
-
     /// User who uploaded or modified this file. Might be `nil` for folders or some documents authored by multiple users.
     @NSManaged public var owner: User?
 
     @NSManaged public var state: FileState
+
+    /// File description.
+    @NSManaged public var summary: String?
 
     // MARK: - Life Cycle
 

@@ -10,6 +10,9 @@ import CoreData
 
 @objc(User)
 public final class User: NSManagedObject, CDCreatable, CDIdentifiable, CDSortable {
+
+    // MARK: Identification
+
     public static let entity = ObjectIdentifier.Entites.user
 
     @NSManaged public var id: String
@@ -24,7 +27,15 @@ public final class User: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
 
     @NSManaged public var nameSuffix: String?
 
+    // MARK: Specifying Location
+
+    @NSManaged public var organization: Organization
+
+    // MARK: Managing Metadata
+
     @NSManaged public var pictureModifiedAt: Date?
+
+    // MARK: Managing Content
 
     @NSManaged public var createdAnnouncements: Set<Announcement>
 

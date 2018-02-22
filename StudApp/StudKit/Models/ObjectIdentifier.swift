@@ -23,7 +23,7 @@ public struct ObjectIdentifier: ByTypeNameIdentifiable {
 
 public extension ObjectIdentifier {
     public enum Entites: String {
-        case root, workingSet, announcement, course, courseState, file, fileState, event, semester, semesterState, user
+        case announcement, course, courseState, event, file, fileState, organization, root, semester, semesterState, user, workingSet
     }
 }
 
