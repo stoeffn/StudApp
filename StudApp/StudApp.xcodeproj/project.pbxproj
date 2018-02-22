@@ -140,12 +140,12 @@
 		247CC2B4203898350067207B /* BorderlessNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD96E1FA9191500FBD750 /* BorderlessNavigationController.swift */; };
 		247CC2B5203898430067207B /* BadgeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF7B621FF325470013BA23 /* BadgeLabel.swift */; };
 		247CC2B6203898460067207B /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C0266202E5C31004CB8C9 /* ConfettiView.swift */; };
-		247CC2B7203898490067207B /* DateTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447FB621FF68D8B000EA6BE /* DateTabBar.swift */; };
+		247CC2B7203898490067207B /* DateTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447FB621FF68D8B000EA6BE /* DateTabBarView.swift */; };
 		247CC2B82038984D0067207B /* DateTabBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2447FB641FF69272000EA6BE /* DateTabBarCell.swift */; };
 		247CC2B9203898500067207B /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9661FA9022400FBD750 /* FilledButton.swift */; };
 		247CC2BA203898540067207B /* GroupedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD9681FA9087900FBD750 /* GroupedTextField.swift */; };
-		247CC2BB203898570067207B /* StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */; };
-		247CC2BC2038985A0067207B /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */; };
+		247CC2BB203898570067207B /* StudIpActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626761FA9207F0040F9F7 /* StudIpActivityIndicator.swift */; };
+		247CC2BC2038985A0067207B /* UINavigationItem+StudIpActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicator.swift */; };
 		247CC2C1203898FA0067207B /* Course+Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247CC2C0203898FA0067207B /* Course+Colors.swift */; };
 		24801F451FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24801F441FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift */; };
 		24830AAB1FDC09EC006A1927 /* CourseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24830AAA1FDC09EC006A1927 /* CourseController.swift */; };
@@ -422,7 +422,7 @@
 		243CC2C91FE0390200FE7376 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		243CC2CC1FE0392700FE7376 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		2446F9731FC8D16900D6AB6C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		2447FB621FF68D8B000EA6BE /* DateTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTabBar.swift; sourceTree = "<group>"; };
+		2447FB621FF68D8B000EA6BE /* DateTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTabBarView.swift; sourceTree = "<group>"; };
 		2447FB641FF69272000EA6BE /* DateTabBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTabBarCell.swift; sourceTree = "<group>"; };
 		2448D4091FA8DA2400DAB97E /* StudApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -635,8 +635,8 @@
 		24E60B671FC8C754000EDD2A /* Semesters.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Semesters.storyboard; sourceTree = "<group>"; };
 		24E60B691FC8C76F000EDD2A /* SignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SignIn.storyboard; sourceTree = "<group>"; };
 		24E60B6B1FC8C77F000EDD2A /* MainInterface.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
-		24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+StudIpActivityIndicatorView.swift"; sourceTree = "<group>"; };
-		24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudIpActivityIndicatorView.swift; sourceTree = "<group>"; };
+		24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationItem+StudIpActivityIndicator.swift"; sourceTree = "<group>"; };
+		24E626761FA9207F0040F9F7 /* StudIpActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudIpActivityIndicator.swift; sourceTree = "<group>"; };
 		24EBC4351FCDCA3200181455 /* About.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
 		24EBC4371FCDCA4300181455 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		24FD78591FBF3F030072F860 /* PersistentHistoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentHistoryService.swift; sourceTree = "<group>"; };
@@ -975,27 +975,18 @@
 			isa = PBXGroup;
 			children = (
 				2448D49C1FA8E07E00DAB97E /* Api */,
+				2457CDA6203F4C180021B31D /* App */,
 				2448D45F1FA8DC1D00DAB97E /* Extensions */,
+				2457CDA4203F4BF80021B31D /* Keychain */,
 				24D360BE1FAA585B00BBBAED /* Models */,
+				2457CDA5203F4BFF0021B31D /* Reachability */,
 				2448D4741FA8DE1700DAB97E /* Services */,
 				24D462791FE1C4D200DE3B3A /* Store */,
 				24D360EB1FAA5DA700BBBAED /* StudIp */,
 				24D361641FAA646200BBBAED /* ViewModels */,
-				241C67E91FCDFAC700F4A099 /* App.swift */,
-				24712BE91FB8B48A0067E416 /* ByTypeNameIdentifiable.swift */,
-				2469EF671FCE1D1C008A122B /* CacheService.swift */,
-				24A8EDDD1FCCBC93007C1CCF /* ContextService.swift */,
-				248C0241202E4C57004CB8C9 /* RangeIterator.swift */,
-				248C0243202E4C57004CB8C9 /* ReachabilityService.swift */,
-				248C0244202E4C57004CB8C9 /* Result.swift */,
-				2448D4961FA8DFB200DAB97E /* StudKitServiceProvider.swift */,
-				24557A14203F3FCE00492B74 /* KeychainService.swift */,
-				24FD785D1FBF45B10072F860 /* Targets.swift */,
-				24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */,
-				243CC2BF1FDF19BB00FE7376 /* UserActivities.swift */,
-				24FD78711FC07C630072F860 /* UserDefaults+Keys.swift */,
-				2448D4411FA8DB1E00DAB97E /* StudKit.h */,
 				249DD6FD1FC8B896006DA46E /* Localizable.strings */,
+				2448D4961FA8DFB200DAB97E /* StudKitServiceProvider.swift */,
+				2448D4411FA8DB1E00DAB97E /* StudKit.h */,
 				2448D4421FA8DB1E00DAB97E /* Info.plist */,
 			);
 			path = StudKit;
@@ -1010,8 +1001,6 @@
 				2448D4791FA8DE3300DAB97E /* Services */,
 				2436370D1FE56F1B001D1B86 /* Store */,
 				24D361261FAA603400BBBAED /* StudIp */,
-				24FE8A131FB7B1A000A4A3C6 /* RangeIteratorTests.swift */,
-				2448D44E1FA8DB1E00DAB97E /* ResultTests.swift */,
 				2448D49A1FA8E01B00DAB97E /* Setup.swift */,
 				2448D4981FA8E00800DAB97E /* StudKitTestsServiceProvider.swift */,
 				2448D4501FA8DB1E00DAB97E /* Info.plist */,
@@ -1033,6 +1022,10 @@
 		2448D4601FA8DC2500DAB97E /* Swift */ = {
 			isa = PBXGroup;
 			children = (
+				246F3ABD1FAC877400A477FF /* DataSource */,
+				24712BE91FB8B48A0067E416 /* ByTypeNameIdentifiable.swift */,
+				248C0241202E4C57004CB8C9 /* RangeIterator.swift */,
+				248C0244202E4C57004CB8C9 /* Result.swift */,
 				24D360D91FAA5D3800BBBAED /* String+HTML.swift */,
 				24D360D41FAA5D3800BBBAED /* String+Regex.swift */,
 				24D360D81FAA5D3800BBBAED /* String+Utils.swift */,
@@ -1152,6 +1145,126 @@
 				245524E91FF2E24300C18F92 /* EventResponseTests+Data.swift */,
 			);
 			path = Events;
+			sourceTree = "<group>";
+		};
+		2457CDA4203F4BF80021B31D /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				24557A14203F3FCE00492B74 /* KeychainService.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
+		2457CDA5203F4BFF0021B31D /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				248C0243202E4C57004CB8C9 /* ReachabilityService.swift */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
+		2457CDA6203F4C180021B31D /* App */ = {
+			isa = PBXGroup;
+			children = (
+				241C67E91FCDFAC700F4A099 /* App.swift */,
+				24A8EDDD1FCCBC93007C1CCF /* ContextService.swift */,
+				24FD785D1FBF45B10072F860 /* Targets.swift */,
+				24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */,
+				243CC2BF1FDF19BB00FE7376 /* UserActivities.swift */,
+				24FD78711FC07C630072F860 /* UserDefaults+Keys.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		2457CDA7203F4CAA0021B31D /* Courses */ = {
+			isa = PBXGroup;
+			children = (
+				246F3ACC1FAC881100A477FF /* CourseListViewModel.swift */,
+				2450AC6C1FDC1582004F1267 /* CourseViewModel.swift */,
+			);
+			path = Courses;
+			sourceTree = "<group>";
+		};
+		2457CDA8203F4CB40021B31D /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				24FD786F1FBF826D0072F860 /* DownloadListViewModel.swift */,
+				24FE8A151FB8527D00A4A3C6 /* FileListViewModel.swift */,
+			);
+			path = Files;
+			sourceTree = "<group>";
+		};
+		2457CDA9203F4CC80021B31D /* Semesters */ = {
+			isa = PBXGroup;
+			children = (
+				24D9EF551FB7559C006776B7 /* SemesterListViewModel.swift */,
+			);
+			path = Semesters;
+			sourceTree = "<group>";
+		};
+		2457CDAA203F4CE00021B31D /* Announcements */ = {
+			isa = PBXGroup;
+			children = (
+				248C024F202E523C004CB8C9 /* AnnouncementListViewModel.swift */,
+			);
+			path = Announcements;
+			sourceTree = "<group>";
+		};
+		2457CDAB203F4CE60021B31D /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				24E2AD1C1FF2D5B0001D3E27 /* EventListViewModel.swift */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		2457CDAC203F4CF40021B31D /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				242B03731FD7470200863B08 /* ColorPickerViewModel.swift */,
+			);
+			path = Colors;
+			sourceTree = "<group>";
+		};
+		2457CDAD203F4CFD0021B31D /* Organizations */ = {
+			isa = PBXGroup;
+			children = (
+				245B6ADD1FCB381B00302CD0 /* OrganizationListViewModel.swift */,
+			);
+			path = Organizations;
+			sourceTree = "<group>";
+		};
+		2457CDAE203F4D080021B31D /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				24D2DA1F1FD04431006FC700 /* StoreViewModel.swift */,
+				248C0264202E5C18004CB8C9 /* VerificationViewModel.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		2457CDAF203F4D120021B31D /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				24D361651FAA648B00BBBAED /* SignInViewModel.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		2457CDB0203F4D1A0021B31D /* About */ = {
+			isa = PBXGroup;
+			children = (
+				241C67E41FCDD78100F4A099 /* AboutViewModel.swift */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
+		2457CDB1203F4D220021B31D /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				244EB5F11FEFDD7F006BE633 /* SettingsViewModel.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		245B6ADF1FCB39AD00302CD0 /* Organizations */ = {
@@ -1453,6 +1566,7 @@
 				247793691FC892C100090F4D /* Semesters */,
 				2477936A1FC892D300090F4D /* Users */,
 				24E4B9A71FF284830061983C /* BaseDirectories.swift */,
+				2469EF671FCE1D1C008A122B /* CacheService.swift */,
 				24D361171FAA5F6200BBBAED /* CoreDataService.swift */,
 				2485259E20378AAB00BC4CAB /* FilesContaining.swift */,
 				24FD78591FBF3F030072F860 /* PersistentHistoryService.swift */,
@@ -1502,6 +1616,8 @@
 		24D3611D1FAA5FEA00BBBAED /* Swift */ = {
 			isa = PBXGroup;
 			children = (
+				24FE8A131FB7B1A000A4A3C6 /* RangeIteratorTests.swift */,
+				2448D44E1FA8DB1E00DAB97E /* ResultTests.swift */,
 				24D361201FAA5FF500BBBAED /* String+RegexTests.swift */,
 			);
 			path = Swift;
@@ -1593,22 +1709,18 @@
 		24D361641FAA646200BBBAED /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				246F3ABD1FAC877400A477FF /* DataSource */,
-				248C024F202E523C004CB8C9 /* AnnouncementListViewModel.swift */,
-				241C67E41FCDD78100F4A099 /* AboutViewModel.swift */,
-				242B03731FD7470200863B08 /* ColorPickerViewModel.swift */,
-				2450AC6C1FDC1582004F1267 /* CourseViewModel.swift */,
-				246F3ACC1FAC881100A477FF /* CourseListViewModel.swift */,
-				24FD786F1FBF826D0072F860 /* DownloadListViewModel.swift */,
-				24FE8A151FB8527D00A4A3C6 /* FileListViewModel.swift */,
+				2457CDB0203F4D1A0021B31D /* About */,
+				2457CDAA203F4CE00021B31D /* Announcements */,
+				2457CDAC203F4CF40021B31D /* Colors */,
+				2457CDA7203F4CAA0021B31D /* Courses */,
+				2457CDAB203F4CE60021B31D /* Events */,
+				2457CDA8203F4CB40021B31D /* Files */,
+				2457CDAD203F4CFD0021B31D /* Organizations */,
+				2457CDA9203F4CC80021B31D /* Semesters */,
+				2457CDB1203F4D220021B31D /* Settings */,
+				2457CDAF203F4D120021B31D /* SignIn */,
+				2457CDAE203F4D080021B31D /* Store */,
 				24D178EA1FB606B200EC5F4A /* MainViewModel.swift */,
-				245B6ADD1FCB381B00302CD0 /* OrganizationListViewModel.swift */,
-				24D9EF551FB7559C006776B7 /* SemesterListViewModel.swift */,
-				244EB5F11FEFDD7F006BE633 /* SettingsViewModel.swift */,
-				24D361651FAA648B00BBBAED /* SignInViewModel.swift */,
-				24D2DA1F1FD04431006FC700 /* StoreViewModel.swift */,
-				24E2AD1C1FF2D5B0001D3E27 /* EventListViewModel.swift */,
-				248C0264202E5C18004CB8C9 /* VerificationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1665,12 +1777,12 @@
 			children = (
 				24BF7B621FF325470013BA23 /* BadgeLabel.swift */,
 				248C0266202E5C31004CB8C9 /* ConfettiView.swift */,
-				2447FB621FF68D8B000EA6BE /* DateTabBar.swift */,
+				2447FB621FF68D8B000EA6BE /* DateTabBarView.swift */,
 				2447FB641FF69272000EA6BE /* DateTabBarCell.swift */,
 				241FD9661FA9022400FBD750 /* FilledButton.swift */,
 				241FD9681FA9087900FBD750 /* GroupedTextField.swift */,
-				24E626761FA9207F0040F9F7 /* StudIpActivityIndicatorView.swift */,
-				24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicatorView.swift */,
+				24E626761FA9207F0040F9F7 /* StudIpActivityIndicator.swift */,
+				24E626751FA9207F0040F9F7 /* UINavigationItem+StudIpActivityIndicator.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2422,9 +2534,9 @@
 				247CC29B203897C10067207B /* Routes.swift in Sources */,
 				247CC2B82038984D0067207B /* DateTabBarCell.swift in Sources */,
 				247CC2AE2038981F0067207B /* OrganizationCell.swift in Sources */,
-				247CC2BB203898570067207B /* StudIpActivityIndicatorView.swift in Sources */,
+				247CC2BB203898570067207B /* StudIpActivityIndicator.swift in Sources */,
 				247CC2AA2038980E0067207B /* ThanksNoteCell.swift in Sources */,
-				247CC2BC2038985A0067207B /* UINavigationItem+StudIpActivityIndicatorView.swift in Sources */,
+				247CC2BC2038985A0067207B /* UINavigationItem+StudIpActivityIndicator.swift in Sources */,
 				247CC29A203897A20067207B /* UI.swift in Sources */,
 				247CC29C203897C60067207B /* Routable.swift in Sources */,
 				247CC2A0203897E50067207B /* UIColor+Adjustments.swift in Sources */,
@@ -2435,7 +2547,7 @@
 				247CC2A4203897F40067207B /* UISplitViewController+Utils.swift in Sources */,
 				247CC2B5203898430067207B /* BadgeLabel.swift in Sources */,
 				247CC2AC203898170067207B /* ConfettiController.swift in Sources */,
-				247CC2B7203898490067207B /* DateTabBar.swift in Sources */,
+				247CC2B7203898490067207B /* DateTabBarView.swift in Sources */,
 				247CC2B6203898460067207B /* ConfettiView.swift in Sources */,
 				247CC2B0203898250067207B /* SignInController.swift in Sources */,
 			);

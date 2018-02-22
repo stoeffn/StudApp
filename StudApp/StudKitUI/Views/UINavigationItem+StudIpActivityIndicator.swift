@@ -1,5 +1,5 @@
 //
-//  UINavigationItem+StudIpActivityIndicatorView.swift
+//  UINavigationItem+StudIpActivityIndicator.swift
 //  StudKitUI
 //
 //  Created by Steffen Ryll on 30.03.16.
@@ -29,7 +29,7 @@ public extension UINavigationItem {
         if !hidden {
             cachedRightBarButtonItem = rightBarButtonItem
             let frame = CGRect(x: 0, y: 0, width: 32, height: 32)
-            let activityIndicator = StudIpActivityIndicatorView(frame: frame)
+            let activityIndicator = StudIpActivityIndicator(frame: frame)
             rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
         } else {
             rightBarButtonItem = cachedRightBarButtonItem

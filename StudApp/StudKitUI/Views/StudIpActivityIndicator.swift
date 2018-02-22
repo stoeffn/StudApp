@@ -1,5 +1,5 @@
 //
-//  StudIpActivityIndicatorView.swift
+//  StudIpActivityIndicator.swift
 //  StudKitUI
 //
 //  Created by Steffen Ryll on 10.02.17.
@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-public final class StudIpActivityIndicatorView: UIView {
+public final class StudIpActivityIndicator: UIView {
 
     // MARK: - Life Cycle
 

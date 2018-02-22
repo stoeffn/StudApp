@@ -1,5 +1,5 @@
 //
-//  DateTabBar.swift
+//  DateTabBarView.swift
 //  StudKitUI
 //
 //  Created by Steffen Ryll on 29.12.17.
@@ -9,7 +9,7 @@
 import StudKit
 
 @IBDesignable
-public final class DateTabBar: UIView {
+public final class DateTabBarView: UIView {
 
     // MARK: - Life Cycle
 
@@ -88,7 +88,7 @@ public final class DateTabBar: UIView {
 
 // MARK: - Collection View Data Source
 
-extension DateTabBar: UICollectionViewDataSource {
+extension DateTabBarView: UICollectionViewDataSource {
     public func numberOfSections(in _: UICollectionView) -> Int {
         return 1
     }
@@ -109,7 +109,7 @@ extension DateTabBar: UICollectionViewDataSource {
 
 // MARK: - Collection View Delegate
 
-extension DateTabBar: UICollectionViewDelegate {
+extension DateTabBarView: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? DateTabBarCell, let date = cell.date else { return }
         didSelectDate?(date)
