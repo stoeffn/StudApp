@@ -1,3 +1,5 @@
+// MARK: - StudApp
+
 // MARK: Formats
 
 "%dx" = "%dx"; // Example: "11x" (eleven times)
@@ -151,3 +153,31 @@
 "Events" = "Events";
 "All Events" = "All Events";
 "Canceled" = "Canceled";
+
+// MARK: - Mock Data
+
+// MARK: Semesters
+
+"Winter 2016/17" = "Winter 2016/17";
+"Summer 2017" = "Summer 2017";
+"Winter 2017/18" = "Winter 2017/18";
+
+// MARK: Users
+
+"theCount" = "theCount";
+"Count" = "Count";
+"von Count" = "von Count";
+
+// MARK: Rooms
+
+"Bielefeld Room" = "Bielefeld Room";
+"Multimedia Room" = "Multimedia Room";
+
+// MARK: Courses
+
+"Numerical Analysis" = "Numerical Analysis";
+"Optimizing Algorithms for Computers" = "Optimizing Algorithms for Computers";
+"Linear Algebra I" = "Linear Algebra I";
+"Computer Architecture" = "Computer Architecture";
+"Theoretical Stud.IP Science" = "Theoretical Stud.IP Science";
+"Data Science 101" = "Data Science 101";
