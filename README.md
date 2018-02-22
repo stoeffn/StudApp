@@ -1,20 +1,22 @@
 #  StudApp—Stud.IP on the Go
 
-StudApp is an iOS client application for the [Stud.IP](http://www.studip.de/) learning platform, which is widely used by German Universities as well as other organizations.
+StudApp is an iOS application for the [Stud.IP](http://www.studip.de/) learning platform, which is widely used by German Universities and other organizations as it enables course organization and file management with ease. This project aims to take it to the next level by providing deep system integration by leveraging native capabilities of iOS.
 
 ## Compability
 
-* Requires iOS 10.0 at minimum
+* Requires at least Stud.IP 4
+* Requires iOS 10.0 at minimum (some features require iOS 11)
 * Optimized for iPhone and iPad
 
 # Features
 
 * Organizing courses (e.g. by selecting semesters or applying colors)
-* File and download management
-* Integrates with iOS's Files app
-* Viewing announcements
+* Viewing general course information, announcements, events, and files
+* Document download management with powerful search
+* Complete offline availability
+* Integrates with iOS's native Files app
 * Integration into Spotlight search and Handoff
-* Offline Availability
+* Usage of 3D Touch, Drag'n'Drop, Haptic feedvack, and more
 * Fully translated into English and German
 
 _TODO: Describe each feature in detail and provide screenshots_
@@ -24,7 +26,7 @@ _TODO: Describe each feature in detail and provide screenshots_
 # Technical Trivia
 
 * Backed by Core Data
-* Uses OAuth for authorization (and saves tokens securely in Apple's Keychain)
+* Uses OAuth for authorization (and stores tokens securely in Apple's Keychain)
 * Organizations are backed by CloudKit and can be updated on the fly
 
 # Setting Up a Development Environment
@@ -49,9 +51,13 @@ StudApp is divided into three distinct targets (and accompanying testing targets
 
 **StudApp** is the actual iOS application with all view controllers and storyboards except those shared by multiple targets.
 
-**StudKit** is a common framework containing all models, view models, services, views as well as shared view controllers and storyboards.
+**StudKit** is a common framework containing all models, view models, and services. It is meant to be a common foundations for all targets, including potential macOS apps.
 
-**StudFileProvider** integrates with the native iOS Files application.
+**StudKitUI** contains UI-related constants and views as well as shared view controllers and storyboards.
+
+**StudFileProvider** integrates with "Files", which is iOS's native file browser.
+
+**StudFileProviderUI** displays user interfaces inside "Files".
 
 ## Documentation
 
