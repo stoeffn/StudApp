@@ -277,7 +277,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     @IBAction
     func userButtonTapped(_ sender: Any) {
-        (tabBarController as? MainController)?.userButtonTapped(sender)
+        (tabBarController as? AppController)?.userButtonTapped(sender)
     }
 
     @IBAction

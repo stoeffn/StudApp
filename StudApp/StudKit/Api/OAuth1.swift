@@ -269,10 +269,11 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
 
 extension OAuth1: PersistableApiAuthorizing {
     convenience init(fromPersistedService service: String) throws {
-        let consumerKey = try KeychainPasswordItem(service: service, account: CodingKeys.consumerKey.rawValue).readPassword()
-        let consumerSecret = try KeychainPasswordItem(service: service, account: CodingKeys.consumerSecret.rawValue).readPassword()
-        let token = try KeychainPasswordItem(service: service, account: CodingKeys.token.rawValue).readPassword()
-        let tokenSecret = try KeychainPasswordItem(service: service, account: CodingKeys.tokenSecret.rawValue).readPassword()
+        let keychainService = ServiceContainer.default[KeychainService.self]
+        let consumerKey = try keychainService.password(for: service, account: CodingKeys.consumerKey.rawValue)
+        let consumerSecret = try keychainService.password(for: service, account: CodingKeys.consumerSecret.rawValue)
+        let token = try keychainService.password(for: service, account: CodingKeys.token.rawValue)
+        let tokenSecret = try keychainService.password(for: service, account: CodingKeys.tokenSecret.rawValue)
 
         self.init(service: service, consumerKey: consumerKey, consumerSecret: consumerSecret, token: token,
                   tokenSecret: tokenSecret, isAuthorized: true)
@@ -281,16 +282,18 @@ extension OAuth1: PersistableApiAuthorizing {
     func persistCredentials() throws {
         guard isAuthorized, let token = token, let tokenSecret = tokenSecret else { throw Errors.notAuthorized }
 
-        try KeychainPasswordItem(service: service, account: CodingKeys.consumerKey.rawValue).save(password: consumerKey)
-        try KeychainPasswordItem(service: service, account: CodingKeys.consumerSecret.rawValue).save(password: consumerSecret)
-        try KeychainPasswordItem(service: service, account: CodingKeys.token.rawValue).save(password: token)
-        try KeychainPasswordItem(service: service, account: CodingKeys.tokenSecret.rawValue).save(password: tokenSecret)
+        let keychainService = ServiceContainer.default[KeychainService.self]
+        try keychainService.save(password: consumerKey, for: service, account: CodingKeys.consumerKey.rawValue)
+        try keychainService.save(password: consumerSecret, for: service, account: CodingKeys.consumerSecret.rawValue)
+        try keychainService.save(password: token, for: service, account: CodingKeys.token.rawValue)
+        try keychainService.save(password: tokenSecret, for: service, account: CodingKeys.tokenSecret.rawValue)
     }
 
     func removeCredentials() throws {
-        try KeychainPasswordItem(service: service, account: CodingKeys.consumerKey.rawValue).delete()
-        try KeychainPasswordItem(service: service, account: CodingKeys.consumerSecret.rawValue).delete()
-        try KeychainPasswordItem(service: service, account: CodingKeys.token.rawValue).delete()
-        try KeychainPasswordItem(service: service, account: CodingKeys.tokenSecret.rawValue).delete()
+        let keychainService = ServiceContainer.default[KeychainService.self]
+        try keychainService.delete(from: service, account: CodingKeys.consumerKey.rawValue)
+        try keychainService.delete(from: service, account: CodingKeys.consumerSecret.rawValue)
+        try keychainService.delete(from: service, account: CodingKeys.token.rawValue)
+        try keychainService.delete(from: service, account: CodingKeys.tokenSecret.rawValue)
     }
 }

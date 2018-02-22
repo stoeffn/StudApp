@@ -64,7 +64,7 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
 
     @IBOutlet var titleLabel: UILabel!
 
-    @IBOutlet var activityIndicator: StudIpActivityIndicatorView!
+    @IBOutlet var activityIndicator: StudIpActivityIndicator!
 
     /// Weakly typed because `@available` cannot be applied to properties.
     private var authenticationSession: NSObject?

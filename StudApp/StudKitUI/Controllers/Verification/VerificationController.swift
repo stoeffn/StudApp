@@ -40,7 +40,7 @@ public final class VerificationController: UIViewController, Routable {
 
     // MARK: - User Interface
 
-    @IBOutlet var activityIndicator: StudIpActivityIndicatorView!
+    @IBOutlet var activityIndicator: StudIpActivityIndicator!
 
     @IBOutlet var titleLabel: UILabel!
 
