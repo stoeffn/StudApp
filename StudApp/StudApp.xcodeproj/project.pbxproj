@@ -82,6 +82,7 @@
 		24557A0B203DE0D400492B74 /* MockResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24557A0A203DE0D400492B74 /* MockResponses.swift */; };
 		24557A0D203DE59700492B74 /* MockStudIpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24557A0C203DE59700492B74 /* MockStudIpService.swift */; };
 		24557A13203F023700492B74 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 24557A12203F023600492B74 /* README.md */; };
+		24557A15203F3FCE00492B74 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24557A14203F3FCE00492B74 /* KeychainService.swift */; };
 		245B6ADE1FCB381B00302CD0 /* OrganizationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6ADD1FCB381B00302CD0 /* OrganizationListViewModel.swift */; };
 		245B6AE11FCB39BF00302CD0 /* OrganizationRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245B6AE01FCB39BF00302CD0 /* OrganizationRecord.swift */; };
 		2467A8BC1FD307CE00F25720 /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2467A8BB1FD307CE00F25720 /* PreviewController.swift */; };
@@ -476,6 +477,7 @@
 		24557A0A203DE0D400492B74 /* MockResponses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockResponses.swift; sourceTree = "<group>"; };
 		24557A0C203DE59700492B74 /* MockStudIpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStudIpService.swift; sourceTree = "<group>"; };
 		24557A12203F023600492B74 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		24557A14203F3FCE00492B74 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		245B6AD51FCB327800302CD0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		245B6AD91FCB351F00302CD0 /* OrganizationListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationListController.swift; sourceTree = "<group>"; };
 		245B6ADB1FCB355D00302CD0 /* OrganizationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationCell.swift; sourceTree = "<group>"; };
@@ -990,6 +992,7 @@
 				248C0243202E4C57004CB8C9 /* ReachabilityService.swift */,
 				248C0244202E4C57004CB8C9 /* Result.swift */,
 				2448D4961FA8DFB200DAB97E /* StudKitServiceProvider.swift */,
+				24557A14203F3FCE00492B74 /* KeychainService.swift */,
 				24FD785D1FBF45B10072F860 /* Targets.swift */,
 				24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */,
 				243CC2BF1FDF19BB00FE7376 /* UserActivities.swift */,
@@ -2257,6 +2260,7 @@
 				24D729451FC74B600097777F /* PersonNameComponents+Formatting.swift in Sources */,
 				245B6ADE1FCB381B00302CD0 /* OrganizationListViewModel.swift in Sources */,
 				24BF7B691FF673BF0013BA23 /* FetchedResultsControllerDataSource.swift in Sources */,
+				24557A15203F3FCE00492B74 /* KeychainService.swift in Sources */,
 				2469F810202CB8A0007FB3B6 /* PersistableApiAuthorizing.swift in Sources */,
 				2448D4971FA8DFB200DAB97E /* StudKitServiceProvider.swift in Sources */,
 				24712BF41FB8B80B0067E416 /* DateComponentsFormatter+Shared.swift in Sources */,

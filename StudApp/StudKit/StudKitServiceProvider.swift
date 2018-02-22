@@ -61,6 +61,7 @@ public class StudKitServiceProvider: ServiceProvider {
         container[JSONEncoder.self] = provideJsonEncoder()
         container[JSONDecoder.self] = provideJsonDecoder()
         container[ContextService.self] = provideContextService()
+        container[KeychainService.self] = KeychainService()
         container[ReachabilityService.self] = provideReachabilityService()
         container[CacheService.self] = CacheService()
         container[StoreService.self] = provideStoreService()
