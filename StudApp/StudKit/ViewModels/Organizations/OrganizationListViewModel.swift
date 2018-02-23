@@ -6,57 +6,31 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-import CloudKit
+import CoreData
 
-public final class OrganizationListViewModel {
-    public enum State {
-        case loading
-        case success([OrganizationRecord])
-        case failure(String)
+public final class OrganizationListViewModel: FetchedResultsControllerDataSourceSection {
+    public typealias Row = Organization
+
+    private let coreDataService = ServiceContainer.default[CoreDataService.self]
+
+    public private(set) lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
+
+    public weak var delegate: DataSourceSectionDelegate?
+
+    public init() {
+        controller.delegate = fetchedResultControllerDelegateHelper
     }
 
-    /// Current state of this view model, which should be respected by the user interface.
-    public var state: State = .loading {
-        didSet {
-            DispatchQueue.main.async {
-                self.stateChanged?(self.state)
+    public private(set) lazy var controller: NSFetchedResultsController<Organization> = NSFetchedResultsController(
+        fetchRequest: Organization.fetchRequest(), managedObjectContext: coreDataService.viewContext,
+        sectionNameKeyPath: nil, cacheName: nil)
+
+    public func update(completion: (ResultHandler<Void>)? = nil) {
+        coreDataService.performBackgroundTask { context in
+            Organization.update(in: context) { result in
+                try? context.saveAndWaitWhenChanged()
+                completion?(result.map { _ in () })
             }
         }
-    }
-
-    /// This handler is called every time `state` changes.
-    public var stateChanged: ((State) -> Void)?
-
-    public init() {}
-
-    public func fetch() {
-        state = .loading
-
-        var organizations = [OrganizationRecord]()
-
-        let predicate = NSPredicate(format: "isEnabled == YES")
-        let query = CKQuery(recordType: OrganizationRecord.recordType, predicate: predicate)
-        let desiredKeys: [OrganizationRecord.Keys] = [.apiUrl, .title, .iconThumbnail, .consumerKey, .consumerSecret]
-
-        let operation = CKQueryOperation(query: query)
-        operation.qualityOfService = .userInitiated
-        operation.desiredKeys = desiredKeys.map { $0.rawValue }
-        operation.queryCompletionBlock = { _, error in
-            switch error {
-            case nil:
-                self.state = .success(organizations)
-            case CKError.networkUnavailable?, CKError.networkUnavailable?:
-                self.state = .failure("There seems to be a problem with the internet connection.".localized)
-            default:
-                self.state = .failure("Unfortunately, there was an internal error.".localized)
-            }
-        }
-        operation.recordFetchedBlock = { record in
-            guard let organization = OrganizationRecord(from: record) else { return }
-            organizations.append(organization)
-        }
-
-        let container = CKContainer(identifier: App.iCloudContainerIdentifier)
-        container.database(with: .public).add(operation)
     }
 }
