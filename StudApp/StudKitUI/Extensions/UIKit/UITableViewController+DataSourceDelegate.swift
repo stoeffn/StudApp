@@ -1,5 +1,5 @@
 //
-//  DataSourceDelegate+UITableView.swift
+//  UITableViewController+DataSourceDelegate.swift
 //  StudKitUI
 //
 //  Created by Steffen Ryll on 17.02.18.

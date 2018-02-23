@@ -27,7 +27,7 @@
 		2438179E1FC76D1E004052D0 /* Routes+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438179D1FC76D1E004052D0 /* Routes+Actions.swift */; };
 		24390EE820389C1E0064E49A /* StudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2448D43F1FA8DB1E00DAB97E /* StudKit.framework */; };
 		24390EE920389CCF0064E49A /* StudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2448D43F1FA8DB1E00DAB97E /* StudKit.framework */; };
-		24390EED2038A0060064E49A /* DataSourceDelegate+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24390EEC2038A0060064E49A /* DataSourceDelegate+UITableView.swift */; };
+		24390EED2038A0060064E49A /* UITableViewController+DataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24390EEC2038A0060064E49A /* UITableViewController+DataSourceDelegate.swift */; };
 		24390EEF2038A0450064E49A /* ByTypeNameIdentifiable+Conformances.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24390EEE2038A0450064E49A /* ByTypeNameIdentifiable+Conformances.swift */; };
 		24390EF12038A7990064E49A /* CourseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3613D1FAA63C400BBBAED /* CourseTests.swift */; };
 		24390EF22038A7A20064E49A /* FileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361471FAA63CE00BBBAED /* FileTests.swift */; };
@@ -268,6 +268,7 @@
 		24E60B661FC8C749000EDD2A /* Downloads.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B651FC8C749000EDD2A /* Downloads.storyboard */; };
 		24E60B681FC8C754000EDD2A /* Semesters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B671FC8C754000EDD2A /* Semesters.storyboard */; };
 		24E60B6C1FC8C77F000EDD2A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B6B1FC8C77F000EDD2A /* MainInterface.storyboard */; };
+		24EDDBD520407A9A0034985B /* UITableViewController+DataSourceSectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EDDBD420407A9A0034985B /* UITableViewController+DataSourceSectionDelegate.swift */; };
 		24FD785A1FBF3F030072F860 /* PersistentHistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78591FBF3F030072F860 /* PersistentHistoryService.swift */; };
 		24FD785C1FBF45030072F860 /* Targets+NSPersistentHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */; };
 		24FD785E1FBF45B10072F860 /* Targets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785D1FBF45B10072F860 /* Targets.swift */; };
@@ -413,7 +414,7 @@
 		243817961FC76BDC004052D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2438179D1FC76D1E004052D0 /* Routes+Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Routes+Actions.swift"; sourceTree = "<group>"; };
 		2438179F1FC77226004052D0 /* StudFileProviderUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudFileProviderUI.entitlements; sourceTree = "<group>"; };
-		24390EEC2038A0060064E49A /* DataSourceDelegate+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataSourceDelegate+UITableView.swift"; sourceTree = "<group>"; };
+		24390EEC2038A0060064E49A /* UITableViewController+DataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewController+DataSourceDelegate.swift"; sourceTree = "<group>"; };
 		24390EEE2038A0450064E49A /* ByTypeNameIdentifiable+Conformances.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ByTypeNameIdentifiable+Conformances.swift"; sourceTree = "<group>"; };
 		243CC2BD1FDF0A7F00FE7376 /* CDSortable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDSortable.swift; sourceTree = "<group>"; };
 		243CC2BF1FDF19BB00FE7376 /* UserActivities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserActivities.swift; sourceTree = "<group>"; };
@@ -641,6 +642,7 @@
 		24E626761FA9207F0040F9F7 /* StudIpActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudIpActivityIndicator.swift; sourceTree = "<group>"; };
 		24EBC4351FCDCA3200181455 /* About.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
 		24EBC4371FCDCA4300181455 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
+		24EDDBD420407A9A0034985B /* UITableViewController+DataSourceSectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewController+DataSourceSectionDelegate.swift"; sourceTree = "<group>"; };
 		24FD78591FBF3F030072F860 /* PersistentHistoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentHistoryService.swift; sourceTree = "<group>"; };
 		24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Targets+NSPersistentHistory.swift"; sourceTree = "<group>"; };
 		24FD785D1FBF45B10072F860 /* Targets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Targets.swift; sourceTree = "<group>"; };
@@ -780,6 +782,8 @@
 				244EB5EA1FEFBEFA006BE633 /* UISplitViewController+Utils.swift */,
 				2450AC741FDC4FBC004F1267 /* UITableView+Utils.swift */,
 				24830AA81FD9F324006A1927 /* UITableViewCell+Utils.swift */,
+				24EDDBD420407A9A0034985B /* UITableViewController+DataSourceSectionDelegate.swift */,
+				24390EEC2038A0060064E49A /* UITableViewController+DataSourceDelegate.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -871,22 +875,6 @@
 				241FD96E1FA9191500FBD750 /* BorderlessNavigationController.swift */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		24390EEA20389FC20064E49A /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				24390EEB20389FC90064E49A /* DataSource */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		24390EEB20389FC90064E49A /* DataSource */ = {
-			isa = PBXGroup;
-			children = (
-				24390EEC2038A0060064E49A /* DataSourceDelegate+UITableView.swift */,
-			);
-			path = DataSource;
 			sourceTree = "<group>";
 		};
 		2447FBCD1FFBA352000EA6BE /* CommonCrypto */ = {
@@ -1457,7 +1445,6 @@
 		247CC2BD203898B70067207B /* StudKit */ = {
 			isa = PBXGroup;
 			children = (
-				24390EEA20389FC20064E49A /* ViewModels */,
 				247CC2BE203898E50067207B /* Models */,
 				24390EEE2038A0450064E49A /* ByTypeNameIdentifiable+Conformances.swift */,
 			);
@@ -2517,7 +2504,7 @@
 				247CC2A7203898010067207B /* ActionCell.swift in Sources */,
 				247CC2A3203897F10067207B /* UINavigationBar+Utils.swift in Sources */,
 				247CC2B22038982F0067207B /* VerificationController.swift in Sources */,
-				24390EED2038A0060064E49A /* DataSourceDelegate+UITableView.swift in Sources */,
+				24390EED2038A0060064E49A /* UITableViewController+DataSourceDelegate.swift in Sources */,
 				247CC2B9203898500067207B /* FilledButton.swift in Sources */,
 				247CC29B203897C10067207B /* Routes.swift in Sources */,
 				247CC2B82038984D0067207B /* DateTabBarCell.swift in Sources */,
@@ -2532,6 +2519,7 @@
 				247CC29F203897E20067207B /* UIAlertController+Utils.swift in Sources */,
 				247CC2C1203898FA0067207B /* Course+Colors.swift in Sources */,
 				247CC2A2203897EE0067207B /* UIFont+Mutations.swift in Sources */,
+				24EDDBD520407A9A0034985B /* UITableViewController+DataSourceSectionDelegate.swift in Sources */,
 				247CC2A4203897F40067207B /* UISplitViewController+Utils.swift in Sources */,
 				247CC2B5203898430067207B /* BadgeLabel.swift in Sources */,
 				247CC2AC203898170067207B /* ConfettiController.swift in Sources */,
