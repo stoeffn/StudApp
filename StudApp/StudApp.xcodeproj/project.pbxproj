@@ -269,6 +269,7 @@
 		24E60B681FC8C754000EDD2A /* Semesters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B671FC8C754000EDD2A /* Semesters.storyboard */; };
 		24E60B6C1FC8C77F000EDD2A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B6B1FC8C77F000EDD2A /* MainInterface.storyboard */; };
 		24EDDBD520407A9A0034985B /* UITableViewController+DataSourceSectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EDDBD420407A9A0034985B /* UITableViewController+DataSourceSectionDelegate.swift */; };
+		24EDDBD820407B8E0034985B /* Organization+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EDDBD720407B8E0034985B /* Organization+UI.swift */; };
 		24FD785A1FBF3F030072F860 /* PersistentHistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78591FBF3F030072F860 /* PersistentHistoryService.swift */; };
 		24FD785C1FBF45030072F860 /* Targets+NSPersistentHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */; };
 		24FD785E1FBF45B10072F860 /* Targets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785D1FBF45B10072F860 /* Targets.swift */; };
@@ -643,6 +644,7 @@
 		24EBC4351FCDCA3200181455 /* About.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
 		24EBC4371FCDCA4300181455 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		24EDDBD420407A9A0034985B /* UITableViewController+DataSourceSectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewController+DataSourceSectionDelegate.swift"; sourceTree = "<group>"; };
+		24EDDBD720407B8E0034985B /* Organization+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Organization+UI.swift"; sourceTree = "<group>"; };
 		24FD78591FBF3F030072F860 /* PersistentHistoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentHistoryService.swift; sourceTree = "<group>"; };
 		24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Targets+NSPersistentHistory.swift"; sourceTree = "<group>"; };
 		24FD785D1FBF45B10072F860 /* Targets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Targets.swift; sourceTree = "<group>"; };
@@ -1455,6 +1457,7 @@
 			isa = PBXGroup;
 			children = (
 				247CC2BF203898E90067207B /* Courses */,
+				24EDDBD620407B6F0034985B /* Organizations */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1779,6 +1782,14 @@
 				24EBC4351FCDCA3200181455 /* About.storyboard */,
 			);
 			path = About;
+			sourceTree = "<group>";
+		};
+		24EDDBD620407B6F0034985B /* Organizations */ = {
+			isa = PBXGroup;
+			children = (
+				24EDDBD720407B8E0034985B /* Organization+UI.swift */,
+			);
+			path = Organizations;
 			sourceTree = "<group>";
 		};
 		24FE89D91FB7652200A4A3C6 /* Extensions */ = {
@@ -2493,6 +2504,7 @@
 			files = (
 				247CC2AF203898220067207B /* OrganizationListController.swift in Sources */,
 				247CC2A1203897E80067207B /* UIColor+Utils.swift in Sources */,
+				24EDDBD820407B8E0034985B /* Organization+UI.swift in Sources */,
 				247CC2A6203897FB0067207B /* UITableViewCell+Utils.swift in Sources */,
 				247CC29D203897CA0067207B /* SafariServices+Constants.swift in Sources */,
 				247CC2A5203897F70067207B /* UITableView+Utils.swift in Sources */,
