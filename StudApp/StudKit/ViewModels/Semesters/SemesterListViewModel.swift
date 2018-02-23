@@ -22,7 +22,7 @@ public final class SemesterListViewModel: FetchedResultsControllerDataSourceSect
     public let organization: Organization
     public let respectsHiddenStates: Bool
 
-    public init(organization: Organization, respectsHiddenStates: Bool) {
+    public init(organization: Organization, respectsHiddenStates: Bool = true) {
         self.organization = organization
         self.respectsHiddenStates = respectsHiddenStates
 

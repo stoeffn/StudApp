@@ -85,7 +85,8 @@ final class FileProviderExtension: NSFileProviderExtension {
         case .workingSet?:
             return WorkingSetEnumerator()
         case .root?:
-            return CourseEnumerator()
+            guard let user = try User.fetchCurrent(in: coreDataService.viewContext) else { throw NSFileProviderError(.noSuchItem) }
+            return CourseEnumerator(user: user)
         case .course?:
             return FileEnumerator(itemIdentifier: containerItemIdentifier)
         case .file?:

@@ -11,12 +11,14 @@ import StudKit
 /// Enumerates all courses.
 @available(iOSApplicationExtension 11.0, *)
 final class CourseEnumerator: CachingFileProviderEnumerator {
-    private let viewModel = CourseListViewModel()
+    private let viewModel: CourseListViewModel
 
     // MARK: - Life Cycle
 
     /// Creates a new course enumerator.
-    override init() {
+    init(user: User) {
+        viewModel = CourseListViewModel(user: user)
+
         super.init()
 
         viewModel.delegate = cache

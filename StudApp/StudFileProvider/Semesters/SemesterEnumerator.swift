@@ -10,12 +10,14 @@ import StudKit
 
 /// Enumerates all visible semesters.
 final class SemesterEnumerator: CachingFileProviderEnumerator {
-    private let viewModel = SemesterListViewModel(fetchRequest: Semester.visibleStatesFetchRequest)
+    private let viewModel: SemesterListViewModel
 
     // MARK: - Life Cycle
 
     /// Creates a new semester enumerator.
-    override init() {
+    init(organization: Organization) {
+        viewModel = SemesterListViewModel(organization: organization)
+
         super.init()
 
         viewModel.delegate = cache
