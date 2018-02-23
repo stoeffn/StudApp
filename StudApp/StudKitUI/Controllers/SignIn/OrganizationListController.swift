@@ -16,7 +16,7 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     private var contextService: ContextService!
     private var viewModel: OrganizationListViewModel!
     private var observations = [NSKeyValueObservation]()
-    private var completion: ((SignInResult) -> Void)?
+    private var completion: ((SignInResult) -> Void)!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,16 +97,16 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     }
 
     private func route(forSigningInto organization: Organization) -> Routes {
-        return .signIntoOrganization(organization) { [unowned self] result in
+        return .signIntoOrganization(organization) { result in
             self.presentedViewController?.dismiss(animated: true) {
                 guard result == .signedIn else { return }
-                self.completion?(result)
+                self.completion(result)
             }
         }
     }
 
     private func routeForAbout() -> Routes {
-        return .about { [unowned self] in
+        return .about {
             self.presentedViewController?.dismiss(animated: true, completion: nil)
         }
     }
@@ -117,10 +117,10 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
 
     func controllerForMore(at barButtonItem: UIBarButtonItem? = nil) -> UIViewController {
         let actions = [
-            UIAlertAction(title: "About".localized, style: .default) { [unowned self] _ in
+            UIAlertAction(title: "About".localized, style: .default) { _ in
                 self.performSegue(withRoute: self.routeForAbout())
             },
-            UIAlertAction(title: "Help".localized, style: .default) { [unowned self] _ in
+            UIAlertAction(title: "Help".localized, style: .default) { _ in
                 guard let controller = self.controllerForHelp() else { return }
                 self.present(controller, animated: true, completion: nil)
             },
@@ -150,6 +150,6 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
 
     @IBAction
     func cancelButtonTapped(_: Any) {
-        completion?(.none)
+        completion(.none)
     }
 }

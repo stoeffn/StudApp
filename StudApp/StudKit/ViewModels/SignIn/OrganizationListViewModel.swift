@@ -23,9 +23,9 @@ public final class OrganizationListViewModel: NSObject, FetchedResultsController
 
     // MARK: - Managing State
 
-    @objc public dynamic var isUpdating = false
+    @objc public private(set) dynamic var isUpdating = false
 
-    @objc public dynamic var error: Error?
+    @objc public private(set) dynamic var error: Error?
 
     public var errorMessage: String? {
         switch error {

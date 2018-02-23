@@ -8,8 +8,12 @@
 
 import CloudKit
 
-public final class SignInViewModel {
-    public enum Errors: LocalizedError {
+public final class SignInViewModel: NSObject {
+
+    // MARK: - Errors
+
+    @objc
+    public enum Errors: Int, LocalizedError {
         case invalidConsumerKey
         case authorizationFailed
 
@@ -23,27 +27,44 @@ public final class SignInViewModel {
         }
     }
 
+    // MARK: - Managing State
+
+    @objc
+    public enum State: Int {
+        case updatingRequestToken, authorizing, updatingAccessToken, signedIn
+    }
+
+    public let organization: Organization
+
+    @objc public private(set) dynamic var state = State.updatingRequestToken
+
+    @objc public private(set) dynamic var authorizationUrl: URL?
+
+    @objc public private(set) dynamic var error: Error?
+
+    @objc public private(set) dynamic var organizationIcon: UIImage?
+
+    // MARK: - Life Cycle
+
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let storeService = ServiceContainer.default[StoreService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]
     private let oAuth1: OAuth1<StudIpOAuth1Routes>
 
-    public let organization: OrganizationRecord
-
-    // MARK: - Life Cycle
-
-    public init(organization: OrganizationRecord) {
+    public init(organization: Organization) {
         self.organization = organization
 
+        guard let consumerKey = organization.consumerKey, let consumerSecret = organization.consumerSecret else { fatalError() }
+
         oAuth1 = OAuth1<StudIpOAuth1Routes>(service: StudIpService.serviceName, callbackUrl: App.Links.signInCallback,
-                                            consumerKey: organization.consumerKey, consumerSecret: organization.consumerSecret)
+                                            consumerKey: consumerKey, consumerSecret: consumerSecret)
         oAuth1.baseUrl = organization.apiUrl
     }
 
     // MARK: - Providing Metadata
 
-    public func organizationIcon(completion: @escaping ResultHandler<UIImage>) {
-        let container = CKContainer(identifier: App.iCloudContainerIdentifier)
+    public func updateOrganizationIcon() {
+        /*let container = CKContainer(identifier: App.iCloudContainerIdentifier)
         container.database(with: .public).fetch(withRecordID: organization.recordId) { record, error in
             DispatchQueue.main.async {
                 guard
@@ -54,30 +75,52 @@ public final class SignInViewModel {
 
                 completion(.success(icon))
             }
-        }
+        }*/
     }
 
     // MARK: - Signing In
 
-    public func authorizationUrl(completion: @escaping ResultHandler<URL>) {
+    public func startAuthorization() {
+        state = .updatingRequestToken
+
         try? oAuth1.createRequestToken { result in
-            guard result.isSuccess else {
-                return completion(.failure(result.error ?? Errors.invalidConsumerKey))
+            guard let url = self.oAuth1.authorizationUrl else {
+                return self.error = result.error ?? Errors.invalidConsumerKey
             }
 
-            completion(result.compactMap { _ in self.oAuth1.authorizationUrl })
+            self.authorizationUrl = url
+            self.state = .authorizing
         }
     }
 
-    public func handleAuthorizationCallback(url: URL, completion: @escaping ResultHandler<Void>) {
+    public func retry() {
+        switch state {
+        case .updatingRequestToken:
+            startAuthorization()
+        case .updatingAccessToken:
+            guard let url = authorizationUrl else { return startAuthorization() }
+            finishAuthorization(withCallbackUrl: url)
+        default:
+            break
+        }
+    }
+
+    public func finishAuthorization(withCallbackUrl url: URL) {
+        state = .updatingAccessToken
+
         try? oAuth1.createAccessToken(fromAuthorizationCallbackUrl: url) { result in
             guard result.isSuccess else {
-                return completion(.failure(result.error ?? Errors.authorizationFailed))
+                return self.error = result.error ?? Errors.authorizationFailed
             }
 
-            self.studIpService.signIn(apiUrl: self.organization.apiUrl, authorizing: self.oAuth1) { result in
+            guard let apiUrl = self.organization.apiUrl else { fatalError() }
+            self.studIpService.signIn(apiUrl: apiUrl, authorizing: self.oAuth1) { result in
+                guard result.isSuccess else {
+                    return self.error = result.error ?? Errors.authorizationFailed
+                }
+
+                self.state = .signedIn
                 self.updateSemesters()
-                completion(result.map { _ in () })
             }
         }
     }
@@ -88,13 +131,5 @@ public final class SignInViewModel {
                 try? context.saveAndWaitWhenChanged()
             }
         }
-    }
-
-    public var isAppUnlocked: Bool {
-        return storeService.state.isUnlocked
-    }
-
-    public var isStoreStateVerified: Bool {
-        return storeService.state.isVerifiedByServer
     }
 }
