@@ -18,7 +18,7 @@ public enum Routes {
 
     case signIn(completion: (SignInResult) -> Void)
 
-    case signIntoOrganization(OrganizationRecord, completion: (SignInResult) -> Void)
+    case signIntoOrganization(Organization, completion: (SignInResult) -> Void)
 
     case store
 

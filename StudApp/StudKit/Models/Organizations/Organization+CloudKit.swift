@@ -24,7 +24,9 @@ extension Organization {
             let result = Result(organizations, error: error).map {
                 try Organization.update(fetchRequest(), with: $0, in: context) { try $0.coreDataObject(in: context) }
             }
-            completion(result)
+            DispatchQueue.main.async {
+                completion(result)
+            }
         }
         operation.recordFetchedBlock = { record in
             guard let organization = OrganizationRecord(from: record) else { return }

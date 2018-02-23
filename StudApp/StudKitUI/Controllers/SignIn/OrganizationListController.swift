@@ -11,19 +11,17 @@ import SafariServices
 import StudKit
 
 final class OrganizationListController: UITableViewController, Routable, DataSourceSectionDelegate {
+    // MARK: - Life Cycle
+
     private var contextService: ContextService!
     private var viewModel: OrganizationListViewModel!
-    private var completionHandler: ((SignInResult) -> Void)?
-
-    // MARK: - Life Cycle
+    private var observations = [NSKeyValueObservation]()
+    private var completion: ((SignInResult) -> Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         contextService = ServiceContainer.default[ContextService.self]
-
-        viewModel.stateChanged = updateUserInterface
-        viewModel.fetch()
 
         navigationItem.title = "Choose Your Organization".localized
         navigationItem.hidesBackButton = true
@@ -32,12 +30,27 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         if contextService.currentTarget != .fileProviderUI {
             navigationItem.leftBarButtonItem = nil
         }
+
+        observations = [
+            viewModel.observe(\.isUpdating) { [weak self] (_, _) in
+                guard let isUpdating = self?.viewModel.isUpdating else { return }
+                self?.navigationItem.setActivityIndicatorHidden(!isUpdating)
+            },
+            viewModel.observe(\.error) { [weak self] (_, _) in
+                self?.tableView.reloadData()
+            }
+        ]
+
+        viewModel.fetch()
+        viewModel.update()
     }
 
     func prepareDependencies(for route: Routes) {
-        guard case let .signIn(handler) = route else { fatalError() }
+        guard case let .signIn(completion) = route else { fatalError() }
+        self.completion = completion
+
         viewModel = OrganizationListViewModel()
-        completionHandler = handler
+        viewModel.delegate = self
     }
 
     // MARK: - Table View Data Source
@@ -47,31 +60,23 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        switch viewModel.state {
-        case .loading, .failure:
-            return 1
-        case let .success(organizations):
-            return organizations.count
-        }
+        return viewModel.error == nil ? viewModel.numberOfRows : 1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch viewModel.state {
-        case .loading:
-            return tableView.dequeueReusableCell(withIdentifier: ActivityIndicatorCell.typeIdentifier, for: indexPath)
-        case let .failure(error):
+        if let errorMessage = viewModel.errorMessage {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ActionCell.typeIdentifier,
                                                            for: indexPath) as? ActionCell else { fatalError() }
             cell.titleLabel.text = "Error Loading Organizations".localized
-            cell.subtitleLabel.text = error
+            cell.subtitleLabel.text = errorMessage
             cell.actionButton.setTitle("Retry".localized, for: .normal)
-            cell.action = { self.viewModel.fetch() }
-            return cell
-        case let .success(organizations):
-            let cell = tableView.dequeueReusableCell(withIdentifier: OrganizationCell.typeIdentifier, for: indexPath)
-            (cell as? OrganizationCell)?.organization = organizations[indexPath.row]
+            cell.action = { [unowned self] in self.viewModel.update() }
             return cell
         }
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: OrganizationCell.typeIdentifier, for: indexPath)
+        (cell as? OrganizationCell)?.organization = viewModel[rowAt: indexPath.row]
+        return cell
     }
 
     // MARK: - Table View Delegate
@@ -85,10 +90,24 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch sender {
         case let organizationCell as OrganizationCell:
-            prepare(for: .signIntoOrganization(organizationCell.organization, completion: signedIntoOrganization),
-                    destination: segue.destination)
+            prepare(for: route(forSigningInto: organizationCell.organization), destination: segue.destination)
         default:
             prepareForRoute(using: segue, sender: sender)
+        }
+    }
+
+    private func route(forSigningInto organization: Organization) -> Routes {
+        return .signIntoOrganization(organization) { [unowned self] result in
+            self.presentedViewController?.dismiss(animated: true) {
+                guard result == .signedIn else { return }
+                self.completion?(result)
+            }
+        }
+    }
+
+    private func routeForAbout() -> Routes {
+        return .about { [unowned self] in
+            self.presentedViewController?.dismiss(animated: true, completion: nil)
         }
     }
 
@@ -96,52 +115,41 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
 
     @IBOutlet var cancelButton: UIBarButtonItem!
 
-    private func updateUserInterface(_: OrganizationListViewModel.State? = nil) {
-        UIView.transition(with: tableView, duration: 0.1, options: .transitionCrossDissolve, animations: {
-            self.tableView.reloadData()
-        }, completion: nil)
+    func controllerForMore(at barButtonItem: UIBarButtonItem? = nil) -> UIViewController {
+        let actions = [
+            UIAlertAction(title: "About".localized, style: .default) { [unowned self] _ in
+                self.performSegue(withRoute: self.routeForAbout())
+            },
+            UIAlertAction(title: "Help".localized, style: .default) { [unowned self] _ in
+                guard let controller = self.controllerForHelp() else { return }
+                self.present(controller, animated: true, completion: nil)
+            },
+            UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil),
+        ]
+
+        let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        controller.popoverPresentationController?.barButtonItem = barButtonItem
+        actions.forEach(controller.addAction)
+        return controller
+    }
+
+    private func controllerForHelp() -> UIViewController? {
+        guard let url = App.Links.help else { return nil }
+
+        let controller = SFSafariViewController(url: url)
+        controller.preferredControlTintColor = UI.Colors.tint
+        return controller
     }
 
     // MARK: - User Interaction
 
     @IBAction
     func moreButtonTapped(_ sender: Any) {
-        func showAboutView(_: UIAlertAction) {
-            let route = Routes.about {
-                self.presentedViewController?.dismiss(animated: true, completion: nil)
-            }
-            performSegue(withRoute: route)
-        }
-
-        func showHelpView(_: UIAlertAction) {
-            guard let url = App.Links.help else { return }
-            let controller = SFSafariViewController(url: url)
-            controller.preferredControlTintColor = UI.Colors.tint
-            present(controller, animated: true, completion: nil)
-        }
-
-        let barButtonItem = sender as? UIBarButtonItem
-
-        let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        controller.popoverPresentationController?.barButtonItem = barButtonItem
-        controller.addAction(UIAlertAction(title: "About".localized, style: .default, handler: showAboutView))
-        controller.addAction(UIAlertAction(title: "Help".localized, style: .default, handler: showHelpView))
-        controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
-        present(controller, animated: true, completion: nil)
+        present(controllerForMore(at: sender as? UIBarButtonItem), animated: true, completion: nil)
     }
 
     @IBAction
     func cancelButtonTapped(_: Any) {
-        completionHandler?(.none)
-    }
-
-    // MARK: - Completion Handlers
-
-    private func signedIntoOrganization(result: SignInResult) {
-        presentedViewController?.dismiss(animated: true) {
-            if result == .signedIn {
-                self.completionHandler?(result)
-            }
-        }
+        completion?(.none)
     }
 }
