@@ -14,13 +14,11 @@ import CoreData
 /// `delegate`.
 public final class DownloadListViewModel: FetchedResultsControllerDataSource {
     public typealias Section = Course
-
     public typealias Row = File
 
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
 
     public private(set) lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
-
     public weak var delegate: DataSourceDelegate?
 
     /// Creates a new download list view model managing downloaded documents.

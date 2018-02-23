@@ -10,13 +10,11 @@ import CoreData
 
 public final class EventListViewModel: FetchedResultsControllerDataSource {
     public typealias Section = Date
-
     public typealias Row = Event
 
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
 
     public private(set) lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
-
     public weak var delegate: DataSourceDelegate?
 
     public let course: Course
@@ -27,10 +25,9 @@ public final class EventListViewModel: FetchedResultsControllerDataSource {
         controller.delegate = fetchedResultControllerDelegateHelper
     }
 
-    public private(set) lazy var controller: NSFetchedResultsController<Event>
-        = NSFetchedResultsController(fetchRequest: course.eventsFetchRequest,
-                                     managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: "daysSince1970",
-                                     cacheName: nil)
+    public private(set) lazy var controller: NSFetchedResultsController<Event> = NSFetchedResultsController(
+        fetchRequest: course.eventsFetchRequest, managedObjectContext: coreDataService.viewContext,
+        sectionNameKeyPath: "daysSince1970", cacheName: nil)
 
     public func section(from sectionInfo: NSFetchedResultsSectionInfo) -> Section? {
         return (sectionInfo.objects?.first as? Event)?.startsAt.startOfDay

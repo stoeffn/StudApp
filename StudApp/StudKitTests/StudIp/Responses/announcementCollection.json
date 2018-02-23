@@ -15,7 +15,7 @@
             "comments": "\/studip\/api.php\/news\/255220265abb0d968428b8e5fea256cc\/comments",
             "comments_count": 0,
             "ranges": [
-                       "\/studip\/api.php\/TODO\/4498a5bc62d7974d0a0ac3e97aca5296\/news",
+                       "\/studip\/api.php\/test\/4498a5bc62d7974d0a0ac3e97aca5296\/news",
                        "\/studip\/api.php\/course\/a70c45ca747f0ab2ea4acbb17398d370\/news",
                        "\/studip\/api.php\/studip\/news"
                        ]
@@ -35,7 +35,7 @@
             "comments": "\/studip\/api.php\/news\/92c958f6b548145dd657e6e17f1b6e8f\/comments",
             "comments_count": 0,
             "ranges": [
-                       "\/studip\/api.php\/TODO\/4498a5bc62d7974d0a0ac3e97aca5296\/news",
+                       "\/studip\/api.php\/test\/4498a5bc62d7974d0a0ac3e97aca5296\/news",
                        "\/studip\/api.php\/course\/a70c45ca747f0ab2ea4acbb17398d370\/news",
                        "\/studip\/api.php\/studip\/news"
                        ]

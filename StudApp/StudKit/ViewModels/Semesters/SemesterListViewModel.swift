@@ -15,22 +15,23 @@ import CoreData
 public final class SemesterListViewModel: FetchedResultsControllerDataSourceSection {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]
-    private var fetchRequest: NSFetchRequest<SemesterState>
 
     public private(set) lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
-
     public weak var delegate: DataSourceSectionDelegate?
 
-    /// Creates a new semester list view model managing the semesters in returned by the request given, which defaults to all
-    /// semesters.
-    public init(fetchRequest: NSFetchRequest<SemesterState> = Semester.statesFetchRequest) {
-        self.fetchRequest = fetchRequest
+    public let organization: Organization
+    public let respectsHiddenStates: Bool
+
+    public init(organization: Organization, respectsHiddenStates: Bool) {
+        self.organization = organization
+        self.respectsHiddenStates = respectsHiddenStates
 
         controller.delegate = fetchedResultControllerDelegateHelper
     }
 
     public private(set) lazy var controller: NSFetchedResultsController<SemesterState> = NSFetchedResultsController(
-        fetchRequest: fetchRequest, managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchRequest: respectsHiddenStates ? organization.visibleSemesterStatesFetchRequest : organization.semesterStatesFetchRequest,
+        managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
 
     public func row(from object: SemesterState) -> Semester {
         return object.semester
@@ -46,9 +47,9 @@ public final class SemesterListViewModel: FetchedResultsControllerDataSourceSect
     }
 
     /// Updates data from the server.
-    public func update(enforce: Bool = false, completion: ResultHandler<Void>? = nil) {
+    public func update(completion: ResultHandler<Void>? = nil) {
         coreDataService.performBackgroundTask { context in
-            Semester.update(in: context, enforce: enforce) { result in
+            self.organization.updateSemesters(in: context) { result in
                 try? context.saveAndWaitWhenChanged()
                 completion?(result.map { _ in () })
             }

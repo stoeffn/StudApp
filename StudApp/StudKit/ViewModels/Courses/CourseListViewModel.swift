@@ -17,16 +17,17 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
 
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
 
-    private let respectsCollapsedState: Bool
-
     public private(set) lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
-
     public weak var delegate: DataSourceSectionDelegate?
 
+    public let user: User
     public let semester: Semester?
+    public let respectsCollapsedState: Bool
 
     /// Creates a new course list view model managing all courses.
-    public init() {
+    public init(user: User) {
+        self.user = user
+
         semester = nil
         respectsCollapsedState = false
         isCollapsed = false
@@ -35,7 +36,8 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
     }
 
     /// Creates a new course list view model managing the given semester's courses.
-    public init(semester: Semester, respectsCollapsedState: Bool = false) {
+    public init(user: User, semester: Semester, respectsCollapsedState: Bool = false) {
+        self.user = user
         self.semester = semester
         self.respectsCollapsedState = respectsCollapsedState
 
@@ -58,7 +60,7 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
     /// Updates data from the server.
     public func update(completion: ResultHandler<Void>? = nil) {
         coreDataService.performBackgroundTask { context in
-            Course.update(in: context) { result in
+            self.user.updateAuthoredCourses(in: context) { result in
                 try? context.saveAndWaitWhenChanged()
                 completion?(result.map { _ in })
             }

@@ -26,7 +26,7 @@ public final class Organization: NSManagedObject, CDCreatable, CDIdentifiable, C
     /// Remark: - This is not of type `URI` in order to support iOS 10.
     var apiUrl: URL {
         get {
-            guard let url = URL(string: apiUrlString) else { fatalError("Cannot construct API URL") }
+            guard let url = URL(string: apiUrlString) else { fatalError("Cannot construct API URL.") }
             return url
         }
         set { apiUrlString = newValue.absoluteString }

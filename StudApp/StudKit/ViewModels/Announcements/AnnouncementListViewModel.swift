@@ -14,7 +14,6 @@ public final class AnnouncementListViewModel: FetchedResultsControllerDataSource
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
 
     public private(set) lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
-
     public weak var delegate: DataSourceSectionDelegate?
 
     public let course: Course

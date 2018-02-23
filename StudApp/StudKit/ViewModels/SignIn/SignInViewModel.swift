@@ -54,7 +54,8 @@ public final class SignInViewModel: NSObject {
 
         guard let consumerKey = organization.consumerKey, let consumerSecret = organization.consumerSecret else { fatalError() }
 
-        oAuth1 = OAuth1<StudIpOAuth1Routes>(service: StudIpService.serviceName, callbackUrl: App.Links.signInCallback,
+        // TODO
+        oAuth1 = OAuth1<StudIpOAuth1Routes>(service: "TODO", callbackUrl: App.Links.signInCallback,
                                             consumerKey: consumerKey, consumerSecret: consumerSecret)
         oAuth1.baseUrl = organization.apiUrl
     }
@@ -102,7 +103,7 @@ public final class SignInViewModel: NSObject {
                 return self.error = result.error ?? Errors.authorizationFailed
             }
 
-            self.studIpService.signIn(apiUrl: self.organization.apiUrl, authorizing: self.oAuth1) { result in
+            self.studIpService.sign(into: self.organization, authorizing: self.oAuth1) { result in
                 guard result.isSuccess else {
                     return self.error = result.error ?? Errors.authorizationFailed
                 }
@@ -115,7 +116,7 @@ public final class SignInViewModel: NSObject {
 
     private func updateSemesters() {
         coreDataService.performBackgroundTask { context in
-            Semester.update(in: context) { _ in
+            self.organization.updateSemesters(in: context) { _ in
                 try? context.saveAndWaitWhenChanged()
             }
         }
