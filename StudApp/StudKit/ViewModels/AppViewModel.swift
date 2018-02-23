@@ -24,7 +24,9 @@ public final class AppViewModel {
 
     /// Updates the current user if signed in.
     public func updateCurrentUser(completion: (ResultHandler<User>)? = nil) {
-        User.updateCurrent(in: coreDataService.viewContext) { result in
+        guard let currentUser = currentUser else { return }
+
+        User.updateCurrent(organization: currentUser.organization, in: coreDataService.viewContext) { result in
             try? self.coreDataService.viewContext.saveAndWaitWhenChanged()
             completion?(result)
         }

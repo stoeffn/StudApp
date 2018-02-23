@@ -20,9 +20,4 @@ public final class MockStudIpService: StudIpService {
     public override var isSignedIn: Bool {
         return true
     }
-
-    override var userId: String? {
-        get { return mockResponses.currentUser.id }
-        set {}
-    }
 }

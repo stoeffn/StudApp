@@ -9,8 +9,6 @@
 import CoreSpotlight
 
 public class StudIpService {
-    static let serviceName = "studip"
-
     let api: Api<StudIpRoutes>
 
     init(api: Api<StudIpRoutes>) {
@@ -20,35 +18,12 @@ public class StudIpService {
     convenience init() {
         self.init(api: Api<StudIpRoutes>())
 
-        guard let apiUrl = self.apiUrl else { return }
+        /*guard let apiUrl = self.apiUrl else { return }
         let oAuth1 = try? OAuth1<StudIpOAuth1Routes>(fromPersistedService: StudIpService.serviceName)
         oAuth1?.baseUrl = apiUrl
 
         api.baseUrl = apiUrl
-        api.authorizing = oAuth1
-    }
-
-    var apiUrl: URL? {
-        get {
-            let storageService = ServiceContainer.default[StorageService.self]
-            return storageService.defaults.url(forKey: UserDefaults.apiUrlKey)
-        }
-        set {
-            let storageService = ServiceContainer.default[StorageService.self]
-            storageService.defaults.set(newValue, forKey: UserDefaults.apiUrlKey)
-        }
-    }
-
-    /// Stud.IP-id of the currently signed in user.
-    var userId: String? {
-        get {
-            let storageService = ServiceContainer.default[StorageService.self]
-            return storageService.defaults.string(forKey: UserDefaults.userIdKey)
-        }
-        set {
-            let storageService = ServiceContainer.default[StorageService.self]
-            storageService.defaults.set(newValue, forKey: UserDefaults.userIdKey)
-        }
+        api.authorizing = oAuth1*/
     }
 
     /// Whether the user is currently signed in.
@@ -59,18 +34,17 @@ public class StudIpService {
         return api.authorizing?.isAuthorized ?? false
     }
 
-    func signIn(apiUrl: URL, authorizing: ApiAuthorizing, completion: @escaping ResultHandler<User>) {
+    func sign(into organization: Organization, authorizing: ApiAuthorizing, completion: @escaping ResultHandler<User>) {
         signOut()
 
-        api.baseUrl = apiUrl
+        api.baseUrl = organization.apiUrl
         api.authorizing = authorizing
 
-        self.apiUrl = apiUrl
         try? (authorizing as? PersistableApiAuthorizing)?.persistCredentials()
 
         let coreDataService = ServiceContainer.default[CoreDataService.self]
 
-        User.updateCurrent(in: coreDataService.viewContext) { result in
+        User.updateCurrent(organization: organization, in: coreDataService.viewContext) { result in
             guard result.isSuccess else {
                 self.signOut()
                 return completion(result)
@@ -86,9 +60,9 @@ public class StudIpService {
 
     /// Removes the default credential used for authentication, replaces it with an empty credential, and clears the database.
     func signOut() {
-        userId = nil
-        apiUrl = nil
+        User.currentId = nil
 
+        api.baseUrl = nil
         api.removeLastRouteAccesses()
         try? (api.authorizing as? PersistableApiAuthorizing)?.removeCredentials()
 
