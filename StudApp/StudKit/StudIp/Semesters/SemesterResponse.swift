@@ -58,8 +58,9 @@ extension SemesterResponse: Decodable {
 
 extension SemesterResponse {
     @discardableResult
-    func coreDataObject(in context: NSManagedObjectContext) throws -> Semester {
+    func coreDataObject(organization: Organization, in context: NSManagedObjectContext) throws -> Semester {
         let (semester, isNew) = try Semester.fetch(byId: id, orCreateIn: context)
+        semester.organization = organization
         semester.title = title
         semester.beginsAt = beginsAt
         semester.endsAt = endsAt

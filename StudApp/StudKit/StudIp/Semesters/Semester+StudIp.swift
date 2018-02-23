@@ -20,7 +20,11 @@ extension Semester {
 
     static func update(_ existingObjects: NSFetchRequest<Semester>, with response: [SemesterResponse],
                        in context: NSManagedObjectContext) throws -> [Semester] {
-        let semesters = try Semester.update(existingObjects, with: response, in: context) { try $0.coreDataObject(in: context) }
+        var organization: Organization! // TODO
+
+        let semesters = try Semester.update(existingObjects, with: response, in: context) {
+            try $0.coreDataObject(organization: organization, in: context)
+        }
 
         if #available(iOSApplicationExtension 11.0, *) {
             NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }

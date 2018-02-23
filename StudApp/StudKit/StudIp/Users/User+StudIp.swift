@@ -26,9 +26,11 @@ extension User {
     }
 
     static func updateCurrent(in context: NSManagedObjectContext, completion: @escaping ResultHandler<User>) {
+        var organization: Organization! // TODO
+
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestDecoded(.currentUser) { (result: Result<UserResponse>) in
-            let result = result.map { try $0.coreDataObject(in: context) }
+            let result = result.map { try $0.coreDataObject(organization: organization, in: context) }
             result.value?.makeCurrent()
             completion(result)
         }

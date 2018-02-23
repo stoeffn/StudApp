@@ -9,6 +9,8 @@
 import CoreData
 
 struct MockResponses {
+    lazy var organization = OrganizationRecord(id: "O0")
+
     lazy var semesters = [
         SemesterResponse(id: "S0", title: "Winter 2016/17".localized, beginsAt: Date(timeIntervalSince1970: 1_475_338_860),
                          endsAt: Date(timeIntervalSince1970: 1_488_388_860)),
@@ -48,8 +50,9 @@ struct MockResponses {
     ]
 
     mutating func insert(into context: NSManagedObjectContext) throws {
-        try currentUser.coreDataObject(in: context)
-        try semesters.forEach { try $0.coreDataObject(in: context) }
-        try courses.forEach { try $0.coreDataObject(in: context) }
+        let organization = try self.organization.coreDataObject(in: context)
+        try currentUser.coreDataObject(organization: organization, in: context)
+        try semesters.forEach { try $0.coreDataObject(organization: organization, in: context) }
+        try courses.forEach { try $0.coreDataObject(organization: organization, in: context) }
     }
 }

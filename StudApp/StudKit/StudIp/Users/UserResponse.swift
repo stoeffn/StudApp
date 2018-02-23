@@ -65,8 +65,9 @@ extension UserResponse: Decodable {
 
 extension UserResponse {
     @discardableResult
-    func coreDataObject(in context: NSManagedObjectContext) throws -> User {
+    func coreDataObject(organization: Organization, in context: NSManagedObjectContext) throws -> User {
         let (user, _) = try User.fetch(byId: id, orCreateIn: context)
+        user.organization = organization
         user.username = username
         user.givenName = givenName
         user.familyName = familyName

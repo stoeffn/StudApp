@@ -65,6 +65,7 @@ extension FolderResponse {
     @discardableResult
     func coreDataObject(course: Course, parent: File? = nil, in context: NSManagedObjectContext) throws -> File {
         let (folder, _) = try File.fetch(byId: id, orCreateIn: context)
+        folder.organization = course.organization
         folder.typeIdentifier = kUTTypeFolder as String
         folder.parent = parent ?? folder.parent
         folder.course = course

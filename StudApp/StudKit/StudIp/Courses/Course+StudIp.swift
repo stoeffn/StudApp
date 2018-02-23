@@ -23,7 +23,11 @@ extension Course {
 
     static func update(_ existingObjects: NSFetchRequest<Course>, with response: [CourseResponse],
                        in context: NSManagedObjectContext) throws -> [Course] {
-        let courses = try Course.update(existingObjects, with: response, in: context) { try $0.coreDataObject(in: context) }
+        var organization: Organization! // TODO
+
+        let courses = try Course.update(existingObjects, with: response, in: context) {
+            try $0.coreDataObject(organization: organization, in: context)
+        }
 
         CSSearchableIndex.default().indexSearchableItems(courses.map { $0.searchableItem }) { _ in }
 
@@ -79,9 +83,10 @@ extension Course {
     public func updateAnnouncements(in context: NSManagedObjectContext, completion: @escaping ResultHandler<[Announcement]>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestCollection(.announcementsInCourse(withId: id)) { (result: Result<[AnnouncementResponse]>) in
-            let result = result.map { announcementResponses in
-                try Announcement.update(self.announcementsFetchRequest, with: announcementResponses, in: context) { response in
-                    try response.coreDataObject(in: context)
+            let result = result.map { announcementResponses -> [Announcement] in
+                guard let course = context.object(with: self.objectID) as? Course else { fatalError() }
+                return try Announcement.update(self.announcementsFetchRequest, with: announcementResponses, in: context) { response in
+                    try response.coreDataObject(organization: course.organization, in: context)
                 }
             }
             completion(result)
