@@ -42,8 +42,6 @@ public final class SignInViewModel: NSObject {
 
     @objc public private(set) dynamic var error: Error?
 
-    @objc public private(set) dynamic var organizationIcon: UIImage?
-
     // MARK: - Life Cycle
 
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
@@ -64,18 +62,9 @@ public final class SignInViewModel: NSObject {
     // MARK: - Providing Metadata
 
     public func updateOrganizationIcon() {
-        /*let container = CKContainer(identifier: App.iCloudContainerIdentifier)
-        container.database(with: .public).fetch(withRecordID: organization.recordId) { record, error in
-            DispatchQueue.main.async {
-                guard
-                    let record = record,
-                    var organization = OrganizationRecord(from: record),
-                    let icon = organization.icon
-                else { return completion(.failure(error)) }
-
-                completion(.success(icon))
-            }
-        }*/
+        organization.updateIcon(in: coreDataService.viewContext) { _ in
+            try? self.coreDataService.viewContext.saveAndWaitWhenChanged()
+        }
     }
 
     // MARK: - Signing In

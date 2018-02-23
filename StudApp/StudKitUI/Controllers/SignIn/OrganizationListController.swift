@@ -11,6 +11,7 @@ import SafariServices
 import StudKit
 
 final class OrganizationListController: UITableViewController, Routable, DataSourceSectionDelegate {
+
     // MARK: - Life Cycle
 
     private var contextService: ContextService!
@@ -32,13 +33,13 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         }
 
         observations = [
-            viewModel.observe(\.isUpdating) { [weak self] (_, _) in
+            viewModel.observe(\.isUpdating) { [weak self] _, _ in
                 guard let isUpdating = self?.viewModel.isUpdating else { return }
                 self?.navigationItem.setActivityIndicatorHidden(!isUpdating)
             },
-            viewModel.observe(\.error) { [weak self] (_, _) in
+            viewModel.observe(\.error) { [weak self] _, _ in
                 self?.tableView.reloadData()
-            }
+            },
         ]
 
         viewModel.fetch()

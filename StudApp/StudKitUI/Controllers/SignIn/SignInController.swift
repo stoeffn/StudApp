@@ -25,24 +25,23 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
         NotificationCenter.default.addObserver(self, selector: #selector(safariViewControllerDidLoadAppUrl(notification:)),
                                                name: .safariViewControllerDidLoadAppUrl, object: nil)
 
-        // iconView.image = organization.iconThumbnail
         titleLabel.text = viewModel.organization.title
         areOrganizationViewsHidden = true
         isActivityIndicatorHidden = true
 
         observations = [
-            viewModel.observe(\.state) { [weak self] (_, _) in
+            viewModel.observe(\.state) { [weak self] _, _ in
                 guard let `self` = self else { return }
                 self.updateUserInterface(for: self.viewModel.state)
             },
-            viewModel.observe(\.error) { [weak self] (_, _) in
+            viewModel.observe(\.error) { [weak self] _, _ in
                 guard let `self` = self, let error = self.viewModel.error else { return }
                 self.present(self.controller(for: error), animated: true, completion: nil)
             },
-            viewModel.observe(\.organizationIcon) { [weak self] (_, _) in
+            viewModel.organization.observe(\.iconData, options: [.initial]) { [weak self] _, _ in
                 guard let `self` = self else { return }
                 UIView.transition(with: self.view, duration: 0.1, options: .transitionCrossDissolve, animations: {
-                    self.iconView.image = self.viewModel.organizationIcon ?? self.iconView.image
+                    self.iconView.image = self.viewModel.organization.icon ?? self.viewModel.organization.iconThumbnail
                 }, completion: nil)
             },
         ]
@@ -94,6 +93,7 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
             titleLabel.alpha = areOrganizationViewsHidden ? 0 : 1
         }
     }
+
     var isActivityIndicatorHidden: Bool = false {
         didSet {
             activityIndicator.transform = isActivityIndicatorHidden ? CGAffineTransform(scaleX: 0.1, y: 0.1) : .identity
