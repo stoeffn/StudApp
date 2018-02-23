@@ -10,10 +10,6 @@ import CoreData
 
 @objc(Organization)
 public final class Organization: NSManagedObject, CDCreatable, CDIdentifiable, CDSortable {
-    enum ExternalKeys: String {
-        case apiUrl, consumerKey, consumerSecret
-    }
-
     // MARK: Identification
 
     public static let entity = ObjectIdentifier.Entites.organization
@@ -21,6 +17,19 @@ public final class Organization: NSManagedObject, CDCreatable, CDIdentifiable, C
     @NSManaged public var id: String
 
     @NSManaged public var title: String
+
+    // MARK: Managing API Access
+
+    @NSManaged private var apiUrlString: String
+
+    /// Remark: - This is not of type `URI` in order to support iOS 10.
+    var apiUrl: URL {
+        get {
+            guard let url = URL(string: apiUrlString) else { fatalError("Cannot construct API URL" ) }
+            return url
+        }
+        set { apiUrlString = newValue.absoluteString }
+    }
 
     // MARK: Managing Content
 
@@ -36,6 +45,12 @@ public final class Organization: NSManagedObject, CDCreatable, CDIdentifiable, C
 
     @NSManaged public var users: Set<User>
 
+    // MARK: Managing Metadata
+
+    @NSManaged public var iconData: Data?
+
+    @NSManaged public var iconThumbnailData: Data?
+
     // MARK: - Sorting
 
     static let defaultSortDescriptors = [
@@ -49,58 +64,40 @@ public final class Organization: NSManagedObject, CDCreatable, CDIdentifiable, C
     }
 }
 
-// MARK: Managing API Access
-
-extension Organization {
-    /// Remark: - This is not of type `URI` in order to support iOS 10.
-    var apiUrl: URL? {
-        get {
-            willAccessValue(forKey: ExternalKeys.apiUrl.rawValue)
-            defer { didAccessValue(forKey: ExternalKeys.apiUrl.rawValue) }
-            guard
-                let rawApiUrl = primitiveValue(forKey: ExternalKeys.apiUrl.rawValue) as? String,
-                let apiUrl = URL(string: rawApiUrl)
-                else { return nil }
-            return apiUrl
-        }
-        set {
-            willChangeValue(forKey: ExternalKeys.apiUrl.rawValue)
-            setPrimitiveValue(newValue?.absoluteString, forKey: ExternalKeys.apiUrl.rawValue)
-            didChangeValue(forKey: ExternalKeys.apiUrl.rawValue)
-        }
-    }
-}
-
 // MARK: - Persisting Credentials
 
 extension Organization {
+    private enum KeychainKeys: String {
+        case consumerKey, consumerSecret
+    }
+
     var consumerKey: String? {
         get {
             let keychainService = ServiceContainer.default[KeychainService.self]
-            return try? keychainService.password(for: objectIdentifier.rawValue, account: ExternalKeys.consumerKey.rawValue)
+            return try? keychainService.password(for: objectIdentifier.rawValue, account: KeychainKeys.consumerKey.rawValue)
         }
         set {
             let keychainService = ServiceContainer.default[KeychainService.self]
             guard let newValue = newValue else {
-                try? keychainService.delete(from: objectIdentifier.rawValue, account: ExternalKeys.consumerKey.rawValue)
+                try? keychainService.delete(from: objectIdentifier.rawValue, account: KeychainKeys.consumerKey.rawValue)
                 return
             }
-            try? keychainService.save(password: newValue, for: objectIdentifier.rawValue, account: ExternalKeys.consumerKey.rawValue)
+            try? keychainService.save(password: newValue, for: objectIdentifier.rawValue, account: KeychainKeys.consumerKey.rawValue)
         }
     }
 
     var consumerSecret: String? {
         get {
             let keychainService = ServiceContainer.default[KeychainService.self]
-            return try? keychainService.password(for: objectIdentifier.rawValue, account: ExternalKeys.consumerSecret.rawValue)
+            return try? keychainService.password(for: objectIdentifier.rawValue, account: KeychainKeys.consumerSecret.rawValue)
         }
         set {
             let keychainService = ServiceContainer.default[KeychainService.self]
             guard let newValue = newValue else {
-                try? keychainService.delete(from: objectIdentifier.rawValue, account: ExternalKeys.consumerSecret.rawValue)
+                try? keychainService.delete(from: objectIdentifier.rawValue, account: KeychainKeys.consumerSecret.rawValue)
                 return
             }
-            try? keychainService.save(password: newValue, for: objectIdentifier.rawValue, account: ExternalKeys.consumerSecret.rawValue)
+            try? keychainService.save(password: newValue, for: objectIdentifier.rawValue, account: KeychainKeys.consumerSecret.rawValue)
         }
     }
 }
