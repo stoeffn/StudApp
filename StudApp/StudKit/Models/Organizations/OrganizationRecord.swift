@@ -54,7 +54,7 @@ extension OrganizationRecord {
     func coreDataObject(in context: NSManagedObjectContext) throws -> Organization {
         let (organization, _) = try Organization.fetch(byId: id, orCreateIn: context)
         organization.title = title
-        organization.apiUrl = apiUrl.absoluteString
+        organization.apiUrl = apiUrl
         organization.consumerKey = consumerKey
         organization.consumerSecret = consumerSecret
         return organization

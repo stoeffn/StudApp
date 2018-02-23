@@ -1229,14 +1229,6 @@
 			path = Colors;
 			sourceTree = "<group>";
 		};
-		2457CDAD203F4CFD0021B31D /* Organizations */ = {
-			isa = PBXGroup;
-			children = (
-				245B6ADD1FCB381B00302CD0 /* OrganizationListViewModel.swift */,
-			);
-			path = Organizations;
-			sourceTree = "<group>";
-		};
 		2457CDAE203F4D080021B31D /* Store */ = {
 			isa = PBXGroup;
 			children = (
@@ -1249,6 +1241,7 @@
 		2457CDAF203F4D120021B31D /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
+				245B6ADD1FCB381B00302CD0 /* OrganizationListViewModel.swift */,
 				24D361651FAA648B00BBBAED /* SignInViewModel.swift */,
 			);
 			path = SignIn;
@@ -1710,7 +1703,6 @@
 				2457CDA7203F4CAA0021B31D /* Courses */,
 				2457CDAB203F4CE60021B31D /* Events */,
 				2457CDA8203F4CB40021B31D /* Files */,
-				2457CDAD203F4CFD0021B31D /* Organizations */,
 				2457CDA9203F4CC80021B31D /* Semesters */,
 				2457CDB1203F4D220021B31D /* Settings */,
 				2457CDAF203F4D120021B31D /* SignIn */,
