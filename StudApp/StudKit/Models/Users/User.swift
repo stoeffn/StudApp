@@ -58,6 +58,15 @@ public final class User: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
     }
 }
 
+// MARK: - Core Data Operations
+
+extension User {
+    public var authoredCoursesFetchRequest: NSFetchRequest<Course> {
+        let predicate = NSPredicate(format: "%@ in authoredCourses", self)
+        return Course.fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["state"])
+    }
+}
+
 // MARK: - Utilities
 
 public extension User {

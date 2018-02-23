@@ -11,43 +11,6 @@ import CoreSpotlight
 import FileProvider
 
 extension Course {
-    public static func update(in context: NSManagedObjectContext, completion: @escaping ResultHandler<[Course]>) {
-        let studIpService = ServiceContainer.default[StudIpService.self]
-        guard let userId = studIpService.userId else { return }
-
-        studIpService.api.requestCollection(.courses(forUserId: userId)) { (result: Result<[CourseResponse]>) in
-            let result = result.map { try update(fetchRequest(), with: $0, in: context) }
-            completion(result)
-        }
-    }
-
-    static func update(_ existingObjects: NSFetchRequest<Course>, with response: [CourseResponse],
-                       in context: NSManagedObjectContext) throws -> [Course] {
-        var organization: Organization! // TODO
-
-        let courses = try Course.update(existingObjects, with: response, in: context) {
-            try $0.coreDataObject(organization: organization, in: context)
-        }
-
-        CSSearchableIndex.default().indexSearchableItems(courses.map { $0.searchableItem }) { _ in }
-
-        try? Semester.fetchVisibleStates(in: context).forEach { semester in
-            semester.state.areCoursesFetchedFromRemote = true
-
-            if #available(iOSApplicationExtension 11.0, *) {
-                let itemidentifier = NSFileProviderItemIdentifier(rawValue: semester.objectIdentifier.rawValue)
-                NSFileProviderManager.default.signalEnumerator(for: itemidentifier) { _ in }
-            }
-        }
-
-        if #available(iOSApplicationExtension 11.0, *) {
-            NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
-            NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
-        }
-
-        return courses
-    }
-
     public func updateChildFiles(in context: NSManagedObjectContext, completion: @escaping ResultHandler<Set<File>>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestDecoded(.rootFolderForCourse(withId: id)) { (result: Result<FolderResponse>) in

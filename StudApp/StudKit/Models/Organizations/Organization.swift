@@ -102,3 +102,33 @@ extension Organization {
         }
     }
 }
+
+// MARK: - Core Data Operations
+
+extension Organization {
+    public func fetchSemesters(from beginSemester: Semester? = nil, to endSemester: Semester? = nil,
+                               in context: NSManagedObjectContext) throws -> [Semester] {
+        let beginsAt = beginSemester?.beginsAt ?? .distantPast
+        let endsAt = endSemester?.endsAt ?? .distantFuture
+        let predicate = NSPredicate(format: "organization == %@ AND beginsAt >= %@ AND endsAt <= %@",
+                                    self, beginsAt as CVarArg, endsAt as CVarArg)
+        let request = Semester.fetchRequest(predicate: predicate, sortDescriptors: Semester.defaultSortDescriptors)
+        return try context.fetch(request)
+    }
+
+    public var semesterStatesFetchRequest: NSFetchRequest<SemesterState> {
+        return SemesterState.fetchRequest(predicate: NSPredicate(value: true),
+                                          sortDescriptors: SemesterState.defaultSortDescriptors,
+                                          relationshipKeyPathsForPrefetching: ["semester"])
+    }
+
+    public var visibleSemesterStatesFetchRequest: NSFetchRequest<SemesterState> {
+        let predicate = NSPredicate(format: "organization == %@ AND isHidden == NO", self)
+        return SemesterState.fetchRequest(predicate: predicate, sortDescriptors: SemesterState.defaultSortDescriptors,
+                                          relationshipKeyPathsForPrefetching: ["semester"])
+    }
+
+    public func fetchVisibleSemesters(in context: NSManagedObjectContext) throws -> [Semester] {
+        return try context.fetch(visibleSemesterStatesFetchRequest).map { $0.semester }
+    }
+}

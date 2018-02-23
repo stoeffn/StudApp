@@ -77,31 +77,6 @@ public extension Semester {
 // MARK: - Core Data Operations
 
 extension Semester {
-    public static func fetch(from beginSemester: Semester? = nil, to endSemester: Semester? = nil,
-                             in context: NSManagedObjectContext) throws -> [Semester] {
-        let beginsAt = beginSemester?.beginsAt ?? .distantPast
-        let endsAt = endSemester?.endsAt ?? .distantFuture
-        let predicate = NSPredicate(format: "beginsAt >= %@ AND endsAt <= %@", beginsAt as CVarArg, endsAt as CVarArg)
-        let request = fetchRequest(predicate: predicate, sortDescriptors: defaultSortDescriptors)
-        return try context.fetch(request)
-    }
-
-    public static var statesFetchRequest: NSFetchRequest<SemesterState> {
-        return SemesterState.fetchRequest(predicate: NSPredicate(value: true),
-                                          sortDescriptors: SemesterState.defaultSortDescriptors,
-                                          relationshipKeyPathsForPrefetching: ["semester"])
-    }
-
-    public static var visibleStatesFetchRequest: NSFetchRequest<SemesterState> {
-        let predicate = NSPredicate(format: "isHidden == NO")
-        return SemesterState.fetchRequest(predicate: predicate, sortDescriptors: SemesterState.defaultSortDescriptors,
-                                          relationshipKeyPathsForPrefetching: ["semester"])
-    }
-
-    public static func fetchVisibleStates(in context: NSManagedObjectContext) throws -> [Semester] {
-        return try context.fetch(visibleStatesFetchRequest).map { $0.semester }
-    }
-
     public var coursesFetchRequest: NSFetchRequest<Course> {
         let predicate = NSPredicate(format: "%@ IN semesters", self)
         return Course.fetchRequest(predicate: predicate, sortDescriptors: Course.defaultSortDescriptors,
