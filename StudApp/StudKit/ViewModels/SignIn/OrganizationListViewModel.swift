@@ -59,6 +59,10 @@ public final class OrganizationListViewModel: NSObject, FetchedResultsController
                 try? context.saveAndWaitWhenChanged()
                 self.isUpdating = false
                 self.error = result.error
+
+                Organization.updateIconThumbnails(in: self.coreDataService.viewContext) { _ in
+                    try? self.coreDataService.viewContext.saveAndWaitWhenChanged()
+                }
             }
         }
     }

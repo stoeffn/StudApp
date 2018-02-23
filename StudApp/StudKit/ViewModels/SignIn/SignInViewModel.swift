@@ -113,8 +113,7 @@ public final class SignInViewModel: NSObject {
                 return self.error = result.error ?? Errors.authorizationFailed
             }
 
-            guard let apiUrl = self.organization.apiUrl else { fatalError() }
-            self.studIpService.signIn(apiUrl: apiUrl, authorizing: self.oAuth1) { result in
+            self.studIpService.signIn(apiUrl: self.organization.apiUrl, authorizing: self.oAuth1) { result in
                 guard result.isSuccess else {
                     return self.error = result.error ?? Errors.authorizationFailed
                 }

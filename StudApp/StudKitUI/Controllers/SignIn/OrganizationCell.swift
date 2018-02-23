@@ -12,7 +12,7 @@ final class OrganizationCell: UITableViewCell {
 
     // MARK: - Life Cycle
 
-    var organization: OrganizationRecord! {
+    var organization: Organization! {
         didSet {
             titleLabel?.text = organization.title
             iconView?.image = organization.iconThumbnail
