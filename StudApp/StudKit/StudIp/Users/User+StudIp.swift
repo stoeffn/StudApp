@@ -10,34 +10,17 @@ import CoreData
 import CoreSpotlight
 
 extension User {
-    /// Stud.IP-id of the currently signed in user.
-    static var currentId: String? {
-        get {
-            let storageService = ServiceContainer.default[StorageService.self]
-            return storageService.defaults.string(forKey: UserDefaults.userIdKey)
-        }
-        set {
-            let storageService = ServiceContainer.default[StorageService.self]
-            storageService.defaults.set(newValue, forKey: UserDefaults.userIdKey)
-        }
-    }
-
-    static func fetchCurrent(in context: NSManagedObjectContext) throws -> User? {
-        return try fetch(byId: currentId, in: context)
-    }
-
     static func updateCurrent(organization: Organization, in context: NSManagedObjectContext,
                               completion: @escaping ResultHandler<User>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestDecoded(.currentUser) { (result: Result<UserResponse>) in
             let result = result.map { try $0.coreDataObject(organization: organization, in: context) }
-            User.currentId = result.value?.id
             completion(result)
         }
     }
 
     func updateAuthoredCourses(in context: NSManagedObjectContext, completion: @escaping ResultHandler<[Course]>) {
-        guard let currentId = User.currentId else { return }
+        guard let currentId = User.current?.id else { return }
 
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestCollection(.courses(forUserId: currentId)) { (result: Result<[CourseResponse]>) in

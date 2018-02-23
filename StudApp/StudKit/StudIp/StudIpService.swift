@@ -60,7 +60,7 @@ public class StudIpService {
 
     /// Removes the default credential used for authentication, replaces it with an empty credential, and clears the database.
     func signOut() {
-        User.currentId = nil
+        User.current = nil
 
         api.baseUrl = nil
         api.removeLastRouteAccesses()

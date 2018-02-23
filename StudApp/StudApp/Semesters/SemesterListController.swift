@@ -105,6 +105,6 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
 
     @IBAction
     func emptyViewActionButtonTapped(_: Any) {
-        viewModel.update(enforce: true)
+        viewModel.update()
     }
 }

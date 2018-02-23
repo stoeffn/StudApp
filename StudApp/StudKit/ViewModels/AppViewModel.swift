@@ -24,17 +24,11 @@ public final class AppViewModel {
 
     /// Updates the current user if signed in.
     public func updateCurrentUser(completion: (ResultHandler<User>)? = nil) {
-        guard let currentUser = currentUser else { return }
+        guard let currentUser = User.current else { return }
 
         User.updateCurrent(organization: currentUser.organization, in: coreDataService.viewContext) { result in
             try? self.coreDataService.viewContext.saveAndWaitWhenChanged()
             completion?(result)
         }
-    }
-
-    /// Currently signed in user. This property performs a fetch every time it is accessed.
-    public var currentUser: User? {
-        guard let user = try? User.fetchCurrent(in: coreDataService.viewContext) else { return nil }
-        return user
     }
 }

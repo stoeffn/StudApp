@@ -283,7 +283,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     @IBAction
     func emptyViewActionButtonTapped(_: Any) {
-        viewModel.update(enforce: true)
+        viewModel?.update()
     }
 
     // MARK: - Navigation

@@ -61,6 +61,22 @@ public final class User: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
 // MARK: - Core Data Operations
 
 extension User {
+    private static var currentUserFromDefaults: User? = {
+        let storageService = ServiceContainer.default[StorageService.self]
+        let coreDataService = ServiceContainer.default[CoreDataService.self]
+        let currentUserId = storageService.defaults.string(forKey: UserDefaults.userIdKey)
+        guard let user = try? fetch(byId: currentUserId, in: coreDataService.viewContext) else { return nil }
+        return user
+    }()
+
+    public internal(set) static var current: User? = currentUserFromDefaults {
+        didSet {
+            let storageService = ServiceContainer.default[StorageService.self]
+            storageService.defaults.set(current?.id, forKey: UserDefaults.userIdKey)
+            NotificationCenter.default.post(name: .currentUserDidChange, object: nil)
+        }
+    }
+
     public var authoredCoursesFetchRequest: NSFetchRequest<Course> {
         let predicate = NSPredicate(format: "%@ in authoredCourses", self)
         return Course.fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["state"])
@@ -78,4 +94,10 @@ public extension User {
         components.nameSuffix = nameSuffix
         return components
     }
+}
+
+// MARK: - Notification
+
+extension Notification.Name {
+    static let currentUserDidChange = Notification.Name(rawValue: "currentUserDidChange")
 }

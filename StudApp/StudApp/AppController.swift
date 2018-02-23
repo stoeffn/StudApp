@@ -108,7 +108,7 @@ final class AppController: UITabBarController {
             performSegue(withRoute: .settings(completion: presentedSettings))
         }
 
-        guard let currentUser = viewModel.currentUser else { return }
+        guard let currentUser = User.current else { return }
         let barButtonItem = sender as? UIBarButtonItem
         let title = "Signed in as %@".localized(currentUser.nameComponents.formatted(style: .long))
 
