@@ -12,7 +12,23 @@ import StudKit
 public enum Routes {
     case about(completion: () -> Void)
 
+    case announcement(Announcement, completion: () -> Void)
+
+    case colorPicker(sender: Any?, completion: (Int, UIColor) -> Void)
+
     case confetti(alert: UIAlertController)
+
+    case course(Course)
+
+    case disclaimer(String)
+
+    case emptyCourse
+
+    case eventsInCourse(Course)
+
+    case folder(File)
+
+    case preview(File, QLPreviewControllerDelegate?)
 
     case settings(completion: (SettingsResult) -> Void)
 
@@ -22,23 +38,7 @@ public enum Routes {
 
     case store
 
-    case disclaimer(String)
-
     case verification
-
-    case preview(File, QLPreviewControllerDelegate?)
-
-    case course(Course)
-
-    case emptyCourse
-
-    case announcement(Announcement, completion: () -> Void)
-
-    case eventsInCourse(Course)
-
-    case folder(File)
-
-    case colorPicker(sender: Any?, completion: (Int, UIColor) -> Void)
 
     private var destinationStoryboard: UIStoryboard? {
         switch self {
@@ -55,8 +55,8 @@ public enum Routes {
 
     private var destinationIdentifier: String? {
         switch self {
-        case .signIn: return "SignInNavigationController"
         case .emptyCourse: return "EmptyCourseController"
+        case .signIn: return "SignInNavigationController"
         case .verification: return "VerificationNavigationController"
         default: return nil
         }
@@ -65,20 +65,20 @@ public enum Routes {
     public var segueIdentifier: String {
         switch self {
         case .about: return "about"
-        case .confetti: return "confetti"
-        case .settings: return "settings"
-        case .signIn: return "signIn"
-        case .store: return "store"
-        case .disclaimer: return "disclaimer"
-        case .verification: return "verification"
-        case .signIntoOrganization: return "signIntoOrganization"
-        case .preview: return "preview"
-        case .course: return "course"
-        case .emptyCourse: return "emptyCourse"
         case .announcement: return "announcement"
+        case .colorPicker: return "colorPicker"
+        case .confetti: return "confetti"
+        case .course: return "course"
+        case .disclaimer: return "disclaimer"
+        case .emptyCourse: return "emptyCourse"
         case .eventsInCourse: return "eventsInCourse"
         case .folder: return "folder"
-        case .colorPicker: return "colorPicker"
+        case .preview: return "preview"
+        case .settings: return "settings"
+        case .signIn: return "signIn"
+        case .signIntoOrganization: return "signIntoOrganization"
+        case .store: return "store"
+        case .verification: return "verification"
         }
     }
 
