@@ -39,8 +39,6 @@ public final class CoreDataService {
     private static func persistentStoreDescription(forStoreAt url: URL) -> NSPersistentStoreDescription {
         let description: NSPersistentStoreDescription = NSPersistentStoreDescription(url: url)
         description.type = NSSQLiteStoreType
-        description.shouldMigrateStoreAutomatically = true
-        description.shouldInferMappingModelAutomatically = true
 
         if #available(iOSApplicationExtension 11.0, *) {
             description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
@@ -62,12 +60,13 @@ public final class CoreDataService {
 
         let container = NSPersistentContainer(name: modelName, managedObjectModel: model)
         container.persistentStoreDescriptions = [storeDescription]
-        container.viewContext.automaticallyMergesChangesFromParent = true
-        container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
         container.loadPersistentStores { _, error in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
+
+            container.viewContext.automaticallyMergesChangesFromParent = true
+            container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
         }
 
         return container
