@@ -35,11 +35,13 @@ public final class User: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
 
     @NSManaged public var pictureModifiedAt: Date?
 
-    // MARK: Managing Content
+    // MARK: Managing Belongings
 
     @NSManaged public var createdAnnouncements: Set<Announcement>
 
     @NSManaged public var lecturedCourses: Set<Course>
+
+    @NSManaged public var authoredCourses: Set<Course>
 
     @NSManaged public var ownedFiles: Set<File>
 

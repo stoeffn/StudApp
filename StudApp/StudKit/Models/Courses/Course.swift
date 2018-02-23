@@ -48,8 +48,6 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDSorta
     /// Identifier for this course's group, which determines the course's sorting and color.
     @NSManaged public var groupId: Int
 
-    @NSManaged public var lecturers: Set<User>
-
     /// Describes where this course is held.
     @NSManaged public var location: String?
 
@@ -59,6 +57,12 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDSorta
 
     /// Short description of the course and/or summary of its contents.
     @NSManaged public var summary: String?
+
+    // MARK: Managing Members
+
+    @NSManaged public var lecturers: Set<User>
+
+    @NSManaged public var authors: Set<User>
 
     // MARK: - Life Cycle
 
