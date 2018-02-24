@@ -35,6 +35,9 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
             },
             viewModel.observe(\.error) { [weak self] _, _ in
                 guard let `self` = self, let error = self.viewModel.error else { return }
+                self.animateWithSpring {
+                    self.isActivityIndicatorHidden = true
+                }
                 self.present(self.controller(for: error), animated: true, completion: nil)
             },
             viewModel.organization.observe(\.iconData, options: [.initial]) { [weak self] _, _ in
@@ -109,6 +112,9 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
         let message = error.localizedDescription
         let controller = UIAlertController(title: "Error Signing In".localized, message: message, preferredStyle: .alert)
         controller.addAction(UIAlertAction(title: "Retry".localized, style: .default) { _ in
+            self.animateWithSpring {
+                self.isActivityIndicatorHidden = false
+            }
             self.viewModel.retry()
         })
         controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel) { _ in
@@ -119,11 +125,14 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
 
     func updateUserInterface(for state: SignInViewModel.State) {
         switch state {
-        case .updatingRequestToken:
+        case .updatingCredentials, .updatingRequestToken:
             animateWithSpring {
                 self.isActivityIndicatorHidden = false
             }
         case .authorizing:
+            animateWithSpring {
+                self.isActivityIndicatorHidden = true
+            }
             guard let url = viewModel.authorizationUrl else { return }
             authorize(at: url)
         case .updatingAccessToken:

@@ -26,7 +26,7 @@ public final class Organization: NSManagedObject, CDCreatable, CDIdentifiable, C
     /// Remark: - This is not of type `URI` in order to support iOS 10.
     var apiUrl: URL {
         get {
-            guard let url = URL(string: apiUrlString) else { fatalError("Cannot construct API URL.") }
+            guard let url = URL(string: apiUrlString) else { fatalError("Cannot construct API URL from `apiUrlString`.") }
             return url
         }
         set { apiUrlString = newValue.absoluteString }
@@ -62,44 +62,6 @@ public final class Organization: NSManagedObject, CDCreatable, CDIdentifiable, C
 
     public override var description: String {
         return "<Organization id: \(id), title: \(title)>"
-    }
-}
-
-// MARK: - Persisting Credentials
-
-extension Organization {
-    private enum KeychainKeys: String {
-        case consumerKey, consumerSecret
-    }
-
-    var consumerKey: String? {
-        get {
-            let keychainService = ServiceContainer.default[KeychainService.self]
-            return try? keychainService.password(for: objectIdentifier.rawValue, account: KeychainKeys.consumerKey.rawValue)
-        }
-        set {
-            let keychainService = ServiceContainer.default[KeychainService.self]
-            guard let newValue = newValue else {
-                try? keychainService.delete(from: objectIdentifier.rawValue, account: KeychainKeys.consumerKey.rawValue)
-                return
-            }
-            try? keychainService.save(password: newValue, for: objectIdentifier.rawValue, account: KeychainKeys.consumerKey.rawValue)
-        }
-    }
-
-    var consumerSecret: String? {
-        get {
-            let keychainService = ServiceContainer.default[KeychainService.self]
-            return try? keychainService.password(for: objectIdentifier.rawValue, account: KeychainKeys.consumerSecret.rawValue)
-        }
-        set {
-            let keychainService = ServiceContainer.default[KeychainService.self]
-            guard let newValue = newValue else {
-                try? keychainService.delete(from: objectIdentifier.rawValue, account: KeychainKeys.consumerSecret.rawValue)
-                return
-            }
-            try? keychainService.save(password: newValue, for: objectIdentifier.rawValue, account: KeychainKeys.consumerSecret.rawValue)
-        }
     }
 }
 

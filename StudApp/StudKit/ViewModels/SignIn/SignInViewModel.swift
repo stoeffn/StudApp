@@ -14,8 +14,8 @@ public final class SignInViewModel: NSObject {
 
     @objc
     public enum Errors: Int, LocalizedError {
-        case invalidConsumerKey
         case authorizationFailed
+        case invalidConsumerKey
 
         public var errorDescription: String? {
             switch self {
@@ -31,12 +31,12 @@ public final class SignInViewModel: NSObject {
 
     @objc
     public enum State: Int {
-        case updatingRequestToken, authorizing, updatingAccessToken, signedIn
+        case updatingCredentials, updatingRequestToken, authorizing, updatingAccessToken, signedIn
     }
 
     public let organization: Organization
 
-    @objc public private(set) dynamic var state = State.updatingRequestToken
+    @objc public private(set) dynamic var state = State.updatingCredentials
 
     @objc public private(set) dynamic var authorizationUrl: URL?
 
@@ -47,14 +47,10 @@ public final class SignInViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let storeService = ServiceContainer.default[StoreService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]
-    private let oAuth1: OAuth1<StudIpOAuth1Routes>
+    private var oAuth1: OAuth1<StudIpOAuth1Routes>?
 
     public init(organization: Organization) {
         self.organization = organization
-
-        guard let key = organization.consumerKey, let secret = organization.consumerSecret else { fatalError() }
-        oAuth1 = OAuth1<StudIpOAuth1Routes>(callbackUrl: App.Links.signInCallback, consumerKey: key, consumerSecret: secret)
-        oAuth1.baseUrl = organization.apiUrl
     }
 
     // MARK: - Providing Metadata
@@ -68,22 +64,22 @@ public final class SignInViewModel: NSObject {
     // MARK: - Signing In
 
     public func startAuthorization() {
-        state = .updatingRequestToken
+        updateCredentials()
+    }
 
-        try? oAuth1.createRequestToken { result in
-            guard let url = self.oAuth1.authorizationUrl else {
-                return self.error = result.error ?? Errors.invalidConsumerKey
-            }
+    public func finishAuthorization(withCallbackUrl url: URL) {
+        guard state == .authorizing else { fatalError() }
 
-            self.authorizationUrl = url
-            self.state = .authorizing
-        }
+        state = .updatingAccessToken
+        updateAccessToken(withCallbackUrl: url)
     }
 
     public func retry() {
         switch state {
+        case .updatingCredentials:
+            updateCredentials()
         case .updatingRequestToken:
-            startAuthorization()
+            updateRequestToken()
         case .updatingAccessToken:
             guard let url = authorizationUrl else { return startAuthorization() }
             finishAuthorization(withCallbackUrl: url)
@@ -92,15 +88,46 @@ public final class SignInViewModel: NSObject {
         }
     }
 
-    public func finishAuthorization(withCallbackUrl url: URL) {
-        state = .updatingAccessToken
+    private func updateCredentials() {
+        guard state == .updatingCredentials else { fatalError() }
+
+        organization.apiCredentials { result in
+            guard let credentials = result.value else {
+                return self.error = result.error ?? Errors.invalidConsumerKey
+            }
+
+            let oAuth1 = OAuth1<StudIpOAuth1Routes>(callbackUrl: App.Links.signInCallback,
+                                                    consumerKey: credentials.consumerKey, consumerSecret: credentials.consumerSecret)
+            oAuth1.baseUrl = self.organization.apiUrl
+            self.oAuth1 = oAuth1
+
+            self.state = .updatingRequestToken
+            self.updateRequestToken()
+        }
+    }
+
+    private func updateRequestToken() {
+        guard state == .updatingRequestToken, let oAuth1 = oAuth1 else { fatalError() }
+
+        try? oAuth1.createRequestToken { result in
+            guard let url = self.oAuth1?.authorizationUrl else {
+                return self.error = result.error ?? Errors.invalidConsumerKey
+            }
+
+            self.authorizationUrl = url
+            self.state = .authorizing
+        }
+    }
+
+    private func updateAccessToken(withCallbackUrl url: URL) {
+        guard state == .updatingAccessToken, let oAuth1 = oAuth1 else { fatalError() }
 
         try? oAuth1.createAccessToken(fromAuthorizationCallbackUrl: url) { result in
             guard result.isSuccess else {
                 return self.error = result.error ?? Errors.authorizationFailed
             }
 
-            self.studIpService.sign(into: self.organization, authorizing: self.oAuth1) { result in
+            self.studIpService.sign(into: self.organization, authorizing: oAuth1) { result in
                 guard result.isSuccess else {
                     return self.error = result.error ?? Errors.authorizationFailed
                 }

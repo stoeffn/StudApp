@@ -31,7 +31,7 @@ public final class OrganizationListViewModel: NSObject, FetchedResultsController
         switch error {
         case nil:
             return nil
-        case CKError.networkUnavailable?, CKError.networkUnavailable?:
+        case CKError.networkUnavailable?, CKError.networkFailure?:
             return "There seems to be a problem with the internet connection.".localized
         default:
             return "Unfortunately, there was an internal error.".localized

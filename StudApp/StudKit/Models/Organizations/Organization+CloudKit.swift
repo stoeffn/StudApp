@@ -10,9 +10,11 @@ import CloudKit
 import CoreData
 
 extension Organization {
-    private static var ckDatabase: CKDatabase = CKContainer(identifier: App.iCloudContainerIdentifier).database(with: .public)
+    static let recordType = entity.rawValue
 
-    static var enabledPredicate = NSPredicate(format: "isEnabled == YES")
+    private static let ckDatabase = CKContainer(identifier: App.iCloudContainerIdentifier).database(with: .public)
+
+    private static let enabledPredicate = NSPredicate(format: "isEnabled == YES")
 
     private var idPredicate: NSPredicate {
         return NSPredicate(format: "recordID == %@", CKRecordID(recordName: id))
@@ -21,8 +23,8 @@ extension Organization {
     static func update(in context: NSManagedObjectContext, completion: @escaping ResultHandler<[Organization]>) {
         var organizations = [OrganizationRecord]()
 
-        let query = CKQuery(recordType: OrganizationRecord.recordType, predicate: Organization.enabledPredicate)
-        let desiredKeys: [OrganizationRecord.Keys] = [.apiUrl, .title, .consumerKey, .consumerSecret]
+        let query = CKQuery(recordType: Organization.recordType, predicate: Organization.enabledPredicate)
+        let desiredKeys: [OrganizationRecord.Keys] = [.apiUrl, .title]
 
         let operation = CKQueryOperation(query: query)
         operation.qualityOfService = .userInitiated
@@ -45,11 +47,12 @@ extension Organization {
     }
 
     static func updateIconThumbnails(in context: NSManagedObjectContext, completion: @escaping ResultHandler<Void>) {
-        let query = CKQuery(recordType: OrganizationRecord.recordType, predicate: Organization.enabledPredicate)
+        let query = CKQuery(recordType: Organization.recordType, predicate: Organization.enabledPredicate)
+        let desiredKeys: [OrganizationRecord.Keys] = [.iconThumbnail]
 
         let operation = CKQueryOperation(query: query)
         operation.qualityOfService = .utility
-        operation.desiredKeys = [OrganizationRecord.Keys.iconThumbnail.rawValue]
+        operation.desiredKeys = desiredKeys.map { $0.rawValue }
         operation.queryCompletionBlock = { _, error in
             DispatchQueue.main.async { completion(Result((), error: error)) }
         }
@@ -68,11 +71,12 @@ extension Organization {
     }
 
     func updateIcon(in context: NSManagedObjectContext, completion: @escaping ResultHandler<Void>) {
-        let query = CKQuery(recordType: OrganizationRecord.recordType, predicate: idPredicate)
+        let query = CKQuery(recordType: Organization.recordType, predicate: idPredicate)
+        let desiredKeys: [OrganizationRecord.Keys] = [.icon]
 
         let operation = CKQueryOperation(query: query)
         operation.qualityOfService = .utility
-        operation.desiredKeys = [OrganizationRecord.Keys.icon.rawValue]
+        operation.desiredKeys = desiredKeys.map { $0.rawValue }
         operation.queryCompletionBlock = { _, error in
             DispatchQueue.main.async { completion(Result((), error: error)) }
         }
@@ -85,6 +89,29 @@ extension Organization {
             DispatchQueue.main.async {
                 organization.iconData = try? Data(contentsOf: iconThumbnailAsset.fileURL)
             }
+        }
+
+        Organization.ckDatabase.add(operation)
+    }
+
+    func apiCredentials(completion: @escaping ResultHandler<(consumerKey: String, consumerSecret: String)>) {
+        let query = CKQuery(recordType: Organization.recordType, predicate: idPredicate)
+        let desiredKeys: [OrganizationRecord.Keys] = [.consumerKey, .consumerSecret]
+
+        var consumerKeyAndSecret: (String, String)?
+
+        let operation = CKQueryOperation(query: query)
+        operation.qualityOfService = .userInitiated
+        operation.desiredKeys = desiredKeys.map { $0.rawValue }
+        operation.queryCompletionBlock = { _, error in
+            DispatchQueue.main.async { completion(Result(consumerKeyAndSecret, error: error)) }
+        }
+        operation.recordFetchedBlock = { record in
+            guard
+                let consumerKey = record[OrganizationRecord.Keys.consumerKey.rawValue] as? String,
+                let consumerSecret = record[OrganizationRecord.Keys.consumerSecret.rawValue] as? String
+            else { return }
+            consumerKeyAndSecret = (consumerKey, consumerSecret)
         }
 
         Organization.ckDatabase.add(operation)
