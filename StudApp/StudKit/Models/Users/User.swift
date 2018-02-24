@@ -78,7 +78,7 @@ extension User {
     }
 
     public var authoredCoursesFetchRequest: NSFetchRequest<Course> {
-        let predicate = NSPredicate(format: "%@ in authoredCourses", self)
+        let predicate = NSPredicate(format: "%@ IN authors", self)
         return Course.fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["state"])
     }
 }

@@ -85,7 +85,7 @@ extension Organization {
     }
 
     public var visibleSemesterStatesFetchRequest: NSFetchRequest<SemesterState> {
-        let predicate = NSPredicate(format: "organization == %@ AND isHidden == NO", self)
+        let predicate = NSPredicate(format: "semester.organization == %@ AND isHidden == NO", self)
         return SemesterState.fetchRequest(predicate: predicate, sortDescriptors: SemesterState.defaultSortDescriptors,
                                           relationshipKeyPathsForPrefetching: ["semester"])
     }

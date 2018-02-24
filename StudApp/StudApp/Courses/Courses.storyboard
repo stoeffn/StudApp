@@ -173,7 +173,7 @@
                     <navigationItem key="navigationItem" title="Courses" id="JrY-VB-OIX">
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="twc-Ub-WdZ">
                             <connections>
-                                <segue destination="rJs-oV-VCc" kind="presentation" identifier="semesters" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="O49-dN-c8y"/>
+                                <segue destination="rJs-oV-VCc" kind="presentation" identifier="semesterList" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="O49-dN-c8y"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="UserBarButtonGlyph" id="SaT-DE-cnK">

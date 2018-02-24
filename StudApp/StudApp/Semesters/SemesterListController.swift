@@ -43,7 +43,7 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
     func prepareDependencies(for route: Routes) {
         guard case let .semesterList(for: user) = route else { fatalError() }
 
-        viewModel = SemesterListViewModel(organization: user.organization)
+        viewModel = SemesterListViewModel(organization: user.organization, respectsHiddenStates: false)
         viewModel.delegate = self
         viewModel.fetch()
     }
