@@ -16,6 +16,9 @@ final class TabsController: UITabBarController, Routable {
     // MARK: - Life Cycle
 
     override func viewWillAppear(_ animated: Bool) {
+        courseListController?.prepareDependencies(for: .courseList(for: user))
+        downloadListController?.prepareDependencies(for: .downloadList(for: user))
+
         super.viewWillAppear(animated)
 
         tabBar.items?[Tabs.downloadList.rawValue].title = "Downloads".localized
@@ -57,14 +60,6 @@ final class TabsController: UITabBarController, Routable {
         case courseList, downloadList
     }
 
-    var downloadListController: DownloadListController? {
-        return viewControllers?
-            .flatMap { $0 as? UINavigationController }
-            .flatMap { $0.viewControllers.first }
-            .flatMap { $0 as? DownloadListController }
-            .first
-    }
-
     var courseListController: CourseListController? {
         return viewControllers?
             .flatMap { $0 as? UISplitViewController }
@@ -72,6 +67,14 @@ final class TabsController: UITabBarController, Routable {
             .flatMap { $0 as? UINavigationController }
             .flatMap { $0.viewControllers.first }
             .flatMap { $0 as? CourseListController }
+            .first
+    }
+
+    var downloadListController: DownloadListController? {
+        return viewControllers?
+            .flatMap { $0 as? UINavigationController }
+            .flatMap { $0.viewControllers.first }
+            .flatMap { $0 as? DownloadListController }
             .first
     }
 

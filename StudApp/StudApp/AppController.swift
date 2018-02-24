@@ -45,7 +45,7 @@ final class AppController: UITabBarController {
 
     private func presentAppOrSignIn() {
         if let user = User.current, viewModel.isSignedIn {
-            performSegue(withRoute: .app(user))
+            performSegue(withRoute: .app(for: user))
         } else {
             performSegue(withRoute: .signIn)
         }

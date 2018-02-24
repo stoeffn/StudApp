@@ -18,10 +18,6 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewModel = DownloadListViewModel()
-        viewModel.delegate = self
-        viewModel.fetch()
-
         registerForPreviewing(with: self, sourceView: tableView)
 
         navigationItem.title = "Downloads".localized
@@ -56,6 +52,16 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         }, completion: nil)
     }
 
+    // MARK: - Navigation
+
+    func prepareDependencies(for route: Routes) {
+        guard case .downloadList = route else { fatalError() }
+
+        viewModel = DownloadListViewModel()
+        viewModel.delegate = self
+        viewModel.fetch()
+    }
+
     // MARK: - Supporting User Activities
 
     override func restoreUserActivityState(_ activity: NSUserActivity) {
@@ -67,7 +73,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         }
 
         let previewController = PreviewController()
-        previewController.prepareDependencies(for: .preview(file, self))
+        previewController.prepareDependencies(for: .preview(for: file, self))
         present(previewController, animated: true, completion: nil)
     }
 
@@ -143,7 +149,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let file = viewModel[rowAt: indexPath]
         let previewController = PreviewController()
-        previewController.prepareDependencies(for: .preview(file, self))
+        previewController.prepareDependencies(for: .preview(for: file, self))
         present(previewController, animated: true, completion: nil)
     }
 
@@ -230,7 +236,7 @@ extension DownloadListController: UIViewControllerPreviewingDelegate, QLPreviewC
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
         let file = viewModel[rowAt: indexPath]
         let previewController = PreviewController()
-        previewController.prepareDependencies(for: .preview(file, self))
+        previewController.prepareDependencies(for: .preview(for: file, self))
         return previewController
     }
 

@@ -200,7 +200,6 @@
 		24ABFC4A1FD714EF00CD1646 /* CourseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABFC491FD714EF00CD1646 /* CourseListController.swift */; };
 		24B091EB2036EC6A00A5037A /* DocumentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B091EA2036EC6A00A5037A /* DocumentResponse.swift */; };
 		24B091ED2036EC7500A5037A /* FolderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B091EC2036EC7500A5037A /* FolderResponse.swift */; };
-		24B3957B20416E0E00CEC1FF /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3957A20416E0E00CEC1FF /* TestController.swift */; };
 		24BF7B611FF320970013BA23 /* DateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF7B601FF320970013BA23 /* DateHeader.swift */; };
 		24BF7B671FF673650013BA23 /* FetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF7B661FF673650013BA23 /* FetchedResultsControllerDelegate.swift */; };
 		24BF7B691FF673BF0013BA23 /* FetchedResultsControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF7B681FF673BF0013BA23 /* FetchedResultsControllerDataSource.swift */; };
@@ -556,7 +555,6 @@
 		24B091F02036EE2200A5037A /* DocumentResponseTests+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentResponseTests+Data.swift"; sourceTree = "<group>"; };
 		24B091F22036EFE400A5037A /* FolderResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderResponseTests.swift; sourceTree = "<group>"; };
 		24B091F42036EFEF00A5037A /* FolderResponseTests+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FolderResponseTests+Data.swift"; sourceTree = "<group>"; };
-		24B3957A20416E0E00CEC1FF /* TestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
 		24BF7B601FF320970013BA23 /* DateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHeader.swift; sourceTree = "<group>"; };
 		24BF7B621FF325470013BA23 /* BadgeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeLabel.swift; sourceTree = "<group>"; };
 		24BF7B641FF661AF0013BA23 /* FetchedResultsControllerDelegateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerDelegateHelper.swift; sourceTree = "<group>"; };
@@ -942,7 +940,6 @@
 				2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */,
 				2490EBE42040B813004EA6E9 /* AppController.swift */,
 				2450AC761FDC6973004F1267 /* CustomMenuItems.swift */,
-				24B3957A20416E0E00CEC1FF /* TestController.swift */,
 				24CFB5D01FB24E2500F30DEA /* TabsController.swift */,
 				24E60B611FC8C723000EDD2A /* App.storyboard */,
 				243CC2CA1FE0390200FE7376 /* LaunchScreen.storyboard */,
@@ -2314,7 +2311,6 @@
 				248C0272202E6DD8004CB8C9 /* StoreController.swift in Sources */,
 				242B03701FD7464C00863B08 /* ColorCell.swift in Sources */,
 				2490EBE52040B813004EA6E9 /* AppController.swift in Sources */,
-				24B3957B20416E0E00CEC1FF /* TestController.swift in Sources */,
 				243CC2C61FDF464800FE7376 /* EmptyCourseController.swift in Sources */,
 				248C0253202E5353004CB8C9 /* AnnouncementController.swift in Sources */,
 				24CFB5D11FB24E2500F30DEA /* TabsController.swift in Sources */,

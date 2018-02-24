@@ -25,6 +25,8 @@ final class DisclaimerController: UIViewController, Routable {
         preferredContentSize = containerView.bounds.size
     }
 
+    // MARK: - Navigation
+
     func prepareDependencies(for route: Routes) {
         guard case let .disclaimer(text) = route else { fatalError() }
         self.text = text

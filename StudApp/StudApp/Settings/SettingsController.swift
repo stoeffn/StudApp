@@ -30,6 +30,8 @@ final class SettingsController: UITableViewController, Routable {
         updateDownloadsSize()
     }
 
+    // MARK: - Navigation
+
     func prepareDependencies(for route: Routes) {
         guard case let .settings(handler) = route else { fatalError() }
         completion = handler

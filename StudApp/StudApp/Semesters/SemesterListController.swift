@@ -7,18 +7,15 @@
 //
 
 import StudKit
+import StudKitUI
 
-final class SemesterListController: UITableViewController, DataSourceSectionDelegate {
+final class SemesterListController: UITableViewController, DataSourceSectionDelegate, Routable {
     private var viewModel: SemesterListViewModel!
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        viewModel = SemesterListViewModel(organization: Organization())
-        viewModel.delegate = self
-        viewModel.fetch()
 
         navigationItem.title = "Semesters".localized
 
@@ -33,19 +30,25 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         viewModel.update()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-
-        coordinator.animate(alongsideTransition: { _ in
-            self.updateEmptyView()
-        }, completion: nil)
+        coordinator.animate(alongsideTransition: { _ in self.updateEmptyView() }, completion: nil)
     }
 
-    // MARK: Table View Data Source
+    // MARK: - Navigation
+
+    func prepareDependencies(for route: Routes) {
+        guard case let .semesterList(for: user) = route else { fatalError() }
+
+        viewModel = SemesterListViewModel(organization: user.organization)
+        viewModel.delegate = self
+        viewModel.fetch()
+    }
+
+    // MARK: - Table View Data Source
 
     override func numberOfSections(in _: UITableView) -> Int {
         return 1

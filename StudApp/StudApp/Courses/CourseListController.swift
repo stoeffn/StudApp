@@ -9,7 +9,8 @@
 import StudKit
 import StudKitUI
 
-final class CourseListController: UITableViewController, DataSourceSectionDelegate {
+final class CourseListController: UITableViewController, DataSourceSectionDelegate, Routable {
+    private var user: User!
     private var viewModel: SemesterListViewModel!
     private var courseListViewModels: [String: CourseListViewModel] = [:]
 
@@ -17,11 +18,6 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        viewModel = SemesterListViewModel(organization: Organization())
-        viewModel.delegate = self
-        viewModel.fetch()
-        _ = viewModel.map(courseListViewModel)
 
         navigationItem.title = "Courses".localized
 
@@ -53,6 +49,35 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
             self.tableView.visibleCells.forEach { $0.setDisclosureIndicatorHidden(for: self.splitViewController) }
             self.updateEmptyView()
         }, completion: nil)
+    }
+
+    // MARK: - Navigation
+
+    func prepareDependencies(for route: Routes) {
+        guard case let .courseList(for: user) = route else { fatalError() }
+        self.user = user
+
+        viewModel = SemesterListViewModel(organization: user.organization)
+        viewModel.delegate = self
+        viewModel.fetch()
+        _ = viewModel.map(courseListViewModel)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let cell = sender as? CourseCell {
+            return prepare(for: .course(cell.course), destination: segue.destination)
+        } else if segue.identifier == Routes.semesterList(for: user).segueIdentifier {
+            return prepare(for: .semesterList(for: user), destination: segue.destination)
+        }
+
+        if case let .colorPicker(sender, _)? = sender as? Routes {
+            let cell = sender as? UITableViewCell
+            segue.destination.popoverPresentationController?.delegate = self
+            segue.destination.popoverPresentationController?.sourceView = cell
+            segue.destination.popoverPresentationController?.sourceRect = cell?.bounds ?? .zero
+        }
+
+        prepareForRoute(using: segue, sender: sender)
     }
 
     // MARK: - Supporting User Activities
@@ -195,7 +220,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     private func courseListViewModel(for semester: Semester) -> CourseListViewModel {
         if let viewModel = courseListViewModels[semester.id] { return viewModel }
 
-        let viewModel = CourseListViewModel(user: User(), semester: semester, respectsCollapsedState: true)
+        let viewModel = CourseListViewModel(user: user, semester: semester, respectsCollapsedState: true)
         viewModel.delegate = self
         viewModel.fetch()
         viewModel.update()
@@ -284,21 +309,6 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     @IBAction
     func emptyViewActionButtonTapped(_: Any) {
         viewModel?.update()
-    }
-
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let cell = sender as? CourseCell {
-            return prepare(for: .course(cell.course), destination: segue.destination)
-        }
-        if case let .colorPicker(sender, _)? = sender as? Routes {
-            let cell = sender as? UITableViewCell
-            segue.destination.popoverPresentationController?.delegate = self
-            segue.destination.popoverPresentationController?.sourceView = cell
-            segue.destination.popoverPresentationController?.sourceRect = cell?.bounds ?? .zero
-        }
-        prepareForRoute(using: segue, sender: sender)
     }
 }
 

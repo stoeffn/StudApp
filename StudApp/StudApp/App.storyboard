@@ -6,46 +6,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Test Controller-->
-        <scene sceneID="CDF-lG-ie4">
-            <objects>
-                <viewController id="yx0-Ta-yJG" customClass="TestController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="FcN-Sx-lP5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBz-en-5lr">
-                                <rect key="frame" x="16" y="20" width="193" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n1f-0k-uf5">
-                                <rect key="frame" x="16" y="49" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="Jnq-IY-AlA" kind="unwind" unwindAction="unwindToAppAndSignOutWith:" id="ukw-aH-UzV"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="Vao-ad-VuZ"/>
-                    </view>
-                    <connections>
-                        <outlet property="label" destination="DBz-en-5lr" id="PTf-al-IHY"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="11s-cc-dWY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Jnq-IY-AlA" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="-908" y="-833.43328335832086"/>
-        </scene>
         <!--App Controller-->
         <scene sceneID="2es-kx-eOy">
             <objects>
@@ -57,8 +20,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="2bU-cg-kHC" kind="presentation" identifier="signIn" id="Dax-cl-2xa"/>
-                        <segue destination="B8u-Ro-L8Q" kind="presentation" identifier="app2" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="j8U-m2-2YJ"/>
-                        <segue destination="yx0-Ta-yJG" kind="presentation" identifier="app" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="V6v-Us-54w"/>
+                        <segue destination="B8u-Ro-L8Q" kind="presentation" identifier="app" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="j8U-m2-2YJ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rjs-0s-Fex" userLabel="First Responder" sceneMemberID="firstResponder"/>

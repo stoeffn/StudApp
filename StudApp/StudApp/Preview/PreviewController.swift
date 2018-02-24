@@ -47,6 +47,8 @@ final class PreviewController: QLPreviewController, Routable {
         try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
     }
 
+    // MARK: - Navigation
+
     func prepareDependencies(for route: Routes) {
         guard case let .preview(file, delegate) = route else { fatalError() }
         self.file = file
@@ -76,7 +78,7 @@ final class PreviewController: QLPreviewController, Routable {
         }
 
         let previewController = PreviewController()
-        previewController.prepareDependencies(for: .preview(file, controller))
+        previewController.prepareDependencies(for: .preview(for: file, controller))
         controller.present(previewController, animated: true, completion: nil)
     }
 }

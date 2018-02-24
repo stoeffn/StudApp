@@ -12,7 +12,7 @@ import StudKit
 public enum Routes {
     case about(completion: () -> Void)
 
-    case app(User)
+    case app(for: User)
 
     case announcement(Announcement, completion: () -> Void)
 
@@ -22,15 +22,21 @@ public enum Routes {
 
     case course(Course)
 
-    case disclaimer(String)
+    case courseList(for: User)
+
+    case disclaimer(with: String)
+
+    case downloadList(for: User)
 
     case emptyCourse
 
-    case eventsInCourse(Course)
+    case eventList(for: Course)
 
     case folder(File)
 
-    case preview(File, QLPreviewControllerDelegate?)
+    case preview(for: File, QLPreviewControllerDelegate?)
+
+    case semesterList(for: User)
 
     case settings(completion: (SettingsResult) -> Void)
 
@@ -78,11 +84,14 @@ public enum Routes {
         case .colorPicker: return "colorPicker"
         case .confetti: return "confetti"
         case .course: return "course"
+        case .courseList: return "courseList"
         case .disclaimer: return "disclaimer"
+        case .downloadList: return "downloadList"
         case .emptyCourse: return "emptyCourse"
-        case .eventsInCourse: return "eventsInCourse"
+        case .eventList: return "eventList"
         case .folder: return "folder"
         case .preview: return "preview"
+        case .semesterList: return "semesterList"
         case .settings: return "settings"
         case .signIn: return "signIn"
         case .signIntoOrganization: return "signIntoOrganization"

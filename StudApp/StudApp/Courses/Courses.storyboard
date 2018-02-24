@@ -24,7 +24,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" misplaced="YES" id="wzE-zV-w24">
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="wzE-zV-w24">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -56,7 +56,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14A-k0-KOd">
-                                    <rect key="frame" x="135" y="219.5" width="50" height="32"/>
+                                    <rect key="frame" x="135" y="218.5" width="50" height="32"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <state key="normal" title="Reload"/>
                                     <connections>
@@ -173,7 +173,7 @@
                     <navigationItem key="navigationItem" title="Courses" id="JrY-VB-OIX">
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="twc-Ub-WdZ">
                             <connections>
-                                <segue destination="rJs-oV-VCc" kind="presentation" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="O49-dN-c8y"/>
+                                <segue destination="rJs-oV-VCc" kind="presentation" identifier="semesters" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="O49-dN-c8y"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="UserBarButtonGlyph" id="SaT-DE-cnK">
@@ -579,17 +579,17 @@ Gebäude 3703: Technische Informatik</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="PRt-uH-GnL">
-                                                            <rect key="frame" x="0.0" y="24.5" width="122" height="17"/>
+                                                            <rect key="frame" x="0.0" y="24.5" width="106" height="16"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Canceled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QD9-Tk-cKn" customClass="BadgeLabel" customModule="StudKitUI">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="65" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="57" height="16"/>
                                                                     <color key="backgroundColor" red="0.83921568629999999" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reason" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Hl-MM-whF" customClass="BadgeLabel" customModule="StudKitUI">
-                                                                    <rect key="frame" x="69" y="0.0" width="53" height="17"/>
+                                                                    <rect key="frame" x="61" y="0.0" width="45" height="16"/>
                                                                     <color key="backgroundColor" white="0.59999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -654,7 +654,7 @@ Gebäude 3703: Technische Informatik</string>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="LFZ-w3-fcw" kind="show" identifier="eventsInCourse" id="9ny-D4-44n">
+                                    <segue destination="LFZ-w3-fcw" kind="show" identifier="eventList" id="9ny-D4-44n">
                                         <segue key="commit" inheritsFrom="parent" id="JqR-7X-xy1"/>
                                         <segue key="preview" inheritsFrom="commit" id="jHg-rG-Jz1"/>
                                     </segue>
@@ -773,7 +773,7 @@ Gebäude 3703: Technische Informatik</string>
                 <viewControllerPlaceholder storyboardName="Documents" id="dqA-Lf-eop" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hnO-EO-Wa2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2425" y="147"/>
+            <point key="canvasLocation" x="2422" y="152"/>
         </scene>
         <!--Announcement-->
         <scene sceneID="WLS-mh-YBa">
@@ -888,7 +888,7 @@ Gebäude 3703: Technische Informatik</string>
                 <viewControllerPlaceholder storyboardName="Events" referencedIdentifier="EventList" id="LFZ-w3-fcw" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FI5-O0-2Vu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2414" y="116"/>
+            <point key="canvasLocation" x="2418" y="111"/>
         </scene>
     </scenes>
     <resources>

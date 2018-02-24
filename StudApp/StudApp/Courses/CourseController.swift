@@ -79,9 +79,36 @@ final class CourseController: UITableViewController, Routable {
         fileListViewModel.fetch()
     }
 
+    // MARK: - Navigation
+
     func prepareDependencies(for route: Routes) {
         guard case let .course(course) = route else { fatalError() }
         configureViewModels(with: course)
+    }
+
+    override func shouldPerformSegue(withIdentifier _: String, sender: Any?) -> Bool {
+        switch sender {
+        case let cell as FileCell where !cell.file.isFolder:
+            return false
+        default:
+            return true
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch sender {
+        case let cell as AnnouncementCell:
+            let route = Routes.announcement(cell.announcement) {
+                self.presentedViewController?.dismiss(animated: true, completion: nil)
+            }
+            performSegue(withRoute: route)
+        case let cell as FileCell:
+            prepare(for: .folder(cell.file), destination: segue.destination)
+        case let cell as UITableViewCell where cell.reuseIdentifier == allEventsCellIdentifier:
+            prepare(for: .eventList(for: viewModel.course), destination: segue.destination)
+        default:
+            prepareForRoute(using: segue, sender: sender)
+        }
     }
 
     // MARK: - Restoration
@@ -274,33 +301,6 @@ final class CourseController: UITableViewController, Routable {
         controller.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         present(controller, animated: true, completion: nil)
     }
-
-    // MARK: - Navigation
-
-    override func shouldPerformSegue(withIdentifier _: String, sender: Any?) -> Bool {
-        switch sender {
-        case let cell as FileCell where !cell.file.isFolder:
-            return false
-        default:
-            return true
-        }
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch sender {
-        case let cell as AnnouncementCell:
-            let route = Routes.announcement(cell.announcement) {
-                self.presentedViewController?.dismiss(animated: true, completion: nil)
-            }
-            performSegue(withRoute: route)
-        case let cell as FileCell:
-            prepare(for: .folder(cell.file), destination: segue.destination)
-        case let cell as UITableViewCell where cell.reuseIdentifier == allEventsCellIdentifier:
-            prepare(for: .eventsInCourse(viewModel.course), destination: segue.destination)
-        default:
-            prepareForRoute(using: segue, sender: sender)
-        }
-    }
 }
 
 // MARK: - Data Section Delegate
@@ -369,7 +369,7 @@ extension CourseController: UIViewControllerPreviewingDelegate, QLPreviewControl
             guard !file.isFolder else { return nil }
 
             let previewController = PreviewController()
-            previewController.prepareDependencies(for: .preview(file, self))
+            previewController.prepareDependencies(for: .preview(for: file, self))
             return previewController
         default:
             return nil

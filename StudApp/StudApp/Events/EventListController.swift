@@ -75,7 +75,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     }
 
     func prepareDependencies(for route: Routes) {
-        guard case let .eventsInCourse(course) = route else { fatalError() }
+        guard case let .eventList(for: course) = route else { fatalError() }
 
         viewModel = EventListViewModel(course: course)
         viewModel.delegate = self

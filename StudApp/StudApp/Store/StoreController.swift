@@ -52,6 +52,18 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
         viewModel.removeAsTransactionObserver()
     }
 
+    // MARK: - Navigation
+
+    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if case .disclaimer? = sender as? Routes {
+            let sourceRect = CGRect(x: disclaimerView.bounds.size.width / 2, y: 0, width: 0, height: 0)
+            segue.destination.popoverPresentationController?.delegate = self
+            segue.destination.popoverPresentationController?.sourceRect = sourceRect
+            segue.destination.popoverPresentationController?.permittedArrowDirections = [.up, .down]
+        }
+        prepareForRoute(using: segue, sender: sender)
+    }
+
     // MARK: - Table View Data Source
 
     public override func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
@@ -228,7 +240,7 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
     public func textView(_: UITextView, shouldInteractWith url: URL, in _: NSRange,
                          interaction _: UITextItemInteraction) -> Bool {
         if url == App.Links.autorenewingSubscriptionDisclaimer {
-            performSegue(withRoute: .disclaimer(autoRenewingSubscriptionDisclaimerText))
+            performSegue(withRoute: .disclaimer(with: autoRenewingSubscriptionDisclaimerText))
             return false
         }
 
@@ -236,18 +248,6 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
         controller.preferredControlTintColor = UI.Colors.studBlue
         present(controller, animated: true, completion: nil)
         return false
-    }
-
-    // MARK: - Navigation
-
-    public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if case .disclaimer? = sender as? Routes {
-            let sourceRect = CGRect(x: disclaimerView.bounds.size.width / 2, y: 0, width: 0, height: 0)
-            segue.destination.popoverPresentationController?.delegate = self
-            segue.destination.popoverPresentationController?.sourceRect = sourceRect
-            segue.destination.popoverPresentationController?.permittedArrowDirections = [.up, .down]
-        }
-        prepareForRoute(using: segue, sender: sender)
     }
 }
 

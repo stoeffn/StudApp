@@ -43,12 +43,32 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
         }
     }
 
+    // MARK: - Navigation
+
     func prepareDependencies(for route: Routes) {
         guard case let .folder(folder) = route else { fatalError() }
 
         viewModel = FileListViewModel(filesContaining: folder)
         viewModel.delegate = self
         viewModel.fetch()
+    }
+
+    override func shouldPerformSegue(withIdentifier _: String, sender: Any?) -> Bool {
+        switch sender {
+        case let cell as FileCell where !cell.file.isFolder:
+            return false
+        default:
+            return true
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch sender {
+        case let cell as FileCell:
+            prepare(for: .folder(cell.file), destination: segue.destination)
+        default:
+            prepareForRoute(using: segue, sender: sender)
+        }
     }
 
     // MARK: - Restoration
@@ -125,26 +145,6 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
         controller.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         present(controller, animated: true, completion: nil)
     }
-
-    // MARK: - Navigation
-
-    override func shouldPerformSegue(withIdentifier _: String, sender: Any?) -> Bool {
-        switch sender {
-        case let cell as FileCell where !cell.file.isFolder:
-            return false
-        default:
-            return true
-        }
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch sender {
-        case let cell as FileCell:
-            prepare(for: .folder(cell.file), destination: segue.destination)
-        default:
-            prepareForRoute(using: segue, sender: sender)
-        }
-    }
 }
 
 // MARK: - Table View Drag Delegate
@@ -177,7 +177,7 @@ extension FolderController: UIViewControllerPreviewingDelegate, QLPreviewControl
         guard !file.isFolder else { return nil }
 
         let previewController = PreviewController()
-        previewController.prepareDependencies(for: .preview(file, self))
+        previewController.prepareDependencies(for: .preview(for: file, self))
         return previewController
     }
 
