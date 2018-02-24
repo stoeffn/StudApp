@@ -26,8 +26,10 @@ extension AppDelegate: UIApplicationDelegate {
     // MARK: Initializing the App
 
     func application(_: UIApplication, willFinishLaunchingWithOptions _: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
-        let serviceProvider = StudKitServiceProvider(currentTarget: .app, isRunningUiTests: isRunningUiTests, openUrl: open)
-        ServiceContainer.default.register(providers: serviceProvider)
+        ServiceContainer.default.register(providers: [
+            StudKitServiceProvider(currentTarget: .app, isRunningUiTests: isRunningUiTests, openUrl: open),
+            StudKitUIServiceProvider(),
+        ])
 
         contextService = ServiceContainer.default[ContextService.self]
         coreDataService = ServiceContainer.default[CoreDataService.self]

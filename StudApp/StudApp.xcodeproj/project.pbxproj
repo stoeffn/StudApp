@@ -194,6 +194,8 @@
 		24A5BEF12038D47100F5F531 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A5BEEC2038D44D00F5F531 /* CoreData.framework */; };
 		24A6C14B1FD75A0A004BBEA5 /* StudKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24A6C1491FD75A0A004BBEA5 /* StudKit.xcdatamodeld */; };
 		24A6C14D1FD75C56004BBEA5 /* ColorPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24A6C14C1FD75C56004BBEA5 /* ColorPicker.storyboard */; };
+		24A8945520421194005B5640 /* StudKitUIServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A8945420421194005B5640 /* StudKitUIServiceProvider.swift */; };
+		24A8945920421206005B5640 /* FileIconService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A8945820421206005B5640 /* FileIconService.swift */; };
 		24A8EDDC1FCCBA58007C1CCF /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		24A8EDDE1FCCBC93007C1CCF /* ContextService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A8EDDD1FCCBC93007C1CCF /* ContextService.swift */; };
 		24ABFC481FD714AF00CD1646 /* Courses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24ABFC471FD714AF00CD1646 /* Courses.storyboard */; };
@@ -546,6 +548,8 @@
 		24A5BEEC2038D44D00F5F531 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		24A6C14A1FD75A0A004BBEA5 /* StudKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StudKit.xcdatamodel; sourceTree = "<group>"; };
 		24A6C14C1FD75C56004BBEA5 /* ColorPicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ColorPicker.storyboard; sourceTree = "<group>"; };
+		24A8945420421194005B5640 /* StudKitUIServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudKitUIServiceProvider.swift; sourceTree = "<group>"; };
+		24A8945820421206005B5640 /* FileIconService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileIconService.swift; sourceTree = "<group>"; };
 		24A8EDDD1FCCBC93007C1CCF /* ContextService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextService.swift; sourceTree = "<group>"; };
 		24ABFC471FD714AF00CD1646 /* Courses.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Courses.storyboard; sourceTree = "<group>"; };
 		24ABFC491FD714EF00CD1646 /* CourseListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListController.swift; sourceTree = "<group>"; };
@@ -1429,6 +1433,7 @@
 				243817A61FC88A36004052D0 /* Controllers */,
 				24CFB5D21FB24F2700F30DEA /* Routing */,
 				24E626721FA9203E0040F9F7 /* Views */,
+				24A8945420421194005B5640 /* StudKitUIServiceProvider.swift */,
 				241FD96A1FA9090F00FBD750 /* UI.swift */,
 				247CC28B203896C70067207B /* StudKitUI.h */,
 				247CC28C203896C70067207B /* Info.plist */,
@@ -1459,6 +1464,7 @@
 			isa = PBXGroup;
 			children = (
 				247CC2BF203898E90067207B /* Courses */,
+				24A89457204211EA005B5640 /* Files */,
 				24EDDBD620407B6F0034985B /* Organizations */,
 			);
 			path = Models;
@@ -1515,6 +1521,14 @@
 				24D361031FAA5E2300BBBAED /* SemesterResponse.swift */,
 			);
 			path = Semesters;
+			sourceTree = "<group>";
+		};
+		24A89457204211EA005B5640 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				24A8945820421206005B5640 /* FileIconService.swift */,
+			);
+			path = Files;
 			sourceTree = "<group>";
 		};
 		24ABFC461FD7141800CD1646 /* Courses */ = {
@@ -2528,6 +2542,7 @@
 				247CC2A7203898010067207B /* ActionCell.swift in Sources */,
 				247CC2A3203897F10067207B /* UINavigationBar+Utils.swift in Sources */,
 				247CC2B22038982F0067207B /* VerificationController.swift in Sources */,
+				24A8945920421206005B5640 /* FileIconService.swift in Sources */,
 				24390EED2038A0060064E49A /* UITableViewController+DataSourceDelegate.swift in Sources */,
 				247CC2B9203898500067207B /* FilledButton.swift in Sources */,
 				247CC29B203897C10067207B /* Routes.swift in Sources */,
@@ -2539,6 +2554,7 @@
 				247CC29A203897A20067207B /* UI.swift in Sources */,
 				247CC29C203897C60067207B /* Routable.swift in Sources */,
 				247CC2A0203897E50067207B /* UIColor+Adjustments.swift in Sources */,
+				24A8945520421194005B5640 /* StudKitUIServiceProvider.swift in Sources */,
 				247CC2A92038980B0067207B /* AboutController.swift in Sources */,
 				247CC29F203897E20067207B /* UIAlertController+Utils.swift in Sources */,
 				247CC2C1203898FA0067207B /* Course+Colors.swift in Sources */,

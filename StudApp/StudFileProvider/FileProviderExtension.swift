@@ -18,7 +18,9 @@ final class FileProviderExtension: NSFileProviderExtension {
     // MARK: - Life Cycle
 
     override init() {
-        ServiceContainer.default.register(providers: StudKitServiceProvider(currentTarget: .fileProvider))
+        ServiceContainer.default.register(providers: [
+            StudKitServiceProvider(currentTarget: .fileProvider),
+        ])
 
         coreDataService = ServiceContainer.default[CoreDataService.self]
         storeService = ServiceContainer.default[StoreService.self]
@@ -31,10 +33,8 @@ final class FileProviderExtension: NSFileProviderExtension {
 
     // MARK: - Errors
 
-    enum Errors: LocalizedError {
-        case noSuchItem
-
-        case serverUnreachable
+    enum Errors: Error {
+        case noSuchItem, serverUnreachable
     }
 
     // MARK: - Working with Items and Persistent Identifiers

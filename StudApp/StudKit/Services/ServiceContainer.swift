@@ -50,7 +50,7 @@ public final class ServiceContainer {
     /// Registers the services created by the providers given.
     ///
     /// - Parameter providers: Service providers that know how to create their services.
-    public func register(providers: ServiceProvider...) {
+    public func register(providers: [ServiceProvider]) {
         for provider in providers {
             provider.registerServices(in: self)
         }

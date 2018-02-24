@@ -11,6 +11,7 @@ import StudKitUI
 
 final class FileCell: UITableViewCell {
     private let reachabilityService = ServiceContainer.default[ReachabilityService.self]
+    private let fileIconService = ServiceContainer.default[FileIconService.self]
 
     // MARK: - Life Cycle
 
@@ -28,12 +29,8 @@ final class FileCell: UITableViewCell {
         didSet {
             accessoryType = file.isFolder ? .disclosureIndicator : .none
 
-            if file.isFolder {
-                iconView.image = #imageLiteral(resourceName: "FolderIcon")
-            } else {
-                iconView.image = nil
-                file.documentController { self.iconView?.image = $0.icons.first }
-            }
+            iconView.image = nil
+            fileIconService.icon(for: file) { self.iconView?.image = $0 }
 
             titleLabel.text = file.title
 
