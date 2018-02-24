@@ -160,7 +160,7 @@
                                                         </stackView>
                                                     </subviews>
                                                 </stackView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rOl-rL-TTy" customClass="StudIpActivityIndicator" customModule="StudKitUI">
+                                                <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="rOl-rL-TTy" customClass="StudIpActivityIndicator" customModule="StudKitUI">
                                                     <rect key="frame" x="647" y="14" width="22" height="22"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -168,7 +168,7 @@
                                                         <constraint firstAttribute="width" secondItem="rOl-rL-TTy" secondAttribute="height" multiplier="1:1" id="hba-4f-JNZ"/>
                                                     </constraints>
                                                 </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownloadBarButtonGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="jeo-xi-z8S">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" image="DownloadBarButtonGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="jeo-xi-z8S">
                                                     <rect key="frame" x="677" y="12.5" width="25" height="25"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
