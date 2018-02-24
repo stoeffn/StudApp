@@ -13,7 +13,6 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
     private var contextService: ContextService!
     private var viewModel: SignInViewModel!
     private var observations = [NSKeyValueObservation]()
-    private var completion: ((SignInResult) -> Void)!
 
     // MARK: - Life Cycle
 
@@ -68,10 +67,10 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
         }
     }
 
-    func prepareDependencies(for route: Routes) {
-        guard case let .signIntoOrganization(organization, completion) = route else { fatalError() }
-        self.completion = completion
+    // MARK: - Navigation
 
+    func prepareDependencies(for route: Routes) {
+        guard case let .signIntoOrganization(organization) = route else { fatalError() }
         viewModel = SignInViewModel(organization: organization)
     }
 
@@ -109,8 +108,12 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
     func controller(for error: Error) -> UIViewController {
         let message = error.localizedDescription
         let controller = UIAlertController(title: "Error Signing In".localized, message: message, preferredStyle: .alert)
-        controller.addAction(UIAlertAction(title: "Retry".localized, style: .default) { _ in self.viewModel.retry() })
-        controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel) { _ in self.completion(.none) })
+        controller.addAction(UIAlertAction(title: "Retry".localized, style: .default) { _ in
+            self.viewModel.retry()
+        })
+        controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel) { _ in
+            self.performSegue(withRoute: .unwindToSignIn)
+        })
         return controller
     }
 
@@ -129,7 +132,7 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
             }
         case .signedIn:
             UINotificationFeedbackGenerator().notificationOccurred(.success)
-            completion(.signedIn)
+            performSegue(withRoute: .unwindToApp)
         }
     }
 
@@ -146,7 +149,7 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
         let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { url, _ in
             self.authenticationSession = nil
 
-            guard let url = url else { return self.completion(.none) }
+            guard let url = url else { return self.performSegue(withRoute: .unwindToSignIn) }
             self.viewModel.finishAuthorization(withCallbackUrl: url)
         }
         session.start()
@@ -165,6 +168,6 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
     }
 
     func safariViewControllerDidFinish(_: SFSafariViewController) {
-        completion(.none)
+        performSegue(withRoute: .unwindToSignIn)
     }
 }

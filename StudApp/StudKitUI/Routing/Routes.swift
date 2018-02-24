@@ -34,11 +34,17 @@ public enum Routes {
 
     case settings(completion: (SettingsResult) -> Void)
 
-    case signIn(completion: (SignInResult) -> Void)
+    case signIn
 
-    case signIntoOrganization(Organization, completion: (SignInResult) -> Void)
+    case signIntoOrganization(Organization)
 
     case store
+
+    case unwindToApp
+
+    case unwindToAppAndSignOut
+
+    case unwindToSignIn
 
     case verification
 
@@ -81,6 +87,9 @@ public enum Routes {
         case .signIn: return "signIn"
         case .signIntoOrganization: return "signIntoOrganization"
         case .store: return "store"
+        case .unwindToApp: return "unwindToApp"
+        case .unwindToAppAndSignOut: return "unwindToAppAndSignOut"
+        case .unwindToSignIn: return "unwindToSignIn"
         case .verification: return "verification"
         }
     }

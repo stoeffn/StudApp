@@ -8,8 +8,6 @@
 
 /// Manages applications main view.
 public final class AppViewModel {
-    private let coreDataService = ServiceContainer.default[CoreDataService.self]
-    private let storeService = ServiceContainer.default[StoreService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]
 
     public init() {}
@@ -20,16 +18,6 @@ public final class AppViewModel {
     ///            credential being stored. Thus, the password might have changed in the meantime.
     public var isSignedIn: Bool {
         return studIpService.isSignedIn
-    }
-
-    /// Updates the current user if signed in.
-    public func updateCurrentUser(completion: (ResultHandler<User>)? = nil) {
-        guard let currentUser = User.current else { return }
-
-        User.updateCurrent(organization: currentUser.organization, in: coreDataService.viewContext) { result in
-            try? self.coreDataService.viewContext.saveAndWaitWhenChanged()
-            completion?(result)
-        }
     }
 
     public func signOut() {

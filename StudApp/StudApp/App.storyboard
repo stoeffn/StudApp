@@ -30,7 +30,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="Jnq-IY-AlA" kind="unwind" unwindAction="signOutWith:" id="eHD-dd-x2T"/>
+                                    <segue destination="Jnq-IY-AlA" kind="unwind" unwindAction="unwindToAppAndSignOutWith:" id="ukw-aH-UzV"/>
                                 </connections>
                             </button>
                         </subviews>

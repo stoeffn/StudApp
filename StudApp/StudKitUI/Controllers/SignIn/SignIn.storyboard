@@ -105,9 +105,12 @@
                         <outlet property="titleLabel" destination="MFk-Mm-3qX" id="Rfl-ab-3OG"/>
                         <segue destination="waM-SL-7JR" kind="show" identifier="store" id="oba-S6-Wbq"/>
                         <segue destination="myS-Lb-AhU" kind="presentation" identifier="about" modalPresentationStyle="formSheet" id="PNl-D0-kSg"/>
+                        <segue destination="fQa-P6-Uhv" kind="unwind" identifier="unwindToApp" unwindAction="unwindToAppWith:" id="H76-0i-ESD"/>
+                        <segue destination="fQa-P6-Uhv" kind="unwind" identifier="unwindToSignIn" unwindAction="unwindToSignInWith:" id="zjd-jd-Q7N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AIE-UT-EQX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="fQa-P6-Uhv" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1384.8" y="608.54572713643188"/>
         </scene>

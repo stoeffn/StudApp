@@ -36,6 +36,11 @@ final class DocumentActionViewController: FPUIActionExtensionViewController {
         setViewController(for: route)
     }
 
+    // MARK: - Navigation
+
+    @IBAction
+    func unwindToApp(with segue: UIStoryboardSegue) {}
+
     // MARK: - Helpers
 
     private func setViewController(for route: Routes, itemIdentifiers _: [NSFileProviderItemIdentifier] = []) {

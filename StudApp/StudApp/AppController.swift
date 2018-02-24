@@ -34,24 +34,20 @@ final class AppController: UITabBarController {
     }
 
     @IBAction
-    func signOut(with segue: UIStoryboardSegue) {
-        viewModel.signOut()
+    func unwindToApp(with segue: UIStoryboardSegue) {
+        presentAppOrSignIn()
     }
 
-    private func routeForSignIn() -> Routes {
-        return .signIn { result in
-            if result == .signedIn {
-                self.presentedViewController?.dismiss(animated: true, completion: nil)
-                self.presentAppOrSignIn()
-            }
-        }
+    @IBAction
+    func unwindToAppAndSignOut(with segue: UIStoryboardSegue) {
+        viewModel.signOut()
     }
 
     private func presentAppOrSignIn() {
         if let user = User.current, viewModel.isSignedIn {
             performSegue(withRoute: .app(user))
         } else {
-            performSegue(withRoute: routeForSignIn())
+            performSegue(withRoute: .signIn)
         }
     }
 }

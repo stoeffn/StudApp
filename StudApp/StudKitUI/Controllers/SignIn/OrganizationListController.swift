@@ -17,7 +17,6 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     private var contextService: ContextService!
     private var viewModel: OrganizationListViewModel!
     private var observations = [NSKeyValueObservation]()
-    private var completion: ((SignInResult) -> Void)!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,12 +45,30 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         viewModel.update()
     }
 
-    func prepareDependencies(for route: Routes) {
-        guard case let .signIn(completion) = route else { fatalError() }
-        self.completion = completion
+    // MARK: - Navigation
 
+    func prepareDependencies(for route: Routes) {
+        guard case .signIn = route else { fatalError() }
         viewModel = OrganizationListViewModel()
         viewModel.delegate = self
+    }
+
+    @IBAction
+    func unwindToSignIn(with segue: UIStoryboardSegue) {}
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch sender {
+        case let organizationCell as OrganizationCell:
+            prepare(for: .signIntoOrganization(organizationCell.organization), destination: segue.destination)
+        default:
+            prepareForRoute(using: segue, sender: sender)
+        }
+    }
+
+    private func routeForAbout() -> Routes {
+        return .about {
+            self.presentedViewController?.dismiss(animated: true, completion: nil)
+        }
     }
 
     // MARK: - Table View Data Source
@@ -84,32 +101,6 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-
-    // MARK: - Navigation
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch sender {
-        case let organizationCell as OrganizationCell:
-            prepare(for: route(forSigningInto: organizationCell.organization), destination: segue.destination)
-        default:
-            prepareForRoute(using: segue, sender: sender)
-        }
-    }
-
-    private func route(forSigningInto organization: Organization) -> Routes {
-        return .signIntoOrganization(organization) { result in
-            self.presentedViewController?.dismiss(animated: true) {
-                guard result == .signedIn else { return }
-                self.completion(result)
-            }
-        }
-    }
-
-    private func routeForAbout() -> Routes {
-        return .about {
-            self.presentedViewController?.dismiss(animated: true, completion: nil)
-        }
     }
 
     // MARK: - User Interface
@@ -151,6 +142,6 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
 
     @IBAction
     func cancelButtonTapped(_: Any) {
-        completion(.none)
+        performSegue(withRoute: .unwindToApp)
     }
 }
