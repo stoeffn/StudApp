@@ -14,7 +14,6 @@ import StudKit
 final class AboutController: UITableViewController, Routable {
     private let contextService = ServiceContainer.default[ContextService.self]
     private var viewModel: AboutViewModel!
-    private var completion: (() -> Void)?
 
     // MARK: - Life Cycle
 
@@ -40,8 +39,7 @@ final class AboutController: UITableViewController, Routable {
     }
 
     func prepareDependencies(for route: Routes) {
-        guard case let .about(completion) = route else { fatalError() }
-        self.completion = completion
+        guard case .about = route else { fatalError() }
 
         viewModel = AboutViewModel()
         viewModel.leaveTipCompletion = didLeaveTip
@@ -67,7 +65,7 @@ final class AboutController: UITableViewController, Routable {
 
     @IBAction
     func doneButtonTapped(_: Any) {
-        completion?()
+        dismiss(animated: true, completion: nil)
     }
 
     @IBAction

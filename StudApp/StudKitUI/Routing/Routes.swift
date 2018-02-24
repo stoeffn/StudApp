@@ -10,11 +10,11 @@ import QuickLook
 import StudKit
 
 public enum Routes {
-    case about(completion: () -> Void)
+    case about
 
     case app(for: User)
 
-    case announcement(Announcement, completion: () -> Void)
+    case announcement(Announcement)
 
     case colorPicker(sender: Any?, completion: (Int, UIColor) -> Void)
 
@@ -38,7 +38,7 @@ public enum Routes {
 
     case semesterList(for: User)
 
-    case settings(completion: (SettingsResult) -> Void)
+    case settings
 
     case signIn
 
@@ -112,12 +112,4 @@ public enum Routes {
         }
         return storyboard.instantiateViewController(withIdentifier: destinationIdentifier)
     }
-}
-
-public enum SettingsResult {
-    case none, signedOut
-}
-
-public enum SignInResult {
-    case none, signedIn
 }

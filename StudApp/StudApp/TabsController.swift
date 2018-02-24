@@ -45,13 +45,13 @@ final class TabsController: UITabBarController, Routable {
 
     // MARK: - Navigation
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        prepareForRoute(using: segue, sender: sender)
-    }
-
     func prepareDependencies(for route: Routes) {
         guard case let .app(user) = route else { fatalError() }
         self.user = user
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        prepareForRoute(using: segue, sender: sender)
     }
 
     // MARK: - User Interface
@@ -78,38 +78,42 @@ final class TabsController: UITabBarController, Routable {
             .first
     }
 
+    func controllerForMore(at barButtonItem: UIBarButtonItem? = nil) -> UIViewController {
+        guard let currentUser = User.current else { fatalError() }
+
+        let actions = [
+            UIAlertAction(title: "About".localized, style: .default) { _ in
+                self.performSegue(withRoute: .about)
+            },
+            UIAlertAction(title: "Help".localized, style: .default) { _ in
+                guard let controller = self.controllerForHelp() else { return }
+                self.present(controller, animated: true, completion: nil)
+            },
+            UIAlertAction(title: "Settings".localized, style: .default) { _ in
+                self.performSegue(withRoute: .settings)
+            },
+            UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil),
+        ]
+
+        let title = "Signed in as %@".localized(currentUser.nameComponents.formatted(style: .long))
+        let controller = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
+        controller.popoverPresentationController?.barButtonItem = barButtonItem
+        actions.forEach(controller.addAction)
+        return controller
+    }
+
+    private func controllerForHelp() -> UIViewController? {
+        guard let url = App.Links.help else { return nil }
+
+        let controller = SFSafariViewController(url: url)
+        controller.preferredControlTintColor = UI.Colors.tint
+        return controller
+    }
+
     // MARK: - User Interaction
 
     @IBAction
     func userButtonTapped(_ sender: Any) {
-        func showAboutView(_: UIAlertAction) {
-            let route = Routes.about {
-                self.presentedViewController?.dismiss(animated: true, completion: nil)
-            }
-            performSegue(withRoute: route)
-        }
-
-        func showHelpView(_: UIAlertAction) {
-            guard let url = App.Links.help else { return }
-            let controller = SFSafariViewController(url: url)
-            controller.preferredControlTintColor = UI.Colors.tint
-            present(controller, animated: true, completion: nil)
-        }
-
-        func showSettingsView(_: UIAlertAction) {
-            performSegue(withRoute: .settings { _ in fatalError("TODO") })
-        }
-
-        guard let currentUser = User.current else { return }
-        let barButtonItem = sender as? UIBarButtonItem
-        let title = "Signed in as %@".localized(currentUser.nameComponents.formatted(style: .long))
-
-        let controller = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
-        controller.popoverPresentationController?.barButtonItem = barButtonItem
-        controller.addAction(UIAlertAction(title: "About".localized, style: .default, handler: showAboutView))
-        controller.addAction(UIAlertAction(title: "Help".localized, style: .default, handler: showHelpView))
-        controller.addAction(UIAlertAction(title: "Settings".localized, style: .default, handler: showSettingsView))
-        controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
-        present(controller, animated: true, completion: nil)
+        present(controllerForMore(at: sender as? UIBarButtonItem), animated: true, completion: nil)
     }
 }

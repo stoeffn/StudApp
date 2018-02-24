@@ -39,7 +39,12 @@ final class DocumentActionViewController: FPUIActionExtensionViewController {
     // MARK: - Navigation
 
     @IBAction
-    func unwindToApp(with segue: UIStoryboardSegue) {}
+    func unwindToApp(with segue: UIStoryboardSegue) {
+        let contextService: ServiceContainer.default[ContextService.self]
+        contextService.extensionContext?.completeRequest(returningItems: nil) { _ in
+            NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
+        }
+    }
 
     // MARK: - Helpers
 

@@ -30,9 +30,4 @@ public final class SettingsViewModel {
         try File.fetch(in: coreDataService.viewContext).forEach { $0.state.downloadedAt = nil }
         try coreDataService.viewContext.saveAndWaitWhenChanged()
     }
-
-    /// Sign user out of this app and the API.
-    public func signOut() {
-        studIpService.signOut()
-    }
 }

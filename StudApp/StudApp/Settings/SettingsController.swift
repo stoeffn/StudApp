@@ -11,14 +11,11 @@ import StudKitUI
 
 final class SettingsController: UITableViewController, Routable {
     private var viewModel: SettingsViewModel!
-    private var completion: ((SettingsResult) -> Void)?
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        viewModel = SettingsViewModel()
 
         navigationItem.title = "Settings".localized
 
@@ -33,8 +30,8 @@ final class SettingsController: UITableViewController, Routable {
     // MARK: - Navigation
 
     func prepareDependencies(for route: Routes) {
-        guard case let .settings(handler) = route else { fatalError() }
-        completion = handler
+        guard case .settings = route else { fatalError() }
+        viewModel = SettingsViewModel()
     }
 
     // MARK: - Table View Data Source
@@ -93,7 +90,7 @@ final class SettingsController: UITableViewController, Routable {
 
     @IBAction
     func doneButtonTapped(_: Any) {
-        completion?(.none)
+        dismiss(animated: true, completion: nil)
     }
 
     private func removeAllDownloads() {
@@ -108,8 +105,7 @@ final class SettingsController: UITableViewController, Routable {
     private func signOut() {
         let confirmation = UIAlertController(confirmationWithAction: signOutCell.textLabel?.text,
                                              sourceView: signOutCell) { _ in
-            self.viewModel.signOut()
-            self.completion?(.signedOut)
+            self.performSegue(withRoute: .unwindToAppAndSignOut)
         }
         present(confirmation, animated: true, completion: nil)
     }

@@ -26,12 +26,7 @@ extension Routes {
 
         switch reason {
         case .notSignedIn:
-            self = .signIn { _ in
-                let context = ServiceContainer.default[ContextService.self]
-                context.extensionContext?.completeRequest(returningItems: nil) { _ in
-                    NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
-                }
-            }
+            self = .signIn
         case .noVerifiedPurchase:
             self = .verification
         }

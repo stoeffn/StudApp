@@ -11,7 +11,6 @@ import StudKitUI
 
 final class AnnouncementController: UIViewController, Routable {
     private var announcement: Announcement!
-    private var completion: (() -> Void)?
 
     // MARK: - Life Cycle
 
@@ -25,9 +24,8 @@ final class AnnouncementController: UIViewController, Routable {
     }
 
     func prepareDependencies(for route: Routes) {
-        guard case let .announcement(announcement, completion) = route else { return }
+        guard case let .announcement(announcement) = route else { return }
         self.announcement = announcement
-        self.completion = completion
     }
 
     // MARK: - User Interface
@@ -38,6 +36,6 @@ final class AnnouncementController: UIViewController, Routable {
 
     @IBAction
     func doneButtonTapped(_: Any) {
-        completion?()
+        dismiss(animated: true, completion: nil)
     }
 }

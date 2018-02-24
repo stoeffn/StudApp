@@ -65,12 +65,6 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         }
     }
 
-    private func routeForAbout() -> Routes {
-        return .about {
-            self.presentedViewController?.dismiss(animated: true, completion: nil)
-        }
-    }
-
     // MARK: - Table View Data Source
 
     override func numberOfSections(in _: UITableView) -> Int {
@@ -110,7 +104,7 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     func controllerForMore(at barButtonItem: UIBarButtonItem? = nil) -> UIViewController {
         let actions = [
             UIAlertAction(title: "About".localized, style: .default) { _ in
-                self.performSegue(withRoute: self.routeForAbout())
+                self.performSegue(withRoute: .about)
             },
             UIAlertAction(title: "Help".localized, style: .default) { _ in
                 guard let controller = self.controllerForHelp() else { return }

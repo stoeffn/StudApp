@@ -98,10 +98,7 @@ final class CourseController: UITableViewController, Routable {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch sender {
         case let cell as AnnouncementCell:
-            let route = Routes.announcement(cell.announcement) {
-                self.presentedViewController?.dismiss(animated: true, completion: nil)
-            }
-            performSegue(withRoute: route)
+            performSegue(withRoute: .announcement(cell.announcement))
         case let cell as FileCell:
             prepare(for: .folder(cell.file), destination: segue.destination)
         case let cell as UITableViewCell where cell.reuseIdentifier == allEventsCellIdentifier:
