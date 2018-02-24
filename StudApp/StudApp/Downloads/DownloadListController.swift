@@ -11,7 +11,6 @@ import StudKit
 import StudKitUI
 
 final class DownloadListController: UITableViewController, DataSourceDelegate {
-    private var user: User!
     private var viewModel: DownloadListViewModel!
 
     // MARK: - Life Cycle
@@ -57,9 +56,8 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
     func prepareDependencies(for route: Routes) {
         guard case let .downloadList(user) = route else { fatalError() }
-        self.user = user
 
-        viewModel = DownloadListViewModel()
+        viewModel = DownloadListViewModel(user: user)
         viewModel.delegate = self
         viewModel.fetch()
     }
@@ -67,7 +65,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     // MARK: - Restoration
 
     override func encodeRestorableState(with coder: NSCoder) {
-        coder.encode(user.objectIdentifier.rawValue, forKey: ObjectIdentifier.typeIdentifier)
+        coder.encode(viewModel.user.objectIdentifier.rawValue, forKey: ObjectIdentifier.typeIdentifier)
         super.encode(with: coder)
     }
 

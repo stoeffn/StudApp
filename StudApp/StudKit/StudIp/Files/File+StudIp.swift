@@ -61,6 +61,7 @@ extension File {
                 return completion(.failure(result.error))
             }
 
+            self.downloadedBy.formUnion([User.current].flatMap { $0 })
             self.state.downloadedAt = downloadDate
             try? self.managedObjectContext?.saveAndWaitWhenChanged()
 
@@ -82,6 +83,10 @@ extension File {
     }
 
     public func removeDownload() throws {
+        downloadedBy.subtract([User.current].flatMap { $0 })
+
+        guard downloadedBy.isEmpty else { return }
+
         state.downloadedAt = nil
         try? FileManager.default.removeItem(at: localUrl(in: .downloads))
         try? FileManager.default.removeItem(at: localUrl(in: .fileProvider))

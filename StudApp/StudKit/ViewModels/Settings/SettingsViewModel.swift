@@ -26,8 +26,10 @@ public final class SettingsViewModel {
     /// Delete all locally downloaded documents in the downloads and file provider directory.
     public func removeAllDownloads() throws {
         try storageService.removeAllDownloads()
-
-        try File.fetch(in: coreDataService.viewContext).forEach { $0.state.downloadedAt = nil }
+        try File.fetch(in: coreDataService.viewContext).forEach { file in
+            file.downloadedBy.removeAll()
+            file.state.downloadedAt = nil
+        }
         try coreDataService.viewContext.saveAndWaitWhenChanged()
     }
 }

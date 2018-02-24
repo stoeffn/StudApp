@@ -104,35 +104,6 @@ extension File: FilesContaining {
     public var childFileStatesPredicate: NSPredicate {
         return NSPredicate(format: "file.course == %@ AND file.parent == %@", course, self)
     }
-
-    public static func downloadedPredicate(forSearchTerm searchTerm: String? = nil) -> NSPredicate {
-        let downloadedPredicate = NSPredicate(format: "downloadedAt != NIL")
-
-        guard let searchTerm = searchTerm, !searchTerm.isEmpty else { return downloadedPredicate }
-
-        let trimmedSearchTerm = searchTerm.trimmingCharacters(in: .whitespacesAndNewlines)
-
-        let similarTitlePredicate = NSPredicate(format: "file.name CONTAINS[cd] %@", trimmedSearchTerm)
-        let similarCourseTitlePredicate = NSPredicate(format: "file.course.title CONTAINS[cd] %@", trimmedSearchTerm)
-        let similarOwnerFamilyNamePredicate = NSPredicate(format: "file.owner.familyName CONTAINS[cd] %@", trimmedSearchTerm)
-        let similarOwnerGivenNamePredicate = NSPredicate(format: "file.owner.givenName CONTAINS[cd] %@", trimmedSearchTerm)
-
-        return NSCompoundPredicate(type: .and, subpredicates: [
-            downloadedPredicate,
-            NSCompoundPredicate(type: .or, subpredicates: [
-                similarTitlePredicate, similarCourseTitlePredicate, similarOwnerFamilyNamePredicate,
-                similarOwnerGivenNamePredicate,
-            ]),
-        ])
-    }
-
-    public static var downloadedStatesFetchRequest: NSFetchRequest<FileState> {
-        let sortDescriptors = [
-            NSSortDescriptor(keyPath: \FileState.file.course.title, ascending: true),
-        ] + FileState.defaultSortDescriptors
-        return FileState.fetchRequest(predicate: downloadedPredicate(), sortDescriptors: sortDescriptors,
-                                      relationshipKeyPathsForPrefetching: ["file"])
-    }
 }
 
 // MARK: - Utilities

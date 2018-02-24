@@ -88,6 +88,35 @@ extension User {
         return Course.fetchRequest(predicate: predicate, sortDescriptors: Course.defaultSortDescriptors,
                                    relationshipKeyPathsForPrefetching: ["state"])
     }
+
+    public func downloadsPredicate(forSearchTerm searchTerm: String? = nil) -> NSPredicate {
+        let downloadedPredicate = NSPredicate(format: "%@ in downloadedBy", self)
+
+        guard let searchTerm = searchTerm, !searchTerm.isEmpty else { return downloadedPredicate }
+
+        let trimmedSearchTerm = searchTerm.trimmingCharacters(in: .whitespacesAndNewlines)
+
+        let similarTitlePredicate = NSPredicate(format: "name CONTAINS[cd] %@", trimmedSearchTerm)
+        let similarCourseTitlePredicate = NSPredicate(format: "course.title CONTAINS[cd] %@", trimmedSearchTerm)
+        let similarOwnerFamilyNamePredicate = NSPredicate(format: "owner.familyName CONTAINS[cd] %@", trimmedSearchTerm)
+        let similarOwnerGivenNamePredicate = NSPredicate(format: "owner.givenName CONTAINS[cd] %@", trimmedSearchTerm)
+
+        return NSCompoundPredicate(type: .and, subpredicates: [
+            downloadedPredicate,
+            NSCompoundPredicate(type: .or, subpredicates: [
+                similarTitlePredicate, similarCourseTitlePredicate, similarOwnerFamilyNamePredicate,
+                similarOwnerGivenNamePredicate,
+            ]),
+        ])
+    }
+
+    public var downloadsFetchRequest: NSFetchRequest<File> {
+        let sortDescriptors = [
+            NSSortDescriptor(keyPath: \File.course.title, ascending: true),
+        ] + File.defaultSortDescriptors
+        return File.fetchRequest(predicate: downloadsPredicate(), sortDescriptors: sortDescriptors,
+                                 relationshipKeyPathsForPrefetching: ["state"])
+    }
 }
 
 // MARK: - Utilities
