@@ -67,7 +67,11 @@ final class CourseController: UITableViewController, Routable {
         }, completion: nil)
     }
 
-    private func configureViewModels(with course: Course) {
+    // MARK: - Navigation
+
+    func prepareDependencies(for route: Routes) {
+        guard case let .course(course) = route else { fatalError() }
+
         viewModel = CourseViewModel(course: course)
 
         announcementsViewModel = AnnouncementListViewModel(course: course)
@@ -77,13 +81,6 @@ final class CourseController: UITableViewController, Routable {
         fileListViewModel = FileListViewModel(filesContaining: course)
         fileListViewModel.delegate = self
         fileListViewModel.fetch()
-    }
-
-    // MARK: - Navigation
-
-    func prepareDependencies(for route: Routes) {
-        guard case let .course(course) = route else { fatalError() }
-        configureViewModels(with: course)
     }
 
     override func shouldPerformSegue(withIdentifier _: String, sender: Any?) -> Bool {
@@ -118,9 +115,8 @@ final class CourseController: UITableViewController, Routable {
     override func decodeRestorableState(with coder: NSCoder) {
         if let restoredObjectIdentifier = coder.decodeObject(forKey: ObjectIdentifier.typeIdentifier) as? String,
             let course = Course.fetch(byObjectId: ObjectIdentifier(rawValue: restoredObjectIdentifier)) {
-            configureViewModels(with: course)
+            prepareDependencies(for: .course(course))
         }
-
         super.decodeRestorableState(with: coder)
     }
 
@@ -148,7 +144,7 @@ final class CourseController: UITableViewController, Routable {
     }
 
     override func numberOfSections(in _: UITableView) -> Int {
-        return 3
+        return viewModel != nil ? 3 : 0
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {

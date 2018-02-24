@@ -38,7 +38,6 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         }
 
         reloadDateTabBar()
-
         viewModel.update()
     }
 
@@ -92,9 +91,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     override func decodeRestorableState(with coder: NSCoder) {
         if let restoredObjectIdentifier = coder.decodeObject(forKey: ObjectIdentifier.typeIdentifier) as? String,
             let course = Course.fetch(byObjectId: ObjectIdentifier(rawValue: restoredObjectIdentifier)) {
-            viewModel = EventListViewModel(course: course)
-            viewModel.delegate = self
-            viewModel.fetch()
+            prepareDependencies(for: .eventList(for: course))
         }
 
         super.decodeRestorableState(with: coder)

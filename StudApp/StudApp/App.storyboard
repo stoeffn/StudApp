@@ -12,7 +12,7 @@
         <!--App Controller-->
         <scene sceneID="2es-kx-eOy">
             <objects>
-                <tabBarController id="5Up-Rl-zcg" customClass="AppController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="App" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5Up-Rl-zcg" customClass="AppController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="X2S-6D-9hx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -20,7 +20,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="2bU-cg-kHC" kind="presentation" identifier="signIn" id="Dax-cl-2xa"/>
-                        <segue destination="B8u-Ro-L8Q" kind="presentation" identifier="app" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="j8U-m2-2YJ"/>
+                        <segue destination="B8u-Ro-L8Q" kind="show" identifier="app" animates="NO" id="j8U-m2-2YJ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rjs-0s-Fex" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -30,7 +30,7 @@
         <!--Tabs Controller-->
         <scene sceneID="KQ9-7f-jGt">
             <objects>
-                <tabBarController storyboardIdentifier="Main" useStoryboardIdentifierAsRestorationIdentifier="YES" id="B8u-Ro-L8Q" customClass="TabsController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="Tabs" useStoryboardIdentifierAsRestorationIdentifier="YES" id="B8u-Ro-L8Q" customClass="TabsController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fdR-xS-tZE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

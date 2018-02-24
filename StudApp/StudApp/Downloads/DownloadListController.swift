@@ -11,6 +11,7 @@ import StudKit
 import StudKitUI
 
 final class DownloadListController: UITableViewController, DataSourceDelegate {
+    private var user: User!
     private var viewModel: DownloadListViewModel!
 
     // MARK: - Life Cycle
@@ -23,11 +24,6 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         navigationItem.title = "Downloads".localized
 
         tableView.register(CourseHeader.self, forHeaderFooterViewReuseIdentifier: CourseHeader.typeIdentifier)
-        tableView.tableHeaderView = nil
-
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchResultsUpdater = self
 
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
@@ -37,6 +33,14 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
             tableView.dragDelegate = self
             tableView.dragInteractionEnabled = true
+        }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if #available(iOS 11.0, *) {
+            tableView.tableHeaderView = nil
         } else {
             tableView.tableHeaderView = searchController.searchBar
         }
@@ -46,20 +50,34 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-
-        coordinator.animate(alongsideTransition: { _ in
-            self.updateEmptyView()
-        }, completion: nil)
+        coordinator.animate(alongsideTransition: { _ in self.updateEmptyView() }, completion: nil)
     }
 
     // MARK: - Navigation
 
     func prepareDependencies(for route: Routes) {
-        guard case .downloadList = route else { fatalError() }
+        guard case let .downloadList(user) = route else { fatalError() }
+        self.user = user
 
         viewModel = DownloadListViewModel()
         viewModel.delegate = self
         viewModel.fetch()
+    }
+
+    // MARK: - Restoration
+
+    override func encodeRestorableState(with coder: NSCoder) {
+        coder.encode(user.objectIdentifier.rawValue, forKey: ObjectIdentifier.typeIdentifier)
+        super.encode(with: coder)
+    }
+
+    override func decodeRestorableState(with coder: NSCoder) {
+        if let restoredObjectIdentifier = coder.decodeObject(forKey: ObjectIdentifier.typeIdentifier) as? String,
+            let user = User.fetch(byObjectId: ObjectIdentifier(rawValue: restoredObjectIdentifier)) {
+            prepareDependencies(for: .downloadList(for: user))
+            tableView.reloadData()
+        }
+        super.decodeRestorableState(with: coder)
     }
 
     // MARK: - Supporting User Activities
@@ -175,6 +193,13 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     @IBOutlet var emptyViewTitleLabel: UILabel!
 
     @IBOutlet var emptyViewSubtitleLabel: UILabel!
+
+    private(set) lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchResultsUpdater = self
+        return searchController
+    }()
 
     private func updateEmptyView() {
         guard view != nil else { return }

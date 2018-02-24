@@ -54,7 +54,7 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     }
 
     @IBAction
-    func unwindToSignIn(with segue: UIStoryboardSegue) {}
+    func unwindToSignIn(with _: UIStoryboardSegue) {}
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch sender {

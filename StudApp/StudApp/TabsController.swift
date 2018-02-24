@@ -21,8 +21,34 @@ final class TabsController: UITabBarController, Routable {
 
         super.viewWillAppear(animated)
 
-        tabBar.items?[Tabs.downloadList.rawValue].title = "Downloads".localized
         tabBar.items?[Tabs.courseList.rawValue].title = "Courses".localized
+        tabBar.items?[Tabs.downloadList.rawValue].title = "Downloads".localized
+    }
+
+    // MARK: - Navigation
+
+    func prepareDependencies(for route: Routes) {
+        guard case let .app(user) = route else { fatalError() }
+        self.user = user
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        prepareForRoute(using: segue, sender: sender)
+    }
+
+    // MARK: - Restoration
+
+    override func encodeRestorableState(with coder: NSCoder) {
+        coder.encode(user.objectIdentifier.rawValue, forKey: ObjectIdentifier.typeIdentifier)
+        super.encode(with: coder)
+    }
+
+    override func decodeRestorableState(with coder: NSCoder) {
+        if let restoredObjectIdentifier = coder.decodeObject(forKey: ObjectIdentifier.typeIdentifier) as? String,
+            let user = User.fetch(byObjectId: ObjectIdentifier(rawValue: restoredObjectIdentifier)) {
+            prepareDependencies(for: .app(for: user))
+        }
+        super.decodeRestorableState(with: coder)
     }
 
     // MARK: - Supporting User Activities
@@ -41,17 +67,6 @@ final class TabsController: UITabBarController, Routable {
             alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
             return present(alert, animated: true, completion: nil)
         }
-    }
-
-    // MARK: - Navigation
-
-    func prepareDependencies(for route: Routes) {
-        guard case let .app(user) = route else { fatalError() }
-        self.user = user
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        prepareForRoute(using: segue, sender: sender)
     }
 
     // MARK: - User Interface

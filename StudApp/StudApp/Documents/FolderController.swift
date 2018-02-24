@@ -81,9 +81,7 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
     override func decodeRestorableState(with coder: NSCoder) {
         if let restoredObjectIdentifier = coder.decodeObject(forKey: ObjectIdentifier.typeIdentifier) as? String,
             let folder = File.fetch(byObjectId: ObjectIdentifier(rawValue: restoredObjectIdentifier)) {
-            viewModel = FileListViewModel(filesContaining: folder)
-            viewModel.delegate = self
-            viewModel.fetch()
+            prepareDependencies(for: .folder(folder))
         }
 
         super.decodeRestorableState(with: coder)

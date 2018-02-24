@@ -26,19 +26,19 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         }
 
         tableView.register(SemesterHeader.self, forHeaderFooterViewReuseIdentifier: SemesterHeader.typeIdentifier)
-        tableView.tableHeaderView = nil
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         viewModel.update()
+
+        tableView.tableHeaderView = nil
         updateEmptyView()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
         tableView.visibleCells.forEach { $0.setDisclosureIndicatorHidden(for: splitViewController) }
     }
 
@@ -78,6 +78,22 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         }
 
         prepareForRoute(using: segue, sender: sender)
+    }
+
+    // MARK: - Restoration
+
+    override func encodeRestorableState(with coder: NSCoder) {
+        coder.encode(user.objectIdentifier.rawValue, forKey: ObjectIdentifier.typeIdentifier)
+        super.encode(with: coder)
+    }
+
+    override func decodeRestorableState(with coder: NSCoder) {
+        if let restoredObjectIdentifier = coder.decodeObject(forKey: ObjectIdentifier.typeIdentifier) as? String,
+            let user = User.fetch(byObjectId: ObjectIdentifier(rawValue: restoredObjectIdentifier)) {
+            prepareDependencies(for: .courseList(for: user))
+            tableView.reloadData()
+        }
+        super.decodeRestorableState(with: coder)
     }
 
     // MARK: - Supporting User Activities

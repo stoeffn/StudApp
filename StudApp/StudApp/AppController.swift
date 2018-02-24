@@ -9,7 +9,7 @@
 import StudKit
 import StudKitUI
 
-final class AppController: UITabBarController {
+final class AppController: UIViewController {
     private var viewModel: AppViewModel!
 
     // MARK: - Life Cycle
@@ -22,9 +22,19 @@ final class AppController: UITabBarController {
         view.backgroundColor = .white
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         presentAppOrSignIn()
+    }
+
+    // MARK: - Supporting User Activities
+
+    override func restoreUserActivityState(_ activity: NSUserActivity) {
+        presentedViewController?.restoreUserActivityState(activity)
     }
 
     // MARK: - Navigation
@@ -34,12 +44,12 @@ final class AppController: UITabBarController {
     }
 
     @IBAction
-    func unwindToApp(with segue: UIStoryboardSegue) {
+    func unwindToApp(with _: UIStoryboardSegue) {
         presentAppOrSignIn()
     }
 
     @IBAction
-    func unwindToAppAndSignOut(with segue: UIStoryboardSegue) {
+    func unwindToAppAndSignOut(with _: UIStoryboardSegue) {
         viewModel.signOut()
     }
 
