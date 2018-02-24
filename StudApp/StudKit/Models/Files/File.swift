@@ -63,6 +63,8 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
     ///            for folders.
     @NSManaged public var downloadCount: Int
 
+    @NSManaged public var downloadedBy: Set<User>
+
     /// User who uploaded or modified this file. Might be `nil` for folders or some documents authored by multiple users.
     @NSManaged public var owner: User?
 

@@ -82,6 +82,7 @@
         <attribute name="typeIdentifier" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="children" toMany="YES" deletionRule="Cascade" destinationEntity="File" inverseName="parent" inverseEntity="File" syncable="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="files" inverseEntity="Course" syncable="YES"/>
+        <relationship name="downloadedBy" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="downloads" inverseEntity="User" syncable="YES"/>
         <relationship name="organization" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" inverseName="files" inverseEntity="Organization" syncable="YES"/>
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="ownedFiles" inverseEntity="User" syncable="YES"/>
         <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="File" inverseName="children" inverseEntity="File" syncable="YES"/>
@@ -155,6 +156,7 @@
         <attribute name="username" attributeType="String" minValueString="1" syncable="YES"/>
         <relationship name="authoredCourses" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="authors" inverseEntity="Course" syncable="YES"/>
         <relationship name="createdAnnouncements" toMany="YES" deletionRule="Nullify" destinationEntity="Announcement" inverseName="user" inverseEntity="Announcement" syncable="YES"/>
+        <relationship name="downloads" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="downloadedBy" inverseEntity="File" syncable="YES"/>
         <relationship name="lecturedCourses" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="lecturers" inverseEntity="Course" syncable="YES"/>
         <relationship name="organization" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" inverseName="users" inverseEntity="Organization" syncable="YES"/>
         <relationship name="ownedFiles" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="owner" inverseEntity="File" syncable="YES"/>
@@ -172,11 +174,11 @@
         <element name="Course" positionX="-8568" positionY="-2218" width="128" height="270"/>
         <element name="CourseState" positionX="-8354" positionY="-2142" width="128" height="120"/>
         <element name="Event" positionX="-8703" positionY="-2070" width="128" height="195"/>
-        <element name="File" positionX="-8381" positionY="-1971" width="128" height="255"/>
+        <element name="File" positionX="-8381" positionY="-1971" width="128" height="270"/>
         <element name="FileState" positionX="-8199" positionY="-1836" width="128" height="135"/>
         <element name="Organization" positionX="-8694" positionY="-2061" width="128" height="210"/>
         <element name="Semester" positionX="-8748" positionY="-2188" width="128" height="195"/>
         <element name="SemesterState" positionX="-8910" positionY="-2121" width="128" height="150"/>
-        <element name="User" positionX="-8748" positionY="-1924" width="128" height="225"/>
+        <element name="User" positionX="-8748" positionY="-1924" width="128" height="240"/>
     </elements>
 </model>

@@ -39,6 +39,8 @@ public final class User: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
 
     @NSManaged public var createdAnnouncements: Set<Announcement>
 
+    @NSManaged public var downloads: Set<File>
+
     @NSManaged public var lecturedCourses: Set<Course>
 
     @NSManaged public var authoredCourses: Set<Course>
