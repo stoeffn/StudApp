@@ -82,11 +82,11 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let errorMessage = viewModel.errorMessage {
+        if let error = viewModel.error {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ActionCell.typeIdentifier,
                                                            for: indexPath) as? ActionCell else { fatalError() }
             cell.titleLabel.text = "Error Loading Organizations".localized
-            cell.subtitleLabel.text = errorMessage
+            cell.subtitleLabel.text = error.localizedDescription
             cell.actionButton.setTitle("Retry".localized, for: .normal)
             cell.action = { [unowned self] in self.viewModel.update() }
             return cell

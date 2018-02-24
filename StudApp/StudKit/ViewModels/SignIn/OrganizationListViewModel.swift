@@ -27,17 +27,6 @@ public final class OrganizationListViewModel: NSObject, FetchedResultsController
 
     @objc public private(set) dynamic var error: Error?
 
-    public var errorMessage: String? {
-        switch error {
-        case nil:
-            return nil
-        case CKError.networkUnavailable?, CKError.networkFailure?:
-            return "There seems to be a problem with the internet connection.".localized
-        default:
-            return "Unfortunately, there was an internal error.".localized
-        }
-    }
-
     // MARK: - Providing and Updating Data
 
     public private(set) lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)

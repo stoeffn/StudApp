@@ -14,11 +14,42 @@ extension Organization {
 
     private static let ckDatabase = CKContainer(identifier: App.iCloudContainerIdentifier).database(with: .public)
 
+    // MARK: - Errors
+
+    @objc(OrganizationErrors)
+    enum Errors: Int, LocalizedError {
+        case internalError, networkError
+
+        init?(from error: Error?) {
+            switch error {
+            case nil:
+                return nil
+            case CKError.networkUnavailable?, CKError.networkFailure?:
+                self = .networkError
+            default:
+                self = .internalError
+            }
+        }
+
+        var errorDescription: String? {
+            switch self {
+            case .internalError:
+                return "Unfortunately, there was an internal error.".localized
+            case .networkError:
+                return "There seems to be a problem with the internet connection.".localized
+            }
+        }
+    }
+
+    // MARK: - Predicates
+
     private static let enabledPredicate = NSPredicate(format: "isEnabled == YES")
 
     private var idPredicate: NSPredicate {
         return NSPredicate(format: "recordID == %@", CKRecordID(recordName: id))
     }
+
+    // MARK: - Updating
 
     static func update(in context: NSManagedObjectContext, completion: @escaping ResultHandler<[Organization]>) {
         var organizations = [OrganizationRecord]()
@@ -30,7 +61,7 @@ extension Organization {
         operation.qualityOfService = .userInitiated
         operation.desiredKeys = desiredKeys.map { $0.rawValue }
         operation.queryCompletionBlock = { _, error in
-            let result = Result(organizations, error: error).map {
+            let result = Result(organizations, error: Errors(from: error)).map {
                 try Organization.update(fetchRequest(), with: $0, in: context) { try $0.coreDataObject(in: context) }
             }
 
@@ -54,7 +85,7 @@ extension Organization {
         operation.qualityOfService = .utility
         operation.desiredKeys = desiredKeys.map { $0.rawValue }
         operation.queryCompletionBlock = { _, error in
-            DispatchQueue.main.async { completion(Result((), error: error)) }
+            DispatchQueue.main.async { completion(Result((), error: Errors(from: error))) }
         }
         operation.recordFetchedBlock = { record in
             guard
@@ -78,7 +109,7 @@ extension Organization {
         operation.qualityOfService = .utility
         operation.desiredKeys = desiredKeys.map { $0.rawValue }
         operation.queryCompletionBlock = { _, error in
-            DispatchQueue.main.async { completion(Result((), error: error)) }
+            DispatchQueue.main.async { completion(Result((), error: Errors(from: error))) }
         }
         operation.recordFetchedBlock = { record in
             guard
@@ -104,7 +135,7 @@ extension Organization {
         operation.qualityOfService = .userInitiated
         operation.desiredKeys = desiredKeys.map { $0.rawValue }
         operation.queryCompletionBlock = { _, error in
-            DispatchQueue.main.async { completion(Result(consumerKeyAndSecret, error: error)) }
+            DispatchQueue.main.async { completion(Result(consumerKeyAndSecret, error: Errors(from: error))) }
         }
         operation.recordFetchedBlock = { record in
             guard
