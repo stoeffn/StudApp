@@ -18,12 +18,13 @@ public class StudIpService {
     convenience init() {
         self.init(api: Api<StudIpRoutes>())
 
-        /*guard let apiUrl = self.apiUrl else { return }
-        let oAuth1 = try? OAuth1<StudIpOAuth1Routes>(fromPersistedService: StudIpService.serviceName)
+        guard let currentUser = User.current else { return }
+        let oAuth1 = try? OAuth1<StudIpOAuth1Routes>(fromPersistedService: currentUser.objectIdentifier.rawValue)
+        let apiUrl = currentUser.organization.apiUrl
         oAuth1?.baseUrl = apiUrl
 
         api.baseUrl = apiUrl
-        api.authorizing = oAuth1*/
+        api.authorizing = oAuth1
     }
 
     /// Whether the user is currently signed in.
@@ -35,14 +36,13 @@ public class StudIpService {
     }
 
     func sign(into organization: Organization, authorizing: ApiAuthorizing, completion: @escaping ResultHandler<User>) {
+        let coreDataService = ServiceContainer.default[CoreDataService.self]
+        var persistableApiAuthorizing = authorizing as? PersistableApiAuthorizing
+
         signOut()
 
         api.baseUrl = organization.apiUrl
         api.authorizing = authorizing
-
-        try? (authorizing as? PersistableApiAuthorizing)?.persistCredentials()
-
-        let coreDataService = ServiceContainer.default[CoreDataService.self]
 
         User.updateCurrent(organization: organization, in: coreDataService.viewContext) { result in
             guard result.isSuccess else {
@@ -51,6 +51,9 @@ public class StudIpService {
             }
 
             User.current = result.value
+            persistableApiAuthorizing?.service = result.value?.objectIdentifier.rawValue
+            try? persistableApiAuthorizing?.persistCredentials()
+            try? coreDataService.viewContext.saveAndWaitWhenChanged()
 
             if #available(iOSApplicationExtension 11.0, *) {
                 NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }

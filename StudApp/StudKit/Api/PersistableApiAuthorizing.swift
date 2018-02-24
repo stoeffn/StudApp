@@ -9,7 +9,7 @@
 protocol PersistableApiAuthorizing: ApiAuthorizing {
     init(fromPersistedService service: String) throws
 
-    var service: String { get }
+    var service: String? { get set }
 
     func persistCredentials() throws
 

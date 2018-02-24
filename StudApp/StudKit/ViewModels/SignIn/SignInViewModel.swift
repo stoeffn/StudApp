@@ -52,11 +52,8 @@ public final class SignInViewModel: NSObject {
     public init(organization: Organization) {
         self.organization = organization
 
-        guard let consumerKey = organization.consumerKey, let consumerSecret = organization.consumerSecret else { fatalError() }
-
-        // TODO
-        oAuth1 = OAuth1<StudIpOAuth1Routes>(service: "TODO", callbackUrl: App.Links.signInCallback,
-                                            consumerKey: consumerKey, consumerSecret: consumerSecret)
+        guard let key = organization.consumerKey, let secret = organization.consumerSecret else { fatalError() }
+        oAuth1 = OAuth1<StudIpOAuth1Routes>(callbackUrl: App.Links.signInCallback, consumerKey: key, consumerSecret: secret)
         oAuth1.baseUrl = organization.apiUrl
     }
 

@@ -24,8 +24,7 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
     private var tokenSecret: String?
     private var verifier: String?
 
-    let service: String
-
+    var service: String?
     private(set) var isAuthorized: Bool
 
     // MARK: - Errors
@@ -33,11 +32,12 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
     enum Errors: Error {
         case alreadyAuthorized
         case notAuthorized
+        case noServiceName
     }
 
     // MARK: - Life Cycle
 
-    init(service: String, api: Api<Routes>? = nil, callbackUrl: URL? = nil, consumerKey: String, consumerSecret: String,
+    init(service: String? = nil, api: Api<Routes>? = nil, callbackUrl: URL? = nil, consumerKey: String, consumerSecret: String,
          token: String? = nil, tokenSecret: String? = nil, isAuthorized: Bool = false) {
         self.service = service
         self.api = api ?? Api<Routes>()
@@ -281,6 +281,7 @@ extension OAuth1: PersistableApiAuthorizing {
 
     func persistCredentials() throws {
         guard isAuthorized, let token = token, let tokenSecret = tokenSecret else { throw Errors.notAuthorized }
+        guard let service = service, !service.isEmpty else { throw Errors.noServiceName }
 
         let keychainService = ServiceContainer.default[KeychainService.self]
         try keychainService.save(password: consumerKey, for: service, account: CodingKeys.consumerKey.rawValue)
@@ -290,6 +291,8 @@ extension OAuth1: PersistableApiAuthorizing {
     }
 
     func removeCredentials() throws {
+        guard let service = service, !service.isEmpty else { throw Errors.noServiceName }
+
         let keychainService = ServiceContainer.default[KeychainService.self]
         try keychainService.delete(from: service, account: CodingKeys.consumerKey.rawValue)
         try keychainService.delete(from: service, account: CodingKeys.consumerSecret.rawValue)
