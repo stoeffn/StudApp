@@ -46,14 +46,14 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
     }
 
     public private(set) lazy var controller: NSFetchedResultsController<Course> = NSFetchedResultsController(
-        fetchRequest: semester?.coursesFetchRequest ?? Course.fetchRequest(),
+        fetchRequest: user.authoredCoursesFetchRequest(in: semester),
         managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
 
     /// Fetches initial data.
     public func fetch() {
         controller.fetchRequest.predicate = isCollapsed && respectsCollapsedState
             ? NSPredicate(value: false)
-            : semester?.coursesFetchRequest.predicate ?? NSPredicate(value: true)
+            : user.authoredCoursesFetchRequest(in: semester).predicate ?? NSPredicate(value: true)
         try? controller.performFetch()
     }
 

@@ -73,13 +73,3 @@ public extension Semester {
         return "\(beginsAt.formatted(using: .monthAndYear)) – \(endsAt.formatted(using: .monthAndYear))"
     }
 }
-
-// MARK: - Core Data Operations
-
-extension Semester {
-    public var coursesFetchRequest: NSFetchRequest<Course> {
-        let predicate = NSPredicate(format: "%@ IN semesters", self)
-        return Course.fetchRequest(predicate: predicate, sortDescriptors: Course.defaultSortDescriptors,
-                                   relationshipKeyPathsForPrefetching: ["state"])
-    }
-}

@@ -72,7 +72,7 @@ extension CourseResponse: Decodable {
 
 extension CourseResponse {
     @discardableResult
-    func coreDataObject(organization: Organization, in context: NSManagedObjectContext) throws -> Course {
+    func coreDataObject(organization: Organization, author: User? = nil, in context: NSManagedObjectContext) throws -> Course {
         let (course, _) = try Course.fetch(byId: id, orCreateIn: context)
         let beginSemester = try Semester.fetch(byId: beginSemesterId, in: context)
         let endSemester = try Semester.fetch(byId: endSemesterId, in: context)
@@ -87,6 +87,7 @@ extension CourseResponse {
         course.location = location
         course.lecturers = Set(lecturers)
         course.semesters = Set(semesters)
+        course.authors.formUnion([author].flatMap { $0 })
         return course
     }
 }

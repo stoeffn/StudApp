@@ -77,9 +77,14 @@ extension User {
         }
     }
 
-    public var authoredCoursesFetchRequest: NSFetchRequest<Course> {
-        let predicate = NSPredicate(format: "%@ IN authors", self)
-        return Course.fetchRequest(predicate: predicate, relationshipKeyPathsForPrefetching: ["state"])
+    public func authoredCoursesFetchRequest(in semester: Semester? = nil) -> NSFetchRequest<Course> {
+        var predicates = [NSPredicate(format: "%@ IN authors", self)]
+        if let semester = semester {
+            predicates.append(NSPredicate(format: "%@ in semesters", semester))
+        }
+        let predicate = NSCompoundPredicate(type: .and, subpredicates: predicates)
+        return Course.fetchRequest(predicate: predicate, sortDescriptors: Course.defaultSortDescriptors,
+                                   relationshipKeyPathsForPrefetching: ["state"])
     }
 }
 

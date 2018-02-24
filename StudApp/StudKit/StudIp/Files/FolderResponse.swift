@@ -76,9 +76,8 @@ extension FolderResponse {
         folder.size = -1
         folder.downloadCount = -1
         folder.summary = summary
-        let folders = try self.folders(parent: folder, course: course, in: context) ?? []
-        let documents = try self.documents(parent: folder, course: course, in: context) ?? []
-        folder.children = folder.children.union(folders).union(documents)
+        folder.children.formUnion(try folders(parent: folder, course: course, in: context) ?? [])
+        folder.children.formUnion(try documents(parent: folder, course: course, in: context) ?? [])
         return folder
     }
 

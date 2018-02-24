@@ -26,17 +26,16 @@ extension User {
         studIpService.api.requestCollection(.courses(forUserId: currentId)) { (result: Result<[CourseResponse]>) in
             let result = result.map { response -> [Course] in
                 guard let user = context.object(with: self.objectID) as? User else { fatalError() }
-                return try self.updateAuthoredCourses(user.authoredCoursesFetchRequest, with: response,
-                                                      organization: user.organization, in: context)
+                return try self.updateAuthoredCourses(user.authoredCoursesFetchRequest(), with: response, user: user, in: context)
             }
             completion(result)
         }
     }
 
     private func updateAuthoredCourses(_ existingObjects: NSFetchRequest<Course>, with response: [CourseResponse],
-                                       organization: Organization, in context: NSManagedObjectContext) throws -> [Course] {
+                                       user: User, in context: NSManagedObjectContext) throws -> [Course] {
         let courses = try Course.update(existingObjects, with: response, in: context) {
-            try $0.coreDataObject(organization: organization, in: context)
+            try $0.coreDataObject(organization: user.organization, author: user, in: context)
         }
 
         CSSearchableIndex.default().indexSearchableItems(courses.map { $0.searchableItem }) { _ in }
