@@ -2,11 +2,10 @@
 //  AppController.swift
 //  StudApp
 //
-//  Created by Steffen Ryll on 07.11.17.
-//  Copyright © 2017 Steffen Ryll. All rights reserved.
+//  Created by Steffen Ryll on 23.02.18.
+//  Copyright © 2018 Steffen Ryll. All rights reserved.
 //
 
-import SafariServices
 import StudKit
 import StudKitUI
 
@@ -19,41 +18,13 @@ final class AppController: UITabBarController {
         super.viewDidLoad()
 
         viewModel = AppViewModel()
-    }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        tabBar.items?[Tabs.downloadList.rawValue].title = "Downloads".localized
-        tabBar.items?[Tabs.courseList.rawValue].title = "Courses".localized
-
-        viewModel.updateCurrentUser()
+        view.backgroundColor = .white
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-        if !viewModel.isSignedIn {
-            performSegue(withRoute: .signIn(completion: signedIn))
-        }
-    }
-
-    // MARK: - Supporting User Activities
-
-    override func restoreUserActivityState(_ activity: NSUserActivity) {
-        switch activity.objectIdentifier?.entity {
-        case .file?:
-            selectedIndex = Tabs.downloadList.rawValue
-            downloadListController?.restoreUserActivityState(activity)
-        case .course?:
-            selectedIndex = Tabs.courseList.rawValue
-            courseListController?.restoreUserActivityState(activity)
-        default:
-            let title = "Something went wrong continuing your activity.".localized
-            let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
-            return present(alert, animated: true, completion: nil)
-        }
+        presentAppOrSignIn()
     }
 
     // MARK: - Navigation
@@ -62,78 +33,25 @@ final class AppController: UITabBarController {
         prepareForRoute(using: segue, sender: sender)
     }
 
-    // MARK: - User Interface
-
-    private enum Tabs: Int {
-        case courseList, downloadList
-    }
-
-    var downloadListController: DownloadListController? {
-        return viewControllers?
-            .flatMap { $0 as? UINavigationController }
-            .flatMap { $0.viewControllers.first }
-            .flatMap { $0 as? DownloadListController }
-            .first
-    }
-
-    var courseListController: CourseListController? {
-        return viewControllers?
-            .flatMap { $0 as? UISplitViewController }
-            .flatMap { $0.viewControllers.first }
-            .flatMap { $0 as? UINavigationController }
-            .flatMap { $0.viewControllers.first }
-            .flatMap { $0 as? CourseListController }
-            .first
-    }
-
-    // MARK: - User Interaction
-
     @IBAction
-    func userButtonTapped(_ sender: Any) {
-        func showAboutView(_: UIAlertAction) {
-            let route = Routes.about {
+    func signOut(with segue: UIStoryboardSegue) {
+        viewModel.signOut()
+    }
+
+    private func routeForSignIn() -> Routes {
+        return .signIn { result in
+            if result == .signedIn {
                 self.presentedViewController?.dismiss(animated: true, completion: nil)
+                self.presentAppOrSignIn()
             }
-            performSegue(withRoute: route)
-        }
-
-        func showHelpView(_: UIAlertAction) {
-            guard let url = App.Links.help else { return }
-            let controller = SFSafariViewController(url: url)
-            controller.preferredControlTintColor = UI.Colors.tint
-            present(controller, animated: true, completion: nil)
-        }
-
-        func showSettingsView(_: UIAlertAction) {
-            performSegue(withRoute: .settings(completion: presentedSettings))
-        }
-
-        guard let currentUser = User.current else { return }
-        let barButtonItem = sender as? UIBarButtonItem
-        let title = "Signed in as %@".localized(currentUser.nameComponents.formatted(style: .long))
-
-        let controller = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
-        controller.popoverPresentationController?.barButtonItem = barButtonItem
-        controller.addAction(UIAlertAction(title: "About".localized, style: .default, handler: showAboutView))
-        controller.addAction(UIAlertAction(title: "Help".localized, style: .default, handler: showHelpView))
-        controller.addAction(UIAlertAction(title: "Settings".localized, style: .default, handler: showSettingsView))
-        controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
-        present(controller, animated: true, completion: nil)
-    }
-
-    // MARK: - Completion Handlers
-
-    private func signedIn(result: SignInResult) {
-        if result == .signedIn {
-            presentedViewController?.dismiss(animated: true, completion: nil)
         }
     }
 
-    private func presentedSettings(result: SettingsResult) {
-        presentedViewController?.dismiss(animated: true) {
-            if result == .signedOut {
-                self.performSegue(withRoute: .signIn(completion: self.signedIn))
-            }
+    private func presentAppOrSignIn() {
+        if let user = User.current, viewModel.isSignedIn {
+            performSegue(withRoute: .app(user))
+        } else {
+            performSegue(withRoute: routeForSignIn())
         }
     }
 }

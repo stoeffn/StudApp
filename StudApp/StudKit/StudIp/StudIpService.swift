@@ -50,6 +50,8 @@ public class StudIpService {
                 return completion(result)
             }
 
+            User.current = result.value
+
             if #available(iOSApplicationExtension 11.0, *) {
                 NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
             }

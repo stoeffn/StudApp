@@ -18,7 +18,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewModel = SemesterListViewModel(fetchRequest: Semester.visibleStatesFetchRequest)
+        viewModel = SemesterListViewModel(organization: Organization())
         viewModel.delegate = self
         viewModel.fetch()
         _ = viewModel.map(courseListViewModel)
@@ -195,7 +195,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     private func courseListViewModel(for semester: Semester) -> CourseListViewModel {
         if let viewModel = courseListViewModels[semester.id] { return viewModel }
 
-        let viewModel = CourseListViewModel(semester: semester, respectsCollapsedState: true)
+        let viewModel = CourseListViewModel(user: User(), semester: semester, respectsCollapsedState: true)
         viewModel.delegate = self
         viewModel.fetch()
         viewModel.update()
@@ -278,7 +278,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     @IBAction
     func userButtonTapped(_ sender: Any) {
-        (tabBarController as? AppController)?.userButtonTapped(sender)
+        (tabBarController as? TabsController)?.userButtonTapped(sender)
     }
 
     @IBAction

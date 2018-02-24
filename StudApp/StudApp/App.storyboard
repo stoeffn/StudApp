@@ -1,25 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B8u-Ro-L8Q">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5Up-Rl-zcg">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Test Controller-->
+        <scene sceneID="CDF-lG-ie4">
+            <objects>
+                <viewController id="yx0-Ta-yJG" customClass="TestController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FcN-Sx-lP5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBz-en-5lr">
+                                <rect key="frame" x="16" y="20" width="193" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n1f-0k-uf5">
+                                <rect key="frame" x="16" y="49" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="Jnq-IY-AlA" kind="unwind" unwindAction="signOutWith:" id="eHD-dd-x2T"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Vao-ad-VuZ"/>
+                    </view>
+                    <connections>
+                        <outlet property="label" destination="DBz-en-5lr" id="PTf-al-IHY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="11s-cc-dWY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Jnq-IY-AlA" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-908" y="-833.43328335832086"/>
+        </scene>
         <!--App Controller-->
+        <scene sceneID="2es-kx-eOy">
+            <objects>
+                <tabBarController id="5Up-Rl-zcg" customClass="AppController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="X2S-6D-9hx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="2bU-cg-kHC" kind="presentation" identifier="signIn" id="Dax-cl-2xa"/>
+                        <segue destination="B8u-Ro-L8Q" kind="presentation" identifier="app2" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="j8U-m2-2YJ"/>
+                        <segue destination="yx0-Ta-yJG" kind="presentation" identifier="app" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="V6v-Us-54w"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rjs-0s-Fex" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-908" y="-102"/>
+        </scene>
+        <!--Tabs Controller-->
         <scene sceneID="KQ9-7f-jGt">
             <objects>
-                <tabBarController storyboardIdentifier="Main" useStoryboardIdentifierAsRestorationIdentifier="YES" id="B8u-Ro-L8Q" customClass="AppController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="Main" useStoryboardIdentifierAsRestorationIdentifier="YES" id="B8u-Ro-L8Q" customClass="TabsController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fdR-xS-tZE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="2bU-cg-kHC" kind="presentation" identifier="signIn" id="g2F-HD-as5"/>
                         <segue destination="P8g-Nk-6wL" kind="presentation" identifier="about" modalPresentationStyle="formSheet" id="yVy-q8-doc"/>
                         <segue destination="zcl-3C-yl6" kind="presentation" identifier="settings" modalPresentationStyle="formSheet" id="sMd-bX-1dS"/>
                         <segue destination="AZc-n8-OsC" kind="relationship" relationship="viewControllers" id="g3S-Ak-cad"/>
@@ -36,17 +91,17 @@
                 <viewControllerPlaceholder storyboardName="SignIn" bundleIdentifier="SteffenRyll.StudKitUI" id="2bU-cg-kHC" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fcI-cX-vXc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="594" y="-189"/>
+            <point key="canvasLocation" x="-908" y="375"/>
         </scene>
         <!--Courses-->
         <scene sceneID="gB9-sw-zWL">
             <objects>
                 <viewControllerPlaceholder storyboardName="Courses" id="AZc-n8-OsC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="qZI-ai-akg"/>
+                    <tabBarItem key="tabBarItem" title="Courses" image="CoursesTabBarGlyph" landscapeImage="CoursesLandscapeTabBarGlyph" largeContentSizeImage="CoursesGlyph" id="qZI-ai-akg"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oxn-vo-iGe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="603" y="-148"/>
+            <point key="canvasLocation" x="-197" y="376"/>
         </scene>
         <!--About-->
         <scene sceneID="eSg-ig-br1">
@@ -54,17 +109,17 @@
                 <viewControllerPlaceholder storyboardIdentifier="About" storyboardName="About" bundleIdentifier="SteffenRyll.StudKitUI" id="P8g-Nk-6wL" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zXO-Dm-wlW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="596" y="-60"/>
+            <point key="canvasLocation" x="566" y="-143"/>
         </scene>
         <!--Downloads-->
         <scene sceneID="xGE-gW-7nZ">
             <objects>
                 <viewControllerPlaceholder storyboardName="Downloads" id="KYP-jD-J4O" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="5ug-Se-Jql"/>
+                    <tabBarItem key="tabBarItem" systemItem="downloads" id="5ug-Se-Jql"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pTP-vX-G4w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="617" y="-104"/>
+            <point key="canvasLocation" x="57" y="376"/>
         </scene>
         <!--Settings-->
         <scene sceneID="eg3-ct-J0P">
@@ -72,8 +127,13 @@
                 <viewControllerPlaceholder storyboardName="Settings" id="zcl-3C-yl6" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W6r-8b-C2K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="604" y="-15"/>
+            <point key="canvasLocation" x="577" y="-61"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="CoursesGlyph" width="512" height="512"/>
+        <image name="CoursesLandscapeTabBarGlyph" width="18" height="18"/>
+        <image name="CoursesTabBarGlyph" width="25" height="25"/>
+    </resources>
     <color key="tintColor" red="0.32941176470588235" green="0.50588235294117645" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

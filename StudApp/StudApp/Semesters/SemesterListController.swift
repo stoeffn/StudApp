@@ -16,7 +16,7 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewModel = SemesterListViewModel()
+        viewModel = SemesterListViewModel(organization: Organization())
         viewModel.delegate = self
         viewModel.fetch()
 

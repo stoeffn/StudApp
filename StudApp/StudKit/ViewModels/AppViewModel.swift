@@ -31,4 +31,8 @@ public final class AppViewModel {
             completion?(result)
         }
     }
+
+    public func signOut() {
+        studIpService.signOut()
+    }
 }

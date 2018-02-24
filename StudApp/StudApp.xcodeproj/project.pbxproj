@@ -183,6 +183,7 @@
 		248C0271202E6DD8004CB8C9 /* Store.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248C026E202E6DD8004CB8C9 /* Store.storyboard */; };
 		248C0272202E6DD8004CB8C9 /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C026F202E6DD8004CB8C9 /* StoreController.swift */; };
 		248C0273202E6DD8004CB8C9 /* DisclaimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C0270202E6DD8004CB8C9 /* DisclaimerController.swift */; };
+		2490EBE52040B813004EA6E9 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490EBE42040B813004EA6E9 /* AppController.swift */; };
 		249DD6DE1FC8A3D4006DA46E /* User+StudIp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249DD6DD1FC8A3D4006DA46E /* User+StudIp.swift */; };
 		249DD6FB1FC8B896006DA46E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 249DD6FD1FC8B896006DA46E /* Localizable.strings */; };
 		24A5BEEB2038C72A00F5F531 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
@@ -199,6 +200,7 @@
 		24ABFC4A1FD714EF00CD1646 /* CourseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABFC491FD714EF00CD1646 /* CourseListController.swift */; };
 		24B091EB2036EC6A00A5037A /* DocumentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B091EA2036EC6A00A5037A /* DocumentResponse.swift */; };
 		24B091ED2036EC7500A5037A /* FolderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B091EC2036EC7500A5037A /* FolderResponse.swift */; };
+		24B3957B20416E0E00CEC1FF /* TestController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3957A20416E0E00CEC1FF /* TestController.swift */; };
 		24BF7B611FF320970013BA23 /* DateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF7B601FF320970013BA23 /* DateHeader.swift */; };
 		24BF7B671FF673650013BA23 /* FetchedResultsControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF7B661FF673650013BA23 /* FetchedResultsControllerDelegate.swift */; };
 		24BF7B691FF673BF0013BA23 /* FetchedResultsControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF7B681FF673BF0013BA23 /* FetchedResultsControllerDataSource.swift */; };
@@ -206,7 +208,7 @@
 		24BF7B6D1FF6741E0013BA23 /* FetchedResultsControllerDataSourceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF7B6C1FF6741E0013BA23 /* FetchedResultsControllerDataSourceSection.swift */; };
 		24CA6FEA203F503700171843 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA6FE9203F503700171843 /* Organization.swift */; };
 		24CA6FEC203F614200171843 /* Organization+CloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA6FEB203F614200171843 /* Organization+CloudKit.swift */; };
-		24CFB5D11FB24E2500F30DEA /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D01FB24E2500F30DEA /* AppController.swift */; };
+		24CFB5D11FB24E2500F30DEA /* TabsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D01FB24E2500F30DEA /* TabsController.swift */; };
 		24D178EB1FB606B200EC5F4A /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D178EA1FB606B200EC5F4A /* AppViewModel.swift */; };
 		24D2DA1E1FD03B98006FC700 /* StoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D2DA1D1FD03B98006FC700 /* StoreService.swift */; };
 		24D2DA201FD04431006FC700 /* StoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D2DA1F1FD04431006FC700 /* StoreViewModel.swift */; };
@@ -539,6 +541,7 @@
 		248C0270202E6DD8004CB8C9 /* DisclaimerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisclaimerController.swift; sourceTree = "<group>"; };
 		248C0275202F9E3A004CB8C9 /* ConfettiController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiController.swift; sourceTree = "<group>"; };
 		248C0277202F9F5B004CB8C9 /* Confetti.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Confetti.storyboard; sourceTree = "<group>"; };
+		2490EBE42040B813004EA6E9 /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 		249DD6DD1FC8A3D4006DA46E /* User+StudIp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+StudIp.swift"; sourceTree = "<group>"; };
 		249DD6FC1FC8B896006DA46E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		24A5BEEC2038D44D00F5F531 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -553,6 +556,7 @@
 		24B091F02036EE2200A5037A /* DocumentResponseTests+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DocumentResponseTests+Data.swift"; sourceTree = "<group>"; };
 		24B091F22036EFE400A5037A /* FolderResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderResponseTests.swift; sourceTree = "<group>"; };
 		24B091F42036EFEF00A5037A /* FolderResponseTests+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FolderResponseTests+Data.swift"; sourceTree = "<group>"; };
+		24B3957A20416E0E00CEC1FF /* TestController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestController.swift; sourceTree = "<group>"; };
 		24BF7B601FF320970013BA23 /* DateHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHeader.swift; sourceTree = "<group>"; };
 		24BF7B621FF325470013BA23 /* BadgeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeLabel.swift; sourceTree = "<group>"; };
 		24BF7B641FF661AF0013BA23 /* FetchedResultsControllerDelegateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerDelegateHelper.swift; sourceTree = "<group>"; };
@@ -562,7 +566,7 @@
 		24BF7B6C1FF6741E0013BA23 /* FetchedResultsControllerDataSourceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerDataSourceSection.swift; sourceTree = "<group>"; };
 		24CA6FE9203F503700171843 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		24CA6FEB203F614200171843 /* Organization+CloudKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Organization+CloudKit.swift"; sourceTree = "<group>"; };
-		24CFB5D01FB24E2500F30DEA /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
+		24CFB5D01FB24E2500F30DEA /* TabsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsController.swift; sourceTree = "<group>"; };
 		24CFB5D31FB24F4C00F30DEA /* Routable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
 		24CFB5D41FB24F4C00F30DEA /* Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 		24CFB5D51FB24F4D00F30DEA /* UIViewController+Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Routes.swift"; sourceTree = "<group>"; };
@@ -935,9 +939,11 @@
 				248C0258202E58A0004CB8C9 /* Settings */,
 				247793581FC8901E00090F4D /* Semesters */,
 				248C026D202E6DD8004CB8C9 /* Store */,
-				24CFB5D01FB24E2500F30DEA /* AppController.swift */,
 				2448D40C1FA8DA2400DAB97E /* AppDelegate.swift */,
+				2490EBE42040B813004EA6E9 /* AppController.swift */,
 				2450AC761FDC6973004F1267 /* CustomMenuItems.swift */,
+				24B3957A20416E0E00CEC1FF /* TestController.swift */,
+				24CFB5D01FB24E2500F30DEA /* TabsController.swift */,
 				24E60B611FC8C723000EDD2A /* App.storyboard */,
 				243CC2CA1FE0390200FE7376 /* LaunchScreen.storyboard */,
 				24FE8A0F1FB78DBF00A4A3C6 /* StudApp.entitlements */,
@@ -2307,9 +2313,11 @@
 				24FD786E1FBF81EA0072F860 /* DownloadListController.swift in Sources */,
 				248C0272202E6DD8004CB8C9 /* StoreController.swift in Sources */,
 				242B03701FD7464C00863B08 /* ColorCell.swift in Sources */,
+				2490EBE52040B813004EA6E9 /* AppController.swift in Sources */,
+				24B3957B20416E0E00CEC1FF /* TestController.swift in Sources */,
 				243CC2C61FDF464800FE7376 /* EmptyCourseController.swift in Sources */,
 				248C0253202E5353004CB8C9 /* AnnouncementController.swift in Sources */,
-				24CFB5D11FB24E2500F30DEA /* AppController.swift in Sources */,
+				24CFB5D11FB24E2500F30DEA /* TabsController.swift in Sources */,
 				244EB5E91FEEEFEB006BE633 /* CourseListSplitController.swift in Sources */,
 				24E525C31FEDB276000FB71A /* CourseHeader.swift in Sources */,
 				242B036A1FD745E800863B08 /* ColorPickerController.swift in Sources */,
