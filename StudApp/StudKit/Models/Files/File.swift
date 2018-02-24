@@ -114,12 +114,6 @@ public extension File {
         return typeIdentifier == kUTTypeFolder as String
     }
 
-    // TODO: Provide a lightweight alternative for retrieving icons
-    public func documentController(completion: @escaping (UIDocumentInteractionController) -> Void) {
-        let cacheService = ServiceContainer.default[CacheService.self]
-        return cacheService.documentInteractionController(forUrl: localUrl(in: .fileProvider), name: title, completion: completion)
-    }
-
     /// Whether this file is available for download, ignoring network connectivity conditions. May also be `true` for downloaded
     /// files if a more recent version is available.
     public var isDownloadable: Bool {

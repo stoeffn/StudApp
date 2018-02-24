@@ -101,7 +101,9 @@ final class FileCell: UITableViewCell {
 
     @objc
     func share(_: Any?) {
-        file.documentController { $0.presentOptionsMenu(from: self.frame, in: self, animated: true) }
+        let controller = UIDocumentInteractionController(url: file.localUrl(in: .fileProvider))
+        controller.name = file.title
+        controller.presentOptionsMenu(from: frame, in: self, animated: true)
     }
 
     @objc

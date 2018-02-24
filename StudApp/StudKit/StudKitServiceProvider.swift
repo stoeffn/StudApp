@@ -63,7 +63,6 @@ public class StudKitServiceProvider: ServiceProvider {
         container[ContextService.self] = provideContextService()
         container[KeychainService.self] = KeychainService()
         container[ReachabilityService.self] = provideReachabilityService()
-        container[CacheService.self] = CacheService()
         container[StoreService.self] = provideStoreService()
         container[StorageService.self] = StorageService()
         container[CoreDataService.self] = provideCoreDataService()

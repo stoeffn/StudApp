@@ -11,27 +11,24 @@ import StudKit
 public final class FileIconService {
     private lazy var iconCache = NSCache<NSURL, UIImage>()
 
-    public func icon(for url: URL, completion: @escaping (UIImage) -> Void) {
-        guard !url.hasDirectoryPath else { return completion(#imageLiteral(resourceName: "FolderIcon")) }
+    public func icon(for file: File, completion: @escaping (UIImage) -> Void) {
+        guard !file.isFolder else { return completion(#imageLiteral(resourceName: "FolderIcon")) }
 
-        let fileName = URL(fileURLWithPath: url.lastPathComponent)
+        let fileNameExtension = URL(string: file.name)?.pathExtension
+        let dummyFileName = URL(fileURLWithPath: "dummy.\(fileNameExtension ?? "")")
 
-        if let icon = iconCache.object(forKey: fileName as NSURL) { return completion(icon) }
+        if let icon = iconCache.object(forKey: dummyFileName as NSURL) { return completion(icon) }
 
         DispatchQueue.global(qos: .background).async {
-            let controller = UIDocumentInteractionController(url: fileName)
-            controller.name = fileName.absoluteString
+            let controller = UIDocumentInteractionController(url: dummyFileName)
+            controller.name = dummyFileName.absoluteString
 
             guard let icon = controller.icons.first else { fatalError() }
 
             DispatchQueue.main.async {
-                self.iconCache.setObject(icon, forKey: fileName as NSURL)
+                self.iconCache.setObject(icon, forKey: dummyFileName as NSURL)
                 completion(icon)
             }
         }
-    }
-
-    public func icon(for file: File, completion: @escaping (UIImage) -> Void) {
-        icon(for: file.localUrl(in: .appGroup), completion: completion)
     }
 }
