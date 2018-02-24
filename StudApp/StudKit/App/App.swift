@@ -9,37 +9,37 @@
 /// Provides constants regarding app information.
 public enum App {
 
-    // MARK: - Links
+    // MARK: - Urls
 
-    public enum Links {
+    public enum Urls {
 
         // MARK: Website
 
-        public static let website = URL(string: "https://studapp.stoeffn.de/")
+        public static let website = URL(string: "https://studapp.stoeffn.de/")!
 
-        public static let help = URL(string: "https://studapp.stoeffn.de/help")
+        public static let help = URL(string: "https://studapp.stoeffn.de/help")!
 
-        public static let privacyPolicy = URL(string: "https://studapp.stoeffn.de/privacy")
+        public static let privacyPolicy = URL(string: "https://studapp.stoeffn.de/privacy")!
 
-        public static let termsOfUse = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")
+        public static let termsOfUse = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!
 
         // MARK: iTunes and App Store
 
         /// App Store URL.
-        public static let appStore = URL(string: "https://itunes.apple.com/de/app/\(App.id)")
+        public static let appStore = URL(string: "https://itunes.apple.com/de/app/\(App.id)")!
 
         /// URL of the app's App Store review page.
-        public static let review = URL(string: "itms-apps://itunes.apple.com/de/app/\(App.id)?action=write-review")
+        public static let review = URL(string: "itms-apps://itunes.apple.com/de/app/\(App.id)?action=write-review")!
 
         public static let manageSubscriptions
-            = URL(string: "https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/manageSubscriptions")
+            = URL(string: "https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/manageSubscriptions")!
 
-        public static let store = URL(string: "studapp://")
+        public static let store = URL(string: "studapp://")!
 
         // MARK: Disclaimers
 
         public static let autorenewingSubscriptionDisclaimer
-            = URL(string: "\(App.scheme)://disclaimers/auto-renewing-subscription")
+            = URL(string: "\(App.scheme)://disclaimers/auto-renewing-subscription")!
 
         // MARK: Callbacks
 
@@ -47,7 +47,7 @@ public enum App {
         ///
         /// This URL automatically redirects to `studapp://sign-in` including all query parameters. Unfortunately, this
         /// redirection is neccessary because Stud.IP does not support custom schemes.
-        public static let signInCallback = URL(string: "https://studapp.stoeffn.de/sign-in")
+        public static let signInCallback = URL(string: "https://studapp.stoeffn.de/sign-in")!
     }
 
     // MARK: - Identifiers
@@ -64,10 +64,10 @@ public enum App {
     // MARK: - Names
 
     /// Display name of the application.
-    public static let name = Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String
+    public static let name = Bundle.main.infoDictionary!["CFBundleDisplayName"] as! String
 
     /// Human-readable version name for this application.
-    public static let versionName = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    public static let versionName = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
 
     /// The application's author.
     public static let authorName = "Steffen Ryll"

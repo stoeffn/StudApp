@@ -96,7 +96,7 @@ public final class SignInViewModel: NSObject {
                 return self.error = result.error ?? Errors.invalidConsumerKey
             }
 
-            let oAuth1 = OAuth1<StudIpOAuth1Routes>(callbackUrl: App.Links.signInCallback,
+            let oAuth1 = OAuth1<StudIpOAuth1Routes>(callbackUrl: App.Urls.signInCallback,
                                                     consumerKey: credentials.consumerKey, consumerSecret: credentials.consumerSecret)
             oAuth1.baseUrl = self.organization.apiUrl
             self.oAuth1 = oAuth1

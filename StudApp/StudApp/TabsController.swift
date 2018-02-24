@@ -118,9 +118,7 @@ final class TabsController: UITabBarController, Routable {
     }
 
     private func controllerForHelp() -> UIViewController? {
-        guard let url = App.Links.help else { return nil }
-
-        let controller = SFSafariViewController(url: url)
+        let controller = SFSafariViewController(url: App.Urls.help)
         controller.preferredControlTintColor = UI.Colors.tint
         return controller
     }

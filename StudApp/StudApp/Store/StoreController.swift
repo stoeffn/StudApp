@@ -111,9 +111,9 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
             .foregroundColor: UI.Colors.greyText,
         ])
 
-        attributedText.addLink(for: "auto-renewing subscription".localized, to: App.Links.autorenewingSubscriptionDisclaimer)
-        attributedText.addLink(for: "Privacy Policy".localized, to: App.Links.privacyPolicy)
-        attributedText.addLink(for: "Terms of Use".localized, to: App.Links.termsOfUse)
+        attributedText.addLink(for: "auto-renewing subscription".localized, to: App.Urls.autorenewingSubscriptionDisclaimer)
+        attributedText.addLink(for: "Privacy Policy".localized, to: App.Urls.privacyPolicy)
+        attributedText.addLink(for: "Terms of Use".localized, to: App.Urls.termsOfUse)
 
         return attributedText
     }()
@@ -189,8 +189,7 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
         }
 
         func showHelpView(_: UIAlertAction) {
-            guard let url = App.Links.help else { return }
-            let controller = SFSafariViewController(url: url)
+            let controller = SFSafariViewController(url: App.Urls.help)
             controller.preferredControlTintColor = UI.Colors.tint
             present(controller, animated: true, completion: nil)
         }
@@ -239,7 +238,7 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
 
     public func textView(_: UITextView, shouldInteractWith url: URL, in _: NSRange,
                          interaction _: UITextItemInteraction) -> Bool {
-        if url == App.Links.autorenewingSubscriptionDisclaimer {
+        if url == App.Urls.autorenewingSubscriptionDisclaimer {
             performSegue(withRoute: .disclaimer(with: autoRenewingSubscriptionDisclaimerText))
             return false
         }

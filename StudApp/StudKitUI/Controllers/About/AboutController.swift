@@ -24,9 +24,7 @@ final class AboutController: UITableViewController, Routable {
 
         tableView.register(ThanksNoteCell.self, forCellReuseIdentifier: ThanksNoteCell.typeIdentifier)
 
-        if let appName = App.name, let appVersionName = App.versionName {
-            titleLabel.text = "\(appName) \(appVersionName)"
-        }
+        titleLabel.text = "\(App.name) \(App.versionName)"
         subtitleLabel.text = "by %@".localized(App.authorName)
 
         websiteCell.textLabel?.text = "Website".localized
@@ -70,9 +68,7 @@ final class AboutController: UITableViewController, Routable {
 
     @IBAction
     func actionButtonTapped(_: Any) {
-        guard let appUrl = App.Links.appStore else { return }
-
-        let controller = UIActivityViewController(activityItems: [appUrl], applicationActivities: nil)
+        let controller = UIActivityViewController(activityItems: [App.Urls.appStore], applicationActivities: nil)
         controller.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         present(controller, animated: true, completion: nil)
     }
@@ -151,9 +147,9 @@ final class AboutController: UITableViewController, Routable {
 
         switch Sections(rawValue: indexPath.section) {
         case .links? where cell === websiteCell:
-            openInSafari(App.Links.website)
+            openInSafari(App.Urls.website)
         case .links? where cell === privacyCell:
-            openInSafari(App.Links.privacyPolicy)
+            openInSafari(App.Urls.privacyPolicy)
         case .feedback? where cell === sendFeedbackCell:
             openFeedbackMailComposer()
             tableView.deselectRow(at: indexPath, animated: true)
@@ -200,13 +196,13 @@ final class AboutController: UITableViewController, Routable {
 
         switch Sections(rawValue: indexPath.section) {
         case .links? where cell === websiteCell:
-            UIPasteboard.general.url = App.Links.website
+            UIPasteboard.general.url = App.Urls.website
         case .links? where cell === privacyCell:
-            UIPasteboard.general.url = App.Links.privacyPolicy
+            UIPasteboard.general.url = App.Urls.privacyPolicy
         case .feedback? where cell === sendFeedbackCell:
             UIPasteboard.general.string = App.feedbackMailAddress
         case .feedback? where cell === rateAppCell:
-            UIPasteboard.general.url = App.Links.review
+            UIPasteboard.general.url = App.Urls.review
         case .thanks?:
             UIPasteboard.general.url = viewModel[rowAt: indexPath.row].url
         default:
@@ -234,7 +230,7 @@ final class AboutController: UITableViewController, Routable {
         let mailController = MFMailComposeViewController()
         mailController.mailComposeDelegate = self
         mailController.setToRecipients([App.feedbackMailAddress])
-        mailController.setSubject("Feedback for %@".localized(App.name ?? "App".localized))
+        mailController.setSubject("Feedback for %@".localized(App.name))
 
         if MFMailComposeViewController.canSendMail() {
             present(mailController, animated: true, completion: nil)
@@ -242,9 +238,7 @@ final class AboutController: UITableViewController, Routable {
     }
 
     private func openAppStoreReviewPage() {
-        guard let reviewUrl = App.Links.review else { return }
-
-        contextService.openUrl?(reviewUrl) { success in
+        contextService.openUrl?(App.Urls.review) { success in
             guard !success else { return }
 
             let title = "Could not launch App Store".localized
