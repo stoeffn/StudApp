@@ -64,7 +64,7 @@
 			<key>UIApplicationShortcutItemType</key>
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER).PresentCourses</string>
 			<key>UIApplicationShortcutItemIconFile</key>
-			<string></string>
+			<string>CoursesQuickActionGlyph</string>
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemTitle</key>
@@ -72,7 +72,7 @@
 			<key>UIApplicationShortcutItemType</key>
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER).PresentDownloads</string>
 			<key>UIApplicationShortcutItemIconFile</key>
-			<string></string>
+			<string>DownloadsQuickActionGlyph</string>
 		</dict>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
