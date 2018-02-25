@@ -52,6 +52,8 @@ public final class Organization: NSManagedObject, CDCreatable, CDIdentifiable, C
 
     @NSManaged public var iconThumbnailData: Data?
 
+    @NSManaged public var routesAvailabilityData: Data?
+
     // MARK: - Sorting
 
     static let defaultSortDescriptors = [

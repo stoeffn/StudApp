@@ -109,6 +109,7 @@
         <attribute name="iconData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="iconThumbnailData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="id" attributeType="String" minValueString="1" syncable="YES"/>
+        <attribute name="routesAvailabilityData" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="announcements" toMany="YES" deletionRule="Cascade" destinationEntity="Announcement" inverseName="organization" inverseEntity="Announcement" syncable="YES"/>
         <relationship name="courses" toMany="YES" deletionRule="Cascade" destinationEntity="Course" inverseName="organization" inverseEntity="Course" syncable="YES"/>
@@ -176,7 +177,7 @@
         <element name="Event" positionX="-8703" positionY="-2070" width="128" height="195"/>
         <element name="File" positionX="-8381" positionY="-1971" width="128" height="270"/>
         <element name="FileState" positionX="-8199" positionY="-1836" width="128" height="135"/>
-        <element name="Organization" positionX="-8694" positionY="-2061" width="128" height="210"/>
+        <element name="Organization" positionX="-8694" positionY="-2061" width="128" height="225"/>
         <element name="Semester" positionX="-8748" positionY="-2188" width="128" height="195"/>
         <element name="SemesterState" positionX="-8910" positionY="-2121" width="128" height="150"/>
         <element name="User" positionX="-8748" positionY="-1924" width="128" height="240"/>
