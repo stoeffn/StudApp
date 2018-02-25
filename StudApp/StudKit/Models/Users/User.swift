@@ -134,6 +134,6 @@ public extension User {
 
 // MARK: - Notification
 
-extension Notification.Name {
-    static let currentUserDidChange = Notification.Name(rawValue: "currentUserDidChange")
+public extension Notification.Name {
+    public static let currentUserDidChange = Notification.Name(rawValue: "currentUserDidChange")
 }

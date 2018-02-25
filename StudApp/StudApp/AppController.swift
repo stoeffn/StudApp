@@ -18,14 +18,16 @@ final class AppController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        viewModel = AppViewModel()
+        NotificationCenter.default.addObserver(self, selector: #selector(currentUserDidChange(notification:)),
+                                               name: .currentUserDidChange, object: nil)
 
         view.backgroundColor = .white
+
+        viewModel = AppViewModel()
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        courseListController?.prepareDependencies(for: .courseList(for: User.current))
-        downloadListController?.prepareDependencies(for: .downloadList(for: User.current))
+        prepareChildContents(for: User.current)
 
         super.viewWillAppear(animated)
 
@@ -35,10 +37,7 @@ final class AppController: UITabBarController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-        if !viewModel.isSignedIn {
-            performSegue(withRoute: .signIn)
-        }
+        presentSignInIfNeeded()
     }
 
     // MARK: - Supporting User Activities
@@ -66,15 +65,24 @@ final class AppController: UITabBarController {
     }
 
     @IBAction
-    func unwindToApp(with _: UIStoryboardSegue) {
-        if !viewModel.isSignedIn {
-            performSegue(withRoute: .signIn)
+    func unwindToApp(with segue: UIStoryboardSegue) {}
+
+    @IBAction
+    func unwindToAppAndSignOut(with segue: UIStoryboardSegue) {
+        (segue as? UIStoryboardSegueWithCompletion)?.completion = {
+            self.viewModel.signOut()
         }
     }
 
-    @IBAction
-    func unwindToAppAndSignOut(with _: UIStoryboardSegue) {
-        viewModel.signOut()
+    func prepareChildContents(for user: User?) {
+        courseListController?.prepareDependencies(for: .courseList(for: user))
+        downloadListController?.prepareDependencies(for: .downloadList(for: user))
+    }
+
+    func presentSignInIfNeeded() {
+        if !viewModel.isSignedIn && presentedViewController == nil {
+            performSegue(withRoute: .signIn)
+        }
     }
 
     // MARK: - User Interface
@@ -136,5 +144,13 @@ final class AppController: UITabBarController {
     @IBAction
     func userButtonTapped(_ sender: Any) {
         present(controllerForMore(at: sender as? UIBarButtonItem), animated: true, completion: nil)
+    }
+
+    // MARK: - Notifications
+
+    @objc
+    private func currentUserDidChange(notification: Notification) {
+        prepareChildContents(for: User.current)
+        presentSignInIfNeeded()
     }
 }

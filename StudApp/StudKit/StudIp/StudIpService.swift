@@ -65,11 +65,12 @@ public class StudIpService {
 
     /// Removes the default credential used for authentication, replaces it with an empty credential, and clears the database.
     func signOut() {
-        User.current = nil
+        try? (api.authorizing as? PersistableApiAuthorizing)?.removeCredentials()
 
         api.baseUrl = nil
+        api.authorizing = nil
         api.removeLastRouteAccesses()
-        try? (api.authorizing as? PersistableApiAuthorizing)?.removeCredentials()
+        User.current = nil
 
         let coreDataService = ServiceContainer.default[CoreDataService.self]
         try? coreDataService.removeAllObjects(in: coreDataService.viewContext)

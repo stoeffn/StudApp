@@ -101,7 +101,7 @@
                         <outlet property="downloadsCell" destination="Og1-kj-hFK" id="TSg-zx-ipc"/>
                         <outlet property="removeAllDownloadsCell" destination="rOA-iJ-jk4" id="2GT-N4-qSX"/>
                         <outlet property="signOutCell" destination="jfr-di-olq" id="0Zk-vc-Mir"/>
-                        <segue destination="ck3-5K-MO2" kind="unwind" identifier="unwindToAppAndSignOut" unwindAction="unwindToAppAndSignOutWith:" id="j54-3z-0dd"/>
+                        <segue destination="ck3-5K-MO2" kind="unwind" identifier="unwindToAppAndSignOut" customClass="UIStoryboardSegueWithCompletion" customModule="StudKitUI" unwindAction="unwindToAppAndSignOutWith:" id="j54-3z-0dd"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9w0-hN-QFg" userLabel="First Responder" sceneMemberID="firstResponder"/>

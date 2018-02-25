@@ -50,8 +50,12 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     func prepareDependencies(for route: Routes) {
         guard case let .downloadList(optionalUser) = route else { fatalError() }
 
-        defer { tableView.reloadData() }
-        guard let user = optionalUser else { return }
+        defer {
+            tableView.reloadData()
+            updateEmptyView()
+        }
+
+        guard let user = optionalUser else { return viewModel = nil }
 
         viewModel = DownloadListViewModel(user: user)
         viewModel?.delegate = self

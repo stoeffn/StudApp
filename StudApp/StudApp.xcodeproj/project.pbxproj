@@ -193,6 +193,7 @@
 		24A5BEF12038D47100F5F531 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A5BEEC2038D44D00F5F531 /* CoreData.framework */; };
 		24A6C14B1FD75A0A004BBEA5 /* StudKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24A6C1491FD75A0A004BBEA5 /* StudKit.xcdatamodeld */; };
 		24A6C14D1FD75C56004BBEA5 /* ColorPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24A6C14C1FD75C56004BBEA5 /* ColorPicker.storyboard */; };
+		24A766492042DB8B00127BBA /* UIStoryboardSegueWithCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A766482042DB8B00127BBA /* UIStoryboardSegueWithCompletion.swift */; };
 		24A8945520421194005B5640 /* StudKitUIServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A8945420421194005B5640 /* StudKitUIServiceProvider.swift */; };
 		24A8945920421206005B5640 /* FileIconService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A8945820421206005B5640 /* FileIconService.swift */; };
 		24A8EDDC1FCCBA58007C1CCF /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
@@ -545,6 +546,7 @@
 		24A5BEEC2038D44D00F5F531 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		24A6C14A1FD75A0A004BBEA5 /* StudKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = StudKit.xcdatamodel; sourceTree = "<group>"; };
 		24A6C14C1FD75C56004BBEA5 /* ColorPicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ColorPicker.storyboard; sourceTree = "<group>"; };
+		24A766482042DB8B00127BBA /* UIStoryboardSegueWithCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardSegueWithCompletion.swift; sourceTree = "<group>"; };
 		24A8945420421194005B5640 /* StudKitUIServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudKitUIServiceProvider.swift; sourceTree = "<group>"; };
 		24A8945820421206005B5640 /* FileIconService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileIconService.swift; sourceTree = "<group>"; };
 		24A8EDDD1FCCBC93007C1CCF /* ContextService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextService.swift; sourceTree = "<group>"; };
@@ -788,6 +790,7 @@
 				24830AA81FD9F324006A1927 /* UITableViewCell+Utils.swift */,
 				24EDDBD420407A9A0034985B /* UITableViewController+DataSourceSectionDelegate.swift */,
 				24390EEC2038A0060064E49A /* UITableViewController+DataSourceDelegate.swift */,
+				24A766482042DB8B00127BBA /* UIStoryboardSegueWithCompletion.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -2533,6 +2536,7 @@
 				247CC2B4203898350067207B /* BorderlessNavigationController.swift in Sources */,
 				247CC2A7203898010067207B /* ActionCell.swift in Sources */,
 				247CC2A3203897F10067207B /* UINavigationBar+Utils.swift in Sources */,
+				24A766492042DB8B00127BBA /* UIStoryboardSegueWithCompletion.swift in Sources */,
 				247CC2B22038982F0067207B /* VerificationController.swift in Sources */,
 				24A8945920421206005B5640 /* FileIconService.swift in Sources */,
 				24390EED2038A0060064E49A /* UITableViewController+DataSourceDelegate.swift in Sources */,

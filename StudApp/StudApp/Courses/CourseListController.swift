@@ -33,7 +33,9 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
         tableView.visibleCells.forEach { $0.setDisclosureIndicatorHidden(for: splitViewController) }
+        updateEmptyView()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -51,8 +53,15 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         guard case let .courseList(for: optionalUser) = route else { fatalError() }
         self.user = optionalUser
 
-        defer { tableView.reloadData() }
-        guard let user = optionalUser else { return }
+        defer {
+            tableView.reloadData()
+            updateEmptyView()
+        }
+
+        guard let user = optionalUser else {
+            courseListViewModels = [:]
+            return viewModel = nil
+        }
 
         viewModel = SemesterListViewModel(organization: user.organization)
         viewModel?.delegate = self
