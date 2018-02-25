@@ -44,14 +44,30 @@ public class StudIpService {
         api.baseUrl = organization.apiUrl
         api.authorizing = authorizing
 
+        let group = DispatchGroup()
+
+        var discoveryResult: Result<ApiRoutesAvailablity>!
+        group.enter()
+        organization.updateDiscovery(in: coreDataService.viewContext) { result in
+            discoveryResult = result
+            group.leave()
+        }
+
+        var userResult: Result<User>!
+        group.enter()
         User.updateCurrent(organization: organization, in: coreDataService.viewContext) { result in
-            guard result.isSuccess else {
+            userResult = result
+            group.leave()
+        }
+
+        group.notify(queue: .main) {
+            guard discoveryResult.isSuccess, let user = userResult.value else {
                 self.signOut()
-                return completion(result)
+                return completion(userResult)
             }
 
-            User.current = result.value
-            persistableApiAuthorizing?.service = result.value?.objectIdentifier.rawValue
+            User.current = user
+            persistableApiAuthorizing?.service = user.objectIdentifier.rawValue
             try? persistableApiAuthorizing?.persistCredentials()
             try? coreDataService.viewContext.saveAndWaitWhenChanged()
 
@@ -59,7 +75,7 @@ public class StudIpService {
                 NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
             }
 
-            completion(result)
+            completion(userResult)
         }
     }
 
