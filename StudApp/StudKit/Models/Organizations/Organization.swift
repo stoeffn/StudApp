@@ -54,6 +54,12 @@ public final class Organization: NSManagedObject, CDCreatable, CDIdentifiable, C
 
     @NSManaged public var routesAvailabilityData: Data?
 
+    var routesAvailability: ApiRoutesAvailablity? {
+        guard let data = routesAvailabilityData else { return nil }
+        let decoder = ServiceContainer.default[JSONDecoder.self]
+        return try? decoder.decode(ApiRoutesAvailablity.self, from: data)
+    }
+
     // MARK: - Sorting
 
     static let defaultSortDescriptors = [

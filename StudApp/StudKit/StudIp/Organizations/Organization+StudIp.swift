@@ -51,4 +51,9 @@ extension Organization {
 
         return semesters
     }
+
+    public var supportsSettingCourseGroups: Bool {
+        let route = StudIpRoutes.setGroupForCourse(withId: "", andUserWithId: "", groupId: 0)
+        return routesAvailability?.supports(route: route) ?? false
+    }
 }

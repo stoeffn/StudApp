@@ -8,4 +8,8 @@
 
 struct ApiRoutesAvailablity: Codable {
     let routes: [String: Set<HttpMethods>]
+
+    public func supports<Routes: ApiRoutes>(route: Routes) -> Bool {
+        return routes[route.identifier]?.contains(route.method) ?? false
+    }
 }

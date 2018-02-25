@@ -64,11 +64,7 @@ public final class SemesterState: NSManagedObject, CDCreatable, CDSortable {
     // MARK: - Events
 
     private func isHiddenChanged(_: _KeyValueCodingAndObserving, change: NSKeyValueObservedChange<Bool>) {
-        guard
-            let oldValue = change.oldValue,
-            let newValue = change.newValue,
-            newValue != oldValue
-        else { return }
+        guard let oldValue = change.oldValue, let newValue = change.newValue, newValue != oldValue else { return }
 
         try? managedObjectContext?.saveAndWaitWhenChanged()
 
