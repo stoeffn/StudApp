@@ -143,7 +143,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt _: IndexPath,
                             withSender _: Any?) -> Bool {
-        return action == #selector(CustomMenuItems.color(_:))
+        return action == #selector(CustomMenuItems.color(_:)) && user?.organization.supportsSettingCourseGroups ?? false
     }
 
     /// Empty implementation that is needed in order for the menu to appear.
@@ -158,7 +158,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
         return UISwipeActionsConfiguration(actions: [
             colorAction(for: cell, at: indexPath),
-        ])
+        ].flatMap { $0 })
     }
 
     @available(iOS 11.0, *)
@@ -305,7 +305,9 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     }
 
     @available(iOS 11.0, *)
-    private func colorAction(for cell: CourseCell, at _: IndexPath) -> UIContextualAction {
+    private func colorAction(for cell: CourseCell, at _: IndexPath) -> UIContextualAction? {
+        guard user?.organization.supportsSettingCourseGroups ?? false else { return nil }
+
         func colorActionHandler(_: UIContextualAction, _: UIView, success: @escaping (Bool) -> Void) {
             presentColorPicker(for: cell)
             success(true)
