@@ -12,8 +12,6 @@ import StudKit
 public enum Routes {
     case about
 
-    case app(for: User)
-
     case announcement(Announcement)
 
     case colorPicker(sender: Any?, completion: (Int, UIColor) -> Void)
@@ -22,11 +20,11 @@ public enum Routes {
 
     case course(Course)
 
-    case courseList(for: User)
+    case courseList(for: User?)
 
     case disclaimer(with: String)
 
-    case downloadList(for: User)
+    case downloadList(for: User?)
 
     case emptyCourse
 
@@ -79,7 +77,6 @@ public enum Routes {
     public var segueIdentifier: String {
         switch self {
         case .about: return "about"
-        case .app: return "app"
         case .announcement: return "announcement"
         case .colorPicker: return "colorPicker"
         case .confetti: return "confetti"

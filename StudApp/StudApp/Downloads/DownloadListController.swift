@@ -11,7 +11,7 @@ import StudKit
 import StudKitUI
 
 final class DownloadListController: UITableViewController, DataSourceDelegate {
-    private var viewModel: DownloadListViewModel!
+    private var viewModel: DownloadListViewModel?
 
     // MARK: - Life Cycle
 
@@ -30,16 +30,9 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
             navigationItem.searchController = searchController
             navigationItem.hidesSearchBarWhenScrolling = false
 
+            tableView.tableHeaderView = nil
             tableView.dragDelegate = self
             tableView.dragInteractionEnabled = true
-        }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        if #available(iOS 11.0, *) {
-            tableView.tableHeaderView = nil
         } else {
             tableView.tableHeaderView = searchController.searchBar
         }
@@ -55,27 +48,14 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     // MARK: - Navigation
 
     func prepareDependencies(for route: Routes) {
-        guard case let .downloadList(user) = route else { fatalError() }
+        guard case let .downloadList(optionalUser) = route else { fatalError() }
+
+        defer { tableView.reloadData() }
+        guard let user = optionalUser else { return }
 
         viewModel = DownloadListViewModel(user: user)
-        viewModel.delegate = self
-        viewModel.fetch()
-    }
-
-    // MARK: - Restoration
-
-    override func encodeRestorableState(with coder: NSCoder) {
-        coder.encode(viewModel.user.objectIdentifier.rawValue, forKey: ObjectIdentifier.typeIdentifier)
-        super.encode(with: coder)
-    }
-
-    override func decodeRestorableState(with coder: NSCoder) {
-        if let restoredObjectIdentifier = coder.decodeObject(forKey: ObjectIdentifier.typeIdentifier) as? String,
-            let user = User.fetch(byObjectId: ObjectIdentifier(rawValue: restoredObjectIdentifier)) {
-            prepareDependencies(for: .downloadList(for: user))
-            tableView.reloadData()
-        }
-        super.decodeRestorableState(with: coder)
+        viewModel?.delegate = self
+        viewModel?.fetch()
     }
 
     // MARK: - Supporting User Activities
@@ -96,10 +76,11 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     // MARK: - Table View Data Source
 
     override func numberOfSections(in _: UITableView) -> Int {
-        return viewModel.numberOfSections
+        return viewModel?.numberOfSections ?? 0
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let viewModel = viewModel else { fatalError() }
         return viewModel.numberOfRows(inSection: section)
     }
 
@@ -109,21 +90,24 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: CourseHeader.typeIdentifier)
-        (header as? CourseHeader)?.course = viewModel[sectionAt: section]
+        guard let course = viewModel?[sectionAt: section] else { fatalError() }
+        (header as? CourseHeader)?.course = course
         return header
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FileCell.typeIdentifier, for: indexPath)
-        (cell as? FileCell)?.file = viewModel[rowAt: indexPath]
+        guard let file = viewModel?[rowAt: indexPath] else { fatalError() }
+        (cell as? FileCell)?.file = file
         return cell
     }
 
     override func sectionIndexTitles(for _: UITableView) -> [String]? {
-        return viewModel.sectionIndexTitles
+        return viewModel?.sectionIndexTitles
     }
 
     override func tableView(_: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        guard let viewModel = viewModel else { fatalError() }
         return viewModel.section(forSectionIndexTitle: title, at: index)
     }
 
@@ -133,6 +117,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     override func tableView(_: UITableView,
                             trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         func removeHandler(action _: UIContextualAction, view _: UIView, handler: @escaping (Bool) -> Void) {
+            guard let viewModel = viewModel else { fatalError() }
             let file = viewModel[rowAt: indexPath]
             let success = viewModel.removeDownload(file)
             handler(success)
@@ -163,6 +148,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     }
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let viewModel = viewModel else { fatalError() }
         let file = viewModel[rowAt: indexPath]
         let previewController = PreviewController()
         previewController.prepareDependencies(for: .preview(for: file, self))
@@ -202,12 +188,14 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     private func updateEmptyView() {
         guard view != nil else { return }
 
+        let isEmpty = viewModel?.isEmpty ?? false
+
         emptyViewTitleLabel.text = "It Looks Like There Are No Downloads Yet".localized
         emptyViewSubtitleLabel.text = "Open the app \"Files\" or browse your courses to get started.".localized
 
-        tableView.backgroundView = viewModel.isEmpty ? emptyView : nil
-        tableView.separatorStyle = viewModel.isEmpty ? .none : .singleLine
-        tableView.bounces = !viewModel.isEmpty
+        tableView.backgroundView = isEmpty ? emptyView : nil
+        tableView.separatorStyle = isEmpty ? .none : .singleLine
+        tableView.bounces = !isEmpty
 
         if let navigationBarHeight = navigationController?.navigationBar.bounds.height {
             emptyViewTopConstraint.constant = navigationBarHeight * 2 + 32
@@ -218,7 +206,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
     @IBAction
     func userButtonTapped(_ sender: Any) {
-        (tabBarController as? TabsController)?.userButtonTapped(sender)
+        (tabBarController as? AppController)?.userButtonTapped(sender)
     }
 }
 
@@ -226,7 +214,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
 extension DownloadListController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        viewModel.fetch(searchTerm: searchController.searchBar.text)
+        viewModel?.fetch(searchTerm: searchController.searchBar.text)
         tableView.reloadData()
     }
 }
@@ -236,8 +224,11 @@ extension DownloadListController: UISearchResultsUpdating {
 @available(iOS 11.0, *)
 extension DownloadListController: UITableViewDragDelegate {
     private func itemProviders(forIndexPath indexPath: IndexPath) -> [NSItemProvider] {
-        let file = viewModel[rowAt: indexPath]
-        guard let itemProvider = NSItemProvider(contentsOf: file.localUrl(in: .fileProvider)) else { return [] }
+        guard
+            let file = viewModel?[rowAt: indexPath],
+            let itemProvider = NSItemProvider(contentsOf: file.localUrl(in: .fileProvider))
+        else { return [] }
+
         itemProvider.suggestedName = file.name
         return [itemProvider]
     }
@@ -256,8 +247,11 @@ extension DownloadListController: UITableViewDragDelegate {
 
 extension DownloadListController: UIViewControllerPreviewingDelegate, QLPreviewControllerDelegate {
     func previewingContext(_: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
-        guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
-        let file = viewModel[rowAt: indexPath]
+        guard
+            let indexPath = tableView.indexPathForRow(at: location),
+            let file = viewModel?[rowAt: indexPath]
+        else { return nil }
+
         let previewController = PreviewController()
         previewController.prepareDependencies(for: .preview(for: file, self))
         return previewController
@@ -270,7 +264,7 @@ extension DownloadListController: UIViewControllerPreviewingDelegate, QLPreviewC
     func previewController(_: QLPreviewController, transitionViewFor item: QLPreviewItem) -> UIView? {
         guard
             let file = item as? File,
-            let indexPath = viewModel.indexPath(for: file),
+            let indexPath = viewModel?.indexPath(for: file),
             let cell = tableView.cellForRow(at: indexPath) as? FileCell
         else { return nil }
         return cell.iconView

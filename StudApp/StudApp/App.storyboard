@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="5Up-Rl-zcg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B8u-Ro-L8Q">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,27 +10,9 @@
     </dependencies>
     <scenes>
         <!--App Controller-->
-        <scene sceneID="2es-kx-eOy">
-            <objects>
-                <tabBarController storyboardIdentifier="App" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5Up-Rl-zcg" customClass="AppController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="X2S-6D-9hx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="2bU-cg-kHC" kind="presentation" identifier="signIn" id="Dax-cl-2xa"/>
-                        <segue destination="B8u-Ro-L8Q" kind="show" identifier="app" animates="NO" id="j8U-m2-2YJ"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Rjs-0s-Fex" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-908" y="-102"/>
-        </scene>
-        <!--Tabs Controller-->
         <scene sceneID="KQ9-7f-jGt">
             <objects>
-                <tabBarController storyboardIdentifier="Tabs" useStoryboardIdentifierAsRestorationIdentifier="YES" id="B8u-Ro-L8Q" customClass="TabsController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="App" useStoryboardIdentifierAsRestorationIdentifier="YES" id="B8u-Ro-L8Q" customClass="AppController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fdR-xS-tZE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -41,6 +23,7 @@
                         <segue destination="zcl-3C-yl6" kind="presentation" identifier="settings" modalPresentationStyle="formSheet" id="sMd-bX-1dS"/>
                         <segue destination="AZc-n8-OsC" kind="relationship" relationship="viewControllers" id="g3S-Ak-cad"/>
                         <segue destination="KYP-jD-J4O" kind="relationship" relationship="viewControllers" id="bFd-ds-8U0"/>
+                        <segue destination="2bU-cg-kHC" kind="presentation" identifier="signIn" id="WBg-jL-T5h"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l4I-wS-6ep" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -53,7 +36,7 @@
                 <viewControllerPlaceholder storyboardName="SignIn" bundleIdentifier="SteffenRyll.StudKitUI" id="2bU-cg-kHC" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fcI-cX-vXc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-908" y="375"/>
+            <point key="canvasLocation" x="566" y="-187"/>
         </scene>
         <!--Courses-->
         <scene sceneID="gB9-sw-zWL">
@@ -71,7 +54,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="About" storyboardName="About" bundleIdentifier="SteffenRyll.StudKitUI" id="P8g-Nk-6wL" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zXO-Dm-wlW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="566" y="-143"/>
+            <point key="canvasLocation" x="566" y="-99"/>
         </scene>
         <!--Downloads-->
         <scene sceneID="xGE-gW-7nZ">
@@ -89,7 +72,7 @@
                 <viewControllerPlaceholder storyboardName="Settings" id="zcl-3C-yl6" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W6r-8b-C2K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="577" y="-61"/>
+            <point key="canvasLocation" x="577" y="-17"/>
         </scene>
     </scenes>
     <resources>

@@ -10,8 +10,8 @@ import StudKit
 import StudKitUI
 
 final class CourseListController: UITableViewController, DataSourceSectionDelegate, Routable {
-    private var user: User!
-    private var viewModel: SemesterListViewModel!
+    private var user: User?
+    private var viewModel: SemesterListViewModel?
     private var courseListViewModels: [String: CourseListViewModel] = [:]
 
     // MARK: - Life Cycle
@@ -26,14 +26,8 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         }
 
         tableView.register(SemesterHeader.self, forHeaderFooterViewReuseIdentifier: SemesterHeader.typeIdentifier)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        viewModel.update()
-
         tableView.tableHeaderView = nil
+
         updateEmptyView()
     }
 
@@ -54,16 +48,22 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     // MARK: - Navigation
 
     func prepareDependencies(for route: Routes) {
-        guard case let .courseList(for: user) = route else { fatalError() }
-        self.user = user
+        guard case let .courseList(for: optionalUser) = route else { fatalError() }
+        self.user = optionalUser
+
+        defer { tableView.reloadData() }
+        guard let user = optionalUser else { return }
 
         viewModel = SemesterListViewModel(organization: user.organization)
-        viewModel.delegate = self
-        viewModel.fetch()
-        _ = viewModel.map(courseListViewModel)
+        viewModel?.delegate = self
+        viewModel?.fetch()
+        _ = viewModel?.map(courseListViewModel)
+        viewModel?.update()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let user = user else { fatalError() }
+
         if let cell = sender as? CourseCell {
             return prepare(for: .course(cell.course), destination: segue.destination)
         } else if segue.identifier == Routes.semesterList(for: user).segueIdentifier {
@@ -78,22 +78,6 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         }
 
         prepareForRoute(using: segue, sender: sender)
-    }
-
-    // MARK: - Restoration
-
-    override func encodeRestorableState(with coder: NSCoder) {
-        coder.encode(user.objectIdentifier.rawValue, forKey: ObjectIdentifier.typeIdentifier)
-        super.encode(with: coder)
-    }
-
-    override func decodeRestorableState(with coder: NSCoder) {
-        if let restoredObjectIdentifier = coder.decodeObject(forKey: ObjectIdentifier.typeIdentifier) as? String,
-            let user = User.fetch(byObjectId: ObjectIdentifier(rawValue: restoredObjectIdentifier)) {
-            prepareDependencies(for: .courseList(for: user))
-            tableView.reloadData()
-        }
-        super.decodeRestorableState(with: coder)
     }
 
     // MARK: - Supporting User Activities
@@ -112,11 +96,11 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     // MARK: - Table View Data Source
 
     override func numberOfSections(in _: UITableView) -> Int {
-        return viewModel.numberOfRows
+        return viewModel?.numberOfRows ?? 0
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let semester = viewModel[rowAt: section]
+        guard let semester = viewModel?[rowAt: section] else { fatalError() }
         return courseListViewModel(for: semester).numberOfRows
     }
 
@@ -126,7 +110,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SemesterHeader.typeIdentifier)
-        let semester = viewModel[rowAt: section]
+        guard let semester = viewModel?[rowAt: section] else { fatalError() }
         (header as? SemesterHeader)?.semester = semester
         (header as? SemesterHeader)?.courseListViewModel = courseListViewModel(for: semester)
         return header
@@ -134,7 +118,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CourseCell.typeIdentifier, for: indexPath)
-        let semester = viewModel[rowAt: indexPath.section]
+        guard let semester = viewModel?[rowAt: indexPath.section] else { fatalError() }
         let course = courseListViewModel(for: semester)[rowAt: indexPath.row]
         cell.setDisclosureIndicatorHidden(for: splitViewController)
         (cell as? CourseCell)?.course = course
@@ -236,6 +220,8 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     private func courseListViewModel(for semester: Semester) -> CourseListViewModel {
         if let viewModel = courseListViewModels[semester.id] { return viewModel }
 
+        guard let user = user else { fatalError() }
+
         let viewModel = CourseListViewModel(user: user, semester: semester, respectsCollapsedState: true)
         viewModel.delegate = self
         viewModel.fetch()
@@ -258,7 +244,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     }
 
     private func pruneCourseListViewModels() {
-        let existingSemesterIds = Set(viewModel.map { $0.id })
+        let existingSemesterIds = Set(viewModel?.map { $0.id } ?? [])
         courseListViewModels
             .map { $0.key }
             .filter { !existingSemesterIds.contains($0) }
@@ -280,13 +266,15 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     private func updateEmptyView() {
         guard view != nil else { return }
 
+        let isEmpty = viewModel?.isEmpty ?? false
+
         emptyViewTitleLabel.text = "It Looks Like There Are No Semesters".localized
         emptyViewSubtitleLabel.text = "You can try to reload the semesters from Stud.IP.".localized
         emptyViewActionButton.setTitle("Reload".localized, for: .normal)
 
-        tableView.backgroundView = viewModel.isEmpty ? emptyView : nil
-        tableView.separatorStyle = viewModel.isEmpty ? .none : .singleLine
-        tableView.bounces = !viewModel.isEmpty
+        tableView.backgroundView = isEmpty ? emptyView : nil
+        tableView.separatorStyle = isEmpty ? .none : .singleLine
+        tableView.bounces = !isEmpty
 
         if let navigationBarHeight = navigationController?.navigationBar.bounds.height {
             emptyViewTopConstraint.constant = navigationBarHeight * 2 + 32
@@ -319,7 +307,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     @IBAction
     func userButtonTapped(_ sender: Any) {
-        (tabBarController as? TabsController)?.userButtonTapped(sender)
+        (tabBarController as? AppController)?.userButtonTapped(sender)
     }
 
     @IBAction
