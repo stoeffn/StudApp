@@ -17,3 +17,11 @@ protocol OAuth1Routes: ApiRoutes {
     /// Exchanges the temporary request token for a long-lived access token that can be used for accessing protected resources.
     static var accessToken: Self { get }
 }
+
+// MARK: - Default Implementation
+
+extension OAuth1Routes {
+    var identifier: String {
+        return path
+    }
+}

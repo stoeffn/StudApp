@@ -39,6 +39,21 @@ public enum StudIpRoutes: ApiRoutes {
     /// future.
     case semesters
 
+    var identifier: String {
+        switch self {
+        case .announcementsInCourse: return "/course/:course_id/news"
+        case .currentUser: return "/user"
+        case .courses: return "/user/:user_id"
+        case .discovery: return "/discovery"
+        case .fileContents: return "/file/:file_ref_id/download"
+        case .folder: return "/folder/:folder_id"
+        case .eventsInCourse: return "/course/:course_id/events"
+        case .profilePicture: return "/user/:user_id/picture"
+        case .rootFolderForCourse: return "/course/:course_id/top_folder"
+        case .semesters: return "/semester/:semester_id"
+        }
+    }
+
     var path: String {
         switch self {
         case let .announcementsInCourse(courseId):

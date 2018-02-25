@@ -8,6 +8,10 @@
 
 /// Represents an API route, usually being an enumeration.
 protocol ApiRoutes: Hashable {
+    /// Identifier unique to this route but not to its parameters. A route the returns a file with an id might have an
+    /// identifier like "files/:fileId" where ":fileId" would normally be interpolated with the file's id.
+    var identifier: String { get }
+
     /// Route's path that will be appended to an API's base `URL`.
     var path: String { get }
 

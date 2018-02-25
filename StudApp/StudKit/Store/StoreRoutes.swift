@@ -9,6 +9,12 @@
 enum StoreRoutes: ApiRoutes {
     case verify(receipt: Data)
 
+    var identifier: String {
+        switch self {
+        case .verify: return "verify-receipt"
+        }
+    }
+
     var path: String {
         switch self {
         case .verify: return "verify-receipt"
