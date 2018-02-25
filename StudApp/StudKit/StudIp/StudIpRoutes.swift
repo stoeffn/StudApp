@@ -39,6 +39,9 @@ public enum StudIpRoutes: ApiRoutes {
     /// future.
     case semesters
 
+    /// Sets a course's group id specific to the user given.
+    case setGroupForCourse(withId: String, andUserWithId: String, groupId: Int)
+
     var identifier: String {
         switch self {
         case .announcementsInCourse: return "/course/:course_id/news"
@@ -51,6 +54,7 @@ public enum StudIpRoutes: ApiRoutes {
         case .profilePicture: return "/user/:user_id/picture"
         case .rootFolderForCourse: return "/course/:course_id/top_folder"
         case .semesters: return "/semester/:semester_id"
+        case .setGroupForCourse: return "/user/:user_id/courses/:course_id"
         }
     }
 
@@ -76,6 +80,8 @@ public enum StudIpRoutes: ApiRoutes {
             return "course/\(courseId)/top_folder"
         case .semesters:
             return "semesters"
+        case let .setGroupForCourse(withId: courseId, andUserWithId: userId, _):
+            return "user/\(userId)/courses/\(courseId)"
         }
     }
 
@@ -91,12 +97,33 @@ public enum StudIpRoutes: ApiRoutes {
         case .profilePicture: return nil
         case .rootFolderForCourse: return FolderResponse.self
         case .semesters: return CollectionResponse<SemesterResponse>.self
+        case .setGroupForCourse: return nil
+        }
+    }
+
+    var method: HttpMethods {
+        switch self {
+        case .announcementsInCourse, .courses, .currentUser, .discovery, .eventsInCourse, .folder, .fileContents,
+             .profilePicture, .rootFolderForCourse, .semesters:
+            return .get
+        case .setGroupForCourse:
+            return .patch
+        }
+    }
+
+    var body: Data? {
+        switch self {
+        case .announcementsInCourse, .courses, .currentUser, .discovery, .eventsInCourse, .folder, .fileContents,
+             .profilePicture, .rootFolderForCourse, .semesters:
+            return nil
+        case let .setGroupForCourse(_, _, groupId):
+            return "{\"group\": \(groupId)}".data(using: .utf8)
         }
     }
 
     var expiresAfter: TimeInterval {
         switch self {
-        case .fileContents:
+        case .fileContents, .setGroupForCourse:
             return 0
         case .announcementsInCourse, .courses, .currentUser, .discovery, .folder, .rootFolderForCourse:
             return 60 * 5
