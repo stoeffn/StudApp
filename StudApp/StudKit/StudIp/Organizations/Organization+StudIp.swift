@@ -9,6 +9,23 @@
 import CoreData
 
 extension Organization {
+    func updateDiscovery(in context: NSManagedObjectContext, completion: @escaping ResultHandler<ApiRoutesAvailablity>) {
+        let studIpService = ServiceContainer.default[StudIpService.self]
+        studIpService.api.requestDecoded(.discovery) { (result: Result<DiscoveryResponse>) in
+            let result = result.map { ApiRoutesAvailablity(from: $0) }
+            defer { completion(result) }
+
+            let encoder = ServiceContainer.default[JSONEncoder.self]
+            guard
+                let routesAvailability = result.value,
+                let routesAvailabilityData = try? encoder.encode(routesAvailability)
+            else { return }
+
+            guard let organization = context.object(with: self.objectID) as? Organization else { fatalError() }
+            organization.routesAvailabilityData = routesAvailabilityData
+        }
+    }
+
     public func updateSemesters(in context: NSManagedObjectContext, completion: @escaping ResultHandler<[Semester]>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         studIpService.api.requestCollection(.semesters) { (result: Result<[SemesterResponse]>) in

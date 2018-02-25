@@ -24,6 +24,7 @@ final class AppController: UITabBarController {
         view.backgroundColor = .white
 
         viewModel = AppViewModel()
+        viewModel.update()
     }
 
     override func viewWillAppear(_ animated: Bool) {
