@@ -42,7 +42,7 @@
         <scene sceneID="gB9-sw-zWL">
             <objects>
                 <viewControllerPlaceholder storyboardName="Courses" id="AZc-n8-OsC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Courses" image="CoursesTabBarGlyph" landscapeImage="CoursesLandscapeTabBarGlyph" largeContentSizeImage="CoursesGlyph" id="qZI-ai-akg"/>
+                    <tabBarItem key="tabBarItem" title="Courses" image="CoursesTabBarGlyph" landscapeImage="CoursesLandscapeTabBarGlyph" id="qZI-ai-akg"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oxn-vo-iGe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -60,7 +60,7 @@
         <scene sceneID="xGE-gW-7nZ">
             <objects>
                 <viewControllerPlaceholder storyboardName="Downloads" id="KYP-jD-J4O" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="downloads" id="5ug-Se-Jql"/>
+                    <tabBarItem key="tabBarItem" title="Downloads" image="DownloadsTabBarGlyph" landscapeImage="DownloadsLandscapeTabBarGlyph" id="5ug-Se-Jql"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pTP-vX-G4w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -76,9 +76,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CoursesGlyph" width="512" height="512"/>
         <image name="CoursesLandscapeTabBarGlyph" width="18" height="18"/>
         <image name="CoursesTabBarGlyph" width="25" height="25"/>
+        <image name="DownloadsLandscapeTabBarGlyph" width="20" height="20"/>
+        <image name="DownloadsTabBarGlyph" width="28" height="28"/>
     </resources>
     <color key="tintColor" red="0.32941176470588235" green="0.50588235294117645" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

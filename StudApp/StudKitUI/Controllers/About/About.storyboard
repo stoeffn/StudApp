@@ -16,7 +16,7 @@
         <!--About-->
         <scene sceneID="Fkx-Yf-232">
             <objects>
-                <tableViewController id="QMe-kD-TIZ" customClass="AboutController" customModule="StudKit" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="QMe-kD-TIZ" customClass="AboutController" customModule="StudKitUI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="p6a-GE-a5A">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -189,7 +189,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Thanks to" footerTitle="Without you, this app could not exist. Thank you ❤️" id="sTE-d9-Eoz">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ThanksCell" textLabel="xhX-r9-UEg" detailTextLabel="FAB-Mo-ny4" style="IBUITableViewCellStyleValue2" id="Pre-A1-8QT" customClass="ThanksNoteCell" customModule="StudKit" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ThanksCell" textLabel="xhX-r9-UEg" detailTextLabel="FAB-Mo-ny4" style="IBUITableViewCellStyleValue2" id="Pre-A1-8QT" customClass="ThanksNoteCell" customModule="StudKitUI" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="568.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pre-A1-8QT" id="L1v-9x-Ifh">
@@ -274,7 +274,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AppIcon" width="1024" height="1024"/>
+        <image name="AppIcon" width="512" height="512"/>
         <image name="MailTableViewGlyph" width="25" height="25"/>
         <image name="PrivacyTableViewGlyph" width="25" height="25"/>
         <image name="RateTableViewGlyph" width="25" height="25"/>

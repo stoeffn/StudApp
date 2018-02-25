@@ -307,7 +307,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AppIcon" width="1024" height="1024"/>
+        <image name="AppIcon" width="512" height="512"/>
         <image name="MoreBarButtonGlyph" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>

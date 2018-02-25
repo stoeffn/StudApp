@@ -254,11 +254,11 @@
             </objects>
             <point key="canvasLocation" x="1429.5999999999999" y="-819.04047976011998"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Downloads-->
         <scene sceneID="5oe-1D-OAn">
             <objects>
                 <navigationController storyboardIdentifier="DownloadListNavigation" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="V9G-bX-yYl" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="downloads" id="rpF-ip-Eqw"/>
+                    <tabBarItem key="tabBarItem" title="Downloads" image="DownloadsTabBarGlyph" landscapeImage="DownloadsLandscapeTabBarGlyph" id="rpF-ip-Eqw"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TZb-So-BBX">
@@ -281,6 +281,8 @@
     <resources>
         <image name="DownloadCountSubtitleGlyph" width="16" height="16"/>
         <image name="DownloadsGlyph" width="512" height="512"/>
+        <image name="DownloadsLandscapeTabBarGlyph" width="20" height="20"/>
+        <image name="DownloadsTabBarGlyph" width="28" height="28"/>
         <image name="SizeSubtitleGlyph" width="16" height="16"/>
         <image name="TimeSubtitleGlyph" width="16" height="16"/>
         <image name="UserBarButtonGlyph" width="25" height="25"/>

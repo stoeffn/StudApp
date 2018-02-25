@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IpY-rL-d6G">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -21,13 +25,13 @@
         <!--Verification Controller-->
         <scene sceneID="icl-kX-KgG">
             <objects>
-                <viewController storyboardIdentifier="Verification" id="wN8-if-H3U" customClass="VerificationController" customModule="StudKit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Verification" id="wN8-if-H3U" customClass="VerificationController" customModule="StudKitUI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="Sgg-SW-cFl">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J4C-KI-8wA" customClass="StudIpActivityIndicator" customModule="StudKit" customModuleProvider="target">
-                                <rect key="frame" x="258" y="194" width="84" height="84"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J4C-KI-8wA" customClass="StudIpActivityIndicator" customModule="StudKitUI" customModuleProvider="target">
+                                <rect key="frame" x="145.5" y="227.5" width="84" height="84"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="J4C-KI-8wA" secondAttribute="height" multiplier="1:1" id="MXm-kd-kMM"/>
@@ -37,13 +41,13 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verifying Your Purchase…" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iW4-2V-7bu">
-                                <rect key="frame" x="197" y="310" width="206" height="21"/>
+                                <rect key="frame" x="84.5" y="343.5" width="206" height="21"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ngl-iz-Qq5">
-                                <rect key="frame" x="276.5" y="371.5" width="47" height="32"/>
+                                <rect key="frame" x="164" y="408" width="47" height="32"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                 <state key="normal" title="Action"/>
                                 <connections>
@@ -51,13 +55,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error Message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNh-Ny-cge">
-                                <rect key="frame" x="8" y="340" width="584" height="18"/>
+                                <rect key="frame" x="8" y="374.5" width="359" height="18"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                 <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7sf-nJ-yC0" customClass="ConfettiView" customModule="StudKit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <view userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7sf-nJ-yC0" customClass="ConfettiView" customModule="StudKitUI" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="intensity">
                                         <real key="value" value="1"/>
@@ -101,7 +105,7 @@
         <!--Borderless Navigation Controller-->
         <scene sceneID="CGI-Es-6sB">
             <objects>
-                <navigationController storyboardIdentifier="VerificationNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="IpY-rL-d6G" customClass="BorderlessNavigationController" customModule="StudKit" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="VerificationNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="IpY-rL-d6G" customClass="BorderlessNavigationController" customModule="StudKitUI" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GiJ-i8-XCX">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

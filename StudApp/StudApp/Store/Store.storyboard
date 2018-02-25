@@ -355,7 +355,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AppIcon" width="1024" height="1024"/>
+        <image name="AppIcon" width="512" height="512"/>
         <image name="MoreBarButtonGlyph" width="25" height="25"/>
     </resources>
     <color key="tintColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

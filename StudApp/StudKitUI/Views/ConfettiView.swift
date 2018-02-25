@@ -55,7 +55,7 @@ public final class ConfettiView: UIView {
         confetto.emissionLongitude = .pi
         confetto.emissionRange = .pi / 4.0
         confetto.scale = 0.3
-        confetto.contents = #imageLiteral(resourceName: "Confetto").cgImage
+        confetto.contents = #imageLiteral(resourceName: "ConfettoGlyph").cgImage
         return confetto
     }
 
