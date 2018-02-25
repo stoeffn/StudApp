@@ -22,6 +22,8 @@
 		242B03741FD7470200863B08 /* ColorPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B03731FD7470200863B08 /* ColorPickerViewModel.swift */; };
 		2430409D204328970018F367 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2430409F204328970018F367 /* InfoPlist.strings */; };
 		243040A220432D420018F367 /* QuickActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243040A120432D420018F367 /* QuickActions.swift */; };
+		243040A4204339070018F367 /* DiscoveryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243040A3204339070018F367 /* DiscoveryResponse.swift */; };
+		243040A62043398F0018F367 /* ApiRoutesAvailablity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243040A52043398F0018F367 /* ApiRoutesAvailablity.swift */; };
 		243637081FE5602C001D1B86 /* StoreRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637071FE5602C001D1B86 /* StoreRoutes.swift */; };
 		2436370F1FE56F33001D1B86 /* StoreStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2436370E1FE56F33001D1B86 /* StoreStateTests.swift */; };
 		243637121FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637111FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift */; };
@@ -412,6 +414,8 @@
 		2430409E204328970018F367 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		243040A02043289B0018F367 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		243040A120432D420018F367 /* QuickActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickActions.swift; sourceTree = "<group>"; };
+		243040A3204339070018F367 /* DiscoveryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoveryResponse.swift; sourceTree = "<group>"; };
+		243040A52043398F0018F367 /* ApiRoutesAvailablity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRoutesAvailablity.swift; sourceTree = "<group>"; };
 		243637071FE5602C001D1B86 /* StoreRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRoutes.swift; sourceTree = "<group>"; };
 		2436370E1FE56F33001D1B86 /* StoreStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreStateTests.swift; sourceTree = "<group>"; };
 		243637111FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreRoutes+TestableApiRoutes.swift"; sourceTree = "<group>"; };
@@ -1096,6 +1100,7 @@
 				2448D4A31FA8E07E00DAB97E /* Api.swift */,
 				24FE03EC1FFBE0D200BC4732 /* ApiAuthorizing.swift */,
 				2448D49E1FA8E07E00DAB97E /* ApiRoutes.swift */,
+				243040A52043398F0018F367 /* ApiRoutesAvailablity.swift */,
 				2448D4A11FA8E07E00DAB97E /* HttpMethods.swift */,
 				248C025E202E5BB5004CB8C9 /* OAuth1.swift */,
 				248C025F202E5BB6004CB8C9 /* OAuth1Routes.swift */,
@@ -1609,13 +1614,14 @@
 				247793641FC891EE00090F4D /* Users */,
 				24D361131FAA5F0E00BBBAED /* CollectionResponse.swift */,
 				24D361141FAA5F0E00BBBAED /* Api+CollectionResponse.swift */,
+				243040A3204339070018F367 /* DiscoveryResponse.swift */,
 				2486D92B2036FCC100692FF2 /* IdentifiableResponse.swift */,
 				24557A0A203DE0D400492B74 /* MockResponses.swift */,
+				24557A0C203DE59700492B74 /* MockStudIpService.swift */,
 				248C0262202E5BE5004CB8C9 /* StudIpOAuth1Routes.swift */,
 				24D361101FAA5F0500BBBAED /* StudIpRoutes.swift */,
 				24D3610F1FAA5F0500BBBAED /* StudIpService.swift */,
 				24D360EC1FAA5DC500BBBAED /* StudIp.swift */,
-				24557A0C203DE59700492B74 /* MockStudIpService.swift */,
 			);
 			path = StudIp;
 			sourceTree = "<group>";
@@ -2400,6 +2406,7 @@
 				243CC2C01FDF19BB00FE7376 /* UserActivities.swift in Sources */,
 				24D729411FC7490C0097777F /* Int+ByteCountFormatting.swift in Sources */,
 				24A8EDDE1FCCBC93007C1CCF /* ContextService.swift in Sources */,
+				243040A62043398F0018F367 /* ApiRoutesAvailablity.swift in Sources */,
 				24801F451FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift in Sources */,
 				24D360E61FAA5D7600BBBAED /* CourseState.swift in Sources */,
 				246F3ACB1FAC879C00A477FF /* DataSourceSectionDelegate.swift in Sources */,
@@ -2428,6 +2435,7 @@
 				24D9EF561FB7559C006776B7 /* SemesterListViewModel.swift in Sources */,
 				248C024C202E4EE4004CB8C9 /* BaseDirectories.swift in Sources */,
 				2422660B1FE3D62500FA7CA6 /* AnnouncementResponse.swift in Sources */,
+				243040A4204339070018F367 /* DiscoveryResponse.swift in Sources */,
 				245B6AE11FCB39BF00302CD0 /* OrganizationRecord.swift in Sources */,
 				24BF7B671FF673650013BA23 /* FetchedResultsControllerDelegate.swift in Sources */,
 				24D360F61FAA5DE800BBBAED /* File.swift in Sources */,

@@ -69,7 +69,7 @@ public enum StudIpRoutes: ApiRoutes {
         case .announcementsInCourse: return CollectionResponse<AnnouncementResponse>.self
         case .currentUser: return UserResponse.self
         case .courses: return CollectionResponse<CourseResponse>.self
-        case .discovery: return nil
+        case .discovery: return DiscoveryResponse.self
         case .eventsInCourse: return CollectionResponse<EventResponse>.self
         case .fileContents: return nil
         case .folder: return FolderResponse.self

@@ -6,7 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
-enum HttpMethods: String {
+enum HttpMethods: String, Codable, RawRepresentable {
     case get = "GET"
     case post = "POST"
     case put = "PUT"
