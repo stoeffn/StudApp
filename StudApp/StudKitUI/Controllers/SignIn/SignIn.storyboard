@@ -69,12 +69,13 @@
                                         </constraint>
                                         <constraint firstItem="sY2-E4-hXN" firstAttribute="centerX" secondItem="mXw-Vs-q3X" secondAttribute="centerX" id="1XO-rj-bjL"/>
                                         <constraint firstItem="5Wy-xu-LIM" firstAttribute="centerX" secondItem="mXw-Vs-q3X" secondAttribute="centerX" id="3HM-vV-YJy"/>
+                                        <constraint firstItem="5Wy-xu-LIM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="MFk-Mm-3qX" secondAttribute="bottom" constant="32" id="3Ub-M4-VbC"/>
                                         <constraint firstItem="sY2-E4-hXN" firstAttribute="width" secondItem="sY2-E4-hXN" secondAttribute="height" multiplier="1:1" id="7fW-Bp-nkX"/>
-                                        <constraint firstItem="sY2-E4-hXN" firstAttribute="top" secondItem="mXw-Vs-q3X" secondAttribute="top" constant="196" id="C1e-el-252">
+                                        <constraint firstItem="sY2-E4-hXN" firstAttribute="top" secondItem="mXw-Vs-q3X" secondAttribute="top" constant="96" id="C1e-el-252">
                                             <variation key="widthClass=compact" constant="128"/>
-                                            <variation key="heightClass=compact-widthClass=compact" constant="24"/>
+                                            <variation key="heightClass=compact-widthClass=compact" constant="32"/>
                                         </constraint>
-                                        <constraint firstAttribute="bottom" secondItem="5Wy-xu-LIM" secondAttribute="bottom" constant="128" id="R5A-9e-5H9">
+                                        <constraint firstAttribute="bottom" secondItem="5Wy-xu-LIM" secondAttribute="bottom" priority="250" constant="128" id="R5A-9e-5H9">
                                             <variation key="widthClass=compact" constant="96"/>
                                             <variation key="heightClass=compact-widthClass=compact" constant="24"/>
                                         </constraint>
@@ -163,7 +164,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="kzK-ZY-Guw" secondAttribute="height" multiplier="1:1" id="AX1-Eo-Zqg"/>
                                                 <constraint firstAttribute="height" constant="42" id="zZm-kD-31J">
-                                                    <variation key="widthClass=regular" constant="56"/>
+                                                    <variation key="widthClass=regular" constant="48"/>
                                                 </constraint>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
