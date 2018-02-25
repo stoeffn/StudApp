@@ -83,9 +83,9 @@ public enum StudIpRoutes: ApiRoutes {
         switch self {
         case .fileContents:
             return 0
-        case .discovery, .courses, .rootFolderForCourse, .folder, .announcementsInCourse, .currentUser:
-            return 60
-        case .semesters, .profilePicture, .eventsInCourse:
+        case .announcementsInCourse, .courses, .currentUser, .discovery, .folder, .rootFolderForCourse:
+            return 60 * 5
+        case .eventsInCourse, .profilePicture, .semesters:
             return 60 * 60
         }
     }
