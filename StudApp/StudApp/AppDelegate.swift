@@ -83,6 +83,15 @@ extension AppDelegate: UIApplicationDelegate {
         return true
     }
 
+    func application(_: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem,
+                     completionHandler: @escaping (Bool) -> Void) {
+        guard
+            let quickAction = QuickActions(fromShortcutItemType: shortcutItem.type),
+            let appController = window?.rootViewController as? AppController
+        else { return completionHandler(false) }
+        completionHandler(appController.handle(quickAction: quickAction))
+    }
+
     // MARK: Opening a URL-Specified Resource
 
     func application(_: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {

@@ -58,6 +58,19 @@ final class AppController: UITabBarController {
         }
     }
 
+    // MARK: - Handling Quick Actions
+
+    func handle(quickAction: QuickActions) -> Bool {
+        switch quickAction {
+        case .presentCourses:
+            selectedIndex = Tabs.courseList.rawValue
+        case .presentDownloads:
+            selectedIndex = Tabs.downloadList.rawValue
+        }
+
+        return true
+    }
+
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

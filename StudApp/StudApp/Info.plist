@@ -62,7 +62,7 @@
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>Courses</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).PresentCourses</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).presentCourses</string>
 			<key>UIApplicationShortcutItemIconFile</key>
 			<string>CoursesQuickActionGlyph</string>
 		</dict>
@@ -70,7 +70,7 @@
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>Downloads</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).PresentDownloads</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).presentDownloads</string>
 			<key>UIApplicationShortcutItemIconFile</key>
 			<string>DownloadsQuickActionGlyph</string>
 		</dict>
