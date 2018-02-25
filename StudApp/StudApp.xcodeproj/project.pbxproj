@@ -24,6 +24,7 @@
 		243040A220432D420018F367 /* QuickActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243040A120432D420018F367 /* QuickActions.swift */; };
 		243040A4204339070018F367 /* DiscoveryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243040A3204339070018F367 /* DiscoveryResponse.swift */; };
 		243040A62043398F0018F367 /* ApiRoutesAvailablity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243040A52043398F0018F367 /* ApiRoutesAvailablity.swift */; };
+		243040A720435B170018F367 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245B6AD51FCB327800302CD0 /* StoreKit.framework */; };
 		243637081FE5602C001D1B86 /* StoreRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637071FE5602C001D1B86 /* StoreRoutes.swift */; };
 		2436370F1FE56F33001D1B86 /* StoreStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2436370E1FE56F33001D1B86 /* StoreStateTests.swift */; };
 		243637121FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637111FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift */; };
@@ -705,6 +706,7 @@
 			files = (
 				24A5BEF12038D47100F5F531 /* CoreData.framework in Frameworks */,
 				2446F9741FC8D16900D6AB6C /* CloudKit.framework in Frameworks */,
+				243040A720435B170018F367 /* StoreKit.framework in Frameworks */,
 				2448D4541FA8DB1E00DAB97E /* StudKit.framework in Frameworks */,
 				247CC290203896C70067207B /* StudKitUI.framework in Frameworks */,
 			);
