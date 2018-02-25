@@ -14,8 +14,8 @@ public final class FileIconService {
     public func icon(for file: File, completion: @escaping (UIImage) -> Void) {
         guard !file.isFolder else { return completion(#imageLiteral(resourceName: "FolderIcon")) }
 
-        let fileNameExtension = URL(string: file.name)?.pathExtension
-        let dummyFileName = URL(fileURLWithPath: "dummy.\(fileNameExtension ?? "")")
+        let fileNameExtension = file.localUrl(in: .fileProvider).pathExtension
+        let dummyFileName = BaseDirectories.fileProvider.url.appendingPathComponent("dummy.\(fileNameExtension)")
 
         if let icon = iconCache.object(forKey: dummyFileName as NSURL) { return completion(icon) }
 
