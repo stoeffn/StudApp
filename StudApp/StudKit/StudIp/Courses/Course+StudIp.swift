@@ -69,6 +69,15 @@ extension Course {
         }
     }
 
+    public func set(groupId: Int, for user: User, completion: @escaping ResultHandler<Void>) {
+        let studIpService = ServiceContainer.default[StudIpService.self]
+        studIpService.api.request(.setGroupForCourse(withId: id, andUserWithId: user.id, groupId: groupId)) { result in
+            defer { completion(result.map { _ in }) }
+            guard result.isSuccess else { return }
+            self.groupId = groupId
+        }
+    }
+
     public var url: URL? {
         let studIpService = ServiceContainer.default[StudIpService.self]
         guard
