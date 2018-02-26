@@ -73,6 +73,8 @@ extension User {
 
     public internal(set) static var current: User? = currentUserFromDefaults {
         didSet {
+            guard current != oldValue else { return }
+
             let storageService = ServiceContainer.default[StorageService.self]
             storageService.defaults.set(current?.id, forKey: UserDefaults.userIdKey)
             NotificationCenter.default.post(name: .currentUserDidChange, object: nil)
