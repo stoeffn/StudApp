@@ -111,6 +111,16 @@ public enum StudIpRoutes: ApiRoutes {
         }
     }
 
+    var contentType: String? {
+        switch self {
+        case .announcementsInCourse, .courses, .currentUser, .discovery, .eventsInCourse, .folder, .fileContents,
+             .profilePicture, .rootFolderForCourse, .semesters:
+            return nil
+        case .setGroupForCourse:
+            return "application/json"
+        }
+    }
+
     var body: Data? {
         switch self {
         case .announcementsInCourse, .courses, .currentUser, .discovery, .eventsInCourse, .folder, .fileContents,

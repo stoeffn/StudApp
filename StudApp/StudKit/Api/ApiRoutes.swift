@@ -22,6 +22,9 @@ protocol ApiRoutes: Hashable {
     /// HTTP method this route should use. Defaults to `.get`.
     var method: HttpMethods { get }
 
+    /// Mime type to send in the the HTTP request header. Defaults to `nil`.
+    var contentType: String? { get }
+
     /// HTTP body. Defaults to `nil`.
     var body: Data? { get }
 
@@ -55,6 +58,10 @@ extension ApiRoutes {
 
     var method: HttpMethods {
         return .get
+    }
+
+    var contentType: String? {
+        return nil
     }
 
     var body: Data? {

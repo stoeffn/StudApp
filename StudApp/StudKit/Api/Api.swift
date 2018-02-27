@@ -39,7 +39,6 @@ class Api<Routes: ApiRoutes> {
 
     // MARK: - Life Cycle
 
-    private let defaultPort = 443
     private let session: URLSession
     private var lastRouteAccesses = [Routes: Date]()
 
@@ -79,13 +78,19 @@ class Api<Routes: ApiRoutes> {
     }
 
     /// Returns a request for the `URL` given and an HTTP method.
-    func request(for url: URL, method: HttpMethods, body: Data? = nil) -> URLRequest {
+    func request(for url: URL, method: HttpMethods, body: Data? = nil, contentType: String? = nil) -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         request.httpBody = body
 
-        guard let authorizing = authorizing else { return request }
-        request.addValue(authorizing.authorizationHeader(for: request), forHTTPHeaderField: authorizing.autorizationHeaderField)
+        if let contentType = contentType {
+            request.addValue(contentType, forHTTPHeaderField: "Content-Type")
+        }
+
+        if let authorizing = authorizing {
+            request.addValue(authorizing.authorizationHeader(for: request), forHTTPHeaderField: authorizing.autorizationHeaderField)
+        }
+
         return request
     }
 
@@ -136,7 +141,7 @@ class Api<Routes: ApiRoutes> {
 
         do {
             let url = try self.url(for: route, parameters: parameters)
-            let request = self.request(for: url, method: route.method, body: route.body)
+            let request = self.request(for: url, method: route.method, body: route.body, contentType: route.contentType)
             let task = session.dataTask(with: request) { data, response, error in
                 let response = response as? HTTPURLResponse
                 let result = Result(data, error: error, statusCode: response?.statusCode)
