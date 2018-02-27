@@ -27,14 +27,14 @@ class Api<Routes: ApiRoutes> {
 
     // MARK: - Errors
 
-    /// Custom API errors.
-    ///
-    /// - missingBaseUrl: A request cannot be created due to a missing base URL. Set `baseUrl` on this object in order to solve
-    ///                   this problem.
-    /// - routeNotExpired: Route was recently accessed and has not expired yet. Set `ignoreLastAccess` to `true` when issuing
-    ///                    requests if you want to force an API request to this route.
+    /// Custom errors that may occur additionally to error returned by `URLSession`.
     enum Errors: Error {
-        case missingBaseUrl, routeNotExpired
+        /// A request cannot be created due to a missing base URL. Set `baseUrl` on this object in order to solve this problem.
+        case missingBaseUrl
+
+        /// Route was recently accessed and has not expired yet. Set `ignoreLastAccess` to `true` when issuing requests if you
+        /// want to force an API request to this route.
+        case routeNotExpired
     }
 
     // MARK: - Life Cycle
@@ -52,10 +52,8 @@ class Api<Routes: ApiRoutes> {
     ///
     /// - Parameters:
     ///   - baseUrl: Base `URL` of all requests this instance issues. Any route paths will be appended to it.
-    ///   - realm: When using authentication, sometimes you also need to specify a realm apart from just a username and
-    ///            password. This realm will be used for ceating this API's `protectionSpace`.
+    ///   - authorizing: Something that can authorize the client to access the API by providing an authorization header.
     ///   - session: URL Session, which defaults to the shared session.
-    ///   - authenticationMethod: URL Authentication Method, which default to HTTP Basic Authentication.
     init(baseUrl: URL? = nil, authorizing: ApiAuthorizing? = nil, session: URLSession = .shared) {
         self.baseUrl = baseUrl
         self.authorizing = authorizing
@@ -77,7 +75,7 @@ class Api<Routes: ApiRoutes> {
         return urlWithParameters
     }
 
-    /// Returns a request for the `URL` given and an HTTP method.
+    /// Returns a request for the `URL` given and an HTTP method. Optionally, you can add body data and a content type.
     func request(for url: URL, method: HttpMethods, body: Data? = nil, contentType: String? = nil) -> URLRequest {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
@@ -115,7 +113,7 @@ class Api<Routes: ApiRoutes> {
 
     /// Clears all route access data.
     ///
-    /// For example, this is useful when signing out because all data should be reloaded when signing back in.
+    /// - Remark: For example, this is useful when signing out because all data should be reloaded when signing back in.
     func removeLastRouteAccesses() {
         lastRouteAccesses.removeAll()
     }
