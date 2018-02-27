@@ -109,7 +109,7 @@ public final class SignInViewModel: NSObject {
     private func updateRequestToken() {
         guard state == .updatingRequestToken, let oAuth1 = oAuth1 else { fatalError() }
 
-        try? oAuth1.createRequestToken { result in
+        oAuth1.createRequestToken { result in
             guard let url = self.oAuth1?.authorizationUrl else {
                 return self.error = result.error ?? Errors.invalidConsumerKey
             }
@@ -122,7 +122,7 @@ public final class SignInViewModel: NSObject {
     private func updateAccessToken(withCallbackUrl url: URL) {
         guard state == .updatingAccessToken, let oAuth1 = oAuth1 else { fatalError() }
 
-        try? oAuth1.createAccessToken(fromAuthorizationCallbackUrl: url) { result in
+        oAuth1.createAccessToken(fromAuthorizationCallbackUrl: url) { result in
             guard result.isSuccess else {
                 return self.error = result.error ?? Errors.authorizationFailed
             }

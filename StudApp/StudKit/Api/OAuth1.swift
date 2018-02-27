@@ -112,14 +112,14 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
     }
 
     /// Creates a request token that can be used for asking a user for permissions.
-    func createRequestToken(completion: @escaping ResultHandler<Void>) throws {
-        guard !isAuthorized else { throw Errors.alreadyAuthorized }
+    func createRequestToken(completion: @escaping ResultHandler<Void>) {
+        guard !isAuthorized else { return completion(.failure(Errors.alreadyAuthorized)) }
 
         api.request(.requestToken) { self.handleResponse(result: $0, completion: completion) }
     }
 
-    func createAccessToken(fromAuthorizationCallbackUrl url: URL, completion: @escaping ResultHandler<Void>) throws {
-        guard !isAuthorized else { throw Errors.alreadyAuthorized }
+    func createAccessToken(fromAuthorizationCallbackUrl url: URL, completion: @escaping ResultHandler<Void>) {
+        guard !isAuthorized else { return completion(.failure(Errors.alreadyAuthorized)) }
 
         guard let verifier = decodeVerifier(fromAuthorizationCallbackUrl: url) else {
             let context = DecodingError.Context(codingPath: [CodingKeys.verifier], debugDescription: "")
@@ -137,6 +137,7 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
     /// Tries to decode the result data as OAuth parameters and updates `token` and `tokenSecret` accordingly.
     private func handleResponse(result: Result<Data>, completion: @escaping ResultHandler<Void>) {
         guard let data = result.value else { return completion(.failure(result.error)) }
+
         do {
             let parameters = try decodeParameters(fromResponseData: data)
             token = parameters[.token]
