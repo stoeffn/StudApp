@@ -73,7 +73,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         }, completion: nil)
     }
 
-    func prepareDependencies(for route: Routes) {
+    func prepareContent(for route: Routes) {
         guard case let .eventList(for: course) = route else { fatalError() }
 
         viewModel = EventListViewModel(course: course)
@@ -91,7 +91,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     override func decodeRestorableState(with coder: NSCoder) {
         if let restoredObjectIdentifier = coder.decodeObject(forKey: ObjectIdentifier.typeIdentifier) as? String,
             let course = Course.fetch(byObjectId: ObjectIdentifier(rawValue: restoredObjectIdentifier)) {
-            prepareDependencies(for: .eventList(for: course))
+            prepareContent(for: .eventList(for: course))
         }
 
         super.decodeRestorableState(with: coder)

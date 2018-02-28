@@ -72,7 +72,7 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
 
     // MARK: - Navigation
 
-    func prepareDependencies(for route: Routes) {
+    func prepareContent(for route: Routes) {
         guard case let .signIntoOrganization(organization) = route else { fatalError() }
         viewModel = SignInViewModel(organization: organization)
     }

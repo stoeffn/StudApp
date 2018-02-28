@@ -27,7 +27,7 @@ final class DisclaimerController: UIViewController, Routable {
 
     // MARK: - Navigation
 
-    func prepareDependencies(for route: Routes) {
+    func prepareContent(for route: Routes) {
         guard case let .disclaimer(text) = route else { fatalError() }
         self.text = text
     }

@@ -45,7 +45,7 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
 
     // MARK: - Navigation
 
-    func prepareDependencies(for route: Routes) {
+    func prepareContent(for route: Routes) {
         guard case let .folder(folder) = route else { fatalError() }
 
         viewModel = FileListViewModel(filesContaining: folder)
@@ -81,7 +81,7 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
     override func decodeRestorableState(with coder: NSCoder) {
         if let restoredObjectIdentifier = coder.decodeObject(forKey: ObjectIdentifier.typeIdentifier) as? String,
             let folder = File.fetch(byObjectId: ObjectIdentifier(rawValue: restoredObjectIdentifier)) {
-            prepareDependencies(for: .folder(folder))
+            prepareContent(for: .folder(folder))
         }
 
         super.decodeRestorableState(with: coder)
@@ -175,7 +175,7 @@ extension FolderController: UIViewControllerPreviewingDelegate, QLPreviewControl
         guard !file.isFolder else { return nil }
 
         let previewController = PreviewController()
-        previewController.prepareDependencies(for: .preview(for: file, self))
+        previewController.prepareContent(for: .preview(for: file, self))
         return previewController
     }
 

@@ -23,7 +23,7 @@ final class AnnouncementController: UIViewController, Routable {
         bodyView.text = announcement.body
     }
 
-    func prepareDependencies(for route: Routes) {
+    func prepareContent(for route: Routes) {
         guard case let .announcement(announcement) = route else { return }
         self.announcement = announcement
     }

@@ -18,10 +18,10 @@ public extension UIViewController {
 
     public func prepare(for route: Routes, destination: UIViewController) {
         if let controller = destination as? Routable {
-            controller.prepareDependencies(for: route)
+            controller.prepareContent(for: route)
         } else if let navigationController = destination as? UINavigationController,
             let controller = navigationController.viewControllers.first as? Routable {
-            controller.prepareDependencies(for: route)
+            controller.prepareContent(for: route)
         } else {
             let destinationDescription = String(describing: type(of: destination))
             let errorMessage = """

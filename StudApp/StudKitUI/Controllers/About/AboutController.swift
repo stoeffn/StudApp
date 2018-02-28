@@ -36,7 +36,7 @@ final class AboutController: UITableViewController, Routable {
         tipCell.textLabel?.text = "Leave a Tip".localized
     }
 
-    func prepareDependencies(for route: Routes) {
+    func prepareContent(for route: Routes) {
         guard case .about = route else { fatalError() }
 
         viewModel = AboutViewModel()

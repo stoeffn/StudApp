@@ -89,7 +89,7 @@ final class AppController: UITabBarController {
     }
 
     func prepareChildContents(for user: User?) {
-        courseListController?.prepareDependencies(for: .courseList(for: user))
+        courseListController?.prepareContent(for: .courseList(for: user))
         downloadListController?.prepareDependencies(for: .downloadList(for: user))
     }
 

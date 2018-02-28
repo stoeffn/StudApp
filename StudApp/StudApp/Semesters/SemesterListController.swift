@@ -40,7 +40,7 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
 
     // MARK: - Navigation
 
-    func prepareDependencies(for route: Routes) {
+    func prepareContent(for route: Routes) {
         guard case let .semesterList(for: user) = route else { fatalError() }
 
         viewModel = SemesterListViewModel(organization: user.organization, respectsHiddenStates: false)

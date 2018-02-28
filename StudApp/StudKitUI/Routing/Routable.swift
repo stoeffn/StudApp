@@ -7,11 +7,11 @@
 //
 
 public protocol Routable: class {
-    func prepareDependencies(for route: Routes)
+    func prepareContent(for route: Routes)
 }
 
 // MARK: - Default Implementation
 
 public extension Routable {
-    func prepareDependencies(for _: Routes) {}
+    func prepareContent(for _: Routes) {}
 }

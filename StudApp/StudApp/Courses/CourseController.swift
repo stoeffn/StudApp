@@ -69,7 +69,7 @@ final class CourseController: UITableViewController, Routable {
 
     // MARK: - Navigation
 
-    func prepareDependencies(for route: Routes) {
+    func prepareContent(for route: Routes) {
         guard case let .course(course) = route else { fatalError() }
 
         viewModel = CourseViewModel(course: course)
@@ -115,7 +115,7 @@ final class CourseController: UITableViewController, Routable {
     override func decodeRestorableState(with coder: NSCoder) {
         if let restoredObjectIdentifier = coder.decodeObject(forKey: ObjectIdentifier.typeIdentifier) as? String,
             let course = Course.fetch(byObjectId: ObjectIdentifier(rawValue: restoredObjectIdentifier)) {
-            prepareDependencies(for: .course(course))
+            prepareContent(for: .course(course))
         }
         super.decodeRestorableState(with: coder)
     }
@@ -362,7 +362,7 @@ extension CourseController: UIViewControllerPreviewingDelegate, QLPreviewControl
             guard !file.isFolder else { return nil }
 
             let previewController = PreviewController()
-            previewController.prepareDependencies(for: .preview(for: file, self))
+            previewController.prepareContent(for: .preview(for: file, self))
             return previewController
         default:
             return nil

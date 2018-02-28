@@ -73,7 +73,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         }
 
         let previewController = PreviewController()
-        previewController.prepareDependencies(for: .preview(for: file, self))
+        previewController.prepareContent(for: .preview(for: file, self))
         present(previewController, animated: true, completion: nil)
     }
 
@@ -155,7 +155,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         guard let viewModel = viewModel else { fatalError() }
         let file = viewModel[rowAt: indexPath]
         let previewController = PreviewController()
-        previewController.prepareDependencies(for: .preview(for: file, self))
+        previewController.prepareContent(for: .preview(for: file, self))
         present(previewController, animated: true, completion: nil)
     }
 
@@ -257,7 +257,7 @@ extension DownloadListController: UIViewControllerPreviewingDelegate, QLPreviewC
         else { return nil }
 
         let previewController = PreviewController()
-        previewController.prepareDependencies(for: .preview(for: file, self))
+        previewController.prepareContent(for: .preview(for: file, self))
         return previewController
     }
 

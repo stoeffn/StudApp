@@ -47,7 +47,7 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
 
     // MARK: - Navigation
 
-    func prepareDependencies(for route: Routes) {
+    func prepareContent(for route: Routes) {
         guard case .signIn = route else { fatalError() }
         viewModel = OrganizationListViewModel()
         viewModel.delegate = self

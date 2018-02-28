@@ -17,7 +17,7 @@ public final class ConfettiController: UIViewController, Routable {
         present(alert, animated: true, completion: nil)
     }
 
-    public func prepareDependencies(for route: Routes) {
+    public func prepareContent(for route: Routes) {
         guard case let .confetti(alert) = route else { return }
         self.alert = alert
     }

@@ -29,7 +29,7 @@ final class SettingsController: UITableViewController, Routable {
 
     // MARK: - Navigation
 
-    func prepareDependencies(for route: Routes) {
+    func prepareContent(for route: Routes) {
         guard case .settings = route else { fatalError() }
         viewModel = SettingsViewModel()
     }

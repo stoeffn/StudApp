@@ -49,7 +49,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     // MARK: - Navigation
 
-    func prepareDependencies(for route: Routes) {
+    func prepareContent(for route: Routes) {
         guard case let .courseList(for: optionalUser) = route else { fatalError() }
         self.user = optionalUser
 
