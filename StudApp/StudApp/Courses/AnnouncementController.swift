@@ -25,7 +25,7 @@ final class AnnouncementController: UIViewController, Routable {
 
         navigationItem.title = announcement.title
 
-        contentView.loadHTMLString(announcement.content, baseURL: nil)
+        contentView.loadHTMLString(announcement.htmlContent, baseURL: nil)
     }
 
     // MARK: - Navigation

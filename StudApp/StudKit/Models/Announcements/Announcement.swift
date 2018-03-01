@@ -35,7 +35,9 @@ public final class Announcement: NSManagedObject, CDCreatable, CDIdentifiable, C
 
     // MARK: Managing Content and Ownership
 
-    @NSManaged public var content: String
+    @NSManaged public var htmlContent: String
+
+    @NSManaged public var textContent: String
 
     @NSManaged public var user: User?
 

@@ -17,10 +17,12 @@ struct AnnouncementResponse: IdentifiableResponse {
     let expiresAfter: TimeInterval
     let expiresAt: Date
     let title: String
-    let content: String
+    let htmlContent: String
+    let textContent: String
 
     init(id: String, courseIds: Set<String> = [], userId: String? = nil, createdAt: Date = .distantPast,
-         modifiedAt: Date = .distantPast, expiresAfter: TimeInterval = 0, title: String = "", content: String = "") {
+         modifiedAt: Date = .distantPast, expiresAfter: TimeInterval = 0, title: String = "",
+         htmlContent: String = "", textContent: String = "") {
         self.id = id
         self.courseIds = courseIds
         self.userId = userId
@@ -29,7 +31,8 @@ struct AnnouncementResponse: IdentifiableResponse {
         self.expiresAfter = expiresAfter
         expiresAt = createdAt + expiresAfter
         self.title = title
-        self.content = content
+        self.htmlContent = htmlContent
+        self.textContent = textContent
     }
 }
 
@@ -44,7 +47,8 @@ extension AnnouncementResponse: Decodable {
         case modifiedAt = "chdate"
         case expiresAfter = "expire"
         case title = "topic"
-        case content = "body_html"
+        case htmlContent = "body_html"
+        case textContent = "body"
     }
 
     public init(from decoder: Decoder) throws {
@@ -58,7 +62,8 @@ extension AnnouncementResponse: Decodable {
         expiresAfter = TimeInterval(try container.decode(String.self, forKey: .expiresAfter)) ?? 0
         expiresAt = createdAt + expiresAfter
         title = try container.decode(String.self, forKey: .title)
-        content = try container.decode(String.self, forKey: .content)
+        htmlContent = try container.decode(String.self, forKey: .htmlContent)
+        textContent = try container.decode(String.self, forKey: .textContent)
     }
 }
 
@@ -76,7 +81,8 @@ extension AnnouncementResponse {
         announcement.modifiedAt = modifiedAt
         announcement.expiresAt = expiresAt
         announcement.title = title
-        announcement.content = content
+        announcement.htmlContent = htmlContent
+        announcement.textContent = textContent
         return announcement
     }
 }

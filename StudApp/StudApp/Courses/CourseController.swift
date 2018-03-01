@@ -263,7 +263,7 @@ final class CourseController: UITableViewController, Routable {
         case .info? where action == #selector(copy(_:)):
             UIPasteboard.general.string = viewModel[rowAt: indexPath.row].value
         case .announcements?:
-            UIPasteboard.general.string = announcementsViewModel[rowAt: indexPath.row].content
+            UIPasteboard.general.string = announcementsViewModel[rowAt: indexPath.row].textContent
         case .info?, .documents?:
             break
         case .events?, nil:
@@ -328,7 +328,7 @@ extension CourseController: UITableViewDragDelegate {
             guard let data = viewModel[rowAt: indexPath.row].value?.data(using: .utf8) else { return [] }
             return [NSItemProvider(item: data as NSData, typeIdentifier: kUTTypePlainText as String)]
         case .announcements? where !announcementsViewModel.isEmpty:
-            guard let data = announcementsViewModel[rowAt: indexPath.row].content.data(using: .utf8) else { return [] }
+            guard let data = announcementsViewModel[rowAt: indexPath.row].textContent.data(using: .utf8) else { return [] }
             return [NSItemProvider(item: data as NSData, typeIdentifier: kUTTypePlainText as String)]
         case .documents? where !fileListViewModel.isEmpty:
             let file = fileListViewModel[rowAt: indexPath.row]

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17D102" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Announcement" representedClassName="Announcement" syncable="YES">
-        <attribute name="content" attributeType="String" defaultValueString=" " syncable="YES"/>
         <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="expiresAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="htmlContent" attributeType="String" defaultValueString=" " syncable="YES"/>
         <attribute name="id" attributeType="String" minValueString="1" syncable="YES"/>
         <attribute name="modifiedAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="textContent" attributeType="String" defaultValueString=" " syncable="YES"/>
         <attribute name="title" attributeType="String" minValueString="1" syncable="YES"/>
         <relationship name="courses" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="announcements" inverseEntity="Course" syncable="YES"/>
         <relationship name="organization" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" inverseName="announcements" inverseEntity="Organization" syncable="YES"/>
@@ -171,7 +172,7 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Announcement" positionX="-8703" positionY="-2070" width="128" height="180"/>
+        <element name="Announcement" positionX="-8703" positionY="-2070" width="128" height="195"/>
         <element name="Course" positionX="-8568" positionY="-2218" width="128" height="270"/>
         <element name="CourseState" positionX="-8354" positionY="-2142" width="128" height="120"/>
         <element name="Event" positionX="-8703" positionY="-2070" width="128" height="195"/>
