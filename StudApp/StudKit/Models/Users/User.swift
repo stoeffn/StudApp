@@ -35,7 +35,11 @@ public final class User: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
 
     @NSManaged public var pictureModifiedAt: Date?
 
+    @NSManaged public var state: UserState
+
     // MARK: Managing Belongings
+
+    @NSManaged public var authoredCourses: Set<Course>
 
     @NSManaged public var createdAnnouncements: Set<Announcement>
 
@@ -43,9 +47,14 @@ public final class User: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
 
     @NSManaged public var lecturedCourses: Set<Course>
 
-    @NSManaged public var authoredCourses: Set<Course>
-
     @NSManaged public var ownedFiles: Set<File>
+
+    // MARK: - Life Cycle
+
+    public required convenience init(createIn context: NSManagedObjectContext) {
+        self.init(context: context)
+        state = UserState(createIn: context)
+    }
 
     // MARK: - Sorting
 

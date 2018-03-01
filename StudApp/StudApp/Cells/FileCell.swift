@@ -38,7 +38,7 @@ final class FileCell: UITableViewCell {
             userLabel.text = file.owner?.nameComponents.formatted()
             sizeLabel.text = file.size.formattedAsByteCount
             downloadCountLabel.text = "%dx".localized(file.downloadCount)
-            childrenCountLabel?.text = "%d items".localized(file.children.count)
+            childCountLabel?.text = "%d items".localized(file.children.count)
 
             activityIndicator?.isHidden = file.isFolder || !file.state.isDownloading
             downloadGlyph?.isHidden = !file.isDownloadable
@@ -70,8 +70,8 @@ final class FileCell: UITableViewCell {
     @IBOutlet var downloadCountContainer: UIStackView!
     @IBOutlet var downloadCountLabel: UILabel!
 
-    @IBOutlet var childrenCountContainer: UIStackView?
-    @IBOutlet var childrenCountLabel: UILabel?
+    @IBOutlet var childCountContainer: UIStackView?
+    @IBOutlet var childCountLabel: UILabel?
 
     @IBOutlet var activityIndicator: StudIpActivityIndicator?
     @IBOutlet var downloadGlyph: UIImageView?
@@ -80,7 +80,7 @@ final class FileCell: UITableViewCell {
         guard let file = file else { return }
         sizeContainer.isHidden = file.size == -1
         downloadCountContainer.isHidden = file.downloadCount == -1 || frame.width < 512
-        childrenCountContainer?.isHidden = !file.isFolder
+        childCountContainer?.isHidden = !file.isFolder
         userContainer.isHidden = file.owner == nil || frame.width < 512
     }
 

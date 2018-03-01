@@ -377,7 +377,7 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="PM0-EB-r9M">
                                                                     <rect key="frame" x="194.5" y="0.0" width="62" height="16"/>
                                                                     <subviews>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChildrenCountSubtitleGlyph" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6iK-Cp-zMV">
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChildCountSubtitleGlyph" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6iK-Cp-zMV">
                                                                             <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
                                                                             <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
@@ -454,8 +454,8 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="activityIndicator" destination="7Bc-Ro-1Vl" id="YMg-it-WrF"/>
-                                    <outlet property="childrenCountContainer" destination="PM0-EB-r9M" id="5vv-yL-V8i"/>
-                                    <outlet property="childrenCountLabel" destination="r0a-rE-yUe" id="cUD-si-uuI"/>
+                                    <outlet property="childCountContainer" destination="PM0-EB-r9M" id="5vv-yL-V8i"/>
+                                    <outlet property="childCountLabel" destination="r0a-rE-yUe" id="cUD-si-uuI"/>
                                     <outlet property="downloadCountContainer" destination="EuN-po-dG5" id="0ML-rP-AlN"/>
                                     <outlet property="downloadCountLabel" destination="lCH-Ni-UTa" id="o4V-Rs-xzT"/>
                                     <outlet property="downloadGlyph" destination="7ag-pv-zJc" id="AXn-lT-a2n"/>
@@ -975,7 +975,7 @@ Gebäude 3703: Technische Informatik</string>
         </scene>
     </scenes>
     <resources>
-        <image name="ChildrenCountSubtitleGlyph" width="16" height="16"/>
+        <image name="ChildCountSubtitleGlyph" width="16" height="16"/>
         <image name="CoursesGlyph" width="512" height="512"/>
         <image name="CoursesTabBarGlyph" width="27" height="27"/>
         <image name="DownloadBarButtonGlyph" width="25" height="25"/>

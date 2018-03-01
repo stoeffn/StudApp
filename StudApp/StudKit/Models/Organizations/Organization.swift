@@ -54,10 +54,19 @@ public final class Organization: NSManagedObject, CDCreatable, CDIdentifiable, C
 
     @NSManaged public var routesAvailabilityData: Data?
 
+    @NSManaged public var state: OrganizationState
+
     var routesAvailability: ApiRoutesAvailablity? {
         guard let data = routesAvailabilityData else { return nil }
         let decoder = ServiceContainer.default[JSONDecoder.self]
         return try? decoder.decode(ApiRoutesAvailablity.self, from: data)
+    }
+
+    // MARK: - Life Cycle
+
+    public required convenience init(createIn context: NSManagedObjectContext) {
+        self.init(context: context)
+        state = OrganizationState(createIn: context)
     }
 
     // MARK: - Sorting
