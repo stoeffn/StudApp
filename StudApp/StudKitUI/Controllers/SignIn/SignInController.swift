@@ -54,6 +54,10 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
         viewModel.startAuthorization()
     }
 
+    deinit {
+        observations.removeAll()
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 

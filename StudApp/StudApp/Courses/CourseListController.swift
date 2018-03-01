@@ -222,6 +222,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     func dataDidChange<Section: DataSourceSection>(in _: Section) {
         pruneCourseListViewModels()
         tableView.endUpdates()
+        updateEmptyView()
     }
 
     // MARK: - Managing Course List View Models

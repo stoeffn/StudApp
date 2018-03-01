@@ -47,6 +47,10 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         viewModel.update()
     }
 
+    deinit {
+        observations.removeAll()
+    }
+
     // MARK: - Navigation
 
     func prepareContent(for route: Routes) {
