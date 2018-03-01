@@ -13,5 +13,6 @@ public class StudKitUIServiceProvider: ServiceProvider {
 
     public func registerServices(in container: ServiceContainer) {
         container[FileIconService.self] = FileIconService()
+        container[HtmlContentService.self] = HtmlContentService()
     }
 }

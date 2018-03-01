@@ -11,6 +11,7 @@ import StudKitUI
 import WebKit
 
 final class AnnouncementController: UIViewController, Routable {
+    private let htmlContentService = ServiceContainer.default[HtmlContentService.self]
     private var announcement: Announcement!
 
     // MARK: - Life Cycle
@@ -25,7 +26,7 @@ final class AnnouncementController: UIViewController, Routable {
 
         navigationItem.title = announcement.title
 
-        contentView.loadHTMLString(announcement.htmlContent, baseURL: nil)
+        contentView.loadHTMLString(htmlContentService.styledHtmlContent(for: announcement.htmlContent), baseURL: nil)
     }
 
     // MARK: - Navigation
@@ -37,17 +38,7 @@ final class AnnouncementController: UIViewController, Routable {
 
     // MARK: - User Interface
 
-    private lazy var contentView: WKWebView = {
-        let preferences = WKPreferences()
-        preferences.javaScriptEnabled = false
-
-        let configuration = WKWebViewConfiguration()
-        configuration.preferences = preferences
-
-        let view = WKWebView(frame: .zero, configuration: configuration)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    private lazy var contentView = htmlContentService.view()
 
     private func initUserInterface() {
         view.addSubview(contentView)
