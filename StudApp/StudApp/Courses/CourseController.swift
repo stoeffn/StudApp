@@ -38,7 +38,8 @@ final class CourseController: UITableViewController, Routable {
         fileListViewModel.update()
 
         navigationItem.title = viewModel.course.title
-        navigationItem.prompt = viewModel.course.subtitle
+
+        subtitleLabel.text = viewModel.course.subtitle
 
         let navigationController = splitViewController?.detailNavigationController as? BorderlessNavigationController
         navigationController?.usesDefaultAppearance = true
@@ -133,7 +134,7 @@ final class CourseController: UITableViewController, Routable {
     private let allEventsCellIdentifier = "AllEventsCell"
 
     private enum Sections: Int {
-        case info, announcements, documents, events
+        case info, announcements, documents, summary, events
     }
 
     private func index<Section: DataSourceSection>(for section: Section) -> Sections? {
@@ -144,7 +145,8 @@ final class CourseController: UITableViewController, Routable {
     }
 
     override func numberOfSections(in _: UITableView) -> Int {
-        return viewModel != nil ? 3 : 0
+        guard viewModel != nil else { return 0 }
+        return viewModel.course.summary != nil ? 4 : 3
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -156,6 +158,8 @@ final class CourseController: UITableViewController, Routable {
         case .documents?:
             return fileListViewModel.numberOfRows + 1
         case .events?:
+            return 1
+        case .summary?:
             return 1
         case nil:
             fatalError()
@@ -191,6 +195,10 @@ final class CourseController: UITableViewController, Routable {
             let cell = tableView.dequeueReusableCell(withIdentifier: allEventsCellIdentifier, for: indexPath)
             cell.textLabel?.text = "All Events".localized
             return cell
+        case .summary?:
+            let cell = tableView.dequeueReusableCell(withIdentifier: SummaryCell.typeIdentifier, for: indexPath)
+            (cell as? SummaryCell)?.textView.text = viewModel.course.summary
+            return cell
         case nil:
             fatalError()
         }
@@ -212,14 +220,7 @@ final class CourseController: UITableViewController, Routable {
         case .announcements?: return "Announcements".localized
         case .documents?: return "Documents".localized
         case .events?: return "Events".localized
-        case nil: fatalError()
-        }
-    }
-
-    override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
-        switch Sections(rawValue: section) {
-        case .info?: return viewModel.course.summary
-        case .announcements?, .documents?, .events?: return nil
+        case .summary?: return "Summary".localized
         case nil: fatalError()
         }
     }
@@ -240,7 +241,7 @@ final class CourseController: UITableViewController, Routable {
     override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath,
                             withSender _: Any?) -> Bool {
         switch Sections(rawValue: indexPath.section) {
-        case .info?, .announcements?:
+        case .info?, .announcements?, .summary?:
             return action == #selector(copy(_:))
         case .documents?:
             let file = fileListViewModel[rowAt: indexPath.row]
@@ -266,7 +267,7 @@ final class CourseController: UITableViewController, Routable {
             UIPasteboard.general.string = announcementsViewModel[rowAt: indexPath.row].textContent
         case .info?, .documents?:
             break
-        case .events?, nil:
+        case .events?, .summary?, nil:
             fatalError()
         }
     }
@@ -282,6 +283,10 @@ final class CourseController: UITableViewController, Routable {
 
         tableView.deselectRow(at: indexPath, animated: true)
     }
+
+    // MARK: - User Interface
+
+    @IBOutlet weak var subtitleLabel: UILabel!
 
     // MARK: - User Interaction
 

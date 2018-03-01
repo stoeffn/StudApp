@@ -212,7 +212,7 @@
             </objects>
             <point key="canvasLocation" x="-1366" y="132"/>
         </scene>
-        <!--Course Controller-->
+        <!--Course Title-->
         <scene sceneID="qSR-Bp-pvx">
             <objects>
                 <tableViewController storyboardIdentifier="Course" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9OB-lI-obx" customClass="CourseController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -220,9 +220,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="UOK-Su-Hem">
+                            <rect key="frame" x="0.0" y="0.0" width="768" height="48"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ept-S8-Lfb">
+                                    <rect key="frame" x="8" y="8" width="752" height="18"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="Ept-S8-Lfb" firstAttribute="leading" secondItem="UOK-Su-Hem" secondAttribute="leadingMargin" id="2Gh-zS-GLH"/>
+                                <constraint firstItem="Ept-S8-Lfb" firstAttribute="top" secondItem="UOK-Su-Hem" secondAttribute="topMargin" id="hg9-vN-aEc"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="Ept-S8-Lfb" secondAttribute="trailing" id="kBP-sV-NRf"/>
+                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ept-S8-Lfb" secondAttribute="bottom" id="onK-OW-n9k"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="UITableViewCell" textLabel="w0J-7F-tTZ" detailTextLabel="f8b-oJ-u7n" style="IBUITableViewCellStyleValue1" id="Pe3-Dc-UMn">
-                                <rect key="frame" x="0.0" y="55.5" width="768" height="44"/>
+                                <rect key="frame" x="0.0" y="103.5" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Pe3-Dc-UMn" id="Vcj-NJ-GCr">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="43.5"/>
@@ -246,7 +265,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FileCell" rowHeight="72" id="18v-nC-lXr" customClass="FileCell" customModule="StudApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="99.5" width="768" height="72"/>
+                                <rect key="frame" x="0.0" y="147.5" width="768" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="18v-nC-lXr" id="d9m-hY-YdC">
                                     <rect key="frame" x="0.0" y="0.0" width="730" height="71.5"/>
@@ -429,7 +448,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AnnouncementCell" rowHeight="72" id="Xmm-E2-ALL" customClass="AnnouncementCell" customModule="StudApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="171.5" width="768" height="72"/>
+                                <rect key="frame" x="0.0" y="219.5" width="768" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xmm-E2-ALL" id="CCi-b4-zYj">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="71.5"/>
@@ -540,7 +559,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="EventCell" rowHeight="104" id="zEY-nW-qaD" customClass="EventCell" customModule="StudApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="243.5" width="768" height="104"/>
+                                <rect key="frame" x="0.0" y="291.5" width="768" height="104"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zEY-nW-qaD" id="mYh-Zo-YUO">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="103.5"/>
@@ -665,7 +684,7 @@ Gebäude 3703: Technische Informatik</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="AllEventsCell" textLabel="ehP-bX-sde" style="IBUITableViewCellStyleDefault" id="9nx-mu-0xi">
-                                <rect key="frame" x="0.0" y="347.5" width="768" height="44"/>
+                                <rect key="frame" x="0.0" y="395.5" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9nx-mu-0xi" id="FmL-nW-K5H">
                                     <rect key="frame" x="0.0" y="0.0" width="730" height="43.5"/>
@@ -688,7 +707,7 @@ Gebäude 3703: Technische Informatik</string>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="EmptyCell" textLabel="mfb-9F-mgz" rowHeight="72" style="IBUITableViewCellStyleDefault" id="QGR-HI-Lac">
-                                <rect key="frame" x="0.0" y="391.5" width="768" height="72"/>
+                                <rect key="frame" x="0.0" y="439.5" width="768" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="QGR-HI-Lac" id="68x-80-K8h">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="71.5"/>
@@ -704,6 +723,33 @@ Gebäude 3703: Technische Informatik</string>
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SummaryCell" rowHeight="72" id="3a1-Bk-75M" customClass="SummaryCell" customModule="StudApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="511.5" width="768" height="72"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3a1-Bk-75M" id="asG-0q-fGn">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="71.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wAp-AW-Jvp">
+                                            <rect key="frame" x="12" y="0.0" width="744" height="71.5"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES" shipmentTrackingNumber="YES" flightNumber="YES" lookupSuggestion="YES"/>
+                                        </textView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="wAp-AW-Jvp" firstAttribute="leading" secondItem="asG-0q-fGn" secondAttribute="leadingMargin" constant="-8" id="DaQ-D0-Wz5"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="wAp-AW-Jvp" secondAttribute="trailing" constant="-8" id="KOP-6r-4tl"/>
+                                        <constraint firstAttribute="bottom" secondItem="wAp-AW-Jvp" secondAttribute="bottom" id="aZ6-ph-eBc"/>
+                                        <constraint firstItem="wAp-AW-Jvp" firstAttribute="top" secondItem="asG-0q-fGn" secondAttribute="top" id="wKm-RY-YRm"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="textView" destination="wAp-AW-Jvp" id="qva-qJ-ca8"/>
+                                </connections>
+                            </tableViewCell>
                         </prototypes>
                         <sections/>
                         <connections>
@@ -711,13 +757,16 @@ Gebäude 3703: Technische Informatik</string>
                             <outlet property="delegate" destination="9OB-lI-obx" id="MOn-Pn-eDU"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="daU-Ql-AHc">
+                    <navigationItem key="navigationItem" title="Course Title" largeTitleDisplayMode="never" id="daU-Ql-AHc">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="7SC-dN-xvy">
                             <connections>
                                 <action selector="actionButtonTapped:" destination="9OB-lI-obx" id="5FG-e5-3yx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="subtitleLabel" destination="Ept-S8-Lfb" id="kH0-jd-uiB"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PtY-OR-DU0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
