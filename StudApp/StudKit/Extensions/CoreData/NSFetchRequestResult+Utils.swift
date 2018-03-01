@@ -8,6 +8,8 @@
 
 import CoreData
 
+// MARK: - Fetching
+
 public extension NSFetchRequestResult {
     /// Returns a fetch request for this object, using the parameters given as its properties.
     public static func fetchRequest(predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor] = [],
@@ -30,11 +32,35 @@ public extension NSFetchRequestResult {
     }
 }
 
+// MARK: - Switching Contexts
+
 public extension NSFetchRequestResult where Self: NSManagedObject {
-    public func inContext(_ context: NSManagedObjectContext) -> Self {
+    public func `in`(_ context: NSManagedObjectContext) -> Self {
         guard let object = context.object(with: objectID) as? Self else {
             fatalError("Cannot find object '\(self)' in context '\(context)'.")
         }
         return object
+    }
+}
+
+// MARK: - Updating
+
+extension NSFetchRequestResult {
+    func shouldUpdate(lastUpdatedAt: Date?, expiresAfter: TimeInterval) -> Bool {
+        guard let lastUpdatedAt = lastUpdatedAt else { return true }
+        return lastUpdatedAt + expiresAfter < Date()
+    }
+
+    func update<Value>(lastUpdatedAt lastUpdatedAtKeyPath: ReferenceWritableKeyPath<Self, Date?>,
+                       expiresAfter: TimeInterval, completion: @escaping ResultHandler<Value>,
+                       updater: (@escaping ResultHandler<Value>) -> Void) {
+        guard shouldUpdate(lastUpdatedAt: self[keyPath: lastUpdatedAtKeyPath], expiresAfter: expiresAfter) else {
+            return completion(.failure(nil))
+        }
+        updater { result in
+            defer { completion(result) }
+            guard result.isSuccess else { return }
+            self[keyPath: lastUpdatedAtKeyPath] = Date()
+        }
     }
 }
