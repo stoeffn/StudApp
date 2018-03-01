@@ -21,7 +21,7 @@ final class ColorPickerController: UICollectionViewController, Routable {
         navigationItem.title = "Choose Color".localized
     }
 
-    func prepareDependencies(for route: Routes) {
+    func prepareContent(for route: Routes) {
         guard case let .colorPicker(_, completion) = route else { fatalError() }
         viewModel = ColorPickerViewModel(colors: UI.Colors.pickerColors, completion: completion)
     }

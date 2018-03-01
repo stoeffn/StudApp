@@ -90,7 +90,7 @@ final class AppController: UITabBarController {
 
     func prepareChildContents(for user: User?) {
         courseListController?.prepareContent(for: .courseList(for: user))
-        downloadListController?.prepareDependencies(for: .downloadList(for: user))
+        downloadListController?.prepareContent(for: .downloadList(for: user))
     }
 
     func presentSignInIfNeeded() {

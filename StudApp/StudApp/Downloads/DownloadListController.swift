@@ -47,7 +47,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
     // MARK: - Navigation
 
-    func prepareDependencies(for route: Routes) {
+    func prepareContent(for route: Routes) {
         guard case let .downloadList(optionalUser) = route else { fatalError() }
 
         defer {
