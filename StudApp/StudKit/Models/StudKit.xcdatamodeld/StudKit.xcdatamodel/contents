@@ -127,7 +127,7 @@
             <fetchIndexElement property="id" type="Binary" order="ascending"/>
         </fetchIndex>
     </entity>
-    <entity name="OrganizationState" representedClassName="OrganizationState" syncable="YES" codeGenerationType="class">
+    <entity name="OrganizationState" representedClassName="OrganizationState" syncable="YES">
         <attribute name="semestersUpdatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="organization" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" inverseName="state" inverseEntity="Organization" syncable="YES"/>
     </entity>
@@ -184,7 +184,7 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="UserState" representedClassName="UserState" syncable="YES" codeGenerationType="class">
+    <entity name="UserState" representedClassName="UserState" syncable="YES">
         <attribute name="authoredCoursesUpdatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="state" inverseEntity="User" syncable="YES"/>
     </entity>
@@ -199,7 +199,7 @@
         <element name="Semester" positionX="-9270" positionY="-2115" width="128" height="195"/>
         <element name="SemesterState" positionX="-9272" positionY="-2310" width="128" height="150"/>
         <element name="User" positionX="-9270" positionY="-1827" width="128" height="255"/>
-        <element name="UserState" positionX="-9272" positionY="-1515" width="128" height="75"/>
+        <element name="UserState" positionX="-9272" positionY="-1515" width="128" height="73"/>
         <element name="OrganizationState" positionX="-8847" positionY="-1764" width="128" height="75"/>
     </elements>
 </model>

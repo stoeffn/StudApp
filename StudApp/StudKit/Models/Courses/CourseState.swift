@@ -18,6 +18,12 @@ public final class CourseState: NSManagedObject, CDCreatable, CDSortable {
 
     // MARK: Tracking Usage
 
+    @NSManaged public var announcementsUpdatedAt: Date?
+
+    @NSManaged public var childFilesUpdatedAt: Date?
+
+    @NSManaged public var eventsUpdatedAt: Date?
+
     @NSManaged public var lastUsedAt: Date?
 
     // MARK: Managing Metadata
@@ -26,7 +32,7 @@ public final class CourseState: NSManagedObject, CDCreatable, CDSortable {
 
     @NSManaged public var tagData: Data?
 
-    @NSManaged public var areFilesFetchedFromRemote: Bool
+    @available(*, deprecated) @NSManaged public var areFilesFetchedFromRemote: Bool
 
     // MARK: Life Cycle
 

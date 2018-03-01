@@ -17,6 +17,8 @@ public final class FileState: NSManagedObject, CDCreatable, CDSortable {
 
     // MARK: Tracking Usage
 
+    @NSManaged public var childFilesUpdatedAt: Date?
+
     @NSManaged public var lastUsedAt: Date?
 
     // MARK: Managing Metadata

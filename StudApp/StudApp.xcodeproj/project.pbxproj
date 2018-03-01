@@ -78,6 +78,8 @@
 		244FC1682048219600A5304B /* HtmlContentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FC1672048219600A5304B /* HtmlContentService.swift */; };
 		244FC16D2048333C00A5304B /* AnnouncementNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FC16C2048333C00A5304B /* AnnouncementNavigationController.swift */; };
 		244FC16F20483F0900A5304B /* SummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FC16E20483F0900A5304B /* SummaryCell.swift */; };
+		244FC17120486EDF00A5304B /* OrganizationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FC17020486EDF00A5304B /* OrganizationState.swift */; };
+		244FC17320486EEC00A5304B /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FC17220486EEC00A5304B /* UserState.swift */; };
 		2450AC6D1FDC1582004F1267 /* CourseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC6C1FDC1582004F1267 /* CourseViewModel.swift */; };
 		2450AC711FDC405E004F1267 /* Documents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2450AC701FDC405E004F1267 /* Documents.storyboard */; };
 		2450AC731FDC406F004F1267 /* FolderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC721FDC406F004F1267 /* FolderController.swift */; };
@@ -486,6 +488,8 @@
 		244FC1672048219600A5304B /* HtmlContentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HtmlContentService.swift; sourceTree = "<group>"; };
 		244FC16C2048333C00A5304B /* AnnouncementNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncementNavigationController.swift; sourceTree = "<group>"; };
 		244FC16E20483F0900A5304B /* SummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCell.swift; sourceTree = "<group>"; };
+		244FC17020486EDF00A5304B /* OrganizationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationState.swift; sourceTree = "<group>"; };
+		244FC17220486EEC00A5304B /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
 		2450AC6C1FDC1582004F1267 /* CourseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewModel.swift; sourceTree = "<group>"; };
 		2450AC701FDC405E004F1267 /* Documents.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Documents.storyboard; sourceTree = "<group>"; };
 		2450AC721FDC406F004F1267 /* FolderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderController.swift; sourceTree = "<group>"; };
@@ -1294,6 +1298,7 @@
 				24CA6FE9203F503700171843 /* Organization.swift */,
 				24CA6FEB203F614200171843 /* Organization+CloudKit.swift */,
 				245B6AE01FCB39BF00302CD0 /* OrganizationRecord.swift */,
+				244FC17020486EDF00A5304B /* OrganizationState.swift */,
 			);
 			path = Organizations;
 			sourceTree = "<group>";
@@ -1409,6 +1414,7 @@
 			isa = PBXGroup;
 			children = (
 				24D360FC1FAA5E0800BBBAED /* User.swift */,
+				244FC17220486EEC00A5304B /* UserState.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -2459,6 +2465,7 @@
 				24FE8A161FB8527E00A4A3C6 /* FileListViewModel.swift in Sources */,
 				2407A07E1FF2B982006D41C5 /* EventResponse.swift in Sources */,
 				24D9EF561FB7559C006776B7 /* SemesterListViewModel.swift in Sources */,
+				244FC17120486EDF00A5304B /* OrganizationState.swift in Sources */,
 				248C024C202E4EE4004CB8C9 /* BaseDirectories.swift in Sources */,
 				2422660B1FE3D62500FA7CA6 /* AnnouncementResponse.swift in Sources */,
 				243040A4204339070018F367 /* DiscoveryResponse.swift in Sources */,
@@ -2500,6 +2507,7 @@
 				248C024E202E4FFE004CB8C9 /* NSFileProviderError+Reasons.swift in Sources */,
 				24712BF51FB8B80B0067E416 /* Date+Formatting.swift in Sources */,
 				24D361181FAA5F6200BBBAED /* CoreDataService.swift in Sources */,
+				244FC17320486EEC00A5304B /* UserState.swift in Sources */,
 				246F3AC61FAC879C00A477FF /* DataSource.swift in Sources */,
 				24D360CF1FAA5AFE00BBBAED /* CDCreatable.swift in Sources */,
 				24D361161FAA5F0E00BBBAED /* Api+CollectionResponse.swift in Sources */,
