@@ -46,7 +46,10 @@
         </uniquenessConstraints>
     </entity>
     <entity name="CourseState" representedClassName="CourseState" syncable="YES">
+        <attribute name="announcementsUpdatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="areFilesFetchedFromRemote" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="childFilesUpdatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="eventsUpdatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="favoriteRank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lastUsedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="tagData" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -98,6 +101,7 @@
         </uniquenessConstraints>
     </entity>
     <entity name="FileState" representedClassName="FileState" syncable="YES">
+        <attribute name="childFilesUpdatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="downloadedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="favoriteRank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isDownloading" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
@@ -117,7 +121,15 @@
         <relationship name="events" toMany="YES" deletionRule="Cascade" destinationEntity="Event" inverseName="organization" inverseEntity="Event" syncable="YES"/>
         <relationship name="files" toMany="YES" deletionRule="Cascade" destinationEntity="File" inverseName="organization" inverseEntity="File" syncable="YES"/>
         <relationship name="semesters" toMany="YES" deletionRule="Cascade" destinationEntity="Semester" inverseName="organization" inverseEntity="Semester" syncable="YES"/>
+        <relationship name="state" maxCount="1" deletionRule="Nullify" destinationEntity="OrganizationState" inverseName="organization" inverseEntity="OrganizationState" syncable="YES"/>
         <relationship name="users" toMany="YES" deletionRule="Cascade" destinationEntity="User" inverseName="organization" inverseEntity="User" syncable="YES"/>
+        <fetchIndex name="byId">
+            <fetchIndexElement property="id" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="OrganizationState" representedClassName="OrganizationState" syncable="YES" codeGenerationType="class">
+        <attribute name="semestersUpdatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="organization" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" inverseName="state" inverseEntity="Organization" syncable="YES"/>
     </entity>
     <entity name="Semester" representedClassName="Semester" syncable="YES">
         <attribute name="beginsAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -162,6 +174,7 @@
         <relationship name="lecturedCourses" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="lecturers" inverseEntity="Course" syncable="YES"/>
         <relationship name="organization" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" inverseName="users" inverseEntity="Organization" syncable="YES"/>
         <relationship name="ownedFiles" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="owner" inverseEntity="File" syncable="YES"/>
+        <relationship name="state" maxCount="1" deletionRule="Cascade" destinationEntity="UserState" inverseName="user" inverseEntity="UserState" syncable="YES"/>
         <fetchIndex name="byId">
             <fetchIndexElement property="id" type="Binary" order="ascending"/>
         </fetchIndex>
@@ -171,16 +184,22 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+    <entity name="UserState" representedClassName="UserState" syncable="YES" codeGenerationType="class">
+        <attribute name="authoredCoursesUpdatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="state" inverseEntity="User" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Announcement" positionX="-8703" positionY="-2070" width="128" height="195"/>
-        <element name="Course" positionX="-8568" positionY="-2218" width="128" height="270"/>
-        <element name="CourseState" positionX="-8354" positionY="-2142" width="128" height="120"/>
-        <element name="Event" positionX="-8703" positionY="-2070" width="128" height="195"/>
-        <element name="File" positionX="-8381" positionY="-1971" width="128" height="270"/>
-        <element name="FileState" positionX="-8199" positionY="-1836" width="128" height="135"/>
-        <element name="Organization" positionX="-8694" positionY="-2061" width="128" height="225"/>
-        <element name="Semester" positionX="-8748" positionY="-2188" width="128" height="195"/>
-        <element name="SemesterState" positionX="-8910" positionY="-2121" width="128" height="150"/>
-        <element name="User" positionX="-8748" positionY="-1924" width="128" height="240"/>
+        <element name="Announcement" positionX="-8210" positionY="-1854" width="128" height="195"/>
+        <element name="Course" positionX="-8784" positionY="-2124" width="128" height="270"/>
+        <element name="CourseState" positionX="-8786" positionY="-2322" width="128" height="165"/>
+        <element name="Event" positionX="-8210" positionY="-2094" width="128" height="195"/>
+        <element name="File" positionX="-8208" positionY="-1638" width="128" height="270"/>
+        <element name="FileState" positionX="-8210" positionY="-1329" width="128" height="150"/>
+        <element name="Organization" positionX="-9522" positionY="-2043" width="128" height="238"/>
+        <element name="Semester" positionX="-9270" positionY="-2115" width="128" height="195"/>
+        <element name="SemesterState" positionX="-9272" positionY="-2310" width="128" height="150"/>
+        <element name="User" positionX="-9270" positionY="-1827" width="128" height="255"/>
+        <element name="UserState" positionX="-9272" positionY="-1515" width="128" height="75"/>
+        <element name="OrganizationState" positionX="-8847" positionY="-1764" width="128" height="75"/>
     </elements>
 </model>
