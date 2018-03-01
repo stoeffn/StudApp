@@ -51,6 +51,15 @@ public final class User: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
 
     // MARK: - Life Cycle
 
+    // TODO: Remove and make state non-optional
+    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+
+        if let context = context, primitiveValue(forKey: "state") == nil {
+            state = UserState(createIn: context)
+        }
+    }
+
     public required convenience init(createIn context: NSManagedObjectContext) {
         self.init(context: context)
         state = UserState(createIn: context)

@@ -121,7 +121,7 @@
         <relationship name="events" toMany="YES" deletionRule="Cascade" destinationEntity="Event" inverseName="organization" inverseEntity="Event" syncable="YES"/>
         <relationship name="files" toMany="YES" deletionRule="Cascade" destinationEntity="File" inverseName="organization" inverseEntity="File" syncable="YES"/>
         <relationship name="semesters" toMany="YES" deletionRule="Cascade" destinationEntity="Semester" inverseName="organization" inverseEntity="Semester" syncable="YES"/>
-        <relationship name="state" maxCount="1" deletionRule="Nullify" destinationEntity="OrganizationState" inverseName="organization" inverseEntity="OrganizationState" syncable="YES"/>
+        <relationship name="state" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OrganizationState" inverseName="organization" inverseEntity="OrganizationState" syncable="YES"/>
         <relationship name="users" toMany="YES" deletionRule="Cascade" destinationEntity="User" inverseName="organization" inverseEntity="User" syncable="YES"/>
         <fetchIndex name="byId">
             <fetchIndexElement property="id" type="Binary" order="ascending"/>
@@ -174,7 +174,7 @@
         <relationship name="lecturedCourses" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="lecturers" inverseEntity="Course" syncable="YES"/>
         <relationship name="organization" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" inverseName="users" inverseEntity="Organization" syncable="YES"/>
         <relationship name="ownedFiles" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="owner" inverseEntity="File" syncable="YES"/>
-        <relationship name="state" maxCount="1" deletionRule="Cascade" destinationEntity="UserState" inverseName="user" inverseEntity="UserState" syncable="YES"/>
+        <relationship name="state" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UserState" inverseName="user" inverseEntity="UserState" syncable="YES"/>
         <fetchIndex name="byId">
             <fetchIndexElement property="id" type="Binary" order="ascending"/>
         </fetchIndex>
@@ -195,11 +195,11 @@
         <element name="Event" positionX="-8210" positionY="-2094" width="128" height="195"/>
         <element name="File" positionX="-8208" positionY="-1638" width="128" height="270"/>
         <element name="FileState" positionX="-8210" positionY="-1329" width="128" height="150"/>
-        <element name="Organization" positionX="-9522" positionY="-2043" width="128" height="238"/>
+        <element name="Organization" positionX="-9522" positionY="-2043" width="128" height="240"/>
+        <element name="OrganizationState" positionX="-8847" positionY="-1764" width="128" height="75"/>
         <element name="Semester" positionX="-9270" positionY="-2115" width="128" height="195"/>
         <element name="SemesterState" positionX="-9272" positionY="-2310" width="128" height="150"/>
         <element name="User" positionX="-9270" positionY="-1827" width="128" height="255"/>
         <element name="UserState" positionX="-9272" positionY="-1515" width="128" height="73"/>
-        <element name="OrganizationState" positionX="-8847" positionY="-1764" width="128" height="75"/>
     </elements>
 </model>

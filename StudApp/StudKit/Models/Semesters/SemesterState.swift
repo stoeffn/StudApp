@@ -35,7 +35,7 @@ public final class SemesterState: NSManagedObject, CDCreatable, CDSortable {
 
     // MARK: - Life Cycle
 
-    var observations = [NSKeyValueObservation]()
+    private var observations = [NSKeyValueObservation]()
 
     public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
         super.init(entity: entity, insertInto: context)
