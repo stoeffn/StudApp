@@ -61,6 +61,17 @@ final class PreviewController: QLPreviewController, Routable {
         activity.objectIdentifier = file.objectIdentifier
     }
 
+    // MARK: - Working With 3D Touch Previews and Preview Quick Actions
+
+    override lazy var previewActionItems: [UIPreviewActionItem] = {
+        guard file.state.isDownloaded else { return [] }
+        return [
+            UIPreviewAction(title: "Remove".localized, style: .destructive) { _, _ in
+                try? self.file.removeDownload()
+            }
+        ]
+    }()
+
     // MARK: - Utilities
 
     static func downloadOrPreview(_ file: File, in controller: UIViewController & QLPreviewControllerDelegate) {

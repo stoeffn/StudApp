@@ -75,8 +75,8 @@ final class FileCell: UITableViewCell {
     private func updateSubtitleHiddenStates() {
         guard let file = file else { return }
         userContainer.isHidden = file.owner == nil
-        sizeContainer.isHidden = file.isFolder || frame.width < 512
-        downloadCountContainer.isHidden = file.isFolder || frame.width < 512
+        sizeContainer.isHidden = file.size == -1 || frame.width < 512
+        downloadCountContainer.isHidden = file.downloadCount == -1 || frame.width < 512
     }
 
     private func updateReachabilityIndicator() {
