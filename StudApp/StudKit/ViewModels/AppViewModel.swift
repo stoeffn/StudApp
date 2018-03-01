@@ -23,9 +23,10 @@ public final class AppViewModel {
     }
 
     public func update() {
-        guard let user = User.current else { return }
-
-        user.organization.updateDiscovery(in: coreDataService.viewContext) { _ in }
-        User.updateCurrent(organization: user.organization, in: coreDataService.viewContext) { _ in }
+        coreDataService.performBackgroundTask { context in
+            self.studIpService.update(in: context) {
+                try? context.saveAndWaitWhenChanged()
+            }
+        }
     }
 }

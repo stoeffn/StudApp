@@ -133,14 +133,14 @@ public final class SignInViewModel: NSObject {
                 }
 
                 self.state = .signedIn
-                self.updateSemesters()
+                self.update()
             }
         }
     }
 
-    private func updateSemesters() {
+    private func update() {
         coreDataService.performBackgroundTask { context in
-            self.organization.updateSemesters(in: context) { _ in
+            self.studIpService.update(in: context) {
                 try? context.saveAndWaitWhenChanged()
             }
         }

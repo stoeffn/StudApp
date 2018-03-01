@@ -6,6 +6,7 @@
 //  Copyright © 2017 Steffen Ryll. All rights reserved.
 //
 
+import CoreData
 import CoreSpotlight
 
 public class StudIpService {
@@ -101,5 +102,40 @@ public class StudIpService {
             NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
             NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
         }
+    }
+
+    func update(in context: NSManagedObjectContext, completion: @escaping () -> Void) {
+        guard let user = User.current else { return completion() }
+        guard let organization = context.object(with: user.organization.objectID) as? Organization else { fatalError() }
+
+        let group = DispatchGroup()
+
+        group.enter()
+        organization.updateDiscovery(in: context) { _ in group.leave() }
+
+        group.enter()
+        User.updateCurrent(organization: organization, in: context) { _ in group.leave() }
+
+        group.enter()
+        user.organization.updateSemesters(in: context) { result in
+            defer { group.leave() }
+            guard result.isSuccess else { return }
+
+            group.enter()
+            user.updateAuthoredCourses(in: context) { _ in
+                defer { group.leave() }
+                guard result.isSuccess else { return }
+
+                for course in user.authoredCourses {
+                    group.enter()
+                    course.updateAnnouncements(in: context) { _ in group.leave() }
+
+                    group.enter()
+                    course.updateChildFiles(in: context) { _ in group.leave() }
+                }
+            }
+        }
+
+        group.notify(queue: .main) { completion() }
     }
 }
