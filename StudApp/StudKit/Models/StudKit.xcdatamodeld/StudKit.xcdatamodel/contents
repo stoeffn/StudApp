@@ -128,6 +128,7 @@
         </fetchIndex>
     </entity>
     <entity name="OrganizationState" representedClassName="OrganizationState" syncable="YES">
+        <attribute name="discoveryUpdatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="semestersUpdatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="organization" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" inverseName="state" inverseEntity="Organization" syncable="YES"/>
     </entity>
@@ -196,7 +197,7 @@
         <element name="File" positionX="-8208" positionY="-1638" width="128" height="270"/>
         <element name="FileState" positionX="-8210" positionY="-1329" width="128" height="150"/>
         <element name="Organization" positionX="-9522" positionY="-2043" width="128" height="240"/>
-        <element name="OrganizationState" positionX="-8847" positionY="-1764" width="128" height="75"/>
+        <element name="OrganizationState" positionX="-8847" positionY="-1764" width="128" height="90"/>
         <element name="Semester" positionX="-9270" positionY="-2115" width="128" height="195"/>
         <element name="SemesterState" positionX="-9272" positionY="-2310" width="128" height="150"/>
         <element name="User" positionX="-9270" positionY="-1827" width="128" height="255"/>

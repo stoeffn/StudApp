@@ -9,39 +9,41 @@
 import CoreData
 
 extension Organization {
-    func updateDiscovery(in context: NSManagedObjectContext, completion: @escaping ResultHandler<ApiRoutesAvailablity>) {
-        let studIpService = ServiceContainer.default[StudIpService.self]
-        studIpService.api.requestDecoded(.discovery) { (result: Result<DiscoveryResponse>) in
-            let result = result.map { ApiRoutesAvailablity(from: $0) }
-            defer { completion(result) }
 
-            let encoder = ServiceContainer.default[JSONEncoder.self]
-            guard
-                let routesAvailability = result.value,
-                let routesAvailabilityData = try? encoder.encode(routesAvailability)
-            else { return }
+    // MARK: - Updating Discovery
 
-            guard let organization = context.object(with: self.objectID) as? Organization else { fatalError() }
-            organization.routesAvailabilityData = routesAvailabilityData
-        }
-    }
-
-    public func updateSemesters(in context: NSManagedObjectContext, completion: @escaping ResultHandler<[Semester]>) {
-        let studIpService = ServiceContainer.default[StudIpService.self]
-        studIpService.api.requestCollection(.semesters) { (result: Result<[SemesterResponse]>) in
-            let result = result.map { response -> [Semester] in
-                guard let organization = context.object(with: self.objectID) as? Organization else { fatalError() }
-                return try Organization.updateSemesters(Semester.fetchRequest(), with: response, organization: organization,
-                                                        in: context)
+    func updateDiscovery(completion: @escaping ResultHandler<ApiRoutesAvailablity>) {
+        update(lastUpdatedAt: \.state.discoveryUpdatedAt, expiresAfter: 60 * 10, completion: completion) { updaterCompletion in
+            let studIpService = ServiceContainer.default[StudIpService.self]
+            studIpService.api.requestDecoded(.discovery) { (result: Result<DiscoveryResponse>) in
+                updaterCompletion(result.map { try self.updateDiscovery(with: $0) })
             }
-            completion(result)
         }
     }
 
-    private static func updateSemesters(_ existingObjects: NSFetchRequest<Semester>, with response: [SemesterResponse],
-                                        organization: Organization, in context: NSManagedObjectContext) throws -> [Semester] {
+    func updateDiscovery(with response: DiscoveryResponse) throws -> ApiRoutesAvailablity {
+        let routesAvailability = ApiRoutesAvailablity(from: response)
+        let encoder = ServiceContainer.default[JSONEncoder.self]
+        routesAvailabilityData = try encoder.encode(routesAvailability)
+        return routesAvailability
+    }
+
+    // MARK: - Updating Semesters
+
+    public func updateSemesters(completion: @escaping ResultHandler<[Semester]>) {
+        update(lastUpdatedAt: \.state.semestersUpdatedAt, expiresAfter: 60 * 10, completion: completion) { updaterCompletion in
+            let studIpService = ServiceContainer.default[StudIpService.self]
+            studIpService.api.requestCollection(.semesters) { (result: Result<[SemesterResponse]>) in
+                updaterCompletion(result.map { try self.updateSemesters(Semester.fetchRequest(), with: $0) })
+            }
+        }
+    }
+
+    func updateSemesters(_ existingObjects: NSFetchRequest<Semester>, with response: [SemesterResponse]) throws -> [Semester] {
+        guard let context = managedObjectContext else { fatalError() }
+
         let semesters = try Semester.update(existingObjects, with: response, in: context) {
-            try $0.coreDataObject(organization: organization, in: context)
+            try $0.coreDataObject(organization: self, in: context)
         }
 
         if #available(iOSApplicationExtension 11.0, *) {
@@ -51,6 +53,8 @@ extension Organization {
 
         return semesters
     }
+
+    // MARK: - Checking for Feature Support
 
     public var supportsSettingCourseGroups: Bool {
         let route = StudIpRoutes.setGroupForCourse(withId: "", andUserWithId: "", groupId: 0)

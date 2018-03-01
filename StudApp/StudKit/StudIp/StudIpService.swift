@@ -12,6 +12,8 @@ import CoreSpotlight
 public class StudIpService {
     let api: Api<StudIpRoutes>
 
+    // MARK: - Life Cycle
+
     init(api: Api<StudIpRoutes>) {
         self.api = api
     }
@@ -27,6 +29,8 @@ public class StudIpService {
         api.baseUrl = apiUrl
         api.authorizing = oAuth1
     }
+
+    // MARK: - Authorizing
 
     /// Whether the user is currently signed in.
     ///
@@ -49,7 +53,7 @@ public class StudIpService {
 
         var discoveryResult: Result<ApiRoutesAvailablity>!
         group.enter()
-        organization.updateDiscovery(in: coreDataService.viewContext) { result in
+        organization.updateDiscovery { result in
             discoveryResult = result
             group.leave()
         }
@@ -104,20 +108,22 @@ public class StudIpService {
         }
     }
 
+    // MARK: - Updating
+
     func update(in context: NSManagedObjectContext, completion: @escaping () -> Void) {
         guard let user = User.current else { return completion() }
-        guard let organization = context.object(with: user.organization.objectID) as? Organization else { fatalError() }
+        let organization = user.organization.in(context)
 
         let group = DispatchGroup()
 
         group.enter()
-        organization.updateDiscovery(in: context) { _ in group.leave() }
+        organization.updateDiscovery { _ in group.leave() }
 
         group.enter()
         User.updateCurrent(organization: organization, in: context) { _ in group.leave() }
 
         group.enter()
-        user.organization.updateSemesters(in: context) { result in
+        organization.updateSemesters { result in
             defer { group.leave() }
             guard result.isSuccess else { return }
 

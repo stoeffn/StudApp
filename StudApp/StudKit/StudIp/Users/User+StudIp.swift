@@ -20,10 +20,8 @@ extension User {
     }
 
     func updateAuthoredCourses(in context: NSManagedObjectContext, completion: @escaping ResultHandler<[Course]>) {
-        guard let currentId = User.current?.id else { return }
-
         let studIpService = ServiceContainer.default[StudIpService.self]
-        studIpService.api.requestCollection(.courses(forUserId: currentId)) { (result: Result<[CourseResponse]>) in
+        studIpService.api.requestCollection(.courses(forUserId: id)) { (result: Result<[CourseResponse]>) in
             let result = result.map { response -> [Course] in
                 guard let user = context.object(with: self.objectID) as? User else { fatalError() }
                 return try self.updateAuthoredCourses(user.authoredCoursesFetchRequest(), with: response, user: user, in: context)
