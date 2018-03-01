@@ -506,9 +506,9 @@
                                     <outlet property="createdAtGlyph" destination="myI-FQ-SXL" id="Glb-ms-twa"/>
                                     <outlet property="createdAtLabel" destination="0qT-vE-VkR" id="igR-v1-xqL"/>
                                     <outlet property="titleLabel" destination="btC-Vm-3wI" id="Nq2-Nx-5iW"/>
-                                    <segue destination="bF4-7v-77i" kind="presentation" identifier="announcement" modalPresentationStyle="formSheet" id="huu-M5-eJx">
-                                        <segue key="commit" inheritsFrom="parent" id="0cC-j8-dTy"/>
-                                        <segue key="preview" inheritsFrom="commit" id="g0U-a0-94E"/>
+                                    <segue destination="bF4-7v-77i" kind="presentation" identifier="announcement" modalPresentationStyle="pageSheet" id="GJG-wF-NTC">
+                                        <segue key="commit" inheritsFrom="parent" id="mAr-vf-VON"/>
+                                        <segue key="preview" inheritsFrom="commit" id="kQy-pV-vKP"/>
                                     </segue>
                                 </connections>
                             </tableViewCell>
@@ -780,7 +780,7 @@ Gebäude 3703: Technische Informatik</string>
             <objects>
                 <viewController id="VDm-07-PSg" customClass="AnnouncementController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="YXn-Mt-Otv">
-                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="50v-8P-Ij0"/>
@@ -802,7 +802,7 @@ Gebäude 3703: Technische Informatik</string>
             <objects>
                 <navigationController id="bF4-7v-77i" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qBL-eo-q8K">
-                        <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -885,7 +885,7 @@ Gebäude 3703: Technische Informatik</string>
     <inferredMetricsTieBreakers>
         <segue reference="9ny-D4-44n"/>
         <segue reference="4Tp-c5-wvM"/>
-        <segue reference="huu-M5-eJx"/>
+        <segue reference="GJG-wF-NTC"/>
         <segue reference="BCO-wr-oP7"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
