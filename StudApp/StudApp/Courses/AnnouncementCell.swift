@@ -31,9 +31,9 @@ final class AnnouncementCell: UITableViewCell {
 
     @IBOutlet var modifiedAtLabel: UILabel!
 
-    @IBOutlet weak var userContainer: UIStackView!
+    @IBOutlet var userContainer: UIStackView!
 
-    @IBOutlet weak var userLabel: UILabel!
+    @IBOutlet var userLabel: UILabel!
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)

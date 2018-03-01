@@ -9,9 +9,10 @@
 import StudKitUI
 
 final class SummaryCell: UITableViewCell {
+
     // MARK: - User Interface
 
-    @IBOutlet weak var textView: UITextView! {
+    @IBOutlet var textView: UITextView! {
         didSet {
             textView.textContainerInset = UIEdgeInsets(top: 12, left: 4, bottom: 12, right: 4)
         }

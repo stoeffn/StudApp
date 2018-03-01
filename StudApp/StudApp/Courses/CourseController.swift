@@ -286,7 +286,7 @@ final class CourseController: UITableViewController, Routable {
 
     // MARK: - User Interface
 
-    @IBOutlet weak var subtitleLabel: UILabel!
+    @IBOutlet var subtitleLabel: UILabel!
 
     // MARK: - User Interaction
 

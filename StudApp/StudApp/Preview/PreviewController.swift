@@ -68,7 +68,7 @@ final class PreviewController: QLPreviewController, Routable {
         return [
             UIPreviewAction(title: "Remove".localized, style: .destructive) { _, _ in
                 try? self.file.removeDownload()
-            }
+            },
         ]
     }()
 
