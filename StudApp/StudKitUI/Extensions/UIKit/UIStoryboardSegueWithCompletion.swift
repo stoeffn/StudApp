@@ -9,7 +9,7 @@
 public final class UIStoryboardSegueWithCompletion: UIStoryboardSegue {
     public var completion: (() -> Void)?
 
-    override public func perform() {
+    public override func perform() {
         super.perform()
 
         destination.transitionCoordinator?.animate(alongsideTransition: nil, completion: { context in

@@ -82,7 +82,7 @@ final class AppController: UITabBarController {
     }
 
     @IBAction
-    func unwindToApp(with segue: UIStoryboardSegue) {}
+    func unwindToApp(with _: UIStoryboardSegue) {}
 
     @IBAction
     func unwindToAppAndSignOut(with segue: UIStoryboardSegue) {
@@ -159,7 +159,7 @@ final class AppController: UITabBarController {
     // MARK: - Notifications
 
     @objc
-    private func currentUserDidChange(notification: Notification) {
+    private func currentUserDidChange(notification _: Notification) {
         prepareChildContents(for: User.current)
         presentSignInIfNeeded()
     }

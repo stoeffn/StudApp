@@ -183,7 +183,7 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
     // MARK: - User Interaction
 
     @IBAction
-    func moreButtonTapped(_ sender: Any) {}
+    func moreButtonTapped(_: Any) {}
 
     private var isLoading: Bool = false {
         didSet {

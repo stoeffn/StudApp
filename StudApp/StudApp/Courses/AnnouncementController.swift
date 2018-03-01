@@ -21,14 +21,6 @@ final class AnnouncementController: UIViewController, Routable {
         initUserInterface()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        navigationItem.title = announcement.title
-
-        contentView.loadHTMLString(htmlContentService.styledHtmlContent(for: announcement.htmlContent), baseURL: nil)
-    }
-
     // MARK: - Navigation
 
     func prepareContent(for route: Routes) {
@@ -41,12 +33,16 @@ final class AnnouncementController: UIViewController, Routable {
     private lazy var contentView = htmlContentService.view()
 
     private func initUserInterface() {
+        navigationItem.title = announcement.title
+
         view.addSubview(contentView)
-        contentView.navigationDelegate = self
         contentView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         contentView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         contentView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        contentView.navigationDelegate = self
+        contentView.alpha = 0
+        contentView.loadHTMLString(htmlContentService.styledHtmlContent(for: announcement.htmlContent), baseURL: nil)
     }
 
     // MARK: - User Interaction
@@ -67,5 +63,11 @@ extension AnnouncementController: WKNavigationDelegate {
         defer { decisionHandler(.cancel) }
         guard let url = navigationAction.request.url else { return }
         present(htmlContentService.safariViewController(for: url), animated: true, completion: nil)
+    }
+
+    func webView(_: WKWebView, didFinish _: WKNavigation!) {
+        UIView.animate(withDuration: UI.defaultAnimationDuration) {
+            self.contentView.alpha = 1
+        }
     }
 }
