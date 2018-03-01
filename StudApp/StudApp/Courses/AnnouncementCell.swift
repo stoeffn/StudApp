@@ -13,19 +13,27 @@ final class AnnouncementCell: UITableViewCell {
     var announcement: Announcement! {
         didSet {
             titleLabel.text = announcement.title
-            createdAtLabel.text = announcement.createdAt.formattedAsShortDifferenceFromNow
+            modifiedAtLabel.text = announcement.modifiedAt.formattedAsShortDifferenceFromNow
+            userLabel.text = announcement.user?.nameComponents.formatted()
+            updateSubtitleHiddenStates()
         }
     }
 
     // MARK: - User Interface
 
+    override var frame: CGRect {
+        didSet { updateSubtitleHiddenStates() }
+    }
+
     @IBOutlet var colorView: UIView!
 
     @IBOutlet var titleLabel: UILabel!
 
-    @IBOutlet var createdAtGlyph: UIImageView!
+    @IBOutlet var modifiedAtLabel: UILabel!
 
-    @IBOutlet var createdAtLabel: UILabel!
+    @IBOutlet weak var userContainer: UIStackView!
+
+    @IBOutlet weak var userLabel: UILabel!
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
@@ -41,5 +49,10 @@ final class AnnouncementCell: UITableViewCell {
         didSet {
             colorView.backgroundColor = color
         }
+    }
+
+    private func updateSubtitleHiddenStates() {
+        guard let announcement = announcement else { return }
+        userContainer.isHidden = announcement.user == nil
     }
 }

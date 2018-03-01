@@ -72,14 +72,14 @@ final class FileCell: UITableViewCell {
     @IBOutlet var activityIndicator: StudIpActivityIndicator?
     @IBOutlet var downloadGlyph: UIImageView?
 
-    func updateSubtitleHiddenStates() {
+    private func updateSubtitleHiddenStates() {
         guard let file = file else { return }
         userContainer.isHidden = file.owner == nil
         sizeContainer.isHidden = file.isFolder || frame.width < 512
         downloadCountContainer.isHidden = file.isFolder || frame.width < 512
     }
 
-    func updateReachabilityIndicator() {
+    private func updateReachabilityIndicator() {
         UIView.animate(withDuration: UI.defaultAnimationDuration) {
             self.contentView.alpha = self.file.isAvailable ? 1 : 0.6
         }

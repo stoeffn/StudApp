@@ -460,30 +460,56 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="2" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M86-Kd-jfv">
-                                                            <rect key="frame" x="0.0" y="22.5" width="118" height="16"/>
+                                                            <rect key="frame" x="0.0" y="22.5" width="162.5" height="16"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TimeSubtitleGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="myI-FQ-SXL">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
-                                                                    <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="width" secondItem="myI-FQ-SXL" secondAttribute="height" multiplier="1:1" id="Ja2-rj-cvl"/>
-                                                                    </constraints>
-                                                                    <userDefinedRuntimeAttributes>
-                                                                        <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
-                                                                            <color key="value" white="0.75" alpha="1" colorSpace="calibratedWhite"/>
-                                                                        </userDefinedRuntimeAttribute>
-                                                                    </userDefinedRuntimeAttributes>
-                                                                </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="two minutes ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0qT-vE-VkR">
-                                                                    <rect key="frame" x="18" y="0.0" width="100" height="16"/>
-                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                                    <color key="textColor" white="0.60494791670000003" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="tbe-Kt-pMB">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="76.5" height="16"/>
+                                                                    <subviews>
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TimeSubtitleGlyph" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pUu-Ob-ZJ9">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                                                            <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" secondItem="pUu-Ob-ZJ9" secondAttribute="height" multiplier="1:1" id="OUq-3i-Szp"/>
+                                                                            </constraints>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                                                                    <color key="value" white="0.75" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                        </imageView>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="yesterday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cqr-Fs-H1e">
+                                                                            <rect key="frame" x="17" y="0.0" width="59.5" height="16"/>
+                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                                            <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="w84-qs-eGN">
+                                                                    <rect key="frame" x="78.5" y="0.0" width="84" height="16"/>
+                                                                    <subviews>
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserSubtitleGlyph" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q23-w2-o7F">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                                                            <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" secondItem="q23-w2-o7F" secondAttribute="height" multiplier="1:1" id="nft-5r-ofq"/>
+                                                                            </constraints>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                                                                    <color key="value" white="0.75" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                        </imageView>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Steve Jobs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ANc-MQ-L9V">
+                                                                            <rect key="frame" x="17" y="0.0" width="67" height="16"/>
+                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                                            <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <viewLayoutGuide key="safeArea" id="SFx-L7-QpR"/>
+                                                                </stackView>
                                                             </subviews>
-                                                            <constraints>
-                                                                <constraint firstItem="myI-FQ-SXL" firstAttribute="width" secondItem="myI-FQ-SXL" secondAttribute="height" multiplier="1:1" id="J7B-Lg-pdi"/>
-                                                            </constraints>
                                                         </stackView>
                                                     </subviews>
                                                 </stackView>
@@ -503,9 +529,10 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="colorView" destination="Bv3-hO-yWr" id="ed3-C4-CIJ"/>
-                                    <outlet property="createdAtGlyph" destination="myI-FQ-SXL" id="Glb-ms-twa"/>
-                                    <outlet property="createdAtLabel" destination="0qT-vE-VkR" id="igR-v1-xqL"/>
+                                    <outlet property="modifiedAtLabel" destination="Cqr-Fs-H1e" id="vpn-A1-2ys"/>
                                     <outlet property="titleLabel" destination="btC-Vm-3wI" id="Nq2-Nx-5iW"/>
+                                    <outlet property="userContainer" destination="w84-qs-eGN" id="YGo-di-iur"/>
+                                    <outlet property="userLabel" destination="ANc-MQ-L9V" id="qgj-w6-3N0"/>
                                     <segue destination="bF4-7v-77i" kind="presentation" identifier="announcement" modalPresentationStyle="formSheet" id="GJG-wF-NTC">
                                         <segue key="commit" inheritsFrom="parent" id="mAr-vf-VON"/>
                                         <segue key="preview" inheritsFrom="commit" id="kQy-pV-vKP"/>
