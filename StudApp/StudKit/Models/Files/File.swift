@@ -80,6 +80,11 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
         state = FileState(createIn: context)
     }
 
+    public override func prepareForDeletion() {
+        try? removeDownload()
+        super.prepareForDeletion()
+    }
+
     // MARK: - Sorting
 
     static let defaultSortDescriptors = [
