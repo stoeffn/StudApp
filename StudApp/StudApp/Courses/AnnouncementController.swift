@@ -8,6 +8,7 @@
 
 import StudKit
 import StudKitUI
+import WebKit
 
 final class AnnouncementController: UIViewController, Routable {
     private var announcement: Announcement!
@@ -16,12 +17,18 @@ final class AnnouncementController: UIViewController, Routable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        initUserInterface()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
         navigationItem.title = announcement.title
 
-        bodyView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
-        bodyView.text = announcement.body
+        contentView.loadHTMLString(announcement.content, baseURL: nil)
     }
+
+    // MARK: - Navigation
 
     func prepareContent(for route: Routes) {
         guard case let .announcement(announcement) = route else { return }
@@ -30,12 +37,30 @@ final class AnnouncementController: UIViewController, Routable {
 
     // MARK: - User Interface
 
-    @IBOutlet var bodyView: UITextView!
+    private lazy var contentView: WKWebView = {
+        let preferences = WKPreferences()
+        preferences.javaScriptEnabled = false
+
+        let configuration = WKWebViewConfiguration()
+        configuration.preferences = preferences
+
+        let view = WKWebView(frame: .zero, configuration: configuration)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    private func initUserInterface() {
+        view.addSubview(contentView)
+        contentView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        contentView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        contentView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
 
     // MARK: - User Interaction
 
     @IBAction
-    func doneButtonTapped(_: Any) {
+    private func doneButtonTapped(_: Any) {
         dismiss(animated: true, completion: nil)
     }
 }

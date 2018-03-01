@@ -56,7 +56,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14A-k0-KOd">
-                                    <rect key="frame" x="135" y="219.5" width="50" height="32"/>
+                                    <rect key="frame" x="135" y="219" width="50" height="32"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <state key="normal" title="Reload"/>
                                     <connections>
@@ -579,17 +579,17 @@ Gebäude 3703: Technische Informatik</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="PRt-uH-GnL">
-                                                            <rect key="frame" x="0.0" y="24.5" width="106" height="16"/>
+                                                            <rect key="frame" x="0.0" y="24.5" width="122" height="17"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Canceled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QD9-Tk-cKn" customClass="BadgeLabel" customModule="StudKitUI">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="57" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="65" height="17"/>
                                                                     <color key="backgroundColor" red="0.83921568629999999" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reason" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Hl-MM-whF" customClass="BadgeLabel" customModule="StudKitUI">
-                                                                    <rect key="frame" x="61" y="0.0" width="45" height="16"/>
+                                                                    <rect key="frame" x="69" y="0.0" width="53" height="17"/>
                                                                     <color key="backgroundColor" white="0.59999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -782,23 +782,7 @@ Gebäude 3703: Technische Informatik</string>
                     <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="YXn-Mt-Otv">
                         <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" editable="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lZu-MX-3CK">
-                                <rect key="frame" x="0.0" y="44" width="540" height="576"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES" shipmentTrackingNumber="YES" flightNumber="YES" lookupSuggestion="YES"/>
-                            </textView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="lZu-MX-3CK" firstAttribute="leading" secondItem="50v-8P-Ij0" secondAttribute="leading" id="Y9g-39-gmD"/>
-                            <constraint firstItem="50v-8P-Ij0" firstAttribute="trailing" secondItem="lZu-MX-3CK" secondAttribute="trailing" id="YFO-lX-odf"/>
-                            <constraint firstItem="50v-8P-Ij0" firstAttribute="bottom" secondItem="lZu-MX-3CK" secondAttribute="bottom" id="jMU-fN-BUW"/>
-                            <constraint firstItem="lZu-MX-3CK" firstAttribute="top" secondItem="50v-8P-Ij0" secondAttribute="top" id="z16-I6-PcK"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="50v-8P-Ij0"/>
                     </view>
                     <navigationItem key="navigationItem" title="Announcement" id="YSc-JM-8f0">
@@ -808,9 +792,6 @@ Gebäude 3703: Technische Informatik</string>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <connections>
-                        <outlet property="bodyView" destination="lZu-MX-3CK" id="DCl-bn-Set"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2k0-uK-KMv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -893,7 +874,7 @@ Gebäude 3703: Technische Informatik</string>
     </scenes>
     <resources>
         <image name="CoursesGlyph" width="512" height="512"/>
-        <image name="CoursesTabBarGlyph" width="25" height="25"/>
+        <image name="CoursesTabBarGlyph" width="27" height="27"/>
         <image name="DownloadBarButtonGlyph" width="25" height="25"/>
         <image name="DownloadCountSubtitleGlyph" width="16" height="16"/>
         <image name="SizeSubtitleGlyph" width="16" height="16"/>
