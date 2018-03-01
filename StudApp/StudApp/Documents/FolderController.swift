@@ -111,12 +111,11 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
 
     override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath,
                             withSender _: Any?) -> Bool {
-        let file = viewModel[rowAt: indexPath.row]
-
         switch action {
         case #selector(CustomMenuItems.share(_:)):
             return true
         case #selector(CustomMenuItems.remove(_:)):
+            let file = viewModel[rowAt: indexPath.row]
             return file.state.isDownloaded
         default:
             return false

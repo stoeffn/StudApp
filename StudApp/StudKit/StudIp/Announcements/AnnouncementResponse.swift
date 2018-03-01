@@ -17,10 +17,10 @@ struct AnnouncementResponse: IdentifiableResponse {
     let expiresAfter: TimeInterval
     let expiresAt: Date
     let title: String
-    let body: String
+    let content: String
 
     init(id: String, courseIds: Set<String> = [], userId: String? = nil, createdAt: Date = .distantPast,
-         modifiedAt: Date = .distantPast, expiresAfter: TimeInterval = 0, title: String = "", body: String = "") {
+         modifiedAt: Date = .distantPast, expiresAfter: TimeInterval = 0, title: String = "", content: String = "") {
         self.id = id
         self.courseIds = courseIds
         self.userId = userId
@@ -29,7 +29,7 @@ struct AnnouncementResponse: IdentifiableResponse {
         self.expiresAfter = expiresAfter
         expiresAt = createdAt + expiresAfter
         self.title = title
-        self.body = body
+        self.content = content
     }
 }
 
@@ -44,7 +44,7 @@ extension AnnouncementResponse: Decodable {
         case modifiedAt = "chdate"
         case expiresAfter = "expire"
         case title = "topic"
-        case body
+        case content = "body_html"
     }
 
     public init(from decoder: Decoder) throws {
@@ -58,7 +58,7 @@ extension AnnouncementResponse: Decodable {
         expiresAfter = TimeInterval(try container.decode(String.self, forKey: .expiresAfter)) ?? 0
         expiresAt = createdAt + expiresAfter
         title = try container.decode(String.self, forKey: .title)
-        body = try container.decode(String.self, forKey: .body)
+        content = try container.decode(String.self, forKey: .content)
     }
 }
 
@@ -76,7 +76,7 @@ extension AnnouncementResponse {
         announcement.modifiedAt = modifiedAt
         announcement.expiresAt = expiresAt
         announcement.title = title
-        announcement.body = body
+        announcement.content = content
         return announcement
     }
 }
