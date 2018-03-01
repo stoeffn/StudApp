@@ -38,6 +38,7 @@ final class FileCell: UITableViewCell {
             userLabel.text = file.owner?.nameComponents.formatted()
             sizeLabel.text = file.size.formattedAsByteCount
             downloadCountLabel.text = "%dx".localized(file.downloadCount)
+            childrenCountLabel?.text = "%d items".localized(file.children.count)
 
             activityIndicator?.isHidden = file.isFolder || !file.state.isDownloading
             downloadGlyph?.isHidden = !file.isDownloadable
@@ -69,14 +70,18 @@ final class FileCell: UITableViewCell {
     @IBOutlet var downloadCountContainer: UIStackView!
     @IBOutlet var downloadCountLabel: UILabel!
 
+    @IBOutlet var childrenCountContainer: UIStackView?
+    @IBOutlet var childrenCountLabel: UILabel?
+
     @IBOutlet var activityIndicator: StudIpActivityIndicator?
     @IBOutlet var downloadGlyph: UIImageView?
 
     private func updateSubtitleHiddenStates() {
         guard let file = file else { return }
-        userContainer.isHidden = file.owner == nil
-        sizeContainer.isHidden = file.size == -1 || frame.width < 512
+        sizeContainer.isHidden = file.size == -1
         downloadCountContainer.isHidden = file.downloadCount == -1 || frame.width < 512
+        childrenCountContainer?.isHidden = !file.isFolder
+        userContainer.isHidden = file.owner == nil || frame.width < 512
     }
 
     private func updateReachabilityIndicator() {

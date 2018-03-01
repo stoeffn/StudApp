@@ -14,6 +14,7 @@
 "%dx" = "%dx"; // Example: "11x" (eleven times)
 "%@ ago" = "%@ ago"; // Example "two months ago"
 "by %@" = "by %@"; // Example: "by Steve Jobs"
+"%d items" = "%d items"; // Example: "3 items"
 
 // MARK: Generic Actions
 
