@@ -29,3 +29,12 @@ public extension NSFetchRequestResult {
         return try context.fetch(fetchRequest(sortDescriptors: sortDescriptors))
     }
 }
+
+public extension NSFetchRequestResult where Self: NSManagedObject {
+    public func inContext(_ context: NSManagedObjectContext) -> Self {
+        guard let object = context.object(with: objectID) as? Self else {
+            fatalError("Cannot find object '\(self)' in context '\(context)'.")
+        }
+        return object
+    }
+}
