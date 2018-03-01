@@ -13,6 +13,7 @@ import StudKit
 
 final class AboutController: UITableViewController, Routable {
     private let contextService = ServiceContainer.default[ContextService.self]
+    private let htmlContentService = ServiceContainer.default[HtmlContentService.self]
     private var viewModel: AboutViewModel!
 
     // MARK: - Life Cycle
@@ -147,9 +148,9 @@ final class AboutController: UITableViewController, Routable {
 
         switch Sections(rawValue: indexPath.section) {
         case .links? where cell === websiteCell:
-            openInSafari(App.Urls.website)
+            present(htmlContentService.safariViewController(for: App.Urls.website), animated: true, completion: nil)
         case .links? where cell === privacyCell:
-            openInSafari(App.Urls.privacyPolicy)
+            present(htmlContentService.safariViewController(for: App.Urls.privacyPolicy), animated: true, completion: nil)
         case .feedback? where cell === sendFeedbackCell:
             openFeedbackMailComposer()
             tableView.deselectRow(at: indexPath, animated: true)
@@ -160,7 +161,8 @@ final class AboutController: UITableViewController, Routable {
             presentTips()
             tableView.deselectRow(at: indexPath, animated: true)
         case .thanks?:
-            openInSafari(viewModel[rowAt: indexPath.row].url)
+            guard let url = viewModel[rowAt: indexPath.row].url else { break }
+            present(htmlContentService.safariViewController(for: url), animated: true, completion: nil)
         default:
             break
         }
@@ -217,14 +219,6 @@ final class AboutController: UITableViewController, Routable {
     }
 
     // MARK: - Opening Web Pages and Apps
-
-    private func openInSafari(_ url: URL?) {
-        guard let url = url else { return }
-
-        let controller = SFSafariViewController(url: url)
-        controller.preferredControlTintColor = UI.Colors.studBlue
-        present(controller, animated: true, completion: nil)
-    }
 
     private func openFeedbackMailComposer() {
         let mailController = MFMailComposeViewController()

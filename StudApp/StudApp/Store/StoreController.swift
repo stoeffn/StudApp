@@ -183,32 +183,7 @@ public final class StoreController: UITableViewController, UITextViewDelegate, R
     // MARK: - User Interaction
 
     @IBAction
-    func moreButtonTapped(_ sender: Any) {
-        func showAboutView(_: UIAlertAction) {
-            // TODO:
-        }
-
-        func showHelpView(_: UIAlertAction) {
-            let controller = SFSafariViewController(url: App.Urls.help)
-            controller.preferredControlTintColor = UI.Colors.tint
-            present(controller, animated: true, completion: nil)
-        }
-
-        func signOut(_: UIAlertAction) {
-            viewModel.signOut()
-            // TODO:
-        }
-
-        let barButtonItem = sender as? UIBarButtonItem
-
-        let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        controller.popoverPresentationController?.barButtonItem = barButtonItem
-        controller.addAction(UIAlertAction(title: "About".localized, style: .default, handler: showAboutView))
-        controller.addAction(UIAlertAction(title: "Help".localized, style: .default, handler: showHelpView))
-        controller.addAction(UIAlertAction(title: "Sign Out".localized, style: .destructive, handler: signOut))
-        controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
-        present(controller, animated: true, completion: nil)
-    }
+    func moreButtonTapped(_ sender: Any) {}
 
     private var isLoading: Bool = false {
         didSet {

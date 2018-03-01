@@ -11,12 +11,15 @@ import StudKit
 import StudKitUI
 
 final class AppController: UITabBarController {
+    private var htmlContentService: HtmlContentService!
     private var viewModel: AppViewModel!
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        htmlContentService = ServiceContainer.default[HtmlContentService.self]
 
         NotificationCenter.default.addObserver(self, selector: #selector(currentUserDidChange(notification:)),
                                                name: .currentUserDidChange, object: nil)
@@ -131,8 +134,7 @@ final class AppController: UITabBarController {
                 self.performSegue(withRoute: .about)
             },
             UIAlertAction(title: "Help".localized, style: .default) { _ in
-                guard let controller = self.controllerForHelp() else { return }
-                self.present(controller, animated: true, completion: nil)
+                self.present(self.htmlContentService.safariViewController(for: App.Urls.help), animated: true, completion: nil)
             },
             UIAlertAction(title: "Settings".localized, style: .default) { _ in
                 self.performSegue(withRoute: .settings)
@@ -144,12 +146,6 @@ final class AppController: UITabBarController {
         let controller = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
         controller.popoverPresentationController?.barButtonItem = barButtonItem
         actions.forEach(controller.addAction)
-        return controller
-    }
-
-    private func controllerForHelp() -> UIViewController? {
-        let controller = SFSafariViewController(url: App.Urls.help)
-        controller.preferredControlTintColor = UI.Colors.tint
         return controller
     }
 

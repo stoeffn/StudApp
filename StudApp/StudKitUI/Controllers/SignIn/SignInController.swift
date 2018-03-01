@@ -11,6 +11,7 @@ import StudKit
 
 final class SignInController: UIViewController, Routable, SFSafariViewControllerDelegate {
     private var contextService: ContextService!
+    private var htmlContentService: HtmlContentService!
     private var viewModel: SignInViewModel!
     private var observations = [NSKeyValueObservation]()
 
@@ -20,6 +21,7 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
         super.viewDidLoad()
 
         contextService = ServiceContainer.default[ContextService.self]
+        htmlContentService = ServiceContainer.default[HtmlContentService.self]
 
         NotificationCenter.default.addObserver(self, selector: #selector(safariViewControllerDidLoadAppUrl(notification:)),
                                                name: .safariViewControllerDidLoadAppUrl, object: nil)
@@ -149,9 +151,8 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
 
     private func authorize(at url: URL) {
         guard #available(iOSApplicationExtension 11.0, *), contextService.currentTarget == .app else {
-            let controller = SFSafariViewController(url: url)
+            let controller = htmlContentService.safariViewController(for: url)
             controller.delegate = self
-            controller.preferredControlTintColor = UI.Colors.studBlue
             return present(controller, animated: true, completion: nil)
         }
 

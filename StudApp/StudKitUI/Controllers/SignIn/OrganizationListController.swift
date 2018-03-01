@@ -15,6 +15,7 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     // MARK: - Life Cycle
 
     private var contextService: ContextService!
+    private var htmlContentService: HtmlContentService!
     private var viewModel: OrganizationListViewModel!
     private var observations = [NSKeyValueObservation]()
 
@@ -22,6 +23,7 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         super.viewDidLoad()
 
         contextService = ServiceContainer.default[ContextService.self]
+        htmlContentService = ServiceContainer.default[HtmlContentService.self]
 
         navigationItem.title = "Choose Your Organization".localized
         navigationItem.hidesBackButton = true
@@ -107,8 +109,7 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
                 self.performSegue(withRoute: .about)
             },
             UIAlertAction(title: "Help".localized, style: .default) { _ in
-                guard let controller = self.controllerForHelp() else { return }
-                self.present(controller, animated: true, completion: nil)
+                self.present(self.htmlContentService.safariViewController(for: App.Urls.help), animated: true, completion: nil)
             },
             UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil),
         ]
@@ -116,12 +117,6 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         controller.popoverPresentationController?.barButtonItem = barButtonItem
         actions.forEach(controller.addAction)
-        return controller
-    }
-
-    private func controllerForHelp() -> UIViewController? {
-        let controller = SFSafariViewController(url: App.Urls.help)
-        controller.preferredControlTintColor = UI.Colors.tint
         return controller
     }
 

@@ -6,6 +6,7 @@
 //  Copyright © 2018 Steffen Ryll. All rights reserved.
 //
 
+import SafariServices
 import WebKit
 
 public final class HtmlContentService {
@@ -44,5 +45,11 @@ public final class HtmlContentService {
         let view = WKWebView(frame: .zero, configuration: configuration)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
+    }
+
+    public func safariViewController(for url: URL) -> SFSafariViewController {
+        let controller = SFSafariViewController(url: url)
+        controller.preferredControlTintColor = UI.Colors.tint
+        return controller
     }
 }

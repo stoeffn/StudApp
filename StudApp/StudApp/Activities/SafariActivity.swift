@@ -11,6 +11,7 @@ import StudKit
 import StudKitUI
 
 final class SafariActivity: UIActivity, ByTypeNameIdentifiable {
+    private let htmlContentService = ServiceContainer.default[HtmlContentService.self]
     private weak var controller: UIViewController?
     private var url: URL?
 
@@ -50,8 +51,7 @@ final class SafariActivity: UIActivity, ByTypeNameIdentifiable {
             return UIApplication.shared.open(url, options: [:], completionHandler: activityDidFinish)
         }
 
-        let safariController = SFSafariViewController(url: url)
-        safariController.preferredControlTintColor = UI.Colors.studBlue
+        let safariController = htmlContentService.safariViewController(for: url)
         controller.present(safariController, animated: true) {
             self.activityDidFinish(true)
         }
