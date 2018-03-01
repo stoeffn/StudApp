@@ -42,6 +42,7 @@ final class AnnouncementController: UIViewController, Routable {
 
     private func initUserInterface() {
         view.addSubview(contentView)
+        contentView.navigationDelegate = self
         contentView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         contentView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         contentView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
@@ -53,5 +54,18 @@ final class AnnouncementController: UIViewController, Routable {
     @IBAction
     private func doneButtonTapped(_: Any) {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - Navigation Delegate
+
+extension AnnouncementController: WKNavigationDelegate {
+    func webView(_: WKWebView, decidePolicyFor navigationAction: WKNavigationAction,
+                 decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        guard navigationAction.navigationType != .other else { return decisionHandler(.allow) }
+
+        defer { decisionHandler(.cancel) }
+        guard let url = navigationAction.request.url else { return }
+        present(htmlContentService.safariViewController(for: url), animated: true, completion: nil)
     }
 }

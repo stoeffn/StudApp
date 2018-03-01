@@ -506,7 +506,7 @@
                                     <outlet property="createdAtGlyph" destination="myI-FQ-SXL" id="Glb-ms-twa"/>
                                     <outlet property="createdAtLabel" destination="0qT-vE-VkR" id="igR-v1-xqL"/>
                                     <outlet property="titleLabel" destination="btC-Vm-3wI" id="Nq2-Nx-5iW"/>
-                                    <segue destination="bF4-7v-77i" kind="presentation" identifier="announcement" modalPresentationStyle="pageSheet" id="GJG-wF-NTC">
+                                    <segue destination="bF4-7v-77i" kind="presentation" identifier="announcement" modalPresentationStyle="formSheet" id="GJG-wF-NTC">
                                         <segue key="commit" inheritsFrom="parent" id="mAr-vf-VON"/>
                                         <segue key="preview" inheritsFrom="commit" id="kQy-pV-vKP"/>
                                     </segue>
@@ -780,7 +780,7 @@ Gebäude 3703: Technische Informatik</string>
             <objects>
                 <viewController id="VDm-07-PSg" customClass="AnnouncementController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="YXn-Mt-Otv">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1004"/>
+                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="50v-8P-Ij0"/>
@@ -802,7 +802,7 @@ Gebäude 3703: Technische Informatik</string>
             <objects>
                 <navigationController id="bF4-7v-77i" customClass="AnnouncementNavigationController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qBL-eo-q8K">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
