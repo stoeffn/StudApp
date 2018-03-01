@@ -1,0 +1,124 @@
+/*
+ * === LAYOUT ===
+ */
+
+/*
+ * --- BODY ---
+ */
+
+body {
+    margin: 16px;
+}
+
+/*
+ * === TEXT ===
+ */
+
+p, .formatted-content {
+    font: -apple-system-body;
+}
+
+/*
+ * --- HEADLINES ---
+ */
+
+h1 {
+    font: -apple-system-title4;
+}
+h2 {
+    font: -apple-system-title0;
+}
+h3 {
+    font: -apple-system-title1;
+}
+h4 {
+    font: -apple-system-title2;
+}
+h5 {
+    font: -apple-system-headline;
+}
+h6 {
+    font: -apple-system-subheadline;
+}
+
+/*
+ * --- DELIMITERS ---
+ */
+
+hr {
+    border: none;
+    border-top: 1px solid #d6d6d6d6;
+}
+
+/*
+ * --- LINKS ---
+ */
+
+a {
+    color: #2a6d9f;
+    font-weight: bold;
+    text-decoration: none;
+
+    transition-property: opacity;
+    transition-duration: 300ms;
+}
+a:hover {
+    opacity: 0.6;
+}
+a:active {
+    opacity: 0.4;
+}
+
+/*
+ * --- QUOTES ---
+ */
+
+blockquote {
+    position: relative;
+
+    padding-bottom: 2px;
+    margin: 8px 0;
+
+    background-color: #1f3f7022;
+    border-left: 4px solid #1f3f70;
+    border-radius: 4px;
+}
+blockquote > .author, blockquote > p {
+    margin: 0;
+    padding: 4px;
+    padding-left: 8px;
+}
+blockquote > .author {
+    color: white;
+    font: -apple-system-headline;
+    background-color: #1f3f70;
+    border-top-right-radius: 4px;
+}
+
+/*
+ * === TABLES ===
+ */
+
+table {
+    border-spacing: 0;
+}
+table caption {
+    padding: 4px;
+
+    font: -apple-system-headline;
+}
+table th, table td {
+    padding: 1px 8px;
+}
+table th {
+    font-weight: bold;
+
+    border-bottom: 1px solid #d6d6d6d6;
+    border-right: 1px solid #d6d6d6d6;
+}
+table td {
+    border-right: 1px solid #d6d6d6d6;
+}
+table th:last-child, table td:last-child {
+    border-right: none;
+}
