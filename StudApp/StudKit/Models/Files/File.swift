@@ -82,6 +82,7 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
 
     public override func prepareForDeletion() {
         try? removeDownload()
+        CSSearchableIndex.default().deleteSearchableItems(withIdentifiers: [id]) { _ in }
         super.prepareForDeletion()
     }
 

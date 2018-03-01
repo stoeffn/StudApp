@@ -71,6 +71,11 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDSorta
         state = CourseState(createIn: context)
     }
 
+    public override func prepareForDeletion() {
+        CSSearchableIndex.default().deleteSearchableItems(withIdentifiers: [id]) { _ in }
+        super.prepareForDeletion()
+    }
+
     // MARK: - Sorting
 
     static let defaultSortDescriptors = [
