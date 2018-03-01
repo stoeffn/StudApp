@@ -797,10 +797,10 @@ Gebäude 3703: Technische Informatik</string>
             </objects>
             <point key="canvasLocation" x="2652" y="868"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Announcement Navigation Controller-->
         <scene sceneID="Xdh-WM-vSa">
             <objects>
-                <navigationController id="bF4-7v-77i" sceneMemberID="viewController">
+                <navigationController id="bF4-7v-77i" customClass="AnnouncementNavigationController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qBL-eo-q8K">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
