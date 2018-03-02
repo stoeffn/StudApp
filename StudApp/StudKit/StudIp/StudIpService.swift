@@ -128,16 +128,24 @@ public class StudIpService {
             user.updateAuthoredCourses { _ in
                 defer { group.leave() }
 
-                for course in user.authoredCourses {
-                    group.enter()
-                    course.updateAnnouncements { _ in group.leave() }
-
-                    self.updateChildFilesRecursivly(in: course, group: group, context: context)
-                }
+                try? self.updateAuthoredCoursesInVisibleSemesters(for: user, group: group, context: context)
             }
         }
 
         group.notify(queue: .main) { completion() }
+    }
+
+    private func updateAuthoredCoursesInVisibleSemesters(for user: User, group: DispatchGroup, context: NSManagedObjectContext) throws {
+        let visibleSemesters = try user.organization.fetchVisibleSemesters(in: context)
+        let visibleCourses = visibleSemesters.flatMap { $0.courses }
+        let visibleAuthoredCourses = user.authoredCourses.intersection(visibleCourses)
+
+        for course in visibleAuthoredCourses {
+            group.enter()
+            course.updateAnnouncements { _ in group.leave() }
+
+            self.updateChildFilesRecursivly(in: course, group: group, context: context)
+        }
     }
 
     private func updateChildFilesRecursivly(in container: FilesContaining, group: DispatchGroup, context: NSManagedObjectContext) {
