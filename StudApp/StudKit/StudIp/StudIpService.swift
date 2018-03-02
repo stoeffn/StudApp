@@ -90,7 +90,6 @@ public class StudIpService {
 
         api.baseUrl = nil
         api.authorizing = nil
-        api.removeLastRouteAccesses()
         User.current = nil
 
         let coreDataService = ServiceContainer.default[CoreDataService.self]

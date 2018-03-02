@@ -13,10 +13,6 @@
 ///
 /// You can use this class to make API requests, decode them automatically, and download files.
 ///
-/// `Api` also handles route expiry in order to protect against too many requests to one API route, thus reducing data usage. It
-/// works by keeping track of routes' last access times and comparing them to the current time as well as the routes' expiry
-/// policy. Please note that this information is local to one `Api` instance and not cached anywhere else.
-///
 /// You can also set `authorizing`, which is then used in order to authenticate and authorize against the API.
 ///
 /// Depending on the `URLSession` given on initialization, this class uses the default `URLCredentialStorage`.
@@ -31,16 +27,11 @@ class Api<Routes: ApiRoutes> {
     enum Errors: Error {
         /// A request cannot be created due to a missing base URL. Set `baseUrl` on this object in order to solve this problem.
         case missingBaseUrl
-
-        /// Route was recently accessed and has not expired yet. Set `ignoreLastAccess` to `true` when issuing requests if you
-        /// want to force an API request to this route.
-        case routeNotExpired
     }
 
     // MARK: - Life Cycle
 
     private let session: URLSession
-    private var lastRouteAccesses = [Routes: Date]()
 
     /// Base `URL` of all requests this instance issues. Any route paths will be appended to it.
     var baseUrl: URL?
@@ -92,32 +83,6 @@ class Api<Routes: ApiRoutes> {
         return request
     }
 
-    // MARK: - Managing Expiry
-
-    /// Returns whether a given route is expired. If a route has not been accessed before, this method returns `true`.
-    /// Otherwise, it respects the route's expiry policy by comparing the last access time to the current time.
-    func isRouteExpired(_ route: Routes) -> Bool {
-        guard let lastAccess = lastRouteAccesses[route] else { return true }
-        return lastAccess + route.expiresAfter < Date()
-    }
-
-    /// Mark a route as being accessed on the current time.
-    func setRouteAccessed(_ route: Routes) {
-        lastRouteAccesses[route] = Date()
-    }
-
-    /// Removes the last access date for `route`.
-    func removeLastAccess(for route: Routes) {
-        lastRouteAccesses.removeValue(forKey: route)
-    }
-
-    /// Clears all route access data.
-    ///
-    /// - Remark: For example, this is useful when signing out because all data should be reloaded when signing back in.
-    func removeLastRouteAccesses() {
-        lastRouteAccesses.removeAll()
-    }
-
     // MARK: - Making Data Requests
 
     /// Requests data from this API.
@@ -125,32 +90,19 @@ class Api<Routes: ApiRoutes> {
     /// - Parameters:
     ///   - route: Route to request data from.
     ///   - parameters: Optional query parameters.
-    ///   - ignoreLastAccess: Whether to ignore the route's expiry policy. Defaults to `false`.
     ///   - queue: Dispatch queue to execute the completion handler on. Defaults to the main queue.
     ///   - completion: Completion handler receiving a result with the raw data.
-    /// - Returns: URL task in its resumed state or `nil` if the route is not expired or building the request failed.
+    /// - Returns: URL task in its resumed state or `nil` if building the request failed.
     @discardableResult
-    func request(_ route: Routes, parameters: [URLQueryItem] = [], ignoreLastAccess: Bool = false, queue: DispatchQueue = .main,
+    func request(_ route: Routes, parameters: [URLQueryItem] = [], queue: DispatchQueue = .main,
                  completion: @escaping ResultHandler<Data>) -> URLSessionTask? {
-        guard ignoreLastAccess || isRouteExpired(route) else {
-            completion(.failure(Errors.routeNotExpired))
-            return nil
-        }
-
         do {
             let url = try self.url(for: route, parameters: parameters)
             let request = self.request(for: url, method: route.method, body: route.body, contentType: route.contentType)
             let task = session.dataTask(with: request) { data, response, error in
                 let response = response as? HTTPURLResponse
                 let result = Result(data, error: error, statusCode: response?.statusCode)
-
-                if result.isSuccess {
-                    self.setRouteAccessed(route)
-                }
-
-                queue.async {
-                    completion(result)
-                }
+                queue.async { completion(result) }
             }
             task.resume()
             return task
@@ -167,20 +119,18 @@ class Api<Routes: ApiRoutes> {
     /// - Parameters:
     ///   - route: Route to request data from.
     ///   - parameters: Optional query parameters.
-    ///   - ignoreLastAccess: Whether to ignore the route's expiry policy. Defaults to `false`.
     ///   - queue: Dispatch queue to execute the completion handler on. Defaults to the main queue.
     ///   - completion: Completion handler receiving a result with the decoded object.
-    /// - Returns: URL task in its resumed state or `nil` if the route is not expired.
+    /// - Returns: URL task in its resumed state or `nil` if building the request failed.
     /// - Precondition: `route`'s type must not be `nil`.
     /// - Remark: At the moment, this method supports JSON decoding only.
     @discardableResult
-    func requestDecoded<Result: Decodable>(_ route: Routes, parameters: [URLQueryItem] = [], ignoreLastAccess: Bool = false,
-                                           queue: DispatchQueue = .main,
+    func requestDecoded<Result: Decodable>(_ route: Routes, parameters: [URLQueryItem] = [], queue: DispatchQueue = .main,
                                            completion: @escaping ResultHandler<Result>) -> URLSessionTask? {
         guard let type = route.type as? Result.Type else {
             fatalError("Trying to decode response from untyped API route '\(route)'.")
         }
-        return request(route, parameters: parameters, ignoreLastAccess: ignoreLastAccess, queue: queue) { result in
+        return request(route, parameters: parameters, queue: queue) { result in
             completion(result.decoded(type))
         }
     }

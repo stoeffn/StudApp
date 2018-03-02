@@ -16,21 +16,18 @@ extension Api {
     ///   - offset: Pagination offset, i.e. the number of items to skip. Defaults to `0`.
     ///   - itemsPerRequest: Number of items you want to receive from the API in one response. Defaults to
     ///                      `defaultNumberOfItemsPerRequest`.
-    ///   - ignoreLastAccess: Whether to ignore the route's expiry policy. Defaults to `false`.
     ///   - completion: Completion handler receiving a result with the decoded collection response containing a list of decoded
     ///                 data.
-    /// - Returns: URL task in its resumed state or `nil` if the route is not expired.
+    /// - Returns: URL task in its resumed state or `nil` if building the request failed.
     /// - Precondition: `route`'s type must not be `nil`.
     /// - Remark: At the moment, this method supports JSON decoding only.
     @discardableResult
     func requestCollectionPage<Result>(_ route: Routes, afterOffset offset: Int = 0,
-                                       itemsPerRequest: Int = defaultNumberOfItemsPerRequest, ignoreLastAccess: Bool = false,
+                                       itemsPerRequest: Int = defaultNumberOfItemsPerRequest,
                                        completion: @escaping ResultHandler<CollectionResponse<Result>>) -> URLSessionTask? {
         let offsetQuery = URLQueryItem(name: "offset", value: String(offset))
         let limitQuery = URLQueryItem(name: "limit", value: String(itemsPerRequest))
-        return requestDecoded(route, parameters: [offsetQuery, limitQuery], ignoreLastAccess: ignoreLastAccess) { result in
-            completion(result)
-        }
+        return requestDecoded(route, parameters: [offsetQuery, limitQuery]) { completion($0) }
     }
 
     /// Requests all data from a paginated collection in this API by iterating every page.
@@ -48,20 +45,17 @@ extension Api {
     ///           not return a single session task.
     func requestCollection<Value: Decodable>(_ route: Routes, afterOffset offset: Int = 0,
                                              itemsPerRequest: Int = defaultNumberOfItemsPerRequest,
-                                             ignoreLastAccess: Bool = false, items initialItems: [Value] = [],
+                                             items initialItems: [Value] = [],
                                              completion: @escaping ResultHandler<[Value]>) {
-        requestCollectionPage(route, afterOffset: offset, itemsPerRequest: itemsPerRequest,
-                              ignoreLastAccess: ignoreLastAccess) { (result: Result<CollectionResponse<Value>>) in
+        requestCollectionPage(route, afterOffset: offset,
+                              itemsPerRequest: itemsPerRequest) { (result: Result<CollectionResponse<Value>>) in
             guard let collection = result.value else {
-                defer { completion(.failure(result.error)) }
-                guard case Api.Errors.routeNotExpired? = result.error else { return }
-                return self.removeLastAccess(for: route)
+                return completion(.failure(result.error))
             }
 
             let items = initialItems + collection.items
-
             if let offset = collection.pagination.nextOffset {
-                self.requestCollection(route, afterOffset: offset, ignoreLastAccess: true, items: items, completion: completion)
+                self.requestCollection(route, afterOffset: offset, items: items, completion: completion)
             } else {
                 completion(result.map { _ in items })
             }
