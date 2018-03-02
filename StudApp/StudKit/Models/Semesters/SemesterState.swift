@@ -31,8 +31,6 @@ public final class SemesterState: NSManagedObject, CDCreatable, CDSortable {
 
     @NSManaged public var isCollapsed: Bool
 
-    @available(*, deprecated) @NSManaged public var areCoursesFetchedFromRemote: Bool
-
     // MARK: - Life Cycle
 
     private var observations = [NSKeyValueObservation]()

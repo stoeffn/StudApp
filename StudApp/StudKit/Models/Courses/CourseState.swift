@@ -32,8 +32,6 @@ public final class CourseState: NSManagedObject, CDCreatable, CDSortable {
 
     @NSManaged public var tagData: Data?
 
-    @available(*, deprecated) @NSManaged public var areFilesFetchedFromRemote: Bool
-
     // MARK: Life Cycle
 
     public required convenience init(createIn context: NSManagedObjectContext) {

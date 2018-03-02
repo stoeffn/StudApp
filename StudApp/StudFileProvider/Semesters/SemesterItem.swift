@@ -20,8 +20,6 @@ final class SemesterItem: NSObject, NSFileProviderItem {
         itemIdentifier = NSFileProviderItemIdentifier(rawValue: semester.objectIdentifier.rawValue)
         filename = semester.title.sanitizedAsFilename
 
-        self.childItemCount = semester.courses.count as NSNumber?
-
         self.parentItemIdentifier = parentItemIdentifier
 
         contentModificationDate = semester.beginsAt
@@ -45,8 +43,6 @@ final class SemesterItem: NSObject, NSFileProviderItem {
     let capabilities: NSFileProviderItemCapabilities = [.allowsContentEnumerating, .allowsReading]
 
     // MARK: Managing Content
-
-    let childItemCount: NSNumber?
 
     let documentSize: NSNumber? = nil
 

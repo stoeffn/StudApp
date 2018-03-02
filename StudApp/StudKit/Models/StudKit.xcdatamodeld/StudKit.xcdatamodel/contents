@@ -47,7 +47,6 @@
     </entity>
     <entity name="CourseState" representedClassName="CourseState" syncable="YES">
         <attribute name="announcementsUpdatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="areFilesFetchedFromRemote" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="childFilesUpdatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="eventsUpdatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="favoriteRank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -154,7 +153,6 @@
         </uniquenessConstraints>
     </entity>
     <entity name="SemesterState" representedClassName="SemesterState" syncable="YES">
-        <attribute name="areCoursesFetchedFromRemote" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="favoriteRank" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isCollapsed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isHidden" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
@@ -193,14 +191,14 @@
     <elements>
         <element name="Announcement" positionX="-8210" positionY="-1854" width="128" height="195"/>
         <element name="Course" positionX="-8784" positionY="-2124" width="128" height="270"/>
-        <element name="CourseState" positionX="-8786" positionY="-2322" width="128" height="165"/>
+        <element name="CourseState" positionX="-8786" positionY="-2322" width="128" height="150"/>
         <element name="Event" positionX="-8210" positionY="-2094" width="128" height="195"/>
         <element name="File" positionX="-8208" positionY="-1638" width="128" height="270"/>
         <element name="FileState" positionX="-8210" positionY="-1329" width="128" height="150"/>
         <element name="Organization" positionX="-9522" positionY="-2043" width="128" height="240"/>
         <element name="OrganizationState" positionX="-8847" positionY="-1764" width="128" height="105"/>
         <element name="Semester" positionX="-9270" positionY="-2115" width="128" height="195"/>
-        <element name="SemesterState" positionX="-9272" positionY="-2310" width="128" height="150"/>
+        <element name="SemesterState" positionX="-9272" positionY="-2310" width="128" height="135"/>
         <element name="User" positionX="-9270" positionY="-1827" width="128" height="255"/>
         <element name="UserState" positionX="-9272" positionY="-1515" width="128" height="73"/>
     </elements>
