@@ -49,6 +49,8 @@ extension File {
 
     @discardableResult
     public func download(completion: @escaping ResultHandler<URL>) -> Progress? {
+        guard let context = managedObjectContext else { fatalError() }
+
         guard !state.isMostRecentVersionDownloaded else {
             completion(.success(localUrl(in: .fileProvider)))
             return nil
@@ -57,23 +59,28 @@ extension File {
         try? FileManager.default.createIntermediateDirectories(forFileAt: localUrl(in: .downloads))
         try? FileManager.default.createIntermediateDirectories(forFileAt: localUrl(in: .fileProvider))
 
-        let downloadDate = Date()
+        let downloadAt = Date()
+
+        willChangeValue(for: \.state)
         state.isDownloading = true
+        didChangeValue(for: \.state)
 
         let studIpService = ServiceContainer.default[StudIpService.self]
         let destination = localUrl(in: .downloads)
         let task = studIpService.api.download(.fileContents(forFileId: id), to: destination, startsResumed: false) { result in
-            self.state.isDownloading = false
+            context.perform {
+                self.state.isDownloading = false
 
-            guard result.isSuccess else {
-                return completion(.failure(result.error))
+                guard result.isSuccess else {
+                    return completion(.failure(result.error))
+                }
+
+                self.downloadedBy.formUnion([User.current?.in(context)].flatMap { $0 })
+                self.state.downloadedAt = downloadAt
+                try? context.save()
+
+                return completion(.success(self.localUrl(in: .fileProvider)))
             }
-
-            self.downloadedBy.formUnion([User.current].flatMap { $0 })
-            self.state.downloadedAt = downloadDate
-            try? self.managedObjectContext?.saveAndWaitWhenChanged()
-
-            return completion(.success(self.localUrl(in: .fileProvider)))
         }
 
         guard let downloadTask = task else { return nil }
