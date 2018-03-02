@@ -90,19 +90,17 @@ class Api<Routes: ApiRoutes> {
     /// - Parameters:
     ///   - route: Route to request data from.
     ///   - parameters: Optional query parameters.
-    ///   - queue: Dispatch queue to execute the completion handler on. Defaults to the main queue.
     ///   - completion: Completion handler receiving a result with the raw data.
     /// - Returns: URL task in its resumed state or `nil` if building the request failed.
     @discardableResult
-    func request(_ route: Routes, parameters: [URLQueryItem] = [], queue: DispatchQueue = .main,
+    func request(_ route: Routes, parameters: [URLQueryItem] = [],
                  completion: @escaping ResultHandler<Data>) -> URLSessionTask? {
         do {
             let url = try self.url(for: route, parameters: parameters)
             let request = self.request(for: url, method: route.method, body: route.body, contentType: route.contentType)
             let task = session.dataTask(with: request) { data, response, error in
                 let response = response as? HTTPURLResponse
-                let result = Result(data, error: error, statusCode: response?.statusCode)
-                queue.async { completion(result) }
+                completion(Result(data, error: error, statusCode: response?.statusCode))
             }
             task.resume()
             return task
@@ -119,18 +117,17 @@ class Api<Routes: ApiRoutes> {
     /// - Parameters:
     ///   - route: Route to request data from.
     ///   - parameters: Optional query parameters.
-    ///   - queue: Dispatch queue to execute the completion handler on. Defaults to the main queue.
     ///   - completion: Completion handler receiving a result with the decoded object.
     /// - Returns: URL task in its resumed state or `nil` if building the request failed.
     /// - Precondition: `route`'s type must not be `nil`.
     /// - Remark: At the moment, this method supports JSON decoding only.
     @discardableResult
-    func requestDecoded<Result: Decodable>(_ route: Routes, parameters: [URLQueryItem] = [], queue: DispatchQueue = .main,
+    func requestDecoded<Result: Decodable>(_ route: Routes, parameters: [URLQueryItem] = [],
                                            completion: @escaping ResultHandler<Result>) -> URLSessionTask? {
         guard let type = route.type as? Result.Type else {
             fatalError("Trying to decode response from untyped API route '\(route)'.")
         }
-        return request(route, parameters: parameters, queue: queue) { result in
+        return request(route, parameters: parameters) { result in
             completion(result.decoded(type))
         }
     }
@@ -181,13 +178,12 @@ class Api<Routes: ApiRoutes> {
     ///   - destination: Destination `URL` to move the file to after the download completes successfully.
     ///   - parameters: Optional query parameters.
     ///   - startsResumed: Whether the URL task returned starts in its resumed state.
-    ///   - queue: Dispatch queue to execute the completion handler on. Defaults to the main queue.
     ///   - completion: Completion handler receiving a result with an URL pointing to the dowloaded file.
     /// - Returns: URL task in its resumed state or `nil` if building the request failed.
     /// - Remark: The downloaded document overrides any existing file at `destination`.
     @discardableResult
     func download(_ route: Routes, to destination: URL, parameters: [URLQueryItem] = [], startsResumed: Bool = true,
-                  queue: DispatchQueue = .main, completion: @escaping ResultHandler<URL>) -> URLSessionTask? {
+                  completion: @escaping ResultHandler<URL>) -> URLSessionTask? {
         return download(route, parameters: parameters, startsResumed: startsResumed) { result in
             let result = result.map { url -> URL in
                 try FileManager.default.createIntermediateDirectories(forFileAt: destination)
@@ -195,9 +191,7 @@ class Api<Routes: ApiRoutes> {
                 try FileManager.default.moveItem(at: url, to: destination)
                 return destination
             }
-            queue.async {
-                completion(result)
-            }
+            completion(result)
         }
     }
 }
