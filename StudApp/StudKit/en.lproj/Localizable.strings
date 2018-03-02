@@ -74,39 +74,6 @@
 "This accounts for the combined sizes of all documents that you have downloaded." = "This accounts for the combined sizes of all documents that you have downloaded.";
 "They are not backed up by iTunes or iCloud." = "They are not backed up by iTunes or iCloud.";
 
-// MARK: Signing In
-
-"Username" = "Username";
-"Password" = "Password";
-"Sign In" = "Sign In";
-"Please enter your Stud.IP credentials" = "Please enter your Stud.IP credentials";
-"Please check your username and password" = "Please check your username and password";
-
-// MARK: Verification
-
-"Verifying Your Purchase…" = "Verifying Your Purchase…";
-"Something Went Wrong Veryifying Your Purchase" = "Something Went Wrong Veryifying Your Purchase";
-"Thank You for Supporting StudApp!" = "Thank You for Supporting StudApp!";
-"Please open StudApp" = "Please open StudApp";
-
-// MARK: Store
-
-"Access all your Stud.IP courses and documents, including unlimited offline documents." = "Access all your Stud.IP courses and documents, including unlimited offline documents.";
-"Start Free Trial" = "Start Free Trial";
-"%@ for six months after a 1-month trial" = "%@ for six months after a 1-month trial";
-"——— or ———" = "——— or ———";
-"Unlock All Features" = "Unlock All Features";
-"Unlock All Features for %@" = "Unlock All Features for %@";
-"Restore Purchase" = "Restore Purchase";
-"Your Purchase is Deferred" = "Your Purchase is Deferred";
-"A family member might have to approve this puchase." = "A family member might have to approve this puchase.";
-"The former option is an auto-renewing subscription, whereas the latter is a one-time payment." = "The former option is an auto-renewing subscription, whereas the latter is a one-time payment.";
-"View our Privacy Policy and Terms of Use." = "View our Privacy Policy and Terms of Use.";
-"auto-renewing subscription" = "auto-renewing subscription";
-"Payment will be charged to your iTunes account," = "Payment will be charged to your iTunes account,";
-"and your account will be charged for renewal 24 hours prior to the end of the current period." = "and your account will be charged for renewal 24 hours prior to the end of the current period.";
-"Auto-renewal may be turned off at any time by going to your iTunes account settings after purchase." = "Auto-renewal may be turned off at any time by going to your iTunes account settings after purchase.";
-
 // MARK: User Menu
 
 "Signed in as %@" = "Signed in as %@";

@@ -37,7 +37,7 @@ public final class StoreService: NSObject {
 extension StoreService: SKPaymentTransactionObserver {
     public func paymentQueue(_: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
-            guard StoreService.tipProductIdentifiers.contains(transaction.payment.productIdentifier) else { fatalError() }
+            guard StoreService.tipProductIdentifiers.contains(transaction.payment.productIdentifier) else { continue }
             processTip(with: transaction)
         }
     }

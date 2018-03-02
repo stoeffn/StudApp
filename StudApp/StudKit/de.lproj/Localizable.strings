@@ -74,39 +74,6 @@
 "This accounts for the combined sizes of all documents that you have downloaded." = "Dies umfasst die Größe aller Dokumente, die Du hernutergeladen hast.";
 "They are not backed up by iTunes or iCloud." = "Sie werden nicht über iCloud oder iTunes gesichert.";
 
-// MARK: Signing In
-
-"Username" = "Benutzername";
-"Password" = "Passwort";
-"Sign In" = "Anmelden";
-"Please enter your Stud.IP credentials" = "Bitte gib Deine Stud.IP Anmeldedaten ein";
-"Please check your username and password" = "Bitte überprüfe Deine Anmeldedaten";
-
-// MARK: Verification
-
-"Verifying Your Purchase…" = "Dein Kauf wird überprüft…";
-"Something Went Wrong Veryifying Your Purchase" = "Beim Verifizieren deines Kaufs lief etwas schief";
-"Thank You for Supporting StudApp!" = "Danke, dass Du StudApp unterstützt!";
-"Please open StudApp" = "Bitte öffne StudApp";
-
-// MARK: Store
-
-"Access all your Stud.IP courses and documents, including unlimited offline documents." = "Zugriff auf alle Deine Stud.IP-Kurse und Dokumente, inklusive unbegrenzte Offline-Dokumente.";
-"Start Free Trial" = "Kostenloser Probemonat";
-"%@ for six months after a 1-month trial" = "%@ je sechs Monate nach einem Probemonat";
-"——— or ———" = "——— oder ———";
-"Unlock All Features" = "Alles freischalten";
-"Unlock All Features for %@" = "Alles freischalten für %@";
-"Restore Purchase" = "Kauf wiederherstellen";
-"Your Purchase is Deferred" = "Dein Kauf ist aufgeschoben";
-"A family member might have to approve this puchase." = "Möglicherweise muss ein Familienmitglied diesen Kauf bestätigen.";
-"The former option is an auto-renewing subscription, whereas the latter is a one-time payment." = "Erstere Option ist ein Abonnement mit automatischer Verlängerung, wohingegen letztere eine einmalige Zahlung ist.";
-"View our Privacy Policy and Terms of Use." = "Siehe unsere Datenschutzhinweise und Nutzungsbedingungen.";
-"auto-renewing subscription" = "Abonnement mit automatischer Verlängerung";
-"Payment will be charged to your iTunes account," = "Die Bezahlung erfolgt über Deinen iTunes-Account.";
-"and your account will be charged for renewal 24 hours prior to the end of the current period." = "Verlängerungen erfolgen 24 Stunden vor Ende der aktuellen Periode.";
-"Auto-renewal may be turned off at any time by going to your iTunes account settings after purchase." = "Das automatische Verlängern kann jederzeit deaktiviert werden, indem Du die Account-Einstellungen von iTunes öffnest.";
-
 // MARK: User Menu
 
 "Signed in as %@" = "Angemeldet als %@";
