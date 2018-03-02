@@ -22,7 +22,7 @@ public protocol FilesContaining {
 extension FilesContaining {
     public var childFilesFetchRequest: NSFetchRequest<File> {
         return File.fetchRequest(predicate: childFilesPredicate, sortDescriptors: File.defaultSortDescriptors,
-                                      relationshipKeyPathsForPrefetching: ["state"])
+                                 relationshipKeyPathsForPrefetching: ["state"])
     }
 
     public var childFoldersFetchRequest: NSFetchRequest<File> {

@@ -58,8 +58,11 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
     }
 
     /// Updates data from the server.
-    public func update(completion: ResultHandler<Void>? = nil) {
-        // TODO
+    public func update() {
+        coreDataService.performBackgroundTask { context in
+            self.user.in(context)
+                .updateAuthoredCourses { _ in }
+        }
     }
 
     public var isCollapsed: Bool {

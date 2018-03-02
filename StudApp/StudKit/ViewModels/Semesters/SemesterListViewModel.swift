@@ -47,7 +47,12 @@ public final class SemesterListViewModel: FetchedResultsControllerDataSourceSect
     }
 
     /// Updates data from the server.
-    public func update(completion: ResultHandler<Void>? = nil) {
-        // TODO
+    public func update() {
+        coreDataService.performBackgroundTask { context in
+            self.organization.in(context)
+                .updateDiscovery { _ in }
+            self.organization.in(context)
+                .updateSemesters { _ in }
+        }
     }
 }

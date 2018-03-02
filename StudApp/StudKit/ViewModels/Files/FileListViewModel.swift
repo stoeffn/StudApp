@@ -20,21 +20,24 @@ public final class FileListViewModel: FetchedResultsControllerDataSourceSection 
     public private(set) lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
     public weak var delegate: DataSourceSectionDelegate?
 
-    public let filesContaining: FilesContaining
+    public let container: FilesContaining & NSManagedObject
 
     /// Creates a new file list view model for the given folder's contents.
-    public init(filesContaining: FilesContaining) {
-        self.filesContaining = filesContaining
+    public init(container: FilesContaining & NSManagedObject) {
+        self.container = container
 
         controller.delegate = fetchedResultControllerDelegateHelper
     }
 
     public private(set) lazy var controller: NSFetchedResultsController<File> = NSFetchedResultsController(
-        fetchRequest: filesContaining.childFilesFetchRequest, managedObjectContext: coreDataService.viewContext,
+        fetchRequest: container.childFilesFetchRequest, managedObjectContext: coreDataService.viewContext,
         sectionNameKeyPath: nil, cacheName: nil)
 
     /// Updates data from the server.
-    public func update(completion: ResultHandler<Void>? = nil) {
-        // TODO
+    public func update() {
+        coreDataService.performBackgroundTask { context in
+            self.container.in(context)
+                .updateChildFiles { _ in }
+        }
     }
 }

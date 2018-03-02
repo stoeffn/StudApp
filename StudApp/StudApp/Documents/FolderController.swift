@@ -20,7 +20,7 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
 
         registerForPreviewing(with: self, sourceView: tableView)
 
-        navigationItem.title = viewModel.filesContaining.title
+        navigationItem.title = viewModel.container.title
 
         if #available(iOS 11.0, *) {
             tableView.dragDelegate = self
@@ -48,7 +48,7 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
     func prepareContent(for route: Routes) {
         guard case let .folder(folder) = route else { fatalError() }
 
-        viewModel = FileListViewModel(filesContaining: folder)
+        viewModel = FileListViewModel(container: folder)
         viewModel.delegate = self
         viewModel.fetch()
     }
@@ -74,7 +74,7 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
     // MARK: - Restoration
 
     override func encodeRestorableState(with coder: NSCoder) {
-        coder.encode(viewModel.filesContaining.objectIdentifier.rawValue, forKey: ObjectIdentifier.typeIdentifier)
+        coder.encode(viewModel.container.objectIdentifier.rawValue, forKey: ObjectIdentifier.typeIdentifier)
         super.encode(with: coder)
     }
 
@@ -136,7 +136,7 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
 
     @IBAction
     func actionButtonTapped(_: Any) {
-        guard let folder = viewModel.filesContaining as? File else { return }
+        guard let folder = viewModel.container as? File else { return }
         let url = folder.localUrl(in: .fileProvider)
         let controller = UIActivityViewController(activityItems: [url], applicationActivities: nil)
         controller.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem

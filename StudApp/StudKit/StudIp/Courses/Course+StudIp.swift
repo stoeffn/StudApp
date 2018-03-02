@@ -58,7 +58,7 @@ extension Course {
     func updateAnnouncements(from responses: [AnnouncementResponse]) throws -> Set<Announcement> {
         guard let context = managedObjectContext else { fatalError() }
 
-        let announcements = try Announcement.update(self.announcementsFetchRequest, with: responses, in: context) { response in
+        let announcements = try Announcement.update(announcementsFetchRequest, with: responses, in: context) { response in
             try response.coreDataObject(organization: self.organization, in: context)
         }
 

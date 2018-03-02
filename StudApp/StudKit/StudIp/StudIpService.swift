@@ -141,13 +141,12 @@ public class StudIpService {
         group.notify(queue: .main) { completion() }
     }
 
-    private func updateChildFilesRecursivly(in filesContaining: FilesContaining, group: DispatchGroup,
-                                            context: NSManagedObjectContext) {
+    private func updateChildFilesRecursivly(in container: FilesContaining, group: DispatchGroup, context: NSManagedObjectContext) {
         group.enter()
-        filesContaining.updateChildFiles { _ in
+        container.updateChildFiles { _ in
             defer { group.leave() }
 
-            let childFolders = try? filesContaining.fetchChildFolders(in: context)
+            let childFolders = try? container.fetchChildFolders(in: context)
             for folder in childFolders ?? [] {
                 self.updateChildFilesRecursivly(in: folder, group: group, context: context)
             }

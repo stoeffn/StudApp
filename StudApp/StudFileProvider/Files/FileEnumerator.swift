@@ -29,11 +29,11 @@ final class FileEnumerator: CachingFileProviderEnumerator {
         guard let object = try? objectIdentifier?.fetch(in: coreDataService.viewContext) else {
             fatalError("Cannot get model for item with identifier '\(itemIdentifier)'.")
         }
-        guard let filesContaining = object as? FilesContaining else {
+        guard let container = object as? FilesContaining & NSManagedObject else {
             fatalError("Cannot enumerate files in item with identifier '\(itemIdentifier)'.")
         }
 
-        viewModel = FileListViewModel(filesContaining: filesContaining)
+        viewModel = FileListViewModel(container: container)
 
         super.init()
 

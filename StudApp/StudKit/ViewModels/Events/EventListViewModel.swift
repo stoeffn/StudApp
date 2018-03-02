@@ -37,8 +37,11 @@ public final class EventListViewModel: FetchedResultsControllerDataSource {
         try? controller.performFetch()
     }
 
-    public func update(completion: (ResultHandler<Void>)? = nil) {
-        // TODO
+    public func update() {
+        coreDataService.performBackgroundTask { context in
+            self.course.in(context)
+                .updateEvents { _ in }
+        }
     }
 
     public func sectionIndex(for date: Date) -> Int? {

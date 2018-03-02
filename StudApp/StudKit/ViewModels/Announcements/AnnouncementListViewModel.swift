@@ -28,7 +28,10 @@ public final class AnnouncementListViewModel: FetchedResultsControllerDataSource
         fetchRequest: course.unexpiredAnnouncementsFetchRequest, managedObjectContext: coreDataService.viewContext,
         sectionNameKeyPath: nil, cacheName: nil)
 
-    public func update(completion: (ResultHandler<Void>)? = nil) {
-        // TODO
+    public func update() {
+        coreDataService.performBackgroundTask { context in
+            self.course.in(context)
+                .updateAnnouncements { _ in }
+        }
     }
 }
