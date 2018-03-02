@@ -25,7 +25,6 @@
 		243040A4204339070018F367 /* DiscoveryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243040A3204339070018F367 /* DiscoveryResponse.swift */; };
 		243040A62043398F0018F367 /* ApiRoutesAvailablity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243040A52043398F0018F367 /* ApiRoutesAvailablity.swift */; };
 		243040A720435B170018F367 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245B6AD51FCB327800302CD0 /* StoreKit.framework */; };
-		243637081FE5602C001D1B86 /* StoreRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637071FE5602C001D1B86 /* StoreRoutes.swift */; };
 		2436370F1FE56F33001D1B86 /* StoreStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2436370E1FE56F33001D1B86 /* StoreStateTests.swift */; };
 		243637121FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637111FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift */; };
 		243817921FC76BDC004052D0 /* DocumentActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243817911FC76BDC004052D0 /* DocumentActionViewController.swift */; };
@@ -186,7 +185,6 @@
 		248C0260202E5BB6004CB8C9 /* OAuth1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C025E202E5BB5004CB8C9 /* OAuth1.swift */; };
 		248C0261202E5BB6004CB8C9 /* OAuth1Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C025F202E5BB6004CB8C9 /* OAuth1Routes.swift */; };
 		248C0263202E5BE5004CB8C9 /* StudIpOAuth1Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C0262202E5BE5004CB8C9 /* StudIpOAuth1Routes.swift */; };
-		248C0265202E5C18004CB8C9 /* VerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C0264202E5C18004CB8C9 /* VerificationViewModel.swift */; };
 		248C0269202E6393004CB8C9 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 248C025A202E58A0004CB8C9 /* Settings.storyboard */; };
 		2490EBE52040B813004EA6E9 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2490EBE42040B813004EA6E9 /* AppController.swift */; };
 		249DD6DE1FC8A3D4006DA46E /* User+StudIp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249DD6DD1FC8A3D4006DA46E /* User+StudIp.swift */; };
@@ -217,7 +215,6 @@
 		24CA6FEC203F614200171843 /* Organization+CloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA6FEB203F614200171843 /* Organization+CloudKit.swift */; };
 		24D178EB1FB606B200EC5F4A /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D178EA1FB606B200EC5F4A /* AppViewModel.swift */; };
 		24D2DA1E1FD03B98006FC700 /* StoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D2DA1D1FD03B98006FC700 /* StoreService.swift */; };
-		24D2DA201FD04431006FC700 /* StoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D2DA1F1FD04431006FC700 /* StoreViewModel.swift */; };
 		24D360CC1FAA5AFE00BBBAED /* CDIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */; };
 		24D360CF1FAA5AFE00BBBAED /* CDCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C81FAA5AFE00BBBAED /* CDCreatable.swift */; };
 		24D360D01FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360C91FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift */; };
@@ -255,7 +252,6 @@
 		24D361621FAA641600BBBAED /* semesterCollection.json in Resources */ = {isa = PBXBuildFile; fileRef = 24D3615E1FAA641500BBBAED /* semesterCollection.json */; };
 		24D361631FAA641600BBBAED /* courseCollection+20.json in Resources */ = {isa = PBXBuildFile; fileRef = 24D3615F1FAA641600BBBAED /* courseCollection+20.json */; };
 		24D361661FAA648B00BBBAED /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361651FAA648B00BBBAED /* SignInViewModel.swift */; };
-		24D4627B1FE1C4F200DE3B3A /* StoreService+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D4627A1FE1C4F200DE3B3A /* StoreService+State.swift */; };
 		24D7293D1FC736120097777F /* FileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7293C1FC736120097777F /* FileCell.swift */; };
 		24D729411FC7490C0097777F /* Int+ByteCountFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D729401FC7490C0097777F /* Int+ByteCountFormatting.swift */; };
 		24D729451FC74B600097777F /* PersonNameComponents+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D729441FC74B600097777F /* PersonNameComponents+Formatting.swift */; };
@@ -420,7 +416,6 @@
 		243040A52043398F0018F367 /* ApiRoutesAvailablity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRoutesAvailablity.swift; sourceTree = "<group>"; };
 		243040AB2043EBBA0018F367 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		243040AD2043EBBB0018F367 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		243637071FE5602C001D1B86 /* StoreRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreRoutes.swift; sourceTree = "<group>"; };
 		2436370E1FE56F33001D1B86 /* StoreStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreStateTests.swift; sourceTree = "<group>"; };
 		243637111FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreRoutes+TestableApiRoutes.swift"; sourceTree = "<group>"; };
 		2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StudFileProviderUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -548,7 +543,6 @@
 		248C025E202E5BB5004CB8C9 /* OAuth1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth1.swift; sourceTree = "<group>"; };
 		248C025F202E5BB6004CB8C9 /* OAuth1Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuth1Routes.swift; sourceTree = "<group>"; };
 		248C0262202E5BE5004CB8C9 /* StudIpOAuth1Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudIpOAuth1Routes.swift; sourceTree = "<group>"; };
-		248C0264202E5C18004CB8C9 /* VerificationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationViewModel.swift; sourceTree = "<group>"; };
 		248C0266202E5C31004CB8C9 /* ConfettiView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 		248C0268202E5EF8004CB8C9 /* module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
 		248C0275202F9E3A004CB8C9 /* ConfettiController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiController.swift; sourceTree = "<group>"; };
@@ -585,7 +579,6 @@
 		24CFB5D51FB24F4D00F30DEA /* UIViewController+Routes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Routes.swift"; sourceTree = "<group>"; };
 		24D178EA1FB606B200EC5F4A /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		24D2DA1D1FD03B98006FC700 /* StoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreService.swift; sourceTree = "<group>"; };
-		24D2DA1F1FD04431006FC700 /* StoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreViewModel.swift; sourceTree = "<group>"; };
 		24D360C51FAA5AFE00BBBAED /* CDIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDIdentifiable.swift; sourceTree = "<group>"; };
 		24D360C81FAA5AFE00BBBAED /* CDCreatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDCreatable.swift; sourceTree = "<group>"; };
 		24D360C91FAA5AFE00BBBAED /* NSFetchRequestResult+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFetchRequestResult+Utils.swift"; sourceTree = "<group>"; };
@@ -636,7 +629,6 @@
 		24D3615E1FAA641500BBBAED /* semesterCollection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = semesterCollection.json; sourceTree = "<group>"; };
 		24D3615F1FAA641600BBBAED /* courseCollection+20.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "courseCollection+20.json"; sourceTree = "<group>"; };
 		24D361651FAA648B00BBBAED /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
-		24D4627A1FE1C4F200DE3B3A /* StoreService+State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreService+State.swift"; sourceTree = "<group>"; };
 		24D7293C1FC736120097777F /* FileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCell.swift; sourceTree = "<group>"; };
 		24D729401FC7490C0097777F /* Int+ByteCountFormatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+ByteCountFormatting.swift"; sourceTree = "<group>"; };
 		24D729441FC74B600097777F /* PersonNameComponents+Formatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PersonNameComponents+Formatting.swift"; sourceTree = "<group>"; };
@@ -1237,15 +1229,6 @@
 			path = Colors;
 			sourceTree = "<group>";
 		};
-		2457CDAE203F4D080021B31D /* Store */ = {
-			isa = PBXGroup;
-			children = (
-				24D2DA1F1FD04431006FC700 /* StoreViewModel.swift */,
-				248C0264202E5C18004CB8C9 /* VerificationViewModel.swift */,
-			);
-			path = Store;
-			sourceTree = "<group>";
-		};
 		2457CDAF203F4D120021B31D /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
@@ -1729,7 +1712,6 @@
 				2457CDA9203F4CC80021B31D /* Semesters */,
 				2457CDB1203F4D220021B31D /* Settings */,
 				2457CDAF203F4D120021B31D /* SignIn */,
-				2457CDAE203F4D080021B31D /* Store */,
 				24D178EA1FB606B200EC5F4A /* AppViewModel.swift */,
 			);
 			path = ViewModels;
@@ -1739,8 +1721,6 @@
 			isa = PBXGroup;
 			children = (
 				24D2DA1D1FD03B98006FC700 /* StoreService.swift */,
-				24D4627A1FE1C4F200DE3B3A /* StoreService+State.swift */,
-				243637071FE5602C001D1B86 /* StoreRoutes.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -2407,7 +2387,6 @@
 				24801F451FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift in Sources */,
 				24D360E61FAA5D7600BBBAED /* CourseState.swift in Sources */,
 				246F3ACB1FAC879C00A477FF /* DataSourceSectionDelegate.swift in Sources */,
-				24D2DA201FD04431006FC700 /* StoreViewModel.swift in Sources */,
 				24D2DA1E1FD03B98006FC700 /* StoreService.swift in Sources */,
 				248C024B202E4EA4004CB8C9 /* NSUserActivity+Utils.swift in Sources */,
 				24B091ED2036EC7500A5037A /* FolderResponse.swift in Sources */,
@@ -2417,7 +2396,6 @@
 				24D3610A1FAA5E2300BBBAED /* SemesterState.swift in Sources */,
 				248C0249202E4DFC004CB8C9 /* FetchedResultsControllerDelegateHelper.swift in Sources */,
 				248C0250202E523C004CB8C9 /* AnnouncementListViewModel.swift in Sources */,
-				243637081FE5602C001D1B86 /* StoreRoutes.swift in Sources */,
 				24FD785E1FBF45B10072F860 /* Targets.swift in Sources */,
 				2448D48F1FA8DEE800DAB97E /* FileManager+Utils.swift in Sources */,
 				24D360CC1FAA5AFE00BBBAED /* CDIdentifiable.swift in Sources */,
@@ -2458,7 +2436,6 @@
 				242266081FE3D45F00FA7CA6 /* Announcement.swift in Sources */,
 				24E4B9A61FF260240061983C /* ObjectIdentifier.swift in Sources */,
 				24D360ED1FAA5DC500BBBAED /* StudIp.swift in Sources */,
-				24D4627B1FE1C4F200DE3B3A /* StoreService+State.swift in Sources */,
 				2448D4A51FA8E07E00DAB97E /* Result+Api.swift in Sources */,
 				24D360D31FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift in Sources */,
 				24557A0D203DE59700492B74 /* MockStudIpService.swift in Sources */,
@@ -2478,7 +2455,6 @@
 				24D361161FAA5F0E00BBBAED /* Api+CollectionResponse.swift in Sources */,
 				246F3AC51FAC879C00A477FF /* DataChange.swift in Sources */,
 				24557A0B203DE0D400492B74 /* MockResponses.swift in Sources */,
-				248C0265202E5C18004CB8C9 /* VerificationViewModel.swift in Sources */,
 				24FD78721FC07C630072F860 /* UserDefaults+Keys.swift in Sources */,
 				24D178EB1FB606B200EC5F4A /* AppViewModel.swift in Sources */,
 			);

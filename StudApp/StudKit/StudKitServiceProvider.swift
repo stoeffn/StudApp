@@ -47,12 +47,6 @@ public class StudKitServiceProvider: ServiceProvider {
         return CoreDataService(modelName: "StudKit", appGroupIdentifier: App.groupIdentifier)
     }
 
-    func provideStoreService() -> StoreService {
-        guard let verificationApiBaseUrl = URL(string: "https://studapp.stoeffn.de/api/v1") else { fatalError() }
-        let verificationApi = Api<StoreRoutes>(baseUrl: verificationApiBaseUrl)
-        return StoreService(verificationApi: verificationApi)
-    }
-
     func provideStudIpService() -> StudIpService {
         return isRunningUiTests ? MockStudIpService() : StudIpService()
     }
@@ -63,7 +57,7 @@ public class StudKitServiceProvider: ServiceProvider {
         container[ContextService.self] = provideContextService()
         container[KeychainService.self] = KeychainService()
         container[ReachabilityService.self] = provideReachabilityService()
-        container[StoreService.self] = provideStoreService()
+        container[StoreService.self] = StoreService()
         container[StorageService.self] = StorageService()
         container[CoreDataService.self] = provideCoreDataService()
         container[PersistentHistoryService.self] = PersistentHistoryService(currentTarget: currentTarget)
