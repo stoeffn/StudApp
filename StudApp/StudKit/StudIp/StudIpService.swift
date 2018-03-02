@@ -60,7 +60,7 @@ public class StudIpService {
 
         var userResult: Result<User>!
         group.enter()
-        User.updateCurrent(organization: organization, in: coreDataService.viewContext) { result in
+        organization.updateCurrentUser { result in
             userResult = result
             group.leave()
         }
@@ -111,33 +111,32 @@ public class StudIpService {
     // MARK: - Updating
 
     func update(in context: NSManagedObjectContext, completion: @escaping () -> Void) {
-        guard let user = User.current else { return completion() }
-        let organization = user.organization.in(context)
+        guard let user = User.current?.in(context) else { return completion() }
 
         let group = DispatchGroup()
 
         group.enter()
-        organization.updateDiscovery { _ in group.leave() }
+        user.organization.updateDiscovery { _ in group.leave() }
 
         group.enter()
-        User.updateCurrent(organization: organization, in: context) { _ in group.leave() }
+        user.organization.updateCurrentUser { _ in group.leave() }
 
         group.enter()
-        organization.updateSemesters { result in
+        user.organization.updateSemesters { result in
             defer { group.leave() }
             guard result.isSuccess else { return }
 
             group.enter()
-            user.updateAuthoredCourses(in: context) { _ in
+            user.updateAuthoredCourses { _ in
                 defer { group.leave() }
                 guard result.isSuccess else { return }
 
                 for course in user.authoredCourses {
                     group.enter()
-                    course.updateAnnouncements(in: context) { _ in group.leave() }
+                    course.updateAnnouncements { _ in group.leave() }
 
                     group.enter()
-                    course.updateChildFiles(in: context) { _ in group.leave() }
+                    course.updateChildFiles { _ in group.leave() }
                 }
             }
         }

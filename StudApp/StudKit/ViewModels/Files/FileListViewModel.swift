@@ -43,11 +43,6 @@ public final class FileListViewModel: FetchedResultsControllerDataSourceSection 
 
     /// Updates data from the server.
     public func update(completion: ResultHandler<Void>? = nil) {
-        coreDataService.performBackgroundTask { context in
-            self.filesContaining.updateChildFiles(in: context) { result in
-                try? context.saveAndWaitWhenChanged()
-                completion?(result.map { _ in () })
-            }
-        }
+        // TODO
     }
 }

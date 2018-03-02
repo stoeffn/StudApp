@@ -38,12 +38,7 @@ public final class EventListViewModel: FetchedResultsControllerDataSource {
     }
 
     public func update(completion: (ResultHandler<Void>)? = nil) {
-        coreDataService.performBackgroundTask { context in
-            self.course.updateEvents(in: context) { result in
-                try? context.saveAndWaitWhenChanged()
-                completion?(result.map { _ in () })
-            }
-        }
+        // TODO
     }
 
     public func sectionIndex(for date: Date) -> Int? {

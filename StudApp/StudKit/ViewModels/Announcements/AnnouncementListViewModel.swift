@@ -29,11 +29,6 @@ public final class AnnouncementListViewModel: FetchedResultsControllerDataSource
         sectionNameKeyPath: nil, cacheName: nil)
 
     public func update(completion: (ResultHandler<Void>)? = nil) {
-        coreDataService.performBackgroundTask { context in
-            self.course.updateAnnouncements(in: context) { result in
-                try? context.saveAndWaitWhenChanged()
-                completion?(result.map { _ in () })
-            }
-        }
+        // TODO
     }
 }

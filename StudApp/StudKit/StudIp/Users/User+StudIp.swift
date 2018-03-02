@@ -10,46 +10,35 @@ import CoreData
 import CoreSpotlight
 
 extension User {
-    static func updateCurrent(organization: Organization, in context: NSManagedObjectContext,
-                              completion: @escaping ResultHandler<User>) {
-        let studIpService = ServiceContainer.default[StudIpService.self]
-        studIpService.api.requestDecoded(.currentUser) { (result: Result<UserResponse>) in
-            let result = result.map { try $0.coreDataObject(organization: organization, in: context) }
-            completion(result)
-        }
-    }
 
-    func updateAuthoredCourses(in context: NSManagedObjectContext, completion: @escaping ResultHandler<[Course]>) {
-        let studIpService = ServiceContainer.default[StudIpService.self]
-        studIpService.api.requestCollection(.courses(forUserId: id)) { (result: Result<[CourseResponse]>) in
-            let result = result.map { response -> [Course] in
-                guard let user = context.object(with: self.objectID) as? User else { fatalError() }
-                return try self.updateAuthoredCourses(user.authoredCoursesFetchRequest(), with: response, user: user, in: context)
+    // MARK: - Updating Courses
+
+    func updateAuthoredCourses(completion: @escaping ResultHandler<[Course]>) {
+        update(lastUpdatedAt: \.state.authoredCoursesUpdatedAt, expiresAfter: 60 * 10, completion: completion) { updaterCompletion in
+            let studIpService = ServiceContainer.default[StudIpService.self]
+            studIpService.api.requestCollection(.courses(forUserId: id)) { (result: Result<[CourseResponse]>) in
+                updaterCompletion(result.map { try self.updateAuthoredCourses(self.authoredCoursesFetchRequest(), with: $0) })
             }
-            completion(result)
         }
     }
 
-    private func updateAuthoredCourses(_ existingObjects: NSFetchRequest<Course>, with response: [CourseResponse],
-                                       user: User, in context: NSManagedObjectContext) throws -> [Course] {
+    func updateAuthoredCourses(_ existingObjects: NSFetchRequest<Course>, with response: [CourseResponse]) throws -> [Course] {
+        guard let context = managedObjectContext else { fatalError() }
+
         let courses = try Course.update(existingObjects, with: response, in: context) {
-            try $0.coreDataObject(organization: user.organization, author: user, in: context)
+            try $0.coreDataObject(organization: organization, author: self, in: context)
         }
 
         CSSearchableIndex.default().indexSearchableItems(courses.map { $0.searchableItem }) { _ in }
 
-        try? organization.fetchVisibleSemesters(in: context).forEach { semester in
-            semester.state.areCoursesFetchedFromRemote = true
-
-            if #available(iOSApplicationExtension 11.0, *) {
-                let itemidentifier = NSFileProviderItemIdentifier(rawValue: semester.objectIdentifier.rawValue)
-                NSFileProviderManager.default.signalEnumerator(for: itemidentifier) { _ in }
-            }
-        }
-
         if #available(iOSApplicationExtension 11.0, *) {
             NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
             NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+
+            for semester in try organization.fetchVisibleSemesters(in: context) {
+                let itemidentifier = NSFileProviderItemIdentifier(rawValue: semester.objectIdentifier.rawValue)
+                NSFileProviderManager.default.signalEnumerator(for: itemidentifier) { _ in }
+            }
         }
 
         return courses

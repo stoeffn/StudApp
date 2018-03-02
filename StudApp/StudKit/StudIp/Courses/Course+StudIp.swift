@@ -11,31 +11,32 @@ import CoreSpotlight
 import FileProvider
 
 extension Course {
-    public func updateChildFiles(in context: NSManagedObjectContext, completion: @escaping ResultHandler<Set<File>>) {
-        let studIpService = ServiceContainer.default[StudIpService.self]
-        studIpService.api.requestDecoded(.rootFolderForCourse(withId: id)) { (result: Result<FolderResponse>) in
-            let result = result.map { response -> Set<File> in
-                guard let course = context.object(with: self.objectID) as? Course else { fatalError() }
-                return try Course.updateChildFiles(from: response, course: course, in: context)
+
+    // MARK: - Updating Files
+
+    public func updateChildFiles(completion: @escaping ResultHandler<Set<File>>) {
+        update(lastUpdatedAt: \.state.childFilesUpdatedAt, expiresAfter: 60 * 10, completion: completion) { updaterCompletion in
+            let studIpService = ServiceContainer.default[StudIpService.self]
+            studIpService.api.requestDecoded(.rootFolderForCourse(withId: id)) { (result: Result<FolderResponse>) in
+                updaterCompletion(result.map { try self.updateChildFiles(from: $0) })
             }
-            completion(result)
         }
     }
 
-    private static func updateChildFiles(from response: FolderResponse, course: Course,
-                                         in context: NSManagedObjectContext) throws -> Set<File> {
-        let folders = try File.update(course.childFoldersFetchRequest, with: response.folders ?? [], in: context) { response in
-            try response.coreDataObject(course: course, parent: nil, in: context)
+    func updateChildFiles(from response: FolderResponse) throws -> Set<File> {
+        guard let context = managedObjectContext else { fatalError() }
+
+        let folders = try File.update(childFoldersFetchRequest, with: response.folders ?? [], in: context) { response in
+            try response.coreDataObject(course: self, parent: nil, in: context)
         }
-        let documents = try File.update(course.childDocumentsFetchRequest, with: response.documents ?? [], in: context) { response in
-            try response.coreDataObject(course: course, parent: nil, in: context)
+        let documents = try File.update(childDocumentsFetchRequest, with: response.documents ?? [], in: context) { response in
+            try response.coreDataObject(course: self, parent: nil, in: context)
         }
 
-        let searchableItems = documents.map { $0.searchableItem }
-        CSSearchableIndex.default().indexSearchableItems(searchableItems) { _ in }
+        CSSearchableIndex.default().indexSearchableItems(documents.map { $0.searchableItem }) { _ in }
 
         if #available(iOSApplicationExtension 11.0, *) {
-            let itemIdentifier = NSFileProviderItemIdentifier(rawValue: course.objectIdentifier.rawValue)
+            let itemIdentifier = NSFileProviderItemIdentifier(rawValue: objectIdentifier.rawValue)
             NSFileProviderManager.default.signalEnumerator(for: itemIdentifier) { _ in }
             NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
         }
@@ -43,31 +44,49 @@ extension Course {
         return Set(folders).union(documents)
     }
 
-    public func updateAnnouncements(in context: NSManagedObjectContext, completion: @escaping ResultHandler<[Announcement]>) {
-        let studIpService = ServiceContainer.default[StudIpService.self]
-        studIpService.api.requestCollection(.announcementsInCourse(withId: id)) { (result: Result<[AnnouncementResponse]>) in
-            let result = result.map { announcementResponses -> [Announcement] in
-                guard let course = context.object(with: self.objectID) as? Course else { fatalError() }
-                return try Announcement.update(self.announcementsFetchRequest, with: announcementResponses, in: context) { response in
-                    try response.coreDataObject(organization: course.organization, in: context)
-                }
+    // MARK: - Updating Announcements
+
+    public func updateAnnouncements(completion: @escaping ResultHandler<Set<Announcement>>) {
+        update(lastUpdatedAt: \.state.announcementsUpdatedAt, expiresAfter: 60 * 10, completion: completion) { updaterCompletion in
+            let studIpService = ServiceContainer.default[StudIpService.self]
+            studIpService.api.requestCollection(.announcementsInCourse(withId: id)) { (result: Result<[AnnouncementResponse]>) in
+                updaterCompletion(result.map { try self.updateAnnouncements(from: $0) })
             }
-            completion(result)
         }
     }
 
-    public func updateEvents(in context: NSManagedObjectContext, completion: @escaping ResultHandler<[Event]>) {
-        let studIpService = ServiceContainer.default[StudIpService.self]
-        studIpService.api.requestCollection(.eventsInCourse(withId: id)) { (result: Result<[EventResponse]>) in
-            let result = result.map { eventResponses -> [Event] in
-                guard let course = context.object(with: self.objectID) as? Course else { fatalError() }
-                return try Event.update(course.eventsFetchRequest, with: eventResponses, in: context) { response in
-                    try response.coreDataObject(course: course, in: context)
-                }
+    func updateAnnouncements(from responses: [AnnouncementResponse]) throws -> Set<Announcement> {
+        guard let context = managedObjectContext else { fatalError() }
+
+        let announcements = try Announcement.update(self.announcementsFetchRequest, with: responses, in: context) { response in
+            try response.coreDataObject(organization: self.organization, in: context)
+        }
+
+        return Set(announcements)
+    }
+
+    // MARK: - Updating Events
+
+    public func updateEvents(completion: @escaping ResultHandler<Set<Event>>) {
+        update(lastUpdatedAt: \.state.eventsUpdatedAt, expiresAfter: 60 * 10, completion: completion) { updaterCompletion in
+            let studIpService = ServiceContainer.default[StudIpService.self]
+            studIpService.api.requestCollection(.eventsInCourse(withId: id)) { (result: Result<[EventResponse]>) in
+                updaterCompletion(result.map { try self.updateEvents(from: $0) })
             }
-            completion(result)
         }
     }
+
+    func updateEvents(from responses: [EventResponse]) throws -> Set<Event> {
+        guard let context = managedObjectContext else { fatalError() }
+
+        let events = try Event.update(eventsFetchRequest, with: responses, in: context) { response in
+            try response.coreDataObject(course: self, in: context)
+        }
+
+        return Set(events)
+    }
+
+    // MARK: - Setting Properties
 
     public func set(groupId: Int, for user: User, completion: @escaping ResultHandler<Void>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
@@ -77,6 +96,8 @@ extension Course {
             self.groupId = groupId
         }
     }
+
+    // MARK: - Managing Metadata
 
     public var url: URL? {
         let studIpService = ServiceContainer.default[StudIpService.self]

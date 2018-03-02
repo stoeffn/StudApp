@@ -18,7 +18,7 @@ public protocol FilesContaining {
 
     var childFileStatesPredicate: NSPredicate { get }
 
-    func updateChildFiles(in context: NSManagedObjectContext, completion: @escaping ResultHandler<Set<File>>)
+    func updateChildFiles(completion: @escaping ResultHandler<Set<File>>)
 }
 
 extension FilesContaining {

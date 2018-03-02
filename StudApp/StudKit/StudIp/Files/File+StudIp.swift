@@ -10,19 +10,21 @@ import CoreData
 import CoreSpotlight
 
 extension File {
-    public func updateChildFiles(in context: NSManagedObjectContext, completion: @escaping ResultHandler<Set<File>>) {
-        let studIpService = ServiceContainer.default[StudIpService.self]
-        studIpService.api.requestDecoded(.folder(withId: id)) { (result: Result<FolderResponse>) in
-            let result = result.map { response -> Set<File> in
-                guard let folder = context.object(with: self.objectID) as? File else { fatalError() }
-                return try File.updateChildFiles(from: response, course: folder.course, in: context)
+
+    // MARK: - Updating Children
+
+    public func updateChildFiles(completion: @escaping ResultHandler<Set<File>>) {
+        update(lastUpdatedAt: \.state.childFilesUpdatedAt, expiresAfter: 60 * 10, completion: completion) { updaterCompletion in
+            let studIpService = ServiceContainer.default[StudIpService.self]
+            studIpService.api.requestDecoded(.folder(withId: id)) { (result: Result<FolderResponse>) in
+                updaterCompletion(result.map { try self.updateChildFiles(from: $0) })
             }
-            completion(result)
         }
     }
 
-    private static func updateChildFiles(from response: FolderResponse, course: Course,
-                                         in context: NSManagedObjectContext) throws -> Set<File> {
+    func updateChildFiles(from response: FolderResponse) throws -> Set<File> {
+        guard let context = managedObjectContext else { fatalError() }
+
         let folder = try response.coreDataObject(course: course, in: context)
 
         let searchableItems = folder.children
@@ -38,6 +40,8 @@ extension File {
 
         return folder.children
     }
+
+    // MARK: - Managing Downloads
 
     @discardableResult
     public func download(completion: @escaping ResultHandler<URL>) -> Progress? {
@@ -92,6 +96,8 @@ extension File {
         try? FileManager.default.removeItem(at: localUrl(in: .fileProvider))
         try managedObjectContext?.saveAndWaitWhenChanged()
     }
+
+    // MARK: - Managing Metadata
 
     public var url: URL? {
         let studIpService = ServiceContainer.default[StudIpService.self]

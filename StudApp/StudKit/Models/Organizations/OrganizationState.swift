@@ -17,6 +17,8 @@ public final class OrganizationState: NSManagedObject, CDCreatable, CDSortable {
 
     // MARK: Tracking Usage
 
+    @NSManaged public var currentUserUpdatedAt: Date?
+
     @NSManaged public var discoveryUpdatedAt: Date?
 
     @NSManaged public var semestersUpdatedAt: Date?
