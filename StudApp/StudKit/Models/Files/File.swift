@@ -106,10 +106,6 @@ extension File: FilesContaining {
     public var childFilesPredicate: NSPredicate {
         return NSPredicate(format: "course == %@ AND parent == %@", course, self)
     }
-
-    public var childFileStatesPredicate: NSPredicate {
-        return NSPredicate(format: "file.course == %@ AND file.parent == %@", course, self)
-    }
 }
 
 // MARK: - Utilities

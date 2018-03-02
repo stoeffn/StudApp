@@ -31,7 +31,7 @@ final class CourseItem: NSObject, NSFileProviderItem {
 
     convenience init(from course: Course) {
         let childItemCount = course.state.areFilesFetchedFromRemote
-            ? try? course.managedObjectContext?.count(for: course.childFileStatesFetchRequest) ?? 0
+            ? try? course.managedObjectContext?.count(for: course.childFilesFetchRequest) ?? 0
             : nil
 
         self.init(from: course, childItemCount: childItemCount)

@@ -97,10 +97,6 @@ extension Course: FilesContaining {
         return NSPredicate(format: "course == %@ AND parent == NIL", self)
     }
 
-    public var childFileStatesPredicate: NSPredicate {
-        return NSPredicate(format: "file.course == %@ AND file.parent == NIL", self)
-    }
-
     /// Request for fetching all announcements for this course.
     public var announcementsFetchRequest: NSFetchRequest<Announcement> {
         let predicate = NSPredicate(format: "%@ IN courses", self)
