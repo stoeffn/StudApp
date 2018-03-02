@@ -122,25 +122,35 @@ public class StudIpService {
         user.organization.updateCurrentUser { _ in group.leave() }
 
         group.enter()
-        user.organization.updateSemesters { result in
+        user.organization.updateSemesters { _ in
             defer { group.leave() }
-            guard result.isSuccess else { return }
 
             group.enter()
             user.updateAuthoredCourses { _ in
                 defer { group.leave() }
-                guard result.isSuccess else { return }
 
                 for course in user.authoredCourses {
                     group.enter()
                     course.updateAnnouncements { _ in group.leave() }
 
-                    group.enter()
-                    course.updateChildFiles { _ in group.leave() }
+                    self.updateChildFilesRecursivly(in: course, group: group, context: context)
                 }
             }
         }
 
         group.notify(queue: .main) { completion() }
+    }
+
+    private func updateChildFilesRecursivly(in filesContaining: FilesContaining, group: DispatchGroup,
+                                            context: NSManagedObjectContext) {
+        group.enter()
+        filesContaining.updateChildFiles { _ in
+            defer { group.leave() }
+
+            let childFolders = try? filesContaining.fetchChildFolders(in: context)
+            for folder in childFolders ?? [] {
+                self.updateChildFilesRecursivly(in: folder, group: group, context: context)
+            }
+        }
     }
 }

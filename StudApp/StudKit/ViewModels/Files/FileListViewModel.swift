@@ -29,17 +29,9 @@ public final class FileListViewModel: FetchedResultsControllerDataSourceSection 
         controller.delegate = fetchedResultControllerDelegateHelper
     }
 
-    public private(set) lazy var controller: NSFetchedResultsController<FileState> = NSFetchedResultsController(
-        fetchRequest: filesContaining.childFileStatesFetchRequest, managedObjectContext: coreDataService.viewContext,
+    public private(set) lazy var controller: NSFetchedResultsController<File> = NSFetchedResultsController(
+        fetchRequest: filesContaining.childFilesFetchRequest, managedObjectContext: coreDataService.viewContext,
         sectionNameKeyPath: nil, cacheName: nil)
-
-    public func row(from object: FileState) -> File {
-        return object.file
-    }
-
-    public func object(from row: File) -> FileState {
-        return row.state
-    }
 
     /// Updates data from the server.
     public func update(completion: ResultHandler<Void>? = nil) {
