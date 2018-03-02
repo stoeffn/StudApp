@@ -45,7 +45,7 @@ public extension NSFetchRequestResult where Self: NSManagedObject {
 
 // MARK: - Updating
 
-extension NSFetchRequestResult {
+extension NSFetchRequestResult where Self: NSManagedObject {
     func shouldUpdate(lastUpdatedAt: Date?, expiresAfter: TimeInterval) -> Bool {
         guard let lastUpdatedAt = lastUpdatedAt else { return true }
         return lastUpdatedAt + expiresAfter < Date()
@@ -57,10 +57,18 @@ extension NSFetchRequestResult {
         guard shouldUpdate(lastUpdatedAt: self[keyPath: lastUpdatedAtKeyPath], expiresAfter: expiresAfter) else {
             return completion(.failure(nil))
         }
+
         updater { result in
-            defer { completion(result) }
-            guard result.isSuccess else { return }
+            guard result.isSuccess else { return completion(result) }
+
             self[keyPath: lastUpdatedAtKeyPath] = Date()
+
+            do {
+                try self.managedObjectContext?.saveAndWaitWhenChanged()
+                completion(result)
+            } catch {
+                completion(.failure(error))
+            }
         }
     }
 }
