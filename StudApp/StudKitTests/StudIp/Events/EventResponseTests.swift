@@ -13,6 +13,7 @@ import XCTest
 final class EventResponseTests: XCTestCase {
     private let decoder = ServiceContainer.default[JSONDecoder.self]
     private var context: NSManagedObjectContext!
+    private lazy var organization = try! OrganizationRecord(id: "O0").coreDataObject(in: context)
 
     // MARK: - Life Cycle
 
@@ -66,7 +67,7 @@ final class EventResponseTests: XCTestCase {
     // MARK: - Converting to a Core Data Object
 
     func testCoreDataObject_Event0() {
-        let course = try! CourseResponse(id: "C0").coreDataObject(in: context)
+        let course = try! CourseResponse(id: "C0").coreDataObject(organization: organization, in: context)
         let event = try! EventResponseTests.event0.coreDataObject(course: course, in: context)
         XCTAssertEqual(event.id, "E0")
         XCTAssertEqual(event.course.id, "C0")

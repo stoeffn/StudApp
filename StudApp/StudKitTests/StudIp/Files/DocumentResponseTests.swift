@@ -14,13 +14,14 @@ import XCTest
 final class DocumentResponseTests: XCTestCase {
     private let decoder = ServiceContainer.default[JSONDecoder.self]
     private var context: NSManagedObjectContext!
+    private lazy var organization = try! OrganizationRecord(id: "O0").coreDataObject(in: context)
 
     // MARK: - Life Cycle
 
     override func setUp() {
         context = StudKitTestsServiceProvider(currentTarget: .tests).provideCoreDataService().viewContext
 
-        try! UserResponse(id: "U0").coreDataObject(in: context)
+        try! UserResponse(id: "U0").coreDataObject(organization: organization, in: context)
     }
 
     // MARK: - Coding
@@ -54,7 +55,7 @@ final class DocumentResponseTests: XCTestCase {
     // MARK: - Converting to Core Data Objects
 
     func testCoreDataObject_Document1() {
-        let course0 = try! CourseResponse(id: "C0").coreDataObject(in: context)
+        let course0 = try! CourseResponse(id: "C0").coreDataObject(organization: organization, in: context)
         let folder0 = try! FolderResponse(id: "F2").coreDataObject(course: course0, in: context)
         let document = try! DocumentResponseTests.document0.coreDataObject(course: course0, parent: folder0, in: context)
         XCTAssertEqual(document.id, "F0")
@@ -70,7 +71,7 @@ final class DocumentResponseTests: XCTestCase {
     }
 
     func testCoreDataObject_Document2() {
-        let course0 = try! CourseResponse(id: "C0").coreDataObject(in: context)
+        let course0 = try! CourseResponse(id: "C0").coreDataObject(organization: organization, in: context)
         let folder0 = try! FolderResponse(id: "F2").coreDataObject(course: course0, in: context)
         let document = try! DocumentResponseTests.document1.coreDataObject(course: course0, parent: folder0, in: context)
         XCTAssertEqual(document.id, "F1")

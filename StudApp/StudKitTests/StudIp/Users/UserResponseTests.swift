@@ -13,6 +13,7 @@ import XCTest
 final class UserResponseTests: XCTestCase {
     private let decoder = ServiceContainer.default[JSONDecoder.self]
     private var context: NSManagedObjectContext!
+    private lazy var organization = try! OrganizationRecord(id: "O0").coreDataObject(in: context)
 
     // MARK: - Life Cycle
 
@@ -47,7 +48,7 @@ final class UserResponseTests: XCTestCase {
     // MARK: - Converting to a Core Data Object
 
     func testCoreDataObject_Uset0() {
-        let user = try! UserResponseTests.user0.coreDataObject(in: context)
+        let user = try! UserResponseTests.user0.coreDataObject(organization: organization, in: context)
         XCTAssertEqual(user.id, "U0")
         XCTAssertEqual(user.username, "username")
         XCTAssertEqual(user.givenName, "First Name")

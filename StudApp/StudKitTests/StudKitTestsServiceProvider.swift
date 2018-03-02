@@ -21,9 +21,4 @@ final class StudKitTestsServiceProvider: StudKitServiceProvider {
         let api = MockApi<StudIpRoutes>(baseUrl: URL(string: "https://example.com")!)
         return StudIpService(api: api)
     }
-
-    override func provideStoreService() -> StoreService {
-        let api = MockApi<StoreRoutes>(baseUrl: URL(string: "https://example.com")!)
-        return StoreService(verificationApi: api)
-    }
 }

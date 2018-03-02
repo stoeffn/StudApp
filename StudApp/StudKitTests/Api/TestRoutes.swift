@@ -69,6 +69,10 @@ enum TestRoutes: String, TestableApiRoutes {
         }
     """.data(using: .utf8)!
 
+    var identifier: String {
+        return ""
+    }
+
     var path: String {
         return rawValue
     }

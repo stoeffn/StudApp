@@ -25,8 +25,6 @@
 		243040A4204339070018F367 /* DiscoveryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243040A3204339070018F367 /* DiscoveryResponse.swift */; };
 		243040A62043398F0018F367 /* ApiRoutesAvailablity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243040A52043398F0018F367 /* ApiRoutesAvailablity.swift */; };
 		243040A720435B170018F367 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245B6AD51FCB327800302CD0 /* StoreKit.framework */; };
-		2436370F1FE56F33001D1B86 /* StoreStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2436370E1FE56F33001D1B86 /* StoreStateTests.swift */; };
-		243637121FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243637111FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift */; };
 		243817921FC76BDC004052D0 /* DocumentActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243817911FC76BDC004052D0 /* DocumentActionViewController.swift */; };
 		2438179E1FC76D1E004052D0 /* Routes+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438179D1FC76D1E004052D0 /* Routes+Actions.swift */; };
 		24390EE820389C1E0064E49A /* StudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2448D43F1FA8DB1E00DAB97E /* StudKit.framework */; };
@@ -37,7 +35,7 @@
 		24390EF22038A7A20064E49A /* FileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361471FAA63CE00BBBAED /* FileTests.swift */; };
 		24390EF32038A7A50064E49A /* SemesterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361501FAA63D800BBBAED /* SemesterTests.swift */; };
 		24390EF42038A7A80064E49A /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361551FAA63DF00BBBAED /* UserTests.swift */; };
-		24390EF52038AB170064E49A /* Course+StudIpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3613F1FAA63C500BBBAED /* Course+StudIpTests.swift */; };
+		24390EF52038AB170064E49A /* User+StudIpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3613F1FAA63C500BBBAED /* User+StudIpTests.swift */; };
 		24390EF62038AF840064E49A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2448D4131FA8DA2400DAB97E /* Assets.xcassets */; };
 		24390EF72038C1150064E49A /* StudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2448D43F1FA8DB1E00DAB97E /* StudKit.framework */; };
 		243CC2BE1FDF0A7F00FE7376 /* CDSortable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CC2BD1FDF0A7F00FE7376 /* CDSortable.swift */; };
@@ -247,7 +245,7 @@
 		24D3612F1FAA60E000BBBAED /* CollectionResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3612B1FAA60E000BBBAED /* CollectionResponseTests.swift */; };
 		24D361511FAA63D800BBBAED /* SemesterResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3614D1FAA63D700BBBAED /* SemesterResponseTests.swift */; };
 		24D361521FAA63D800BBBAED /* SemesterResponseTests+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3614E1FAA63D800BBBAED /* SemesterResponseTests+Data.swift */; };
-		24D361531FAA63D800BBBAED /* Semester+StudIpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3614F1FAA63D800BBBAED /* Semester+StudIpTests.swift */; };
+		24D361531FAA63D800BBBAED /* Organization+StudIpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3614F1FAA63D800BBBAED /* Organization+StudIpTests.swift */; };
 		24D361611FAA641600BBBAED /* courseCollection.json in Resources */ = {isa = PBXBuildFile; fileRef = 24D3615D1FAA641500BBBAED /* courseCollection.json */; };
 		24D361621FAA641600BBBAED /* semesterCollection.json in Resources */ = {isa = PBXBuildFile; fileRef = 24D3615E1FAA641500BBBAED /* semesterCollection.json */; };
 		24D361631FAA641600BBBAED /* courseCollection+20.json in Resources */ = {isa = PBXBuildFile; fileRef = 24D3615F1FAA641600BBBAED /* courseCollection+20.json */; };
@@ -416,8 +414,6 @@
 		243040A52043398F0018F367 /* ApiRoutesAvailablity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRoutesAvailablity.swift; sourceTree = "<group>"; };
 		243040AB2043EBBA0018F367 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		243040AD2043EBBB0018F367 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		2436370E1FE56F33001D1B86 /* StoreStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreStateTests.swift; sourceTree = "<group>"; };
-		243637111FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoreRoutes+TestableApiRoutes.swift"; sourceTree = "<group>"; };
 		2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StudFileProviderUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		243817911FC76BDC004052D0 /* DocumentActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentActionViewController.swift; sourceTree = "<group>"; };
 		243817961FC76BDC004052D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -615,12 +611,12 @@
 		24D361341FAA633000BBBAED /* CDIdentifiableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDIdentifiableTests.swift; sourceTree = "<group>"; };
 		24D3613D1FAA63C400BBBAED /* CourseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseTests.swift; sourceTree = "<group>"; };
 		24D3613E1FAA63C500BBBAED /* CourseResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CourseResponseTests.swift; sourceTree = "<group>"; };
-		24D3613F1FAA63C500BBBAED /* Course+StudIpTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Course+StudIpTests.swift"; sourceTree = "<group>"; };
+		24D3613F1FAA63C500BBBAED /* User+StudIpTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "User+StudIpTests.swift"; sourceTree = "<group>"; };
 		24D361401FAA63C500BBBAED /* CourseResponseTests+Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CourseResponseTests+Data.swift"; sourceTree = "<group>"; };
 		24D361471FAA63CE00BBBAED /* FileTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileTests.swift; sourceTree = "<group>"; };
 		24D3614D1FAA63D700BBBAED /* SemesterResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SemesterResponseTests.swift; sourceTree = "<group>"; };
 		24D3614E1FAA63D800BBBAED /* SemesterResponseTests+Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SemesterResponseTests+Data.swift"; sourceTree = "<group>"; };
-		24D3614F1FAA63D800BBBAED /* Semester+StudIpTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Semester+StudIpTests.swift"; sourceTree = "<group>"; };
+		24D3614F1FAA63D800BBBAED /* Organization+StudIpTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Organization+StudIpTests.swift"; sourceTree = "<group>"; };
 		24D361501FAA63D800BBBAED /* SemesterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SemesterTests.swift; sourceTree = "<group>"; };
 		24D361551FAA63DF00BBBAED /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		24D361561FAA63DF00BBBAED /* UserResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserResponseTests.swift; sourceTree = "<group>"; };
@@ -837,15 +833,6 @@
 			path = ColorPicker;
 			sourceTree = "<group>";
 		};
-		2436370D1FE56F1B001D1B86 /* Store */ = {
-			isa = PBXGroup;
-			children = (
-				2436370E1FE56F33001D1B86 /* StoreStateTests.swift */,
-				243637111FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift */,
-			);
-			path = Store;
-			sourceTree = "<group>";
-		};
 		243817901FC76BDC004052D0 /* StudFileProviderUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -994,7 +981,6 @@
 				2448D4901FA8DF0900DAB97E /* Extensions */,
 				24D361381FAA637E00BBBAED /* Models */,
 				2448D4791FA8DE3300DAB97E /* Services */,
-				2436370D1FE56F1B001D1B86 /* Store */,
 				24D361261FAA603400BBBAED /* StudIp */,
 				2448D49A1FA8E01B00DAB97E /* Setup.swift */,
 				2448D4981FA8E00800DAB97E /* StudKitTestsServiceProvider.swift */,
@@ -1386,7 +1372,6 @@
 			children = (
 				24D3613E1FAA63C500BBBAED /* CourseResponseTests.swift */,
 				24D361401FAA63C500BBBAED /* CourseResponseTests+Data.swift */,
-				24D3613F1FAA63C500BBBAED /* Course+StudIpTests.swift */,
 			);
 			path = Courses;
 			sourceTree = "<group>";
@@ -1407,7 +1392,6 @@
 			children = (
 				24D3614D1FAA63D700BBBAED /* SemesterResponseTests.swift */,
 				24D3614E1FAA63D800BBBAED /* SemesterResponseTests+Data.swift */,
-				24D3614F1FAA63D800BBBAED /* Semester+StudIpTests.swift */,
 			);
 			path = Semesters;
 			sourceTree = "<group>";
@@ -1417,6 +1401,7 @@
 			children = (
 				24D361561FAA63DF00BBBAED /* UserResponseTests.swift */,
 				24D361571FAA63DF00BBBAED /* UserResponseTests+Data.swift */,
+				24D3613F1FAA63C500BBBAED /* User+StudIpTests.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -1536,6 +1521,14 @@
 			path = Courses;
 			sourceTree = "<group>";
 		};
+		24BFB1EF204A056F00B2C87D /* Organizations */ = {
+			isa = PBXGroup;
+			children = (
+				24D3614F1FAA63D800BBBAED /* Organization+StudIpTests.swift */,
+			);
+			path = Organizations;
+			sourceTree = "<group>";
+		};
 		24CFB5D21FB24F2700F30DEA /* Routing */ = {
 			isa = PBXGroup;
 			children = (
@@ -1624,6 +1617,7 @@
 				247793701FC893BB00090F4D /* Courses */,
 				245524E61FF2E14D00C18F92 /* Events */,
 				247793711FC893C900090F4D /* Files */,
+				24BFB1EF204A056F00B2C87D /* Organizations */,
 				247793721FC893CF00090F4D /* Semesters */,
 				247793731FC893D300090F4D /* Users */,
 				24D3615B1FAA640100BBBAED /* Responses */,
@@ -2471,17 +2465,15 @@
 				24D361511FAA63D800BBBAED /* SemesterResponseTests.swift in Sources */,
 				248525A0203858FE00BC4CAB /* StudIpRoutes+TestableApiRoutes.swift in Sources */,
 				2448D4BA1FA8E0AB00DAB97E /* TestRoutes.swift in Sources */,
-				24390EF52038AB170064E49A /* Course+StudIpTests.swift in Sources */,
+				24390EF52038AB170064E49A /* User+StudIpTests.swift in Sources */,
 				24D3611C1FAA5FC900BBBAED /* Data+Resource.swift in Sources */,
 				24390EF42038A7A80064E49A /* UserTests.swift in Sources */,
-				243637121FE57727001D1B86 /* StoreRoutes+TestableApiRoutes.swift in Sources */,
 				24D361241FAA5FF500BBBAED /* String+RegexTests.swift in Sources */,
 				2448D4991FA8E00800DAB97E /* StudKitTestsServiceProvider.swift in Sources */,
 				24D3612F1FAA60E000BBBAED /* CollectionResponseTests.swift in Sources */,
 				248C0256202E53E4004CB8C9 /* AnnouncementResponseTests.swift in Sources */,
 				24D3611B1FAA5FC900BBBAED /* JSONDecoder+Resource.swift in Sources */,
 				248525AE20387CC800BC4CAB /* ResultTests.swift in Sources */,
-				2436370F1FE56F33001D1B86 /* StoreStateTests.swift in Sources */,
 				24798FBB2038825C00E87630 /* StudIpTests.swift in Sources */,
 				24390EF12038A7990064E49A /* CourseTests.swift in Sources */,
 				24798FBA20387DE300E87630 /* Result+ApiTests.swift in Sources */,
@@ -2492,7 +2484,7 @@
 				248525A8203874EE00BC4CAB /* FolderResponseTests+Data.swift in Sources */,
 				2448D4B81FA8E0AB00DAB97E /* MockApi.swift in Sources */,
 				242266101FE3D9E400FA7CA6 /* AnnouncementResponseTests+Data.swift in Sources */,
-				24D361531FAA63D800BBBAED /* Semester+StudIpTests.swift in Sources */,
+				24D361531FAA63D800BBBAED /* Organization+StudIpTests.swift in Sources */,
 				24D361521FAA63D800BBBAED /* SemesterResponseTests+Data.swift in Sources */,
 				24798FBC2038867A00E87630 /* NSFetchRequestResultUtilsTests.swift in Sources */,
 				24390EF32038A7A50064E49A /* SemesterTests.swift in Sources */,

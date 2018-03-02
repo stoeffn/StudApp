@@ -70,7 +70,7 @@ final class ServiceContainerTests: XCTestCase {
 
     func testRegister_provider_string() {
         let container = ServiceContainer()
-        container.register(providers: TestProvider())
+        container.register(providers: [TestProvider()])
 
         XCTAssertEqual(container[String.self], "123")
     }

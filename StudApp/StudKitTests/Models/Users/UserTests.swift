@@ -13,6 +13,7 @@ import XCTest
 final class UserTests: XCTestCase {
     private let decoder = ServiceContainer.default[JSONDecoder.self]
     private var context: NSManagedObjectContext!
+    private lazy var organization = try! OrganizationRecord(id: "O0").coreDataObject(in: context)
 
     // MARK: - Life Cycle
 
@@ -23,7 +24,7 @@ final class UserTests: XCTestCase {
     // MARK: - Utilities
 
     func testNameComponents_User_Name() {
-        let user = try! UserResponseTests.user0.coreDataObject(in: context)
+        let user = try! UserResponseTests.user0.coreDataObject(organization: organization, in: context)
         let expectedDescription = "namePrefix: Prefix givenName: First Name familyName: Last Name nameSuffix: Suffix "
         XCTAssertEqual(user.nameComponents.description, expectedDescription)
     }

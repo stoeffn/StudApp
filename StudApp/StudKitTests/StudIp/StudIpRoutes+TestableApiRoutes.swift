@@ -24,7 +24,11 @@ extension StudIpRoutes: TestableApiRoutes {
             return Data(fromJsonResource: "fileCollection")
         case .eventsInCourse:
             return Data(fromJsonResource: "eventCollection")
-        default: fatalError("No Mock API data for route '\(self)' and offset '\(offset)'.")
+        case .announcementsInCourse:
+            return Data(fromJsonResource: "announcementudipsCollection")
+        default:
+            print("No Mock API data for route '\(self)' and offset '\(offset)'.")
+            return Data()
         }
     }
 }

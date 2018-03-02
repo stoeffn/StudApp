@@ -12,14 +12,15 @@ import XCTest
 
 final class NSFetchRequestResultUtilsTests: XCTestCase {
     private var context: NSManagedObjectContext!
+    private lazy var organization = try! OrganizationRecord(id: "O0").coreDataObject(in: context)
 
     // MARK: - Life Cycle
 
     override func setUp() {
         context = StudKitTestsServiceProvider(currentTarget: .tests).provideCoreDataService().viewContext
 
-        try! CourseResponse(id: "C0").coreDataObject(in: context)
-        try! CourseResponse(id: "C1").coreDataObject(in: context)
+        try! CourseResponse(id: "C0").coreDataObject(organization: organization, in: context)
+        try! CourseResponse(id: "C1").coreDataObject(organization: organization, in: context)
     }
 
     // MARK: - Fetching

@@ -11,7 +11,8 @@ import XCTest
 
 final class ApiRoutesTests: XCTestCase {
     private struct Routes: ApiRoutes {
-        let path: String = ""
+        let path = ""
+        let identifier = ""
     }
 
     // MARK: - Types

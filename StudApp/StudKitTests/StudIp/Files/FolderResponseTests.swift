@@ -14,13 +14,14 @@ import XCTest
 final class FolderResponseTests: XCTestCase {
     private let decoder = ServiceContainer.default[JSONDecoder.self]
     private var context: NSManagedObjectContext!
+    private lazy var organization = try! OrganizationRecord(id: "O0").coreDataObject(in: context)
 
     // MARK: - Life Cycle
 
     override func setUp() {
         context = StudKitTestsServiceProvider(currentTarget: .tests).provideCoreDataService().viewContext
 
-        try! UserResponse(id: "U0").coreDataObject(in: context)
+        try! UserResponse(id: "U0").coreDataObject(organization: organization, in: context)
     }
 
     // MARK: - Coding
@@ -70,7 +71,7 @@ final class FolderResponseTests: XCTestCase {
     // MARK: - Converting to Core Data Objects
 
     func testCoreDataObject_RootFolder() {
-        let course0 = try! CourseResponse(id: "C0").coreDataObject(in: context)
+        let course0 = try! CourseResponse(id: "C0").coreDataObject(organization: organization, in: context)
         let folder = try! FolderResponseTests.rootFolder.coreDataObject(course: course0, in: context)
         XCTAssertEqual(folder.id, "F0")
         XCTAssertEqual(folder.name, "")
@@ -86,7 +87,7 @@ final class FolderResponseTests: XCTestCase {
     }
 
     func testCoreDataObject_EmptyFolder() {
-        let course0 = try! CourseResponse(id: "C0").coreDataObject(in: context)
+        let course0 = try! CourseResponse(id: "C0").coreDataObject(organization: organization, in: context)
         try! FolderResponseTests.rootFolder.coreDataObject(course: course0, in: context)
         let folder0 = try! FolderResponse(id: "F0").coreDataObject(course: course0, in: context)
         let folder = try! FolderResponseTests.emptyFolder.coreDataObject(course: course0, parent: folder0, in: context)
@@ -103,7 +104,7 @@ final class FolderResponseTests: XCTestCase {
     }
 
     func testCoreDataObject_Folder() {
-        let course0 = try! CourseResponse(id: "C0").coreDataObject(in: context)
+        let course0 = try! CourseResponse(id: "C0").coreDataObject(organization: organization, in: context)
         try! FolderResponseTests.rootFolder.coreDataObject(course: course0, in: context)
         let folder = try! FolderResponseTests.folder.coreDataObject(course: course0, in: context)
         XCTAssertEqual(folder.id, "F2")

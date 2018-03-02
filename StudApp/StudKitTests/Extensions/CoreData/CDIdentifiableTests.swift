@@ -12,15 +12,16 @@ import XCTest
 
 final class CDIdentifiableTests: XCTestCase {
     private var context: NSManagedObjectContext!
+    private lazy var organization = try! OrganizationRecord(id: "O0").coreDataObject(in: context)
 
     // MARK: - Life Cycle
 
     override func setUp() {
         context = StudKitTestsServiceProvider(currentTarget: .tests).provideCoreDataService().viewContext
 
-        try! CourseResponse(id: "C0").coreDataObject(in: context)
-        try! CourseResponse(id: "C1", title: "scope").coreDataObject(in: context)
-        try! CourseResponse(id: "C2", title: "scope").coreDataObject(in: context)
+        try! CourseResponse(id: "C0").coreDataObject(organization: organization, in: context)
+        try! CourseResponse(id: "C1", title: "scope").coreDataObject(organization: organization, in: context)
+        try! CourseResponse(id: "C2", title: "scope").coreDataObject(organization: organization, in: context)
     }
 
     // MARK: - Fetching by Id
@@ -64,7 +65,7 @@ final class CDIdentifiableTests: XCTestCase {
     // MARK: - Managing Object Identifiers
 
     func testObjectIdentifier() {
-        let course3 = try! CourseResponse(id: "C3").coreDataObject(in: context)
+        let course3 = try! CourseResponse(id: "C3").coreDataObject(organization: organization, in: context)
         XCTAssertEqual(course3.objectIdentifier.entity, .course)
         XCTAssertEqual(course3.objectIdentifier.id, "C3")
     }
@@ -92,27 +93,35 @@ final class CDIdentifiableTests: XCTestCase {
     // MARK: - Updating Objects
 
     func testUpdate_Empty() {
-        try! Course.update(Course.fetchRequest(), with: [CourseResponse](), in: context) { try $0.coreDataObject(in: context) }
+        try! Course.update(Course.fetchRequest(), with: [CourseResponse](), in: context) {
+            try $0.coreDataObject(organization: organization, in: context)
+        }
         XCTAssertEqual(try! Course.fetch(in: context).count, 0)
     }
 
     func testUpdate_Add() {
         let responses = [CourseResponse(id: "C3"), CourseResponse(id: "C4")]
-        try! Course.update(Course.fetchRequest(), with: responses, in: context) { try $0.coreDataObject(in: context) }
+        try! Course.update(Course.fetchRequest(), with: responses, in: context) {
+            try $0.coreDataObject(organization: organization, in: context)
+        }
         let courses = try! Course.fetch(in: context)
         XCTAssertEqual(Set(courses.map { $0.id }), ["C3", "C4"])
     }
 
     func testUpdate_AddWithoutDeleting() {
         let responses = [CourseResponse(id: "C3"), CourseResponse(id: "C4")]
-        try! Course.update(with: responses, in: context) { try $0.coreDataObject(in: context) }
+        try! Course.update(with: responses, in: context) {
+            try $0.coreDataObject(organization: organization, in: context)
+        }
         let courses = try! Course.fetch(in: context)
         XCTAssertEqual(Set(courses.map { $0.id }), ["C0", "C1", "C2", "C3", "C4"])
     }
 
     func testUpdate_AddAndUpdate() {
         let responses = [CourseResponse(id: "C1"), CourseResponse(id: "C2"), CourseResponse(id: "C3"), CourseResponse(id: "C4")]
-        try! Course.update(Course.fetchRequest(), with: responses, in: context) { try $0.coreDataObject(in: context) }
+        try! Course.update(Course.fetchRequest(), with: responses, in: context) {
+            try $0.coreDataObject(organization: organization, in: context)
+        }
         let courses = try! Course.fetch(in: context)
         XCTAssertEqual(Set(courses.map { $0.id }), ["C1", "C2", "C3", "C4"])
     }
@@ -120,7 +129,9 @@ final class CDIdentifiableTests: XCTestCase {
     func testUpdate_AddAndUpdateSubset() {
         let fetchRequest = Course.fetchRequest(predicate: NSPredicate(format: "title == %@", "scope"))
         let responses = [CourseResponse(id: "C1"), CourseResponse(id: "C2"), CourseResponse(id: "C3"), CourseResponse(id: "C4")]
-        try! Course.update(fetchRequest, with: responses, in: context) { try $0.coreDataObject(in: context) }
+        try! Course.update(fetchRequest, with: responses, in: context) {
+            try $0.coreDataObject(organization: organization, in: context)
+        }
         let courses = try! Course.fetch(in: context)
         XCTAssertEqual(Set(courses.map { $0.id }), ["C0", "C1", "C2", "C3", "C4"])
     }

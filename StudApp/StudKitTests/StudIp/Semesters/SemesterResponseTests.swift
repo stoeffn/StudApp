@@ -13,6 +13,7 @@ import XCTest
 final class SemesterResponseTests: XCTestCase {
     private let decoder = ServiceContainer.default[JSONDecoder.self]
     private var context: NSManagedObjectContext!
+    private lazy var organization = try! OrganizationRecord(id: "O0").coreDataObject(in: context)
 
     // MARK: - Life Cycle
 
@@ -52,7 +53,7 @@ final class SemesterResponseTests: XCTestCase {
     // MARK: - Converting to a Core Data Object
 
     func testCoreDataObject_Semester0() {
-        let semester = try! SemesterResponseTests.semester0.coreDataObject(in: context)
+        let semester = try! SemesterResponseTests.semester0.coreDataObject(organization: organization, in: context)
         XCTAssertEqual(semester.id, "S0")
         XCTAssertEqual(semester.title, "Title")
         XCTAssertEqual(semester.beginsAt, Date(timeIntervalSince1970: 1))

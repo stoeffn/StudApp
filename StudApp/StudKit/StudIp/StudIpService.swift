@@ -144,7 +144,7 @@ public class StudIpService {
             group.enter()
             course.updateAnnouncements { _ in group.leave() }
 
-            self.updateChildFilesRecursivly(in: course, group: group, context: context)
+            updateChildFilesRecursivly(in: course, group: group, context: context)
         }
     }
 

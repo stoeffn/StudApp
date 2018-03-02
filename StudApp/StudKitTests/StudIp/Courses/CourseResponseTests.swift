@@ -13,14 +13,15 @@ import XCTest
 final class CourseResponseTests: XCTestCase {
     private let decoder = ServiceContainer.default[JSONDecoder.self]
     private var context: NSManagedObjectContext!
+    private lazy var organization = try! OrganizationRecord(id: "O0").coreDataObject(in: context)
 
     // MARK: - Life Cycle
 
     override func setUp() {
         context = StudKitTestsServiceProvider(currentTarget: .tests).provideCoreDataService().viewContext
 
-        try! SemesterResponse(id: "S0").coreDataObject(in: context)
-        try! SemesterResponse(id: "S1").coreDataObject(in: context)
+        try! SemesterResponse(id: "S0").coreDataObject(organization: organization, in: context)
+        try! SemesterResponse(id: "S1").coreDataObject(organization: organization, in: context)
     }
 
     // MARK: - Coding
@@ -48,7 +49,7 @@ final class CourseResponseTests: XCTestCase {
         XCTAssertNil(course.subtitle)
         XCTAssertNil(course.location)
         XCTAssertNil(course.summary)
-        XCTAssertNil(course.groupId)
+        XCTAssertEqual(course.groupId, 0)
         XCTAssertEqual(course.lecturers.count, 0)
         XCTAssertNil(course.beginSemesterId)
         XCTAssertNil(course.endSemesterId)
@@ -62,7 +63,7 @@ final class CourseResponseTests: XCTestCase {
     // MARK: - Converting to a Core Data Object
 
     func testCoreDataObject_Course0() {
-        let course = try! CourseResponseTests.course0.coreDataObject(in: context)
+        let course = try! CourseResponseTests.course0.coreDataObject(organization: organization, in: context)
         XCTAssertEqual(course.id, "C0")
         XCTAssertEqual(course.number, "123")
         XCTAssertEqual(course.title, "Title")

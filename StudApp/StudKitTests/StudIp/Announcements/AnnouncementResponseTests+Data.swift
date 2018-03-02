@@ -55,5 +55,5 @@ extension AnnouncementResponseTests {
     static let announcement0 = AnnouncementResponse(id: "A0", courseIds: ["C0", "C1"], userId: "U0",
                                                     createdAt: Date(timeIntervalSince1970: 1),
                                                     modifiedAt: Date(timeIntervalSince1970: 2),
-                                                    expiresAfter: 3, title: "Title", body: "Body")
+                                                    expiresAfter: 3, title: "Title", htmlContent: "Body")
 }

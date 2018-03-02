@@ -10,8 +10,8 @@
 
 final class MockApi<Routes: TestableApiRoutes>: Api<Routes> {
     @discardableResult
-    override func request(_ route: Routes, parameters: [URLQueryItem] = [], ignoreLastAccess _: Bool = false,
-                          queue _: DispatchQueue = .main, completion: @escaping ResultHandler<Data>) -> URLSessionTask? {
+    override func request(_ route: Routes, parameters: [URLQueryItem] = [],
+                          completion: @escaping ResultHandler<Data>) -> URLSessionTask? {
         do {
             let data = try route.testData(for: parameters)
             completion(.success(data))

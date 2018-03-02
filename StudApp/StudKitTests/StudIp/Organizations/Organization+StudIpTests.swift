@@ -1,5 +1,5 @@
 //
-//  Semester+StudIpTests.swift
+//  Organization+StudIpTests.swift
 //  StudKitTests
 //
 //  Created by Steffen Ryll on 08.09.17.
@@ -10,21 +10,22 @@ import CoreData
 @testable import StudKit
 import XCTest
 
-final class SemesterStudIpTests: XCTestCase {
+final class OrganizationStudIpTests: XCTestCase {
     private var context: NSManagedObjectContext!
+    private lazy var organization = try! OrganizationRecord(id: "O0").coreDataObject(in: context)
 
     // MARK: - Life Cycle
 
     override func setUp() {
         context = StudKitTestsServiceProvider(currentTarget: .tests).provideCoreDataService().viewContext
 
-        try! SemesterResponse(id: "135de7259e0862cbcd3878e038253776").coreDataObject(in: context)
+        try! SemesterResponse(id: "135de7259e0862cbcd3878e038253776").coreDataObject(organization: organization, in: context)
     }
 
     // MARK: - Updating Semesters
 
     func testUpdate_SemesterCollectionResponse() {
-        Semester.update(in: context) { result in
+        organization.updateSemesters { result in
             let semester = try! Semester.fetch(byId: "135de7259e0862cbcd3878e038253776", in: self.context)
             XCTAssertTrue(result.isSuccess)
             XCTAssertEqual(try! Semester.fetch(in: self.context).count, 20)

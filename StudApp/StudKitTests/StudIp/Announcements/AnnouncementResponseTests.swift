@@ -13,16 +13,17 @@ import XCTest
 final class AnnouncementResponseTests: XCTestCase {
     private let decoder = ServiceContainer.default[JSONDecoder.self]
     private var context: NSManagedObjectContext!
+    private lazy var organization = try! OrganizationRecord(id: "O0").coreDataObject(in: context)
 
     // MARK: - Life Cycle
 
     override func setUp() {
         context = StudKitTestsServiceProvider(currentTarget: .tests).provideCoreDataService().viewContext
 
-        try! CourseResponse(id: "C0").coreDataObject(in: context)
-        try! CourseResponse(id: "C1").coreDataObject(in: context)
+        try! CourseResponse(id: "C0").coreDataObject(organization: organization, in: context)
+        try! CourseResponse(id: "C1").coreDataObject(organization: organization, in: context)
 
-        try! UserResponse(id: "U0").coreDataObject(in: context)
+        try! UserResponse(id: "U0").coreDataObject(organization: organization, in: context)
     }
 
     // MARK: - Coding
@@ -36,7 +37,7 @@ final class AnnouncementResponseTests: XCTestCase {
         XCTAssertEqual(announcement.modifiedAt.debugDescription, "2017-12-12 11:48:42 +0000")
         XCTAssertEqual(announcement.expiresAt.debugDescription, "2018-01-09 11:47:42 +0000")
         XCTAssertEqual(announcement.title, "Weihnachtspause")
-        XCTAssertEqual(announcement.body, "Liebe Studierende,\r\n\r\ndies ist ein Test.")
+        XCTAssertEqual(announcement.textContent, "Liebe Studierende,\r\n\r\ndies ist ein Test.")
     }
 
     func testInit_Announcement1() {
@@ -48,7 +49,7 @@ final class AnnouncementResponseTests: XCTestCase {
         XCTAssertEqual(announcement.modifiedAt.debugDescription, "2017-12-12 11:48:42 +0000")
         XCTAssertEqual(announcement.expiresAt.debugDescription, "2018-01-09 11:47:42 +0000")
         XCTAssertEqual(announcement.title, "Title")
-        XCTAssertEqual(announcement.body, "Another test.")
+        XCTAssertEqual(announcement.textContent, "Another test.")
     }
 
     func testInit_AnnouncementCollection() {
@@ -59,7 +60,7 @@ final class AnnouncementResponseTests: XCTestCase {
     // MARK: - Converting to a Core Data Object
 
     func testCoreDataObject_Announcement0() {
-        let announcement = try! AnnouncementResponseTests.announcement0.coreDataObject(in: context)
+        let announcement = try! AnnouncementResponseTests.announcement0.coreDataObject(organization: organization, in: context)
         XCTAssertEqual(announcement.id, "A0")
         XCTAssertEqual(Set(announcement.courses.map { $0.id }), ["C0", "C1"])
         XCTAssertEqual(announcement.user?.id, "U0")
@@ -67,6 +68,6 @@ final class AnnouncementResponseTests: XCTestCase {
         XCTAssertEqual(announcement.modifiedAt, Date(timeIntervalSince1970: 2))
         XCTAssertEqual(announcement.expiresAt, Date(timeIntervalSince1970: 4))
         XCTAssertEqual(announcement.title, "Title")
-        XCTAssertEqual(announcement.body, "Body")
+        XCTAssertEqual(announcement.htmlContent, "Body")
     }
 }
