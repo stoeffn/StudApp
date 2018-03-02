@@ -14,7 +14,7 @@ final class FileItem: NSObject, NSFileProviderItem {
 
     // MARK: - Life Cycle
 
-    init(from file: File, parentItemIdentifier: NSFileProviderItemIdentifier) {
+    init(from file: File, childItemCount: Int?, parentItemIdentifier: NSFileProviderItemIdentifier) {
         itemIdentifier = NSFileProviderItemIdentifier(rawValue: file.objectIdentifier.rawValue)
         filename = file.name
         typeIdentifier = file.typeIdentifier
@@ -22,7 +22,7 @@ final class FileItem: NSObject, NSFileProviderItem {
             ? [.allowsReading, .allowsContentEnumerating]
             : [.allowsReading]
 
-        childItemCount = file.children.count as NSNumber
+        self.childItemCount = childItemCount as NSNumber?
         documentSize = file.size >= 0 ? file.size as NSNumber : nil
 
         self.parentItemIdentifier = parentItemIdentifier
@@ -46,9 +46,12 @@ final class FileItem: NSObject, NSFileProviderItem {
     }
 
     convenience init(from file: File) {
+        let childItemCount = file.state.childFilesUpdatedAt != nil
+            ? try? file.managedObjectContext?.count(for: file.childFilesFetchRequest) ?? 0
+            : nil
         let parentObjectIdentifier = file.parent?.objectIdentifier ?? file.course.objectIdentifier
         let parentItemIdentifier = NSFileProviderItemIdentifier(rawValue: parentObjectIdentifier.rawValue)
-        self.init(from: file, parentItemIdentifier: parentItemIdentifier)
+        self.init(from: file, childItemCount: childItemCount, parentItemIdentifier: parentItemIdentifier)
     }
 
     // MARK: - File Provider Item Conformance

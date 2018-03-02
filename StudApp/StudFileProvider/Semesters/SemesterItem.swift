@@ -16,11 +16,11 @@ final class SemesterItem: NSObject, NSFileProviderItem {
 
     // MARK: - Life Cycle
 
-    init(from semester: Semester, childItemCount: Int?, parentItemIdentifier: NSFileProviderItemIdentifier = .rootContainer) {
+    init(from semester: Semester, parentItemIdentifier: NSFileProviderItemIdentifier = .rootContainer) {
         itemIdentifier = NSFileProviderItemIdentifier(rawValue: semester.objectIdentifier.rawValue)
         filename = semester.title.sanitizedAsFilename
 
-        self.childItemCount = childItemCount as NSNumber?
+        self.childItemCount = semester.courses.count as NSNumber?
 
         self.parentItemIdentifier = parentItemIdentifier
 
@@ -30,13 +30,6 @@ final class SemesterItem: NSObject, NSFileProviderItem {
 
         tagData = semester.state.tagData
         favoriteRank = !semester.state.isUnranked ? semester.state.favoriteRank as NSNumber : nil
-    }
-
-    convenience init(from semester: Semester) {
-        let childItemCount = semester.state.areCoursesFetchedFromRemote
-            ? semester.courses.count
-            : nil
-        self.init(from: semester, childItemCount: childItemCount, parentItemIdentifier: .rootContainer)
     }
 
     // MARK: - File Provider Item Conformance

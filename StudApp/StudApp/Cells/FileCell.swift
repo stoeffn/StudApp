@@ -80,7 +80,7 @@ final class FileCell: UITableViewCell {
         guard let file = file else { return }
         sizeContainer.isHidden = file.size == -1
         downloadCountContainer.isHidden = file.downloadCount == -1 || frame.width < 512
-        childCountContainer?.isHidden = !file.isFolder
+        childCountContainer?.isHidden = !file.isFolder || file.state.childFilesUpdatedAt == nil
         userContainer.isHidden = file.owner == nil || frame.width < 512
     }
 
