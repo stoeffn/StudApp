@@ -53,21 +53,25 @@ extension NSFetchRequestResult where Self: NSManagedObject {
 
     func update<Value>(lastUpdatedAt lastUpdatedAtKeyPath: ReferenceWritableKeyPath<Self, Date?>,
                        expiresAfter: TimeInterval, completion: @escaping ResultHandler<Value>,
-                       updater: (@escaping ResultHandler<Value>) -> Void) {
+                       updater: @escaping (@escaping ResultHandler<Value>) -> Void) {
+        guard let context = managedObjectContext else { fatalError() }
+
         guard shouldUpdate(lastUpdatedAt: self[keyPath: lastUpdatedAtKeyPath], expiresAfter: expiresAfter) else {
             return completion(.failure(nil))
         }
 
-        updater { result in
-            guard result.isSuccess else { return completion(result) }
+        context.perform {
+            updater { result in
+                guard result.isSuccess else { return completion(result) }
 
-            self[keyPath: lastUpdatedAtKeyPath] = Date()
+                self[keyPath: lastUpdatedAtKeyPath] = Date()
 
-            do {
-                try self.managedObjectContext?.saveAndWaitWhenChanged()
-                completion(result)
-            } catch {
-                completion(.failure(error))
+                do {
+                    try context.save()
+                    completion(result)
+                } catch {
+                    completion(.failure(error))
+                }
             }
         }
     }

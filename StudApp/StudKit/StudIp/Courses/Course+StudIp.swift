@@ -15,10 +15,14 @@ extension Course {
     // MARK: - Updating Files
 
     public func updateChildFiles(completion: @escaping ResultHandler<Set<File>>) {
+        let studIpService = ServiceContainer.default[StudIpService.self]
+        guard let context = managedObjectContext else { fatalError() }
+
         update(lastUpdatedAt: \.state.childFilesUpdatedAt, expiresAfter: 60 * 10, completion: completion) { updaterCompletion in
-            let studIpService = ServiceContainer.default[StudIpService.self]
-            studIpService.api.requestDecoded(.rootFolderForCourse(withId: id)) { (result: Result<FolderResponse>) in
-                updaterCompletion(result.map { try self.updateChildFiles(from: $0) })
+            context.perform {
+                studIpService.api.requestDecoded(.rootFolderForCourse(withId: self.id)) { (result: Result<FolderResponse>) in
+                    updaterCompletion(result.map { try self.updateChildFiles(from: $0) })
+                }
             }
         }
     }
@@ -47,10 +51,14 @@ extension Course {
     // MARK: - Updating Announcements
 
     public func updateAnnouncements(completion: @escaping ResultHandler<Set<Announcement>>) {
+        let studIpService = ServiceContainer.default[StudIpService.self]
+        guard let context = managedObjectContext else { fatalError() }
+
         update(lastUpdatedAt: \.state.announcementsUpdatedAt, expiresAfter: 60 * 10, completion: completion) { updaterCompletion in
-            let studIpService = ServiceContainer.default[StudIpService.self]
-            studIpService.api.requestCollection(.announcementsInCourse(withId: id)) { (result: Result<[AnnouncementResponse]>) in
-                updaterCompletion(result.map { try self.updateAnnouncements(from: $0) })
+            studIpService.api.requestCollection(.announcementsInCourse(withId: self.id)) { (result: Result<[AnnouncementResponse]>) in
+                context.perform {
+                    updaterCompletion(result.map { try self.updateAnnouncements(from: $0) })
+                }
             }
         }
     }
@@ -68,10 +76,14 @@ extension Course {
     // MARK: - Updating Events
 
     public func updateEvents(completion: @escaping ResultHandler<Set<Event>>) {
+        let studIpService = ServiceContainer.default[StudIpService.self]
+        guard let context = managedObjectContext else { fatalError() }
+
         update(lastUpdatedAt: \.state.eventsUpdatedAt, expiresAfter: 60 * 10, completion: completion) { updaterCompletion in
-            let studIpService = ServiceContainer.default[StudIpService.self]
-            studIpService.api.requestCollection(.eventsInCourse(withId: id)) { (result: Result<[EventResponse]>) in
-                updaterCompletion(result.map { try self.updateEvents(from: $0) })
+            studIpService.api.requestCollection(.eventsInCourse(withId: self.id)) { (result: Result<[EventResponse]>) in
+                context.perform {
+                    updaterCompletion(result.map { try self.updateEvents(from: $0) })
+                }
             }
         }
     }
@@ -90,10 +102,15 @@ extension Course {
 
     public func set(groupId: Int, for user: User, completion: @escaping ResultHandler<Void>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
+        guard let context = managedObjectContext else { fatalError() }
+
         studIpService.api.request(.setGroupForCourse(withId: id, andUserWithId: user.id, groupId: groupId)) { result in
-            defer { completion(result.map { _ in }) }
-            guard result.isSuccess else { return }
-            self.groupId = groupId
+            guard result.isSuccess else { return completion(.failure(result.error)) }
+
+            context.perform {
+                self.groupId = groupId
+                completion(result.map { _ in })
+            }
         }
     }
 

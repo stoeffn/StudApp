@@ -24,9 +24,7 @@ public final class AppViewModel {
 
     public func update() {
         coreDataService.performBackgroundTask { context in
-            self.studIpService.update(in: context) {
-                try? context.saveAndWaitWhenChanged()
-            }
+            self.studIpService.update(in: context) {}
         }
     }
 }

@@ -67,7 +67,6 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         viewModel?.delegate = self
         viewModel?.fetch()
         _ = viewModel?.map(courseListViewModel)
-        viewModel?.update()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -235,7 +234,6 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         let viewModel = CourseListViewModel(user: user, semester: semester, respectsCollapsedState: true)
         viewModel.delegate = self
         viewModel.fetch()
-        viewModel.update()
 
         courseListViewModels[semester.id] = viewModel
 

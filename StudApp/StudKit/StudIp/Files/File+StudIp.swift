@@ -14,10 +14,14 @@ extension File {
     // MARK: - Updating Children
 
     public func updateChildFiles(completion: @escaping ResultHandler<Set<File>>) {
+        let studIpService = ServiceContainer.default[StudIpService.self]
+        guard let context = managedObjectContext else { fatalError() }
+
         update(lastUpdatedAt: \.state.childFilesUpdatedAt, expiresAfter: 60 * 10, completion: completion) { updaterCompletion in
-            let studIpService = ServiceContainer.default[StudIpService.self]
-            studIpService.api.requestDecoded(.folder(withId: id)) { (result: Result<FolderResponse>) in
-                updaterCompletion(result.map { try self.updateChildFiles(from: $0) })
+            studIpService.api.requestDecoded(.folder(withId: self.id)) { (result: Result<FolderResponse>) in
+                context.perform {
+                    updaterCompletion(result.map { try self.updateChildFiles(from: $0) })
+                }
             }
         }
     }

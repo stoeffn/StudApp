@@ -13,10 +13,14 @@ extension Organization {
     // MARK: - Updating Discovery
 
     func updateDiscovery(completion: @escaping ResultHandler<ApiRoutesAvailablity>) {
+        let studIpService = ServiceContainer.default[StudIpService.self]
+        guard let context = managedObjectContext else { fatalError() }
+
         update(lastUpdatedAt: \.state.discoveryUpdatedAt, expiresAfter: 60 * 10, completion: completion) { updaterCompletion in
-            let studIpService = ServiceContainer.default[StudIpService.self]
             studIpService.api.requestDecoded(.discovery) { (result: Result<DiscoveryResponse>) in
-                updaterCompletion(result.map { try self.updateDiscovery(with: $0) })
+                context.perform {
+                    updaterCompletion(result.map { try self.updateDiscovery(with: $0) })
+                }
             }
         }
     }
@@ -31,11 +35,14 @@ extension Organization {
     // MARK: - Updating Users
 
     func updateCurrentUser(completion: @escaping ResultHandler<User>) {
+        let studIpService = ServiceContainer.default[StudIpService.self]
+        guard let context = managedObjectContext else { fatalError() }
+
         update(lastUpdatedAt: \.state.currentUserUpdatedAt, expiresAfter: 60 * 10, completion: completion) { updaterCompletion in
-            let studIpService = ServiceContainer.default[StudIpService.self]
             studIpService.api.requestDecoded(.currentUser) { (result: Result<UserResponse>) in
-                guard let context = self.managedObjectContext else { fatalError() }
-                updaterCompletion(result.map { try $0.coreDataObject(organization: self, in: context) })
+                context.perform {
+                    updaterCompletion(result.map { try $0.coreDataObject(organization: self, in: context) })
+                }
             }
         }
     }
@@ -43,10 +50,14 @@ extension Organization {
     // MARK: - Updating Semesters
 
     func updateSemesters(completion: @escaping ResultHandler<Set<Semester>>) {
+        let studIpService = ServiceContainer.default[StudIpService.self]
+        guard let context = managedObjectContext else { fatalError() }
+
         update(lastUpdatedAt: \.state.semestersUpdatedAt, expiresAfter: 60 * 10, completion: completion) { updaterCompletion in
-            let studIpService = ServiceContainer.default[StudIpService.self]
             studIpService.api.requestCollection(.semesters) { (result: Result<[SemesterResponse]>) in
-                updaterCompletion(result.map { try self.updateSemesters(Semester.fetchRequest(), with: $0) })
+                context.perform {
+                    updaterCompletion(result.map { try self.updateSemesters(Semester.fetchRequest(), with: $0) })
+                }
             }
         }
     }

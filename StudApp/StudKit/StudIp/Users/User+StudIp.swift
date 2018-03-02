@@ -14,19 +14,24 @@ extension User {
     // MARK: - Updating Courses
 
     func updateAuthoredCourses(completion: @escaping ResultHandler<[Course]>) {
+        let studIpService = ServiceContainer.default[StudIpService.self]
+        guard let context = managedObjectContext else { fatalError() }
+
         update(lastUpdatedAt: \.state.authoredCoursesUpdatedAt, expiresAfter: 60 * 10, completion: completion) { updaterCompletion in
-            let studIpService = ServiceContainer.default[StudIpService.self]
-            studIpService.api.requestCollection(.courses(forUserId: id)) { (result: Result<[CourseResponse]>) in
-                updaterCompletion(result.map { try self.updateAuthoredCourses(self.authoredCoursesFetchRequest(), with: $0) })
+            studIpService.api.requestCollection(.courses(forUserId: self.id)) { (result: Result<[CourseResponse]>) in
+                context.perform {
+                    let result = result.map { try self.updateAuthoredCourses(self.authoredCoursesFetchRequest(), with: $0) }
+                    updaterCompletion(result)
+                }
             }
         }
     }
 
-    func updateAuthoredCourses(_ existingObjects: NSFetchRequest<Course>, with response: [CourseResponse]) throws -> [Course] {
+    func updateAuthoredCourses(_ existingObjects: NSFetchRequest<Course>, with responses: [CourseResponse]) throws -> [Course] {
         guard let context = managedObjectContext else { fatalError() }
 
-        let courses = try Course.update(existingObjects, with: response, in: context) {
-            try $0.coreDataObject(organization: organization, author: self, in: context)
+        let courses = try Course.update(existingObjects, with: responses, in: context) { response in
+            try response.coreDataObject(organization: organization, author: self, in: context)
         }
 
         CSSearchableIndex.default().indexSearchableItems(courses.map { $0.searchableItem }) { _ in }
