@@ -142,7 +142,8 @@ final class AppController: UITabBarController {
             UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil),
         ]
 
-        let title = "Signed in as %@".localized(currentUser.nameComponents.formatted(style: .long))
+        let currentUserFullName = currentUser.nameComponents.formatted(style: .long)
+        let title = "Signed in as %@ at %@".localized(currentUserFullName, currentUser.organization.title)
         let controller = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
         controller.popoverPresentationController?.barButtonItem = barButtonItem
         actions.forEach(controller.addAction)

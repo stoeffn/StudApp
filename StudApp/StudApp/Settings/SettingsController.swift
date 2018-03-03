@@ -54,7 +54,11 @@ final class SettingsController: UITableViewController, Routable {
                 "This accounts for the combined sizes of all documents that you have downloaded.".localized,
                 "They are not backed up by iTunes or iCloud.".localized,
             ].joined(separator: " ")
-        case .account?, nil:
+        case .account?:
+            guard let currentUser = User.current else { return nil }
+            let currentUserFullName = currentUser.nameComponents.formatted(style: .long)
+            return "Signed in as %@ at %@".localized(currentUserFullName, currentUser.organization.title)
+        case nil:
             return nil
         }
     }

@@ -83,10 +83,7 @@
 "Remove All Downloads" = "Alle Downloads entfernen";
 "This accounts for the combined sizes of all documents that you have downloaded." = "Dies umfasst die Größe aller Dokumente, die Du hernutergeladen hast.";
 "They are not backed up by iTunes or iCloud." = "Sie werden nicht über iCloud oder iTunes gesichert.";
-
-// MARK: User Menu
-
-"Signed in as %@" = "Angemeldet als %@";
+"Signed in as %@ at %@" = "Angemeldet als %@ bei %@";
 
 // MARK: Courses
 

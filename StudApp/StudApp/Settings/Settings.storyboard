@@ -63,7 +63,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="" footerTitle="" id="9Vt-qs-3MV">
+                            <tableViewSection headerTitle="" footerTitle="Signed in as Professor Proton at CalTech." id="9Vt-qs-3MV">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="vFg-Df-ja9" style="IBUITableViewCellStyleDefault" id="jfr-di-olq">
                                         <rect key="frame" x="0.0" y="223.5" width="375" height="44"/>
