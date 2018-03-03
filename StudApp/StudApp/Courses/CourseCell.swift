@@ -24,6 +24,10 @@ final class CourseCell: UITableViewCell {
             lecturersLabel.text = lecturerNames
 
             accessibilityLabel = [course.title, "by %@".localized(lecturerNames)].joined(separator: " ")
+
+            accessibilityCustomActions = [
+                UIAccessibilityCustomAction(name: "Color".localized, target: self, selector: #selector(color(_:))),
+            ]
         }
     }
 

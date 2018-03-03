@@ -55,6 +55,11 @@ final class FileCell: UITableViewCell {
             let folderOrDocument = file.isFolder ? "Folder".localized : "Document".localized
             let sizeOrItemCount = file.isFolder ? "%d items".localized(file.children.count) : size
             accessibilityLabel = [folderOrDocument, file.title, modifiedAtBy, sizeOrItemCount].joined(separator: ", ")
+
+            let shareAction = UIAccessibilityCustomAction(name: "Share".localized, target: self, selector: #selector(share(_:)))
+            let removeAction = UIAccessibilityCustomAction(name: "Remove".localized, target: self, selector: #selector(remove(_:)))
+
+            accessibilityCustomActions = [shareAction, file.state.isDownloaded ? removeAction : nil].flatMap { $0 }
         }
     }
 
