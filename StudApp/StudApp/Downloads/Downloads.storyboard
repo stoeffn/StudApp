@@ -112,10 +112,10 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GJG-Fh-Lnk">
-                                                            <rect key="frame" x="0.0" y="22.5" width="278.5" height="16"/>
+                                                            <rect key="frame" x="0.0" y="22.5" width="296.5" height="16"/>
                                                             <subviews>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="gJd-0c-aQd">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="76.5" height="16"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="gJd-0c-aQd">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="79.5" height="16"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TimeSubtitleGlyph" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5g1-2F-zeA">
                                                                             <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
@@ -133,7 +133,7 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="yesterday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aoH-9v-kZt">
-                                                                            <rect key="frame" x="17" y="0.0" width="59.5" height="16"/>
+                                                                            <rect key="frame" x="20" y="0.0" width="59.5" height="16"/>
                                                                             <accessibility key="accessibilityConfiguration">
                                                                                 <bool key="isElement" value="NO"/>
                                                                             </accessibility>
@@ -142,9 +142,10 @@
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
+                                                                    <variation key="widthClass=regular" spacing="4"/>
                                                                 </stackView>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="3kW-RH-xaS">
-                                                                    <rect key="frame" x="82.5" y="0.0" width="54" height="16"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="3kW-RH-xaS">
+                                                                    <rect key="frame" x="87.5" y="0.0" width="57" height="16"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SizeSubtitleGlyph" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fPe-hx-rcP">
                                                                             <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
@@ -162,7 +163,7 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="42 KB" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7EU-Xw-gAJ">
-                                                                            <rect key="frame" x="17" y="0.0" width="37" height="16"/>
+                                                                            <rect key="frame" x="20" y="0.0" width="37" height="16"/>
                                                                             <accessibility key="accessibilityConfiguration">
                                                                                 <bool key="isElement" value="NO"/>
                                                                             </accessibility>
@@ -172,9 +173,10 @@
                                                                         </label>
                                                                     </subviews>
                                                                     <viewLayoutGuide key="safeArea" id="Utv-SQ-UkF"/>
+                                                                    <variation key="widthClass=regular" spacing="4"/>
                                                                 </stackView>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="PIu-v7-Dia">
-                                                                    <rect key="frame" x="142.5" y="0.0" width="46" height="16"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="PIu-v7-Dia">
+                                                                    <rect key="frame" x="152.5" y="0.0" width="49" height="16"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownloadCountSubtitleGlyph" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kd0-X6-vkE">
                                                                             <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
@@ -192,7 +194,7 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="123x" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7Q-1S-fX7">
-                                                                            <rect key="frame" x="17" y="0.0" width="29" height="16"/>
+                                                                            <rect key="frame" x="20" y="0.0" width="29" height="16"/>
                                                                             <accessibility key="accessibilityConfiguration">
                                                                                 <bool key="isElement" value="NO"/>
                                                                             </accessibility>
@@ -202,9 +204,10 @@
                                                                         </label>
                                                                     </subviews>
                                                                     <viewLayoutGuide key="safeArea" id="Pds-dS-cTi"/>
+                                                                    <variation key="widthClass=regular" spacing="4"/>
                                                                 </stackView>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Ekt-bJ-adT">
-                                                                    <rect key="frame" x="194.5" y="0.0" width="84" height="16"/>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Ekt-bJ-adT">
+                                                                    <rect key="frame" x="209.5" y="0.0" width="87" height="16"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserSubtitleGlyph" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hsZ-23-e2k">
                                                                             <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
@@ -222,7 +225,7 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Steve Jobs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSH-sW-hm7">
-                                                                            <rect key="frame" x="17" y="0.0" width="67" height="16"/>
+                                                                            <rect key="frame" x="20" y="0.0" width="67" height="16"/>
                                                                             <accessibility key="accessibilityConfiguration">
                                                                                 <bool key="isElement" value="NO"/>
                                                                             </accessibility>
@@ -232,8 +235,10 @@
                                                                         </label>
                                                                     </subviews>
                                                                     <viewLayoutGuide key="safeArea" id="kLG-EZ-q26"/>
+                                                                    <variation key="widthClass=regular" spacing="4"/>
                                                                 </stackView>
                                                             </subviews>
+                                                            <variation key="widthClass=regular" spacing="8"/>
                                                         </stackView>
                                                     </subviews>
                                                 </stackView>

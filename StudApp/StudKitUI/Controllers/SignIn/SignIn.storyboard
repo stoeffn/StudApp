@@ -98,7 +98,7 @@
                         <constraints>
                             <constraint firstItem="76L-MQ-NXV" firstAttribute="leading" secondItem="xoh-tI-B1k" secondAttribute="leading" id="4Zj-Np-Cal"/>
                             <constraint firstItem="76L-MQ-NXV" firstAttribute="top" secondItem="C20-wU-2DL" secondAttribute="top" id="BYj-bp-sUA"/>
-                            <constraint firstItem="xoh-tI-B1k" firstAttribute="bottom" secondItem="76L-MQ-NXV" secondAttribute="bottom" id="VCb-3X-Wab"/>
+                            <constraint firstAttribute="bottom" secondItem="76L-MQ-NXV" secondAttribute="bottom" id="VCb-3X-Wab"/>
                             <constraint firstItem="xoh-tI-B1k" firstAttribute="trailing" secondItem="76L-MQ-NXV" secondAttribute="trailing" id="b46-EZ-ipV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xoh-tI-B1k"/>
