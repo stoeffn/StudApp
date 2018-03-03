@@ -14,7 +14,7 @@ public enum Routes {
 
     case announcement(Announcement)
 
-    case colorPicker(sender: Any?, completion: (Int, UIColor) -> Void)
+    case colorPicker(sender: Any?, completion: (ColorPickerViewModel<UIColor>.Row) -> Void)
 
     case confetti(alert: UIAlertController)
 

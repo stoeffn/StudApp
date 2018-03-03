@@ -25,7 +25,7 @@ public final class ConfettiView: UIView {
     private lazy var emitterLayer: CAEmitterLayer = {
         let layer = CAEmitterLayer()
         layer.emitterShape = kCAEmitterLayerLine
-        layer.emitterCells = UI.Colors.pickerColors.values.map(confetto)
+        layer.emitterCells = UI.Colors.pickerColors.values.map { confetto(withColor: $0.color) }
         return layer
     }()
 

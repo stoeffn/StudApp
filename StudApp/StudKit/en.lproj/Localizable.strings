@@ -63,6 +63,18 @@
 "Unavailable" = "Unavailable";
 "Canceled" = "Canceled";
 
+// MARK: Colors
+
+"Yellow" = "Yellow";
+"Red" = "Red";
+"Orange" = "Orange";
+"Light Orange" = "Light Orange";
+"Green" = "Green";
+"Light Green" = "Light Green";
+"Light Blue" = "Light Blue";
+"Blue" = "Blue";
+"Purple" = "Purple";
+
 // MARK: Days
 
 "Yesterday" = "Yesterday";

@@ -46,7 +46,8 @@ final class ColorPickerController: UICollectionViewController, Routable {
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorCell.typeIdentifier, for: indexPath)
-        (cell as? ColorCell)?.color = viewModel[rowAt: indexPath.row].1
+        (cell as? ColorCell)?.color = viewModel[rowAt: indexPath.row].value.color
+        (cell as? ColorCell)?.title = viewModel[rowAt: indexPath.row].value.title
         return cell
     }
 

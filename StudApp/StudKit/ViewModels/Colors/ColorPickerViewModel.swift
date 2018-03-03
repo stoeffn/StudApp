@@ -7,16 +7,22 @@
 //
 
 public final class ColorPickerViewModel<Color>: DataSourceSection {
-    public typealias Row = (key: Int, value: Color)
+    public typealias ColorAndTitle = (color: Color, title: String)
+    public typealias Row = (key: Int, value: ColorAndTitle)
 
     private let colors: [Row]
-    private var completion: (Int, Color) -> Void
+    private var completion: (Row) -> Void
 
-    public init(colors: [Int: Color], completion: @escaping (Int, Color) -> Void) {
-        self.colors = colors.enumerated()
+    public init(colors: [Row], completion: @escaping (Row) -> Void) {
+        self.colors = colors
+        self.completion = completion
+    }
+
+    public convenience init(colors: [Int: ColorAndTitle], completion: @escaping (Row) -> Void) {
+        let colors = colors.enumerated()
             .sorted { $0.element.key < $1.element.key }
             .map { $1 }
-        self.completion = completion
+        self.init(colors: colors, completion: completion)
     }
 
     public var numberOfRows: Int {
@@ -28,6 +34,6 @@ public final class ColorPickerViewModel<Color>: DataSourceSection {
     }
 
     public func didSelectColor(atIndex index: Int) {
-        completion(colors[index].key, colors[index].value)
+        completion(colors[index])
     }
 }

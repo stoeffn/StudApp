@@ -23,17 +23,20 @@ final class ColorCell: UICollectionViewCell {
 
     private func initUserInterface() {
         clipsToBounds = false
+
+        isAccessibilityElement = true
+        accessibilityTraits |= UIAccessibilityTraitButton
     }
 
     var color: UIColor? {
-        didSet {
-            glowView.color = color
-        }
+        didSet { glowView.color = color }
+    }
+
+    var title: String? {
+        didSet { accessibilityLabel = title }
     }
 
     override var isHighlighted: Bool {
-        didSet {
-            glowView.isHighlighted = isHighlighted
-        }
+        didSet { glowView.isHighlighted = isHighlighted }
     }
 }
