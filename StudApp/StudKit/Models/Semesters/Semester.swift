@@ -68,8 +68,4 @@ public extension Semester {
         let now = Date()
         return now >= beginsAt && now <= endsAt
     }
-
-    public var monthRange: String {
-        return "\(beginsAt.formatted(using: .monthAndYear)) – \(endsAt.formatted(using: .monthAndYear))"
-    }
 }

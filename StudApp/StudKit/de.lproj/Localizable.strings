@@ -15,6 +15,7 @@
 "%@ ago" = "vor %@"; // Example "two months ago"
 "by %@" = "von %@"; // Example: "by Steve Jobs"
 "%d items" = "%d Objekte"; // Example: "3 items"
+"%@, %@ to %@" = "%@, %@ bis %@"; // Example: "Summer Semester 2018, April 2018 to September 2018"
 
 // MARK: Generic Actions
 
@@ -44,6 +45,11 @@
 "Privacy Policy" = "Datenschutzhinweise";
 "Terms of Use" = "Nutzungsbedingungen";
 "Stud.IP" = "Stud.IP";
+
+// MARK: Generic States
+
+"Hidden" = "Versteckt";
+"Visible" = "Sichtbar";
 
 // MARK: Days
 
