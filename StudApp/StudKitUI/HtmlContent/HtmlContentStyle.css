@@ -100,6 +100,8 @@ table caption {
 }
 table th, table td {
     padding: 1px 8px;
+
+    font: -apple-system-body;
 }
 table th {
     font-weight: bold;
