@@ -14,7 +14,6 @@
 "%dx" = "%dx"; // Example: "11x" (eleven times)
 "%@ ago" = "vor %@"; // Example "two months ago"
 "by %@" = "von %@"; // Example: "by Steve Jobs"
-"%d items" = "%d Objekte"; // Example: "3 items"
 "%@ – %@" = "%@ – %@"; // Example: "April – May"
 "from %@ to %@" = "von %@ bis %@"; // Example: "from April 2018 to September 2018"
 "at %@" = "at %@"; // Example "at room 404"

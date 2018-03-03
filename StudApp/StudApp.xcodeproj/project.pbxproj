@@ -272,6 +272,7 @@
 		24E60B6C1FC8C77F000EDD2A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B6B1FC8C77F000EDD2A /* MainInterface.storyboard */; };
 		24EDDBD520407A9A0034985B /* UITableViewController+DataSourceSectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EDDBD420407A9A0034985B /* UITableViewController+DataSourceSectionDelegate.swift */; };
 		24EDDBD820407B8E0034985B /* Organization+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EDDBD720407B8E0034985B /* Organization+UI.swift */; };
+		24F1ABBB204B45D100972305 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 24F1ABBD204B45D100972305 /* Localizable.stringsdict */; };
 		24FD785A1FBF3F030072F860 /* PersistentHistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78591FBF3F030072F860 /* PersistentHistoryService.swift */; };
 		24FD785C1FBF45030072F860 /* Targets+NSPersistentHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */; };
 		24FD785E1FBF45B10072F860 /* Targets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785D1FBF45B10072F860 /* Targets.swift */; };
@@ -646,6 +647,8 @@
 		24EBC4371FCDCA4300181455 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		24EDDBD420407A9A0034985B /* UITableViewController+DataSourceSectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewController+DataSourceSectionDelegate.swift"; sourceTree = "<group>"; };
 		24EDDBD720407B8E0034985B /* Organization+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Organization+UI.swift"; sourceTree = "<group>"; };
+		24F1ABBC204B45D100972305 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		24F1ABBE204B45D800972305 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		24FD78591FBF3F030072F860 /* PersistentHistoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentHistoryService.swift; sourceTree = "<group>"; };
 		24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Targets+NSPersistentHistory.swift"; sourceTree = "<group>"; };
 		24FD785D1FBF45B10072F860 /* Targets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Targets.swift; sourceTree = "<group>"; };
@@ -961,6 +964,7 @@
 				2448D4961FA8DFB200DAB97E /* StudKitServiceProvider.swift */,
 				2448D4411FA8DB1E00DAB97E /* StudKit.h */,
 				249DD6FD1FC8B896006DA46E /* Localizable.strings */,
+				24F1ABBD204B45D100972305 /* Localizable.stringsdict */,
 				2448D4421FA8DB1E00DAB97E /* Info.plist */,
 			);
 			path = StudKit;
@@ -2196,6 +2200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				249DD6FB1FC8B896006DA46E /* Localizable.strings in Resources */,
+				24F1ABBB204B45D100972305 /* Localizable.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2616,6 +2621,15 @@
 				243CC2C71FE037BE00FE7376 /* de */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		24F1ABBD204B45D100972305 /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				24F1ABBC204B45D100972305 /* en */,
+				24F1ABBE204B45D800972305 /* de */,
+			);
+			name = Localizable.stringsdict;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

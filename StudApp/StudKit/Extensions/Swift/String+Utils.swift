@@ -23,10 +23,6 @@ public extension String {
     }
 
     /// Returns a localized string with this key.
-    ///
-    /// - Parameters:
-    ///   - comment: Optional comment describing the use case.
-    /// - Returns: Localized string with interpolated parameters.
     public var localized: String {
         return App.kitBundle.localizedString(forKey: self, value: "###\(self)###", table: nil)
     }
