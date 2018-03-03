@@ -15,7 +15,7 @@ final class RootItem: NSObject, NSFileProviderItem {
     // MARK: - Life Cycle
 
     override init() {
-        self.childItemCount = User.current?.authoredCourses.count as NSNumber?
+        childItemCount = User.current?.authoredCourses.count as NSNumber?
     }
 
     // MARK: - File Provider Item Conformance

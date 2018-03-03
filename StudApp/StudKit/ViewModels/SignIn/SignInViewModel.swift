@@ -31,7 +31,7 @@ public final class SignInViewModel: NSObject {
 
     @objc
     public enum State: Int {
-        case updatingCredentials, updatingRequestToken, authorizing, updatingAccessToken, signedIn
+        case updatingCredentials, updatingRequestToken, authorizing, updatingAccessToken, signingIn, signedIn
     }
 
     public let organization: Organization
@@ -82,8 +82,10 @@ public final class SignInViewModel: NSObject {
             updateRequestToken()
         case .updatingAccessToken:
             guard let url = authorizationUrl else { return startAuthorization() }
-            finishAuthorization(withCallbackUrl: url)
-        default:
+            updateAccessToken(withCallbackUrl: url)
+        case .signingIn:
+            signIn()
+        case .authorizing, .signedIn:
             break
         }
     }
@@ -127,14 +129,21 @@ public final class SignInViewModel: NSObject {
                 return self.error = result.error ?? Errors.authorizationFailed
             }
 
-            self.studIpService.sign(into: self.organization, authorizing: oAuth1) { result in
-                guard result.isSuccess else {
-                    return self.error = result.error ?? Errors.authorizationFailed
-                }
+            self.state = .signingIn
+            self.signIn()
+        }
+    }
 
-                self.state = .signedIn
-                self.update()
+    private func signIn() {
+        guard state == .signingIn, let oAuth1 = oAuth1 else { fatalError() }
+
+        studIpService.sign(into: organization, authorizing: oAuth1) { result in
+            guard result.isSuccess else {
+                return self.error = result.error ?? Errors.authorizationFailed
             }
+
+            self.state = .signedIn
+            self.update()
         }
     }
 

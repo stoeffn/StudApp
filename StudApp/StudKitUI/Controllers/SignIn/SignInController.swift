@@ -141,7 +141,7 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
             }
             guard let url = viewModel.authorizationUrl else { return }
             authorize(at: url)
-        case .updatingAccessToken:
+        case .updatingAccessToken, .signingIn:
             animateWithSpring {
                 self.isActivityIndicatorHidden = false
             }
