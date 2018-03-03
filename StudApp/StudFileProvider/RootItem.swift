@@ -15,13 +15,8 @@ final class RootItem: NSObject, NSFileProviderItem {
 
     // MARK: - Life Cycle
 
-    init(childItemCount: Int?) {
-        self.childItemCount = childItemCount as NSNumber?
-    }
-
-    convenience init(context: NSManagedObjectContext) throws {
-        let childItemCount = User.current?.authoredCourses.count
-        self.init(childItemCount: childItemCount)
+    override init() {
+        self.childItemCount = User.current?.authoredCourses.count as NSNumber?
     }
 
     // MARK: - File Provider Item Conformance
@@ -30,7 +25,7 @@ final class RootItem: NSObject, NSFileProviderItem {
 
     let itemIdentifier: NSFileProviderItemIdentifier = .rootContainer
 
-    let filename = "Stud.IP"
+    let filename = "Stud.IP".localized
 
     let typeIdentifier = kUTTypeFolder as String
 

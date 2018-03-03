@@ -41,8 +41,8 @@ final class FileProviderExtension: NSFileProviderExtension {
 
     func object(for identifier: NSFileProviderItemIdentifier) -> FileProviderItemConvertible? {
         guard
-            let itemConvertible = try? ObjectIdentifier(rawValue: identifier.rawValue)?
-            .fetch(in: coreDataService.viewContext) as? FileProviderItemConvertible
+            let objectIdentifier = ObjectIdentifier(rawValue: identifier.rawValue),
+            let itemConvertible = try? objectIdentifier.fetch(in: coreDataService.viewContext) as? FileProviderItemConvertible
         else { return nil }
         return itemConvertible
     }
@@ -62,7 +62,7 @@ final class FileProviderExtension: NSFileProviderExtension {
 
         switch objectIdentifier?.entity {
         case .root?:
-            return try RootItem(context: coreDataService.viewContext)
+            return RootItem()
         case .semester?, .course?, .file?:
             guard let object = object(for: identifier) else { throw NSFileProviderError(.noSuchItem) }
             return object.fileProviderItem
