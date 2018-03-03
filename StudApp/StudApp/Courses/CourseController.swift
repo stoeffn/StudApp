@@ -283,7 +283,9 @@ final class CourseController: UITableViewController, Routable {
         switch Sections(rawValue: indexPath.section) {
         case .documents?:
             guard let cell = tableView.cellForRow(at: indexPath) as? FileCell, !cell.file.isFolder else { return }
-            PreviewController.downloadOrPreview(cell.file, in: self)
+            PreviewController.controllerForDownloadOrPreview(cell.file, delegate: self) { controller in
+                self.present(controller, animated: true, completion: nil)
+            }
         default:
             break
         }

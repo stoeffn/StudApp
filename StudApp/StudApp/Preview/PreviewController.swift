@@ -74,23 +74,23 @@ final class PreviewController: QLPreviewController, Routable {
 
     // MARK: - Utilities
 
-    static func downloadOrPreview(_ file: File, in controller: UIViewController & QLPreviewControllerDelegate) {
+    static func controllerForDownloadOrPreview(_ file: File, delegate: QLPreviewControllerDelegate,
+                                               handler: @escaping (UIViewController) -> Void) {
         guard file.state.isMostRecentVersionDownloaded else {
             file.download { result in
-                guard result.isFailure else { return }
+                guard result.isFailure else { return UINotificationFeedbackGenerator().notificationOccurred(.success) }
 
                 let error = result.error?.localizedDescription ?? "Something went wrong downloading this document".localized
                 let alert = UIAlertController(title: error, message: nil, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
-                controller.present(alert, animated: true, completion: nil)
+                return handler(alert)
             }
-
-            return UINotificationFeedbackGenerator().notificationOccurred(.success)
+            return
         }
 
         let previewController = PreviewController()
-        previewController.prepareContent(for: .preview(for: file, controller))
-        controller.present(previewController, animated: true, completion: nil)
+        previewController.prepareContent(for: .preview(for: file, delegate))
+        handler(previewController)
     }
 }
 

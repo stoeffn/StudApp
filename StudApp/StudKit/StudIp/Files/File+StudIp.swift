@@ -69,7 +69,9 @@ extension File {
         let destination = localUrl(in: .downloads)
         let task = studIpService.api.download(.fileContents(forFileId: id), to: destination, startsResumed: false) { result in
             context.perform {
+                self.willChangeValue(for: \.state)
                 self.state.isDownloading = false
+                self.didChangeValue(for: \.state)
 
                 guard result.isSuccess else {
                     return completion(.failure(result.error))
