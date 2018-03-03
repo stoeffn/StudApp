@@ -20,6 +20,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         super.viewDidLoad()
 
         navigationItem.title = "Courses".localized
+        navigationItem.rightBarButtonItem?.accessibilityLabel = "More".localized
 
         tableView.register(SemesterHeader.self, forHeaderFooterViewReuseIdentifier: SemesterHeader.typeIdentifier)
         tableView.tableHeaderView = nil

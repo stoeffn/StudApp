@@ -28,6 +28,7 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         navigationItem.title = "Choose Your Organization".localized
         navigationItem.hidesBackButton = true
         navigationItem.backBarButtonItem?.title = "Organizations".localized
+        navigationItem.rightBarButtonItem?.accessibilityLabel = "More".localized
 
         if contextService.currentTarget != .fileProviderUI {
             navigationItem.leftBarButtonItem = nil

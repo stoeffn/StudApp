@@ -21,6 +21,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         registerForPreviewing(with: self, sourceView: tableView)
 
         navigationItem.title = "Downloads".localized
+        navigationItem.rightBarButtonItem?.accessibilityLabel = "More".localized
 
         tableView.register(CourseHeader.self, forHeaderFooterViewReuseIdentifier: CourseHeader.typeIdentifier)
         tableView.estimatedSectionHeaderHeight = CourseHeader.estimatedHeight
