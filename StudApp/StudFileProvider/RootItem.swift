@@ -15,12 +15,12 @@ final class RootItem: NSObject, NSFileProviderItem {
 
     // MARK: - Life Cycle
 
-    init(childItemCount: Int) {
-        self.childItemCount = childItemCount as NSNumber
+    init(childItemCount: Int?) {
+        self.childItemCount = childItemCount as NSNumber?
     }
 
     convenience init(context: NSManagedObjectContext) throws {
-        let childItemCount = try context.count(for: Semester.fetchRequest())
+        let childItemCount = User.current?.authoredCourses.count
         self.init(childItemCount: childItemCount)
     }
 
