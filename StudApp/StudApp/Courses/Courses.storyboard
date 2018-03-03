@@ -230,7 +230,7 @@
             </objects>
             <point key="canvasLocation" x="-1366" y="132"/>
         </scene>
-        <!--Course Title-->
+        <!--Course Controller-->
         <scene sceneID="qSR-Bp-pvx">
             <objects>
                 <tableViewController storyboardIdentifier="Course" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9OB-lI-obx" customClass="CourseController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -883,7 +883,7 @@ Gebäude 3703: Technische Informatik</string>
                             <outlet property="delegate" destination="9OB-lI-obx" id="MOn-Pn-eDU"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Course Title" largeTitleDisplayMode="never" id="daU-Ql-AHc">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="daU-Ql-AHc">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="7SC-dN-xvy">
                             <connections>
                                 <action selector="actionButtonTapped:" destination="9OB-lI-obx" id="5FG-e5-3yx"/>

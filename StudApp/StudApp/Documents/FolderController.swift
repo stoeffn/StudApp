@@ -25,6 +25,7 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
         if #available(iOS 11.0, *) {
             tableView.dragDelegate = self
             tableView.dragInteractionEnabled = true
+            tableView.tableHeaderView = nil
         }
     }
 
@@ -32,6 +33,7 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
         super.viewWillAppear(animated)
 
         viewModel.update()
+        updateEmptyView()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -43,6 +45,11 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
         }
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: { _ in self.updateEmptyView() }, completion: nil)
+    }
+
     // MARK: - Navigation
 
     func prepareContent(for route: Routes) {
@@ -51,6 +58,8 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
         viewModel = FileListViewModel(container: folder)
         viewModel.delegate = self
         viewModel.fetch()
+
+        updateEmptyView()
     }
 
     override func shouldPerformSegue(withIdentifier _: String, sender: Any?) -> Bool {
@@ -132,6 +141,37 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
             self.present(controller, animated: true, completion: nil)
         }
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    // MARK: - Data Source Delegate
+
+    func dataDidChange<Source>(in _: Source) {
+        tableView.endUpdates()
+        updateEmptyView()
+    }
+
+    // MARK: - User Interface
+
+    @IBOutlet var emptyView: UIView!
+
+    @IBOutlet var emptyViewTopConstraint: NSLayoutConstraint!
+
+    @IBOutlet var emptyViewTitleLabel: UILabel!
+
+    private func updateEmptyView() {
+        guard view != nil else { return }
+
+        let isEmpty = viewModel?.isEmpty ?? false
+
+        emptyViewTitleLabel.text = "Empty Folder".localized
+
+        tableView.backgroundView = isEmpty ? emptyView : nil
+        tableView.separatorStyle = isEmpty ? .none : .singleLine
+        tableView.bounces = !isEmpty
+
+        if let navigationBarHeight = navigationController?.navigationBar.bounds.height {
+            emptyViewTopConstraint.constant = navigationBarHeight * 2 + 32
+        }
     }
 
     // MARK: - User Interaction

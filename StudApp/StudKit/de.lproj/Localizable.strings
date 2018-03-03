@@ -122,6 +122,7 @@
 // MARK: Documents
 
 "Documents" = "Dokumente";
+"Empty Folder" = "Leerer Ordner";
 "Something went wrong downloading this document" = "Beim Herunterladen von diesem Dokument lief etwas schief";
 
 // MARK: Semesters
