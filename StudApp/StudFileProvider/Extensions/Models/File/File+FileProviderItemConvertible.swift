@@ -31,11 +31,7 @@ extension File: FileProviderItemConvertible {
 
         download { result in
             guard result.isSuccess else {
-                if #available(iOSApplicationExtension 11.0, *) {
-                    completion?(NSFileProviderError(.serverUnreachable))
-                } else {
-                    completion?(FileProviderExtension.Errors.serverUnreachable)
-                }
+                completion?(NSFileProviderError(.serverUnreachable))
                 return
             }
 

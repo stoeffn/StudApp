@@ -10,7 +10,6 @@ import CoreData
 import MobileCoreServices
 import StudKit
 
-@available(iOSApplicationExtension 11.0, *)
 final class CourseItem: NSObject, NSFileProviderItem {
 
     // MARK: - Life Cycle
