@@ -115,7 +115,11 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
     func createRequestToken(completion: @escaping ResultHandler<Void>) {
         guard !isAuthorized else { return completion(.failure(Errors.alreadyAuthorized)) }
 
-        api.request(.requestToken) { self.handleResponse(result: $0, completion: completion) }
+        api.request(.requestToken) { result in
+            DispatchQueue.main.async {
+                self.handleResponse(result: result, completion: completion)
+            }
+        }
     }
 
     func createAccessToken(fromAuthorizationCallbackUrl url: URL, completion: @escaping ResultHandler<Void>) {
@@ -129,8 +133,10 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
         self.verifier = verifier
 
         api.request(.accessToken) { result in
-            self.isAuthorized = result.isSuccess
-            self.handleResponse(result: result, completion: completion)
+            DispatchQueue.main.async {
+                self.isAuthorized = result.isSuccess
+                self.handleResponse(result: result, completion: completion)
+            }
         }
     }
 
