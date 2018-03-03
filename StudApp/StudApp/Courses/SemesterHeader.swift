@@ -28,7 +28,10 @@ final class SemesterHeader: UITableViewHeaderFooterView {
         didSet {
             isCollapsed = semester.state.isCollapsed
             titleLabel.text = semester.title
-            titleLabel.textColor = semester.isCurrent ? UI.Colors.studBlue : .black
+            titleLabel.textColor = semester.isCurrent ? UI.Colors.tint : .black
+            setGlyphRotation(isCollapsed: isCollapsed, animated: true)
+
+            accessibilityLabel = titleLabel.text
         }
     }
 
@@ -47,7 +50,13 @@ final class SemesterHeader: UITableViewHeaderFooterView {
 
     var isCollapsed: Bool = false {
         didSet {
+            guard isCollapsed != oldValue else { return }
+
+            semester.state.isCollapsed = isCollapsed
+            courseListViewModel?.isCollapsed = isCollapsed
+
             setGlyphRotation(isCollapsed: isCollapsed, animated: true)
+            UISelectionFeedbackGenerator().selectionChanged()
         }
     }
 
@@ -56,6 +65,7 @@ final class SemesterHeader: UITableViewHeaderFooterView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(forTextStyle: .title2).bold
         label.adjustsFontForContentSizeCategory = true
+        label.isAccessibilityElement = false
         return label
     }()
 
@@ -63,6 +73,7 @@ final class SemesterHeader: UITableViewHeaderFooterView {
         let view = UIImageView(image: #imageLiteral(resourceName: "DisclosureGlyph"))
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = UI.Colors.greyGlyph
+        view.isAccessibilityElement = false
         return view
     }()
 
@@ -79,6 +90,8 @@ final class SemesterHeader: UITableViewHeaderFooterView {
         glyphImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
 
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTap(_:))))
+
+        isAccessibilityElement = true
     }
 
     private func setGlyphRotation(isCollapsed: Bool, animated: Bool = true) {
@@ -117,10 +130,18 @@ final class SemesterHeader: UITableViewHeaderFooterView {
 
     @objc
     private func didTap(_: UITapGestureRecognizer) {
-        semester.state.isCollapsed = !semester.state.isCollapsed
-        courseListViewModel?.isCollapsed = semester.state.isCollapsed
-        isCollapsed = semester.state.isCollapsed
+        isCollapsed = !isCollapsed
+    }
 
-        UISelectionFeedbackGenerator().selectionChanged()
+    // MARK: - Accessibility
+
+    override var accessibilityValue: String? {
+        get { return isCollapsed ? "Collapsed".localized : "Expanded".localized }
+        set {}
+    }
+
+    override func accessibilityActivate() -> Bool {
+        isCollapsed = !isCollapsed
+        return true
     }
 }

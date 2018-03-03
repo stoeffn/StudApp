@@ -50,6 +50,8 @@
 
 "Hidden" = "Hidden";
 "Visible" = "Visible";
+"Collapsed" = "Collapsed";
+"Expanded" = "Expanded";
 
 // MARK: Days
 

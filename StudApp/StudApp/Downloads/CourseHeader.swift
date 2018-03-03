@@ -27,6 +27,8 @@ final class CourseHeader: UITableViewHeaderFooterView {
         didSet {
             colorView.backgroundColor = course?.color.withAlphaComponent(0.2)
             titleLabel.text = course?.title
+
+            accessibilityLabel = course?.title
         }
     }
 
@@ -35,6 +37,7 @@ final class CourseHeader: UITableViewHeaderFooterView {
     private(set) lazy var colorView: UIView = {
         let view = UIView()
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.isAccessibilityElement = false
         return view
     }()
 
@@ -43,6 +46,7 @@ final class CourseHeader: UITableViewHeaderFooterView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .preferredFont(forTextStyle: .headline)
         label.adjustsFontForContentSizeCategory = true
+        label.isAccessibilityElement = false
         return label
     }()
 
@@ -56,5 +60,7 @@ final class CourseHeader: UITableViewHeaderFooterView {
         titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 2).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: readableContentGuide.trailingAnchor).isActive = true
         titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2).isActive = true
+
+        isAccessibilityElement = true
     }
 }

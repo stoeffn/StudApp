@@ -49,6 +49,7 @@ final class SemesterCell: UITableViewCell {
 
     override func accessibilityActivate() -> Bool {
         isHiddenSwitch.setOn(!isHiddenSwitch.isOn, animated: true)
+        semester?.state.isHidden = !isHiddenSwitch.isOn
         return true
     }
 }

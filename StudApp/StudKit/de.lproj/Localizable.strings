@@ -50,6 +50,8 @@
 
 "Hidden" = "Versteckt";
 "Visible" = "Sichtbar";
+"Collapsed" = "Eingeklappt";
+"Expanded" = "Ausgeklappt";
 
 // MARK: Days
 
