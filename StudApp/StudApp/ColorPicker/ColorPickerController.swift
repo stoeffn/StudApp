@@ -17,7 +17,7 @@ final class ColorPickerController: UICollectionViewController, Routable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        preferredContentSize = CGSize(width: 300, height: 300)
+        preferredContentSize = CGSize(width: 256, height: 256)
         navigationItem.title = "Choose Color".localized
     }
 
@@ -76,7 +76,7 @@ extension ColorPickerController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout _: UICollectionViewLayout, sizeForItemAt _: IndexPath) -> CGSize {
-        let effectiveWidth = collectionView.bounds.width - ColorPickerController.inset * 2
+        let effectiveWidth = preferredContentSize.width - ColorPickerController.inset * 2
         let cellWidth = effectiveWidth / CGFloat(ColorPickerController.colorsPerRow)
         return CGSize(width: cellWidth, height: cellWidth)
     }

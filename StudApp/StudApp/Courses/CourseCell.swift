@@ -54,7 +54,8 @@ final class CourseCell: UITableViewCell {
     // MARK: - User Interaction
 
     @objc
-    func color(_: Any?) {
+    func color(_: Any?) -> Bool {
         presentColorPicker?(self)
+        return presentColorPicker != nil
     }
 }

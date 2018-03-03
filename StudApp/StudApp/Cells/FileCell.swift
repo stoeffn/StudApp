@@ -120,15 +120,21 @@ final class FileCell: UITableViewCell {
     // MARK: - User Interaction
 
     @objc
-    func share(_: Any?) {
+    func share(_: Any?) -> Bool {
         let controller = UIDocumentInteractionController(url: file.localUrl(in: .fileProvider))
         controller.name = file.title
         controller.presentOptionsMenu(from: frame, in: self, animated: true)
+        return true
     }
 
     @objc
-    func remove(_: Any?) {
-        try? file.removeDownload()
+    func remove(_: Any?) -> Bool {
+        do {
+            try file.removeDownload()
+            return true
+        } catch {
+            return false
+        }
     }
 
     // MARK: - Accessibility
