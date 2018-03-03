@@ -27,6 +27,11 @@ final class CourseController: UITableViewController, Routable {
             tableView.dragDelegate = self
             tableView.dragInteractionEnabled = true
         }
+
+        tableView.tableHeaderView?.translatesAutoresizingMaskIntoConstraints = false
+        tableView.tableHeaderView?.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
+        tableView.tableHeaderView?.topAnchor.constraint(equalTo: tableView.topAnchor).isActive = true
+        tableView.tableHeaderView?.widthAnchor.constraint(equalTo: tableView.widthAnchor).isActive = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +48,9 @@ final class CourseController: UITableViewController, Routable {
 
         let navigationController = splitViewController?.detailNavigationController as? BorderlessNavigationController
         navigationController?.usesDefaultAppearance = true
+
+        tableView.tableHeaderView?.layoutIfNeeded()
+        tableView.tableHeaderView = tableView.tableHeaderView
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -65,6 +73,9 @@ final class CourseController: UITableViewController, Routable {
         coordinator.animate(alongsideTransition: { _ in
             let controller = self.splitViewController?.detailNavigationController as? BorderlessNavigationController
             controller?.usesDefaultAppearance = true
+
+            self.tableView.tableHeaderView?.layoutIfNeeded()
+            self.tableView.tableHeaderView = self.tableView.tableHeaderView
         }, completion: nil)
     }
 
@@ -85,12 +96,8 @@ final class CourseController: UITableViewController, Routable {
     }
 
     override func shouldPerformSegue(withIdentifier _: String, sender: Any?) -> Bool {
-        switch sender {
-        case let cell as FileCell where !cell.file.isFolder:
-            return false
-        default:
-            return true
-        }
+        guard let cell = sender as? FileCell, !cell.file.isFolder else { return true }
+        return false
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

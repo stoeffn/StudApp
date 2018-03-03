@@ -104,7 +104,6 @@
                         <outlet property="activityIndicator" destination="5Wy-xu-LIM" id="yz1-Sg-uZm"/>
                         <outlet property="iconView" destination="sY2-E4-hXN" id="Z1R-YY-y2u"/>
                         <outlet property="titleLabel" destination="MFk-Mm-3qX" id="Rfl-ab-3OG"/>
-                        <segue destination="waM-SL-7JR" kind="show" identifier="store" id="oba-S6-Wbq"/>
                         <segue destination="myS-Lb-AhU" kind="presentation" identifier="about" modalPresentationStyle="formSheet" id="PNl-D0-kSg"/>
                         <segue destination="fQa-P6-Uhv" kind="unwind" identifier="unwindToApp" unwindAction="unwindToAppWith:" id="H76-0i-ESD"/>
                         <segue destination="fQa-P6-Uhv" kind="unwind" identifier="unwindToSignIn" unwindAction="unwindToSignInWith:" id="zjd-jd-Q7N"/>
@@ -132,7 +131,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="FVG-Pm-g43">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose the organization, university, or company you would like to sign into." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3de-75-mDO">
@@ -144,7 +143,7 @@
                             </subviews>
                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="3de-75-mDO" secondAttribute="bottom" constant="8" id="7Gt-Op-Xuc"/>
+                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="3de-75-mDO" secondAttribute="bottom" constant="16" id="7Gt-Op-Xuc"/>
                                 <constraint firstAttribute="trailingMargin" secondItem="3de-75-mDO" secondAttribute="trailing" constant="8" id="Fvi-kT-rx4"/>
                                 <constraint firstItem="3de-75-mDO" firstAttribute="top" secondItem="FVG-Pm-g43" secondAttribute="topMargin" constant="8" id="hEf-vn-5kV"/>
                                 <constraint firstItem="3de-75-mDO" firstAttribute="leading" secondItem="FVG-Pm-g43" secondAttribute="leadingMargin" constant="8" id="iLF-tL-fWr"/>
@@ -152,7 +151,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrganizationCell" rowHeight="56" id="ORc-qu-TMd" customClass="OrganizationCell" customModule="StudKitUI" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="139.5" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="127.5" width="375" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ORc-qu-TMd" id="WYb-c9-lKF">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
@@ -201,7 +200,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ActionCell" rowHeight="125" id="SHW-lG-keo" customClass="ActionCell" customModule="StudKitUI" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="195.5" width="375" height="125"/>
+                                <rect key="frame" x="0.0" y="183.5" width="375" height="125"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SHW-lG-keo" id="lMn-nc-ZTG">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
@@ -296,14 +295,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nBC-me-csl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1385" y="999"/>
-        </scene>
-        <!--Store-->
-        <scene sceneID="ocK-Me-EVY">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Store" bundleIdentifier="SteffenRyll.StudApp" id="waM-SL-7JR" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JFH-Ii-JRj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1922" y="607"/>
         </scene>
     </scenes>
     <resources>

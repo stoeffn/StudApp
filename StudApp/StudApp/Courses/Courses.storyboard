@@ -56,7 +56,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14A-k0-KOd">
-                                    <rect key="frame" x="135" y="219.5" width="50" height="32"/>
+                                    <rect key="frame" x="135" y="218.5" width="50" height="32"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <state key="normal" title="Reload"/>
                                     <connections>
@@ -224,7 +224,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="768" height="48"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ept-S8-Lfb">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ept-S8-Lfb">
                                     <rect key="frame" x="8" y="8" width="752" height="18"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -236,7 +236,7 @@
                                 <constraint firstItem="Ept-S8-Lfb" firstAttribute="leading" secondItem="UOK-Su-Hem" secondAttribute="leadingMargin" id="2Gh-zS-GLH"/>
                                 <constraint firstItem="Ept-S8-Lfb" firstAttribute="top" secondItem="UOK-Su-Hem" secondAttribute="topMargin" id="hg9-vN-aEc"/>
                                 <constraint firstAttribute="trailingMargin" secondItem="Ept-S8-Lfb" secondAttribute="trailing" id="kBP-sV-NRf"/>
-                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ept-S8-Lfb" secondAttribute="bottom" id="onK-OW-n9k"/>
+                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ept-S8-Lfb" secondAttribute="bottom" constant="16" id="onK-OW-n9k"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -651,17 +651,17 @@ Gebäude 3703: Technische Informatik</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="PRt-uH-GnL">
-                                                            <rect key="frame" x="0.0" y="24.5" width="122" height="17"/>
+                                                            <rect key="frame" x="0.0" y="24.5" width="106" height="16"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Canceled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QD9-Tk-cKn" customClass="BadgeLabel" customModule="StudKitUI">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="65" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="57" height="16"/>
                                                                     <color key="backgroundColor" red="0.83921568629999999" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reason" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Hl-MM-whF" customClass="BadgeLabel" customModule="StudKitUI">
-                                                                    <rect key="frame" x="69" y="0.0" width="53" height="17"/>
+                                                                    <rect key="frame" x="61" y="0.0" width="45" height="16"/>
                                                                     <color key="backgroundColor" white="0.59999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

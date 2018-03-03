@@ -33,6 +33,13 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
             navigationItem.leftBarButtonItem = nil
         }
 
+        tableView.tableHeaderView?.translatesAutoresizingMaskIntoConstraints = false
+        tableView.tableHeaderView?.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
+        tableView.tableHeaderView?.topAnchor.constraint(equalTo: tableView.topAnchor).isActive = true
+        tableView.tableHeaderView?.widthAnchor.constraint(equalTo: tableView.widthAnchor).isActive = true
+        tableView.tableHeaderView?.layoutIfNeeded()
+        tableView.tableHeaderView = tableView.tableHeaderView
+
         observations = [
             viewModel.observe(\.isUpdating) { [weak self] _, _ in
                 guard let isUpdating = self?.viewModel.isUpdating else { return }
@@ -49,6 +56,14 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
 
     deinit {
         observations.removeAll()
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate(alongsideTransition: { _ in
+            self.tableView.tableHeaderView?.layoutIfNeeded()
+            self.tableView.tableHeaderView = self.tableView.tableHeaderView
+        }, completion: nil)
     }
 
     // MARK: - Navigation
