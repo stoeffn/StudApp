@@ -9,7 +9,7 @@
 import StudKit
 
 final class CourseHeader: UITableViewHeaderFooterView {
-    static let height: CGFloat = 24
+    static let estimatedHeight: CGFloat = 24
 
     // MARK: - Life Cycle
 
@@ -53,7 +53,8 @@ final class CourseHeader: UITableViewHeaderFooterView {
 
         addSubview(titleLabel)
         titleLabel.leadingAnchor.constraint(equalTo: readableContentGuide.leadingAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 2).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: readableContentGuide.trailingAnchor).isActive = true
-        titleLabel.centerYAnchor.constraint(equalTo: readableContentGuide.centerYAnchor).isActive = true
+        titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2).isActive = true
     }
 }

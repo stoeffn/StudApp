@@ -10,7 +10,7 @@ import StudKit
 import StudKitUI
 
 final class SemesterHeader: UITableViewHeaderFooterView {
-    static let height: CGFloat = 42
+    static let estimatedHeight: CGFloat = 42
 
     // MARK: - Life Cycle
 
@@ -67,9 +67,12 @@ final class SemesterHeader: UITableViewHeaderFooterView {
     }()
 
     private func initUserInterface() {
+        heightAnchor.constraint(greaterThanOrEqualToConstant: SemesterHeader.estimatedHeight).isActive = true
+
         addSubview(titleLabel)
         titleLabel.leadingAnchor.constraint(equalTo: readableContentGuide.leadingAnchor).isActive = true
-        titleLabel.centerYAnchor.constraint(equalTo: readableContentGuide.centerYAnchor).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: readableContentGuide.topAnchor).isActive = true
+        titleLabel.bottomAnchor.constraint(equalTo: readableContentGuide.bottomAnchor).isActive = true
 
         addSubview(glyphImageView)
         glyphImageView.trailingAnchor.constraint(equalTo: readableContentGuide.trailingAnchor).isActive = true

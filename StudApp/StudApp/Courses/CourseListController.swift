@@ -21,12 +21,15 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
         navigationItem.title = "Courses".localized
 
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = true
-        }
-
         tableView.register(SemesterHeader.self, forHeaderFooterViewReuseIdentifier: SemesterHeader.typeIdentifier)
         tableView.tableHeaderView = nil
+        tableView.estimatedSectionHeaderHeight = SemesterHeader.estimatedHeight
+
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+
+            tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        }
 
         updateEmptyView()
     }
@@ -110,10 +113,6 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let semester = viewModel?[rowAt: section] else { fatalError() }
         return courseListViewModel(for: semester).numberOfRows
-    }
-
-    override func tableView(_: UITableView, heightForHeaderInSection _: Int) -> CGFloat {
-        return SemesterHeader.height
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

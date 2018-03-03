@@ -23,6 +23,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         navigationItem.title = "Downloads".localized
 
         tableView.register(CourseHeader.self, forHeaderFooterViewReuseIdentifier: CourseHeader.typeIdentifier)
+        tableView.estimatedSectionHeaderHeight = CourseHeader.estimatedHeight
 
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
@@ -30,9 +31,9 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
             navigationItem.searchController = searchController
             navigationItem.hidesSearchBarWhenScrolling = false
 
-            tableView.tableHeaderView = nil
             tableView.dragDelegate = self
             tableView.dragInteractionEnabled = true
+            tableView.tableHeaderView = nil
         } else {
             tableView.tableHeaderView = searchController.searchBar
         }
@@ -86,10 +87,6 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let viewModel = viewModel else { fatalError() }
         return viewModel.numberOfRows(inSection: section)
-    }
-
-    override func tableView(_: UITableView, heightForHeaderInSection _: Int) -> CGFloat {
-        return CourseHeader.height
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
