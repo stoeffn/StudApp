@@ -14,11 +14,12 @@ extension Course {
 
     // MARK: - Updating Files
 
-    public func updateChildFiles(completion: @escaping ResultHandler<Set<File>>) {
+    public func updateChildFiles(forced: Bool = false, completion: @escaping ResultHandler<Set<File>>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         guard let context = managedObjectContext else { fatalError() }
 
-        update(lastUpdatedAt: \.state.childFilesUpdatedAt, expiresAfter: 60 * 10, completion: completion) { updaterCompletion in
+        let updatedAt = \Course.state.childFilesUpdatedAt
+        update(lastUpdatedAt: updatedAt, expiresAfter: 60 * 10, forced: forced, completion: completion) { updaterCompletion in
             context.perform {
                 studIpService.api.requestDecoded(.rootFolderForCourse(withId: self.id)) { (result: Result<FolderResponse>) in
                     updaterCompletion(result.map { try self.updateChildFiles(from: $0) })
@@ -50,11 +51,12 @@ extension Course {
 
     // MARK: - Updating Announcements
 
-    public func updateAnnouncements(completion: @escaping ResultHandler<Set<Announcement>>) {
+    public func updateAnnouncements(forced: Bool = false, completion: @escaping ResultHandler<Set<Announcement>>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         guard let context = managedObjectContext else { fatalError() }
 
-        update(lastUpdatedAt: \.state.announcementsUpdatedAt, expiresAfter: 60 * 10, completion: completion) { updaterCompletion in
+        let updatedAt = \Course.state.announcementsUpdatedAt
+        update(lastUpdatedAt: updatedAt, expiresAfter: 60 * 10, forced: forced, completion: completion) { updaterCompletion in
             studIpService.api.requestCollection(.announcementsInCourse(withId: self.id)) { (result: Result<[AnnouncementResponse]>) in
                 context.perform {
                     updaterCompletion(result.map { try self.updateAnnouncements(from: $0) })
@@ -75,11 +77,12 @@ extension Course {
 
     // MARK: - Updating Events
 
-    public func updateEvents(completion: @escaping ResultHandler<Set<Event>>) {
+    public func updateEvents(forced: Bool = false, completion: @escaping ResultHandler<Set<Event>>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         guard let context = managedObjectContext else { fatalError() }
 
-        update(lastUpdatedAt: \.state.eventsUpdatedAt, expiresAfter: 60 * 10, completion: completion) { updaterCompletion in
+        let updatedAt = \Course.state.eventsUpdatedAt
+        update(lastUpdatedAt: updatedAt, expiresAfter: 60 * 10, forced: forced, completion: completion) { updaterCompletion in
             studIpService.api.requestCollection(.eventsInCourse(withId: self.id)) { (result: Result<[EventResponse]>) in
                 context.perform {
                     updaterCompletion(result.map { try self.updateEvents(from: $0) })

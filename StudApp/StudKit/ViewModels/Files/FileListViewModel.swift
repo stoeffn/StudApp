@@ -37,7 +37,7 @@ public final class FileListViewModel: FetchedResultsControllerDataSourceSection 
     public func update() {
         coreDataService.performBackgroundTask { context in
             self.container.in(context)
-                .updateChildFiles { _ in }
+                .updateChildFiles(forced: false) { _ in }
         }
     }
 }

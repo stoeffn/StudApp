@@ -13,11 +13,12 @@ extension User {
 
     // MARK: - Updating Courses
 
-    func updateAuthoredCourses(completion: @escaping ResultHandler<[Course]>) {
+    func updateAuthoredCourses(forced: Bool = false, completion: @escaping ResultHandler<[Course]>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         guard let context = managedObjectContext else { fatalError() }
 
-        update(lastUpdatedAt: \.state.authoredCoursesUpdatedAt, expiresAfter: 60 * 10, completion: completion) { updaterCompletion in
+        let updatedAt = \User.state.authoredCoursesUpdatedAt
+        update(lastUpdatedAt: updatedAt, expiresAfter: 60 * 10, forced: forced, completion: completion) { updaterCompletion in
             studIpService.api.requestCollection(.courses(forUserId: self.id)) { (result: Result<[CourseResponse]>) in
                 context.perform {
                     let result = result.map { try self.updateAuthoredCourses(self.authoredCoursesFetchRequest(), with: $0) }

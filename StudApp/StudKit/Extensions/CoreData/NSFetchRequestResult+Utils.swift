@@ -52,11 +52,11 @@ extension NSFetchRequestResult where Self: NSManagedObject {
     }
 
     func update<Value>(lastUpdatedAt lastUpdatedAtKeyPath: ReferenceWritableKeyPath<Self, Date?>,
-                       expiresAfter: TimeInterval, completion: @escaping ResultHandler<Value>,
+                       expiresAfter: TimeInterval, forced: Bool = false, completion: @escaping ResultHandler<Value>,
                        updater: @escaping (@escaping ResultHandler<Value>) -> Void) {
         guard let context = managedObjectContext else { fatalError() }
 
-        guard shouldUpdate(lastUpdatedAt: self[keyPath: lastUpdatedAtKeyPath], expiresAfter: expiresAfter) else {
+        guard forced || shouldUpdate(lastUpdatedAt: self[keyPath: lastUpdatedAtKeyPath], expiresAfter: expiresAfter) else {
             return completion(.failure(nil))
         }
 

@@ -53,14 +53,14 @@ public class StudIpService {
 
         var discoveryResult: Result<ApiRoutesAvailablity>!
         group.enter()
-        organization.updateDiscovery { result in
+        organization.updateDiscovery(forced: true) { result in
             discoveryResult = result
             group.leave()
         }
 
         var userResult: Result<User>!
         group.enter()
-        organization.updateCurrentUser { result in
+        organization.updateCurrentUser(forced: true) { result in
             userResult = result
             group.leave()
         }
@@ -90,6 +90,11 @@ public class StudIpService {
 
         api.baseUrl = nil
         api.authorizing = nil
+
+        User.current?.organization.state.discoveryUpdatedAt = nil
+        User.current?.organization.state.currentUserUpdatedAt = nil
+        User.current?.organization.state.semestersUpdatedAt = nil
+        User.current?.state.authoredCoursesUpdatedAt = nil
         User.current = nil
 
         let coreDataService = ServiceContainer.default[CoreDataService.self]
@@ -150,7 +155,7 @@ public class StudIpService {
 
     private func updateChildFilesRecursivly(in container: FilesContaining, group: DispatchGroup, context: NSManagedObjectContext) {
         group.enter()
-        container.updateChildFiles { _ in
+        container.updateChildFiles(forced: false) { _ in
             defer { group.leave() }
 
             let childFolders = try? container.fetchChildFolders(in: context)

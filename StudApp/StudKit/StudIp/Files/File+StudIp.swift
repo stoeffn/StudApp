@@ -13,11 +13,12 @@ extension File {
 
     // MARK: - Updating Children
 
-    public func updateChildFiles(completion: @escaping ResultHandler<Set<File>>) {
+    public func updateChildFiles(forced: Bool = false, completion: @escaping ResultHandler<Set<File>>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         guard let context = managedObjectContext else { fatalError() }
 
-        update(lastUpdatedAt: \.state.childFilesUpdatedAt, expiresAfter: 60 * 10, completion: completion) { updaterCompletion in
+        let updatedAt = \File.state.childFilesUpdatedAt
+        update(lastUpdatedAt: updatedAt, expiresAfter: 60 * 10, forced: forced, completion: completion) { updaterCompletion in
             studIpService.api.requestDecoded(.folder(withId: self.id)) { (result: Result<FolderResponse>) in
                 context.perform {
                     updaterCompletion(result.map { try self.updateChildFiles(from: $0) })

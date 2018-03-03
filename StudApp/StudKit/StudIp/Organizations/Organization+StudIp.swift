@@ -12,11 +12,12 @@ extension Organization {
 
     // MARK: - Updating Discovery
 
-    func updateDiscovery(completion: @escaping ResultHandler<ApiRoutesAvailablity>) {
+    func updateDiscovery(forced: Bool = false, completion: @escaping ResultHandler<ApiRoutesAvailablity>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         guard let context = managedObjectContext else { fatalError() }
 
-        update(lastUpdatedAt: \.state.discoveryUpdatedAt, expiresAfter: 60 * 10, completion: completion) { updaterCompletion in
+        let updatedAt = \Organization.state.discoveryUpdatedAt
+        update(lastUpdatedAt: updatedAt, expiresAfter: 60 * 10, forced: forced, completion: completion) { updaterCompletion in
             studIpService.api.requestDecoded(.discovery) { (result: Result<DiscoveryResponse>) in
                 context.perform {
                     updaterCompletion(result.map { try self.updateDiscovery(with: $0) })
@@ -34,11 +35,12 @@ extension Organization {
 
     // MARK: - Updating Users
 
-    func updateCurrentUser(completion: @escaping ResultHandler<User>) {
+    func updateCurrentUser(forced: Bool = false, completion: @escaping ResultHandler<User>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         guard let context = managedObjectContext else { fatalError() }
 
-        update(lastUpdatedAt: \.state.currentUserUpdatedAt, expiresAfter: 60 * 10, completion: completion) { updaterCompletion in
+        let updatedAt = \Organization.state.currentUserUpdatedAt
+        update(lastUpdatedAt: updatedAt, expiresAfter: 60 * 10, forced: forced, completion: completion) { updaterCompletion in
             studIpService.api.requestDecoded(.currentUser) { (result: Result<UserResponse>) in
                 context.perform {
                     updaterCompletion(result.map { try $0.coreDataObject(organization: self, in: context) })
@@ -49,11 +51,12 @@ extension Organization {
 
     // MARK: - Updating Semesters
 
-    func updateSemesters(completion: @escaping ResultHandler<Set<Semester>>) {
+    func updateSemesters(forced: Bool = false, completion: @escaping ResultHandler<Set<Semester>>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         guard let context = managedObjectContext else { fatalError() }
 
-        update(lastUpdatedAt: \.state.semestersUpdatedAt, expiresAfter: 60 * 10, completion: completion) { updaterCompletion in
+        let updatedAt = \Organization.state.semestersUpdatedAt
+        update(lastUpdatedAt: updatedAt, expiresAfter: 60 * 10, forced: forced, completion: completion) { updaterCompletion in
             studIpService.api.requestCollection(.semesters) { (result: Result<[SemesterResponse]>) in
                 context.perform {
                     updaterCompletion(result.map { try self.updateSemesters(Semester.fetchRequest(), with: $0) })
