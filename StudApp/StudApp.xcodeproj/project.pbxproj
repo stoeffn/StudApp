@@ -279,10 +279,6 @@
 		24FD78701FBF826D0072F860 /* DownloadListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD786F1FBF826D0072F860 /* DownloadListViewModel.swift */; };
 		24FD78721FC07C630072F860 /* UserDefaults+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78711FC07C630072F860 /* UserDefaults+Keys.swift */; };
 		24FE03ED1FFBE0D200BC4732 /* ApiAuthorizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE03EC1FFBE0D200BC4732 /* ApiAuthorizing.swift */; };
-		24FE89E11FB7661700A4A3C6 /* SemesterItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E01FB7661700A4A3C6 /* SemesterItem.swift */; };
-		24FE89E31FB7674F00A4A3C6 /* SemesterEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E21FB7674F00A4A3C6 /* SemesterEnumerator.swift */; };
-		24FE89F41FB77BD100A4A3C6 /* Semester+FileProviderItemConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89F31FB77BD100A4A3C6 /* Semester+FileProviderItemConvertible.swift */; };
-		24FE89F61FB77C0400A4A3C6 /* SemesterState+FileProviderItemConvertibleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89F51FB77C0400A4A3C6 /* SemesterState+FileProviderItemConvertibleState.swift */; };
 		24FE89FA1FB7849F00A4A3C6 /* File+FileProviderItemConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89F91FB7849F00A4A3C6 /* File+FileProviderItemConvertible.swift */; };
 		24FE89FC1FB784B300A4A3C6 /* FileState+FileProviderItemConvertibleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89FB1FB784B300A4A3C6 /* FileState+FileProviderItemConvertibleState.swift */; };
 		24FE89FE1FB784C900A4A3C6 /* Course+FileProviderItemConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89FD1FB784C900A4A3C6 /* Course+FileProviderItemConvertible.swift */; };
@@ -658,12 +654,8 @@
 		24FD78711FC07C630072F860 /* UserDefaults+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Keys.swift"; sourceTree = "<group>"; };
 		24FE03EC1FFBE0D200BC4732 /* ApiAuthorizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiAuthorizing.swift; sourceTree = "<group>"; };
 		24FE89DB1FB7653E00A4A3C6 /* FileProviderItemConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileProviderItemConvertible.swift; sourceTree = "<group>"; };
-		24FE89E01FB7661700A4A3C6 /* SemesterItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterItem.swift; sourceTree = "<group>"; };
-		24FE89E21FB7674F00A4A3C6 /* SemesterEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterEnumerator.swift; sourceTree = "<group>"; };
 		24FE89E81FB7725100A4A3C6 /* FileProviderChangeCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderChangeCache.swift; sourceTree = "<group>"; };
 		24FE89EB1FB7778300A4A3C6 /* FileProviderItemConvertibleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderItemConvertibleState.swift; sourceTree = "<group>"; };
-		24FE89F31FB77BD100A4A3C6 /* Semester+FileProviderItemConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Semester+FileProviderItemConvertible.swift"; sourceTree = "<group>"; };
-		24FE89F51FB77C0400A4A3C6 /* SemesterState+FileProviderItemConvertibleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SemesterState+FileProviderItemConvertibleState.swift"; sourceTree = "<group>"; };
 		24FE89F91FB7849F00A4A3C6 /* File+FileProviderItemConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "File+FileProviderItemConvertible.swift"; sourceTree = "<group>"; };
 		24FE89FB1FB784B300A4A3C6 /* FileState+FileProviderItemConvertibleState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileState+FileProviderItemConvertibleState.swift"; sourceTree = "<group>"; };
 		24FE89FD1FB784C900A4A3C6 /* Course+FileProviderItemConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Course+FileProviderItemConvertible.swift"; sourceTree = "<group>"; };
@@ -1725,7 +1717,6 @@
 				24FE89D91FB7652200A4A3C6 /* Extensions */,
 				24FE8A071FB7857800A4A3C6 /* Courses */,
 				24FE8A081FB7858300A4A3C6 /* Files */,
-				24FE89DF1FB765AC00A4A3C6 /* Semesters */,
 				24D9EF841FB75818006776B7 /* FileProviderExtension.swift */,
 				24FE8A031FB7857400A4A3C6 /* RootItem.swift */,
 				24FE8A0D1FB78BF700A4A3C6 /* WorkingSetEnumerator.swift */,
@@ -1808,15 +1799,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		24FE89DF1FB765AC00A4A3C6 /* Semesters */ = {
-			isa = PBXGroup;
-			children = (
-				24FE89E01FB7661700A4A3C6 /* SemesterItem.swift */,
-				24FE89E21FB7674F00A4A3C6 /* SemesterEnumerator.swift */,
-			);
-			path = Semesters;
-			sourceTree = "<group>";
-		};
 		24FE89EA1FB7775800A4A3C6 /* FileProvider */ = {
 			isa = PBXGroup;
 			children = (
@@ -1833,18 +1815,8 @@
 			children = (
 				24FE89F71FB7847600A4A3C6 /* Course */,
 				24FE89F81FB7847D00A4A3C6 /* File */,
-				24FE89F21FB77BAA00A4A3C6 /* Semester */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		24FE89F21FB77BAA00A4A3C6 /* Semester */ = {
-			isa = PBXGroup;
-			children = (
-				24FE89F31FB77BD100A4A3C6 /* Semester+FileProviderItemConvertible.swift */,
-				24FE89F51FB77C0400A4A3C6 /* SemesterState+FileProviderItemConvertibleState.swift */,
-			);
-			path = Semester;
 			sourceTree = "<group>";
 		};
 		24FE89F71FB7847600A4A3C6 /* Course */ = {
@@ -2555,8 +2527,6 @@
 			files = (
 				24FE8A001FB784D400A4A3C6 /* CourseState+FileProviderItemConvertibleState.swift in Sources */,
 				24FE8A041FB7857400A4A3C6 /* CourseItem.swift in Sources */,
-				24FE89E31FB7674F00A4A3C6 /* SemesterEnumerator.swift in Sources */,
-				24FE89E11FB7661700A4A3C6 /* SemesterItem.swift in Sources */,
 				24FE8A0E1FB78BF700A4A3C6 /* WorkingSetEnumerator.swift in Sources */,
 				24E4B99A1FF25C640061983C /* CachingFileProviderEnumerator.swift in Sources */,
 				24FE8A051FB7857400A4A3C6 /* FileItem.swift in Sources */,
@@ -2566,10 +2536,8 @@
 				24E4B9A11FF25D9B0061983C /* WorkingSetViewModel.swift in Sources */,
 				24E4B99D1FF25D2D0061983C /* FileProviderItemConvertible.swift in Sources */,
 				24FE89FA1FB7849F00A4A3C6 /* File+FileProviderItemConvertible.swift in Sources */,
-				24FE89F41FB77BD100A4A3C6 /* Semester+FileProviderItemConvertible.swift in Sources */,
 				24FE8A061FB7857400A4A3C6 /* RootItem.swift in Sources */,
 				24D9EF851FB75818006776B7 /* FileProviderExtension.swift in Sources */,
-				24FE89F61FB77C0400A4A3C6 /* SemesterState+FileProviderItemConvertibleState.swift in Sources */,
 				24FE89FC1FB784B300A4A3C6 /* FileState+FileProviderItemConvertibleState.swift in Sources */,
 				24E4B9A01FF25D770061983C /* FileProviderChangeCache.swift in Sources */,
 				24E4B99E1FF25D350061983C /* FileProviderItemConvertibleState.swift in Sources */,
