@@ -31,8 +31,6 @@ final class CourseCell: UITableViewCell {
 
     @IBOutlet var titleLabel: UILabel!
 
-    @IBOutlet var lecturersGlyph: UIImageView!
-
     @IBOutlet var lecturersLabel: UILabel!
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
