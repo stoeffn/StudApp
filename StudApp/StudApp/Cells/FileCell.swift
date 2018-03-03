@@ -27,6 +27,10 @@ final class FileCell: UITableViewCell {
 
     var file: File! {
         didSet {
+            let modifiedAt = file.modifiedAt.formattedAsShortDifferenceFromNow
+            let userFullname = file.owner?.nameComponents.formatted()
+            let size = file.size.formattedAsByteCount
+
             accessoryType = file.isFolder ? .disclosureIndicator : .none
 
             iconView.image = nil
@@ -34,17 +38,23 @@ final class FileCell: UITableViewCell {
 
             titleLabel.text = file.title
 
-            modifiedAtLabel?.text = file.modifiedAt.formattedAsShortDifferenceFromNow
-            userLabel.text = file.owner?.nameComponents.formatted()
-            sizeLabel.text = file.size.formattedAsByteCount
+            modifiedAtLabel?.text = modifiedAt
+            userLabel.text = userFullname
+            sizeLabel.text = size
             downloadCountLabel.text = "%dx".localized(file.downloadCount)
             childCountLabel?.text = "%d items".localized(file.children.count)
 
-            activityIndicator?.isHidden = file.isFolder || !file.state.isDownloading
+            activityIndicator?.isHidden = !file.state.isDownloading
             downloadGlyph?.isHidden = !file.isDownloadable
 
             updateSubtitleHiddenStates()
             updateReachabilityIndicator()
+
+            let modifiedBy = userFullname != nil ? "by %@".localized(userFullname ?? "") : nil
+            let modifiedAtBy = ["Modified".localized, modifiedAt, modifiedBy].flatMap { $0 }.joined(separator: " ")
+            let folderOrDocument = file.isFolder ? "Folder".localized : "Document".localized
+            let sizeOrItemCount = file.isFolder ? "%d items".localized(file.children.count) : size
+            accessibilityLabel = [folderOrDocument, file.title, modifiedAtBy, sizeOrItemCount].joined(separator: ", ")
         }
     }
 
@@ -114,5 +124,18 @@ final class FileCell: UITableViewCell {
     @objc
     func remove(_: Any?) {
         try? file.removeDownload()
+    }
+
+    // MARK: - Accessibility
+
+    override var accessibilityValue: String? {
+        get {
+            guard !file.isFolder else { return nil }
+            guard file.isAvailable else { return "Unavailable".localized }
+            guard !file.state.isDownloading else { return "Downloading".localized }
+            guard file.state.isDownloaded else { return "Not Downloaded".localized }
+            return "Downloaded".localized
+        }
+        set {}
     }
 }

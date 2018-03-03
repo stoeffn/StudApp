@@ -14,14 +14,14 @@ final class SemesterCell: UITableViewCell {
 
     var semester: Semester! {
         didSet {
-            let semesterBeginsAt = semester.beginsAt.formatted(using: .monthAndYear)
-            let semesterEndsAt = semester.endsAt.formatted(using: .monthAndYear)
+            let beginsAt = semester.beginsAt.formatted(using: .monthAndYear)
+            let endsAt = semester.endsAt.formatted(using: .monthAndYear)
 
             titleLabel.text = semester.title
-            monthRangeLabel.text = "\(semesterBeginsAt) – \(semesterEndsAt)"
+            monthRangeLabel.text = "%@ – %@".localized(beginsAt, endsAt)
             isHiddenSwitch.isOn = !semester.state.isHidden
 
-            accessibilityLabel = "%@, %@ to %@".localized(semester.title, semesterBeginsAt, semesterEndsAt)
+            accessibilityLabel = [semester.title, "from %@ to %@".localized(beginsAt, endsAt)].joined(separator: ", ")
         }
     }
 

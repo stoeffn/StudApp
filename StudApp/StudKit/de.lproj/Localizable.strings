@@ -15,7 +15,9 @@
 "%@ ago" = "vor %@"; // Example "two months ago"
 "by %@" = "von %@"; // Example: "by Steve Jobs"
 "%d items" = "%d Objekte"; // Example: "3 items"
-"%@, %@ to %@" = "%@, %@ bis %@"; // Example: "Summer Semester 2018, April 2018 to September 2018"
+"%@ – %@" = "%@ – %@"; // Example: "April – May"
+"from %@ to %@" = "von %@ bis %@"; // Example: "from April 2018 to September 2018"
+"at %@" = "at %@"; // Example "at room 404"
 
 // MARK: Generic Actions
 
@@ -40,11 +42,13 @@
 
 // MARK: Generic Terms
 
+"Stud.IP" = "Stud.IP";
 "Website" = "Website";
 "Help" = "Hilfe";
 "Privacy Policy" = "Datenschutzhinweise";
 "Terms of Use" = "Nutzungsbedingungen";
-"Stud.IP" = "Stud.IP";
+"Folder" = "Ordner";
+"Document" = "Dokument";
 
 // MARK: Generic States
 
@@ -52,6 +56,12 @@
 "Visible" = "Sichtbar";
 "Collapsed" = "Eingeklappt";
 "Expanded" = "Ausgeklappt";
+"Modified" = "Geändert";
+"Not Downloaded" = "Nicht heruntergeladen";
+"Downloading" = "Wird heruntergeladen";
+"Downloaded" = "Heruntergeladen";
+"Unavailable" = "Nicht verfügbar";
+"Canceled" = "Entfällt";
 
 // MARK: Days
 
@@ -136,7 +146,6 @@
 
 "Events" = "Ereignisse";
 "All Events" = "Alle Ereignisse";
-"Canceled" = "Entfällt";
 
 // MARK: - Mock Data
 

@@ -35,6 +35,9 @@
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoursesGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="SIU-nC-NyK">
                                     <rect key="frame" x="145.5" y="32" width="84" height="84"/>
                                     <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <accessibility key="accessibilityConfiguration">
+                                        <accessibilityTraits key="traits" none="YES"/>
+                                    </accessibility>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="SIU-nC-NyK" secondAttribute="height" multiplier="1:1" id="58e-ro-uPa"/>
                                         <constraint firstAttribute="width" constant="84" id="95P-AH-efa">
@@ -54,7 +57,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="21M-Rg-kwj">
-                                    <rect key="frame" x="162.5" y="183.5" width="50" height="32"/>
+                                    <rect key="frame" x="162.5" y="184" width="50" height="32"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <state key="normal" title="Reload"/>
                                     <connections>

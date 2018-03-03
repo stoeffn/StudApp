@@ -33,6 +33,9 @@
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppIcon" translatesAutoresizingMaskIntoConstraints="NO" id="sY2-E4-hXN">
                                             <rect key="frame" x="91.5" y="128" width="192" height="192"/>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" none="YES"/>
+                                            </accessibility>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="sY2-E4-hXN" secondAttribute="height" multiplier="1:1" id="eRI-UZ-eGp"/>
                                                 <constraint firstAttribute="height" constant="150" id="gDa-g9-Nco">
@@ -136,6 +139,9 @@
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose the organization, university, or company you would like to sign into." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3de-75-mDO">
                                     <rect key="frame" x="16" y="16" width="343" height="38"/>
+                                    <accessibility key="accessibilityConfiguration">
+                                        <accessibilityTraits key="traits" staticText="YES" summaryElement="YES"/>
+                                    </accessibility>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                     <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -160,6 +166,9 @@
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="AppIcon" translatesAutoresizingMaskIntoConstraints="NO" id="kzK-ZY-Guw">
                                             <rect key="frame" x="16" y="7" width="42" height="42"/>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" none="YES"/>
+                                            </accessibility>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="kzK-ZY-Guw" secondAttribute="height" multiplier="1:1" id="AX1-Eo-Zqg"/>
                                                 <constraint firstAttribute="height" constant="42" id="zZm-kD-31J">

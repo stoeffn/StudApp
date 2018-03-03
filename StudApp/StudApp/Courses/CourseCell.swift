@@ -14,12 +14,16 @@ final class CourseCell: UITableViewCell {
 
     var course: Course! {
         didSet {
-            colorView.backgroundColor = course.color
-            titleLabel.text = course.title
-            lecturersLabel.text = course.lecturers
+            let lecturerNames = course.lecturers
                 .map { $0.nameComponents.formatted() }
                 .sorted()
                 .joined(separator: ", ")
+
+            colorView.backgroundColor = course.color
+            titleLabel.text = course.title
+            lecturersLabel.text = lecturerNames
+
+            accessibilityLabel = [course.title, "by %@".localized(lecturerNames)].joined(separator: " ")
         }
     }
 

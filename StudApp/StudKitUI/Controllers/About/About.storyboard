@@ -33,6 +33,9 @@
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="AppIcon" translatesAutoresizingMaskIntoConstraints="NO" id="DJi-Yk-Aot">
                                                     <rect key="frame" x="16" y="11" width="64" height="64"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" none="YES"/>
+                                                    </accessibility>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="128" id="KDK-qd-Tbk"/>
                                                         <constraint firstAttribute="width" secondItem="DJi-Yk-Aot" secondAttribute="height" multiplier="1:1" id="vA3-zO-BV1"/>
@@ -85,6 +88,9 @@
                                                     <rect key="frame" x="16" y="9" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" none="YES"/>
+                                                    </accessibility>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -107,6 +113,9 @@
                                                     <rect key="frame" x="16" y="9" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" none="YES"/>
+                                                    </accessibility>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -133,6 +142,9 @@
                                                     <rect key="frame" x="16" y="9" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" none="YES"/>
+                                                    </accessibility>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -155,6 +167,9 @@
                                                     <rect key="frame" x="16" y="9" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" none="YES"/>
+                                                    </accessibility>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -181,6 +196,9 @@
                                                     <rect key="frame" x="16" y="9" width="25" height="25"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <accessibility key="accessibilityConfiguration">
+                                                        <accessibilityTraits key="traits" none="YES"/>
+                                                    </accessibility>
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -270,7 +288,7 @@
                 <viewControllerPlaceholder storyboardName="Confetti" id="sgt-Au-YVK" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ixy-xr-Moe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1260" y="131.78410794602701"/>
+            <point key="canvasLocation" x="1144" y="131"/>
         </scene>
     </scenes>
     <resources>

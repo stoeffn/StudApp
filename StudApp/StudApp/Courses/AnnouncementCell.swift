@@ -12,10 +12,17 @@ import StudKitUI
 final class AnnouncementCell: UITableViewCell {
     var announcement: Announcement! {
         didSet {
+            let modifiedAt = announcement.modifiedAt.formattedAsShortDifferenceFromNow
+            let userFullname = announcement.user?.nameComponents.formatted()
+
             titleLabel.text = announcement.title
-            modifiedAtLabel.text = announcement.modifiedAt.formattedAsShortDifferenceFromNow
-            userLabel.text = announcement.user?.nameComponents.formatted()
+            modifiedAtLabel.text = modifiedAt
+            userLabel.text = userFullname
             updateSubtitleHiddenStates()
+
+            let modifiedBy = userFullname != nil ? "by %@".localized(userFullname ?? "") : nil
+            let modifiedAtBy = ["Modified".localized, modifiedAt, modifiedBy].flatMap { $0 }.joined(separator: " ")
+            accessibilityLabel = [announcement.title, modifiedAtBy].joined(separator: ", ")
         }
     }
 

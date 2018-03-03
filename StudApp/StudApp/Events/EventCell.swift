@@ -15,8 +15,11 @@ final class EventCell: UITableViewCell {
 
     var event: Event! {
         didSet {
-            startsAtLabel.text = event.startsAt.formatted(using: .shortTime)
-            endsAtLabel.text = event.endsAt.formatted(using: .shortTime)
+            let startsAt = event.startsAt.formatted(using: .shortTime)
+            let endsAt = event.endsAt.formatted(using: .shortTime)
+
+            startsAtLabel.text = startsAt
+            endsAtLabel.text = endsAt
 
             colorView.backgroundColor = event.course.color
 
@@ -29,6 +32,13 @@ final class EventCell: UITableViewCell {
 
             locationLabel.isHidden = event.isCanceled || event.location == nil
             locationLabel.text = event.location
+
+            let fromToTimes = "from %@ to %@".localized(startsAt, endsAt)
+            let atLocation = event.location != nil ? "at %@".localized(event.location ?? "") : nil
+            let cancellation = event.isCanceled ? "Canceled".localized : nil
+            accessibilityLabel = [event.course.title, fromToTimes, atLocation, cancellation, event.cancellationReason]
+                .flatMap { $0 }
+                .joined(separator: ", ")
         }
     }
 

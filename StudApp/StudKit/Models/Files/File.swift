@@ -128,7 +128,7 @@ public extension File {
     /// or network is available.
     public var isAvailable: Bool {
         let reachabilityService = ServiceContainer.default[ReachabilityService.self]
-        return isFolder
+        return (isFolder && state.childFilesUpdatedAt != nil)
             || state.isDownloaded
             || reachabilityService.currentReachabilityFlags.contains(.reachable)
     }
