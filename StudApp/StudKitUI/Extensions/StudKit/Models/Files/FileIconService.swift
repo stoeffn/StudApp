@@ -19,7 +19,7 @@ public final class FileIconService {
 
         if let icon = iconCache.object(forKey: dummyFileName as NSURL) { return completion(icon) }
 
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .utility).async {
             let controller = UIDocumentInteractionController(url: dummyFileName)
             controller.name = dummyFileName.absoluteString
 
