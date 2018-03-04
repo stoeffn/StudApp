@@ -10,8 +10,9 @@ import StudKit
 import StudKitUI
 
 final class FileCell: UITableViewCell {
-    private let reachabilityService = ServiceContainer.default[ReachabilityService.self]
+    private let contextService = ServiceContainer.default[ContextService.self]
     private let fileIconService = ServiceContainer.default[FileIconService.self]
+    private let reachabilityService = ServiceContainer.default[ReachabilityService.self]
 
     // MARK: - Life Cycle
 
@@ -37,6 +38,7 @@ final class FileCell: UITableViewCell {
             fileIconService.icon(for: file) { self.iconView?.image = $0 }
 
             titleLabel.text = file.title
+            titleLabel.numberOfLines = contextService.prefersAccessibilityContentSize ? 3 : 1
 
             modifiedAtLabel?.text = modifiedAt
             userLabel.text = userFullname
