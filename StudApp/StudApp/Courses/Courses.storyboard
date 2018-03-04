@@ -302,7 +302,7 @@
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="NZQ-WI-0Ho">
-                                                    <rect key="frame" x="58" y="6" width="581" height="38.5"/>
+                                                    <rect key="frame" x="58" y="5.5" width="569.5" height="39"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Assignment 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7BS-La-ljQ">
                                                             <rect key="frame" x="0.0" y="0.0" width="102.5" height="20.5"/>
@@ -311,10 +311,10 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OyG-a5-tqc">
-                                                            <rect key="frame" x="0.0" y="22.5" width="369.5" height="16"/>
+                                                            <rect key="frame" x="0.0" y="22.5" width="369.5" height="16.5"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="p63-d4-hT2">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="79.5" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.5" width="79.5" height="16"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TimeSubtitleGlyph" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JA9-Jo-ukp">
                                                                             <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
@@ -338,7 +338,7 @@
                                                                     <variation key="widthClass=regular" spacing="4"/>
                                                                 </stackView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Wdn-Pk-E17">
-                                                                    <rect key="frame" x="87.5" y="0.0" width="57" height="16"/>
+                                                                    <rect key="frame" x="87.5" y="0.5" width="57" height="16"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SizeSubtitleGlyph" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8bs-8q-FMi">
                                                                             <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
@@ -363,10 +363,10 @@
                                                                     <variation key="widthClass=regular" spacing="4"/>
                                                                 </stackView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="EuN-po-dG5">
-                                                                    <rect key="frame" x="152.5" y="0.0" width="49" height="16"/>
+                                                                    <rect key="frame" x="152.5" y="0.0" width="49" height="16.5"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownloadCountSubtitleGlyph" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xdY-VQ-xzU">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="16" height="16.5"/>
                                                                             <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" secondItem="xdY-VQ-xzU" secondAttribute="height" multiplier="1:1" id="ukh-4q-L7m"/>
@@ -378,7 +378,7 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="123x" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCH-Ni-UTa">
-                                                                            <rect key="frame" x="20" y="0.0" width="29" height="16"/>
+                                                                            <rect key="frame" x="20" y="0.0" width="29" height="16.5"/>
                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                             <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <nil key="highlightedColor"/>
@@ -388,7 +388,7 @@
                                                                     <variation key="widthClass=regular" spacing="4"/>
                                                                 </stackView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="PM0-EB-r9M">
-                                                                    <rect key="frame" x="209.5" y="0.0" width="65" height="16"/>
+                                                                    <rect key="frame" x="209.5" y="0.5" width="65" height="16"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ChildCountSubtitleGlyph" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6iK-Cp-zMV">
                                                                             <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
@@ -413,7 +413,7 @@
                                                                     <variation key="widthClass=regular" spacing="4"/>
                                                                 </stackView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="1CS-1f-0fI">
-                                                                    <rect key="frame" x="282.5" y="0.0" width="87" height="16"/>
+                                                                    <rect key="frame" x="282.5" y="0.5" width="87" height="16"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserSubtitleGlyph" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WSr-35-yfD">
                                                                             <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
@@ -443,15 +443,17 @@
                                                     </subviews>
                                                 </stackView>
                                                 <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="7Bc-Ro-1Vl" customClass="StudIpActivityIndicator" customModule="StudKitUI">
-                                                    <rect key="frame" x="647" y="14" width="22" height="22"/>
+                                                    <rect key="frame" x="635.5" y="12" width="26" height="26"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="22" id="8FN-S6-0vx"/>
                                                         <constraint firstAttribute="width" secondItem="7Bc-Ro-1Vl" secondAttribute="height" multiplier="1:1" id="ORa-aQ-Pis"/>
                                                     </constraints>
                                                 </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" image="DownloadBarButtonGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="7ag-pv-zJc">
-                                                    <rect key="frame" x="677" y="12.5" width="25" height="25"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" image="DownloadGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="7ag-pv-zJc">
+                                                    <rect key="frame" x="669.5" y="9" width="32.5" height="32.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="7ag-pv-zJc" secondAttribute="height" multiplier="1:1" id="As0-LN-BEq"/>
+                                                    </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
                                                             <color key="value" red="0.32941176470588235" green="0.50588235294117645" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -459,6 +461,10 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="7Bc-Ro-1Vl" firstAttribute="height" secondItem="7ag-pv-zJc" secondAttribute="height" multiplier="0.8" id="0d0-kO-i8j"/>
+                                                <constraint firstItem="7ag-pv-zJc" firstAttribute="height" secondItem="NDK-C4-aKK" secondAttribute="height" multiplier="0.65" id="ezq-0j-y6f"/>
+                                            </constraints>
                                         </stackView>
                                     </subviews>
                                     <constraints>
@@ -1009,8 +1015,8 @@ Gebäude 3703: Technische Informatik</string>
         <image name="ChildCountSubtitleGlyph" width="16" height="16"/>
         <image name="CoursesGlyph" width="512" height="512"/>
         <image name="CoursesTabBarGlyph" width="27" height="27"/>
-        <image name="DownloadBarButtonGlyph" width="25" height="25"/>
         <image name="DownloadCountSubtitleGlyph" width="16" height="16"/>
+        <image name="DownloadGlyph" width="512" height="512"/>
         <image name="FolderIcon" width="512" height="512"/>
         <image name="SizeSubtitleGlyph" width="16" height="16"/>
         <image name="TimeSubtitleGlyph" width="16" height="16"/>
