@@ -51,7 +51,7 @@ final class SemesterHeader: UITableViewHeaderFooterView {
 
     var isCollapsed: Bool = false {
         didSet {
-            guard isCollapsed != oldValue else { return }
+            guard isCollapsed != semester.state.isCollapsed else { return }
 
             semester.state.isCollapsed = isCollapsed
             courseListViewModel?.isCollapsed = isCollapsed

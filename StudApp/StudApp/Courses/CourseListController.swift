@@ -70,7 +70,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         viewModel = SemesterListViewModel(organization: user.organization)
         viewModel?.delegate = self
         viewModel?.fetch()
-        _ = viewModel?.map(courseListViewModel)
+        _ = viewModel?.enumerated().map { courseListViewModel(for: $1, at: $0) }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -113,21 +113,21 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let semester = viewModel?[rowAt: section] else { fatalError() }
-        return courseListViewModel(for: semester).numberOfRows
+        return courseListViewModel(for: semester, at: section).numberOfRows
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SemesterHeader.typeIdentifier)
         guard let semester = viewModel?[rowAt: section] else { fatalError() }
         (header as? SemesterHeader)?.semester = semester
-        (header as? SemesterHeader)?.courseListViewModel = courseListViewModel(for: semester)
+        (header as? SemesterHeader)?.courseListViewModel = courseListViewModel(for: semester, at: section)
         return header
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CourseCell.typeIdentifier, for: indexPath)
         guard let semester = viewModel?[rowAt: indexPath.section] else { fatalError() }
-        let course = courseListViewModel(for: semester)[rowAt: indexPath.row]
+        let course = courseListViewModel(for: semester, at: indexPath.section)[rowAt: indexPath.row]
         cell.setDisclosureIndicatorHidden(for: splitViewController)
         (cell as? CourseCell)?.course = course
         (cell as? CourseCell)?.presentColorPicker = presentColorPicker
@@ -146,9 +146,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     }
 
     /// Empty implementation that is needed in order for the menu to appear.
-    override func tableView(_: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender _: Any?) {
-        return
-    }
+    override func tableView(_: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender _: Any?) {}
 
     @available(iOS 11.0, *)
     override func tableView(_: UITableView,
@@ -198,7 +196,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         guard
             let courseListViewModel = section as? CourseListViewModel,
             let sectionIndex = self.index(for: courseListViewModel)
-        else { return }
+        else { fatalError() }
 
         let indexPath = IndexPath(row: index, section: sectionIndex)
 
@@ -226,7 +224,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     // MARK: - Managing Course List View Models
 
-    private func courseListViewModel(for semester: Semester) -> CourseListViewModel {
+    private func courseListViewModel(for semester: Semester, at index: Int) -> CourseListViewModel {
         if let viewModel = courseListViewModels[semester.id] { return viewModel }
 
         guard let user = user else { fatalError() }
@@ -236,9 +234,12 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         viewModel.fetch()
 
         courseListViewModels[semester.id] = viewModel
+        courseListViewModelIndexCache[semester.id] = index
 
         return viewModel
     }
+
+    private var courseListViewModelIndexCache = [String: Int]()
 
     private func index(for courseListViewModel: CourseListViewModel) -> Int? {
         for index in 0 ..< tableView.numberOfSections {
@@ -246,9 +247,10 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
                 let header = tableView.headerView(forSection: index) as? SemesterHeader,
                 header.courseListViewModel === courseListViewModel
             else { continue }
+            courseListViewModelIndexCache[courseListViewModel.semester?.id ?? ""] = index
             return index
         }
-        return nil
+        return courseListViewModelIndexCache[courseListViewModel.semester?.id ?? ""]
     }
 
     private func pruneCourseListViewModels() {
