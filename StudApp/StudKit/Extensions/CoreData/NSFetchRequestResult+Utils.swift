@@ -55,16 +55,20 @@ extension NSFetchRequestResult where Self: NSManagedObject {
                        expiresAfter: TimeInterval, forced: Bool = false, completion: @escaping ResultHandler<Value>,
                        updater: @escaping (@escaping ResultHandler<Value>) -> Void) {
         guard let context = managedObjectContext else { fatalError() }
+        let lastUpdatedAt = self[keyPath: lastUpdatedAtKeyPath]
 
-        guard forced || shouldUpdate(lastUpdatedAt: self[keyPath: lastUpdatedAtKeyPath], expiresAfter: expiresAfter) else {
+        guard forced || shouldUpdate(lastUpdatedAt: lastUpdatedAt, expiresAfter: expiresAfter) else {
             return completion(.failure(nil))
         }
 
+        self[keyPath: lastUpdatedAtKeyPath] = Date()
+
         context.perform {
             updater { result in
-                guard result.isSuccess else { return completion(result) }
-
-                self[keyPath: lastUpdatedAtKeyPath] = Date()
+                guard result.isSuccess else {
+                    self[keyPath: lastUpdatedAtKeyPath] = lastUpdatedAt
+                    return completion(result)
+                }
 
                 do {
                     try context.save()
