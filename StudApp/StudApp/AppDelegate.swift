@@ -27,7 +27,8 @@ extension AppDelegate: UIApplicationDelegate {
 
     func application(_: UIApplication, willFinishLaunchingWithOptions _: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
         ServiceContainer.default.register(providers: [
-            StudKitServiceProvider(currentTarget: .app, isRunningUiTests: isRunningUiTests, openUrl: open),
+            StudKitServiceProvider(currentTarget: .app, isRunningUiTests: isRunningUiTests, openUrl: open,
+                                   preferredContentSizeCategory: preferredContentSizeCategory),
             StudKitUIServiceProvider(),
         ])
 
@@ -117,5 +118,9 @@ extension AppDelegate: UIApplicationDelegate {
 
     private func open(url: URL, completion: ((Bool) -> Void)?) {
         return UIApplication.shared.open(url, options: [:], completionHandler: completion)
+    }
+
+    private func preferredContentSizeCategory() -> UIContentSizeCategory {
+        return UIApplication.shared.preferredContentSizeCategory
     }
 }
