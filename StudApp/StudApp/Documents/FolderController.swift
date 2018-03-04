@@ -25,8 +25,10 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
         if #available(iOS 11.0, *) {
             tableView.dragDelegate = self
             tableView.dragInteractionEnabled = true
-            tableView.tableHeaderView = nil
         }
+
+        tableView.tableHeaderView = nil
+        tableView.estimatedRowHeight = 72
     }
 
     override func viewWillAppear(_ animated: Bool) {
