@@ -33,14 +33,6 @@ public final class SemesterState: NSManagedObject, CDCreatable, CDSortable {
 
     // MARK: - Life Cycle
 
-    private var observations = [NSKeyValueObservation]()
-
-    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
-        super.init(entity: entity, insertInto: context)
-
-        observations.append(observe(\.isHidden, options: [.old, .new], changeHandler: isHiddenChanged))
-    }
-
     public required convenience init(createIn context: NSManagedObjectContext) {
         self.init(context: context)
 
@@ -57,18 +49,5 @@ public final class SemesterState: NSManagedObject, CDCreatable, CDSortable {
 
     public override var description: String {
         return "<SemesterState: \(semester)>"
-    }
-
-    // MARK: - Events
-
-    private func isHiddenChanged(_: _KeyValueCodingAndObserving, change: NSKeyValueObservedChange<Bool>) {
-        guard let oldValue = change.oldValue, let newValue = change.newValue, newValue != oldValue else { return }
-
-        try? managedObjectContext?.saveAndWaitWhenChanged()
-
-        if #available(iOSApplicationExtension 11.0, *) {
-            NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
-            NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
-        }
     }
 }
