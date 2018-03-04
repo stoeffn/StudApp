@@ -43,6 +43,7 @@ final class AnnouncementController: UIViewController, Routable {
         contentView.navigationDelegate = self
         contentView.alpha = 0
         contentView.loadHTMLString(htmlContentService.styledHtmlContent(for: announcement.htmlContent), baseURL: nil)
+        contentView.accessibilityLabel = announcement.textContent
     }
 
     // MARK: - User Interaction

@@ -31,7 +31,8 @@ final class SemesterHeader: UITableViewHeaderFooterView {
             titleLabel.textColor = semester.isCurrent ? UI.Colors.tint : .black
             setGlyphRotation(isCollapsed: isCollapsed, animated: true)
 
-            accessibilityLabel = titleLabel.text
+            accessibilityLabel = semester.title
+            accessibilityValue = semester.isCurrent ? "Current".localized : nil
         }
     }
 
@@ -65,7 +66,6 @@ final class SemesterHeader: UITableViewHeaderFooterView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(forTextStyle: .title2).bold
         label.adjustsFontForContentSizeCategory = true
-        label.isAccessibilityElement = false
         return label
     }()
 
@@ -73,7 +73,6 @@ final class SemesterHeader: UITableViewHeaderFooterView {
         let view = UIImageView(image: #imageLiteral(resourceName: "DisclosureGlyph"))
         view.translatesAutoresizingMaskIntoConstraints = false
         view.tintColor = UI.Colors.greyGlyph
-        view.isAccessibilityElement = false
         return view
     }()
 

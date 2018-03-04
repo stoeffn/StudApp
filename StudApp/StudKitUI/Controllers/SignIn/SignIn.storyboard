@@ -33,9 +33,6 @@
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppIcon" translatesAutoresizingMaskIntoConstraints="NO" id="sY2-E4-hXN">
                                             <rect key="frame" x="91.5" y="128" width="192" height="192"/>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <accessibility key="accessibilityConfiguration">
-                                                <accessibilityTraits key="traits" none="YES"/>
-                                            </accessibility>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="sY2-E4-hXN" secondAttribute="height" multiplier="1:1" id="eRI-UZ-eGp"/>
                                                 <constraint firstAttribute="height" constant="150" id="gDa-g9-Nco">
@@ -96,10 +93,10 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="76L-MQ-NXV" firstAttribute="leading" secondItem="xoh-tI-B1k" secondAttribute="leading" id="4Zj-Np-Cal"/>
+                            <constraint firstItem="76L-MQ-NXV" firstAttribute="leading" secondItem="C20-wU-2DL" secondAttribute="leading" id="4Zj-Np-Cal"/>
                             <constraint firstItem="76L-MQ-NXV" firstAttribute="top" secondItem="C20-wU-2DL" secondAttribute="top" id="BYj-bp-sUA"/>
                             <constraint firstAttribute="bottom" secondItem="76L-MQ-NXV" secondAttribute="bottom" id="VCb-3X-Wab"/>
-                            <constraint firstItem="xoh-tI-B1k" firstAttribute="trailing" secondItem="76L-MQ-NXV" secondAttribute="trailing" id="b46-EZ-ipV"/>
+                            <constraint firstAttribute="trailing" secondItem="76L-MQ-NXV" secondAttribute="trailing" id="b46-EZ-ipV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xoh-tI-B1k"/>
                     </view>
@@ -107,7 +104,6 @@
                         <outlet property="activityIndicator" destination="5Wy-xu-LIM" id="yz1-Sg-uZm"/>
                         <outlet property="iconView" destination="sY2-E4-hXN" id="Z1R-YY-y2u"/>
                         <outlet property="titleLabel" destination="MFk-Mm-3qX" id="Rfl-ab-3OG"/>
-                        <segue destination="myS-Lb-AhU" kind="presentation" identifier="about" modalPresentationStyle="formSheet" id="PNl-D0-kSg"/>
                         <segue destination="fQa-P6-Uhv" kind="unwind" identifier="unwindToApp" unwindAction="unwindToAppWith:" id="H76-0i-ESD"/>
                         <segue destination="fQa-P6-Uhv" kind="unwind" identifier="unwindToSignIn" unwindAction="unwindToSignInWith:" id="zjd-jd-Q7N"/>
                     </connections>
@@ -166,9 +162,6 @@
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="AppIcon" translatesAutoresizingMaskIntoConstraints="NO" id="kzK-ZY-Guw">
                                             <rect key="frame" x="16" y="7" width="42" height="42"/>
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <accessibility key="accessibilityConfiguration">
-                                                <accessibilityTraits key="traits" none="YES"/>
-                                            </accessibility>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="kzK-ZY-Guw" secondAttribute="height" multiplier="1:1" id="AX1-Eo-Zqg"/>
                                                 <constraint firstAttribute="height" constant="42" id="zZm-kD-31J">
@@ -234,7 +227,7 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="wcA-Nb-ux4" firstAttribute="firstBaseline" secondItem="Jdd-Q4-AeW" secondAttribute="baseline" multiplier="1.4" constant="20" symbolType="layoutAnchor" id="AB0-n1-Elx"/>
+                                        <constraint firstItem="wcA-Nb-ux4" firstAttribute="firstBaseline" secondItem="Jdd-Q4-AeW" secondAttribute="baseline" multiplier="1.4" constant="24" symbolType="layoutAnchor" id="AB0-n1-Elx"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="wcA-Nb-ux4" secondAttribute="bottom" id="Ei7-aJ-fEF"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="Jdd-Q4-AeW" secondAttribute="trailing" id="NHR-6L-dYD"/>
                                         <constraint firstItem="BeU-G9-inE" firstAttribute="top" secondItem="lMn-nc-ZTG" secondAttribute="topMargin" constant="8" id="PC2-Kk-Qnc"/>
@@ -296,14 +289,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F1D-h0-Y5T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-73" y="609"/>
-        </scene>
-        <!--About-->
-        <scene sceneID="ZjC-5e-NoS">
-            <objects>
-                <viewControllerPlaceholder storyboardName="About" id="myS-Lb-AhU" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nBC-me-csl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1385" y="999"/>
         </scene>
     </scenes>
     <resources>

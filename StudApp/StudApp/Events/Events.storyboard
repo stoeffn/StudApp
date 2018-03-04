@@ -37,6 +37,10 @@
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <accessibility key="accessibilityConfiguration">
+                                        <accessibilityTraits key="traits" adjustable="YES"/>
+                                        <bool key="isElement" value="YES"/>
+                                    </accessibility>
                                     <constraints>
                                         <constraint firstItem="4Pu-He-8n3" firstAttribute="leading" secondItem="j9h-FY-E2G" secondAttribute="leading" id="Qvg-Ox-exc"/>
                                         <constraint firstAttribute="trailing" secondItem="4Pu-He-8n3" secondAttribute="trailing" id="Wii-av-Bca"/>
