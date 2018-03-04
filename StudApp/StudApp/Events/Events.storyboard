@@ -65,20 +65,20 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="frb-iC-eiS">
-                                            <rect key="frame" x="16" y="11" width="343" height="82"/>
+                                            <rect key="frame" x="16" y="9" width="343" height="86"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aWV-zj-mWU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="86.5" height="82"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="86.5" height="86"/>
                                                     <subviews>
                                                         <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75U-EO-shn">
-                                                            <rect key="frame" x="54.5" y="1.5" width="32" height="18"/>
+                                                            <rect key="frame" x="54.5" y="3.5" width="32" height="18"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:30" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f6P-D0-CJi">
-                                                            <rect key="frame" x="47.5" y="21.5" width="39" height="18"/>
+                                                            <rect key="frame" x="47.5" y="23.5" width="39" height="18"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <color key="textColor" white="0.59999999999999998" alpha="1" colorSpace="calibratedWhite"/>
@@ -93,7 +93,7 @@
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IlG-54-gIF">
-                                                    <rect key="frame" x="94.5" y="0.0" width="5" height="82"/>
+                                                    <rect key="frame" x="94.5" y="0.0" width="5" height="86"/>
                                                     <color key="backgroundColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="5" id="iZh-S6-cIH"/>
@@ -105,17 +105,17 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j6d-Eb-zgy">
-                                                    <rect key="frame" x="107.5" y="0.0" width="235.5" height="82"/>
+                                                    <rect key="frame" x="107.5" y="0.0" width="235.5" height="86"/>
                                                     <subviews>
                                                         <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Übung zu Grundlagen digitaler Systeme" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kSZ-KN-NH2">
-                                                            <rect key="frame" x="0.0" y="0.0" width="235.5" height="42.5"/>
+                                                            <rect key="frame" x="0.0" y="2" width="235.5" height="42.5"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Abz-JA-Be0">
-                                                            <rect key="frame" x="0.0" y="47" width="235" height="34"/>
+                                                            <rect key="frame" x="0.0" y="49" width="235" height="34"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <string key="text">Raum 023: Multimedia-Hörsaal
 Gebäude 3703: Technische Informatik</string>
@@ -124,7 +124,7 @@ Gebäude 3703: Technische Informatik</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ea3-F0-kRL">
-                                                            <rect key="frame" x="0.0" y="47.5" width="106" height="16"/>
+                                                            <rect key="frame" x="0.0" y="49.5" width="106" height="16"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Canceled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfa-A6-v9I" customClass="BadgeLabel" customModule="StudKitUI">
                                                                     <rect key="frame" x="0.0" y="0.0" width="57" height="16"/>
@@ -148,13 +148,13 @@ Gebäude 3703: Technische Informatik</string>
                                                         <constraint firstItem="kSZ-KN-NH2" firstAttribute="leading" secondItem="j6d-Eb-zgy" secondAttribute="leading" id="0jZ-d7-PZz"/>
                                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ea3-F0-kRL" secondAttribute="bottom" id="58A-6Z-bdX"/>
                                                         <constraint firstItem="ea3-F0-kRL" firstAttribute="leading" secondItem="kSZ-KN-NH2" secondAttribute="leading" id="8e9-Il-qYW"/>
-                                                        <constraint firstItem="kSZ-KN-NH2" firstAttribute="top" secondItem="j6d-Eb-zgy" secondAttribute="top" id="8hp-PE-NNd"/>
+                                                        <constraint firstItem="kSZ-KN-NH2" firstAttribute="top" secondItem="j6d-Eb-zgy" secondAttribute="top" constant="2" id="8hp-PE-NNd"/>
                                                         <constraint firstAttribute="trailing" secondItem="Abz-JA-Be0" secondAttribute="trailing" constant="0.5" id="HXF-vA-1uu"/>
                                                         <constraint firstItem="Abz-JA-Be0" firstAttribute="leading" secondItem="ea3-F0-kRL" secondAttribute="leading" id="MOz-3o-cbH"/>
                                                         <constraint firstItem="Abz-JA-Be0" firstAttribute="top" secondItem="ea3-F0-kRL" secondAttribute="top" id="RBb-gB-hAS"/>
                                                         <constraint firstAttribute="trailing" secondItem="kSZ-KN-NH2" secondAttribute="trailing" id="a4x-av-amS"/>
                                                         <constraint firstItem="ea3-F0-kRL" firstAttribute="firstBaseline" secondItem="kSZ-KN-NH2" secondAttribute="baseline" multiplier="1.05" constant="20" symbolType="layoutAnchor" id="c0L-1w-kdS"/>
-                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Abz-JA-Be0" secondAttribute="bottom" id="srP-mL-Cwt"/>
+                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Abz-JA-Be0" secondAttribute="bottom" constant="2" id="srP-mL-Cwt"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -165,9 +165,9 @@ Gebäude 3703: Technische Informatik</string>
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="frb-iC-eiS" firstAttribute="top" secondItem="eN1-a2-Aak" secondAttribute="topMargin" id="0do-j9-C56"/>
+                                        <constraint firstItem="frb-iC-eiS" firstAttribute="top" secondItem="eN1-a2-Aak" secondAttribute="topMargin" constant="-2" id="0do-j9-C56"/>
                                         <constraint firstItem="frb-iC-eiS" firstAttribute="leading" secondItem="eN1-a2-Aak" secondAttribute="leadingMargin" id="Wcy-yO-aXS"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="frb-iC-eiS" secondAttribute="bottom" id="eIj-Y8-FD9"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="frb-iC-eiS" secondAttribute="bottom" constant="-2" id="eIj-Y8-FD9"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="frb-iC-eiS" secondAttribute="trailing" id="n3j-eI-ELO"/>
                                     </constraints>
                                 </tableViewCellContentView>
