@@ -65,8 +65,15 @@ public class StudIpService {
             group.leave()
         }
 
+        var semesterResult: Result<Set<Semester>>!
+        group.enter()
+        organization.updateSemesters(forced: true) { result in
+            semesterResult = result
+            group.leave()
+        }
+
         group.notify(queue: .main) {
-            guard discoveryResult.isSuccess, let user = userResult.value else {
+            guard discoveryResult.isSuccess, let user = userResult.value, semesterResult.isSuccess else {
                 self.signOut()
                 return completion(userResult)
             }

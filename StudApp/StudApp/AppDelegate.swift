@@ -60,6 +60,8 @@ extension AppDelegate: UIApplicationDelegate {
     func applicationWillEnterForeground(_: UIApplication) {
         try? historyService.mergeHistory(into: coreDataService.viewContext)
         try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
+
+        (window?.rootViewController as? AppController)?.updateViewModel()
     }
 
     func applicationWillTerminate(_: UIApplication) {

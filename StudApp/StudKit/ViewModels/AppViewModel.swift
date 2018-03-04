@@ -23,6 +23,8 @@ public final class AppViewModel {
     }
 
     public func update() {
+        guard !ProcessInfo.processInfo.isLowPowerModeEnabled else { return }
+
         coreDataService.performBackgroundTask { context in
             self.studIpService.update(in: context) {}
         }

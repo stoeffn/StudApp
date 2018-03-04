@@ -174,7 +174,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         case is CourseListViewModel:
             data(changedInCourse: row as? Course, at: index, change: change as? DataChange<Course, Int> ?? .delete, in: section)
         default:
-            return
+            fatalError()
         }
     }
 
@@ -232,6 +232,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         let viewModel = CourseListViewModel(user: user, semester: semester, respectsCollapsedState: true)
         viewModel.delegate = self
         viewModel.fetch()
+        viewModel.update()
 
         courseListViewModels[semester.id] = viewModel
         courseListViewModelIndexCache[semester.id] = index

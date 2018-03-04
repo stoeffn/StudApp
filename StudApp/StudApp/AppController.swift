@@ -164,4 +164,10 @@ final class AppController: UITabBarController {
         prepareChildContents(for: User.current)
         presentSignInIfNeeded()
     }
+
+    // MARK: - Exposing Methods
+
+    func updateViewModel() {
+        viewModel.update()
+    }
 }
