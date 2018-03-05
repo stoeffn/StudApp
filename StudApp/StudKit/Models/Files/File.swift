@@ -130,7 +130,7 @@ public extension File {
         let reachabilityService = ServiceContainer.default[ReachabilityService.self]
         return (isFolder && state.childFilesUpdatedAt != nil)
             || state.isDownloaded
-            || reachabilityService.currentReachabilityFlags.contains(.reachable)
+            || reachabilityService.currentFlags.contains(.reachable)
     }
 
     public func localUrl(in directory: BaseDirectories) -> URL {

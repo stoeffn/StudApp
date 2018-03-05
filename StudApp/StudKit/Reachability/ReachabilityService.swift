@@ -15,13 +15,15 @@ public final class ReachabilityService {
 
     // MARK: - Life Cycle
 
-    /// Creates a new reachability service. In order to start watching for reachability changes, you must set `isActive` to
-    /// `true`.
-    init() {
-        guard let reachability = SCNetworkReachabilityCreateWithName(nil, "apple.com") else {
-            fatalError("Cannot create reachability service because `SCNetworkReachabilityCreateWithName` failed.")
+    /// Creates a new reachability service for the host given.
+    ///
+    /// - Remark: In order to start watching for reachability changes, you must set `isActive` to `true`.
+    init(host: String = "apple.com") {
+        guard let reachability = SCNetworkReachabilityCreateWithName(nil, host) else {
+            fatalError("Cannot create reachability service for host '\(host)' because `SCNetworkReachabilityCreateWithName` failed.")
         }
         self.reachability = reachability
+        self.update()
     }
 
     deinit {
@@ -30,14 +32,14 @@ public final class ReachabilityService {
 
     // MARK: - Retrieving and Watching Reachability
 
-    /// Current reachability flag.
+    /// Current reachability flags.
     ///
     /// If `isActive` is set to `false`, these flags may not be up-to-date. You can manually update them by calling `update()`.
-    public private(set) var currentReachabilityFlags: SCNetworkReachabilityFlags = []
+    public private(set) var currentFlags: SCNetworkReachabilityFlags = []
 
     /// Activates or deactivates automatically watching network reachability.
     ///
-    /// Changes will be posted as `Notification.Name.reachabilityChanged`.
+    /// Changes will be posted as `Notification.Name.reachabilityDidChange`.
     public var isActive: Bool = false {
         didSet {
             guard isActive != oldValue else { return }
@@ -65,7 +67,7 @@ public final class ReachabilityService {
         if !SCNetworkReachabilitySetCallback(reachability, reachabilityCallback, &context) {
             fatalError("Cannot activate reachability service because `SCNetworkReachabilitySetCallback` failed.")
         }
-        if !SCNetworkReachabilitySetDispatchQueue(reachability, DispatchQueue.main) {
+        if !SCNetworkReachabilitySetDispatchQueue(reachability, .main) {
             fatalError("Cannot activate reachability service because `SCNetworkReachabilitySetDispatchQueue` failed.")
         }
 
@@ -78,11 +80,11 @@ public final class ReachabilityService {
     }
 
     private func reachabilityChanged(flags: SCNetworkReachabilityFlags) {
-        guard currentReachabilityFlags != flags else { return }
-        currentReachabilityFlags = flags
+        guard currentFlags != flags else { return }
+        currentFlags = flags
 
         NotificationCenter.default.post(name: .reachabilityDidChange, object: self, userInfo: [
-            Notification.Name.reachabilityDidChangeFlagsKey: currentReachabilityFlags,
+            Notification.Name.reachabilityDidChangeFlagsKey: currentFlags,
         ])
     }
 }
