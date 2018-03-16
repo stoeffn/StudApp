@@ -18,7 +18,7 @@ public final class BorderlessNavigationController: UINavigationController {
         super.viewDidLoad()
 
         view.insertSubview(navigationBarBackgroundBlurView, belowSubview: navigationBar)
-        view.insertSubview(navigationBarBackgroundAlphaView, belowSubview: navigationBar)
+        view.insertSubview(navigationBarBackgroundAlphaView, belowSubview: navigationBarBackgroundBlurView)
 
         updateLayout()
 
