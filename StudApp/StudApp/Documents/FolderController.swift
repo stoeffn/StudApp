@@ -164,8 +164,9 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
         guard view != nil else { return }
 
         let isEmpty = viewModel?.isEmpty ?? false
+        let isLoaded = (viewModel.container as? File)?.state.childFilesUpdatedAt != nil
 
-        emptyViewTitleLabel.text = "Empty Folder".localized
+        emptyViewTitleLabel.text = isLoaded ? "Empty Folder".localized : "Not Loaded".localized
 
         tableView.backgroundView = isEmpty ? emptyView : nil
         tableView.separatorStyle = isEmpty ? .none : .singleLine

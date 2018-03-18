@@ -56,6 +56,7 @@
 "Collapsed" = "Collapsed";
 "Expanded" = "Expanded";
 "Modified" = "Modified";
+"Not Loaded" = "Not Loaded";
 "Not Downloaded" = "Not Downloaded";
 "Downloading" = "Downloading";
 "Downloaded" = "Downloaded";

@@ -183,7 +183,8 @@ final class CourseController: UITableViewController, Routable {
             return cell
         case .announcements? where indexPath.row == announcementsViewModel.numberOfRows:
             let cell = tableView.dequeueReusableCell(withIdentifier: emptyCellIdentifier, for: indexPath)
-            cell.textLabel?.text = "No Announcements".localized
+            let isLoaded = announcementsViewModel.course.state.childFilesUpdatedAt != nil
+            cell.textLabel?.text = isLoaded ? "No Announcements".localized : "Not Loaded".localized
             return cell
         case .announcements?:
             let cell = tableView.dequeueReusableCell(withIdentifier: AnnouncementCell.typeIdentifier, for: indexPath)
@@ -192,7 +193,8 @@ final class CourseController: UITableViewController, Routable {
             return cell
         case .documents? where indexPath.row == fileListViewModel.numberOfRows:
             let cell = tableView.dequeueReusableCell(withIdentifier: emptyCellIdentifier, for: indexPath)
-            cell.textLabel?.text = "No Documents".localized
+            let isLoaded = (fileListViewModel.container as? Course)?.state.childFilesUpdatedAt != nil
+            cell.textLabel?.text = isLoaded ? "No Documents".localized : "Not Loaded".localized
             return cell
         case .documents?:
             let cell = tableView.dequeueReusableCell(withIdentifier: FileCell.typeIdentifier, for: indexPath)
