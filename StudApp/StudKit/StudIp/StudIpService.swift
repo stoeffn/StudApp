@@ -138,9 +138,7 @@ public class StudIpService {
 
             group.enter()
             user.updateAuthoredCourses { _ in
-                defer { group.leave() }
-
-                try? self.updateAuthoredCoursesInVisibleSemesters(for: user, group: group, context: context)
+                group.leave()
             }
         }
 
