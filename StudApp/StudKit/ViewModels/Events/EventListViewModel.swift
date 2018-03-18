@@ -37,10 +37,10 @@ public final class EventListViewModel: FetchedResultsControllerDataSource {
         try? controller.performFetch()
     }
 
-    public func update() {
+    public func update(completion: (() -> Void)? = nil) {
         coreDataService.performBackgroundTask { context in
             self.course.in(context)
-                .updateEvents { _ in }
+                .updateEvents { _ in completion?() }
         }
     }
 

@@ -28,10 +28,10 @@ public final class AnnouncementListViewModel: FetchedResultsControllerDataSource
         fetchRequest: course.unexpiredAnnouncementsFetchRequest, managedObjectContext: coreDataService.viewContext,
         sectionNameKeyPath: nil, cacheName: nil)
 
-    public func update() {
+    public func update(completion: (() -> Void)? = nil) {
         coreDataService.performBackgroundTask { context in
             self.course.in(context)
-                .updateAnnouncements { _ in }
+                .updateAnnouncements { _ in completion?() }
         }
     }
 }

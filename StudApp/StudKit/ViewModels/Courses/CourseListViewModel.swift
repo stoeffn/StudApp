@@ -58,10 +58,10 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
     }
 
     /// Updates data from the server.
-    public func update() {
+    public func update(completion: (() -> Void)? = nil) {
         coreDataService.performBackgroundTask { context in
             self.user.in(context)
-                .updateAuthoredCourses { _ in }
+                .updateAuthoredCourses { _ in completion?() }
         }
     }
 
