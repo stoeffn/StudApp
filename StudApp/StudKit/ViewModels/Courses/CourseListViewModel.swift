@@ -61,7 +61,7 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
     public func update(completion: (() -> Void)? = nil) {
         coreDataService.performBackgroundTask { context in
             self.user.in(context)
-                .updateAuthoredCourses { _ in completion?() }
+                .updateAuthoredCourses { _ in DispatchQueue.main.async { completion?() } }
         }
     }
 

@@ -31,7 +31,7 @@ public final class AnnouncementListViewModel: FetchedResultsControllerDataSource
     public func update(completion: (() -> Void)? = nil) {
         coreDataService.performBackgroundTask { context in
             self.course.in(context)
-                .updateAnnouncements { _ in completion?() }
+                .updateAnnouncements { _ in DispatchQueue.main.async { completion?() } }
         }
     }
 }

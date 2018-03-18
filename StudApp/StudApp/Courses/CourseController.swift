@@ -39,8 +39,14 @@ final class CourseController: UITableViewController, Routable {
 
         userActivity = viewModel.course.userActivity
 
-        announcementsViewModel.update()
-        fileListViewModel.update()
+        announcementsViewModel.update {
+            let placeholderIndex = IndexPath(row: self.announcementsViewModel.numberOfRows, section: Sections.announcements.rawValue)
+            self.tableView.reloadRows(at: [placeholderIndex], with: .fade)
+        }
+        fileListViewModel.update {
+            let placeholderIndex = IndexPath(row: self.fileListViewModel.numberOfRows, section: Sections.documents.rawValue)
+            self.tableView.reloadRows(at: [placeholderIndex], with: .fade)
+        }
 
         navigationItem.title = viewModel.course.title
 

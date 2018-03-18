@@ -40,7 +40,7 @@ public final class EventListViewModel: FetchedResultsControllerDataSource {
     public func update(completion: (() -> Void)? = nil) {
         coreDataService.performBackgroundTask { context in
             self.course.in(context)
-                .updateEvents { _ in completion?() }
+                .updateEvents { _ in DispatchQueue.main.async { completion?() } }
         }
     }
 

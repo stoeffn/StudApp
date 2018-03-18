@@ -50,7 +50,7 @@ public final class SemesterListViewModel: FetchedResultsControllerDataSourceSect
     public func update(completion: (() -> Void)? = nil) {
         coreDataService.performBackgroundTask { context in
             self.organization.in(context)
-                .updateSemesters { _ in completion?() }
+                .updateSemesters { _ in DispatchQueue.main.async { completion?() } }
         }
     }
 }

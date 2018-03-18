@@ -23,7 +23,7 @@ public final class ReachabilityService {
             fatalError("Cannot create reachability service for host '\(host)' because `SCNetworkReachabilityCreateWithName` failed.")
         }
         self.reachability = reachability
-        self.update()
+        update()
     }
 
     deinit {
