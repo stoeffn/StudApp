@@ -31,16 +31,6 @@ public enum App {
         /// URL of the app's App Store review page.
         public static let review = URL(string: "itms-apps://itunes.apple.com/de/app/\(App.id)?action=write-review")!
 
-        public static let manageSubscriptions
-            = URL(string: "https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/manageSubscriptions")!
-
-        public static let store = URL(string: "studapp://")!
-
-        // MARK: Disclaimers
-
-        public static let autorenewingSubscriptionDisclaimer
-            = URL(string: "\(App.scheme)://disclaimers/auto-renewing-subscription")!
-
         // MARK: Callbacks
 
         /// URL that is opened in response to a successful authorization.
