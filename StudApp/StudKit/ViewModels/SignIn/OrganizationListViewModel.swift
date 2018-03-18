@@ -34,8 +34,8 @@ public final class OrganizationListViewModel: NSObject, FetchedResultsController
     public weak var delegate: DataSourceSectionDelegate?
 
     public private(set) lazy var controller: NSFetchedResultsController<Organization> = NSFetchedResultsController(
-        fetchRequest: Organization.fetchRequest(), managedObjectContext: coreDataService.viewContext,
-        sectionNameKeyPath: nil, cacheName: nil)
+        fetchRequest: Organization.fetchRequest(sortDescriptors: Organization.defaultSortDescriptors),
+        managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
 
     public func update() {
         guard !isUpdating else { return }
