@@ -41,6 +41,8 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         tableView.tableHeaderView?.layoutIfNeeded()
         tableView.tableHeaderView = tableView.tableHeaderView
 
+        disclaimerLabel.text = "Choose the organization, university, or company you would like to sign into.".localized
+
         observations = [
             viewModel.observe(\.isUpdating) { [weak self] _, _ in
                 guard let isUpdating = self?.viewModel.isUpdating else { return }
@@ -120,6 +122,8 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     }
 
     // MARK: - User Interface
+
+    @IBOutlet var disclaimerLabel: UILabel!
 
     @IBOutlet var cancelButton: UIBarButtonItem!
 

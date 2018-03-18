@@ -265,6 +265,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cancelButton" destination="htM-Nw-MEZ" id="hCd-LA-DiZ"/>
+                        <outlet property="disclaimerLabel" destination="3de-75-mDO" id="XoZ-OX-fkm"/>
                         <segue destination="RVa-94-5EL" kind="presentation" identifier="about" modalPresentationStyle="formSheet" id="xKV-DX-Nra"/>
                     </connections>
                 </tableViewController>
