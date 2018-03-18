@@ -13,15 +13,14 @@ import CoreData
 public extension NSFetchRequestResult {
     /// Returns a fetch request for this object, using the parameters given as its properties.
     public static func fetchRequest(predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor] = [],
-                                    limit: Int? = nil, offset: Int? = nil,
-                                    refreshesRefetchedObjects: Bool = false,
+                                    limit: Int? = nil, offset: Int? = nil, batchSize: Int? = nil,
                                     relationshipKeyPathsForPrefetching: [String] = []) -> NSFetchRequest<Self> {
         let request = NSFetchRequest<Self>(entityName: String(describing: Self.self))
         request.predicate = predicate
         request.sortDescriptors = sortDescriptors
         request.fetchLimit = limit ?? request.fetchLimit
         request.fetchOffset = offset ?? request.fetchOffset
-        request.shouldRefreshRefetchedObjects = refreshesRefetchedObjects
+        request.fetchBatchSize = batchSize ?? request.fetchBatchSize
         request.relationshipKeyPathsForPrefetching = relationshipKeyPathsForPrefetching
         return request
     }
