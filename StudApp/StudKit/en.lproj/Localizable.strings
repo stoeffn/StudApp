@@ -143,6 +143,7 @@
 "Choose Your Organization" = "Choose Your Organization";
 "Choose the organization, university, or company you would like to sign into." = "Choose the organization, university, or company you would like to sign into.";
 "Error Loading Organizations" = "Error Loading Organizations";
+"If are an administrator and would like to add your organization, please contact me at %@." = "If are an administrator and would like to add your organization, please contact me at %@.";
 
 // MARK: Signing In
 

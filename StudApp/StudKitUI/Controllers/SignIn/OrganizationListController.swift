@@ -115,6 +115,11 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return "If are an administrator and would like to add your organization, please contact me at %@."
+            .localized(App.feedbackMailAddress)
+    }
+
     // MARK: - Table View Delegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

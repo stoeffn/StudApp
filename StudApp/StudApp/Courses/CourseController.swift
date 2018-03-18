@@ -89,12 +89,10 @@ final class CourseController: UITableViewController, Routable {
         announcementsViewModel = AnnouncementListViewModel(course: course)
         announcementsViewModel.delegate = self
         announcementsViewModel.fetch()
-        announcementsViewModel.update()
 
         fileListViewModel = FileListViewModel(container: course)
         fileListViewModel.delegate = self
         fileListViewModel.fetch()
-        fileListViewModel.update()
     }
 
     override func shouldPerformSegue(withIdentifier _: String, sender: Any?) -> Bool {
