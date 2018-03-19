@@ -23,6 +23,8 @@ final class CourseController: UITableViewController, Routable {
 
         registerForPreviewing(with: self, sourceView: tableView)
 
+        refreshControl?.addTarget(self, action: #selector(refreshControlTriggered(_:)), for: .valueChanged)
+
         if #available(iOS 11.0, *) {
             tableView.dragDelegate = self
             tableView.dragInteractionEnabled = true
@@ -38,16 +40,6 @@ final class CourseController: UITableViewController, Routable {
         super.viewWillAppear(animated)
 
         userActivity = viewModel.course.userActivity
-
-        announcementsViewModel.update {
-            let placeholderIndex = IndexPath(row: self.announcementsViewModel.numberOfRows, section: Sections.announcements.rawValue)
-            self.tableView.reloadRows(at: [placeholderIndex], with: .fade)
-        }
-        fileListViewModel.update {
-            let placeholderIndex = IndexPath(row: self.fileListViewModel.numberOfRows, section: Sections.documents.rawValue)
-            self.tableView.reloadRows(at: [placeholderIndex], with: .fade)
-        }
-
         navigationItem.title = viewModel.course.title
 
         subtitleLabel.text = viewModel.course.subtitle
@@ -57,6 +49,8 @@ final class CourseController: UITableViewController, Routable {
 
         tableView.tableHeaderView?.layoutIfNeeded()
         tableView.tableHeaderView = tableView.tableHeaderView
+
+        update()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -83,6 +77,18 @@ final class CourseController: UITableViewController, Routable {
             self.tableView.tableHeaderView?.layoutIfNeeded()
             self.tableView.tableHeaderView = self.tableView.tableHeaderView
         }, completion: nil)
+    }
+
+    func update(forced: Bool = false) {
+        announcementsViewModel.update(forced: forced) {
+            let placeholderIndex = IndexPath(row: self.announcementsViewModel.numberOfRows, section: Sections.announcements.rawValue)
+            self.tableView.reloadRows(at: [placeholderIndex], with: .fade)
+        }
+        fileListViewModel.update(forced: forced) {
+            let placeholderIndex = IndexPath(row: self.fileListViewModel.numberOfRows, section: Sections.documents.rawValue)
+            self.tableView.reloadRows(at: [placeholderIndex], with: .fade)
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) { self.refreshControl?.endRefreshing() }
+        }
     }
 
     // MARK: - Navigation
@@ -316,6 +322,11 @@ final class CourseController: UITableViewController, Routable {
         controller.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         present(controller, animated: true, completion: nil)
     }
+
+    @objc
+    func refreshControlTriggered(_: Any) {
+        update(forced: true)
+    }
 }
 
 // MARK: - Data Section Delegate
@@ -337,6 +348,11 @@ extension CourseController: DataSourceSectionDelegate {
             let newIndexPath = IndexPath(row: newIndex, section: sectionIndex.rawValue)
             tableView.moveRow(at: indexPath, to: newIndexPath)
         }
+    }
+
+    func dataDidChange<Section: DataSourceSection>(in _: Section) {
+        tableView.endUpdates()
+        refreshControl?.endRefreshing()
     }
 }
 

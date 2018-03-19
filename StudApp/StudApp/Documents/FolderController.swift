@@ -10,7 +10,7 @@ import QuickLook
 import StudKit
 import StudKitUI
 
-final class FolderController: UITableViewController, DataSourceSectionDelegate, Routable {
+final class FolderController: UITableViewController, Routable {
     private var viewModel: FileListViewModel!
 
     // MARK: - Life Cycle
@@ -19,6 +19,8 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
         super.viewDidLoad()
 
         registerForPreviewing(with: self, sourceView: tableView)
+
+        refreshControl?.addTarget(self, action: #selector(refreshControlTriggered(_:)), for: .valueChanged)
 
         navigationItem.title = viewModel.container.title
 
@@ -34,7 +36,7 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        viewModel.update { self.updateEmptyView() }
+        update()
         updateEmptyView()
     }
 
@@ -50,6 +52,13 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate(alongsideTransition: { _ in self.updateEmptyView() }, completion: nil)
+    }
+
+    func update(forced: Bool = false) {
+        viewModel.update(forced: forced) {
+            self.updateEmptyView()
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) { self.refreshControl?.endRefreshing() }
+        }
     }
 
     // MARK: - Navigation
@@ -187,6 +196,11 @@ final class FolderController: UITableViewController, DataSourceSectionDelegate, 
         controller.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         present(controller, animated: true, completion: nil)
     }
+
+    @objc
+    func refreshControlTriggered(_: Any) {
+        update(forced: true)
+    }
 }
 
 // MARK: - Table View Drag Delegate
@@ -207,6 +221,15 @@ extension FolderController: UITableViewDragDelegate {
     func tableView(_: UITableView, itemsForAddingTo _: UIDragSession, at indexPath: IndexPath,
                    point _: CGPoint) -> [UIDragItem] {
         return itemProviders(forIndexPath: indexPath).map(UIDragItem.init)
+    }
+}
+
+// MARK: - Data Section Delegate
+
+extension FolderController: DataSourceSectionDelegate {
+    func dataDidChange<Section: DataSourceSection>(in _: Section) {
+        tableView.endUpdates()
+        refreshControl?.endRefreshing()
     }
 }
 

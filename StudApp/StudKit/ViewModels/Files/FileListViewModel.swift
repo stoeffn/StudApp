@@ -34,10 +34,10 @@ public final class FileListViewModel: FetchedResultsControllerDataSourceSection 
         sectionNameKeyPath: nil, cacheName: nil)
 
     /// Updates data from the server.
-    public func update(completion: (() -> Void)? = nil) {
+    public func update(forced: Bool = false, completion: (() -> Void)? = nil) {
         coreDataService.performBackgroundTask { context in
             self.container.in(context)
-                .updateChildFiles(forced: false) { _ in DispatchQueue.main.async { completion?() } }
+                .updateChildFiles(forced: forced) { _ in DispatchQueue.main.async { completion?() } }
         }
     }
 }
