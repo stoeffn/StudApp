@@ -293,8 +293,9 @@ final class AboutController: UITableViewController, Routable {
         case .failed:
             navigationItem.setActivityIndicatorHidden(true)
 
+            let title = transaction.error?.localizedDescription ?? "Something Went Wrong".localized
             let message = "It would be kind if you retried in a little bit.".localized
-            let controller = UIAlertController(title: "Something Went Wrong".localized, message: message, preferredStyle: .alert)
+            let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
             controller.addAction(UIAlertAction(title: "Okay".localized, style: .cancel, handler: nil))
             present(controller, animated: true, completion: nil)
         default:
