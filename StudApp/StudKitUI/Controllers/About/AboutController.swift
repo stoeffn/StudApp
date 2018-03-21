@@ -112,7 +112,7 @@ final class AboutController: UITableViewController, Routable {
     override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
         switch Sections(rawValue: section) {
         case .feedback?:
-            return "We would appreciate your review on the App Store!".localized
+            return "I would appreciate your review on the App Store!".localized
         case .tip?:
             return [
                 "If you really like this app you can leave a tip to support further development.".localized,
