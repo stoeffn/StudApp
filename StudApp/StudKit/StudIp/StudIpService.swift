@@ -75,7 +75,7 @@ public class StudIpService {
         group.notify(queue: .main) {
             guard discoveryResult.isSuccess, let user = userResult.value, semesterResult.isSuccess else {
                 self.signOut()
-                return completion(userResult)
+                return completion(.failure(discoveryResult.error ?? userResult.error ?? semesterResult.error))
             }
 
             User.current = user
