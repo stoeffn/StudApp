@@ -95,6 +95,7 @@ public class StudIpService {
     func signOut() {
         try? (api.authorizing as? PersistableApiAuthorizing)?.removeCredentials()
 
+        api.session.configuration.httpCookieStorage?.removeCookies(since: .distantPast)
         api.baseUrl = nil
         api.authorizing = nil
 

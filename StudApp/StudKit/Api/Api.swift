@@ -31,7 +31,7 @@ class Api<Routes: ApiRoutes> {
 
     // MARK: - Life Cycle
 
-    private let session: URLSession
+    let session: URLSession
 
     /// Base `URL` of all requests this instance issues. Any route paths will be appended to it.
     var baseUrl: URL?

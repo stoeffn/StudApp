@@ -81,13 +81,13 @@ public final class User: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
 // MARK: - Core Data Operations
 
 extension User {
-    private static var currentUserFromDefaults: User? = {
+    private static var currentUserFromDefaults: User? {
         let storageService = ServiceContainer.default[StorageService.self]
         let coreDataService = ServiceContainer.default[CoreDataService.self]
         let currentUserId = storageService.defaults.string(forKey: UserDefaults.userIdKey)
         guard let user = try? fetch(byId: currentUserId, in: coreDataService.viewContext) else { return nil }
         return user
-    }()
+    }
 
     public internal(set) static var current: User? = currentUserFromDefaults {
         didSet {
