@@ -209,6 +209,8 @@
 		24BF7B691FF673BF0013BA23 /* FetchedResultsControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF7B681FF673BF0013BA23 /* FetchedResultsControllerDataSource.swift */; };
 		24BF7B6B1FF674100013BA23 /* FetchedResultsControllerSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF7B6A1FF674100013BA23 /* FetchedResultsControllerSource.swift */; };
 		24BF7B6D1FF6741E0013BA23 /* FetchedResultsControllerDataSourceSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24BF7B6C1FF6741E0013BA23 /* FetchedResultsControllerDataSourceSection.swift */; };
+		24C9BC842072D04300AF0D34 /* Swifter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24C9BC832072D04300AF0D34 /* Swifter.framework */; };
+		24C9BC852072D43700AF0D34 /* Swifter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24C9BC832072D04300AF0D34 /* Swifter.framework */; };
 		24CA6FEA203F503700171843 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA6FE9203F503700171843 /* Organization.swift */; };
 		24CA6FEC203F614200171843 /* Organization+CloudKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CA6FEB203F614200171843 /* Organization+CloudKit.swift */; };
 		24D178EB1FB606B200EC5F4A /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D178EA1FB606B200EC5F4A /* AppViewModel.swift */; };
@@ -565,6 +567,7 @@
 		24BF7B681FF673BF0013BA23 /* FetchedResultsControllerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerDataSource.swift; sourceTree = "<group>"; };
 		24BF7B6A1FF674100013BA23 /* FetchedResultsControllerSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerSource.swift; sourceTree = "<group>"; };
 		24BF7B6C1FF6741E0013BA23 /* FetchedResultsControllerDataSourceSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedResultsControllerDataSourceSection.swift; sourceTree = "<group>"; };
+		24C9BC832072D04300AF0D34 /* Swifter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Swifter.framework; path = Carthage/Build/iOS/Swifter.framework; sourceTree = "<group>"; };
 		24CA6FE9203F503700171843 /* Organization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		24CA6FEB203F614200171843 /* Organization+CloudKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Organization+CloudKit.swift"; sourceTree = "<group>"; };
 		24CFB5D31FB24F4C00F30DEA /* Routable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Routable.swift; sourceTree = "<group>"; };
@@ -690,6 +693,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24C9BC842072D04300AF0D34 /* Swifter.framework in Frameworks */,
 				24A5BEF12038D47100F5F531 /* CoreData.framework in Frameworks */,
 				2446F9741FC8D16900D6AB6C /* CloudKit.framework in Frameworks */,
 				243040A720435B170018F367 /* StoreKit.framework in Frameworks */,
@@ -716,6 +720,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24C9BC852072D43700AF0D34 /* Swifter.framework in Frameworks */,
 				24A5BEED2038D44E00F5F531 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -843,6 +848,7 @@
 		243817A01FC86203004052D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				24C9BC832072D04300AF0D34 /* Swifter.framework */,
 				24A5BEEC2038D44D00F5F531 /* CoreData.framework */,
 				2469F813202CE6FF007FB3B6 /* BulletinBoard.framework */,
 				245B6AD51FCB327800302CD0 /* StoreKit.framework */,
@@ -1907,6 +1913,7 @@
 				2448D4071FA8DA2400DAB97E /* Resources */,
 				2448D4591FA8DB1E00DAB97E /* Embed Frameworks */,
 				24D9EF9A1FB75819006776B7 /* Embed App Extensions */,
+				24C9BC822072CF3A00AF0D34 /* Copy Carthage Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2252,6 +2259,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		24C9BC822072CF3A00AF0D34 /* Copy Carthage Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Swifter.framework",
+			);
+			name = "Copy Carthage Frameworks";
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Swifter.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2798,7 +2821,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X63VKA93X8;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = StudApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2819,7 +2845,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X63VKA93X8;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = StudApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2911,7 +2940,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = StudKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -2943,7 +2975,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = StudKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
