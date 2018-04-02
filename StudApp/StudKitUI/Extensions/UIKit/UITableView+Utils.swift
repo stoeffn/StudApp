@@ -18,8 +18,8 @@ public extension UITableView {
     }
 
     public var topMostIndexPath: IndexPath? {
-        return indexPathsForVisibleRows?
-            .map { (indexPath: $0, rect: rectForRow(at: $0)) }
+        let indexPathsAndRects = indexPathsForVisibleRows?.map { (indexPath: $0, rect: rectForRow(at: $0)) }
+        return indexPathsAndRects?
             .filter { $0.rect.origin.y + $0.rect.size.height - contentOffset.y - contentInset.top > 0 }
             .first?
             .indexPath

@@ -13,6 +13,8 @@ import CoreData
 /// In order to display initial data, you must call `fetch()`. Changes in the view context are automatically propagated to
 /// `delegate`. This class also supports updating data from the server.
 public final class SemesterListViewModel: FetchedResultsControllerDataSourceSection {
+    public typealias Row = Semester
+
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]
 

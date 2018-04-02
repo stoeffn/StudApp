@@ -49,7 +49,7 @@ public extension DataSource {
 extension DataSource {
     public typealias Iterator = RangeIterator<Section>
 
-    public func makeIterator() -> Iterator {
-        return Iterator(range: 0 ..< numberOfSections) { index in self[sectionAt: index] }
+    public func makeIterator() -> Self.Iterator {
+        return Iterator(range: 0 ..< numberOfSections) { self[sectionAt: $0] }
     }
 }
