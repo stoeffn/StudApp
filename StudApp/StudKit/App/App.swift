@@ -34,10 +34,7 @@ public enum App {
         // MARK: Callbacks
 
         /// URL that is opened in response to a successful authorization.
-        ///
-        /// This URL automatically redirects to `studapp://sign-in` including all query parameters. Unfortunately, this
-        /// redirection is neccessary because Stud.IP does not support custom schemes.
-        public static let signInCallback = URL(string: "https://studapp.stoeffn.de/sign-in")!
+        public static let signInCallback = URL(string: "http://127.0.0.1:8080/sign-in")!
     }
 
     // MARK: - Identifiers

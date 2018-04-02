@@ -141,10 +141,17 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
             }
             guard let url = viewModel.authorizationUrl else { return }
             authorize(at: url)
-        case .updatingAccessToken, .signingIn:
+        case .updatingAccessToken:
             animateWithSpring {
                 self.isActivityIndicatorHidden = false
             }
+            if #available(iOSApplicationExtension 11.0, *) {
+                (authenticationSession as? SFAuthenticationSession)?.cancel()
+            } else {
+                presentedViewController?.dismiss(animated: true, completion: nil)
+            }
+        case .signingIn:
+            break
         case .signedIn:
             UINotificationFeedbackGenerator().notificationOccurred(.success)
             performSegue(withRoute: .unwindToApp)
@@ -160,11 +167,9 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
             return present(controller, animated: true, completion: nil)
         }
 
-        let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { url, _ in
+        let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { _, _ in
             self.authenticationSession = nil
-
-            guard let url = url else { return self.performSegue(withRoute: .unwindToSignIn) }
-            self.viewModel.finishAuthorization(withCallbackUrl: url)
+            self.performSegue(withRoute: .unwindToSignIn)
         }
         session.start()
 
@@ -175,10 +180,7 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
 
     @objc
     private func safariViewControllerDidLoadAppUrl(notification: Notification) {
-        guard let url = notification.userInfo?[Notification.Name.safariViewControllerDidLoadAppUrlKey] as? URL else { return }
-        presentedViewController?.dismiss(animated: true) {
-            self.viewModel.finishAuthorization(withCallbackUrl: url)
-        }
+        presentedViewController?.dismiss(animated: true, completion: nil)
     }
 
     func safariViewControllerDidFinish(_: SFSafariViewController) {

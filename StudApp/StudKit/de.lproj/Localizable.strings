@@ -151,6 +151,7 @@
 "Error Signing In" = "Fehler beim Anmelden";
 "It seems like your organization does not support StudApp anymore." = "Es scheint, als würde Deine Organisation StudApp nicht mehr unterstützen.";
 "There was an error authorizing StudApp to access your organization." = "Es gab einen Fehler dabei, StudApp für Deine Organisation zu autorisieren.";
+"Invalid Server Callback." = "Ungültige Server-Rückmeldung.";
 
 // MARK: Color Picker
 
