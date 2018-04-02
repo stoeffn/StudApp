@@ -26,7 +26,7 @@ final class AnnouncementCell: UITableViewCell {
             updateSubtitleHiddenStates()
 
             let modifiedBy = userFullname != nil ? "by %@".localized(userFullname ?? "") : nil
-            let modifiedAtBy = ["Modified".localized, modifiedAt, modifiedBy].flatMap { $0 }.joined(separator: " ")
+            let modifiedAtBy = ["Modified".localized, modifiedAt, modifiedBy].compactMap { $0 }.joined(separator: " ")
             accessibilityLabel = [announcement.title, modifiedAtBy].joined(separator: ", ")
         }
     }

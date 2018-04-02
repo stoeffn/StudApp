@@ -59,7 +59,7 @@ extension CachingFileProviderEnumerator: NSFileProviderEnumerator {
             try? self.historyService.mergeHistory(into: self.coreDataService.viewContext)
             try? self.historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: self.coreDataService.viewContext)
 
-            let updatedItems = self.cache.updatedItems.flatMap { $0.fileProviderItem }
+            let updatedItems = self.cache.updatedItems.compactMap { $0.fileProviderItem }
 
             observer.didUpdate(updatedItems)
             observer.didDeleteItems(withIdentifiers: self.cache.deletedItemIdentifiers)

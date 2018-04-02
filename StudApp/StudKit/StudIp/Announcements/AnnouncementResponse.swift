@@ -55,7 +55,7 @@ extension AnnouncementResponse: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let rawCourseIds = try container.decode(Set<String>.self, forKey: .courseIds)
         id = try container.decode(String.self, forKey: .id)
-        courseIds = Set(rawCourseIds.flatMap { StudIp.transform(idPath: $0) })
+        courseIds = Set(rawCourseIds.compactMap { StudIp.transform(idPath: $0) })
         userId = try container.decodeIfPresent(String.self, forKey: .userId)?.nilWhenEmpty
         createdAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .createdAt)
         modifiedAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .modifiedAt)

@@ -87,7 +87,7 @@ extension CourseResponse {
         course.location = location
         course.lecturers = Set(lecturers)
         course.semesters = Set(semesters)
-        course.authors.formUnion([author].flatMap { $0 })
+        course.authors.formUnion([author].compactMap { $0 })
         return course
     }
 }

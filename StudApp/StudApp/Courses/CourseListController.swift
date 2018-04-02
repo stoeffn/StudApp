@@ -155,7 +155,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
         return UISwipeActionsConfiguration(actions: [
             colorAction(for: cell, at: indexPath),
-        ].flatMap { $0 })
+        ].compactMap { $0 })
     }
 
     @available(iOS 11.0, *)

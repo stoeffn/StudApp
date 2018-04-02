@@ -92,7 +92,7 @@ public final class CoreDataService {
     func removeAllObjects(in context: NSManagedObjectContext) throws {
         try [Semester.fetchRequest(), Course.fetchRequest(), User.fetchRequest()]
             .flatMap { try context.fetch($0) }
-            .flatMap { $0 as? NSManagedObject }
+            .compactMap { $0 as? NSManagedObject }
             .forEach { context.delete($0) }
     }
 }

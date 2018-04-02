@@ -119,7 +119,7 @@ extension Course: FilesContaining {
 
 extension Course {
     public var keywords: Set<String> {
-        let courseKeywords = [number].flatMap { $0 }
+        let courseKeywords = [number].compactMap { $0 }
         let lecturersKeywords = lecturers.flatMap { [$0.givenName, $0.familyName] }
         let semestersKeywords = semesters.map { $0.title }
         return Set(courseKeywords).union(lecturersKeywords).union(semestersKeywords)

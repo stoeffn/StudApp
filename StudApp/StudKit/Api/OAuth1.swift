@@ -90,7 +90,7 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
         let keysAndValues = response
             .split(separator: "&")
             .map(String.init)
-            .flatMap(decodeParameter)
+            .compactMap(decodeParameter)
         return Dictionary(uniqueKeysWithValues: keysAndValues)
     }
 
@@ -244,14 +244,14 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
             .joined(separator: "&")
 
         return [httpMethod, normalizedUrl.absoluteString, encodedParameters]
-            .flatMap { $0.addingPercentEncoding(withAllowedCharacters: allowedSignatureEncodingCharacters) }
+            .compactMap { $0.addingPercentEncoding(withAllowedCharacters: allowedSignatureEncodingCharacters) }
             .joined(separator: "&")
     }
 
     /// Returns the HMAC-SHA1 signature for `data`, signed by `key`.
     func signature(for data: Data, key: Data) -> Data {
         let signature = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: Int(CC_SHA1_DIGEST_LENGTH))
-        defer { signature.deallocate(capacity: Int(CC_SHA1_DIGEST_LENGTH)) }
+        defer { signature.deallocate() }
 
         data.withUnsafeBytes { dataBytes in
             key.withUnsafeBytes { keyBytes in

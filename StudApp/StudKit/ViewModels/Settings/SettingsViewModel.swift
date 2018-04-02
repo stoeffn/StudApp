@@ -17,9 +17,9 @@ public final class SettingsViewModel {
     public var sizeOfDownloadsDirectory: Int? {
         return FileManager.default
             .enumerator(at: BaseDirectories.downloads.url, includingPropertiesForKeys: [.fileSizeKey], options: [])?
-            .flatMap { $0 as? URL }
-            .flatMap { try? $0.resourceValues(forKeys: [.fileSizeKey]) }
-            .flatMap { $0.fileSize }
+            .compactMap { $0 as? URL }
+            .compactMap { try? $0.resourceValues(forKeys: [.fileSizeKey]) }
+            .compactMap { $0.fileSize }
             .reduce(0, +)
     }
 

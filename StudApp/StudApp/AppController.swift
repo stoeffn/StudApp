@@ -110,19 +110,19 @@ final class AppController: UITabBarController {
 
     var courseListController: CourseListController? {
         return viewControllers?
-            .flatMap { $0 as? UISplitViewController }
-            .flatMap { $0.viewControllers.first }
-            .flatMap { $0 as? UINavigationController }
-            .flatMap { $0.viewControllers.first }
-            .flatMap { $0 as? CourseListController }
+            .compactMap { $0 as? UISplitViewController }
+            .compactMap { $0.viewControllers.first }
+            .compactMap { $0 as? UINavigationController }
+            .compactMap { $0.viewControllers.first }
+            .compactMap { $0 as? CourseListController }
             .first
     }
 
     var downloadListController: DownloadListController? {
         return viewControllers?
-            .flatMap { $0 as? UINavigationController }
-            .flatMap { $0.viewControllers.first }
-            .flatMap { $0 as? DownloadListController }
+            .compactMap { $0 as? UINavigationController }
+            .compactMap { $0.viewControllers.first }
+            .compactMap { $0 as? DownloadListController }
             .first
     }
 

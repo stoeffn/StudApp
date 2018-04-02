@@ -11,7 +11,7 @@ typealias DiscoveryResponse = [String: [String: String]]
 extension ApiRoutesAvailablity {
     init(from discovery: DiscoveryResponse) {
         routes = discovery.mapValues { methods in
-            Set(methods.keys.flatMap { HttpMethods(rawValue: $0.uppercased()) })
+            Set(methods.keys.compactMap { HttpMethods(rawValue: $0.uppercased()) })
         }
     }
 }

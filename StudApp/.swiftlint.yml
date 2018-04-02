@@ -15,6 +15,7 @@ excluded:
 identifier_name:
   excluded:
     - id
+    - to
 
 type_name:
   excluded:

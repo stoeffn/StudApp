@@ -33,14 +33,14 @@ final class SafariActivity: UIActivity, ByTypeNameIdentifiable {
 
     override func canPerform(withActivityItems activityItems: [Any]) -> Bool {
         return !activityItems
-            .flatMap { $0 as? URL }
+            .compactMap { $0 as? URL }
             .filter { UIApplication.shared.canOpenURL($0) }
             .isEmpty
     }
 
     override func prepare(withActivityItems activityItems: [Any]) {
         url = activityItems
-            .flatMap { $0 as? URL }
+            .compactMap { $0 as? URL }
             .first
     }
 

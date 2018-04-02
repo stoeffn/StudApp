@@ -11,8 +11,6 @@ import XCTest
 
 final class RangeIteratorTests: XCTestCase {
     struct TestDataSourceSection: DataSourceSection {
-        typealias Row = Int
-
         weak var delegate: DataSourceSectionDelegate?
 
         var numberOfRows = 3

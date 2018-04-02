@@ -150,7 +150,7 @@ public extension File {
 
 extension File {
     public var keywords: Set<String> {
-        let fileKeywords = [title, name, owner?.givenName, owner?.familyName].flatMap { $0 }
+        let fileKeywords = [title, name, owner?.givenName, owner?.familyName].compactMap { $0 }
         return Set(fileKeywords).union(course.keywords)
     }
 

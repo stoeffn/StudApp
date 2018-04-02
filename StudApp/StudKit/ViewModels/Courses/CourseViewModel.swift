@@ -28,7 +28,7 @@ extension CourseViewModel: DataSourceSection {
 
     public var numberOfRows: Int {
         return rows
-            .flatMap { $0.value }
+            .compactMap { $0.value }
             .count
     }
 

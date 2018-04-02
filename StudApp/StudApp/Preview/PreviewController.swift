@@ -63,14 +63,14 @@ final class PreviewController: QLPreviewController, Routable {
 
     // MARK: - Working With 3D Touch Previews and Preview Quick Actions
 
-    override lazy var previewActionItems: [UIPreviewActionItem] = {
+    override var previewActionItems: [UIPreviewActionItem] {
         guard file.state.isDownloaded else { return [] }
         return [
             UIPreviewAction(title: "Remove".localized, style: .destructive) { _, _ in
                 try? self.file.removeDownload()
             },
         ]
-    }()
+    }
 
     // MARK: - Utilities
 

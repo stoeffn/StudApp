@@ -37,7 +37,7 @@ final class EventCell: UITableViewCell {
             let atLocation = event.location != nil ? "at %@".localized(event.location ?? "") : nil
             let cancellation = event.isCanceled ? "Canceled".localized : nil
             accessibilityLabel = [event.course.title, fromToTimes, atLocation, cancellation, event.cancellationReason]
-                .flatMap { $0 }
+                .compactMap { $0 }
                 .joined(separator: ", ")
         }
     }

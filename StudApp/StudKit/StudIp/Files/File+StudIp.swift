@@ -78,7 +78,7 @@ extension File {
                     return completion(.failure(result.error))
                 }
 
-                self.downloadedBy.formUnion([User.current?.in(context)].flatMap { $0 })
+                self.downloadedBy.formUnion([User.current?.in(context)].compactMap { $0 })
                 self.state.downloadedAt = downloadAt
                 try? context.save()
 
@@ -101,7 +101,7 @@ extension File {
     }
 
     public func removeDownload() throws {
-        downloadedBy.subtract([User.current].flatMap { $0 })
+        downloadedBy.subtract([User.current].compactMap { $0 })
 
         guard downloadedBy.isEmpty else { return }
 

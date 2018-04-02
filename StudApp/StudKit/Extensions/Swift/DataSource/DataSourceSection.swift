@@ -25,9 +25,7 @@ public extension DataSourceSection {
 // MARK: - Iterating
 
 public extension DataSourceSection {
-    public typealias Iterator = RangeIterator<Row>
-
-    public func makeIterator() -> Self.Iterator {
-        return Iterator(range: 0 ..< numberOfRows) { index in self[rowAt: index] }
+    public func makeIterator() -> RangeIterator<Row> {
+        return RangeIterator(range: 0 ..< numberOfRows) { self[rowAt: $0] }
     }
 }
