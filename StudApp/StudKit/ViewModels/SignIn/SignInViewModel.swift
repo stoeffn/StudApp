@@ -73,6 +73,10 @@ public final class SignInViewModel: NSObject {
         server["/sign-in"] = { [weak self] request in
             guard self?.state == .authorizing else { fatalError() }
 
+            guard !request.queryParams.isEmpty else {
+                return .movedPermanently("\(App.scheme)://\(request.path)")
+            }
+
             DispatchQueue.main.async {
                 if let url = URL(string: request.path) {
                     self?.state = .updatingAccessToken

@@ -181,6 +181,9 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
     @objc
     private func safariViewControllerDidLoadAppUrl(notification: Notification) {
         presentedViewController?.dismiss(animated: true, completion: nil)
+
+        guard viewModel.state == .authorizing else { return }
+        performSegue(withRoute: .unwindToSignIn)
     }
 
     func safariViewControllerDidFinish(_: SFSafariViewController) {
