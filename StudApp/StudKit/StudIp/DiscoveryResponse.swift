@@ -6,7 +6,7 @@
 //  Copyright © 2018 Steffen Ryll. All rights reserved.
 //
 
-typealias DiscoveryResponse = [String: [String: String]]
+typealias DiscoveryResponse = [String: [String: String?]]
 
 extension ApiRoutesAvailablity {
     init(from discovery: DiscoveryResponse) {
