@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UEc-k0-HPc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UEc-k0-HPc">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
@@ -56,7 +56,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14A-k0-KOd">
-                                    <rect key="frame" x="135" y="219.5" width="50" height="32"/>
+                                    <rect key="frame" x="135" y="218.5" width="50" height="32"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <state key="normal" title="Reload"/>
                                     <connections>
@@ -296,15 +296,15 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="cXk-S1-j3w" secondAttribute="height" multiplier="1:1" id="0mb-Je-Opi"/>
-                                                        <constraint firstAttribute="bottom" secondItem="NDK-C4-aKK" secondAttribute="bottom" id="99K-gA-2fb"/>
-                                                        <constraint firstAttribute="trailing" secondItem="NDK-C4-aKK" secondAttribute="trailing" id="FhC-Yv-CAF"/>
+                                                        <constraint firstAttribute="bottom" secondItem="NDK-C4-aKK" secondAttribute="bottom" id="J8Y-IU-dir"/>
                                                         <constraint firstAttribute="width" constant="50" id="SrS-k4-nX3"/>
-                                                        <constraint firstItem="NDK-C4-aKK" firstAttribute="leading" secondItem="cXk-S1-j3w" secondAttribute="leading" id="XJo-zd-XZ8"/>
-                                                        <constraint firstItem="NDK-C4-aKK" firstAttribute="top" secondItem="cXk-S1-j3w" secondAttribute="top" id="erh-4o-dSG"/>
+                                                        <constraint firstItem="NDK-C4-aKK" firstAttribute="leading" secondItem="cXk-S1-j3w" secondAttribute="leading" id="cxX-DV-hpk"/>
+                                                        <constraint firstItem="NDK-C4-aKK" firstAttribute="top" secondItem="cXk-S1-j3w" secondAttribute="top" id="ssH-bC-3XW"/>
+                                                        <constraint firstAttribute="trailing" secondItem="NDK-C4-aKK" secondAttribute="trailing" id="yOr-It-GDc"/>
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="NZQ-WI-0Ho">
-                                                    <rect key="frame" x="58" y="5.5" width="569.5" height="39"/>
+                                                    <rect key="frame" x="58" y="5.5" width="568" height="39"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Assignment 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7BS-La-ljQ">
                                                             <rect key="frame" x="0.0" y="0.0" width="102.5" height="20.5"/>
@@ -445,16 +445,18 @@
                                                     </subviews>
                                                 </stackView>
                                                 <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="7Bc-Ro-1Vl" customClass="StudIpActivityIndicator" customModule="StudKitUI">
-                                                    <rect key="frame" x="635.5" y="12" width="26" height="26"/>
+                                                    <rect key="frame" x="634" y="11" width="28" height="28"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="7Bc-Ro-1Vl" secondAttribute="height" multiplier="1:1" id="ORa-aQ-Pis"/>
+                                                        <constraint firstAttribute="width" constant="28" id="ZQi-oR-5av"/>
                                                     </constraints>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" image="DownloadGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="7ag-pv-zJc">
-                                                    <rect key="frame" x="669.5" y="9" width="32.5" height="32.5"/>
+                                                    <rect key="frame" x="670" y="9" width="32" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="7ag-pv-zJc" secondAttribute="height" multiplier="1:1" id="As0-LN-BEq"/>
+                                                        <constraint firstAttribute="width" constant="32" id="DDf-v0-38Q"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
@@ -463,10 +465,6 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="7Bc-Ro-1Vl" firstAttribute="height" secondItem="7ag-pv-zJc" secondAttribute="height" multiplier="0.8" id="0d0-kO-i8j"/>
-                                                <constraint firstItem="7ag-pv-zJc" firstAttribute="height" secondItem="NDK-C4-aKK" secondAttribute="height" multiplier="0.65" id="ezq-0j-y6f"/>
-                                            </constraints>
                                         </stackView>
                                     </subviews>
                                     <constraints>
@@ -832,6 +830,7 @@ Gebäude 3703: Technische Informatik</string>
                         </barButtonItem>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="vug-3o-1WH">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
                     <connections>
@@ -851,10 +850,10 @@ Gebäude 3703: Technische Informatik</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ege-Kh-itC">
-                                <rect key="frame" x="0.0" y="434" width="768" height="156"/>
+                                <rect key="frame" x="0.0" y="434.5" width="768" height="155"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a course on the left to get started." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMZ-t0-4Wb">
-                                        <rect key="frame" x="8" y="138" width="752" height="18"/>
+                                        <rect key="frame" x="8" y="137" width="752" height="18"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                         <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -875,7 +874,7 @@ Gebäude 3703: Technische Informatik</string>
                                         </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Course" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7eK-eX-Dx6">
-                                        <rect key="frame" x="8" y="113.5" width="752" height="21"/>
+                                        <rect key="frame" x="8" y="113.5" width="752" height="20.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
