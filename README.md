@@ -1,4 +1,4 @@
-#  StudApp—Stud.IP on the Go
+#  StudApp—Stud.IP to Go
 
 StudApp is an iOS application for the [Stud.IP](http://www.studip.de/) learning platform, which is widely used by German Universities and other organizations as it enables course organization and file management with ease. This project aims to take it to the next level by providing deep system integration by leveraging native capabilities of iOS.
 
@@ -63,3 +63,4 @@ StudApp is divided into three distinct targets (and accompanying testing targets
 
 # License
 
+StudApp is licensed under _GNU GENERAL PUBLIC LICENSE_. See [LICENSE.md](LICENSE.md) for details.
