@@ -3,9 +3,9 @@ StudApp is an _iOS_ application for the [Stud.IP learning platform](http://www.s
 
 This project aims to take this platform to the next level by leveraging native capabilities of _iOS_. With _StudApp_, it easier than ever to browse your courses, documents, and announcements! Being officially certified by _Stud.IP e.V._, it provides excellent ways to stay up-to-date.
 
-And—just like _Stud.IP_ itself—_StudApp_ is completely open source and free to be used by anyone as an no-cost app on the _App Store_.
+And—just like _Stud.IP_ itself—_StudApp_ is completely open source and free to be used by anyone as an [no-cost app on the App Store](https://itunes.apple.com/us/app/studapp/id1317593772?mt=8).
 
-<a href="https://itunes.apple.com/us/app/studapp/id1317593772?mt=8" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/assets/shared/badges/en-us/appstore-lrg.svg) no-repeat;width:135px;height:40px;background-size:contain;"></a>
+<img src="https://studapp.stoeffn.de/static/img/iPhone.png" alt="Screenshot: Course Overview" height="720" />
 
 ## Compatibility
 Generally, _StudApp_ can be used with every _Stud.IP_ instance and most _iPhone_, _iPad_, and _iPod touch_ devices.
@@ -107,25 +107,25 @@ I've implement a minimal approach that lets targets register instances for speci
 To give you a broad overview, here are the frameworks and libraries used in _StudApp_:
 
 #### First-Party
-* `CloudKit`---Managing and updating organizations
-* `CommonCrypto`---signing requests
-* `CoreData`---persisting and organizing data
-* `CoreGraphics`---drawing custom graphics like confetti or the loading indicator
-* `CoreSpotlight`---indexing app content
-* `FileProvider`---providing data to the _Files_ app
-* `FileProviderUI`---showing UI in the _Files_ app
-* `Foundation`---performing network requests and much more
-* `MessageUI`---Showing a mail composer for feedback
-* `MobileCoreServices`---dealing with file types
-* `QuickLook`---previewing documents
-* `SafariServices`---displaying websites inline and authorizing a user
-* `StoreKit`---handling tipping
-* `UIKit`---creating the _iOS_ app UI
-* `WebKit`---rendering web-based content like announcements
-* `XCTest`---testing my app
+* `CloudKit`—Managing and updating organizations
+* `CommonCrypto`—signing requests
+* `CoreData`—persisting and organizing data
+* `CoreGraphics`—drawing custom graphics like confetti or the loading indicator
+* `CoreSpotlight`—indexing app content
+* `FileProvider`—providing data to the _Files_ app
+* `FileProviderUI`—showing UI in the _Files_ app
+* `Foundation`—performing network requests and much more
+* `MessageUI`—Showing a mail composer for feedback
+* `MobileCoreServices`—dealing with file types
+* `QuickLook`—previewing documents
+* `SafariServices`—displaying websites inline and authorizing a user
+* `StoreKit`—handling tipping
+* `UIKit`—creating the _iOS_ app UI
+* `WebKit`—rendering web-based content like announcements
+* `XCTest`—testing my app
 
 #### Third-Party
-* [Swifter](https://github.com/httpswift/swifter)---Spinning up a simple redirect server needed when signing in
+* [Swifter](https://github.com/httpswift/swifter)—Spinning up a simple redirect server needed when signing in
 
 ## Testing
 Ensuring quality requires automated testing. I use _XCTest_ to unit-test my models with a focus on parsing API responses as well as updating and fetching data.
