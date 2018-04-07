@@ -23,6 +23,7 @@
 "%dx" = "%dx"; // Example: "11x" (eleven times)
 "%@ ago" = "%@ ago"; // Example "two months ago"
 "by %@" = "by %@"; // Example: "by Steve Jobs"
+"hosted by %@" = "hosted by %@"; // Example: "hosted by dropbox.com"
 "%@ – %@" = "%@ – %@"; // Example: "April – May"
 "from %@ to %@" = "from %@ to %@"; // Example: "from April 2018 to September 2018"
 "at %@" = "at %@"; // Example "at room 404"

@@ -41,6 +41,7 @@ final class FileCell: UITableViewCell {
             let modifiedAt = file.modifiedAt.formattedAsShortDifferenceFromNow
             let userFullname = file.owner?.nameComponents.formatted()
             let size = file.size.formattedAsByteCount
+            let host = file.externalUrl?.host
 
             accessoryType = file.isFolder ? .disclosureIndicator : .none
 
@@ -53,6 +54,7 @@ final class FileCell: UITableViewCell {
             modifiedAtLabel?.text = modifiedAt
             userLabel.text = userFullname
             sizeLabel.text = size
+            hostLabel.text = host
             downloadCountLabel.text = "%dx".localized(file.downloadCount)
             childCountLabel?.text = "%d items".localized(file.children.count)
 
@@ -66,7 +68,10 @@ final class FileCell: UITableViewCell {
             let modifiedAtBy = ["Modified".localized, modifiedAt, modifiedBy].compactMap { $0 }.joined(separator: " ")
             let folderOrDocument = file.isFolder ? "Folder".localized : "Document".localized
             let sizeOrItemCount = file.isFolder ? "%d items".localized(file.children.count) : size
-            accessibilityLabel = [folderOrDocument, file.title, modifiedAtBy, sizeOrItemCount].joined(separator: ", ")
+            let hostedBy = file.location == .external ? "hosted by %@".localized(host ?? "") : nil
+            accessibilityLabel = [
+                folderOrDocument, file.title, modifiedAtBy, sizeOrItemCount, hostedBy
+            ].compactMap { $0 }.joined(separator: ", ")
 
             let shareAction = UIAccessibilityCustomAction(name: "Share".localized, target: self, selector: #selector(share(_:)))
             let removeAction = UIAccessibilityCustomAction(name: "Remove".localized, target: self, selector: #selector(remove(_:)))
@@ -94,6 +99,9 @@ final class FileCell: UITableViewCell {
     @IBOutlet var sizeContainer: UIStackView!
     @IBOutlet var sizeLabel: UILabel!
 
+    @IBOutlet var hostContainer: UIStackView!
+    @IBOutlet var hostLabel: UILabel!
+
     @IBOutlet var downloadCountContainer: UIStackView!
     @IBOutlet var downloadCountLabel: UILabel!
 
@@ -106,6 +114,7 @@ final class FileCell: UITableViewCell {
     private func updateSubtitleHiddenStates() {
         guard let file = file else { return }
         sizeContainer.isHidden = file.size == -1
+        hostContainer.isHidden = file.location != .external
         downloadCountContainer.isHidden = file.downloadCount == -1 || frame.width < 512
         childCountContainer?.isHidden = !file.isFolder || file.state.childFilesUpdatedAt == nil
         userContainer.isHidden = file.owner == nil || frame.width < 512

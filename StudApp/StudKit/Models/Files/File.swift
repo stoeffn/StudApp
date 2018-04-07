@@ -59,7 +59,7 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
     /// When stored at an external file hoster, this property describes the remote content location.
     ///
     /// - Remark: `externalUrlString` is not of type `URI` in order to support iOS 10.
-    var externalUrl: URL? {
+    public var externalUrl: URL? {
         get {
             guard let externalUrlString = externalUrlString else { return nil }
             guard let url = URL(string: externalUrlString) else { fatalError("Cannot construct URL from `externalUrlString`.") }

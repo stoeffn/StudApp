@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="V9G-bX-yYl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="V9G-bX-yYl">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
@@ -106,7 +106,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GJG-Fh-Lnk">
-                                                            <rect key="frame" x="0.0" y="22.5" width="296.5" height="16"/>
+                                                            <rect key="frame" x="0.0" y="22.5" width="404.5" height="16"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="gJd-0c-aQd">
                                                                     <rect key="frame" x="0.0" y="0.0" width="79.5" height="16"/>
@@ -157,8 +157,33 @@
                                                                     <viewLayoutGuide key="safeArea" id="Utv-SQ-UkF"/>
                                                                     <variation key="widthClass=regular" spacing="4"/>
                                                                 </stackView>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="EZa-Uy-Ito">
+                                                                    <rect key="frame" x="152.5" y="0.0" width="100" height="16"/>
+                                                                    <subviews>
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HostSubtitleGlyph" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1aB-a3-TwZ">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                                                            <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" secondItem="1aB-a3-TwZ" secondAttribute="height" multiplier="1:1" id="ghk-b7-HZG"/>
+                                                                            </constraints>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                                                                    <color key="value" white="0.75" alpha="1" colorSpace="calibratedWhite"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                        </imageView>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="dropbox.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fow-gR-cn8">
+                                                                            <rect key="frame" x="20" y="0.0" width="80" height="16"/>
+                                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                                            <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                    <viewLayoutGuide key="safeArea" id="TeD-fJ-E8Y"/>
+                                                                    <variation key="widthClass=regular" spacing="4"/>
+                                                                </stackView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="PIu-v7-Dia">
-                                                                    <rect key="frame" x="152.5" y="0.0" width="49" height="16"/>
+                                                                    <rect key="frame" x="260.5" y="0.0" width="49" height="16"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownloadCountSubtitleGlyph" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kd0-X6-vkE">
                                                                             <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
@@ -183,7 +208,7 @@
                                                                     <variation key="widthClass=regular" spacing="4"/>
                                                                 </stackView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Ekt-bJ-adT">
-                                                                    <rect key="frame" x="209.5" y="0.0" width="87" height="16"/>
+                                                                    <rect key="frame" x="317.5" y="0.0" width="87" height="16"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserSubtitleGlyph" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hsZ-23-e2k">
                                                                             <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
@@ -228,6 +253,8 @@
                                 <connections>
                                     <outlet property="downloadCountContainer" destination="PIu-v7-Dia" id="R92-Dr-a95"/>
                                     <outlet property="downloadCountLabel" destination="u7Q-1S-fX7" id="aHb-7X-kWo"/>
+                                    <outlet property="hostContainer" destination="EZa-Uy-Ito" id="amq-Da-3HW"/>
+                                    <outlet property="hostLabel" destination="fow-gR-cn8" id="ZoF-Ku-d7k"/>
                                     <outlet property="iconView" destination="CSQ-4S-MVL" id="dJ7-hv-5jp"/>
                                     <outlet property="modifiedAtContainer" destination="gJd-0c-aQd" id="n1f-0h-kep"/>
                                     <outlet property="modifiedAtLabel" destination="aoH-9v-kZt" id="9u2-oo-wSL"/>
@@ -292,6 +319,7 @@
         <image name="DownloadsLandscapeTabBarGlyph" width="20" height="20"/>
         <image name="DownloadsTabBarGlyph" width="28" height="28"/>
         <image name="FolderIcon" width="512" height="512"/>
+        <image name="HostSubtitleGlyph" width="16" height="16"/>
         <image name="SizeSubtitleGlyph" width="16" height="16"/>
         <image name="TimeSubtitleGlyph" width="16" height="16"/>
         <image name="UserBarButtonGlyph" width="25" height="25"/>
