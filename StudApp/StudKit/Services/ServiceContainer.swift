@@ -30,10 +30,8 @@ public final class ServiceContainer {
     /// Creates a service container and registers the services created by the providers given.
     ///
     /// - Parameter providers: Service providers that know how to create their services.
-    public init(providers: ServiceProvider...) {
-        for provider in providers {
-            provider.registerServices(in: self)
-        }
+    public init(providers: [ServiceProvider] = []) {
+        register(providers: providers)
     }
 
     /// Returns a string representation for the given type that should be used as the key for identifying this type.
