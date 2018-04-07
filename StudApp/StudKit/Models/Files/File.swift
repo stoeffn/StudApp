@@ -24,6 +24,18 @@ import QuickLook
 @objc(File)
 public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDSortable {
 
+    // MARK: Location Types
+
+    /// Describes where the content of a file is stored.
+    ///
+    /// - invalid: Invalid configuration or inaccessible content.
+    /// - studIp: Content can be retrieved via the _Stud.IP_ API.
+    /// - external: Content is hosted by an external file provider.
+    @objc
+    public enum Location: Int {
+        case invalid, studIp, external
+    }
+
     // MARK: Identification
 
     public static let entity = ObjectIdentifier.Entites.file
@@ -41,6 +53,23 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
 
     /// Course this file belongs to.
     @NSManaged public var course: Course
+
+    @NSManaged private var externalUrlString: String?
+
+    /// When stored at an external file hoster, this property describes the remote content location.
+    ///
+    /// - Remark: `externalUrlString` is not of type `URI` in order to support iOS 10.
+    var externalUrl: URL? {
+        get {
+            guard let externalUrlString = externalUrlString else { return nil }
+            guard let url = URL(string: externalUrlString) else { fatalError("Cannot construct URL from `externalUrlString`.") }
+            return url
+        }
+        set { externalUrlString = newValue?.absoluteString }
+    }
+
+    /// Describes where the content of a file is stored.
+    @NSManaged public var location: Location
 
     /// Parent file, which should be a folder and contain this file. If a file has no parent folder, it is assumed to be in its
     /// course's root.
@@ -137,6 +166,7 @@ public extension File {
     /// Whether this file is available. Returns `true` for folders as they can be enumerated and for documents iff downloaded
     /// or network is available.
     public var isAvailable: Bool {
+        guard location != .invalid else { return false }
         let reachabilityService = ServiceContainer.default[ReachabilityService.self]
         return (isFolder && state.childFilesUpdatedAt != nil)
             || state.isDownloaded
