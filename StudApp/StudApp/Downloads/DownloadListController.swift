@@ -87,6 +87,8 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         let previewController = PreviewController()
         previewController.prepareContent(for: .preview(for: file, self))
         present(previewController, animated: true, completion: nil)
+
+        ServiceContainer.default[StoreService.self].requestReview()
     }
 
     // MARK: - Table View Data Source

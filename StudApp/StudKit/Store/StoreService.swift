@@ -19,6 +19,7 @@
 import StoreKit
 
 public final class StoreService: NSObject {
+    private lazy var storageService = ServiceContainer.default[StorageService.self]
 
     // MARK: - Products
 
@@ -39,6 +40,34 @@ public final class StoreService: NSObject {
 
     deinit {
         SKPaymentQueue.default().remove(self)
+    }
+
+    // MARK: - Requesting Reviews
+
+    private let reviewRequestTimeout: TimeInterval = 60 * 60 * 24 * 7 // one week
+
+    private let reviewRequestMinimumDownloadCount = 3
+
+    var didRequestRatingAt: Date? {
+        get { return storageService.defaults.object(forKey: UserDefaults.didRequestRatingAtKey) as? Date }
+        set { storageService.defaults.set(newValue, forKey: UserDefaults.didRequestRatingAtKey) }
+    }
+
+    /// Requests an _App Store_ review at its own discretion, taking into account when the user installed the app, whether the
+    /// user was recently prompted, and if the user has a minimum number of downloads.
+    public func requestReview() {
+        /// Skip requesting a review if the user has not been prompted before.
+        guard let didRequestRatingAt = didRequestRatingAt else { return self.didRequestRatingAt = Date() }
+
+        guard
+            #available(iOSApplicationExtension 10.3, *),
+            let user = User.current,
+            didRequestRatingAt + reviewRequestTimeout < Date(),
+            user.downloads.count >= reviewRequestMinimumDownloadCount
+        else { return }
+
+        SKStoreReviewController.requestReview()
+        self.didRequestRatingAt = Date()
     }
 }
 

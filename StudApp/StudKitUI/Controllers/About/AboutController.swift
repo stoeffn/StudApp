@@ -296,7 +296,10 @@ final class AboutController: UITableViewController, Routable {
             let controller = UIAlertController(title: "Thank You So Much!".localized, message: message, preferredStyle: .alert)
             controller.addAction(UIAlertAction(title: "Okay".localized, style: .cancel) { _ in
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
-                    self.presentedViewController?.dismiss(animated: true, completion: nil)
+                    self.presentedViewController?.dismiss(animated: true) {
+                        guard #available(iOSApplicationExtension 10.3, *) else { return }
+                        SKStoreReviewController.requestReview()
+                    }
                 }
             })
             performSegue(withRoute: .confetti(alert: controller))

@@ -60,7 +60,9 @@ final class AnnouncementController: UIViewController, Routable {
 
     @IBAction
     private func doneButtonTapped(_: Any) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true) {
+            ServiceContainer.default[StoreService.self].requestReview()
+        }
     }
 }
 

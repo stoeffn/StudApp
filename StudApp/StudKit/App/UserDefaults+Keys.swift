@@ -26,4 +26,6 @@ extension UserDefaults {
     static let userIdKey = "userId"
 
     static let storeStateKey = "storeState"
+
+    static let didRequestRatingAtKey = "didRequestRatingAt"
 }

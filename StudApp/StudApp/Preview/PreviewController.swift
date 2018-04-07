@@ -53,6 +53,8 @@ final class PreviewController: QLPreviewController, Routable {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
+        ServiceContainer.default[StoreService.self].requestReview()
+
         try? historyService.mergeHistory(into: coreDataService.viewContext)
         try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
     }
