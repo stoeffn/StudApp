@@ -19,8 +19,23 @@
 import CoreData
 import MobileCoreServices
 
+extension File.Location {
+    init(rawLocation: String?, externalUrl: URL?) {
+        switch rawLocation {
+        case "disk", nil:
+            self = .studIp
+        case "url" where externalUrl != nil:
+            self = .external
+        default:
+            self = .invalid
+        }
+    }
+}
+
 struct DocumentResponse: IdentifiableResponse {
     let id: String
+    let location: File.Location
+    let externalUrl: URL?
     let userId: String?
     let name: String
     let createdAt: Date
@@ -29,9 +44,12 @@ struct DocumentResponse: IdentifiableResponse {
     let size: Int?
     let downloadCount: Int?
 
-    init(id: String, userId: String? = nil, name: String = "", createdAt: Date = .distantPast, modifiedAt: Date = .distantPast,
-         summary: String? = nil, size: Int? = nil, downloadCount: Int? = nil) {
+    init(id: String, location: File.Location = .invalid, externalUrl: URL? = nil, userId: String? = nil, name: String = "",
+         createdAt: Date = .distantPast, modifiedAt: Date = .distantPast, summary: String? = nil, size: Int? = nil,
+         downloadCount: Int? = nil) {
         self.id = id
+        self.location = location
+        self.externalUrl = externalUrl
         self.userId = userId
         self.name = name
         self.createdAt = createdAt
@@ -47,6 +65,8 @@ struct DocumentResponse: IdentifiableResponse {
 extension DocumentResponse: Decodable {
     enum CodingKeys: String, CodingKey {
         case id
+        case location = "storage"
+        case externalUrl = "url"
         case userId = "user_id"
         case name
         case createdAt = "mkdate"
@@ -59,6 +79,8 @@ extension DocumentResponse: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
+        externalUrl = try? container.decode(URL.self, forKey: .externalUrl)
+        location = File.Location(rawLocation: try? container.decode(String.self, forKey: .location), externalUrl: externalUrl)
         userId = try container.decodeIfPresent(String.self, forKey: .userId)?.nilWhenEmpty
         name = try container.decode(String.self, forKey: .name)
         createdAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .createdAt)
@@ -75,6 +97,8 @@ extension DocumentResponse {
     @discardableResult
     func coreDataObject(course: Course, parent: File? = nil, in context: NSManagedObjectContext) throws -> File {
         let (document, _) = try File.fetch(byId: id, orCreateIn: context)
+        document.location = location
+        document.externalUrl = externalUrl
         document.organization = course.organization
         document.typeIdentifier = typeIdentifier
         document.course = course
