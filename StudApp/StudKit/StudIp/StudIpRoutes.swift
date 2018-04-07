@@ -81,7 +81,7 @@ public enum StudIpRoutes: ApiRoutes {
             return "discovery"
         case let .eventsInCourse(courseId):
             return "course/\(courseId)/events"
-        case let .fileContents(fileId):
+        case let .fileContents(fileId, _):
             return "file/\(fileId)/download"
         case let .folder(folderId):
             return "folder/\(folderId)"
