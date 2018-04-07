@@ -65,6 +65,10 @@ class Api<Routes: ApiRoutes> {
 
     /// Returns the full `URL` for `route`, consisting of the base `URL` as well as the route's path and query parameters.
     func url(for route: Routes, parameters: [URLQueryItem] = []) throws -> URL {
+        if let url = route.url {
+            return url
+        }
+
         guard let url = baseUrl?.appendingPathComponent(route.path) else { throw Errors.missingBaseUrl }
 
         var components = URLComponents(url: url, resolvingAgainstBaseURL: false)

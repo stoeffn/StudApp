@@ -25,6 +25,9 @@ protocol ApiRoutes {
     /// Route's path that will be appended to an API's base `URL`.
     var path: String { get }
 
+    /// This property overrides the default URL creation. Defaults to `nil`.
+    var url: URL? { get }
+
     /// If the route's return value conforms to `Decodable` the type can be specified here. This adds support for
     /// `API.requestDecoded`, which returns the server's response as a decoded object. Defaults to `nil`.
     var type: Decodable.Type? { get }
@@ -42,6 +45,10 @@ protocol ApiRoutes {
 // MARK: - Default Implementation
 
 extension ApiRoutes {
+    var url: URL? {
+        return nil
+    }
+
     var type: Decodable.Type? {
         return nil
     }
