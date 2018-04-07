@@ -77,8 +77,8 @@ extension File {
         didChangeValue(for: \.state)
 
         let studIpService = ServiceContainer.default[StudIpService.self]
-        let destination = localUrl(in: .downloads)
-        let task = studIpService.api.download(.fileContents(forFileId: id), to: destination, startsResumed: false) { result in
+        let route = StudIpRoutes.fileContents(forFileId: id, externalUrl: externalUrl)
+        let task = studIpService.api.download(route, to: localUrl(in: .downloads), startsResumed: false) { result in
             context.perform {
                 self.willChangeValue(for: \.state)
                 self.state.isDownloading = false

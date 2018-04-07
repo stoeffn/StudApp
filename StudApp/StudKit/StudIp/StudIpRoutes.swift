@@ -30,8 +30,9 @@ public enum StudIpRoutes: ApiRoutes {
     /// Returns information on what routes are available.
     case discovery
 
-    /// Returns the contents of a file with the given id.
-    case fileContents(forFileId: String)
+    /// Returns the contents of a file with the given id. If `externalUrl` is not `nil`, this URL will be used for downloading
+    /// the file instead of using the default _Stud.IP_ file content API.
+    case fileContents(forFileId: String, externalUrl: URL?)
 
     /// Returns a folder along with its first-level children.
     case folder(withId: String)
@@ -92,6 +93,15 @@ public enum StudIpRoutes: ApiRoutes {
             return "semesters"
         case let .setGroupForCourse(withId: courseId, andUserWithId: userId, _):
             return "user/\(userId)/courses/\(courseId)"
+        }
+    }
+
+    var url: URL? {
+        switch self {
+        case let .fileContents(_, externalUrl):
+            return externalUrl
+        default:
+            return nil
         }
     }
 
