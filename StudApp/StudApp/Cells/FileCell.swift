@@ -122,7 +122,7 @@ final class FileCell: UITableViewCell {
 
     private func updateReachabilityIndicator() {
         UIView.animate(withDuration: UI.defaultAnimationDuration) {
-            self.contentView.alpha = self.file.isAvailable ? 1 : 0.6
+            self.contentView.alpha = self.file.isAvailable ? 1 : 0.5
         }
     }
 

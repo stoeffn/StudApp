@@ -161,6 +161,7 @@ public extension File {
         return !isFolder
             && !state.isMostRecentVersionDownloaded
             && !state.isDownloading
+            && location != .invalid
     }
 
     /// Whether this file is available. Returns `true` for folders as they can be enumerated and for documents iff downloaded
