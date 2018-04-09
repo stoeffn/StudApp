@@ -112,9 +112,9 @@ final class FileCell: UITableViewCell {
 
     private func updateSubtitleHiddenStates() {
         guard let file = file else { return }
-        sizeContainer.isHidden = file.size == -1
+        sizeContainer.isHidden = file.size <= 0
         hostContainer.isHidden = file.location != .external
-        downloadCountContainer.isHidden = file.downloadCount == -1 || frame.width < 512
+        downloadCountContainer.isHidden = file.downloadCount <= 0 || frame.width < 512
         childCountContainer?.isHidden = !file.isFolder || file.state.childFilesUpdatedAt == nil
         userContainer.isHidden = file.owner == nil || frame.width < 512
     }
