@@ -40,3 +40,14 @@ public enum Distributions {
         }
     }()
 }
+
+extension Distributions: CustomStringConvertible {
+    public var description: String {
+        switch self {
+        case .debug: return "Debug"
+        case .uiTest: return "UI Test"
+        case .testFlight: return "TestFlight"
+        case .appStore: return "App Store"
+        }
+    }
+}

@@ -63,6 +63,9 @@ public enum App {
     /// Display name of the application.
     public static let name = Bundle.main.infoDictionary!["CFBundleDisplayName"] as! String
 
+    /// Build number.
+    public static let version = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
+
     /// Human-readable version name for this application.
     public static let versionName = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
 

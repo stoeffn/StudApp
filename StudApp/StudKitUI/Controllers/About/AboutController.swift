@@ -34,7 +34,16 @@ final class AboutController: UITableViewController, Routable {
 
         tableView.register(ThanksNoteCell.self, forCellReuseIdentifier: ThanksNoteCell.typeIdentifier)
 
-        titleLabel.text = "\(App.name) \(App.versionName)"
+        switch Distributions.current {
+        case .debug, .uiTest, .testFlight:
+            titleLabel.text = "\(App.name) \(App.versionName) (\(App.version))"
+            distributionLabel.isHidden = false
+        case .appStore:
+            titleLabel.text = "\(App.name) \(App.versionName)"
+            distributionLabel.isHidden = true
+        }
+
+        distributionLabel.text = Distributions.current.description
         subtitleLabel.text = "by %@".localized(App.authorName)
 
         websiteCell.textLabel?.text = "Website".localized
@@ -56,6 +65,8 @@ final class AboutController: UITableViewController, Routable {
     // MARK: - User Interface
 
     @IBOutlet var titleLabel: UILabel!
+
+    @IBOutlet var distributionLabel: UILabel!
 
     @IBOutlet var subtitleLabel: UILabel!
 
