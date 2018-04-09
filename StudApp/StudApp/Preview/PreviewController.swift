@@ -89,6 +89,10 @@ final class PreviewController: QLPreviewController, Routable {
 
     static func controllerForDownloadOrPreview(_ file: File, delegate: QLPreviewControllerDelegate,
                                                handler: @escaping (UIViewController) -> Void) {
+        if let externalUrl = file.externalUrl, !file.isLocationSecure {
+            return handler(ServiceContainer.default[HtmlContentService.self].safariViewController(for: externalUrl))
+        }
+
         guard file.state.isMostRecentVersionDownloaded else {
             file.download { result in
                 guard result.isFailure else { return UINotificationFeedbackGenerator().notificationOccurred(.success) }

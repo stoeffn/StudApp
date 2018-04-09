@@ -42,7 +42,7 @@ final class FileCell: UITableViewCell {
             let size = file.size.formattedAsByteCount
             let host = file.externalUrl?.host
 
-            accessoryType = file.isFolder ? .disclosureIndicator : .none
+            accessoryType = file.isFolder || !file.isLocationSecure ? .disclosureIndicator : .none
 
             iconView.image = nil
             fileIconService.icon(for: file) { self.iconView?.image = $0 }
@@ -58,7 +58,7 @@ final class FileCell: UITableViewCell {
             childCountLabel?.text = "%d items".localized(file.children.count)
 
             activityIndicator?.isHidden = !file.state.isDownloading
-            downloadGlyph?.isHidden = !file.isDownloadable
+            downloadGlyph?.isHidden = !file.isDownloadable || !file.isLocationSecure
 
             updateSubtitleHiddenStates()
             updateReachabilityIndicator()
@@ -68,6 +68,7 @@ final class FileCell: UITableViewCell {
             let folderOrDocument = file.isFolder ? "Folder".localized : "Document".localized
             let sizeOrItemCount = file.isFolder ? "%d items".localized(file.children.count) : size
             let hostedBy = file.location == .external ? "hosted by %@".localized(host ?? "") : nil
+
             accessibilityLabel = [
                 folderOrDocument, file.title, modifiedAtBy, sizeOrItemCount, hostedBy
             ].compactMap { $0 }.joined(separator: ", ")

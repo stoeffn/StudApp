@@ -155,6 +155,13 @@ public extension File {
         return typeIdentifier == kUTTypeFolder as String
     }
 
+    /// File name without extension.
+    public var title: String {
+        return URL(string: name)?
+            .deletingPathExtension()
+            .lastPathComponent ?? name
+    }
+
     /// Whether this file is available for download, ignoring network connectivity conditions. May also be `true` for downloaded
     /// files if a more recent version is available.
     public var isDownloadable: Bool {
@@ -174,16 +181,17 @@ public extension File {
             || reachabilityService.currentFlags.contains(.reachable)
     }
 
+    public var isLocationSecure: Bool {
+        switch location {
+        case .invalid: return false
+        case .studIp: return true
+        case .external: return !["http", "ftp"].contains(externalUrl?.scheme ?? "")
+        }
+    }
+
     public func localUrl(in directory: BaseDirectories) -> URL {
         return directory.containerUrl(forObjectId: objectIdentifier)
             .appendingPathComponent(name, isDirectory: isFolder)
-    }
-
-    /// File name without extension.
-    public var title: String {
-        return URL(string: name)?
-            .deletingPathExtension()
-            .lastPathComponent ?? name
     }
 }
 
