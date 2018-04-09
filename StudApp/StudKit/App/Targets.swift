@@ -29,6 +29,76 @@ public enum Targets: String {
 
     /// Current target as initialized at app, app extension, or test start.
     public static var current: Targets {
-        return ServiceContainer.default[ContextService.self].currentTarget
+        return currentContext.currentTarget
+    }
+}
+
+extension Targets {
+    public struct Context {
+        let currentTarget: Targets
+        let extensionContext: NSExtensionContext?
+        let openUrl: ((URL, [String: Any], ((Bool) -> Void)?) -> Void)?
+        let preferredContentSizeCategory: (() -> UIContentSizeCategory)?
+
+        public init(currentTarget: Targets, extensionContext: NSExtensionContext? = nil,
+                    openUrl: ((URL, [String: Any], ((Bool) -> Void)?) -> Void)? = nil,
+                    preferredContentSizeCategory: (() -> UIContentSizeCategory)? = nil) {
+            self.currentTarget = currentTarget
+            self.extensionContext = extensionContext
+            self.openUrl = openUrl
+            self.preferredContentSizeCategory = preferredContentSizeCategory
+        }
+    }
+
+    static var currentContext = Context(currentTarget: .app)
+}
+
+// MARK: - Target extension
+
+public extension Targets {
+    static let uiTestsProcessArgument = "uiTest"
+
+    var isRunningUITests: Bool {
+        guard self == Targets.current else { return false }
+        return ProcessInfo.processInfo.arguments.contains(Targets.uiTestsProcessArgument)
+    }
+
+    var extensionContext: NSExtensionContext? {
+        guard self == Targets.current else { return nil }
+        return Targets.currentContext.extensionContext
+    }
+
+    var preferredContentSizeCategory: UIContentSizeCategory {
+        guard self == Targets.current else { return .unspecified }
+        return Targets.currentContext.preferredContentSizeCategory?() ?? .unspecified
+    }
+
+    var prefersAccessibilityContentSize: Bool {
+        guard #available(iOS 11.0, *) else {
+            return [
+                .accessibilityMedium, .accessibilityLarge, .accessibilityExtraLarge,
+                .accessibilityExtraExtraLarge, .accessibilityExtraExtraExtraLarge,
+            ].contains(preferredContentSizeCategory)
+        }
+        return preferredContentSizeCategory.isAccessibilityCategory
+    }
+}
+
+// MARK: - Communicating with Other Processes
+
+public extension Targets {
+    func open(url: URL, completion: ((Bool) -> Void)?) {
+        guard self == Targets.current else {
+            completion?(false)
+            return
+        }
+
+        if let openUrl = Targets.currentContext.openUrl {
+            return openUrl(url, [:], completion)
+        }
+        if let openUrl = Targets.currentContext.extensionContext?.open {
+            return openUrl(url, completion)
+        }
+        completion?(false)
     }
 }

@@ -29,7 +29,7 @@ final class FileProviderExtension: NSFileProviderExtension {
 
     override init() {
         ServiceContainer.default.register(providers: [
-            StudKitServiceProvider(currentTarget: .fileProvider),
+            StudKitServiceProvider(context: Targets.Context(currentTarget: .fileProvider)),
         ])
 
         coreDataService = ServiceContainer.default[CoreDataService.self]

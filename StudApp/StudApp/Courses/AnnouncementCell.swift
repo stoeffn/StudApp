@@ -20,8 +20,6 @@ import StudKit
 import StudKitUI
 
 final class AnnouncementCell: UITableViewCell {
-    private let contextService = ServiceContainer.default[ContextService.self]
-
     // MARK: - Life Cycle
 
     var announcement: Announcement! {
@@ -30,7 +28,7 @@ final class AnnouncementCell: UITableViewCell {
             let userFullname = announcement.user?.nameComponents.formatted()
 
             titleLabel.text = announcement.title
-            titleLabel.numberOfLines = contextService.prefersAccessibilityContentSize ? 3 : 1
+            titleLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 3 : 1
             modifiedAtLabel.text = modifiedAt
             userLabel.text = userFullname
             updateSubtitleHiddenStates()

@@ -186,7 +186,6 @@
 		24A766492042DB8B00127BBA /* UIStoryboardSegueWithCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A766482042DB8B00127BBA /* UIStoryboardSegueWithCompletion.swift */; };
 		24A8945520421194005B5640 /* StudKitUIServiceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A8945420421194005B5640 /* StudKitUIServiceProvider.swift */; };
 		24A8945920421206005B5640 /* FileIconService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A8945820421206005B5640 /* FileIconService.swift */; };
-		24A8EDDE1FCCBC93007C1CCF /* ContextService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A8EDDD1FCCBC93007C1CCF /* ContextService.swift */; };
 		24ABFC481FD714AF00CD1646 /* Courses.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24ABFC471FD714AF00CD1646 /* Courses.storyboard */; };
 		24ABFC4A1FD714EF00CD1646 /* CourseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24ABFC491FD714EF00CD1646 /* CourseListController.swift */; };
 		24B091EB2036EC6A00A5037A /* DocumentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B091EA2036EC6A00A5037A /* DocumentResponse.swift */; };
@@ -537,7 +536,6 @@
 		24A766482042DB8B00127BBA /* UIStoryboardSegueWithCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardSegueWithCompletion.swift; sourceTree = "<group>"; };
 		24A8945420421194005B5640 /* StudKitUIServiceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudKitUIServiceProvider.swift; sourceTree = "<group>"; };
 		24A8945820421206005B5640 /* FileIconService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileIconService.swift; sourceTree = "<group>"; };
-		24A8EDDD1FCCBC93007C1CCF /* ContextService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContextService.swift; sourceTree = "<group>"; };
 		24ABFC471FD714AF00CD1646 /* Courses.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Courses.storyboard; sourceTree = "<group>"; };
 		24ABFC491FD714EF00CD1646 /* CourseListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseListController.swift; sourceTree = "<group>"; };
 		24B091EA2036EC6A00A5037A /* DocumentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentResponse.swift; sourceTree = "<group>"; };
@@ -1130,7 +1128,6 @@
 			isa = PBXGroup;
 			children = (
 				241C67E91FCDFAC700F4A099 /* App.swift */,
-				24A8EDDD1FCCBC93007C1CCF /* ContextService.swift */,
 				24FD785D1FBF45B10072F860 /* Targets.swift */,
 				24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */,
 				243CC2BF1FDF19BB00FE7376 /* UserActivities.swift */,
@@ -2348,7 +2345,6 @@
 				24D360FF1FAA5E0800BBBAED /* User.swift in Sources */,
 				243CC2C01FDF19BB00FE7376 /* UserActivities.swift in Sources */,
 				24D729411FC7490C0097777F /* Int+ByteCountFormatting.swift in Sources */,
-				24A8EDDE1FCCBC93007C1CCF /* ContextService.swift in Sources */,
 				243040A62043398F0018F367 /* ApiRoutesAvailablity.swift in Sources */,
 				24801F451FE6E6EC0064C748 /* NSMutableAttributedString+Utils.swift in Sources */,
 				24D360E61FAA5D7600BBBAED /* CourseState.swift in Sources */,

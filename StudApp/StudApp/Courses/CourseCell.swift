@@ -19,8 +19,6 @@
 import StudKit
 
 final class CourseCell: UITableViewCell {
-    private let contextService = ServiceContainer.default[ContextService.self]
-
     // MARK: - Life Cycle
 
     var course: Course! {
@@ -32,7 +30,7 @@ final class CourseCell: UITableViewCell {
 
             colorView.backgroundColor = course.color
             titleLabel.text = course.title
-            titleLabel.numberOfLines = contextService.prefersAccessibilityContentSize ? 3 : 1
+            titleLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 3 : 1
             lecturersLabel.text = lecturerNames
 
             accessibilityLabel = [course.title, "by %@".localized(lecturerNames)].joined(separator: " ")

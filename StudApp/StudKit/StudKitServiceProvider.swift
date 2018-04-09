@@ -17,26 +17,8 @@
 //
 
 public class StudKitServiceProvider: ServiceProvider {
-    private let currentTarget: Targets
-    private let isRunningUiTests: Bool
-    private let extensionContext: NSExtensionContext?
-    private let openUrl: ((URL, ((Bool) -> Void)?) -> Void)?
-    private let preferredContentSizeCategory: (() -> UIContentSizeCategory)?
-
-    public init(currentTarget: Targets, isRunningUiTests: Bool = false, extensionContext: NSExtensionContext? = nil,
-                openUrl: ((URL, ((Bool) -> Void)?) -> Void)? = nil,
-                preferredContentSizeCategory: (() -> UIContentSizeCategory)? = nil) {
-        self.currentTarget = currentTarget
-        self.isRunningUiTests = isRunningUiTests
-        self.extensionContext = extensionContext
-        self.openUrl = openUrl
-        self.preferredContentSizeCategory = preferredContentSizeCategory
-    }
-
-    func provideContextService() -> ContextService {
-        return ContextService(currentTarget: currentTarget, isRunningUiTests: isRunningUiTests,
-                              extensionContext: extensionContext, openUrl: openUrl,
-                              preferredContentSizeCategory: preferredContentSizeCategory)
+    public init(context: Targets.Context) {
+        Targets.currentContext = context
     }
 
     func provideReachabilityService() -> ReachabilityService {
@@ -62,13 +44,12 @@ public class StudKitServiceProvider: ServiceProvider {
     }
 
     func provideStudIpService() -> StudIpService {
-        return isRunningUiTests ? MockStudIpService() : StudIpService()
+        return Targets.current.isRunningUITests ? MockStudIpService() : StudIpService()
     }
 
     public func registerServices(in container: ServiceContainer) {
         container[JSONEncoder.self] = provideJsonEncoder()
         container[JSONDecoder.self] = provideJsonDecoder()
-        container[ContextService.self] = provideContextService()
         container[KeychainService.self] = KeychainService()
         container[ReachabilityService.self] = provideReachabilityService()
         container[StoreService.self] = StoreService()

@@ -22,7 +22,6 @@ import StoreKit
 import StudKit
 
 final class AboutController: UITableViewController, Routable {
-    private let contextService = ServiceContainer.default[ContextService.self]
     private let htmlContentService = ServiceContainer.default[HtmlContentService.self]
     private var viewModel: AboutViewModel!
 
@@ -242,7 +241,7 @@ final class AboutController: UITableViewController, Routable {
     }
 
     private func openAppStoreReviewPage() {
-        contextService.openUrl?(App.Urls.review) { success in
+        Targets.current.open(url: App.Urls.review) { success in
             guard !success else { return }
 
             let title = "Could not launch App Store".localized
