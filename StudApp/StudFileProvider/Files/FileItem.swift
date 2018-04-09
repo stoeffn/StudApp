@@ -30,10 +30,10 @@ final class FileItem: NSObject, NSFileProviderItem {
         typeIdentifier = file.typeIdentifier
         capabilities = file.isFolder
             ? [.allowsReading, .allowsContentEnumerating]
-            : [.allowsReading]
+            : (file.isLocationSecure ? [.allowsReading] : [])
 
         self.childItemCount = childItemCount as NSNumber?
-        documentSize = file.size >= 0 ? file.size as NSNumber : nil
+        documentSize = file.size > 0 ? file.size as NSNumber : nil
 
         self.parentItemIdentifier = parentItemIdentifier
 
