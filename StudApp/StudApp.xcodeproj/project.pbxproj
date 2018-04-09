@@ -242,6 +242,7 @@
 		24D9EF561FB7559C006776B7 /* SemesterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9EF551FB7559C006776B7 /* SemesterListViewModel.swift */; };
 		24D9EF851FB75818006776B7 /* FileProviderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9EF841FB75818006776B7 /* FileProviderExtension.swift */; };
 		24D9EF9E1FB75819006776B7 /* StudFileProvider.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 24D9EF821FB75818006776B7 /* StudFileProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		24DB13B3207BCDBD003B003E /* Distributions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DB13B2207BCDBD003B003E /* Distributions.swift */; };
 		24E2AD1A1FF2CECC001D3E27 /* Events.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E2AD191FF2CECC001D3E27 /* Events.storyboard */; };
 		24E2AD1D1FF2D5B0001D3E27 /* EventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E2AD1C1FF2D5B0001D3E27 /* EventListViewModel.swift */; };
 		24E4B99A1FF25C640061983C /* CachingFileProviderEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BF71FB8CD0B0067E416 /* CachingFileProviderEnumerator.swift */; };
@@ -617,6 +618,7 @@
 		24D9EF841FB75818006776B7 /* FileProviderExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProviderExtension.swift; sourceTree = "<group>"; };
 		24D9EF8A1FB75819006776B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24D9EF8B1FB75819006776B7 /* StudFileProvider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudFileProvider.entitlements; sourceTree = "<group>"; };
+		24DB13B2207BCDBD003B003E /* Distributions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Distributions.swift; sourceTree = "<group>"; };
 		24E2AD191FF2CECC001D3E27 /* Events.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Events.storyboard; sourceTree = "<group>"; };
 		24E2AD1C1FF2D5B0001D3E27 /* EventListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewModel.swift; sourceTree = "<group>"; };
 		24E4B9A31FF25E8C0061983C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -1132,6 +1134,7 @@
 				24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */,
 				243CC2BF1FDF19BB00FE7376 /* UserActivities.swift */,
 				24FD78711FC07C630072F860 /* UserDefaults+Keys.swift */,
+				24DB13B2207BCDBD003B003E /* Distributions.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -2400,6 +2403,7 @@
 				24D360ED1FAA5DC500BBBAED /* StudIp.swift in Sources */,
 				2448D4A51FA8E07E00DAB97E /* Result+Api.swift in Sources */,
 				24D360D31FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift in Sources */,
+				24DB13B3207BCDBD003B003E /* Distributions.swift in Sources */,
 				24557A0D203DE59700492B74 /* MockStudIpService.swift in Sources */,
 				243CC2BE1FDF0A7F00FE7376 /* CDSortable.swift in Sources */,
 				24D360DF1FAA5D3800BBBAED /* String+HTML.swift in Sources */,
@@ -2716,10 +2720,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "-Onone";
+				OTHER_SWIFT_FLAGS = "-Onone -D DEBUG";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -2771,7 +2775,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;

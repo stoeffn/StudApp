@@ -81,11 +81,11 @@ extension AppDelegate: UIApplicationDelegate {
     // MARK: Managing App State Restoration
 
     func application(_: UIApplication, shouldSaveApplicationState _: NSCoder) -> Bool {
-        return studIpService.isSignedIn && !Targets.current.isRunningUITests
+        return studIpService.isSignedIn && Distributions.current != .uiTest
     }
 
     func application(_: UIApplication, shouldRestoreApplicationState _: NSCoder) -> Bool {
-        return studIpService.isSignedIn && !Targets.current.isRunningUITests
+        return studIpService.isSignedIn && Distributions.current != .uiTest
     }
 
     // MARK: Continuing User Activity and Handling Quick Actions

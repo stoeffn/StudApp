@@ -44,7 +44,7 @@ public class StudKitServiceProvider: ServiceProvider {
     }
 
     func provideStudIpService() -> StudIpService {
-        return Targets.current.isRunningUITests ? MockStudIpService() : StudIpService()
+        return Distributions.current == .uiTest ? MockStudIpService() : StudIpService()
     }
 
     public func registerServices(in container: ServiceContainer) {

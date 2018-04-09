@@ -33,6 +33,8 @@ public enum Targets: String {
     }
 }
 
+// MARK: - Context
+
 extension Targets {
     public struct Context {
         let currentTarget: Targets
@@ -53,16 +55,9 @@ extension Targets {
     static var currentContext = Context(currentTarget: .app)
 }
 
-// MARK: - Target extension
+// MARK: - Properties
 
 public extension Targets {
-    static let uiTestsProcessArgument = "uiTest"
-
-    var isRunningUITests: Bool {
-        guard self == Targets.current else { return false }
-        return ProcessInfo.processInfo.arguments.contains(Targets.uiTestsProcessArgument)
-    }
-
     var extensionContext: NSExtensionContext? {
         guard self == Targets.current else { return nil }
         return Targets.currentContext.extensionContext
