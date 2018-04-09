@@ -23,7 +23,7 @@
 "%dx" = "%dx"; // Example: "11x" (eleven times)
 "%@ ago" = "vor %@"; // Example "two months ago"
 "by %@" = "von %@"; // Example: "by Steve Jobs"
-"hosted by %@" = "bereitgetsellt von %@"; // Example: "hosted by dropbox.com"
+"hosted by %@" = "bereitgestellt von %@"; // Example: "hosted by dropbox.com"
 "%@ – %@" = "%@ – %@"; // Example: "April – May"
 "from %@ to %@" = "von %@ bis %@"; // Example: "from April 2018 to September 2018"
 "at %@" = "at %@"; // Example "at room 404"
@@ -134,7 +134,7 @@
 
 "Documents" = "Dokumente";
 "Empty Folder" = "Leerer Ordner";
-"Something went wrong downloading this document" = "Beim Herunterladen von diesem Dokument lief etwas schief";
+"Something went wrong downloading \"%@\"" = "Beim Herunterladen von \"%@\" lief etwas schief";
 
 // MARK: Semesters
 

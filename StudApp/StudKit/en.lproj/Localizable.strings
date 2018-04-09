@@ -134,7 +134,7 @@
 
 "Documents" = "Documents";
 "Empty Folder" = "Empty Folder";
-"Something went wrong downloading this document" = "Something went wrong downloading this document";
+"Something went wrong downloading \"%@\"" = "Something went wrong downloading \"%@\"";
 
 // MARK: Semesters
 

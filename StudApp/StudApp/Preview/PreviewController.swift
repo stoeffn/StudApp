@@ -35,7 +35,8 @@ final class PreviewController: QLPreviewController, Routable {
 
         file.download { result in
             guard result.isSuccess else {
-                let alert = UIAlertController(title: result.error?.localizedDescription, message: nil, preferredStyle: .alert)
+                let title = result.error?.localizedDescription ?? "Something went wrong downloading \"%@\"".localized(self.file.title)
+                let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
                 return self.present(alert, animated: true, completion: nil)
             }
@@ -92,8 +93,8 @@ final class PreviewController: QLPreviewController, Routable {
             file.download { result in
                 guard result.isFailure else { return UINotificationFeedbackGenerator().notificationOccurred(.success) }
 
-                let error = result.error?.localizedDescription ?? "Something went wrong downloading this document".localized
-                let alert = UIAlertController(title: error, message: nil, preferredStyle: .alert)
+                let title = result.error?.localizedDescription ?? "Something went wrong downloading \"%@\"".localized(file.title)
+                let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
                 return handler(alert)
             }
