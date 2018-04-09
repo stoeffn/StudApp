@@ -24,7 +24,6 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
 
     // MARK: - Life Cycle
 
-    private var contextService: ContextService!
     private var htmlContentService: HtmlContentService!
     private var viewModel: OrganizationListViewModel!
     private var observations = [NSKeyValueObservation]()
@@ -32,7 +31,6 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        contextService = ServiceContainer.default[ContextService.self]
         htmlContentService = ServiceContainer.default[HtmlContentService.self]
 
         navigationItem.title = "Choose Your Organization".localized
@@ -40,7 +38,7 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         navigationItem.backBarButtonItem?.title = "Organizations".localized
         navigationItem.rightBarButtonItem?.accessibilityLabel = "More".localized
 
-        if contextService.currentTarget != .fileProviderUI {
+        if Targets.current != .fileProviderUI {
             navigationItem.leftBarButtonItem = nil
         }
 

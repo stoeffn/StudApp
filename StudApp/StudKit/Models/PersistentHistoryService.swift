@@ -27,13 +27,6 @@ import CoreData
 /// space after the history has been consumed by all targets. It uses history transactions' timestamps in order to determine
 /// what to delete.
 public final class PersistentHistoryService {
-    /// Current target, whose last transaction timestamp is used and modified.
-    private var currentTarget: Targets
-
-    public init(currentTarget: Targets) {
-        self.currentTarget = currentTarget
-    }
-
     /// Returns the latest persistent history transaction timestamp that is common to all targets given.
     private func lastCommonTransactionTimestamp(in targets: [Targets]) -> Date? {
         let timestamp = targets
@@ -62,7 +55,7 @@ public final class PersistentHistoryService {
         guard #available(iOSApplicationExtension 11.0, *) else { return }
 
         let historyFetchRequest = NSPersistentHistoryChangeRequest
-            .fetchHistory(after: currentTarget.lastHistoryTransactionTimestamp ?? .distantPast)
+            .fetchHistory(after: Targets.current.lastHistoryTransactionTimestamp ?? .distantPast)
 
         guard
             let historyResult = try context.execute(historyFetchRequest) as? NSPersistentHistoryResult,
@@ -76,7 +69,8 @@ public final class PersistentHistoryService {
         }
 
         if let lastTimestamp = history.last?.timestamp {
-            currentTarget.lastHistoryTransactionTimestamp = lastTimestamp
+            var target = Targets.current
+            target.lastHistoryTransactionTimestamp = lastTimestamp
         }
     }
 }

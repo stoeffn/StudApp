@@ -16,8 +16,19 @@
 //  along with this program. If not, see http://www.gnu.org/licenses/.
 //
 
+/// Compilation targets associated with `StudApp`.
+///
+/// You can use this this enumeration to identify and distinguish between the main app, any extensions, and testing.
+///
+/// - Remark: Please note that frameworks are not explicitly listed and there is no differentiation betweeen test targets.
 public enum Targets: String {
     case app, fileProvider, fileProviderUI, tests
 
+    /// All targets that are embedded in the _iOS_ app.
     public static let iOSTargets: [Targets] = [.app, .fileProvider]
+
+    /// Current target as initialized at app, app extension, or test start.
+    public static var current: Targets {
+        return ServiceContainer.default[ContextService.self].currentTarget
+    }
 }
