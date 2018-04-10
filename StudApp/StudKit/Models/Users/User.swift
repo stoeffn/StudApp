@@ -94,6 +94,8 @@ public final class User: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
 
 extension User {
     private static var currentUserFromDefaults: User? {
+        guard Targets.current != .tests else { return nil }
+
         let storageService = ServiceContainer.default[StorageService.self]
         let coreDataService = ServiceContainer.default[CoreDataService.self]
         let currentUserId = storageService.defaults.string(forKey: UserDefaults.userIdKey)
