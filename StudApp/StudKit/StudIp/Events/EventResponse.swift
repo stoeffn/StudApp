@@ -76,6 +76,7 @@ extension EventResponse {
         let (event, _) = try Event.fetch(byId: id, orCreateIn: context)
         event.organization = course.organization
         event.course = course
+        event.users.formUnion([User.current?.in(context)].compactMap { $0 })
         event.startsAt = startsAt
         event.endsAt = endsAt
         event.isCanceled = isCanceled

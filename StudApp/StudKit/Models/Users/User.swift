@@ -149,6 +149,11 @@ extension User {
         return File.fetchRequest(predicate: downloadsPredicate(), sortDescriptors: sortDescriptors,
                                  relationshipKeyPathsForPrefetching: ["state"])
     }
+
+    public var eventsFetchRequest: NSFetchRequest<Event> {
+        let predicate = NSPredicate(format: "%@ IN users", self)
+        return Event.fetchRequest(predicate: predicate, sortDescriptors: Event.defaultSortDescriptors)
+    }
 }
 
 // MARK: - Utilities
