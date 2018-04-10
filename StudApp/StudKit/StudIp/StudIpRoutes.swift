@@ -37,6 +37,9 @@ public enum StudIpRoutes: ApiRoutes {
     /// Returns a folder along with its first-level children.
     case folder(withId: String)
 
+    /// Returns events for the user given within the next two weeks.
+    case eventsForUser(withId: String)
+
     /// Returns a collection of all events for a course.
     case eventsInCourse(withId: String)
 
@@ -61,6 +64,7 @@ public enum StudIpRoutes: ApiRoutes {
         case .discovery: return "/discovery"
         case .fileContents: return "/file/:file_ref_id/download"
         case .folder: return "/folder/:folder_id"
+        case .eventsForUser: return "/user/:user_id/events"
         case .eventsInCourse: return "/course/:course_id/events"
         case .profilePicture: return "/user/:user_id/picture"
         case .rootFolderForCourse: return "/course/:course_id/top_folder"
@@ -79,6 +83,8 @@ public enum StudIpRoutes: ApiRoutes {
             return "user/\(userId)/courses"
         case .discovery:
             return "discovery"
+        case let .eventsForUser(userId):
+            return "/user/\(userId)/events"
         case let .eventsInCourse(courseId):
             return "course/\(courseId)/events"
         case let .fileContents(fileId, _):
@@ -111,7 +117,7 @@ public enum StudIpRoutes: ApiRoutes {
         case .currentUser: return UserResponse.self
         case .courses: return CollectionResponse<CourseResponse>.self
         case .discovery: return DiscoveryResponse.self
-        case .eventsInCourse: return CollectionResponse<EventResponse>.self
+        case .eventsForUser, .eventsInCourse: return CollectionResponse<EventResponse>.self
         case .fileContents: return nil
         case .folder: return FolderResponse.self
         case .profilePicture: return nil
@@ -123,8 +129,8 @@ public enum StudIpRoutes: ApiRoutes {
 
     var method: HttpMethods {
         switch self {
-        case .announcementsInCourse, .courses, .currentUser, .discovery, .eventsInCourse, .folder, .fileContents,
-             .profilePicture, .rootFolderForCourse, .semesters:
+        case .announcementsInCourse, .courses, .currentUser, .discovery, .eventsForUser, .eventsInCourse, .folder,
+             .fileContents, .profilePicture, .rootFolderForCourse, .semesters:
             return .get
         case .setGroupForCourse:
             return .patch
@@ -133,8 +139,8 @@ public enum StudIpRoutes: ApiRoutes {
 
     var contentType: String? {
         switch self {
-        case .announcementsInCourse, .courses, .currentUser, .discovery, .eventsInCourse, .folder, .fileContents,
-             .profilePicture, .rootFolderForCourse, .semesters:
+        case .announcementsInCourse, .courses, .currentUser, .discovery, .eventsForUser, .eventsInCourse, .folder,
+             .fileContents, .profilePicture, .rootFolderForCourse, .semesters:
             return nil
         case .setGroupForCourse:
             return "application/json"
@@ -143,22 +149,11 @@ public enum StudIpRoutes: ApiRoutes {
 
     var body: Data? {
         switch self {
-        case .announcementsInCourse, .courses, .currentUser, .discovery, .eventsInCourse, .folder, .fileContents,
-             .profilePicture, .rootFolderForCourse, .semesters:
+        case .announcementsInCourse, .courses, .currentUser, .discovery, .eventsForUser, .eventsInCourse, .folder,
+             .fileContents, .profilePicture, .rootFolderForCourse, .semesters:
             return nil
         case let .setGroupForCourse(_, _, groupId):
             return "{\"group\": \(groupId)}".data(using: .utf8)
-        }
-    }
-
-    var expiresAfter: TimeInterval {
-        switch self {
-        case .fileContents, .setGroupForCourse:
-            return 0
-        case .announcementsInCourse, .courses, .currentUser, .discovery, .folder, .rootFolderForCourse:
-            return 60 * 5
-        case .eventsInCourse, .profilePicture, .semesters:
-            return 60 * 60
         }
     }
 }

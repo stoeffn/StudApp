@@ -59,4 +59,25 @@ extension User {
 
         return courses
     }
+
+    // MARK: - Updating Events
+
+    func updateEvents(forced: Bool = false, completion: @escaping ResultHandler<[Event]>) {
+        let studIpService = ServiceContainer.default[StudIpService.self]
+        guard let context = managedObjectContext else { fatalError() }
+
+        let updatedAt = \User.state.eventsUpdatedAt
+        update(lastUpdatedAt: updatedAt, expiresAfter: 60 * 10, forced: forced, completion: completion) { updaterCompletion in
+            studIpService.api.requestCollection(.eventsForUser(withId: self.id)) { (result: Result<[EventResponse]>) in
+                context.perform {
+                    let result = result.map { responses in
+                        try Event.update(self.eventsFetchRequest, with: responses, in: context) { response in
+                            try response.coreDataObject(in: context)
+                        }
+                    }
+                    updaterCompletion(result)
+                }
+            }
+        }
+    }
 }

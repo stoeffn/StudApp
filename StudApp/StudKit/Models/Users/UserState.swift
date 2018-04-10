@@ -29,6 +29,8 @@ public final class UserState: NSManagedObject, CDCreatable, CDSortable {
 
     @NSManaged public var authoredCoursesUpdatedAt: Date?
 
+    @NSManaged public var eventsUpdatedAt: Date?
+
     // MARK: - Sorting
 
     static let defaultSortDescriptors = [

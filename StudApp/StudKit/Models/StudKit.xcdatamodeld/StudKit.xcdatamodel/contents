@@ -190,6 +190,7 @@
     </entity>
     <entity name="UserState" representedClassName="UserState" syncable="YES">
         <attribute name="authoredCoursesUpdatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="eventsUpdatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="state" inverseEntity="User" syncable="YES"/>
     </entity>
     <elements>
@@ -204,6 +205,6 @@
         <element name="Semester" positionX="-9270" positionY="-2115" width="128" height="195"/>
         <element name="SemesterState" positionX="-9272" positionY="-2310" width="128" height="135"/>
         <element name="User" positionX="-9270" positionY="-1827" width="128" height="270"/>
-        <element name="UserState" positionX="-9272" positionY="-1515" width="128" height="73"/>
+        <element name="UserState" positionX="-9272" positionY="-1515" width="128" height="90"/>
     </elements>
 </model>
