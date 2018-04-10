@@ -71,6 +71,7 @@ extension AppDelegate: UIApplicationDelegate {
         try? historyService.mergeHistory(into: coreDataService.viewContext)
         try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
 
+        ServiceContainer.default[ReachabilityService.self].update()
         (window?.rootViewController as? AppController)?.updateViewModel()
     }
 
