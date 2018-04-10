@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="g4Q-yc-6Sv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="g4Q-yc-6Sv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,11 +20,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="ejc-zi-UTz"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="DownloadsTabBarGlyph" landscapeImage="DownloadsLandscapeTabBarGlyph" id="W17-ZS-DxT"/>
+                    <tabBarItem key="tabBarItem" title="" image="EventsTabBarGlyph" landscapeImage="EventsLandscapeTabBarGlyph" id="W17-ZS-DxT"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sUz-Ys-nAc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1004" y="707"/>
+            <point key="canvasLocation" x="52" y="1251"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="8r0-K5-Pjz">
@@ -40,7 +40,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="19r-VF-8Vc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1004" y="42"/>
+            <point key="canvasLocation" x="-794" y="1251"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="njX-eL-1BO">
@@ -59,11 +59,28 @@
                     <connections>
                         <segue destination="vUM-j3-USy" kind="relationship" relationship="viewControllers" id="vyr-48-92p"/>
                         <segue destination="kxm-4B-6aP" kind="relationship" relationship="viewControllers" id="MUC-Rv-fIF"/>
+                        <segue destination="EEJ-rQ-97n" kind="relationship" relationship="viewControllers" id="5hU-A3-kg6"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ssv-4o-VQl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="52" y="373"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="RbI-ZO-KeU">
+            <objects>
+                <viewController id="EEJ-rQ-97n" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Suo-O7-P1d">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="j0s-Vt-9bo"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="DownloadsTabBarGlyph" landscapeImage="DownloadsLandscapeTabBarGlyph" id="Ik1-wX-jlE"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9VC-lQ-VHz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="863" y="1251"/>
         </scene>
     </scenes>
     <resources>
@@ -71,6 +88,8 @@
         <image name="CoursesTabBarGlyph" width="27" height="27"/>
         <image name="DownloadsLandscapeTabBarGlyph" width="20" height="20"/>
         <image name="DownloadsTabBarGlyph" width="28" height="28"/>
+        <image name="EventsLandscapeTabBarGlyph" width="17" height="17"/>
+        <image name="EventsTabBarGlyph" width="23" height="23"/>
     </resources>
     <color key="tintColor" red="0.63137254901960782" green="0.63137254901960782" blue="0.63137254901960782" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
