@@ -81,7 +81,6 @@ final class AppController: UITabBarController {
         case .presentDownloads:
             selectedIndex = Tabs.downloadList.rawValue
         }
-
         return true
     }
 
