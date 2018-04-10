@@ -33,6 +33,8 @@ public final class Event: NSManagedObject, CDCreatable, CDIdentifiable, CDSortab
 
     @NSManaged public var organization: Organization
 
+    @NSManaged public var users: Set<User>
+
     // MARK: Managing Timing
 
     @NSManaged public var startsAt: Date

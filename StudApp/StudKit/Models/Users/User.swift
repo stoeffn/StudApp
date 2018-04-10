@@ -55,6 +55,8 @@ public final class User: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
 
     @NSManaged public var downloads: Set<File>
 
+    @NSManaged public var events: Set<Event>
+
     @NSManaged public var lecturedCourses: Set<Course>
 
     @NSManaged public var ownedFiles: Set<File>

@@ -65,6 +65,7 @@
         <attribute name="summary" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="events" inverseEntity="Course" syncable="YES"/>
         <relationship name="organization" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" inverseName="events" inverseEntity="Organization" syncable="YES"/>
+        <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="events" inverseEntity="User" syncable="YES"/>
         <fetchIndex name="byId">
             <fetchIndexElement property="id" type="Binary" order="ascending"/>
         </fetchIndex>
@@ -173,6 +174,7 @@
         <relationship name="authoredCourses" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="authors" inverseEntity="Course" syncable="YES"/>
         <relationship name="createdAnnouncements" toMany="YES" deletionRule="Nullify" destinationEntity="Announcement" inverseName="user" inverseEntity="Announcement" syncable="YES"/>
         <relationship name="downloads" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="downloadedBy" inverseEntity="File" syncable="YES"/>
+        <relationship name="events" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="users" inverseEntity="Event" syncable="YES"/>
         <relationship name="lecturedCourses" toMany="YES" deletionRule="Nullify" destinationEntity="Course" inverseName="lecturers" inverseEntity="Course" syncable="YES"/>
         <relationship name="organization" maxCount="1" deletionRule="Nullify" destinationEntity="Organization" inverseName="users" inverseEntity="Organization" syncable="YES"/>
         <relationship name="ownedFiles" toMany="YES" deletionRule="Nullify" destinationEntity="File" inverseName="owner" inverseEntity="File" syncable="YES"/>
@@ -194,14 +196,14 @@
         <element name="Announcement" positionX="-8210" positionY="-1854" width="128" height="195"/>
         <element name="Course" positionX="-8784" positionY="-2124" width="128" height="270"/>
         <element name="CourseState" positionX="-8786" positionY="-2322" width="128" height="150"/>
-        <element name="Event" positionX="-8210" positionY="-2094" width="128" height="195"/>
+        <element name="Event" positionX="-8210" positionY="-2094" width="128" height="210"/>
         <element name="File" positionX="-8208" positionY="-1638" width="128" height="300"/>
         <element name="FileState" positionX="-8210" positionY="-1329" width="128" height="150"/>
         <element name="Organization" positionX="-9522" positionY="-2043" width="128" height="240"/>
         <element name="OrganizationState" positionX="-8847" positionY="-1764" width="128" height="105"/>
         <element name="Semester" positionX="-9270" positionY="-2115" width="128" height="195"/>
         <element name="SemesterState" positionX="-9272" positionY="-2310" width="128" height="135"/>
-        <element name="User" positionX="-9270" positionY="-1827" width="128" height="255"/>
+        <element name="User" positionX="-9270" positionY="-1827" width="128" height="270"/>
         <element name="UserState" positionX="-9272" positionY="-1515" width="128" height="73"/>
     </elements>
 </model>
