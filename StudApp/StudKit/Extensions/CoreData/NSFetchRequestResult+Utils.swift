@@ -45,6 +45,7 @@ public extension NSFetchRequestResult {
 
 public extension NSFetchRequestResult where Self: NSManagedObject {
     public func `in`(_ context: NSManagedObjectContext) -> Self {
+        guard managedObjectContext !== context else { return self }
         guard let object = context.object(with: objectID) as? Self else {
             fatalError("Cannot find object '\(self)' in context '\(context)'.")
         }
