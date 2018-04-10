@@ -28,7 +28,8 @@ final class AnnouncementResponseTests: XCTestCase {
     // MARK: - Life Cycle
 
     override func setUp() {
-        context = StudKitTestsServiceProvider(currentTarget: .tests).provideCoreDataService().viewContext
+        context = StudKitTestsServiceProvider(context: Targets.Context(currentTarget: .tests))
+            .provideCoreDataService().viewContext
 
         try! CourseResponse(id: "C0").coreDataObject(organization: organization, in: context)
         try! CourseResponse(id: "C1").coreDataObject(organization: organization, in: context)

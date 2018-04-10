@@ -28,7 +28,8 @@ final class UserTests: XCTestCase {
     // MARK: - Life Cycle
 
     override func setUp() {
-        context = StudKitTestsServiceProvider(currentTarget: .tests).provideCoreDataService().viewContext
+        context = StudKitTestsServiceProvider(context: Targets.Context(currentTarget: .tests))
+            .provideCoreDataService().viewContext
     }
 
     // MARK: - Utilities
