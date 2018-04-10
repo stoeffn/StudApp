@@ -65,13 +65,15 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDSorta
 
     @NSManaged public var subtitle: String?
 
-    /// Short description of the course and/or summary of its contents.
+    /// Short description of the course and summary of its contents.
     @NSManaged public var summary: String?
 
     // MARK: Managing Members
 
+    /// Users who organize or teach this course.
     @NSManaged public var lecturers: Set<User>
 
+    /// Users who attend this course.
     @NSManaged public var authors: Set<User>
 
     // MARK: - Life Cycle
@@ -154,7 +156,7 @@ extension Course {
     }
 
     public var userActivity: NSUserActivity {
-        let activity = NSUserActivity(activityType: UserActivities.courseIdentifier)
+        let activity = NSUserActivity(type: .course)
         activity.isEligibleForHandoff = true
         activity.isEligibleForSearch = true
         activity.title = title

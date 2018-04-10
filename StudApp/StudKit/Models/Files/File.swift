@@ -232,7 +232,7 @@ extension File {
     }
 
     public var userActivity: NSUserActivity {
-        let activity = NSUserActivity(activityType: UserActivities.fileIdentifier)
+        let activity = NSUserActivity(type: .document)
         activity.isEligibleForHandoff = true
         activity.isEligibleForSearch = true
         activity.title = title

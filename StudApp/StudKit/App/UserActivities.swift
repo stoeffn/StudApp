@@ -16,10 +16,21 @@
 //  along with this program. If not, see http://www.gnu.org/licenses/.
 //
 
-public enum UserActivities {
-    private static let identifierPrefix = "SteffenRyll.StudKit"
+/// Possible user activities that can be used e.g. for _Handoff_.
+///
+/// - Remark: The raw values are the activities' identifiers. They should follow reverse-DNS format by convention. Be
+///           sure to declare the same values in `Info.plist`.
+public enum UserActivities: String {
+    case course = "SteffenRyll.StudKit.Course"
 
-    public static let courseIdentifier = "\(identifierPrefix).Course"
+    case document = "SteffenRyll.StudKit.Document"
+}
 
-    public static let fileIdentifier = "\(identifierPrefix).Document"
+// MARK: - Creating a User Activity
+
+public extension NSUserActivity {
+    /// Initializes and returns the object using the specified type.
+    convenience init(type: UserActivities) {
+        self.init(activityType: type.rawValue)
+    }
 }

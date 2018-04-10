@@ -16,6 +16,7 @@
 //  along with this program. If not, see http://www.gnu.org/licenses/.
 //
 
+/// Possible ways to distribute an application.
 public enum Distributions {
     case debug, uiTest, testFlight, appStore
 
@@ -31,6 +32,7 @@ public enum Distributions {
 
     private static let isTestFlight = Bundle.main.appStoreReceiptURL?.lastPathComponent == "sandboxReceipt"
 
+    /// How this binary was distributed.
     public static var current: Distributions = {
         switch (isDebug, isUiTest, isTestFlight) {
         case (true, false, _): return Distributions.debug
@@ -40,6 +42,8 @@ public enum Distributions {
         }
     }()
 }
+
+// MARK: - Describing
 
 extension Distributions: CustomStringConvertible {
     public var description: String {
