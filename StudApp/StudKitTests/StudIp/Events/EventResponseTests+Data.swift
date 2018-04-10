@@ -21,7 +21,7 @@
 extension EventResponseTests {
     static let eventData = """
         {
-            "event_id": "0",
+            "event_id": "E0",
             "start": "1478187000",
             "end": "1478192400",
             "title": "Thu , 03.11.2016 16:30 - 18:00",
@@ -35,7 +35,7 @@ extension EventResponseTests {
 
     static let canceledEventData = """
         {
-            "event_id": "1",
+            "event_id": "E1",
             "start": "1486131300",
             "end": "1486136700",
             "title": "Fri , 03.02.2017 15:15 - 16:45",
@@ -49,7 +49,7 @@ extension EventResponseTests {
 
     static let canceledEventWithReasonData = """
         {
-            "event_id": "2",
+            "event_id": "E2",
             "start": "1483630200",
             "end": "1483635600",
             "title": "Thu , 05.01.2017 16:30 - 18:00",
@@ -61,7 +61,26 @@ extension EventResponseTests {
         }
     """.data(using: .utf8)!
 
+    static let eventWithCourseData = """
+        {
+            "event_id": "E3",
+            "course": "C0",
+            "start": "1478187000",
+            "end": "1478192400",
+            "title": "Thu , 03.11.2016 16:30 - 18:00",
+            "description": "Sümmary",
+            "categories": "Sitzung",
+            "room": "(Raum 023: Multimedia-Hörsaal,  Gebaeude 3703: Technische Informatik)",
+            "deleted": null,
+            "canceled": false
+        }
+    """.data(using: .utf8)!
+
     static let event0 = EventResponse(id: "E0", startsAt: Date(timeIntervalSince1970: 1), endsAt: Date(timeIntervalSince1970: 2),
                                       isCanceled: true, cancellationReason: "Reason", location: "Location", summary: "Summary",
                                       category: "Category")
+
+    static let event1 = EventResponse(id: "E0", courseId: "C0", startsAt: Date(timeIntervalSince1970: 1),
+                                      endsAt: Date(timeIntervalSince1970: 2), isCanceled: true, cancellationReason: "Reason",
+                                      location: "Location", summary: "Summary", category: "Category")
 }

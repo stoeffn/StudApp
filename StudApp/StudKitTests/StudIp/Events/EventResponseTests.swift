@@ -23,20 +23,29 @@ import XCTest
 final class EventResponseTests: XCTestCase {
     private let decoder = ServiceContainer.default[JSONDecoder.self]
     private var context: NSManagedObjectContext!
-    private lazy var organization = try! OrganizationRecord(id: "O0").coreDataObject(in: context)
+    private var organization: Organization!
+    private var user: User!
+    private var course: Course!
 
     // MARK: - Life Cycle
 
     override func setUp() {
         context = StudKitTestsServiceProvider(context: Targets.Context(currentTarget: .tests))
             .provideCoreDataService().viewContext
+
+        organization = try! OrganizationRecord(id: "O0").coreDataObject(in: context)
+        user = try! UserResponse(id: "U0").coreDataObject(organization: organization, in: context)
+        course = try! CourseResponse(id: "C0").coreDataObject(organization: organization, in: context)
+
+        User.current = user
     }
 
     // MARK: - Coding
 
     func testInit_EventData_Event() {
         let event = try! decoder.decode(EventResponse.self, from: EventResponseTests.eventData)
-        XCTAssertEqual(event.id, "0")
+        XCTAssertEqual(event.id, "E0")
+        XCTAssertNil(event.courseId)
         XCTAssertEqual(event.startsAt.debugDescription, "2016-11-03 15:30:00 +0000")
         XCTAssertEqual(event.endsAt.debugDescription, "2016-11-03 17:00:00 +0000")
         XCTAssertFalse(event.isCanceled)
@@ -48,7 +57,8 @@ final class EventResponseTests: XCTestCase {
 
     func testInit_CanceledEventData_Event() {
         let event = try! decoder.decode(EventResponse.self, from: EventResponseTests.canceledEventData)
-        XCTAssertEqual(event.id, "1")
+        XCTAssertEqual(event.id, "E1")
+        XCTAssertNil(event.courseId)
         XCTAssertEqual(event.startsAt.debugDescription, "2017-02-03 14:15:00 +0000")
         XCTAssertEqual(event.endsAt.debugDescription, "2017-02-03 15:45:00 +0000")
         XCTAssertTrue(event.isCanceled)
@@ -60,13 +70,27 @@ final class EventResponseTests: XCTestCase {
 
     func testInit_CanceledEventWithReasonData_Event() {
         let event = try! decoder.decode(EventResponse.self, from: EventResponseTests.canceledEventWithReasonData)
-        XCTAssertEqual(event.id, "2")
+        XCTAssertEqual(event.id, "E2")
+        XCTAssertNil(event.courseId)
         XCTAssertEqual(event.startsAt.debugDescription, "2017-01-05 15:30:00 +0000")
         XCTAssertEqual(event.endsAt.debugDescription, "2017-01-05 17:00:00 +0000")
         XCTAssertTrue(event.isCanceled)
         XCTAssertEqual(event.cancellationReason, "Weihnachtsferien 2016")
         XCTAssertNil(event.summary)
         XCTAssertNil(event.location)
+        XCTAssertEqual(event.category, "Sitzung")
+    }
+
+    func testInit_EventWithCourseData_Event() {
+        let event = try! decoder.decode(EventResponse.self, from: EventResponseTests.eventWithCourseData)
+        XCTAssertEqual(event.id, "E3")
+        XCTAssertEqual(event.courseId, "C0")
+        XCTAssertEqual(event.startsAt.debugDescription, "2016-11-03 15:30:00 +0000")
+        XCTAssertEqual(event.endsAt.debugDescription, "2016-11-03 17:00:00 +0000")
+        XCTAssertFalse(event.isCanceled)
+        XCTAssertNil(event.cancellationReason)
+        XCTAssertEqual(event.summary, "Sümmary")
+        XCTAssertEqual(event.location, "Raum 023: Multimedia-Hörsaal\nGebäude 3703: Technische Informatik")
         XCTAssertEqual(event.category, "Sitzung")
     }
 
@@ -78,10 +102,24 @@ final class EventResponseTests: XCTestCase {
     // MARK: - Converting to a Core Data Object
 
     func testCoreDataObject_Event0() {
-        let course = try! CourseResponse(id: "C0").coreDataObject(organization: organization, in: context)
         let event = try! EventResponseTests.event0.coreDataObject(course: course, in: context)
         XCTAssertEqual(event.id, "E0")
         XCTAssertEqual(event.course.id, "C0")
+        XCTAssertTrue(event.users.contains(user))
+        XCTAssertEqual(event.startsAt, Date(timeIntervalSince1970: 1))
+        XCTAssertEqual(event.endsAt, Date(timeIntervalSince1970: 2))
+        XCTAssertTrue(event.isCanceled)
+        XCTAssertEqual(event.cancellationReason, "Reason")
+        XCTAssertEqual(event.location, "Location")
+        XCTAssertEqual(event.summary, "Summary")
+        XCTAssertEqual(event.category, "Category")
+    }
+
+    func testCoreDataObject_Event1() {
+        let event = try! EventResponseTests.event1.coreDataObject(in: context)
+        XCTAssertEqual(event.id, "E0")
+        XCTAssertEqual(event.course.id, "C0")
+        XCTAssertTrue(event.users.contains(user))
         XCTAssertEqual(event.startsAt, Date(timeIntervalSince1970: 1))
         XCTAssertEqual(event.endsAt, Date(timeIntervalSince1970: 2))
         XCTAssertTrue(event.isCanceled)

@@ -20,6 +20,7 @@ import CoreData
 
 struct EventResponse: IdentifiableResponse {
     let id: String
+    let courseId: String?
     let startsAt: Date
     let endsAt: Date
     let isCanceled: Bool
@@ -28,9 +29,10 @@ struct EventResponse: IdentifiableResponse {
     let summary: String?
     let category: String?
 
-    init(id: String, startsAt: Date = .distantPast, endsAt: Date = .distantPast, isCanceled: Bool = false,
+    init(id: String, courseId: String? = nil, startsAt: Date = .distantPast, endsAt: Date = .distantPast, isCanceled: Bool = false,
          cancellationReason: String? = nil, location: String? = nil, summary: String? = nil, category: String? = nil) {
         self.id = id
+        self.courseId = courseId
         self.startsAt = startsAt
         self.endsAt = endsAt
         self.isCanceled = isCanceled
@@ -46,6 +48,7 @@ struct EventResponse: IdentifiableResponse {
 extension EventResponse: Decodable {
     enum CodingKeys: String, CodingKey {
         case id = "event_id"
+        case courseId = "course"
         case startsAt = "start"
         case endsAt = "end"
         case isCanceled = "deleted"
@@ -58,6 +61,7 @@ extension EventResponse: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
+        courseId = StudIp.transform(idPath: try container.decodeIfPresent(String.self, forKey: .courseId))
         startsAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .startsAt)
         endsAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .endsAt)
         isCanceled = try container.decodeIfPresent(Bool.self, forKey: .isCanceled) ?? false
@@ -72,7 +76,13 @@ extension EventResponse: Decodable {
 
 extension EventResponse {
     @discardableResult
-    func coreDataObject(course: Course, in context: NSManagedObjectContext) throws -> Event {
+    func coreDataObject(course: Course? = nil, in context: NSManagedObjectContext) throws -> Event {
+        guard let course = try course ?? Course.fetch(byId: courseId, in: context) else {
+            let description = "You need to either provide a course or convert a event response with a valid course id."
+            let context = DecodingError.Context(codingPath: [CodingKeys.courseId], debugDescription: description)
+            throw DecodingError.keyNotFound(CodingKeys.courseId, context)
+        }
+
         let (event, _) = try Event.fetch(byId: id, orCreateIn: context)
         event.organization = course.organization
         event.course = course
