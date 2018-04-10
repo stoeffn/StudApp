@@ -45,8 +45,9 @@ final class AppController: UITabBarController {
 
         super.viewWillAppear(animated)
 
-        tabBar.items?[Tabs.courseList.rawValue].title = "Courses".localized
-        tabBar.items?[Tabs.downloadList.rawValue].title = "Downloads".localized
+        tabBar.items?[Tabs.courses.rawValue].title = "Courses".localized
+        tabBar.items?[Tabs.events.rawValue].title = "Events".localized
+        tabBar.items?[Tabs.downloads.rawValue].title = "Downloads".localized
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -59,11 +60,11 @@ final class AppController: UITabBarController {
     override func restoreUserActivityState(_ activity: NSUserActivity) {
         switch activity.objectIdentifier?.entity {
         case .file?:
-            selectedIndex = Tabs.downloadList.rawValue
-            downloadListController?.restoreUserActivityState(activity)
+            selectedIndex = Tabs.downloads.rawValue
+            downloadsController?.restoreUserActivityState(activity)
         case .course?:
-            selectedIndex = Tabs.courseList.rawValue
-            courseListController?.restoreUserActivityState(activity)
+            selectedIndex = Tabs.courses.rawValue
+            coursesController?.restoreUserActivityState(activity)
         default:
             let title = "Something went wrong continuing your activity.".localized
             let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
@@ -77,9 +78,9 @@ final class AppController: UITabBarController {
     func handle(quickAction: QuickActions) -> Bool {
         switch quickAction {
         case .presentCourses:
-            selectedIndex = Tabs.courseList.rawValue
+            selectedIndex = Tabs.courses.rawValue
         case .presentDownloads:
-            selectedIndex = Tabs.downloadList.rawValue
+            selectedIndex = Tabs.downloads.rawValue
         }
         return true
     }
@@ -101,8 +102,8 @@ final class AppController: UITabBarController {
     }
 
     func prepareChildContents(for user: User?) {
-        courseListController?.prepareContent(for: .courseList(for: user))
-        downloadListController?.prepareContent(for: .downloadList(for: user))
+        coursesController?.prepareContent(for: .courseList(for: user))
+        downloadsController?.prepareContent(for: .downloadList(for: user))
     }
 
     func presentSignInIfNeeded() {
@@ -114,10 +115,10 @@ final class AppController: UITabBarController {
     // MARK: - User Interface
 
     private enum Tabs: Int {
-        case courseList, downloadList
+        case courses, events, downloads
     }
 
-    var courseListController: CourseListController? {
+    var coursesController: CourseListController? {
         return viewControllers?
             .compactMap { $0 as? UISplitViewController }
             .compactMap { $0.viewControllers.first }
@@ -127,7 +128,15 @@ final class AppController: UITabBarController {
             .first
     }
 
-    var downloadListController: DownloadListController? {
+    var eventsController: EventListController? {
+        return viewControllers?
+            .compactMap { $0 as? UINavigationController }
+            .compactMap { $0.viewControllers.first }
+            .compactMap { $0 as? EventListController }
+            .first
+    }
+
+    var downloadsController: DownloadListController? {
         return viewControllers?
             .compactMap { $0 as? UINavigationController }
             .compactMap { $0.viewControllers.first }

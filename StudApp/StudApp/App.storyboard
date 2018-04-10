@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B8u-Ro-L8Q">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B8u-Ro-L8Q">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,9 +21,10 @@
                     <connections>
                         <segue destination="P8g-Nk-6wL" kind="presentation" identifier="about" modalPresentationStyle="formSheet" id="yVy-q8-doc"/>
                         <segue destination="zcl-3C-yl6" kind="presentation" identifier="settings" modalPresentationStyle="formSheet" id="sMd-bX-1dS"/>
-                        <segue destination="AZc-n8-OsC" kind="relationship" relationship="viewControllers" id="g3S-Ak-cad"/>
-                        <segue destination="KYP-jD-J4O" kind="relationship" relationship="viewControllers" id="bFd-ds-8U0"/>
                         <segue destination="2bU-cg-kHC" kind="presentation" identifier="signIn" id="WBg-jL-T5h"/>
+                        <segue destination="AZc-n8-OsC" kind="relationship" relationship="viewControllers" id="g3S-Ak-cad"/>
+                        <segue destination="7zx-Ja-wvv" kind="relationship" relationship="viewControllers" id="ERR-J5-G4Y"/>
+                        <segue destination="KYP-jD-J4O" kind="relationship" relationship="viewControllers" id="bFd-ds-8U0"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l4I-wS-6ep" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -46,7 +47,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oxn-vo-iGe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-197" y="376"/>
+            <point key="canvasLocation" x="-259" y="375"/>
         </scene>
         <!--About-->
         <scene sceneID="eSg-ig-br1">
@@ -56,6 +57,16 @@
             </objects>
             <point key="canvasLocation" x="566" y="-99"/>
         </scene>
+        <!--Events-->
+        <scene sceneID="nkk-7v-MHo">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Events" id="7zx-Ja-wvv" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Events" image="EventsTabBarGlyph" landscapeImage="EventsLandscapeTabBarGlyph" id="5eP-Ym-TTU"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S2W-2B-64X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-79" y="375"/>
+        </scene>
         <!--Downloads-->
         <scene sceneID="xGE-gW-7nZ">
             <objects>
@@ -64,7 +75,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pTP-vX-G4w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="57" y="376"/>
+            <point key="canvasLocation" x="119" y="375"/>
         </scene>
         <!--Settings-->
         <scene sceneID="eg3-ct-J0P">
@@ -76,10 +87,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CoursesLandscapeTabBarGlyph" width="18" height="18"/>
-        <image name="CoursesTabBarGlyph" width="25" height="25"/>
+        <image name="CoursesLandscapeTabBarGlyph" width="19" height="19"/>
+        <image name="CoursesTabBarGlyph" width="27" height="27"/>
         <image name="DownloadsLandscapeTabBarGlyph" width="20" height="20"/>
         <image name="DownloadsTabBarGlyph" width="28" height="28"/>
+        <image name="EventsLandscapeTabBarGlyph" width="17" height="17"/>
+        <image name="EventsTabBarGlyph" width="23" height="23"/>
     </resources>
     <color key="tintColor" red="0.32941176470588235" green="0.50588235294117645" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
