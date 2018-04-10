@@ -19,7 +19,7 @@
 import SafariServices
 import WebKit
 
-public final class HtmlContentService {
+public final class HtmlContentService: NSObject {
     private lazy var style: String = {
         guard
             let url = Bundle(for: StudKitUIServiceProvider.self).url(forResource: "HtmlContentStyle", withExtension: "css"),
@@ -54,6 +54,7 @@ public final class HtmlContentService {
 
         let view = WKWebView(frame: .zero, configuration: configuration)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.scrollView.delegate = self
         return view
     }
 
@@ -61,5 +62,12 @@ public final class HtmlContentService {
         let controller = SFSafariViewController(url: url)
         controller.preferredControlTintColor = UI.Colors.tint
         return controller
+    }
+}
+
+extension HtmlContentService: UIScrollViewDelegate {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollView.contentOffset.x != 0 else { return }
+        scrollView.setContentOffset(CGPoint(x: 0, y: scrollView.contentOffset.y), animated: false)
     }
 }

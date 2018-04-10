@@ -25,7 +25,13 @@
  */
 
 body {
-    margin: 16px;
+    margin: 20px;
+}
+
+@media (min-width: 768px) {
+    body {
+        margin: 20px 72px;
+    }
 }
 
 /*

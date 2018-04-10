@@ -31,6 +31,11 @@ final class AnnouncementController: UIViewController, Routable {
         initUserInterface()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        ServiceContainer.default[StoreService.self].requestReview()
+    }
+
     // MARK: - Navigation
 
     func prepareContent(for route: Routes) {
@@ -54,15 +59,6 @@ final class AnnouncementController: UIViewController, Routable {
         contentView.alpha = 0
         contentView.loadHTMLString(htmlContentService.styledHtmlContent(for: announcement.htmlContent), baseURL: nil)
         contentView.accessibilityLabel = announcement.textContent
-    }
-
-    // MARK: - User Interaction
-
-    @IBAction
-    private func doneButtonTapped(_: Any) {
-        dismiss(animated: true) {
-            ServiceContainer.default[StoreService.self].requestReview()
-        }
     }
 }
 
