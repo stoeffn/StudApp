@@ -201,7 +201,7 @@ Gebäude 3703: Technische Informatik</string>
         <!--Events-->
         <scene sceneID="fNS-qS-1Pu">
             <objects>
-                <navigationController storyboardIdentifier="EventListNavigation" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QhU-F7-a2o" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="EventListNavigation" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QhU-F7-a2o" customClass="BorderlessNavigationController" customModule="StudKitUI" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Events" image="EventsTabBarGlyph" landscapeImage="EventsLandscapeTabBarGlyph" id="BsL-ez-XaG"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="aX3-Iw-ACZ">
@@ -218,8 +218,8 @@ Gebäude 3703: Technische Informatik</string>
         </scene>
     </scenes>
     <resources>
-        <image name="EventsLandscapeTabBarGlyph" width="19" height="19"/>
-        <image name="EventsTabBarGlyph" width="27" height="27"/>
+        <image name="EventsLandscapeTabBarGlyph" width="17" height="17"/>
+        <image name="EventsTabBarGlyph" width="23" height="23"/>
     </resources>
     <color key="tintColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

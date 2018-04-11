@@ -20,7 +20,7 @@ import StudKit
 import StudKitUI
 
 final class EventListController: UITableViewController, DataSourceDelegate, Routable {
-    private var viewModel: EventListViewModel!
+    private var viewModel: EventListViewModel?
 
     // MARK: - Life Cycle
 
@@ -40,21 +40,21 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        let navigationController = splitViewController?.detailNavigationController as? BorderlessNavigationController
-        navigationController?.toolBarView = dateTabBarContainer
+        let navigationController = splitViewController?.detailNavigationController ?? self.navigationController
+        (navigationController as? BorderlessNavigationController)?.toolBarView = dateTabBarContainer
 
-        if let nowIndexPath = viewModel.nowIndexPath {
+        if let nowIndexPath = viewModel?.nowIndexPath {
             tableView.scrollToRow(at: nowIndexPath, at: .top, animated: true)
         }
 
         reloadDateTabBar()
-        viewModel.update()
+        viewModel?.update()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if let nowIndexPath = viewModel.nowIndexPath {
+        if let nowIndexPath = viewModel?.nowIndexPath {
             tableView.scrollToRow(at: nowIndexPath, at: .top, animated: true)
             updateDateTabBarSelection()
         }
@@ -84,17 +84,21 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     }
 
     func prepareContent(for route: Routes) {
-        guard case let .eventList(for: course) = route else { fatalError() }
+        guard case let .eventList(for: optionalContainer) = route else { fatalError() }
 
-        viewModel = EventListViewModel(container: course)
-        viewModel.delegate = self
-        viewModel.fetch()
+        defer { tableView.reloadData() }
+
+        guard let container = optionalContainer else { return viewModel = nil }
+
+        viewModel = EventListViewModel(container: container)
+        viewModel?.delegate = self
+        viewModel?.fetch()
     }
 
     // MARK: - Restoration
 
     override func encodeRestorableState(with coder: NSCoder) {
-        coder.encode(viewModel.container.objectIdentifier.rawValue, forKey: ObjectIdentifier.typeIdentifier)
+        coder.encode(viewModel?.container.objectIdentifier.rawValue, forKey: ObjectIdentifier.typeIdentifier)
         super.encode(with: coder)
     }
 
@@ -114,7 +118,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     @IBOutlet var dateTabBar: DateTabBarView!
 
     private func reloadDateTabBar() {
-        guard dateTabBar != nil, viewModel.numberOfSections > 0 else { return }
+        guard let viewModel = viewModel, dateTabBar != nil, viewModel.numberOfSections > 0 else { return }
         dateTabBar.isDateEnabled = viewModel.contains
         dateTabBar.didSelectDate = didSelect
         dateTabBar.startsAt = viewModel[sectionAt: 0]
@@ -123,28 +127,30 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     }
 
     private func updateDateTabBarSelection() {
-        guard let indexPath = tableView.topMostIndexPath else { return }
+        guard let viewModel = viewModel, let indexPath = tableView.topMostIndexPath else { return }
         dateTabBar.selectedDate = viewModel[sectionAt: indexPath.section]
     }
 
     // MARK: - User Interaction
 
     private func didSelect(date: Date) {
-        guard let sectionIndex = self.viewModel.sectionIndex(for: date) else { return }
+        guard let viewModel = viewModel, let sectionIndex = viewModel.sectionIndex(for: date) else { return }
         tableView.scrollToRow(at: IndexPath(row: 0, section: sectionIndex), at: .top, animated: true)
     }
 
     // MARK: - Table View Data Source
 
     override func numberOfSections(in _: UITableView) -> Int {
-        return viewModel.numberOfSections
+        return viewModel?.numberOfSections ?? 0
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRows(inSection: section)
+        return viewModel?.numberOfRows(inSection: section) ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let viewModel = viewModel else { fatalError() }
+
         let cell = tableView.dequeueReusableCell(withIdentifier: EventCell.typeIdentifier, for: indexPath)
         (cell as? EventCell)?.event = viewModel[rowAt: indexPath]
         return cell
@@ -155,6 +161,8 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let viewModel = viewModel else { fatalError() }
+
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: DateHeader.typeIdentifier)
         (header as? DateHeader)?.date = viewModel[sectionAt: section]
         return header

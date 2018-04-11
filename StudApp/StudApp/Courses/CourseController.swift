@@ -175,7 +175,7 @@ final class CourseController: UITableViewController, Routable {
 
     override func numberOfSections(in _: UITableView) -> Int {
         guard viewModel != nil else { return 0 }
-        return viewModel.course.summary != nil ? 5 : 3
+        return viewModel.course.summary != nil ? 5 : 4
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {

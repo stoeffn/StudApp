@@ -16,8 +16,9 @@
 //  along with this program. If not, see http://www.gnu.org/licenses/.
 //
 
-import QuickLook
+import CoreData
 import StudKit
+import QuickLook
 
 public enum Routes {
     case about
@@ -38,7 +39,7 @@ public enum Routes {
 
     case emptyCourse
 
-    case eventList(for: Course)
+    case eventList(for: (EventsContaining & NSManagedObject)?)
 
     case folder(File)
 

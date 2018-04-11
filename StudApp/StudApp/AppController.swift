@@ -103,6 +103,7 @@ final class AppController: UITabBarController {
 
     func prepareChildContents(for user: User?) {
         coursesController?.prepareContent(for: .courseList(for: user))
+        eventsController?.prepareContent(for: .eventList(for: user))
         downloadsController?.prepareContent(for: .downloadList(for: user))
     }
 
