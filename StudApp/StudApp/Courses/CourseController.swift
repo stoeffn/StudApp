@@ -163,7 +163,7 @@ final class CourseController: UITableViewController, Routable {
     private let allEventsCellIdentifier = "AllEventsCell"
 
     private enum Sections: Int {
-        case info, announcements, documents, summary, events
+        case info, announcements, documents, events, summary
     }
 
     private func index<Section: DataSourceSection>(for section: Section) -> Sections? {
@@ -175,7 +175,7 @@ final class CourseController: UITableViewController, Routable {
 
     override func numberOfSections(in _: UITableView) -> Int {
         guard viewModel != nil else { return 0 }
-        return viewModel.course.summary != nil ? 4 : 3
+        return viewModel.course.summary != nil ? 5 : 3
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -186,9 +186,9 @@ final class CourseController: UITableViewController, Routable {
             return announcementsViewModel.numberOfRows + 1
         case .documents?:
             return fileListViewModel.numberOfRows + 1
-        case .events?:
-            return 1
         case .summary?:
+            return 1
+        case .events?:
             return 1
         case nil:
             fatalError()
