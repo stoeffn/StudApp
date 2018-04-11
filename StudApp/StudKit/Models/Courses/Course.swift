@@ -104,11 +104,7 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDSorta
 
 // MARK: - Core Data Operations
 
-extension Course: FilesContaining {
-    public var childFilesPredicate: NSPredicate {
-        return NSPredicate(format: "course == %@ AND parent == NIL", self)
-    }
-
+extension Course {
     /// Request for fetching all announcements for this course.
     public var announcementsFetchRequest: NSFetchRequest<Announcement> {
         let predicate = NSPredicate(format: "%@ IN courses", self)
@@ -120,10 +116,21 @@ extension Course: FilesContaining {
         let predicate = NSPredicate(format: "%@ IN courses AND expiresAt >= %@", self, Date() as CVarArg)
         return Announcement.fetchRequest(predicate: predicate, sortDescriptors: Announcement.defaultSortDescriptors)
     }
+}
 
-    public var eventsFetchRequest: NSFetchRequest<Event> {
-        let predicate = NSPredicate(format: "course == %@", self)
-        return Event.fetchRequest(predicate: predicate, sortDescriptors: Event.defaultSortDescriptors)
+// MARK: - Files Container
+
+extension Course: FilesContaining {
+    public var childFilesPredicate: NSPredicate {
+        return NSPredicate(format: "course == %@ AND parent == NIL", self)
+    }
+}
+
+// MARK: - Events Container
+
+extension Course: EventsContaining {
+    public var eventsPredicate: NSPredicate {
+        return NSPredicate(format: "course == %@", self)
     }
 }
 

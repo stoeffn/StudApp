@@ -259,6 +259,7 @@
 		24E60B6C1FC8C77F000EDD2A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B6B1FC8C77F000EDD2A /* MainInterface.storyboard */; };
 		24EDDBD520407A9A0034985B /* UITableViewController+DataSourceSectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EDDBD420407A9A0034985B /* UITableViewController+DataSourceSectionDelegate.swift */; };
 		24EDDBD820407B8E0034985B /* Organization+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EDDBD720407B8E0034985B /* Organization+UI.swift */; };
+		24F1501A207E087600049D82 /* EventsContaining.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F15019207E087600049D82 /* EventsContaining.swift */; };
 		24F1ABBB204B45D100972305 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 24F1ABBD204B45D100972305 /* Localizable.stringsdict */; };
 		24FD785A1FBF3F030072F860 /* PersistentHistoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD78591FBF3F030072F860 /* PersistentHistoryService.swift */; };
 		24FD785C1FBF45030072F860 /* Targets+NSPersistentHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */; };
@@ -636,6 +637,7 @@
 		24EBC4371FCDCA4300181455 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		24EDDBD420407A9A0034985B /* UITableViewController+DataSourceSectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewController+DataSourceSectionDelegate.swift"; sourceTree = "<group>"; };
 		24EDDBD720407B8E0034985B /* Organization+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Organization+UI.swift"; sourceTree = "<group>"; };
+		24F15019207E087600049D82 /* EventsContaining.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsContaining.swift; sourceTree = "<group>"; };
 		24F1ABBC204B45D100972305 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		24F1ABBE204B45D800972305 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		24FD78591FBF3F030072F860 /* PersistentHistoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentHistoryService.swift; sourceTree = "<group>"; };
@@ -1526,6 +1528,7 @@
 				24E4B9A71FF284830061983C /* BaseDirectories.swift */,
 				24D361171FAA5F6200BBBAED /* CoreDataService.swift */,
 				2485259E20378AAB00BC4CAB /* FilesContaining.swift */,
+				24F15019207E087600049D82 /* EventsContaining.swift */,
 				24FD78591FBF3F030072F860 /* PersistentHistoryService.swift */,
 				24E4B9A51FF260240061983C /* ObjectIdentifier.swift */,
 				2448D4941FA8DF6000DAB97E /* StorageService.swift */,
@@ -2328,6 +2331,7 @@
 				248C0245202E4C58004CB8C9 /* RangeIterator.swift in Sources */,
 				2448D4951FA8DF6000DAB97E /* StorageService.swift in Sources */,
 				2485259F20378AAB00BC4CAB /* FilesContaining.swift in Sources */,
+				24F1501A207E087600049D82 /* EventsContaining.swift in Sources */,
 				24D361121FAA5F0500BBBAED /* StudIpRoutes.swift in Sources */,
 				2448D4A91FA8E07E00DAB97E /* HttpMethods.swift in Sources */,
 				2448D4771FA8DE2A00DAB97E /* ServiceContainer.swift in Sources */,

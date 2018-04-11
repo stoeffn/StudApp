@@ -27,16 +27,16 @@ public final class EventListViewModel: FetchedResultsControllerDataSource {
     public private(set) lazy var fetchedResultControllerDelegateHelper = FetchedResultsControllerDelegateHelper(delegate: self)
     public weak var delegate: DataSourceDelegate?
 
-    public let course: Course
+    public let container: EventsContaining & NSManagedObject
 
-    public init(course: Course) {
-        self.course = course
+    public init(container: EventsContaining & NSManagedObject) {
+        self.container = container
 
         controller.delegate = fetchedResultControllerDelegateHelper
     }
 
     public private(set) lazy var controller: NSFetchedResultsController<Event> = NSFetchedResultsController(
-        fetchRequest: course.eventsFetchRequest, managedObjectContext: coreDataService.viewContext,
+        fetchRequest: container.eventsFetchRequest, managedObjectContext: coreDataService.viewContext,
         sectionNameKeyPath: "daysSince1970", cacheName: nil)
 
     public func section(from sectionInfo: NSFetchedResultsSectionInfo) -> Section? {
@@ -47,10 +47,10 @@ public final class EventListViewModel: FetchedResultsControllerDataSource {
         try? controller.performFetch()
     }
 
-    public func update(completion: (() -> Void)? = nil) {
+    public func update(forced: Bool = false, completion: (() -> Void)? = nil) {
         coreDataService.performBackgroundTask { context in
-            self.course.in(context)
-                .updateEvents { _ in DispatchQueue.main.async { completion?() } }
+            self.container.in(context)
+                .updateEvents(forced: forced) { _ in DispatchQueue.main.async { completion?() } }
         }
     }
 

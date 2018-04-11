@@ -151,10 +151,17 @@ extension User {
         return File.fetchRequest(predicate: downloadsPredicate(), sortDescriptors: sortDescriptors,
                                  relationshipKeyPathsForPrefetching: ["state"])
     }
+}
 
-    public var eventsFetchRequest: NSFetchRequest<Event> {
-        let predicate = NSPredicate(format: "%@ IN users", self)
-        return Event.fetchRequest(predicate: predicate, sortDescriptors: Event.defaultSortDescriptors)
+// MARK: - Events Container
+
+extension User: EventsContaining {
+    public var title: String {
+        return username
+    }
+
+    public var eventsPredicate: NSPredicate {
+        return NSPredicate(format: "%@ IN users", self)
     }
 }
 

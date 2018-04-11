@@ -86,7 +86,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     func prepareContent(for route: Routes) {
         guard case let .eventList(for: course) = route else { fatalError() }
 
-        viewModel = EventListViewModel(course: course)
+        viewModel = EventListViewModel(container: course)
         viewModel.delegate = self
         viewModel.fetch()
     }
@@ -94,7 +94,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     // MARK: - Restoration
 
     override func encodeRestorableState(with coder: NSCoder) {
-        coder.encode(viewModel.course.objectIdentifier.rawValue, forKey: ObjectIdentifier.typeIdentifier)
+        coder.encode(viewModel.container.objectIdentifier.rawValue, forKey: ObjectIdentifier.typeIdentifier)
         super.encode(with: coder)
     }
 

@@ -23,7 +23,7 @@ extension User {
 
     // MARK: - Updating Courses
 
-    func updateAuthoredCourses(forced: Bool = false, completion: @escaping ResultHandler<[Course]>) {
+    func updateAuthoredCourses(forced: Bool = false, completion: @escaping ResultHandler<Set<Course>>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         guard let context = managedObjectContext else { fatalError() }
 
@@ -38,7 +38,7 @@ extension User {
         }
     }
 
-    func updateAuthoredCourses(_ existingObjects: NSFetchRequest<Course>, with responses: [CourseResponse]) throws -> [Course] {
+    func updateAuthoredCourses(_ existingObjects: NSFetchRequest<Course>, with responses: [CourseResponse]) throws -> Set<Course> {
         guard let context = managedObjectContext else { fatalError() }
 
         let courses = try Course.update(existingObjects, with: responses, in: context) { response in
@@ -57,12 +57,12 @@ extension User {
             }
         }
 
-        return courses
+        return Set(courses)
     }
 
     // MARK: - Updating Events
 
-    func updateEvents(forced: Bool = false, completion: @escaping ResultHandler<[Event]>) {
+    public func updateEvents(forced: Bool = false, completion: @escaping ResultHandler<Set<Event>>) {
         let studIpService = ServiceContainer.default[StudIpService.self]
         guard let context = managedObjectContext else { fatalError() }
 
@@ -74,7 +74,7 @@ extension User {
                         try Event.update(self.eventsFetchRequest, with: responses, in: context) { response in
                             try response.coreDataObject(in: context)
                         }
-                    }
+                    }.map(Set.init)
                     updaterCompletion(result)
                 }
             }
