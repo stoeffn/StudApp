@@ -55,7 +55,7 @@ enum StudIp {
     // MARK: - Custom Decoding
 
     static func decodeDate<CodingKeys>(in container: KeyedDecodingContainer<CodingKeys>,
-                                                           forKey key: KeyedDecodingContainer<CodingKeys>.Key) throws -> Date {
+                                       forKey key: KeyedDecodingContainer<CodingKeys>.Key) throws -> Date {
         if let timeInterval = try? container.decode(Int.self, forKey: key) {
             return Date(timeIntervalSince1970: TimeInterval(timeInterval))
         }

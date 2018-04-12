@@ -22,7 +22,7 @@
 final class Setup: NSObject {
     override init() {
         ServiceContainer.default.register(providers: [
-            StudKitTestsServiceProvider(context: Targets.Context(currentTarget: .tests))
+            StudKitTestsServiceProvider(context: Targets.Context(currentTarget: .tests)),
         ])
     }
 }

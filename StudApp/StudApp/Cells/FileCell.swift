@@ -70,7 +70,7 @@ final class FileCell: UITableViewCell {
             let hostedBy = file.location == .external ? "hosted by %@".localized(host ?? "") : nil
 
             accessibilityLabel = [
-                folderOrDocument, file.title, modifiedAtBy, sizeOrItemCount, hostedBy
+                folderOrDocument, file.title, modifiedAtBy, sizeOrItemCount, hostedBy,
             ].compactMap { $0 }.joined(separator: ", ")
 
             let shareAction = UIAccessibilityCustomAction(name: "Share".localized, target: self, selector: #selector(share(_:)))

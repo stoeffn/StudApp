@@ -20,6 +20,7 @@ import StudKit
 import StudKitUI
 
 final class AnnouncementCell: UITableViewCell {
+
     // MARK: - Life Cycle
 
     var announcement: Announcement! {

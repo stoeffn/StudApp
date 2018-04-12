@@ -19,6 +19,7 @@
 import StudKit
 
 final class CourseCell: UITableViewCell {
+
     // MARK: - Life Cycle
 
     var course: Course! {

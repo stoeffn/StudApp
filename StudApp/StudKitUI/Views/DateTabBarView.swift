@@ -125,8 +125,8 @@ extension DateTabBarView: UICollectionViewDelegateFlowLayout {
         didSelectDate?(date)
     }
 
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-                               insetForSectionAt section: Int) -> UIEdgeInsets {
+    public func collectionView(_ collectionView: UICollectionView, layout _: UICollectionViewLayout,
+                               insetForSectionAt _: Int) -> UIEdgeInsets {
         let totalWidth = CGFloat(self.collectionView(collectionView, numberOfItemsInSection: 0)) * bounds.height
         let inset = max((collectionView.bounds.width - totalWidth) / 2, 0)
         return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)

@@ -40,7 +40,7 @@ extension AppDelegate: UIApplicationDelegate {
 
         ServiceContainer.default.register(providers: [
             StudKitServiceProvider(context: context),
-            StudKitUIServiceProvider()
+            StudKitUIServiceProvider(),
         ])
 
         coreDataService = ServiceContainer.default[CoreDataService.self]
