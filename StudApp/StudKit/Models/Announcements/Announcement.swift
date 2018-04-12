@@ -17,7 +17,13 @@
 //
 
 import CoreData
+import MobileCoreServices
 
+/// Announcement.
+///
+/// Announcements may be created by lecturers and can be associated with one or multiple courses but only one organization. They
+/// can contain rich content that can be rendered as HTML but also provide a plaintext representation. Announcements also expire
+/// after at a certain point of time.
 @objc(Announcement)
 public final class Announcement: NSManagedObject, CDCreatable, CDIdentifiable, CDSortable {
 
@@ -27,28 +33,36 @@ public final class Announcement: NSManagedObject, CDCreatable, CDIdentifiable, C
 
     @NSManaged public var id: String
 
+    /// The announcement's title.
     @NSManaged public var title: String
 
     // MARK: Specifying Location
 
+    /// Courses this announcement should appear in.
     @NSManaged public var courses: Set<Course>
 
     @NSManaged public var organization: Organization
 
     // MARK: Tracking Usage and Expiry
 
+    /// When this annoucement was created.
     @NSManaged public var createdAt: Date
 
+    /// When this annoucement was last modified.
     @NSManaged public var modifiedAt: Date
 
+    /// When this annoucement expires. Expired annoucements should not be visible to the user.
     @NSManaged public var expiresAt: Date
 
     // MARK: Managing Content and Ownership
 
+    /// Rich content that can be rendered as HTML.
     @NSManaged public var htmlContent: String
 
+    /// Plaintext representation of `textContent`.
     @NSManaged public var textContent: String
 
+    /// User who posted this annoucement.
     @NSManaged public var user: User?
 
     // MARK: - Sorting
@@ -61,5 +75,15 @@ public final class Announcement: NSManagedObject, CDCreatable, CDIdentifiable, C
 
     public override var description: String {
         return "<Announcement id: \(id), courses: \(courses), title: \(title)>"
+    }
+}
+
+// MARK: - Utilities
+
+public extension Announcement {
+    @available(iOSApplicationExtension 11.0, *)
+    var itemProvider: NSItemProvider? {
+        guard let data = textContent.data(using: .utf8) else { return nil }
+        return NSItemProvider(item: data as NSData, typeIdentifier: kUTTypePlainText as String)
     }
 }

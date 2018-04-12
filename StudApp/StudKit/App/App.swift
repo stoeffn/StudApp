@@ -36,10 +36,10 @@ public enum App {
         // MARK: iTunes and App Store
 
         /// App Store URL.
-        public static let appStore = URL(string: "https://itunes.apple.com/de/app/\(App.id)")!
+        public static let appStore = URL(string: "https://itunes.apple.com/de/app/studapp/id\(App.id)")!
 
         /// URL of the app's App Store review page.
-        public static let review = URL(string: "itms-apps://itunes.apple.com/de/app/\(App.id)?action=write-review")!
+        public static let review = URL(string: "itms-apps://itunes.apple.com/de/app/studapp/id\(App.id)?action=write-review")!
 
         // MARK: Callbacks
 

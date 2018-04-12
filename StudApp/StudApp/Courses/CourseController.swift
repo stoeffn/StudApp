@@ -377,13 +377,9 @@ extension CourseController: UITableViewDragDelegate {
             guard let data = viewModel[rowAt: indexPath.row].value?.data(using: .utf8) else { return [] }
             return [NSItemProvider(item: data as NSData, typeIdentifier: kUTTypePlainText as String)]
         case .announcements? where !announcementsViewModel.isEmpty:
-            guard let data = announcementsViewModel[rowAt: indexPath.row].textContent.data(using: .utf8) else { return [] }
-            return [NSItemProvider(item: data as NSData, typeIdentifier: kUTTypePlainText as String)]
+            return [announcementsViewModel[rowAt: indexPath.row].itemProvider].compactMap { $0 }
         case .documents? where !fileListViewModel.isEmpty:
-            let file = fileListViewModel[rowAt: indexPath.row]
-            guard let itemProvider = NSItemProvider(contentsOf: file.localUrl(in: .fileProvider)) else { return [] }
-            itemProvider.suggestedName = file.name
-            return [itemProvider]
+            return [fileListViewModel[rowAt: indexPath.row].itemProvider].compactMap { $0 }
         default:
             return []
         }

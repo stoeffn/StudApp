@@ -25,7 +25,6 @@ struct AnnouncementResponse: IdentifiableResponse {
     let createdAt: Date
     let modifiedAt: Date
     let expiresAfter: TimeInterval
-    let expiresAt: Date
     let title: String
     let htmlContent: String
     let textContent: String
@@ -39,7 +38,6 @@ struct AnnouncementResponse: IdentifiableResponse {
         self.createdAt = createdAt
         self.modifiedAt = modifiedAt
         self.expiresAfter = expiresAfter
-        expiresAt = createdAt + expiresAfter
         self.title = title
         self.htmlContent = htmlContent
         self.textContent = textContent
@@ -70,7 +68,6 @@ extension AnnouncementResponse: Decodable {
         createdAt = try StudIp.decodeDate(in: container, forKey: .createdAt)
         modifiedAt = try StudIp.decodeDate(in: container, forKey: .modifiedAt)
         expiresAfter = TimeInterval(try container.decode(String.self, forKey: .expiresAfter)) ?? 0
-        expiresAt = createdAt + expiresAfter
         title = try container.decode(String.self, forKey: .title)
         htmlContent = try container.decode(String.self, forKey: .htmlContent)
         textContent = try container.decode(String.self, forKey: .textContent)
@@ -89,7 +86,7 @@ extension AnnouncementResponse {
         announcement.user = try User.fetch(byId: userId, in: context)
         announcement.createdAt = createdAt
         announcement.modifiedAt = modifiedAt
-        announcement.expiresAt = expiresAt
+        announcement.expiresAt = createdAt + expiresAfter
         announcement.title = title
         announcement.htmlContent = htmlContent
         announcement.textContent = textContent
