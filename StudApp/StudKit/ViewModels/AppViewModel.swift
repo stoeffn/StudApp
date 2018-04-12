@@ -32,11 +32,11 @@ public final class AppViewModel {
         studIpService.signOut()
     }
 
-    public func update() {
-        guard !ProcessInfo.processInfo.isLowPowerModeEnabled else { return }
+    public func update(forced: Bool = false, completion: (() -> Void)? = nil) {
+        guard let user = User.current, !ProcessInfo.processInfo.isLowPowerModeEnabled else { return }
 
         coreDataService.performBackgroundTask { context in
-            self.studIpService.update(in: context) {}
+            self.studIpService.updateMainData(organization: user.organization.in(context), forced: forced) { _ in completion?() }
         }
     }
 }

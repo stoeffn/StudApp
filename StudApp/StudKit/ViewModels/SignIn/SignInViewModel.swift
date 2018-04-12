@@ -182,15 +182,6 @@ public final class SignInViewModel: NSObject {
             }
 
             self.state = .signedIn
-            self.update()
-        }
-    }
-
-    private func update() {
-        guard !ProcessInfo.processInfo.isLowPowerModeEnabled else { return }
-
-        coreDataService.performBackgroundTask { context in
-            self.studIpService.update(in: context) {}
         }
     }
 }

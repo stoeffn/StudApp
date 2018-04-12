@@ -59,33 +59,10 @@ public class StudIpService {
         api.baseUrl = organization.apiUrl
         api.authorizing = authorizing
 
-        let group = DispatchGroup()
-
-        var discoveryResult: Result<ApiRoutesAvailablity>!
-        group.enter()
-        organization.updateDiscovery(forced: true) { result in
-            discoveryResult = result
-            group.leave()
-        }
-
-        var userResult: Result<User>!
-        group.enter()
-        organization.updateCurrentUser(forced: true) { result in
-            userResult = result
-            group.leave()
-        }
-
-        var semesterResult: Result<Set<Semester>>!
-        group.enter()
-        organization.updateSemesters(forced: true) { result in
-            semesterResult = result
-            group.leave()
-        }
-
-        group.notify(queue: .main) {
-            guard discoveryResult.isSuccess, let user = userResult.value, semesterResult.isSuccess else {
+        updateMainData(organization: organization) { result in
+            guard let user = result.value else {
                 self.signOut()
-                return completion(.failure(discoveryResult.error ?? userResult.error ?? semesterResult.error))
+                return completion(result)
             }
 
             User.current = user
@@ -97,7 +74,7 @@ public class StudIpService {
                 NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
             }
 
-            completion(userResult)
+            completion(result)
         }
     }
 
@@ -132,28 +109,40 @@ public class StudIpService {
 
     // MARK: - Updating
 
-    func update(in context: NSManagedObjectContext, completion: @escaping () -> Void) {
-        guard let user = User.current?.in(context) else { return completion() }
-
+    func updateMainData(organization: Organization, forced: Bool = false, completion: @escaping ResultHandler<User>) {
         let group = DispatchGroup()
+        var discoveryResult: Result<ApiRoutesAvailablity>!
+        var userResult: Result<User>!
+        var semesterResult: Result<Set<Semester>>!
+        var coursesResult: Result<Set<Course>>?
 
         group.enter()
-        user.organization.updateDiscovery { _ in group.leave() }
+        organization.updateDiscovery(forced: forced) { result in
+            discoveryResult = result
+            group.leave()
+        }
 
         group.enter()
-        user.organization.updateCurrentUser { _ in group.leave() }
+        organization.updateCurrentUser(forced: forced) { result in
+            userResult = result
 
-        group.enter()
-        user.organization.updateSemesters { _ in
-            defer { group.leave() }
+            organization.updateSemesters(forced: forced) { result in
+                semesterResult = result
 
-            group.enter()
-            user.updateAuthoredCourses { _ in
-                group.leave()
+                guard let user = userResult.value else { return group.leave() }
+
+                user.updateAuthoredCourses(forced: forced) { result in
+                    coursesResult = result
+                    group.leave()
+                }
             }
         }
 
-        group.notify(queue: .main) { completion() }
+        group.notify(queue: .main) {
+            let error = discoveryResult.error ?? userResult.error ?? semesterResult.error ?? coursesResult?.error
+            let result = Result(userResult.value, error: error)
+            completion(result)
+        }
     }
 
     private func updateAuthoredCoursesInVisibleSemesters(for user: User, group: DispatchGroup, context: NSManagedObjectContext) throws {
