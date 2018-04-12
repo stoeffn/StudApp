@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -54,6 +55,51 @@
                                 <constraint firstAttribute="bottom" secondItem="j9h-FY-E2G" secondAttribute="bottom" id="LrQ-PA-pQr"/>
                                 <constraint firstItem="j9h-FY-E2G" firstAttribute="leading" secondItem="cTW-w1-ovj" secondAttribute="leading" id="dva-nJ-kHo"/>
                                 <constraint firstItem="j9h-FY-E2G" firstAttribute="top" secondItem="cTW-w1-ovj" secondAttribute="top" id="r5q-id-Hjr"/>
+                            </constraints>
+                        </view>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="dki-5C-bpz">
+                            <rect key="frame" x="0.0" y="196" width="375" height="256"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no events within the next two weeks for you." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zu2-Lt-Pqz">
+                                    <rect key="frame" x="8" y="174.5" width="359" height="38"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                    <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EventsGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="6qa-P1-NNV">
+                                    <rect key="frame" x="139.5" y="32" width="96" height="96"/>
+                                    <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="84" id="k5C-oL-yOz">
+                                            <variation key="widthClass=regular" constant="96"/>
+                                        </constraint>
+                                        <constraint firstAttribute="width" secondItem="6qa-P1-NNV" secondAttribute="height" multiplier="1:1" id="qXY-Ba-ZSm"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                            <color key="value" white="0.75" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It Looks Like You Are Free" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kj8-QX-atC">
+                                    <rect key="frame" x="8" y="149.5" width="359" height="20.5"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <constraints>
+                                <constraint firstItem="6qa-P1-NNV" firstAttribute="top" secondItem="dki-5C-bpz" secondAttribute="top" constant="32" id="BL3-IK-8t4"/>
+                                <constraint firstItem="kj8-QX-atC" firstAttribute="leading" secondItem="dki-5C-bpz" secondAttribute="leadingMargin" id="K6Z-ry-vs2"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="kj8-QX-atC" secondAttribute="trailing" id="NKe-nA-9jW"/>
+                                <constraint firstItem="Zu2-Lt-Pqz" firstAttribute="firstBaseline" secondItem="kj8-QX-atC" secondAttribute="baseline" multiplier="1.025" constant="20" symbolType="layoutAnchor" id="QL2-di-TGj"/>
+                                <constraint firstItem="Zu2-Lt-Pqz" firstAttribute="leading" secondItem="dki-5C-bpz" secondAttribute="leadingMargin" id="SR7-zC-XRX"/>
+                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Zu2-Lt-Pqz" secondAttribute="bottom" constant="32" id="dz8-K2-eQX"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="Zu2-Lt-Pqz" secondAttribute="trailing" id="gBy-gX-18a"/>
+                                <constraint firstItem="6qa-P1-NNV" firstAttribute="centerX" secondItem="dki-5C-bpz" secondAttribute="centerX" id="pEE-Ar-FYS"/>
+                                <constraint firstItem="kj8-QX-atC" firstAttribute="firstBaseline" secondItem="6qa-P1-NNV" secondAttribute="baseline" multiplier="1.1" constant="24.5" symbolType="layoutAnchor" id="qkl-3o-KFv"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -199,11 +245,16 @@ Gebäude 3703: Technische Informatik</string>
                         </barButtonItem>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="DId-GV-cb2">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
                     <connections>
                         <outlet property="dateTabBar" destination="j9h-FY-E2G" id="2NE-I2-WhG"/>
                         <outlet property="dateTabBarContainer" destination="cTW-w1-ovj" id="6tw-We-ywq"/>
+                        <outlet property="emptyView" destination="dki-5C-bpz" id="MeB-zG-Cs6"/>
+                        <outlet property="emptyViewSubtitleLabel" destination="Zu2-Lt-Pqz" id="TdZ-r0-BsQ"/>
+                        <outlet property="emptyViewTitleLabel" destination="kj8-QX-atC" id="eDb-4A-A0W"/>
+                        <outlet property="emptyViewTopConstraint" destination="BL3-IK-8t4" id="kdi-Vn-GGZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qP7-tu-KHp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -230,6 +281,7 @@ Gebäude 3703: Technische Informatik</string>
         </scene>
     </scenes>
     <resources>
+        <image name="EventsGlyph" width="512" height="512"/>
         <image name="EventsLandscapeTabBarGlyph" width="17" height="17"/>
         <image name="EventsTabBarGlyph" width="23" height="23"/>
         <image name="UserBarButtonGlyph" width="28" height="28"/>

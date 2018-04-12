@@ -172,6 +172,8 @@
 
 "Events" = "Termine";
 "All Events" = "Alle Termine";
+"It Looks Like You Are Free" = "Es scheint, als hättest Du frei";
+"There are no events within the next two weeks for you." = "Innerhalb der nächsten zwei Wochen gibt es keine Termine für dich.";
 
 // MARK: - Mock Data
 

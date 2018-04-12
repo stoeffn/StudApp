@@ -37,10 +37,13 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
         tableView.register(DateHeader.self, forHeaderFooterViewReuseIdentifier: DateHeader.typeIdentifier)
         tableView.tableHeaderView = nil
+        tableView.tableFooterView = nil
 
         if self !== navigationController?.viewControllers.first {
             navigationItem.rightBarButtonItem = nil
         }
+
+        updateEmptyView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -54,6 +57,8 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         }
 
         reloadDateTabBar()
+        updateEmptyView()
+
         viewModel?.update()
     }
 
@@ -88,6 +93,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         coordinator.animate(alongsideTransition: { _ in
             let controller = self.splitViewController?.detailNavigationController as? BorderlessNavigationController
             controller?.toolBarView = self.dateTabBarContainer
+            self.updateEmptyView()
         }, completion: nil)
     }
 
@@ -125,6 +131,14 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
     @IBOutlet var dateTabBar: DateTabBarView!
 
+    @IBOutlet var emptyView: UIView!
+
+    @IBOutlet var emptyViewTopConstraint: NSLayoutConstraint!
+
+    @IBOutlet var emptyViewTitleLabel: UILabel!
+
+    @IBOutlet var emptyViewSubtitleLabel: UILabel!
+
     private var dateTabBarUpdatesContinuously = true
 
     private func reloadDateTabBar() {
@@ -139,6 +153,22 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     private func updateDateTabBarSelection() {
         guard let viewModel = viewModel, let indexPath = tableView.topMostIndexPath else { return }
         dateTabBar.selectedDate = viewModel[sectionAt: indexPath.section]
+    }
+
+    private func updateEmptyView() {
+        guard view != nil else { return }
+
+        let isEmpty = viewModel?.isEmpty ?? false
+
+        emptyViewTitleLabel.text = "It Looks Like You Are Free".localized
+        emptyViewSubtitleLabel.text = "There are no events within the next two weeks for you.".localized
+
+        tableView.backgroundView = isEmpty ? emptyView : nil
+        tableView.separatorStyle = isEmpty ? .none : .singleLine
+
+        if let navigationBarHeight = navigationController?.navigationBar.bounds.height {
+            emptyViewTopConstraint.constant = navigationBarHeight * 2 + 92
+        }
     }
 
     // MARK: - User Interaction
@@ -220,5 +250,6 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         tableView.endUpdates()
         reloadDateTabBar()
         updateDateTabBarSelection()
+        updateEmptyView()
     }
 }
