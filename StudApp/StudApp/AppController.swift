@@ -77,9 +77,11 @@ final class AppController: UITabBarController {
 
     func handle(quickAction: QuickActions) -> Bool {
         switch quickAction {
-        case .presentCourses:
+        case .showCourses:
             selectedIndex = Tabs.courses.rawValue
-        case .presentDownloads:
+        case .showEvents:
+            selectedIndex = Tabs.events.rawValue
+        case .showDownloads:
             selectedIndex = Tabs.downloads.rawValue
         }
         return true

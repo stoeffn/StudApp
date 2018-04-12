@@ -17,7 +17,7 @@
 //
 
 enum QuickActions: String {
-    case presentCourses, presentDownloads
+    case showCourses, showEvents, showDownloads
 
     init?(fromShortcutItemType shortcutItemType: String) {
         guard let identifier = shortcutItemType.components(separatedBy: ".").last else { return nil }

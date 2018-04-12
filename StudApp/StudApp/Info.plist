@@ -50,7 +50,15 @@
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>Courses</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).presentCourses</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).showCourses</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>EventsQuickActionGlyph</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Events</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).showEvents</string>
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconFile</key>
@@ -58,7 +66,7 @@
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>Downloads</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).presentDownloads</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).showDownloads</string>
 		</dict>
 	</array>
 	<key>UILaunchStoryboardName</key>
