@@ -31,6 +31,8 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
             additionalSafeAreaInsets = UIEdgeInsets(top: dateTabBar.bounds.height, left: 0, bottom: 0, right: 0)
         }
 
+        refreshControl?.addTarget(self, action: #selector(refreshControlTriggered(_:)), for: .valueChanged)
+
         navigationItem.title = "Events".localized
 
         tableView.register(DateHeader.self, forHeaderFooterViewReuseIdentifier: DateHeader.typeIdentifier)
@@ -132,6 +134,13 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     }
 
     // MARK: - User Interaction
+
+    @objc
+    func refreshControlTriggered(_: Any) {
+        viewModel?.update(forced: true) {
+            self.refreshControl?.endRefreshing()
+        }
+    }
 
     private func didSelect(date: Date) {
         guard let viewModel = viewModel, let sectionIndex = viewModel.sectionIndex(for: date) else { return }
