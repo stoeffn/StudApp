@@ -119,9 +119,16 @@ extension DateTabBarView: UICollectionViewDataSource {
 
 // MARK: - Collection View Delegate
 
-extension DateTabBarView: UICollectionViewDelegate {
+extension DateTabBarView: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? DateTabBarCell, let date = cell.date else { return }
         didSelectDate?(date)
+    }
+
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                               insetForSectionAt section: Int) -> UIEdgeInsets {
+        let totalWidth = CGFloat(self.collectionView(collectionView, numberOfItemsInSection: 0)) * bounds.height
+        let inset = max((collectionView.bounds.width - totalWidth) / 2, 0)
+        return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
     }
 }
