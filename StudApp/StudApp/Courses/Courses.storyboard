@@ -191,6 +191,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="dRL-nQ-MHQ">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                     <connections>
                         <outlet property="emptyView" destination="wzE-zV-w24" id="Hv8-bS-Hd6"/>
                         <outlet property="emptyViewActionButton" destination="14A-k0-KOd" id="uQp-eq-Mfi"/>

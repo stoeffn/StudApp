@@ -333,7 +333,7 @@ final class CourseController: UITableViewController, Routable {
         present(controller, animated: true, completion: nil)
     }
 
-    @objc
+    @IBAction
     func refreshControlTriggered(_: Any) {
         update(forced: true)
     }

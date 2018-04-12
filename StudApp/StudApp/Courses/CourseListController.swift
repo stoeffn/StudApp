@@ -32,6 +32,8 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         navigationItem.title = "Courses".localized
         navigationItem.rightBarButtonItem?.accessibilityLabel = "More".localized
 
+        refreshControl?.addTarget(self, action: #selector(refreshControlTriggered(_:)), for: .valueChanged)
+
         tableView.register(SemesterHeader.self, forHeaderFooterViewReuseIdentifier: SemesterHeader.typeIdentifier)
         tableView.tableHeaderView = nil
         tableView.estimatedSectionHeaderHeight = SemesterHeader.estimatedHeight
@@ -339,8 +341,15 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     }
 
     @IBAction
+    func refreshControlTriggered(_: Any) {
+        viewModel?.update(forced: true) {
+            self.refreshControl?.endRefreshing()
+        }
+    }
+
+    @IBAction
     func emptyViewActionButtonTapped(_: Any) {
-        viewModel?.update()
+        viewModel?.update(forced: true)
     }
 }
 

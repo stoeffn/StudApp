@@ -59,10 +59,10 @@ public final class SemesterListViewModel: FetchedResultsControllerDataSourceSect
     }
 
     /// Updates data from the server.
-    public func update(completion: (() -> Void)? = nil) {
+    public func update(forced: Bool = false, completion: (() -> Void)? = nil) {
         coreDataService.performBackgroundTask { context in
             self.organization.in(context)
-                .updateSemesters { _ in DispatchQueue.main.async { completion?() } }
+                .updateSemesters(forced: forced) { _ in DispatchQueue.main.async { completion?() } }
         }
     }
 }
