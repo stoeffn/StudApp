@@ -21,6 +21,7 @@ import StudKitUI
 
 final class EventListController: UITableViewController, DataSourceDelegate, Routable {
     private var viewModel: EventListViewModel?
+    private var dateTabBarUpdatesContinuously = true
 
     // MARK: - Life Cycle
 
@@ -59,6 +60,8 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        reloadDateTabBar()
 
         if let nowIndexPath = viewModel?.nowIndexPath {
             tableView.scrollToRow(at: nowIndexPath, at: .top, animated: true)
@@ -154,6 +157,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     private func didSelect(date: Date) {
         guard let viewModel = viewModel, let sectionIndex = viewModel.sectionIndex(for: date) else { return }
         tableView.scrollToRow(at: IndexPath(row: 0, section: sectionIndex), at: .top, animated: true)
+        dateTabBarUpdatesContinuously = false
     }
 
     // MARK: - Table View Data Source
@@ -188,8 +192,13 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
     // MARK: - Scroll View Delegate
 
-    override func scrollViewDidEndDecelerating(_: UIScrollView) {
+    override func scrollViewDidScroll(_: UIScrollView) {
+        guard dateTabBarUpdatesContinuously else { return }
         updateDateTabBarSelection()
+    }
+
+    override func scrollViewWillBeginDragging(_: UIScrollView) {
+        dateTabBarUpdatesContinuously = true
     }
 
     // MARK: - Reacting to Data Changes
