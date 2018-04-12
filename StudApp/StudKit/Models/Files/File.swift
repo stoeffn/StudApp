@@ -193,6 +193,16 @@ public extension File {
         return directory.containerUrl(forObjectId: objectIdentifier)
             .appendingPathComponent(name, isDirectory: isFolder)
     }
+
+    @available(iOSApplicationExtension 11.0, *)
+    public var itemProvider: NSItemProvider? {
+        guard
+            !isFolder && state.isDownloaded,
+            let itemProvider = NSItemProvider(contentsOf: localUrl(in: .downloads))
+        else { return nil }
+        itemProvider.suggestedName = name
+        return itemProvider
+    }
 }
 
 // MARK: - Core Spotlight and Activity Tracking

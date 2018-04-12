@@ -17,6 +17,7 @@
 //
 
 import CoreData
+import MobileCoreServices
 
 /// Announcement.
 ///
@@ -74,5 +75,15 @@ public final class Announcement: NSManagedObject, CDCreatable, CDIdentifiable, C
 
     public override var description: String {
         return "<Announcement id: \(id), courses: \(courses), title: \(title)>"
+    }
+}
+
+// MARK: - Utilities
+
+public extension Announcement {
+    @available(iOSApplicationExtension 11.0, *)
+    var itemProvider: NSItemProvider? {
+        guard let data = textContent.data(using: .utf8) else { return nil }
+        return NSItemProvider(item: data as NSData, typeIdentifier: kUTTypePlainText as String)
     }
 }

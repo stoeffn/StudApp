@@ -217,20 +217,15 @@ final class FolderController: UITableViewController, Routable {
 
 @available(iOS 11.0, *)
 extension FolderController: UITableViewDragDelegate {
-    private func itemProviders(forIndexPath indexPath: IndexPath) -> [NSItemProvider] {
-        let file = viewModel[rowAt: indexPath.row]
-        guard let itemProvider = NSItemProvider(contentsOf: file.localUrl(in: .fileProvider)) else { return [] }
-        itemProvider.suggestedName = file.name
-        return [itemProvider]
-    }
-
     func tableView(_: UITableView, itemsForBeginning _: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        return itemProviders(forIndexPath: indexPath).map(UIDragItem.init)
+        guard let itemProvider = viewModel[rowAt: indexPath.row].itemProvider else { return [] }
+        return [UIDragItem(itemProvider: itemProvider)]
     }
 
     func tableView(_: UITableView, itemsForAddingTo _: UIDragSession, at indexPath: IndexPath,
                    point _: CGPoint) -> [UIDragItem] {
-        return itemProviders(forIndexPath: indexPath).map(UIDragItem.init)
+        guard let itemProvider = viewModel[rowAt: indexPath.row].itemProvider else { return [] }
+        return [UIDragItem(itemProvider: itemProvider)]
     }
 }
 
