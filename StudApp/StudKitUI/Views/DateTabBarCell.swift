@@ -123,6 +123,7 @@ final class DateTabBarCell: UICollectionViewCell {
 
     private func updateAppearance(animated: Bool = true) {
         isUserInteractionEnabled = isEnabled
+        tintColor = UI.Colors.tint
 
         let duration = animated ? UI.defaultAnimationDuration : 0
         let textColor: UIColor = isEnabled ? .black : .lightGray

@@ -225,6 +225,7 @@ final class CourseController: UITableViewController, Routable {
         case .events?:
             let cell = tableView.dequeueReusableCell(withIdentifier: allEventsCellIdentifier, for: indexPath)
             cell.textLabel?.text = "All Events".localized
+            cell.detailTextLabel?.text = viewModel.course.state.eventsUpdatedAt != nil ? String(viewModel.course.events.count) : nil
             return cell
         case .summary?:
             let cell = tableView.dequeueReusableCell(withIdentifier: SummaryCell.typeIdentifier, for: indexPath)
