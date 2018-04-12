@@ -61,8 +61,8 @@ extension FolderResponse: Decodable {
         id = try container.decode(String.self, forKey: .id)
         userId = try container.decodeIfPresent(String.self, forKey: .userId)?.nilWhenEmpty
         name = try container.decode(String.self, forKey: .name)
-        createdAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .createdAt)
-        modifiedAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .modifiedAt)
+        createdAt = try StudIp.decodeDate(in: container, forKey: .createdAt)
+        modifiedAt = try StudIp.decodeDate(in: container, forKey: .modifiedAt)
         summary = try container.decodeIfPresent(String.self, forKey: .summary)?.nilWhenEmpty
         folders = try container.decodeIfPresent(Set<FolderResponse>.self, forKey: .folders)
         documents = try container.decodeIfPresent(Set<DocumentResponse>.self, forKey: .documents)

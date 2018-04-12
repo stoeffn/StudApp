@@ -67,8 +67,8 @@ extension AnnouncementResponse: Decodable {
         id = try container.decode(String.self, forKey: .id)
         courseIds = Set(rawCourseIds.compactMap { StudIp.transform(idPath: $0) })
         userId = try container.decodeIfPresent(String.self, forKey: .userId)?.nilWhenEmpty
-        createdAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .createdAt)
-        modifiedAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .modifiedAt)
+        createdAt = try StudIp.decodeDate(in: container, forKey: .createdAt)
+        modifiedAt = try StudIp.decodeDate(in: container, forKey: .modifiedAt)
         expiresAfter = TimeInterval(try container.decode(String.self, forKey: .expiresAfter)) ?? 0
         expiresAt = createdAt + expiresAfter
         title = try container.decode(String.self, forKey: .title)

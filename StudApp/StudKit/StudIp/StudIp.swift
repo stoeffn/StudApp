@@ -54,12 +54,16 @@ enum StudIp {
 
     // MARK: - Custom Decoding
 
-    static func decodeTimeIntervalStringAsDate<CodingKeys>(in container: KeyedDecodingContainer<CodingKeys>,
+    static func decodeDate<CodingKeys>(in container: KeyedDecodingContainer<CodingKeys>,
                                                            forKey key: KeyedDecodingContainer<CodingKeys>.Key) throws -> Date {
-        let string = try container.decode(String.self, forKey: key)
-        guard let timeInterval = TimeInterval(string) else {
-            let context = DecodingError.Context(
-                codingPath: [key], debugDescription: "Cannot create time interval from '\(string)'", underlyingError: nil)
+        if let timeInterval = try? container.decode(Int.self, forKey: key) {
+            return Date(timeIntervalSince1970: TimeInterval(timeInterval))
+        }
+
+        let rawTimeInterval = try container.decode(String.self, forKey: key)
+        guard let timeInterval = TimeInterval(rawTimeInterval) else {
+            let description = "Cannot create time interval from '\(rawTimeInterval)'"
+            let context = DecodingError.Context(codingPath: [key], debugDescription: description, underlyingError: nil)
             throw DecodingError.typeMismatch(TimeInterval.self, context)
         }
         return Date(timeIntervalSince1970: timeInterval)

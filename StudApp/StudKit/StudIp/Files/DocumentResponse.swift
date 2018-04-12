@@ -83,8 +83,8 @@ extension DocumentResponse: Decodable {
         location = File.Location(rawLocation: try? container.decode(String.self, forKey: .location), externalUrl: externalUrl)
         userId = try container.decodeIfPresent(String.self, forKey: .userId)?.nilWhenEmpty
         name = try container.decode(String.self, forKey: .name)
-        createdAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .createdAt)
-        modifiedAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .modifiedAt)
+        createdAt = try StudIp.decodeDate(in: container, forKey: .createdAt)
+        modifiedAt = try StudIp.decodeDate(in: container, forKey: .modifiedAt)
         summary = try container.decodeIfPresent(String.self, forKey: .summary)?.nilWhenEmpty
         size = Int(try container.decodeIfPresent(String.self, forKey: .size) ?? "")
         downloadCount = Int(try container.decodeIfPresent(String.self, forKey: .downloadCount) ?? "")

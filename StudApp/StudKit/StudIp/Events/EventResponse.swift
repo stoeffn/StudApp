@@ -62,8 +62,8 @@ extension EventResponse: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         courseId = StudIp.transform(idPath: try container.decodeIfPresent(String.self, forKey: .courseId))
-        startsAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .startsAt)
-        endsAt = try StudIp.decodeTimeIntervalStringAsDate(in: container, forKey: .endsAt)
+        startsAt = try StudIp.decodeDate(in: container, forKey: .startsAt)
+        endsAt = try StudIp.decodeDate(in: container, forKey: .endsAt)
         isCanceled = try container.decodeIfPresent(Bool.self, forKey: .isCanceled) ?? false
         cancellationReason = try? container.decode(String.self, forKey: .cancellationReason)
         location = isCanceled ? nil : StudIp.transform(location: try container.decodeIfPresent(String.self, forKey: .location))
