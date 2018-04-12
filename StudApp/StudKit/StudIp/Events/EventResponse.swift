@@ -76,7 +76,7 @@ extension EventResponse: Decodable {
 
 extension EventResponse {
     @discardableResult
-    func coreDataObject(course: Course? = nil, in context: NSManagedObjectContext) throws -> Event {
+    func coreDataObject(course: Course? = nil, user: User? = nil, in context: NSManagedObjectContext) throws -> Event {
         guard let course = try course ?? Course.fetch(byId: courseId, in: context) else {
             let description = "You need to either provide a course or convert a event response with a valid course id."
             let context = DecodingError.Context(codingPath: [CodingKeys.courseId], debugDescription: description)
@@ -86,7 +86,7 @@ extension EventResponse {
         let (event, _) = try Event.fetch(byId: id, orCreateIn: context)
         event.organization = course.organization
         event.course = course
-        event.users.formUnion([User.current?.in(context)].compactMap { $0 })
+        event.users.formUnion([user].compactMap { $0 })
         event.startsAt = startsAt
         event.endsAt = endsAt
         event.isCanceled = isCanceled

@@ -71,8 +71,8 @@ extension User {
             studIpService.api.requestCollection(.eventsForUser(withId: self.id)) { (result: Result<[EventResponse]>) in
                 context.perform {
                     let result = result.map { responses in
-                        try Event.update(self.eventsFetchRequest, with: responses, in: context) { response in
-                            try response.coreDataObject(in: context)
+                        try Event.update(with: responses, in: context) { response in
+                            try response.coreDataObject(user: self.in(context), in: context)
                         }
                     }.map(Set.init)
                     updaterCompletion(result)
