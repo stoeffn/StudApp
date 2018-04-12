@@ -142,8 +142,9 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     private var dateTabBarUpdatesContinuously = true
 
     private func reloadDateTabBar() {
+        dateTabBar.isDateEnabled = viewModel?.contains ?? { _ in false }
+
         guard let viewModel = viewModel, dateTabBar != nil, viewModel.numberOfSections > 0 else { return }
-        dateTabBar.isDateEnabled = viewModel.contains
         dateTabBar.didSelectDate = didSelect
         dateTabBar.startsAt = viewModel[sectionAt: 0]
         dateTabBar.endsAt = viewModel[sectionAt: viewModel.numberOfSections - 1]
@@ -167,7 +168,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         tableView.separatorStyle = isEmpty ? .none : .singleLine
 
         if let navigationBarHeight = navigationController?.navigationBar.bounds.height {
-            emptyViewTopConstraint.constant = navigationBarHeight * 2 + 92
+            emptyViewTopConstraint.constant = navigationBarHeight * 2 + 84
         }
     }
 
