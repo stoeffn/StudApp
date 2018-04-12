@@ -21,7 +21,6 @@ import StudKitUI
 
 final class EventListController: UITableViewController, DataSourceDelegate, Routable {
     private var viewModel: EventListViewModel?
-    private var dateTabBarUpdatesContinuously = true
 
     // MARK: - Life Cycle
 
@@ -126,6 +125,8 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
     @IBOutlet var dateTabBar: DateTabBarView!
 
+    private var dateTabBarUpdatesContinuously = true
+
     private func reloadDateTabBar() {
         guard let viewModel = viewModel, dateTabBar != nil, viewModel.numberOfSections > 0 else { return }
         dateTabBar.isDateEnabled = viewModel.contains
@@ -175,6 +176,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
         let cell = tableView.dequeueReusableCell(withIdentifier: EventCell.typeIdentifier, for: indexPath)
         (cell as? EventCell)?.event = viewModel[rowAt: indexPath]
+        cell.selectionStyle = viewModel.container is Course ? .none : .default
         return cell
     }
 
@@ -188,6 +190,17 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: DateHeader.typeIdentifier)
         (header as? DateHeader)?.date = viewModel[sectionAt: section]
         return header
+    }
+
+    // MARK: - Table View Delegate
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard
+            !(viewModel?.container is Course),
+            let appController = tabBarController as? AppController,
+            let cell = tableView.cellForRow(at: indexPath) as? EventCell
+        else { return }
+        appController.restoreUserActivityState(cell.event.course.userActivity)
     }
 
     // MARK: - Scroll View Delegate
