@@ -62,9 +62,12 @@ final class DateHeader: UITableViewHeaderFooterView {
         spacingView.leadingAnchor.constraint(equalTo: readableContentGuide.leadingAnchor).isActive = true
         spacingView.topAnchor.constraint(equalTo: readableContentGuide.topAnchor).isActive = true
         spacingView.bottomAnchor.constraint(equalTo: readableContentGuide.bottomAnchor).isActive = true
-        spacingView.widthAnchor.constraint(equalTo: readableContentGuide.widthAnchor, multiplier: 0.2).isActive = true
         spacingView.widthAnchor.constraint(greaterThanOrEqualToConstant: 48).isActive = true
         spacingView.widthAnchor.constraint(lessThanOrEqualToConstant: 128).isActive = true
+
+        let widthConstraint = spacingView.widthAnchor.constraint(equalTo: readableContentGuide.widthAnchor, multiplier: 0.2)
+        widthConstraint.priority = .defaultHigh
+        widthConstraint.isActive = true
 
         addSubview(titleLabel)
         titleLabel.leadingAnchor.constraint(equalTo: spacingView.trailingAnchor, constant: 4).isActive = true
