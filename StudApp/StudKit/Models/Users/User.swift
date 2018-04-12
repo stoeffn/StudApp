@@ -161,7 +161,9 @@ extension User: EventsContaining {
     }
 
     public var eventsPredicate: NSPredicate {
-        return NSPredicate(format: "%@ IN users", self)
+        let begin = Date()
+        let end = begin + 60 * 60 * 24 * 14
+        return NSPredicate(format: "%@ IN users AND endsAt >= %@ AND startsAt <= %@", self, begin as CVarArg, end as CVarArg)
     }
 }
 
