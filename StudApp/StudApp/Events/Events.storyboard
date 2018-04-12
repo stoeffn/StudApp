@@ -188,7 +188,14 @@ Gebäude 3703: Technische Informatik</string>
                             <outlet property="delegate" destination="iY0-Yj-hpw" id="yjD-mg-kvV"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Events" id="fF8-aA-dA2"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Events" id="fF8-aA-dA2">
+                        <barButtonItem key="rightBarButtonItem" image="UserBarButtonGlyph" id="m76-KG-wEp">
+                            <connections>
+                                <action selector="userButtonTapped:" destination="iY0-Yj-hpw" id="aLx-d5-5Wy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="DId-GV-cb2">
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
@@ -223,6 +230,7 @@ Gebäude 3703: Technische Informatik</string>
     <resources>
         <image name="EventsLandscapeTabBarGlyph" width="17" height="17"/>
         <image name="EventsTabBarGlyph" width="23" height="23"/>
+        <image name="UserBarButtonGlyph" width="28" height="28"/>
     </resources>
     <color key="tintColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

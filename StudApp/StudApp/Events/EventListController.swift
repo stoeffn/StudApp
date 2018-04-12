@@ -37,6 +37,10 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
         tableView.register(DateHeader.self, forHeaderFooterViewReuseIdentifier: DateHeader.typeIdentifier)
         tableView.tableHeaderView = nil
+
+        if self !== navigationController?.viewControllers.first {
+            navigationItem.rightBarButtonItem = nil
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -135,7 +139,12 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
     // MARK: - User Interaction
 
-    @objc
+    @IBAction
+    func userButtonTapped(_ sender: Any) {
+        (tabBarController as? AppController)?.userButtonTapped(sender)
+    }
+
+    @IBAction
     func refreshControlTriggered(_: Any) {
         viewModel?.update(forced: true) {
             self.refreshControl?.endRefreshing()
