@@ -111,7 +111,7 @@ extension DateTabBarView: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DateTabBarCell.typeIdentifier, for: indexPath)
         if let date = Calendar.current.date(byAdding: .day, value: indexPath.row, to: startsAt) {
             (cell as? DateTabBarCell)?.date = date
-            (cell as? DateTabBarCell)?.isEnabled = isDateEnabled?(date) ?? true
+            (cell as? DateTabBarCell)?.isEnabled = isDateEnabled?(date) ?? false
         }
         return cell
     }
