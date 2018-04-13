@@ -104,7 +104,7 @@ extension DateTabBarView: UICollectionViewDataSource {
     }
 
     public func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-        return endsAt.days(since: startsAt)
+        return endsAt.startOfDay.days(since: startsAt.startOfDay) + 1
     }
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
