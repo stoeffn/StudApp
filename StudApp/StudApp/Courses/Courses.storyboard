@@ -214,7 +214,7 @@
         <scene sceneID="the-Ic-6pe">
             <objects>
                 <splitViewController storyboardIdentifier="CourseListSplitView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="UEc-k0-HPc" customClass="CourseListSplitController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Courses" image="CoursesTabBarGlyph" landscapeImage="CoursesTabBarGlyph" id="dLT-Hn-vzN"/>
+                    <tabBarItem key="tabBarItem" title="Courses" image="CoursesTabBarGlyph" landscapeImage="CoursesLandscapeTabBarGlyph" id="dLT-Hn-vzN"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="EOg-85-93W" kind="relationship" relationship="masterViewController" id="g8D-uS-kW0"/>
@@ -1035,6 +1035,7 @@ Gebäude 3703: Technische Informatik</string>
     <resources>
         <image name="ChildCountSubtitleGlyph" width="16" height="16"/>
         <image name="CoursesGlyph" width="512" height="512"/>
+        <image name="CoursesLandscapeTabBarGlyph" width="19" height="19"/>
         <image name="CoursesTabBarGlyph" width="27" height="27"/>
         <image name="DownloadCountSubtitleGlyph" width="16" height="16"/>
         <image name="DownloadGlyph" width="512" height="512"/>
