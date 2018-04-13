@@ -76,28 +76,42 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        let navigationController = splitViewController?.detailNavigationController as? BorderlessNavigationController
-        navigationController?.toolBarView = nil
+        let navigationController = splitViewController?.detailNavigationController ?? self.navigationController
+        (navigationController as? BorderlessNavigationController)?.toolBarView = nil
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        let navigationController = splitViewController?.detailNavigationController ?? self.navigationController
+        (navigationController as? BorderlessNavigationController)?.toolBarView = dateTabBarContainer
+
         guard self == navigationController?.topViewController else {
             return super.viewWillTransition(to: size, with: coordinator)
         }
 
-        let controller = splitViewController?.detailNavigationController as? BorderlessNavigationController
-        controller?.toolBarView = nil
-
         super.viewWillTransition(to: size, with: coordinator)
 
         coordinator.animate(alongsideTransition: { _ in
-            let controller = self.splitViewController?.detailNavigationController as? BorderlessNavigationController
-            controller?.toolBarView = self.dateTabBarContainer
+            let navigationController = self.splitViewController?.detailNavigationController ?? self.navigationController
+            (navigationController as? BorderlessNavigationController)?.toolBarView = self.dateTabBarContainer
             self.updateEmptyView()
             self.dateTabBar.invalidateLayout()
         }, completion: { _ in
             self.updateEmptyView()
         })
+    }
+
+    // MARK: - Navigation
+
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        return viewModel?.container is User
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let cell = sender as? EventCell {
+            return prepare(for: .course(cell.event.course), destination: segue.destination)
+        }
+
+        prepareForRoute(using: segue, sender: sender)
     }
 
     func prepareContent(for route: Routes) {
@@ -238,17 +252,6 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: DateHeader.typeIdentifier)
         (header as? DateHeader)?.date = viewModel[sectionAt: section]
         return header
-    }
-
-    // MARK: - Table View Delegate
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard
-            !(viewModel?.container is Course),
-            let appController = tabBarController as? AppController,
-            let cell = tableView.cellForRow(at: indexPath) as? EventCell
-        else { return }
-        appController.restoreUserActivityState(cell.event.course.userActivity)
     }
 
     // MARK: - Scroll View Delegate

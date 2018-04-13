@@ -11,6 +11,7 @@
         <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -228,6 +229,10 @@ Gebäude 3703: Technische Informatik</string>
                                     <outlet property="locationLabel" destination="Abz-JA-Be0" id="L8B-ca-3iW"/>
                                     <outlet property="startsAtLabel" destination="75U-EO-shn" id="e42-IW-NfK"/>
                                     <outlet property="titleLabel" destination="kSZ-KN-NH2" id="jRt-vE-iYn"/>
+                                    <segue destination="vfP-CH-J4h" kind="show" identifier="course" id="4np-ni-IoV">
+                                        <segue key="commit" inheritsFrom="parent" id="Fkn-GT-Yzf"/>
+                                        <segue key="preview" inheritsFrom="commit" id="iw3-R8-U4f"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -261,6 +266,14 @@ Gebäude 3703: Technische Informatik</string>
             </objects>
             <point key="canvasLocation" x="3479.1999999999998" y="-2.2488755622188905"/>
         </scene>
+        <!--Course-->
+        <scene sceneID="aas-Ym-uah">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Courses" referencedIdentifier="Course" id="vfP-CH-J4h" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W8g-vy-lFl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4142" y="-3"/>
+        </scene>
         <!--Events-->
         <scene sceneID="fNS-qS-1Pu">
             <objects>
@@ -286,5 +299,8 @@ Gebäude 3703: Technische Informatik</string>
         <image name="EventsTabBarGlyph" width="23" height="23"/>
         <image name="UserBarButtonGlyph" width="28" height="28"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="4np-ni-IoV"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

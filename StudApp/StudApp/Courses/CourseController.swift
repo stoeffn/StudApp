@@ -54,8 +54,8 @@ final class CourseController: UITableViewController, Routable {
 
         subtitleLabel.text = viewModel.course.subtitle
 
-        let navigationController = splitViewController?.detailNavigationController as? BorderlessNavigationController
-        navigationController?.usesDefaultAppearance = true
+        let navigationController = splitViewController?.detailNavigationController ?? self.navigationController
+        (navigationController as? BorderlessNavigationController)?.usesDefaultAppearance = true
 
         tableView.tableHeaderView?.layoutIfNeeded()
         tableView.tableHeaderView = tableView.tableHeaderView
@@ -66,23 +66,23 @@ final class CourseController: UITableViewController, Routable {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        let navigationController = splitViewController?.detailNavigationController as? BorderlessNavigationController
-        navigationController?.usesDefaultAppearance = false
+        let navigationController = splitViewController?.detailNavigationController ?? self.navigationController
+        (navigationController as? BorderlessNavigationController)?.usesDefaultAppearance = false
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        let navigationController = splitViewController?.detailNavigationController ?? self.navigationController
+        (navigationController as? BorderlessNavigationController)?.usesDefaultAppearance = false
+
         guard self == navigationController?.topViewController else {
             return super.viewWillTransition(to: size, with: coordinator)
         }
 
-        let controller = splitViewController?.detailNavigationController as? BorderlessNavigationController
-        controller?.usesDefaultAppearance = false
-
         super.viewWillTransition(to: size, with: coordinator)
 
         coordinator.animate(alongsideTransition: { _ in
-            let controller = self.splitViewController?.detailNavigationController as? BorderlessNavigationController
-            controller?.usesDefaultAppearance = true
+            let navigationController = self.splitViewController?.detailNavigationController ?? self.navigationController
+            (navigationController as? BorderlessNavigationController)?.usesDefaultAppearance = true
 
             self.tableView.tableHeaderView?.layoutIfNeeded()
             self.tableView.tableHeaderView = self.tableView.tableHeaderView
