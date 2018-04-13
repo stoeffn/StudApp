@@ -124,7 +124,7 @@ public final class BorderlessNavigationController: UINavigationController {
 
         let toolBarViewHeight = toolBarView?.bounds.height ?? 0
         let backgroundHeight = navigationBarFrame.height + toolBarViewHeight + additionalHeight
-        let backgroundSize = CGSize(width: 1024, height: backgroundHeight)
+        let backgroundSize = CGSize(width: navigationBarFrame.width, height: backgroundHeight)
         let backgroundFrame = CGRect(origin: navigationBarFrame.origin, size: backgroundSize)
 
         navigationBarBackgroundAlphaView.frame = backgroundFrame
