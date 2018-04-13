@@ -24,6 +24,12 @@ public final class CoreDataService {
     private let modelUrl: URL
     private let storeDescription: NSPersistentStoreDescription
 
+    /// Creates a new _Core Data_ service that manages a persistent store inside an app group.
+    ///
+    /// - Parameters:
+    ///   - modelName: _Core Data_ model to use. A fatal error will occur when invalid.
+    ///   - appGroupIdentifier: String that identifies the app group that will contain the persistent store.
+    ///   - inMemory: Whether to create the more in memory instead of using the default _SQLite_ option.
     init(modelName: String, appGroupIdentifier: String, inMemory: Bool = false) {
         guard let modelUrl = App.kitBundle.url(forResource: modelName, withExtension: "momd") else {
             fatalError("Cannot construct model URL for '\(modelName)'.")
@@ -98,6 +104,11 @@ public final class CoreDataService {
         return persistentContainer.performBackgroundTask(task)
     }
 
+    /// Removes all objects of the types given from a context.
+    ///
+    /// - Parameters:
+    ///   - types: Types of managed objects to remove.
+    ///   - context: Context to remove objects from.
     func removeAll(of types: [NSManagedObject.Type], in context: NSManagedObjectContext) throws {
         try types
             .flatMap { try context.fetch($0.fetchRequest()) }

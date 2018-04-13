@@ -18,11 +18,19 @@
 
 import CoreData
 
+/// Structure that can uniquely identify an object with an entity type and id.
 public struct ObjectIdentifier: ByTypeNameIdentifiable {
+    /// Entity type.
     public let entity: Entites
 
+    /// Identifier unique per entity type. May be `nil` if there can be only one object.
     let id: String?
 
+    /// Creates a new object identifier.
+    ///
+    /// - Parameters:
+    ///   - entity: Entity type.
+    ///   - id: Unique identifier within an entity type. May be `nil` if there can be only one object.
     init(entity: Entites, id: String? = nil) {
         self.entity = entity
         self.id = id
@@ -32,14 +40,20 @@ public struct ObjectIdentifier: ByTypeNameIdentifiable {
 // MARK: - Entities
 
 public extension ObjectIdentifier {
+    /// Available entity typs.
     public enum Entites: String {
         case announcement, course, courseState, event, file, fileState, organization, root, semester, semesterState, user, workingSet
     }
 }
 
-// MARK: - Utilities
+// MARK: - Core Data Operations
 
 public extension ObjectIdentifier {
+    /// Fetches an object by its identifier in a context.
+    ///
+    /// - Parameter context: Context to fetch object in.
+    /// - Returns: The object if found, `nil` otherwise.
+    /// - Precondition: The _Core Data_ entity must be the capitalized entity type and it must conform to `CDIdentifiable`.
     public func fetch(in context: NSManagedObjectContext) throws -> CDIdentifiable? {
         switch entity {
         case .root, .workingSet:

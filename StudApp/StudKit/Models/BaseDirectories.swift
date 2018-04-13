@@ -16,13 +16,21 @@
 //  along with this program. If not, see http://www.gnu.org/licenses/.
 //
 
+/// Provides an easy way to access this app's base directories.
+///
+/// ## Example
+/// Access `BaseDirectories.downloads.url` to get the default download directory's URL.
 public enum BaseDirectories {
+    /// Shared app group, which the main target as well as any extensions may access.
     case appGroup
 
+    /// Default directory for downloads.
     case downloads
 
+    /// Directory used by the file provider extension.
     case fileProvider
 
+    /// URL for this directory.
     public var url: URL {
         switch self {
         case .appGroup:
@@ -39,6 +47,11 @@ public enum BaseDirectories {
         }
     }
 
+    /// Returns the URL for a directory you should for storing data associated with an object.
+    ///
+    /// - Parameter objectId: Unique object identifier.
+    /// - Returns: Unique folder URL for a certain object.
+    /// - Remark: You are responsible for actually creating the directory if needed.
     public func containerUrl(forObjectId objectId: ObjectIdentifier) -> URL {
         return url.appendingPathComponent(objectId.rawValue, isDirectory: true)
     }

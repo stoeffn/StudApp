@@ -47,10 +47,13 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDSorta
 
     // MARK: Managing Content
 
+    /// Announcements associated with this course.
     @NSManaged public var announcements: Set<Announcement>
 
+    /// Events associated with this course.
     @NSManaged public var events: Set<Event>
 
+    /// Root files in this course, which may contain other files.
     @NSManaged public var files: Set<File>
 
     // MARK: Managing Metadata
@@ -61,8 +64,10 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDSorta
     /// Describes where this course is held.
     @NSManaged public var location: String?
 
+    /// This course's state.
     @NSManaged public var state: CourseState
 
+    /// Summary or tagline for this course.
     @NSManaged public var subtitle: String?
 
     /// Short description of the course and summary of its contents.
@@ -136,15 +141,16 @@ extension Course: EventsContaining {
 
 // MARK: - Core Spotlight and Activity Tracking
 
-extension Course {
-    public var keywords: Set<String> {
+public extension Course {
+    /// Keywords for this course.
+    internal var keywords: Set<String> {
         let courseKeywords = [number].compactMap { $0 }
         let lecturersKeywords = lecturers.flatMap { [$0.givenName, $0.familyName] }
         let semestersKeywords = semesters.map { $0.title }
         return Set(courseKeywords).union(lecturersKeywords).union(semestersKeywords)
     }
 
-    public var searchableItemAttributes: CSSearchableItemAttributeSet {
+    private var searchableItemAttributes: CSSearchableItemAttributeSet {
         let attributes = CSSearchableItemAttributeSet(itemContentType: kUTTypeFolder as String)
 
         attributes.displayName = title
@@ -157,12 +163,14 @@ extension Course {
         return attributes
     }
 
-    public var searchableItem: CSSearchableItem {
+    /// Searchable item for this course, useful for _Core Spotlight_ indexing.
+    var searchableItem: CSSearchableItem {
         return CSSearchableItem(uniqueIdentifier: objectIdentifier.rawValue, domainIdentifier: Course.entity.rawValue,
                                 attributeSet: searchableItemAttributes)
     }
 
-    public var userActivity: NSUserActivity {
+    /// User activity associated with this course.
+    var userActivity: NSUserActivity {
         let activity = NSUserActivity(type: .course)
         activity.isEligibleForHandoff = true
         activity.isEligibleForSearch = true
