@@ -89,6 +89,10 @@ public final class DateTabBarView: UIView {
         collectionView.reloadData()
     }
 
+    public func invalidateLayout() {
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+
     // MARK: - Delegate
 
     public var isDateEnabled: ((Date) -> Bool)?

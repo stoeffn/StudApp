@@ -94,6 +94,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
             let controller = self.splitViewController?.detailNavigationController as? BorderlessNavigationController
             controller?.toolBarView = self.dateTabBarContainer
             self.updateEmptyView()
+            self.dateTabBar.invalidateLayout()
         }, completion: { _ in
             self.updateEmptyView()
         })
