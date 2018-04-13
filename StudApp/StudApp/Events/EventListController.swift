@@ -94,7 +94,9 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
             let controller = self.splitViewController?.detailNavigationController as? BorderlessNavigationController
             controller?.toolBarView = self.dateTabBarContainer
             self.updateEmptyView()
-        }, completion: nil)
+        }, completion: { _ in
+            self.updateEmptyView()
+        })
     }
 
     func prepareContent(for route: Routes) {
@@ -161,14 +163,26 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
         let isEmpty = viewModel?.isEmpty ?? false
 
-        emptyViewTitleLabel.text = "It Looks Like You Are Free".localized
-        emptyViewSubtitleLabel.text = "There are no events within the next two weeks for you.".localized
+        emptyView.backgroundColor = isEmpty ? .groupTableViewBackground : .white
 
         tableView.backgroundView = isEmpty ? emptyView : nil
+        tableView.tableFooterView = isEmpty ? nil : emptyView
         tableView.separatorStyle = isEmpty ? .none : .singleLine
 
-        if let navigationBarHeight = navigationController?.navigationBar.bounds.height {
-            emptyViewTopConstraint.constant = navigationBarHeight * 2 + 84
+        if isEmpty {
+            emptyViewTitleLabel.text = "It Looks Like You Are Free".localized
+            emptyViewSubtitleLabel.text = "There are no events within the next two weeks for you.".localized
+
+            if let navigationBarHeight = navigationController?.navigationBar.bounds.height {
+                emptyViewTopConstraint.constant = navigationBarHeight * 2 + 84
+            }
+        } else {
+            emptyViewTitleLabel.text = "You're All Caught Up".localized
+            emptyViewSubtitleLabel.text = "There are no more events to show.".localized
+
+            let height = max(tableView.bounds.height - tableView.contentInset.top - tableView.contentInset.bottom - 128, 256)
+            emptyView.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: height)
+            emptyViewTopConstraint.constant = 64
         }
     }
 
