@@ -37,7 +37,7 @@ public final class DateTabBarView: UIView {
 
     public var startsAt: Date = Date()
 
-    public var endsAt: Date = Calendar.current.date(byAdding: .day, value: 7, to: Date()) ?? Date()
+    public var endsAt: Date = Calendar.current.date(byAdding: .day, value: 6, to: Date()) ?? Date()
 
     public var selectedDate: Date? {
         didSet { updateSelection() }
@@ -157,7 +157,7 @@ extension DateTabBarView: UICollectionViewDelegateFlowLayout {
 
     public func collectionView(_ collectionView: UICollectionView, layout _: UICollectionViewLayout,
                                insetForSectionAt _: Int) -> UIEdgeInsets {
-        let totalWidth = CGFloat(self.collectionView(collectionView, numberOfItemsInSection: 0)) * bounds.height
+        let totalWidth = CGFloat(self.collectionView(collectionView, numberOfItemsInSection: 0) - 1) * bounds.height
         let inset = max((collectionView.bounds.width - totalWidth) / 2, 0)
         return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
     }
