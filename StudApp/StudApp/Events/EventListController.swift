@@ -136,7 +136,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
     @IBOutlet var emptyView: UIView!
 
-    @IBOutlet var emptyViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet var emptyViewTopPaddingConstraint: NSLayoutConstraint!
 
     @IBOutlet var emptyViewTitleLabel: UILabel!
 
@@ -175,15 +175,17 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
             emptyViewSubtitleLabel.text = "There are no events within the next two weeks for you.".localized
 
             if let navigationBarHeight = navigationController?.navigationBar.bounds.height {
-                emptyViewTopConstraint.constant = navigationBarHeight * 2 + 84
+                emptyViewTopPaddingConstraint.constant = navigationBarHeight * 2 + 84
             }
         } else {
             emptyViewTitleLabel.text = "You're All Caught Up".localized
             emptyViewSubtitleLabel.text = "There are no more events to show.".localized
 
-            let height = max(tableView.bounds.height - tableView.contentInset.top - tableView.contentInset.bottom - 128, 256)
-            emptyView.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: height)
-            emptyViewTopConstraint.constant = 64
+            emptyViewTopPaddingConstraint.constant = 64
+
+            var frame = emptyView.frame
+            frame.size.height = max(tableView.bounds.height - tableView.contentInset.top - tableView.contentInset.bottom - 128, 256)
+            emptyView.frame = frame
         }
     }
 

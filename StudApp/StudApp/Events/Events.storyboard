@@ -62,13 +62,13 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no events within the next two weeks for you." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zu2-Lt-Pqz">
-                                    <rect key="frame" x="8" y="174.5" width="359" height="38"/>
+                                    <rect key="frame" x="8" y="161" width="359" height="38"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                     <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EventsGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="6qa-P1-NNV">
-                                    <rect key="frame" x="139.5" y="32" width="96" height="96"/>
+                                    <rect key="frame" x="145.5" y="32" width="84" height="84"/>
                                     <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="84" id="k5C-oL-yOz">
@@ -83,7 +83,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It Looks Like You Are Free" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kj8-QX-atC">
-                                    <rect key="frame" x="8" y="149.5" width="359" height="20.5"/>
+                                    <rect key="frame" x="8" y="136.5" width="359" height="20.5"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -254,7 +254,7 @@ Gebäude 3703: Technische Informatik</string>
                         <outlet property="emptyView" destination="dki-5C-bpz" id="MeB-zG-Cs6"/>
                         <outlet property="emptyViewSubtitleLabel" destination="Zu2-Lt-Pqz" id="TdZ-r0-BsQ"/>
                         <outlet property="emptyViewTitleLabel" destination="kj8-QX-atC" id="eDb-4A-A0W"/>
-                        <outlet property="emptyViewTopConstraint" destination="BL3-IK-8t4" id="kdi-Vn-GGZ"/>
+                        <outlet property="emptyViewTopPaddingConstraint" destination="BL3-IK-8t4" id="kdi-Vn-GGZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qP7-tu-KHp" userLabel="First Responder" sceneMemberID="firstResponder"/>
