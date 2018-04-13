@@ -46,11 +46,11 @@
 	<array>
 		<dict>
 			<key>UIApplicationShortcutItemIconFile</key>
-			<string>CoursesQuickActionGlyph</string>
+			<string>DownloadsQuickActionGlyph</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Courses</string>
+			<string>Downloads</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).showCourses</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).showDownloads</string>
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconFile</key>
@@ -62,11 +62,11 @@
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconFile</key>
-			<string>DownloadsQuickActionGlyph</string>
+			<string>CoursesQuickActionGlyph</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Downloads</string>
+			<string>Courses</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).showDownloads</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).showCourses</string>
 		</dict>
 	</array>
 	<key>UILaunchStoryboardName</key>
