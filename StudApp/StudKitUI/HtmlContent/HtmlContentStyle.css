@@ -28,9 +28,15 @@ body {
     margin: 20px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
     body {
         margin: 20px 72px;
+    }
+}
+
+@media (min-width: 1024px) {
+    body {
+        margin: 20px 128px;
     }
 }
 
