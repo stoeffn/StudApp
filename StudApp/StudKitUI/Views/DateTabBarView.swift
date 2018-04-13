@@ -40,26 +40,10 @@ public final class DateTabBarView: UIView {
     public var endsAt: Date = Calendar.current.date(byAdding: .day, value: 7, to: Date()) ?? Date()
 
     public var selectedDate: Date? {
-        get {
-            guard
-                let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first,
-                let selectedCell = collectionView.cellForItem(at: selectedIndexPath) as? DateTabBarCell
-            else { return nil }
-            return selectedCell.date
-        }
-        set {
-            guard newValue != selectedDate else { return }
-            let index = newValue?.days(since: startsAt) ?? 0
-            guard index >= 0 && index < collectionView.numberOfItems(inSection: 0) else {
-                if let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first {
-                    collectionView.deselectItem(at: selectedIndexPath, animated: true)
-                }
-                return
-            }
-            let indexPath = IndexPath(row: index, section: 0)
-            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-        }
+        didSet { updateSelection() }
     }
+
+    private var isScrolling = false
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -83,6 +67,23 @@ public final class DateTabBarView: UIView {
         layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         backgroundColor = .clear
         addSubview(collectionView)
+    }
+
+    private func updateSelection() {
+        let index = selectedDate?.days(since: startsAt) ?? 0
+        guard index >= 0 && index < collectionView.numberOfItems(inSection: 0) else {
+            if let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first {
+                collectionView.deselectItem(at: selectedIndexPath, animated: true)
+            }
+            return
+        }
+
+        let indexPath = IndexPath(row: index, section: 0)
+        guard !isScrolling else {
+            return collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
+        }
+
+        collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
     }
 
     public func reloadData() {
@@ -124,9 +125,30 @@ extension DateTabBarView: UICollectionViewDataSource {
 // MARK: - Collection View Delegate
 
 extension DateTabBarView: UICollectionViewDelegateFlowLayout {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        isScrolling = true
+    }
+
+    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        isScrolling = false
+        updateSelection()
+    }
+
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        isScrolling = false
+        updateSelection()
+    }
+
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? DateTabBarCell, let date = cell.date else { return }
+        guard
+            let cell = collectionView.cellForItem(at: indexPath) as? DateTabBarCell,
+            let date = cell.date,
+            date != selectedDate
+        else { return }
+
+        selectedDate = date
         didSelectDate?(date)
+        updateSelection()
     }
 
     public func collectionView(_ collectionView: UICollectionView, layout _: UICollectionViewLayout,
