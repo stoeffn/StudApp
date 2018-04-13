@@ -23,7 +23,7 @@ public final class MockStudIpService: StudIpService {
         super.init(api: Api<StudIpRoutes>())
 
         let coreDataService = ServiceContainer.default[CoreDataService.self]
-        try? coreDataService.removeAllObjects(in: coreDataService.viewContext)
+        try? coreDataService.removeAll(of: [Organization.self], in: coreDataService.viewContext)
         try? mockResponses.insert(into: coreDataService.viewContext)
     }
 

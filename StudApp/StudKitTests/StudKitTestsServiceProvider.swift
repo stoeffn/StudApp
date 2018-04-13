@@ -24,7 +24,7 @@ final class StudKitTestsServiceProvider: StudKitServiceProvider {
     }
 
     override func provideCoreDataService() -> CoreDataService {
-        return CoreDataService(modelName: "StudKit", inMemory: true)
+        return CoreDataService(modelName: "StudKit", appGroupIdentifier: App.groupIdentifier, inMemory: true)
     }
 
     override func provideStudIpService() -> StudIpService {

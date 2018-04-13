@@ -24,7 +24,7 @@ public final class CoreDataService {
     private let modelUrl: URL
     private let storeDescription: NSPersistentStoreDescription
 
-    init(modelName: String, appGroupIdentifier: String? = nil, inMemory: Bool = false) {
+    init(modelName: String, appGroupIdentifier: String, inMemory: Bool = false) {
         guard let modelUrl = App.kitBundle.url(forResource: modelName, withExtension: "momd") else {
             fatalError("Cannot construct model URL for '\(modelName)'.")
         }
@@ -38,9 +38,8 @@ public final class CoreDataService {
                 CoreDataService.storeUrl(forAppGroupidentifier: appGroupIdentifier, modelName: modelName))
     }
 
-    private static func storeUrl(forAppGroupidentifier appGroupIdentifier: String?, modelName: String) -> URL {
+    private static func storeUrl(forAppGroupidentifier appGroupIdentifier: String, modelName: String) -> URL {
         guard
-            let appGroupIdentifier = appGroupIdentifier,
             let containerUrl = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier)
         else { fatalError("Cannot construct store URL.") }
         return containerUrl.appendingPathComponent(modelName)
@@ -99,9 +98,9 @@ public final class CoreDataService {
         return persistentContainer.performBackgroundTask(task)
     }
 
-    func removeAllObjects(in context: NSManagedObjectContext) throws {
-        try [Semester.fetchRequest(), Course.fetchRequest(), User.fetchRequest()]
-            .flatMap { try context.fetch($0) }
+    func removeAll(of types: [NSManagedObject.Type], in context: NSManagedObjectContext) throws {
+        try types
+            .flatMap { try context.fetch($0.fetchRequest()) }
             .compactMap { $0 as? NSManagedObject }
             .forEach { context.delete($0) }
     }

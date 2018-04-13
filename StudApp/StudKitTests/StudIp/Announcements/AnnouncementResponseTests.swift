@@ -46,7 +46,6 @@ final class AnnouncementResponseTests: XCTestCase {
         XCTAssertEqual(announcement.userId, "U0")
         XCTAssertEqual(announcement.createdAt.debugDescription, "2017-12-12 11:48:42 +0000")
         XCTAssertEqual(announcement.modifiedAt.debugDescription, "2017-12-12 11:48:42 +0000")
-        XCTAssertEqual(announcement.expiresAt.debugDescription, "2018-01-09 11:47:42 +0000")
         XCTAssertEqual(announcement.title, "Weihnachtspause")
         XCTAssertEqual(announcement.textContent, "Liebe Studierende,\r\n\r\ndies ist ein Test.")
     }
@@ -58,7 +57,6 @@ final class AnnouncementResponseTests: XCTestCase {
         XCTAssertEqual(announcement.userId, nil)
         XCTAssertEqual(announcement.createdAt.debugDescription, "2017-12-12 11:48:42 +0000")
         XCTAssertEqual(announcement.modifiedAt.debugDescription, "2017-12-12 11:48:42 +0000")
-        XCTAssertEqual(announcement.expiresAt.debugDescription, "2018-01-09 11:47:42 +0000")
         XCTAssertEqual(announcement.title, "Title")
         XCTAssertEqual(announcement.textContent, "Another test.")
     }
