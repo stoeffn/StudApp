@@ -69,7 +69,7 @@ public final class DateTabBarView: UIView {
         addSubview(collectionView)
     }
 
-    private func updateSelection() {
+    private func updateSelection(forced: Bool = false) {
         let index = selectedDate?.days(since: startsAt) ?? 0
         guard index >= 0 && index < collectionView.numberOfItems(inSection: 0) else {
             if let selectedIndexPath = collectionView.indexPathsForSelectedItems?.first {
@@ -79,7 +79,7 @@ public final class DateTabBarView: UIView {
         }
 
         let indexPath = IndexPath(row: index, section: 0)
-        guard !isScrolling else {
+        guard forced || !isScrolling else {
             return collectionView.selectItem(at: indexPath, animated: true, scrollPosition: [])
         }
 
@@ -132,6 +132,10 @@ extension DateTabBarView: UICollectionViewDelegateFlowLayout {
     public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         isScrolling = false
         updateSelection()
+    }
+
+    public func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        updateSelection(forced: false)
     }
 
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

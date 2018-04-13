@@ -124,14 +124,12 @@ public final class BorderlessNavigationController: UINavigationController {
 
         let toolBarViewHeight = toolBarView?.bounds.height ?? 0
         let backgroundHeight = navigationBarFrame.height + toolBarViewHeight + additionalHeight
-        let backgroundSize = CGSize(width: navigationBarFrame.width, height: backgroundHeight)
+        let backgroundSize = CGSize(width: navigationBar.bounds.width, height: backgroundHeight)
         let backgroundFrame = CGRect(origin: navigationBarFrame.origin, size: backgroundSize)
 
         navigationBarBackgroundAlphaView.frame = backgroundFrame
         navigationBarBackgroundBlurView.frame = backgroundFrame
-
-        toolBarView?.frame = CGRect(x: 0, y: navigationBarFrame.height,
-                                    width: navigationBarFrame.width, height: toolBarViewHeight)
+        toolBarView?.frame = CGRect(x: 0, y: navigationBarFrame.height, width: navigationBar.bounds.width, height: toolBarViewHeight)
     }
 
     private func updateAppearance() {
