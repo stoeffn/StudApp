@@ -27,12 +27,12 @@ final class FileCell: UITableViewCell {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        initNotificationObservers()
+        initUserInterface()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        initNotificationObservers()
+        initUserInterface()
     }
 
     var file: File! {
@@ -111,6 +111,11 @@ final class FileCell: UITableViewCell {
     @IBOutlet var activityIndicator: StudIpActivityIndicator?
     @IBOutlet var downloadGlyph: UIImageView?
 
+    private func initUserInterface() {
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityDidChange(notification:)),
+                                               name: .reachabilityDidChange, object: nil)
+    }
+
     private func updateSubtitleHiddenStates() {
         guard let file = file else { return }
         sizeContainer.isHidden = file.size <= 0
@@ -127,11 +132,6 @@ final class FileCell: UITableViewCell {
     }
 
     // MARK: - Notifications
-
-    private func initNotificationObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityDidChange(notification:)),
-                                               name: .reachabilityDidChange, object: nil)
-    }
 
     @objc
     private func reachabilityDidChange(notification _: Notification) {

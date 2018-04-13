@@ -35,8 +35,8 @@ final class CourseHeader: UITableViewHeaderFooterView {
 
     var course: Course? {
         didSet {
-            colorView.backgroundColor = course?.color.withAlphaComponent(0.2)
             titleLabel.text = course?.title
+            updateAppearance()
 
             accessibilityLabel = course?.title
         }
@@ -72,5 +72,19 @@ final class CourseHeader: UITableViewHeaderFooterView {
         titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2).isActive = true
 
         isAccessibilityElement = true
+
+        NotificationCenter.default.addObserver(self, selector: #selector(reduceTransparencyDidChange(notification:)),
+                                               name: .UIAccessibilityReduceTransparencyStatusDidChange, object: nil)
+    }
+
+    private func updateAppearance() {
+        let isTransparencyReduced = UIAccessibilityIsReduceTransparencyEnabled()
+        colorView.backgroundColor = isTransparencyReduced ? course?.color : course?.color.withAlphaComponent(0.4)
+    }
+
+    // MARK: - Notifications
+
+    @objc private func reduceTransparencyDidChange(notification _: Notification) {
+        updateAppearance()
     }
 }

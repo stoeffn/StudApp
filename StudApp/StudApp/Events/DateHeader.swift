@@ -47,6 +47,14 @@ final class DateHeader: UITableViewHeaderFooterView {
         return view
     }()
 
+    private(set) lazy var whiteView: UIView = {
+        let view = UIView()
+        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.isAccessibilityElement = false
+        view.backgroundColor = .white
+        return view
+    }()
+
     private(set) lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -57,6 +65,8 @@ final class DateHeader: UITableViewHeaderFooterView {
 
     private func initUserInterface() {
         backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+
+        addSubview(whiteView)
 
         addSubview(spacingView)
         spacingView.leadingAnchor.constraint(equalTo: readableContentGuide.leadingAnchor).isActive = true
@@ -73,5 +83,19 @@ final class DateHeader: UITableViewHeaderFooterView {
         titleLabel.leadingAnchor.constraint(equalTo: spacingView.trailingAnchor, constant: 4).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: readableContentGuide.trailingAnchor).isActive = true
         titleLabel.bottomAnchor.constraint(equalTo: readableContentGuide.bottomAnchor).isActive = true
+
+        NotificationCenter.default.addObserver(self, selector: #selector(reduceTransparencyDidChange(notification:)),
+                                               name: .UIAccessibilityReduceTransparencyStatusDidChange, object: nil)
+    }
+
+    private func updateAppearance() {
+        let isTransparencyReduced = UIAccessibilityIsReduceTransparencyEnabled()
+        whiteView.isHidden = !isTransparencyReduced
+    }
+
+    // MARK: - Notifications
+
+    @objc private func reduceTransparencyDidChange(notification _: Notification) {
+        updateAppearance()
     }
 }

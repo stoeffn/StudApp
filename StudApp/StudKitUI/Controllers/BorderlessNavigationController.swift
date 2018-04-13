@@ -31,9 +31,13 @@ public final class BorderlessNavigationController: UINavigationController {
         view.insertSubview(navigationBarBackgroundAlphaView, belowSubview: navigationBarBackgroundBlurView)
 
         updateLayout()
+        updateAppearance()
 
         view.clipsToBounds = true
         usesDefaultAppearance = false
+
+        NotificationCenter.default.addObserver(self, selector: #selector(reduceTransparencyDidChange(notification:)),
+                                               name: .UIAccessibilityReduceTransparencyStatusDidChange, object: nil)
     }
 
     public override func viewDidAppear(_ animated: Bool) {
@@ -71,29 +75,23 @@ public final class BorderlessNavigationController: UINavigationController {
             toolBarView?.removeFromSuperview()
         }
         didSet {
-            guard oldValue != toolBarView else { return }
+            guard oldValue != toolBarView, let toolBarView = toolBarView else { return }
+            view.insertSubview(toolBarView, aboveSubview: navigationBarBackgroundBlurView)
             updateLayout()
-            guard let toolBarView = toolBarView else { return }
-            navigationBarBackgroundBlurView.contentView.addSubview(toolBarView)
         }
     }
 
     /// Whether to use the default navigation bar appearance with background and hairline.
     public var usesDefaultAppearance: Bool = false {
         didSet {
-            navigationBarBackgroundBlurView.isHidden = usesDefaultAppearance
-            navigationBarBackgroundAlphaView.isHidden = usesDefaultAppearance
-            navigationBar.setBackgroundHidden(!usesDefaultAppearance)
+            updateAppearance()
             updateLayout()
         }
     }
 
     // Whether the navigation bar background view is hidden.
     public var isNavigationBarBackgroundHidden: Bool = false {
-        didSet {
-            navigationBarBackgroundBlurView.isHidden = isNavigationBarBackgroundHidden
-            navigationBarBackgroundAlphaView.isHidden = isNavigationBarBackgroundHidden
-        }
+        didSet { updateAppearance() }
     }
 
     /// View with a light blur effect to be placed beneath the status and navigation bar. With no content behind it, it appears
@@ -110,7 +108,6 @@ public final class BorderlessNavigationController: UINavigationController {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = .white
-        view.alpha = 0.5
         return view
     }()
 
@@ -124,16 +121,30 @@ public final class BorderlessNavigationController: UINavigationController {
     /// Update the navigation bar background views' frames. Needs to be called every time the layout changes.
     public func updateLayout() {
         guard let navigationBarFrame = navigationBarBackgroundFrame else { return }
+
         let toolBarViewHeight = toolBarView?.bounds.height ?? 0
-
-        toolBarView?.frame = CGRect(x: 0, y: navigationBarFrame.height,
-                                    width: navigationBarFrame.width, height: toolBarViewHeight)
-
         let backgroundHeight = navigationBarFrame.height + toolBarViewHeight + additionalHeight
         let backgroundSize = CGSize(width: 1024, height: backgroundHeight)
         let backgroundFrame = CGRect(origin: navigationBarFrame.origin, size: backgroundSize)
 
-        navigationBarBackgroundBlurView.frame = backgroundFrame
         navigationBarBackgroundAlphaView.frame = backgroundFrame
+        navigationBarBackgroundBlurView.frame = backgroundFrame
+
+        toolBarView?.frame = CGRect(x: 0, y: navigationBarFrame.height,
+                                    width: navigationBarFrame.width, height: toolBarViewHeight)
+    }
+
+    private func updateAppearance() {
+        let isTransparencyReduced = UIAccessibilityIsReduceTransparencyEnabled()
+        navigationBarBackgroundBlurView.isHidden = isNavigationBarBackgroundHidden || usesDefaultAppearance || isTransparencyReduced
+        navigationBarBackgroundAlphaView.isHidden = isNavigationBarBackgroundHidden || usesDefaultAppearance
+        navigationBarBackgroundAlphaView.alpha = isTransparencyReduced ? 1 : 0.5
+        navigationBar.setBackgroundHidden(!usesDefaultAppearance)
+    }
+
+    // MARK: - Notifications
+
+    @objc private func reduceTransparencyDidChange(notification _: Notification) {
+        updateAppearance()
     }
 }
