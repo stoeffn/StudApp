@@ -121,6 +121,12 @@ extension Course {
         let predicate = NSPredicate(format: "%@ IN courses AND expiresAt >= %@", self, Date() as CVarArg)
         return Announcement.fetchRequest(predicate: predicate, sortDescriptors: Announcement.defaultSortDescriptors)
     }
+
+    public var nextEvent: Event? {
+        let predicate = NSPredicate(format: "course == %@ AND endsAt >= %@", self, Date() as CVarArg)
+        let fetchRequest = Event.fetchRequest(predicate: predicate, sortDescriptors: Event.defaultSortDescriptors, limit: 1, offset: 0)
+        return (try? managedObjectContext?.fetch(fetchRequest).first) ?? nil
+    }
 }
 
 // MARK: - Files Container

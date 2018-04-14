@@ -59,6 +59,7 @@ final class CourseController: UITableViewController, Routable {
 
         tableView.tableHeaderView?.layoutIfNeeded()
         tableView.tableHeaderView = tableView.tableHeaderView
+        tableView.reloadSections(IndexSet(integer: Sections.events.rawValue), with: .fade)
 
         update()
     }
@@ -189,7 +190,7 @@ final class CourseController: UITableViewController, Routable {
         case .summary?:
             return 1
         case .events?:
-            return 1
+            return 2
         case nil:
             fatalError()
         }
@@ -222,6 +223,15 @@ final class CourseController: UITableViewController, Routable {
             let cell = tableView.dequeueReusableCell(withIdentifier: FileCell.typeIdentifier, for: indexPath)
             (cell as? FileCell)?.file = fileListViewModel[rowAt: indexPath.row]
             return cell
+        case .events? where indexPath.row == 0 && viewModel.course.nextEvent != nil:
+            let cell = tableView.dequeueReusableCell(withIdentifier: EventCell.typeIdentifier, for: indexPath)
+            (cell as? EventCell)?.event = viewModel.course.nextEvent
+            return cell
+        case .events? where indexPath.row == 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: emptyCellIdentifier, for: indexPath)
+            let isLoaded = User.current?.state.eventsUpdatedAt != nil
+            cell.textLabel?.text = isLoaded ? "No Future Events".localized : "Not Loaded".localized
+            return cell
         case .events?:
             let cell = tableView.dequeueReusableCell(withIdentifier: allEventsCellIdentifier, for: indexPath)
             cell.textLabel?.text = "All Events".localized
@@ -248,12 +258,19 @@ final class CourseController: UITableViewController, Routable {
 
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch Sections(rawValue: section) {
-        case .info?: return nil
-        case .announcements?: return "Announcements".localized
-        case .documents?: return "Documents".localized
-        case .events?: return "Events".localized
-        case .summary?: return "Summary".localized
-        case nil: fatalError()
+        case .info?:
+            return nil
+        case .announcements?:
+            return "Announcements".localized
+        case .documents?:
+            return "Documents".localized
+        case .events?:
+            guard let nextEvent = viewModel.course.nextEvent else { return "Events".localized }
+            return "Next Event: %@".localized(nextEvent.startsAt.formattedAsRelativeDateFromNow)
+        case .summary?:
+            return "Summary".localized
+        case nil:
+            fatalError()
         }
     }
 

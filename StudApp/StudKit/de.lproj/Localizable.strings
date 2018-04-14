@@ -47,7 +47,7 @@
 "Something Went Wrong" = "Etwas lief schief";
 "Something Went Wrong Continuing Your Activity." = "Etwas lief schief beim Fortführen Deiner Aktivität.";
 "There seems to be a problem with the internet connection." = "Es scheint ein Problem mit der Internetverbindung zu geben.";
-"Unfortunately, there was an internal error." = "Leider gab es einen internen Fehler. Bitte kontaktiere den App-Support, sollte dies öfter auftreten.";
+"Unfortunately, there was an internal error." = "Leider gab es einen internen Fehler. Bitte kontaktiere den App-Support, sollte dies öfter passieren.";
 
 // MARK: Generic Terms
 
@@ -114,7 +114,7 @@
 
 "Settings" = "Einstellungen";
 "Remove All Downloads" = "Alle Downloads entfernen";
-"This accounts for the combined sizes of all documents that you have downloaded." = "Dies umfasst die Größe aller Dokumente, die Du hernutergeladen hast.";
+"This accounts for the combined sizes of all documents that you have downloaded." = "Dies umfasst die Größe aller Dokumente, die Du heruntergeladen hast.";
 "They are not backed up by iTunes or iCloud." = "Sie werden nicht über iCloud oder iTunes gesichert.";
 "Signed in as %@ at %@" = "Angemeldet als %@ bei %@";
 
@@ -176,6 +176,8 @@
 "There are no events within the next two weeks for you." = "Innerhalb der nächsten zwei Wochen gibt es keine Termine für dich.";
 "You're All Caught Up" = "Du bist up-to-date";
 "There are no more events to show." = "Es gibt keine weiteren Termine.";
+"Next Event: %@" = "Nächster Termin: %@";
+"No Future Events" = "Keine zukünftigen Termine";
 
 // MARK: - Mock Data
 
