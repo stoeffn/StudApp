@@ -376,7 +376,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         let action = UIContextualAction(style: .normal, title: "Show".localized) { _, _, success in
             success(cell.show(nil))
         }
-        action.backgroundColor = UI.Colors.studRed
+        action.backgroundColor = UI.Colors.tint
         action.image = #imageLiteral(resourceName: "ShowActionGlyph")
         return action
     }

@@ -29,12 +29,19 @@ final class CourseCell: UITableViewCell {
                 .sorted()
                 .joined(separator: ", ")
 
-            colorView.backgroundColor = course.color
+            contentView.alpha = course.isHidden ? 0.5 : 1
+
+            colorView.backgroundColor = course.isHidden ? .darkGray : course.color
             titleLabel.text = course.title
             titleLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 3 : 1
             lecturersLabel.text = lecturerNames
 
-            accessibilityLabel = [course.title, "by %@".localized(lecturerNames)].joined(separator: " ")
+            let hiddenStateDescription = course.isHidden ? "Hidden".localized : "Visible".localized
+            accessibilityLabel = [
+                course.title,
+                "by %@".localized(lecturerNames),
+                UserDefaults.studKit.showsHiddenCourses ? hiddenStateDescription : nil
+            ].compactMap { $0 }.joined(separator: " ")
 
             accessibilityCustomActions = [
                 UIAccessibilityCustomAction(name: "Color".localized, target: self, selector: #selector(color(_:))),
@@ -54,12 +61,12 @@ final class CourseCell: UITableViewCell {
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
-        colorView.backgroundColor = course.color
+        colorView.backgroundColor = course.isHidden ? .darkGray : course.color
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        colorView.backgroundColor = course.color
+        colorView.backgroundColor = course.isHidden ? .darkGray : course.color
     }
 
     // MARK: - User Interaction
