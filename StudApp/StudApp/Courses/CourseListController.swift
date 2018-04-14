@@ -165,7 +165,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath,
                             withSender _: Any?) -> Bool {
-        guard let cell = tableView.cellForRow(at: indexPath) as? CourseCell else { fatalError() }
+        guard let cell = tableView.cellForRow(at: indexPath) as? CourseCell else { return false }
 
         switch action {
         case #selector(CustomMenuItems.color(_:)):

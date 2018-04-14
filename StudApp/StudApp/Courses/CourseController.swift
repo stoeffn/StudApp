@@ -294,6 +294,7 @@ final class CourseController: UITableViewController, Routable {
         case .info?, .announcements?, .summary?:
             return action == #selector(copy(_:))
         case .documents?:
+            guard indexPath.row < fileListViewModel.numberOfRows else { return false }
             let file = fileListViewModel[rowAt: indexPath.row]
 
             switch action {
@@ -305,7 +306,7 @@ final class CourseController: UITableViewController, Routable {
                 return false
             }
         case .events?, nil:
-            fatalError()
+            return false
         }
     }
 

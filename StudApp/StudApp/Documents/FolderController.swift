@@ -145,6 +145,7 @@ final class FolderController: UITableViewController, Routable {
         case #selector(CustomMenuItems.share(_:)):
             return true
         case #selector(CustomMenuItems.remove(_:)):
+            guard indexPath.row < viewModel.numberOfRows else { return false }
             let file = viewModel[rowAt: indexPath.row]
             return file.state.isDownloaded
         default:
