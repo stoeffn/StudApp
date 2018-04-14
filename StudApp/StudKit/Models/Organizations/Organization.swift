@@ -91,7 +91,7 @@ public final class Organization: NSManagedObject, CDCreatable, CDIdentifiable, C
     // MARK: - Sorting
 
     static let defaultSortDescriptors = [
-        NSSortDescriptor(keyPath: \Organization.title, ascending: true),
+        NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.localizedStandardCompare(_:))),
     ]
 
     // MARK: - Describing

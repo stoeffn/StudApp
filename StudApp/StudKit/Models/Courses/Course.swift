@@ -100,7 +100,7 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDSorta
 
     static let defaultSortDescriptors = [
         NSSortDescriptor(keyPath: \Course.groupId, ascending: true),
-        NSSortDescriptor(keyPath: \Course.title, ascending: true),
+        NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.localizedStandardCompare(_:))),
     ]
 
     // MARK: - Describing

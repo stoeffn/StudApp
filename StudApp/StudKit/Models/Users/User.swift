@@ -80,7 +80,7 @@ public final class User: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
     // MARK: - Sorting
 
     static let defaultSortDescriptors = [
-        NSSortDescriptor(keyPath: \User.username, ascending: true),
+        NSSortDescriptor(key: "username", ascending: true, selector: #selector(NSString.localizedStandardCompare(_:)))
     ]
 
     // MARK: - Describing

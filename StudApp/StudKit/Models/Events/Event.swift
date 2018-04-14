@@ -57,8 +57,8 @@ public final class Event: NSManagedObject, CDCreatable, CDIdentifiable, CDSortab
 
     static let defaultSortDescriptors = [
         NSSortDescriptor(keyPath: \Event.startsAt, ascending: true),
-        NSSortDescriptor(keyPath: \Event.course.title, ascending: true),
-        NSSortDescriptor(keyPath: \Event.location, ascending: true),
+        NSSortDescriptor(key: "course.title", ascending: true, selector: #selector(NSString.localizedStandardCompare(_:))),
+        NSSortDescriptor(key: "location", ascending: true, selector: #selector(NSString.localizedStandardCompare(_:))),
     ]
 
     // MARK: - Describing
