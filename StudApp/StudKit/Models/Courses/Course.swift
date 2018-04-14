@@ -105,6 +105,18 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDSorta
     public override var description: String {
         return "<Course id: \(id), semesters: \(semesters), title: \(title)>"
     }
+
+    public var semestersDescription: String? {
+        switch semesters.count {
+        case 0:
+            return nil
+        case 1:
+            return semesters.first?.title
+        default:
+            let sortedSemesters = semesters.sorted { $0.beginsAt < $1.beginsAt }
+            return "%@ – %@".localized(sortedSemesters.first?.title ?? "", sortedSemesters.last?.title ?? "")
+        }
+    }
 }
 
 // MARK: - Core Data Operations

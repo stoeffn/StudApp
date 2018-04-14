@@ -27,6 +27,7 @@ public final class CourseViewModel {
 
     private var rows: [TitleAndValue<String?>] {
         return [
+            ("Semesters".localized, course.semestersDescription),
             ("Course Number".localized, course.number),
             ("Location".localized, course.location),
         ]
