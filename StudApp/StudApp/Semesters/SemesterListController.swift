@@ -33,7 +33,7 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
             navigationController?.navigationBar.prefersLargeTitles = true
         }
 
-        tableView.tableHeaderView = nil
+        tableView.tableFooterView = nil
 
         updateEmptyView()
     }
@@ -82,6 +82,10 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
     }
 
     // MARK: - User Interface
+
+    @IBOutlet var showsHiddenCoursesLabel: UILabel!
+
+    @IBOutlet var showsHiddenCoursesSwitch: UISwitch!
 
     @IBOutlet var emptyView: UIView!
 

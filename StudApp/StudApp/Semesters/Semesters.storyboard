@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dbq-bM-eAu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dbq-bM-eAu">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
@@ -22,8 +22,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="rqR-yv-Aeg">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="275"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="RGQ-5z-fZl">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4wi-C9-7Dm">
+                                    <rect key="frame" x="0.0" y="43.5" width="375" height="0.5"/>
+                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="0.5" id="ByR-hN-oBc"/>
+                                    </constraints>
+                                </view>
+                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZTu-Sp-Td2">
+                                    <rect key="frame" x="306" y="6.5" width="51" height="31"/>
+                                    <accessibility key="accessibilityConfiguration">
+                                        <accessibilityTraits key="traits" button="YES"/>
+                                        <bool key="isElement" value="NO"/>
+                                    </accessibility>
+                                </switch>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Hidden Courses" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GAA-E7-LAT">
+                                    <rect key="frame" x="20" y="12" width="169.5" height="20"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="GAA-E7-LAT" firstAttribute="leading" secondItem="RGQ-5z-fZl" secondAttribute="leadingMargin" constant="12" id="16a-il-PvJ"/>
+                                <constraint firstItem="ZTu-Sp-Td2" firstAttribute="centerY" secondItem="GAA-E7-LAT" secondAttribute="centerY" id="8cx-Mf-6HE"/>
+                                <constraint firstItem="GAA-E7-LAT" firstAttribute="top" secondItem="RGQ-5z-fZl" secondAttribute="topMargin" constant="4" id="H77-2S-RW8"/>
+                                <constraint firstAttribute="bottom" secondItem="4wi-C9-7Dm" secondAttribute="bottom" id="IdS-N5-C8E"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="ZTu-Sp-Td2" secondAttribute="trailing" constant="12" id="JvJ-kM-FCd"/>
+                                <constraint firstItem="4wi-C9-7Dm" firstAttribute="leading" secondItem="RGQ-5z-fZl" secondAttribute="leading" id="Uup-rD-q7n"/>
+                                <constraint firstItem="ZTu-Sp-Td2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GAA-E7-LAT" secondAttribute="trailing" constant="8" id="W3F-zS-Dwc"/>
+                                <constraint firstAttribute="bottomMargin" secondItem="GAA-E7-LAT" secondAttribute="bottom" constant="4" id="fKf-2j-Afi"/>
+                                <constraint firstAttribute="trailing" secondItem="4wi-C9-7Dm" secondAttribute="trailing" id="p6J-Sr-i8h"/>
+                            </constraints>
+                        </view>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="rqR-yv-Aeg">
+                            <rect key="frame" x="0.0" y="116" width="375" height="275"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can try to reload the semesters from Stud.IP." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4B-WZ-h5c">
@@ -57,7 +95,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="21M-Rg-kwj">
-                                    <rect key="frame" x="162.5" y="184.5" width="50" height="32"/>
+                                    <rect key="frame" x="162.5" y="183.5" width="50" height="32"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <state key="normal" title="Reload"/>
                                     <connections>
@@ -82,7 +120,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SemesterCell" rowHeight="44" id="LuS-fg-8Z4" customClass="SemesterCell" customModule="StudApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="303" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LuS-fg-8Z4" id="Gy1-Jm-6Zb">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -166,6 +204,8 @@
                         <outlet property="emptyViewSubtitleLabel" destination="b4B-WZ-h5c" id="DCg-PS-K9k"/>
                         <outlet property="emptyViewTitleLabel" destination="cOv-3H-SZb" id="34U-og-gIT"/>
                         <outlet property="emptyViewTopConstraint" destination="URh-vj-Cmw" id="3NT-Mo-6fk"/>
+                        <outlet property="showsHiddenCoursesLabel" destination="GAA-E7-LAT" id="NDa-lP-Ino"/>
+                        <outlet property="showsHiddenCoursesSwitch" destination="ZTu-Sp-Td2" id="A11-L6-qET"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rrt-iF-Hpg" userLabel="First Responder" sceneMemberID="firstResponder"/>
