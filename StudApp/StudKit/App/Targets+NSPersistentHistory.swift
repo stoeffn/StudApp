@@ -19,17 +19,19 @@
 import CoreData
 
 extension Targets {
+    private func lastHistoryTransactionTimestampKey(for target: Targets) -> String {
+        return "lastHistoryTransactionTimestamp-\(target)"
+    }
+
     /// Timestamp of the last Core Data persistent history merge into the target's view context.
     var lastHistoryTransactionTimestamp: Date? {
         get {
             let storageService = ServiceContainer.default[StorageService.self]
-            let key = UserDefaults.lastHistoryTransactionTimestampKey(for: self)
-            return storageService.defaults.object(forKey: key) as? Date
+            return storageService.defaults.object(forKey: lastHistoryTransactionTimestampKey(for: self)) as? Date
         }
         set {
             let storageService = ServiceContainer.default[StorageService.self]
-            let key = UserDefaults.lastHistoryTransactionTimestampKey(for: self)
-            storageService.defaults.set(newValue, forKey: key)
+            storageService.defaults.set(newValue, forKey: lastHistoryTransactionTimestampKey(for: self))
         }
     }
 }

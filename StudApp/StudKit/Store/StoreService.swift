@@ -48,16 +48,13 @@ public final class StoreService: NSObject {
 
     private let reviewRequestMinimumDownloadCount = 3
 
-    var didRequestRatingAt: Date? {
-        get { return storageService.defaults.object(forKey: UserDefaults.didRequestRatingAtKey) as? Date }
-        set { storageService.defaults.set(newValue, forKey: UserDefaults.didRequestRatingAtKey) }
-    }
-
     /// Requests an _App Store_ review at its own discretion, taking into account when the user installed the app, whether the
     /// user was recently prompted, and if the user has a minimum number of downloads.
     public func requestReview() {
         /// Skip requesting a review if the user has not been prompted before.
-        guard let didRequestRatingAt = didRequestRatingAt else { return self.didRequestRatingAt = Date() }
+        guard let didRequestRatingAt = UserDefaults.studKit.didRequestRatingAt else {
+            return UserDefaults.studKit.didRequestRatingAt = Date()
+        }
 
         guard
             #available(iOSApplicationExtension 10.3, *),
@@ -67,7 +64,7 @@ public final class StoreService: NSObject {
         else { return }
 
         SKStoreReviewController.requestReview()
-        self.didRequestRatingAt = Date()
+        UserDefaults.studKit.didRequestRatingAt = Date()
     }
 }
 

@@ -96,10 +96,8 @@ extension User {
     private static var currentUserFromDefaults: User? {
         guard Targets.current != .tests else { return nil }
 
-        let storageService = ServiceContainer.default[StorageService.self]
         let coreDataService = ServiceContainer.default[CoreDataService.self]
-        let currentUserId = storageService.defaults.string(forKey: UserDefaults.userIdKey)
-        guard let user = try? fetch(byId: currentUserId, in: coreDataService.viewContext) else { return nil }
+        guard let user = try? fetch(byId: UserDefaults.studKit.userId, in: coreDataService.viewContext) else { return nil }
         return user
     }
 
@@ -107,8 +105,7 @@ extension User {
         didSet {
             guard current != oldValue else { return }
 
-            let storageService = ServiceContainer.default[StorageService.self]
-            storageService.defaults.set(current?.id, forKey: UserDefaults.userIdKey)
+            UserDefaults.studKit.userId = current?.id
             NotificationCenter.default.post(name: .currentUserDidChange, object: nil)
         }
     }
