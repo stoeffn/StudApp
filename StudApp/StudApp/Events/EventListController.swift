@@ -184,17 +184,18 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         tableView.tableFooterView = isEmpty ? nil : emptyView
         tableView.separatorStyle = isEmpty ? .none : .singleLine
 
-        if isEmpty {
+        if isEmpty && viewModel?.container is User {
             emptyViewTitleLabel.text = "It Looks Like You Are Free".localized
             emptyViewSubtitleLabel.text = "There are no events within the next two weeks for you.".localized
-
-            if let navigationBarHeight = navigationController?.navigationBar.bounds.height {
-                emptyViewTopPaddingConstraint.constant = navigationBarHeight * 2 + 84
-            }
         } else {
             emptyViewTitleLabel.text = "You're All Caught Up".localized
             emptyViewSubtitleLabel.text = "There are no more events to show.".localized
+        }
 
+        if isEmpty {
+            let navigationBarHeight = navigationController?.navigationBar.bounds.height ?? 0
+            emptyViewTopPaddingConstraint.constant = navigationBarHeight * 2 + 84
+        } else {
             emptyViewTopPaddingConstraint.constant = 64
 
             var frame = emptyView.frame
