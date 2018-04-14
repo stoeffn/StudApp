@@ -69,4 +69,9 @@ final class CourseCell: UITableViewCell {
         presentColorPicker?(self)
         return presentColorPicker != nil
     }
+
+    @objc
+    func hide(_: Any?) -> Bool {
+        return true
+    }
 }

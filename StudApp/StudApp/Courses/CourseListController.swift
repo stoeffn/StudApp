@@ -154,7 +154,14 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt _: IndexPath,
                             withSender _: Any?) -> Bool {
-        return action == #selector(CustomMenuItems.color(_:)) && user?.organization.supportsSettingCourseGroups ?? false
+        switch action {
+        case #selector(CustomMenuItems.color(_:)):
+            return user?.organization.supportsSettingCourseGroups ?? false
+        case #selector(CustomMenuItems.hide(_:)):
+            return true
+        default:
+            return false
+        }
     }
 
     /// Empty implementation that is needed in order for the menu to appear.
@@ -163,17 +170,19 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     @available(iOS 11.0, *)
     override func tableView(_: UITableView,
                             leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard let cell = tableView.cellForRow(at: indexPath) as? CourseCell else { return nil }
-
+        let cell = tableView.cellForRow(at: indexPath) as? CourseCell
         return UISwipeActionsConfiguration(actions: [
-            colorAction(for: cell, at: indexPath),
+            colorAction(for: cell),
         ].compactMap { $0 })
     }
 
     @available(iOS 11.0, *)
     override func tableView(_: UITableView,
-                            trailingSwipeActionsConfigurationForRowAt _: IndexPath) -> UISwipeActionsConfiguration? {
-        return UISwipeActionsConfiguration(actions: [])
+                            trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let cell = tableView.cellForRow(at: indexPath) as? CourseCell
+        return UISwipeActionsConfiguration(actions: [
+            hideAction(for: cell),
+        ].compactMap { $0 })
     }
 
     // MARK: - Responding to Changed Data
@@ -319,8 +328,8 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     }
 
     @available(iOS 11.0, *)
-    private func colorAction(for cell: CourseCell, at _: IndexPath) -> UIContextualAction? {
-        guard user?.organization.supportsSettingCourseGroups ?? false else { return nil }
+    private func colorAction(for cell: CourseCell?) -> UIContextualAction? {
+        guard let cell = cell, user?.organization.supportsSettingCourseGroups ?? false else { return nil }
 
         func colorActionHandler(_: UIContextualAction, _: UIView, success: @escaping (Bool) -> Void) {
             presentColorPicker(for: cell)
@@ -330,6 +339,20 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         let action = UIContextualAction(style: .normal, title: "Color".localized, handler: colorActionHandler)
         action.backgroundColor = cell.colorView.backgroundColor
         action.image = #imageLiteral(resourceName: "ColorActionGlyph")
+        return action
+    }
+
+    @available(iOS 11.0, *)
+    private func hideAction(for cell: CourseCell?) -> UIContextualAction? {
+        guard let cell = cell else { return nil }
+
+        func hideActionHandler(_: UIContextualAction, _: UIView, success: @escaping (Bool) -> Void) {
+            success(true)
+        }
+
+        let action = UIContextualAction(style: .normal, title: "Hide".localized, handler: hideActionHandler)
+        action.backgroundColor = UI.Colors.studRed
+        action.image = #imageLiteral(resourceName: "HideActionGlyph")
         return action
     }
 

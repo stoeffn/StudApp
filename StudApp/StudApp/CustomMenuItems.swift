@@ -27,6 +27,9 @@ public protocol CustomMenuItems: NSObjectProtocol {
     func remove(_ sender: Any?)
 
     @objc
+    func hide(_ sender: Any?)
+
+    @objc
     func color(_ sender: Any?)
 }
 
@@ -36,6 +39,7 @@ func addCustomMenuItems(to menuController: UIMenuController) {
     menuController.menuItems = [
         UIMenuItem(title: "Share".localized, action: #selector(CustomMenuItems.share(_:))),
         UIMenuItem(title: "Remove".localized, action: #selector(CustomMenuItems.remove(_:))),
+        UIMenuItem(title: "Hide".localized, action: #selector(CustomMenuItems.hide(_:))),
         UIMenuItem(title: "Color".localized, action: #selector(CustomMenuItems.color(_:))),
     ]
 }
