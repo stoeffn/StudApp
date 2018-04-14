@@ -445,3 +445,13 @@ extension CourseController: UIViewControllerPreviewingDelegate, QLPreviewControl
         return cell.iconView
     }
 }
+
+// MARK: - Text View Delegate
+
+extension CourseController: UITextViewDelegate {
+    public func textView(_: UITextView, shouldInteractWith url: URL, in _: NSRange, interaction _: UITextItemInteraction) -> Bool {
+        let safariController = ServiceContainer.default[HtmlContentService.self].safariViewController(for: url)
+        present(safariController, animated: true, completion: nil)
+        return false
+    }
+}

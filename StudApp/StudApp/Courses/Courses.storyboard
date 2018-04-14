@@ -849,6 +849,9 @@ Gebäude 3703: Technische Informatik</string>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES" shipmentTrackingNumber="YES" flightNumber="YES" lookupSuggestion="YES"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="9OB-lI-obx" id="6sK-tk-g7b"/>
+                                            </connections>
                                         </textView>
                                     </subviews>
                                     <constraints>

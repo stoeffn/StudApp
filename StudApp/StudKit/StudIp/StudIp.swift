@@ -36,7 +36,8 @@ enum StudIp {
     static func transform(courseSummary: String?) -> String? {
         return try! courseSummary?
             .replacingMatches(for: "<[^>]+>", with: "")
-            .replacingMatches(for: "Literatur: *$", with: "")
+            .replacingMatches(for: "[\n\r]+", with: "\n")
+            .replacingMatches(for: "Literatur:\\W*$", with: "")
             .decodedHTML
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .nilWhenEmpty

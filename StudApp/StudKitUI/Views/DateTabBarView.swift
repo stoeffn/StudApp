@@ -162,20 +162,20 @@ extension DateTabBarView: UICollectionViewDataSource {
 // MARK: - Collection View Delegate
 
 extension DateTabBarView: UICollectionViewDelegateFlowLayout {
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_: UIScrollView) {
         isScrolling = true
     }
 
-    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndScrollingAnimation(_: UIScrollView) {
         isScrolling = false
         updateSelection()
     }
 
-    public func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+    public func scrollViewWillBeginDecelerating(_: UIScrollView) {
         updateSelection(forced: false)
     }
 
-    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(_: UIScrollView) {
         isScrolling = false
     }
 

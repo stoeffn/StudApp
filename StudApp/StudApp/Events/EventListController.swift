@@ -104,7 +104,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
     // MARK: - Navigation
 
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+    override func shouldPerformSegue(withIdentifier _: String, sender _: Any?) -> Bool {
         return viewModel?.container is User
     }
 
