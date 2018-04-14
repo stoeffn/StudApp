@@ -67,6 +67,8 @@ public final class DateTabBarView: UIView {
         layoutMargins = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         backgroundColor = .clear
         addSubview(collectionView)
+
+        isAccessibilityElement = true
     }
 
     private func updateSelection(forced: Bool = false) {
@@ -94,6 +96,39 @@ public final class DateTabBarView: UIView {
 
     public func invalidateLayout() {
         collectionView.collectionViewLayout.invalidateLayout()
+    }
+
+    // MARK: - Accessibility
+
+    public override var accessibilityValue: String? {
+        get { return selectedDate?.formatted(using: .longDate) }
+        set {}
+    }
+
+    public override func accessibilityDecrement() {
+        guard
+            let selectedDate = selectedDate,
+            let newDate = Calendar.current.date(byAdding: .day, value: -1, to: selectedDate),
+            newDate >= startsAt
+        else { return self.selectedDate = endsAt }
+
+        self.selectedDate = newDate
+
+        guard let isDateEnabled = self.isDateEnabled, !isDateEnabled(newDate) else { return }
+        accessibilityDecrement()
+    }
+
+    public override func accessibilityIncrement() {
+        guard
+            let selectedDate = selectedDate,
+            let newDate = Calendar.current.date(byAdding: .day, value: 1, to: selectedDate),
+            newDate <= endsAt
+        else { return self.selectedDate = startsAt }
+
+        self.selectedDate = newDate
+
+        guard let isDateEnabled = self.isDateEnabled, !isDateEnabled(newDate) else { return }
+        accessibilityIncrement()
     }
 
     // MARK: - Delegate
