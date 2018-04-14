@@ -46,14 +46,12 @@ final class DateHeader: UITableViewHeaderFooterView {
     private(set) lazy var spacingView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.isAccessibilityElement = false
         return view
     }()
 
     private(set) lazy var whiteView: UIView = {
         let view = UIView()
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.isAccessibilityElement = false
         view.backgroundColor = .white
         return view
     }()
@@ -63,7 +61,6 @@ final class DateHeader: UITableViewHeaderFooterView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(forTextStyle: .title1).bold
         label.adjustsFontForContentSizeCategory = true
-        label.isAccessibilityElement = false
         return label
     }()
 
@@ -92,6 +89,7 @@ final class DateHeader: UITableViewHeaderFooterView {
         updateAppearance()
 
         isAccessibilityElement = true
+        accessibilityTraits |= UIAccessibilityTraitButton
 
         NotificationCenter.default.addObserver(self, selector: #selector(reduceTransparencyDidChange(notification:)),
                                                name: .UIAccessibilityReduceTransparencyStatusDidChange, object: nil)

@@ -37,9 +37,10 @@ final class StudAppSnapshots: XCTestCase {
 
     func testCourses() {
         let app = XCUIApplication()
+        app.buttons["Winter 2017/18".localized].tap()
+        app.buttons["Summer 2018".localized].tap()
         app.staticTexts["Data Science 101".localized].tap()
 
-        wait(for: [], timeout: 5)
         snapshot("01-Courses")
     }
 }

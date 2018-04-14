@@ -18,7 +18,12 @@
 import CoreData
 
 struct MockResponses {
+
+    // MARK: - Organizations
+
     lazy var organization = OrganizationRecord(id: "O0")
+
+    // MARK: - Semesters
 
     lazy var semesters = [
         SemesterResponse(id: "S0", title: "Winter 2016/17".localized, beginsAt: Date(timeIntervalSince1970: 1_475_338_860),
@@ -30,6 +35,8 @@ struct MockResponses {
         SemesterResponse(id: "S3", title: "Summer 2018".localized, beginsAt: Date(timeIntervalSince1970: 1_522_540_800),
                          endsAt: Date(timeIntervalSince1970: 1_535_760_000)),
     ]
+
+    // MARK: - Users
 
     lazy var currentUser = UserResponse(id: "U0", username: "murphy", givenName: "Murphy", familyName: "Cooper")
 
@@ -43,6 +50,8 @@ struct MockResponses {
     lazy var tesla = UserResponse(id: "U4", username: "tesla", givenName: "Nikola", familyName: "Tesla")
 
     lazy var cooper = UserResponse(id: "U5", username: "coop", givenName: "Joseph", familyName: "Cooper")
+
+    // MARK: - Courses
 
     lazy var courses = [
         CourseResponse(id: "C0", number: "1.00000000001", title: "Numerical Analysis".localized,
@@ -62,11 +71,29 @@ struct MockResponses {
                        groupId: 5, lecturers: [tesla], beginSemesterId: "S0", endSemesterId: "S3"),
     ]
 
-    mutating func insert(into context: NSManagedObjectContext) throws {
-        let organization = try self.organization.coreDataObject(in: context)
-        User.current = try currentUser.coreDataObject(organization: organization, in: context)
+    // MARK: - Inserting Data
 
-        try semesters.forEach { try $0.coreDataObject(organization: organization, in: context).state.isHidden = false }
-        try courses.forEach { try $0.coreDataObject(organization: organization, author: User.current, in: context) }
+    mutating func insert(into context: NSManagedObjectContext) throws {
+        let now = Date()
+
+        let organization = try self.organization.coreDataObject(in: context)
+
+        let user = try currentUser.coreDataObject(organization: organization, in: context)
+        user.state.authoredCoursesUpdatedAt = now
+        user.state.eventsUpdatedAt = now
+        User.current = user
+
+        try semesters.forEach { response in
+            let semester = try response.coreDataObject(organization: organization, in: context)
+            semester.state.isHidden = false
+            semester.state.isCollapsed = true
+        }
+
+        try courses.forEach { response in
+            let course = try response.coreDataObject(organization: organization, author: user, in: context)
+            course.state.announcementsUpdatedAt = now
+            course.state.childFilesUpdatedAt = now
+            course.state.eventsUpdatedAt = now
+        }
     }
 }

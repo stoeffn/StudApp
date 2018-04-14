@@ -47,7 +47,6 @@ final class CourseHeader: UITableViewHeaderFooterView {
     private(set) lazy var colorView: UIView = {
         let view = UIView()
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.isAccessibilityElement = false
         return view
     }()
 
@@ -56,7 +55,6 @@ final class CourseHeader: UITableViewHeaderFooterView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .preferredFont(forTextStyle: .headline)
         label.adjustsFontForContentSizeCategory = true
-        label.isAccessibilityElement = false
         return label
     }()
 
@@ -72,6 +70,7 @@ final class CourseHeader: UITableViewHeaderFooterView {
         titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2).isActive = true
 
         isAccessibilityElement = true
+        accessibilityTraits |= UIAccessibilityTraitButton
 
         NotificationCenter.default.addObserver(self, selector: #selector(reduceTransparencyDidChange(notification:)),
                                                name: .UIAccessibilityReduceTransparencyStatusDidChange, object: nil)
