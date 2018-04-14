@@ -163,12 +163,16 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         return true
     }
 
-    override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt _: IndexPath,
+    override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath,
                             withSender _: Any?) -> Bool {
+        guard let cell = tableView.cellForRow(at: indexPath) as? CourseCell else { fatalError() }
+
         switch action {
         case #selector(CustomMenuItems.color(_:)):
             return user?.organization.supportsSettingCourseGroups ?? false
-        case #selector(CustomMenuItems.hide(_:)):
+        case #selector(CustomMenuItems.hide(_:)) where !cell.course.isHidden:
+            return true
+        case #selector(CustomMenuItems.show(_:)) where cell.course.isHidden:
             return true
         default:
             return false
@@ -193,6 +197,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         let cell = tableView.cellForRow(at: indexPath) as? CourseCell
         return UISwipeActionsConfiguration(actions: [
             hideAction(for: cell),
+            showAction(for: cell),
         ].compactMap { $0 })
     }
 
@@ -341,23 +346,38 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     @available(iOS 11.0, *)
     private func colorAction(for cell: CourseCell?) -> UIContextualAction? {
-        guard user?.organization.supportsSettingCourseGroups ?? false else { return nil }
+        guard let cell = cell, user?.organization.supportsSettingCourseGroups ?? false else { return nil }
 
         let action = UIContextualAction(style: .normal, title: "Color".localized) { _, _, success in
-            success(cell?.color(nil) ?? false)
+            success(cell.color(nil))
         }
-        action.backgroundColor = cell?.colorView.backgroundColor ?? UI.Colors.studBlue
+        action.backgroundColor = cell.colorView.backgroundColor
         action.image = #imageLiteral(resourceName: "ColorActionGlyph")
         return action
     }
 
     @available(iOS 11.0, *)
     private func hideAction(for cell: CourseCell?) -> UIContextualAction? {
-        let action = UIContextualAction(style: .destructive, title: "Hide".localized) { _, _, success in
-            success(cell?.hide(nil) ?? false)
+        guard let cell = cell, !cell.course.isHidden else { return nil }
+
+        let style: UIContextualAction.Style = UserDefaults.studKit.showsHiddenCourses ? .normal : .destructive
+        let action = UIContextualAction(style: style, title: "Hide".localized) { _, _, success in
+            success(cell.hide(nil))
         }
         action.backgroundColor = UI.Colors.studRed
         action.image = #imageLiteral(resourceName: "HideActionGlyph")
+        return action
+    }
+
+    @available(iOS 11.0, *)
+    private func showAction(for cell: CourseCell?) -> UIContextualAction? {
+        guard let cell = cell, cell.course.isHidden else { return nil }
+
+        let action = UIContextualAction(style: .normal, title: "Show".localized) { _, _, success in
+            success(cell.show(nil))
+        }
+        action.backgroundColor = UI.Colors.studRed
+        action.image = #imageLiteral(resourceName: "ShowActionGlyph")
         return action
     }
 

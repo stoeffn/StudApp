@@ -75,4 +75,10 @@ final class CourseCell: UITableViewCell {
         course.isHidden = true
         return true
     }
+
+    @objc
+    func show(_: Any?) -> Bool {
+        course.isHidden = false
+        return true
+    }
 }
