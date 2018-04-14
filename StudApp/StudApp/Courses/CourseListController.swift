@@ -23,8 +23,13 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     private var user: User?
     private var viewModel: SemesterListViewModel?
     private var courseListViewModels: [String: CourseListViewModel] = [:]
+    private var observations = [NSKeyValueObservation]()
 
     // MARK: - Life Cycle
+
+    deinit {
+        observations.removeAll()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +50,13 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         }
 
         updateEmptyView()
+
+        observations = [
+            UserDefaults.studKit.observe(\.showsHiddenCourses, options: [.old, .new]) { [weak self] _, change in
+                guard let `self` = self, change.newValue != change.oldValue else { return }
+                self.prepareContent(for: .courseList(for: User.current))
+            },
+        ]
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -74,10 +86,9 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
             updateEmptyView()
         }
 
-        guard let user = optionalUser else {
-            courseListViewModels = [:]
-            return viewModel = nil
-        }
+        courseListViewModels = [:]
+
+        guard let user = optionalUser else { return viewModel = nil }
 
         viewModel = SemesterListViewModel(organization: user.organization)
         viewModel?.delegate = self
@@ -250,7 +261,8 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
         guard let user = user else { fatalError() }
 
-        let viewModel = CourseListViewModel(user: user, semester: semester, respectsCollapsedState: true)
+        let viewModel = CourseListViewModel(user: user, semester: semester, respectsCollapsedState: true,
+                                            showsHiddenCourses: UserDefaults.studKit.showsHiddenCourses)
         viewModel.delegate = self
         viewModel.fetch()
         viewModel.update()

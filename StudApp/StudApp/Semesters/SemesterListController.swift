@@ -35,6 +35,8 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
 
         tableView.tableFooterView = nil
 
+        showsHiddenCoursesSwitch.isOn = UserDefaults.studKit.showsHiddenCourses
+
         updateEmptyView()
     }
 
@@ -114,6 +116,11 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
     }
 
     // MARK: - User Interaction
+
+    @IBAction
+    func showsHiddenCoursesSwitchValueChanged(_: Any) {
+        UserDefaults.studKit.showsHiddenCourses = showsHiddenCoursesSwitch.isOn
+    }
 
     @IBAction
     func doneButtonTapped(_: Any) {

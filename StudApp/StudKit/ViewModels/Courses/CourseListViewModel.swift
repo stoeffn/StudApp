@@ -33,10 +33,12 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
     public let user: User
     public let semester: Semester?
     public let respectsCollapsedState: Bool
+    public let showsHiddenCourses: Bool
 
     /// Creates a new course list view model managing all courses.
-    public init(user: User) {
+    public init(user: User, showsHiddenCourses: Bool = false) {
         self.user = user
+        self.showsHiddenCourses = showsHiddenCourses
 
         semester = nil
         respectsCollapsedState = false
@@ -46,24 +48,25 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
     }
 
     /// Creates a new course list view model managing the given semester's courses.
-    public init(user: User, semester: Semester, respectsCollapsedState: Bool = false) {
+    public init(user: User, semester: Semester, respectsCollapsedState: Bool = false, showsHiddenCourses: Bool = false) {
         self.user = user
         self.semester = semester
         self.respectsCollapsedState = respectsCollapsedState
+        self.showsHiddenCourses = showsHiddenCourses
 
         isCollapsed = semester.state.isCollapsed
         controller.delegate = fetchedResultControllerDelegateHelper
     }
 
     public private(set) lazy var controller: NSFetchedResultsController<Course> = NSFetchedResultsController(
-        fetchRequest: user.authoredCoursesFetchRequest(in: semester),
+        fetchRequest: user.authoredCoursesFetchRequest(in: semester, includingHidden: showsHiddenCourses),
         managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
 
     /// Fetches initial data.
     public func fetch() {
         controller.fetchRequest.predicate = isCollapsed && respectsCollapsedState
             ? NSPredicate(value: false)
-            : user.authoredCoursesFetchRequest(in: semester).predicate ?? NSPredicate(value: true)
+            : user.authoredCoursesFetchRequest(in: semester, includingHidden: showsHiddenCourses).predicate ?? NSPredicate(value: true)
         try? controller.performFetch()
     }
 

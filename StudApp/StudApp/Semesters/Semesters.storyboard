@@ -39,6 +39,9 @@
                                         <accessibilityTraits key="traits" button="YES"/>
                                         <bool key="isElement" value="NO"/>
                                     </accessibility>
+                                    <connections>
+                                        <action selector="showsHiddenCoursesSwitchValueChanged:" destination="fag-gD-kkk" eventType="valueChanged" id="ulq-3j-7xE"/>
+                                    </connections>
                                 </switch>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Hidden Courses" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GAA-E7-LAT">
                                     <rect key="frame" x="20" y="12" width="169.5" height="20"/>

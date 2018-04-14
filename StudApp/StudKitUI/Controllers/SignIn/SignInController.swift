@@ -26,6 +26,10 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
 
     // MARK: - Life Cycle
 
+    deinit {
+        observations.removeAll()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -60,10 +64,6 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
 
         viewModel.updateOrganizationIcon()
         viewModel.startAuthorization()
-    }
-
-    deinit {
-        observations.removeAll()
     }
 
     override func viewWillAppear(_ animated: Bool) {
