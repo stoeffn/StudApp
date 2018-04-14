@@ -72,6 +72,7 @@ final class CourseCell: UITableViewCell {
 
     @objc
     func hide(_: Any?) -> Bool {
+        course.isHidden = true
         return true
     }
 }

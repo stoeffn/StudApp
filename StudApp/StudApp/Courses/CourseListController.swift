@@ -329,28 +329,21 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     @available(iOS 11.0, *)
     private func colorAction(for cell: CourseCell?) -> UIContextualAction? {
-        guard let cell = cell, user?.organization.supportsSettingCourseGroups ?? false else { return nil }
+        guard user?.organization.supportsSettingCourseGroups ?? false else { return nil }
 
-        func colorActionHandler(_: UIContextualAction, _: UIView, success: @escaping (Bool) -> Void) {
-            presentColorPicker(for: cell)
-            success(true)
+        let action = UIContextualAction(style: .normal, title: "Color".localized) { _, _, success in
+            success(cell?.color(nil) ?? false)
         }
-
-        let action = UIContextualAction(style: .normal, title: "Color".localized, handler: colorActionHandler)
-        action.backgroundColor = cell.colorView.backgroundColor
+        action.backgroundColor = cell?.colorView.backgroundColor ?? UI.Colors.studBlue
         action.image = #imageLiteral(resourceName: "ColorActionGlyph")
         return action
     }
 
     @available(iOS 11.0, *)
     private func hideAction(for cell: CourseCell?) -> UIContextualAction? {
-        guard let cell = cell else { return nil }
-
-        func hideActionHandler(_: UIContextualAction, _: UIView, success: @escaping (Bool) -> Void) {
-            success(true)
+        let action = UIContextualAction(style: .destructive, title: "Hide".localized) { _, _, success in
+            success(cell?.hide(nil) ?? false)
         }
-
-        let action = UIContextualAction(style: .normal, title: "Hide".localized, handler: hideActionHandler)
         action.backgroundColor = UI.Colors.studRed
         action.image = #imageLiteral(resourceName: "HideActionGlyph")
         return action

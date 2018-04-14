@@ -113,18 +113,24 @@ extension User {
         }
     }
 
-    public func authoredCoursesFetchRequest(in semester: Semester? = nil) -> NSFetchRequest<Course> {
+    public func authoredCoursesFetchRequest(in semester: Semester? = nil, includingHidden: Bool = false) -> NSFetchRequest<Course> {
         var predicates = [NSPredicate(format: "%@ IN authors", self)]
+
         if let semester = semester {
-            predicates.append(NSPredicate(format: "%@ in semesters", semester))
+            predicates.append(NSPredicate(format: "%@ IN semesters", semester))
         }
+
+        if !includingHidden {
+            predicates.append(NSPredicate(format: "isHidden == NO"))
+        }
+
         let predicate = NSCompoundPredicate(type: .and, subpredicates: predicates)
         return Course.fetchRequest(predicate: predicate, sortDescriptors: Course.defaultSortDescriptors,
                                    relationshipKeyPathsForPrefetching: ["state"])
     }
 
     public func downloadsPredicate(forSearchTerm searchTerm: String? = nil) -> NSPredicate {
-        let downloadedPredicate = NSPredicate(format: "%@ in downloadedBy", self)
+        let downloadedPredicate = NSPredicate(format: "%@ IN downloadedBy", self)
 
         guard let searchTerm = searchTerm, !searchTerm.isEmpty else { return downloadedPredicate }
 
