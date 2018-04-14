@@ -53,7 +53,9 @@ extension Organization {
 
     // MARK: - Predicates
 
-    private static let enabledPredicate = NSPredicate(format: "isEnabled == YES")
+    private static let enabledPredicate = Distributions.current == .appStore
+        ? NSPredicate(format: "isEnabled == YES")
+        : NSPredicate(format: "isEnabledInTestFlight == YES")
 
     private var idPredicate: NSPredicate {
         return NSPredicate(format: "recordID == %@", CKRecordID(recordName: id))
