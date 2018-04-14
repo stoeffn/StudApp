@@ -16,8 +16,6 @@
 //  along with this program. If not, see http://www.gnu.org/licenses/.
 //
 
-public typealias TitleAndValue<Value> = (title: String, value: Value)
-
 public final class CourseViewModel {
     public let course: Course
 
@@ -25,17 +23,21 @@ public final class CourseViewModel {
         self.course = course
     }
 
-    private var rows: [TitleAndValue<String?>] {
+    private var rows: [Row] {
         return [
-            ("Semesters".localized, course.semestersDescription),
-            ("Course Number".localized, course.number),
-            ("Location".localized, course.location),
+            Row(title: "Semesters".localized, glyph: #imageLiteral(resourceName: "DateSpanTableViewGlyph"), value: course.semestersDescription),
+            Row(title: "Course Number".localized, glyph: #imageLiteral(resourceName: "NumberTableViewGlyph"), value: course.number),
+            Row(title: "Location".localized, glyph: #imageLiteral(resourceName: "LocationTableViewGlyph"), value: course.location),
         ]
     }
 }
 
 extension CourseViewModel: DataSourceSection {
-    public typealias Row = TitleAndValue<String?>
+    public struct Row {
+        public let title: String
+        public let glyph: UIImage?
+        public let value: String?
+    }
 
     public var numberOfRows: Int {
         return rows
@@ -43,7 +45,7 @@ extension CourseViewModel: DataSourceSection {
             .count
     }
 
-    public subscript(rowAt index: Int) -> TitleAndValue<String?> {
+    public subscript(rowAt index: Int) -> Row {
         let fieldIndex = rows.enumerated()
             .filter { $1.value != nil }
             .dropFirst(index)

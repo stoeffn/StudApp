@@ -200,9 +200,10 @@ final class CourseController: UITableViewController, Routable {
         switch Sections(rawValue: indexPath.section) {
         case .info?:
             let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.typeIdentifier, for: indexPath)
-            let titleAndValue = viewModel[rowAt: indexPath.row]
-            cell.textLabel?.text = titleAndValue.title
-            cell.detailTextLabel?.text = titleAndValue.value
+            let row = viewModel[rowAt: indexPath.row]
+            cell.imageView?.image = row.glyph
+            cell.textLabel?.text = row.title
+            cell.detailTextLabel?.text = row.value
             return cell
         case .announcements? where indexPath.row == announcementsViewModel.numberOfRows:
             let cell = tableView.dequeueReusableCell(withIdentifier: emptyCellIdentifier, for: indexPath)
