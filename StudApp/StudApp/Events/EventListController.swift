@@ -34,8 +34,10 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         refreshControl?.addTarget(self, action: #selector(refreshControlTriggered(_:)), for: .valueChanged)
 
         navigationItem.title = "Events".localized
+        navigationItem.rightBarButtonItem?.accessibilityLabel = "More".localized
 
         tableView.register(DateHeader.self, forHeaderFooterViewReuseIdentifier: DateHeader.typeIdentifier)
+        tableView.estimatedSectionHeaderHeight = DateHeader.estimatedHeight
         tableView.tableHeaderView = nil
         tableView.tableFooterView = nil
 
@@ -241,10 +243,6 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         (cell as? EventCell)?.event = viewModel[rowAt: indexPath]
         cell.selectionStyle = viewModel.container is Course ? .none : .default
         return cell
-    }
-
-    override func tableView(_: UITableView, heightForHeaderInSection _: Int) -> CGFloat {
-        return DateHeader.height
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

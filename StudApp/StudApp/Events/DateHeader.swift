@@ -19,7 +19,7 @@
 import StudKit
 
 final class DateHeader: UITableViewHeaderFooterView {
-    static let height: CGFloat = 64
+    static let estimatedHeight: CGFloat = 64
 
     // MARK: - Life Cycle
 
@@ -35,7 +35,9 @@ final class DateHeader: UITableViewHeaderFooterView {
 
     var date: Date! {
         didSet {
-            titleLabel.text = date.formattedAsRelativeDateFromNow
+            let formattedDate = date.formattedAsRelativeDateFromNow
+            titleLabel.text = formattedDate
+            accessibilityLabel = formattedDate
         }
     }
 
@@ -44,6 +46,7 @@ final class DateHeader: UITableViewHeaderFooterView {
     private(set) lazy var spacingView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.isAccessibilityElement = false
         return view
     }()
 
@@ -60,6 +63,7 @@ final class DateHeader: UITableViewHeaderFooterView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(forTextStyle: .title1).bold
         label.adjustsFontForContentSizeCategory = true
+        label.isAccessibilityElement = false
         return label
     }()
 
@@ -83,11 +87,14 @@ final class DateHeader: UITableViewHeaderFooterView {
         titleLabel.leadingAnchor.constraint(equalTo: spacingView.trailingAnchor, constant: 20).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: readableContentGuide.trailingAnchor).isActive = true
         titleLabel.bottomAnchor.constraint(equalTo: readableContentGuide.bottomAnchor).isActive = true
+        titleLabel.heightAnchor.constraint(equalTo: spacingView.heightAnchor, multiplier: 0.6).isActive = true
+
+        updateAppearance()
+
+        isAccessibilityElement = true
 
         NotificationCenter.default.addObserver(self, selector: #selector(reduceTransparencyDidChange(notification:)),
                                                name: .UIAccessibilityReduceTransparencyStatusDidChange, object: nil)
-
-        updateAppearance()
     }
 
     private func updateAppearance() {
