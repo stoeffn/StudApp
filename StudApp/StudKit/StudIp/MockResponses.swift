@@ -27,6 +27,8 @@ struct MockResponses {
                          endsAt: Date(timeIntervalSince1970: 1_504_224_000)),
         SemesterResponse(id: "S2", title: "Winter 2017/18".localized, beginsAt: Date(timeIntervalSince1970: 1_504_282_860),
                          endsAt: Date(timeIntervalSince1970: 1_519_924_860)),
+        SemesterResponse(id: "S3", title: "Summer 2018".localized, beginsAt: Date(timeIntervalSince1970: 1_522_540_800),
+                         endsAt: Date(timeIntervalSince1970: 1_535_760_000)),
     ]
 
     lazy var currentUser = UserResponse(id: "U0", username: "murphy", givenName: "Murphy", familyName: "Cooper")
@@ -45,23 +47,26 @@ struct MockResponses {
     lazy var courses = [
         CourseResponse(id: "C0", number: "1.00000000001", title: "Numerical Analysis".localized,
                        subtitle: "Optimizing Algorithms for Computers".localized, location: "Bielefeld Room".localized,
-                       groupId: 1, lecturers: [theCount], beginSemesterId: "S2", endSemesterId: "S2"),
+                       groupId: 1, lecturers: [theCount], beginSemesterId: "S3", endSemesterId: "S3"),
         CourseResponse(id: "C1", number: "3.14", title: "Linear Algebra I".localized,
                        subtitle: "Vectors and Stuff".localized, location: "Hugo Kulka Room".localized,
-                       groupId: 1, lecturers: [cooper, theCount], beginSemesterId: "S2", endSemesterId: "S2"),
+                       groupId: 1, lecturers: [cooper, theCount], beginSemesterId: "S3", endSemesterId: "S3"),
         CourseResponse(id: "C2", number: "42", title: "Computer Architecture".localized,
                        location: "Multimedia Room".localized, summary: "In this lecture, you will learn how to…",
-                       groupId: 3, lecturers: [professorProton], beginSemesterId: "S2", endSemesterId: "S2"),
+                       groupId: 3, lecturers: [professorProton], beginSemesterId: "S3", endSemesterId: "S3"),
         CourseResponse(id: "C3", number: nil, title: "Theoretical Stud.IP Science".localized,
-                       groupId: 4, lecturers: [professorProton], beginSemesterId: "S2", endSemesterId: "S2"),
+                       groupId: 4, lecturers: [professorProton], beginSemesterId: "S3", endSemesterId: "S3"),
         CourseResponse(id: "C3", number: nil, title: "Data Science 101".localized,
-                       groupId: 4, lecturers: [tesla], beginSemesterId: "S2", endSemesterId: "S2"),
+                       groupId: 4, lecturers: [tesla], beginSemesterId: "S3", endSemesterId: "S3"),
+        CourseResponse(id: "C4", number: nil, title: "StudApp Feedback".localized,
+                       groupId: 5, lecturers: [tesla], beginSemesterId: "S0", endSemesterId: "S3"),
     ]
 
     mutating func insert(into context: NSManagedObjectContext) throws {
         let organization = try self.organization.coreDataObject(in: context)
-        try currentUser.coreDataObject(organization: organization, in: context)
-        try semesters.forEach { try $0.coreDataObject(organization: organization, in: context) }
-        try courses.forEach { try $0.coreDataObject(organization: organization, in: context) }
+        User.current = try currentUser.coreDataObject(organization: organization, in: context)
+
+        try semesters.forEach { try $0.coreDataObject(organization: organization, in: context).state.isHidden = false }
+        try courses.forEach { try $0.coreDataObject(organization: organization, author: User.current, in: context) }
     }
 }

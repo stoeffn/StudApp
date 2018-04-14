@@ -52,7 +52,7 @@ public final class PersistentHistoryService {
     ///                      view context.
     /// - Postcondition: The current target's last history transaction timestamp is set to the last transaction timestamp.
     public func mergeHistory(into context: NSManagedObjectContext) throws {
-        guard #available(iOSApplicationExtension 11.0, *) else { return }
+        guard #available(iOSApplicationExtension 11.0, *), Distributions.current != .uiTest else { return }
 
         let historyFetchRequest = NSPersistentHistoryChangeRequest
             .fetchHistory(after: Targets.current.lastHistoryTransactionTimestamp ?? .distantPast)

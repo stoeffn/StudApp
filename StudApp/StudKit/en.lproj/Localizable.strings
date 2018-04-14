@@ -190,6 +190,7 @@
 "Winter 2016/17" = "Winter 2016/17";
 "Summer 2017" = "Summer 2017";
 "Winter 2017/18" = "Winter 2017/18";
+"Summer 2018" = "Summer 2018";
 
 // MARK: Users
 
@@ -210,3 +211,4 @@
 "Computer Architecture" = "Computer Architecture";
 "Theoretical Stud.IP Science" = "Theoretical Stud.IP Science";
 "Data Science 101" = "Data Science 101";
+"StudApp Feedback" = "StudApp Feedback";
