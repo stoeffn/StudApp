@@ -28,7 +28,7 @@ final class StudAppUITests: XCTestCase {
         continueAfterFailure = false
 
         let app = XCUIApplication()
-        app.launchArguments = ["uiTest"]
+        app.launchArguments = [Distributions.uiTestArgument]
         app.launch()
     }
 

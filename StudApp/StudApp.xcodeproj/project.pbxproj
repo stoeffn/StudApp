@@ -13,6 +13,16 @@
 		24015C022081288C000609A3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245B6AD51FCB327800302CD0 /* StoreKit.framework */; };
 		24015C1320827E34000609A3 /* StudAppSnapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24015C1220827E34000609A3 /* StudAppSnapshots.swift */; };
 		24015C1A20827E41000609A3 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24015C0720826C54000609A3 /* SnapshotHelper.swift */; };
+		24015C1B2082815D000609A3 /* Distributions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DB13B2207BCDBD003B003E /* Distributions.swift */; };
+		24015C1C20828166000609A3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 249DD6FD1FC8B896006DA46E /* Localizable.strings */; };
+		24015C1D20828169000609A3 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 24F1ABBD204B45D100972305 /* Localizable.stringsdict */; };
+		24015C1F2082826D000609A3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 249DD6FD1FC8B896006DA46E /* Localizable.strings */; };
+		24015C2020828271000609A3 /* Distributions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DB13B2207BCDBD003B003E /* Distributions.swift */; };
+		24015C2120828276000609A3 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 24F1ABBD204B45D100972305 /* Localizable.stringsdict */; };
+		24015C2220828282000609A3 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360D81FAA5D3800BBBAED /* String+Utils.swift */; };
+		24015C2320828283000609A3 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360D81FAA5D3800BBBAED /* String+Utils.swift */; };
+		24015C262082833E000609A3 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E91FCDFAC700F4A099 /* App.swift */; };
+		24015C272082833F000609A3 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E91FCDFAC700F4A099 /* App.swift */; };
 		2407A07B1FF2B75A006D41C5 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407A07A1FF2B75A006D41C5 /* Event.swift */; };
 		2407A07E1FF2B982006D41C5 /* EventResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407A07D1FF2B982006D41C5 /* EventResponse.swift */; };
 		241C67E51FCDD78100F4A099 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E41FCDD78100F4A099 /* AboutViewModel.swift */; };
@@ -2203,6 +2213,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24015C1C20828166000609A3 /* Localizable.strings in Resources */,
+				24015C1D20828169000609A3 /* Localizable.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2245,6 +2257,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				24557A13203F023700492B74 /* README.md in Resources */,
+				24015C1F2082826D000609A3 /* Localizable.strings in Resources */,
+				24015C2120828276000609A3 /* Localizable.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2329,8 +2343,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24015C2320828283000609A3 /* String+Utils.swift in Sources */,
 				24015C1320827E34000609A3 /* StudAppSnapshots.swift in Sources */,
 				24015C1A20827E41000609A3 /* SnapshotHelper.swift in Sources */,
+				24015C262082833E000609A3 /* App.swift in Sources */,
+				24015C1B2082815D000609A3 /* Distributions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2392,6 +2409,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2448D42D1FA8DA2400DAB97E /* StudAppUITests.swift in Sources */,
+				24015C272082833F000609A3 /* App.swift in Sources */,
+				24015C2020828271000609A3 /* Distributions.swift in Sources */,
+				24015C2220828282000609A3 /* String+Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,6 +16,8 @@
 //  along with this program. If not, see http://www.gnu.org/licenses/.
 //
 
+import Foundation
+
 /// Provides constants regarding app information.
 public enum App {
 
@@ -82,6 +84,8 @@ public enum App {
 
     // MARK: - Bundles
 
+    private class StudKit {}
+
     /// Bundle of the `StudKit` framework.
-    public static let kitBundle = Bundle(for: StudKitServiceProvider.self)
+    public static let kitBundle = Bundle(for: StudKit.self)
 }

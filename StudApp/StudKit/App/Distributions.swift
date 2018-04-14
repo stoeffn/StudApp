@@ -16,6 +16,8 @@
 //  along with this program. If not, see http://www.gnu.org/licenses/.
 //
 
+import Foundation
+
 /// Possible ways to distribute an application.
 public enum Distributions {
     case debug, uiTest, testFlight, appStore
@@ -28,9 +30,19 @@ public enum Distributions {
         #endif
     }()
 
-    private static var isUiTest = ProcessInfo.processInfo.arguments.contains("uiTest")
+    private static var isUiTest = ProcessInfo.processInfo.arguments.contains(uiTestArgument)
 
     private static let isTestFlight = Bundle.main.appStoreReceiptURL?.lastPathComponent == "sandboxReceipt"
+
+    /// When launching UI tests, add this process launch argument. Otherwise, the application will not be able to properly its
+    /// distribution.
+    ///
+    /// ## Example
+    /// ```
+    /// let app = XCUIApplication()
+    /// app.launchArguments = [Distributions.uiTestArgument]
+    /// ```
+    public static let uiTestArgument = "uiTest"
 
     /// How this binary was distributed.
     public static var current: Distributions = {

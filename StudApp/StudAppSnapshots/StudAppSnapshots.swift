@@ -29,7 +29,7 @@ final class StudAppSnapshots: XCTestCase {
 
         let app = XCUIApplication()
         setupSnapshot(app)
-        app.launchArguments = ["uiTest"]
+        app.launchArguments = [Distributions.uiTestArgument]
         app.launch()
     }
 
@@ -37,7 +37,7 @@ final class StudAppSnapshots: XCTestCase {
 
     func testCourses() {
         let app = XCUIApplication()
-        app.cells.firstMatch.tap()
+        app.staticTexts["Data Science 101".localized].tap()
 
         wait(for: [], timeout: 5)
         snapshot("01-Courses")
