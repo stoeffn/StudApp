@@ -23,6 +23,7 @@
     <entity name="Course" representedClassName="Course" syncable="YES">
         <attribute name="groupId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="String" minValueString="1" syncable="YES"/>
+        <attribute name="isHidden" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
@@ -195,7 +196,7 @@
     </entity>
     <elements>
         <element name="Announcement" positionX="-8210" positionY="-1854" width="128" height="195"/>
-        <element name="Course" positionX="-8784" positionY="-2124" width="128" height="270"/>
+        <element name="Course" positionX="-8784" positionY="-2124" width="128" height="285"/>
         <element name="CourseState" positionX="-8786" positionY="-2322" width="128" height="150"/>
         <element name="Event" positionX="-8210" positionY="-2094" width="128" height="210"/>
         <element name="File" positionX="-8208" positionY="-1638" width="128" height="300"/>

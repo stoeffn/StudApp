@@ -61,6 +61,9 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDSorta
     /// Identifier for this course's group, which determines the course's sorting and color.
     @NSManaged public var groupId: Int
 
+    /// Whether the user chose to hide this course. May be set automatically when hiding a semester.
+    @NSManaged public var isHidden: Bool
+
     /// Describes where this course is held.
     @NSManaged public var location: String?
 
