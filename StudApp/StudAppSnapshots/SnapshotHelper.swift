@@ -157,7 +157,8 @@ open class Snapshot: NSObject {
             waitForLoadingIndicatorToDisappear(within: timeout)
         }
 
-        print("snapshot: \(name)") // more information about this, check out https://docs.fastlane.tools/actions/snapshot/#how-does-it-work
+        // more information about this, check out https://docs.fastlane.tools/actions/snapshot/#how-does-it-work
+        print("snapshot: \(name)")
 
         sleep(1) // Waiting for the animation to be finished (kind of)
 

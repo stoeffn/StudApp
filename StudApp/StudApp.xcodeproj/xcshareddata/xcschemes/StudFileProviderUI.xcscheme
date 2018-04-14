@@ -43,13 +43,23 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "24015C0F20827E34000609A3"
+               BuildableName = "StudAppSnapshots.xctest"
+               BlueprintName = "StudAppSnapshots"
+               ReferencedContainer = "container:StudApp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2438178E1FC76BDC004052D0"
-            BuildableName = "StudFileProviderUI.appex"
-            BlueprintName = "StudFileProviderUI"
+            BlueprintIdentifier = "2448D4081FA8DA2400DAB97E"
+            BuildableName = "StudApp.app"
+            BlueprintName = "StudApp"
             ReferencedContainer = "container:StudApp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

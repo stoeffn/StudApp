@@ -18,7 +18,7 @@
 
 import XCTest
 
-final class StudAppUITests: XCTestCase {
+final class StudAppSnapshots: XCTestCase {
 
     // MARK: - Life Cycle
 
@@ -28,13 +28,18 @@ final class StudAppUITests: XCTestCase {
         continueAfterFailure = false
 
         let app = XCUIApplication()
+        setupSnapshot(app)
         app.launchArguments = ["uiTest"]
         app.launch()
     }
 
-    // MARK: - Testing
+    // MARK: - Courses
 
-    func testExample() {
+    func testCourses() {
+        let app = XCUIApplication()
+        app.cells.firstMatch.tap()
+
         wait(for: [], timeout: 5)
+        snapshot("01-Courses")
     }
 }

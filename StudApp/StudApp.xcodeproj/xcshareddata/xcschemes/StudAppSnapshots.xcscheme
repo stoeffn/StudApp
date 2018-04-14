@@ -14,9 +14,9 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2448D4271FA8DA2400DAB97E"
-               BuildableName = "StudAppUITests.xctest"
-               BlueprintName = "StudAppUITests"
+               BlueprintIdentifier = "24015C0F20827E34000609A3"
+               BuildableName = "StudAppSnapshots.xctest"
+               BlueprintName = "StudAppSnapshots"
                ReferencedContainer = "container:StudApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,17 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2448D4271FA8DA2400DAB97E"
-               BuildableName = "StudAppUITests.xctest"
-               BlueprintName = "StudAppUITests"
-               ReferencedContainer = "container:StudApp.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "24015C0F20827E34000609A3"
+            BuildableName = "StudAppSnapshots.xctest"
+            BlueprintName = "StudAppSnapshots"
+            ReferencedContainer = "container:StudApp.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -55,9 +54,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2448D4271FA8DA2400DAB97E"
-            BuildableName = "StudAppUITests.xctest"
-            BlueprintName = "StudAppUITests"
+            BlueprintIdentifier = "24015C0F20827E34000609A3"
+            BuildableName = "StudAppSnapshots.xctest"
+            BlueprintName = "StudAppSnapshots"
             ReferencedContainer = "container:StudApp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -73,9 +72,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2448D4271FA8DA2400DAB97E"
-            BuildableName = "StudAppUITests.xctest"
-            BlueprintName = "StudAppUITests"
+            BlueprintIdentifier = "24015C0F20827E34000609A3"
+            BuildableName = "StudAppSnapshots.xctest"
+            BlueprintName = "StudAppSnapshots"
             ReferencedContainer = "container:StudApp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
