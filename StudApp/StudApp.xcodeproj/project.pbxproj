@@ -11,6 +11,7 @@
 		24015C002081286A000609A3 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		24015C012081286D000609A3 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		24015C022081288C000609A3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245B6AD51FCB327800302CD0 /* StoreKit.framework */; };
+		24015C0820826C54000609A3 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24015C0720826C54000609A3 /* SnapshotHelper.swift */; };
 		2407A07B1FF2B75A006D41C5 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407A07A1FF2B75A006D41C5 /* Event.swift */; };
 		2407A07E1FF2B982006D41C5 /* EventResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407A07D1FF2B982006D41C5 /* EventResponse.swift */; };
 		241C67E51FCDD78100F4A099 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E41FCDD78100F4A099 /* AboutViewModel.swift */; };
@@ -373,6 +374,7 @@
 
 /* Begin PBXFileReference section */
 		240080AA20761276009F2D5D /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = LICENSE.md; path = ../LICENSE.md; sourceTree = "<group>"; };
+		24015C0720826C54000609A3 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		2407A07A1FF2B75A006D41C5 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		2407A07D1FF2B982006D41C5 /* EventResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventResponse.swift; sourceTree = "<group>"; };
 		241C67E41FCDD78100F4A099 /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
@@ -930,6 +932,7 @@
 		2448D42B1FA8DA2400DAB97E /* StudAppUITests */ = {
 			isa = PBXGroup;
 			children = (
+				24015C0720826C54000609A3 /* SnapshotHelper.swift */,
 				2448D42C1FA8DA2400DAB97E /* StudAppUITests.swift */,
 				2448D42E1FA8DA2400DAB97E /* Info.plist */,
 			);
@@ -2320,6 +2323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2448D42D1FA8DA2400DAB97E /* StudAppUITests.swift in Sources */,
+				24015C0820826C54000609A3 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -298,7 +298,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IYt-7I-IrG">
-                                            <rect key="frame" x="20" y="11" width="702" height="50"/>
+                                            <rect key="frame" x="48" y="11" width="646" height="50"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cXk-S1-j3w">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -318,7 +318,7 @@
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="NZQ-WI-0Ho">
-                                                    <rect key="frame" x="58" y="5.5" width="568" height="39"/>
+                                                    <rect key="frame" x="58" y="5.5" width="512" height="39"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Assignment 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7BS-La-ljQ">
                                                             <rect key="frame" x="0.0" y="0.0" width="102.5" height="20.5"/>
@@ -484,7 +484,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="7Bc-Ro-1Vl" customClass="StudIpActivityIndicator" customModule="StudKitUI">
-                                                    <rect key="frame" x="634" y="11" width="28" height="28"/>
+                                                    <rect key="frame" x="578" y="11" width="28" height="28"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="7Bc-Ro-1Vl" secondAttribute="height" multiplier="1:1" id="ORa-aQ-Pis"/>
@@ -492,7 +492,7 @@
                                                     </constraints>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" image="DownloadGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="7ag-pv-zJc">
-                                                    <rect key="frame" x="670" y="9" width="32" height="32"/>
+                                                    <rect key="frame" x="614" y="9" width="32" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="7ag-pv-zJc" secondAttribute="height" multiplier="1:1" id="As0-LN-BEq"/>
                                                         <constraint firstAttribute="width" constant="32" id="DDf-v0-38Q"/>
@@ -666,7 +666,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="bwI-a5-gcE">
-                                            <rect key="frame" x="20" y="9" width="728" height="86"/>
+                                            <rect key="frame" x="48" y="9" width="672" height="86"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fxg-vT-2JY">
                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="86"/>
@@ -708,17 +708,17 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fhd-Hj-mEt">
-                                                    <rect key="frame" x="149" y="0.0" width="579" height="86"/>
+                                                    <rect key="frame" x="149" y="0.0" width="523" height="86"/>
                                                     <subviews>
                                                         <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Übung zu Grundlagen digitaler Systeme" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOp-Rh-hJ5">
-                                                            <rect key="frame" x="0.0" y="2" width="579" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="2" width="523" height="20.5"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hr-tC-y9V">
-                                                            <rect key="frame" x="0.0" y="26" width="578.5" height="34"/>
+                                                            <rect key="frame" x="0.0" y="26" width="522.5" height="34"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <string key="text">Raum 023: Multimedia-Hörsaal
 Gebäude 3703: Technische Informatik</string>

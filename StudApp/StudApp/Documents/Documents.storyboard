@@ -68,7 +68,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="p88-Tr-hBx">
-                                            <rect key="frame" x="20" y="11" width="702" height="50"/>
+                                            <rect key="frame" x="48" y="11" width="646" height="50"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DZd-Ac-DdU">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -88,7 +88,7 @@
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="0xq-lQ-cY5">
-                                                    <rect key="frame" x="58" y="5.5" width="568" height="39"/>
+                                                    <rect key="frame" x="58" y="5.5" width="512" height="39"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Assignment 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bth-w6-NXi">
                                                             <rect key="frame" x="0.0" y="0.0" width="102.5" height="20.5"/>
@@ -254,7 +254,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="DqG-VL-PbS" customClass="StudIpActivityIndicator" customModule="StudKitUI">
-                                                    <rect key="frame" x="634" y="11" width="28" height="28"/>
+                                                    <rect key="frame" x="578" y="11" width="28" height="28"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="DqG-VL-PbS" secondAttribute="height" multiplier="1:1" id="5le-o5-QJT"/>
@@ -262,7 +262,7 @@
                                                     </constraints>
                                                 </view>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" image="DownloadGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="4DX-hu-mMx">
-                                                    <rect key="frame" x="670" y="9" width="32" height="32"/>
+                                                    <rect key="frame" x="614" y="9" width="32" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="4DX-hu-mMx" secondAttribute="height" multiplier="1:1" id="2Gn-tE-5Ax"/>
                                                         <constraint firstAttribute="width" constant="32" id="foI-G3-NhY"/>

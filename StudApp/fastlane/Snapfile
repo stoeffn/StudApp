@@ -1,0 +1,17 @@
+devices([
+  "iPhone 8",
+  "iPhone 8 Plus",
+  "iPhone SE",
+  "iPhone X",
+  "iPad Pro (12.9-inch)",
+  "iPad Pro (9.7-inch)"
+])
+
+languages([
+  "en-US",
+  "de-DE"
+])
+
+scheme("Snapshots")
+
+clear_previous_screenshots(true)

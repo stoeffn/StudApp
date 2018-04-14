@@ -29,6 +29,7 @@ final class StudAppUITests: XCTestCase {
         continueAfterFailure = false
 
         let app = XCUIApplication()
+        setupSnapshot(app)
         app.launchArguments = [uiTestsProcessArgument]
         app.launch()
     }
@@ -36,6 +37,6 @@ final class StudAppUITests: XCTestCase {
     // MARK: - Testing
 
     func testExample() {
-        wait(for: [], timeout: 5000)
+        snapshot("HelloWorld")
     }
 }
