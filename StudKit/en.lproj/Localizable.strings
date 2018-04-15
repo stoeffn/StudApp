@@ -181,7 +181,7 @@
 "You're All Caught Up" = "You're All Caught Up";
 "There are no more events to show." = "There are no more events to show.";
 "Next Event: %@" = "Next Event: %@";
-"No Future Events" = "No Future Events";
+"No Upcoming Events" = "No Upcoming Events";
 
 // MARK: - Mock Data
 

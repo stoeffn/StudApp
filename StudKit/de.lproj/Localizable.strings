@@ -180,7 +180,7 @@
 "You're All Caught Up" = "Du bist up-to-date";
 "There are no more events to show." = "Es gibt keine weiteren Termine.";
 "Next Event: %@" = "Nächster Termin: %@";
-"No Future Events" = "Keine zukünftigen Termine";
+"No Upcoming Events" = "Keine anstehenden Termine";
 
 // MARK: - Mock Data
 
