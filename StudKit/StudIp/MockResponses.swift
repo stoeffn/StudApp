@@ -112,6 +112,24 @@ struct MockResponses {
                          size: 1024 * 1024 * 67)
     ]
 
+    private(set) lazy var numericalAnalysisCourseDocuments = [
+        DocumentResponse(id: "F5", location: .studIp, userId: cooper.id, name: "Exercise 0.pdf".localized,
+                         createdAt: now - day * 23, modifiedAt: now - day * 23, size: 1024 * 40, downloadCount: 345),
+        DocumentResponse(id: "F6", location: .studIp, userId: cooper.id, name: "Exercise 1.pdf".localized,
+                         createdAt: now - day * 16, modifiedAt: now - day * 16, size: 1024 * 45, downloadCount: 134),
+        DocumentResponse(id: "F7", location: .studIp, userId: cooper.id, name: "Exercise 2.pdf".localized,
+                         createdAt: now - day * 8, modifiedAt: now - day * 8, size: 1024 * 78, downloadCount: 96),
+        DocumentResponse(id: "F8", location: .studIp, userId: cooper.id, name: "Exercise 3.pdf".localized,
+                         createdAt: now - day, modifiedAt: now - day, size: 1024 * 124, downloadCount: 23),
+    ]
+
+    private(set) lazy var dataScienceCourseDocuments = [
+        DocumentResponse(id: "F8", location: .studIp, userId: theCount.id, name: "BigData.csv".localized,
+                         createdAt: now - hour * 8, modifiedAt: now - hour * 8, size: 96, downloadCount: 512),
+        DocumentResponse(id: "F9", location: .studIp, userId: theCount.id, name: "Slides.pdf".localized,
+                         createdAt: now - day * 16, modifiedAt: now - day * 16, size: 1024 * 128, downloadCount: 256),
+    ]
+
     // MARK: - Events
 
     private(set) lazy var events = [
@@ -165,6 +183,8 @@ struct MockResponses {
         }
 
         let codingCourse = try Course.fetch(byId: "C7", in: context)!
+        let numericalAnalysisCourse = try Course.fetch(byId: "C0", in: context)!
+        let dataScienceCourse = try Course.fetch(byId: "C5", in: context)!
 
         try codingCourseFolders.forEach { response in
             try response.coreDataObject(course: codingCourse, in: context)
@@ -172,7 +192,19 @@ struct MockResponses {
 
         try codingCourseDocuments.forEach { response in
             let document = try response.coreDataObject(course: codingCourse, in: context)
-            guard ["F3"].contains(document.id) else { return }
+            guard document.id != "F3" else { return }
+            document.state.downloadedAt = now
+            document.downloadedBy.formUnion([user])
+        }
+
+        try numericalAnalysisCourseDocuments.forEach { response in
+            let document = try response.coreDataObject(course: numericalAnalysisCourse, in: context)
+            document.state.downloadedAt = now
+            document.downloadedBy.formUnion([user])
+        }
+
+        try dataScienceCourseDocuments.forEach { response in
+            let document = try response.coreDataObject(course: dataScienceCourse, in: context)
             document.state.downloadedAt = now
             document.downloadedBy.formUnion([user])
         }
