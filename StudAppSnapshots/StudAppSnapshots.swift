@@ -25,8 +25,6 @@ final class StudAppSnapshots: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        continueAfterFailure = false
-
         let app = XCUIApplication()
         app.setUpSnapshot()
         app.launchArguments += [Distributions.uiTestArgument]

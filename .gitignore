@@ -21,11 +21,11 @@ Package.resolved
 
 ### Carthage ###
 
-StudApp/Carthage/
+Carthage/
 
 ### Fastlane ###
 
-StudApp/fastlane/report.xml
-StudApp/fastlane/Preview.html
-StudApp/fastlane/screenshots
-StudApp/fastlane/test_output
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
