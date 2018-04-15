@@ -242,6 +242,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         let cell = tableView.dequeueReusableCell(withIdentifier: EventCell.typeIdentifier, for: indexPath)
         (cell as? EventCell)?.event = viewModel[rowAt: indexPath]
         cell.selectionStyle = viewModel.container is Course ? .none : .default
+        cell.accessoryType = viewModel.container is Course ? .none : .disclosureIndicator
         return cell
     }
 
