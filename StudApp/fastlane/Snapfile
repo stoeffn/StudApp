@@ -4,6 +4,7 @@ devices([
   "iPhone SE",
   "iPhone X",
   "iPad Pro (12.9-inch)",
+  "iPad Pro (10.5-inch)",
   "iPad Pro (9.7-inch)"
 ])
 
@@ -12,6 +13,6 @@ languages([
   "de-DE"
 ])
 
-scheme("Snapshots")
+scheme("StudAppSnapshots")
 
 clear_previous_screenshots(true)

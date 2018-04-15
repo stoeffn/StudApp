@@ -28,8 +28,8 @@ final class StudAppSnapshots: XCTestCase {
         continueAfterFailure = false
 
         let app = XCUIApplication()
-        setupSnapshot(app)
-        app.launchArguments = [Distributions.uiTestArgument]
+        app.setUpSnapshot()
+        app.launchArguments += [Distributions.uiTestArgument]
         app.launch()
     }
 
@@ -37,9 +37,9 @@ final class StudAppSnapshots: XCTestCase {
 
     func testCourses() {
         let app = XCUIApplication()
-        app.buttons["Winter 2017/18".localized].tap()
-        app.buttons["Summer 2018".localized].tap()
-        app.staticTexts["Data Science 101".localized].tap()
+        app.buttons["Winter 2017/18".localized(language: deviceLanguage)].tap()
+        app.buttons["Summer 2018".localized(language: deviceLanguage)].tap()
+        app.staticTexts["Data Science 101".localized(language: deviceLanguage)].tap()
 
         snapshot("01-Courses")
     }

@@ -29,8 +29,10 @@ import XCTest
 var deviceLanguage = ""
 var locale = ""
 
-func setupSnapshot(_ app: XCUIApplication) {
-    Snapshot.setupSnapshot(app)
+extension XCUIApplication {
+    func setUpSnapshot() {
+        Snapshot.setupSnapshot(self)
+    }
 }
 
 func snapshot(_ name: String, waitForLoadingIndicator: Bool) {

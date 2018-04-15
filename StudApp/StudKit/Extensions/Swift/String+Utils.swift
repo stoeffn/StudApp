@@ -26,15 +26,28 @@ public extension String {
 
     /// Returns a localized string with this key and interpolated parameters.
     ///
-    /// - Parameter arguments: Arguments to be interpolated into the localized string.
+    /// - Parameters:
+    ///   - language: Language code to use. Please note that only the part before "-" will be respected. Defaults to the current
+    ///               language.
+    ///   - arguments: Arguments to be interpolated into the localized string.
     /// - Returns: Localized string with interpolated parameters.
-    public func localized(_ arguments: CVarArg...) -> String {
-        return String(format: localized, arguments: arguments)
+    public func localized(language: String? = nil, _ arguments: CVarArg...) -> String {
+        let format = bundle(forLanguage: language).localizedString(forKey: self, value: "###\(self)###", table: nil)
+        return String(format: format, arguments: arguments)
     }
 
     /// Returns a localized string with this key.
     public var localized: String {
-        return App.kitBundle.localizedString(forKey: self, value: "###\(self)###", table: nil)
+        return localized()
+    }
+
+    private func bundle(forLanguage language: String? = nil) -> Bundle {
+        guard
+            let languageCode = language?.split(separator: "-").first,
+            let path = App.kitBundle.path(forResource: String(languageCode), ofType: "lproj"),
+            let bundle = Bundle(path: path)
+        else { return App.kitBundle }
+        return bundle
     }
 
     public var sanitizedAsFilename: String {

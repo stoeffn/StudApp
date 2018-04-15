@@ -40,7 +40,7 @@ public enum Distributions {
     /// ## Example
     /// ```
     /// let app = XCUIApplication()
-    /// app.launchArguments = [Distributions.uiTestArgument]
+    /// app.launchArguments += [Distributions.uiTestArgument]
     /// ```
     public static let uiTestArgument = "uiTest"
 
