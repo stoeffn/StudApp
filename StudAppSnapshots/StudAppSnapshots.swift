@@ -43,7 +43,7 @@ final class StudAppSnapshots: XCTestCase {
         app.buttons["Summer 2018".localized(language: deviceLanguage)].tap()
 
         if app.runsOniPad {
-            app.staticTexts["Data Science 101".localized(language: deviceLanguage)].tap()
+            app.staticTexts["Coding Crash Course".localized(language: deviceLanguage)].tap()
         }
 
         snapshot("01-Courses")
@@ -54,7 +54,7 @@ final class StudAppSnapshots: XCTestCase {
         guard !app.runsOniPad else { return }
 
         app.buttons["Summer 2018".localized(language: deviceLanguage)].tap()
-        app.staticTexts["Data Science 101".localized(language: deviceLanguage)].tap()
+        app.staticTexts["Coding Crash Course".localized(language: deviceLanguage)].tap()
 
         snapshot("02-Course")
     }

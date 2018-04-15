@@ -201,13 +201,27 @@
 
 "Bielefeld Room" = "Bielefeld-Raum";
 "Multimedia Room" = "Multimedia-Raum";
+"Basement" = "Keller";
 
 // MARK: Courses
 
 "Numerical Analysis" = "Numerische Mathematik";
 "Optimizing Algorithms for Computers" = "Algorithmen für Computer optimieren";
 "Linear Algebra I" = "Lineare Algebra I";
+"Linear Algebra II" = "Lineare Algebra II";
 "Computer Architecture" = "Rechnerstrukturen";
 "Theoretical Stud.IP Science" = "Grundlagen Theoretischen Stud.IPs";
 "Data Science 101" = "Data Science 101";
 "StudApp Feedback" = "StudApp Feedback";
+"Coding Crash Course" = "Programmier-Crash-Kurs";
+"Telling the Computer What to Do" = "Dem Computer sagen, was er zu machen hat";
+"In this course, you will learn the basics of computer programming." = "In dieser Veranstaltung lernen Sie die Basics des Programmierens.";
+"Please refer to https://google.com/ if you have any questions." = "Wenden Sie sich an https://google.com/, falls Fragen auftreten sollten.";
+
+// MARK: Files
+
+"Slides" = "Folien";
+"Exercises" = "Übungen";
+"Solutions" = "Lösungen";
+"Organization.pdf" = "Organisation.pdf";
+"Installing Swift.mp4" = "Swift installieren.mp4";

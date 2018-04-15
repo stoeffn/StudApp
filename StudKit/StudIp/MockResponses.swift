@@ -18,14 +18,15 @@
 import CoreData
 
 struct MockResponses {
+    private let now = Date()
 
     // MARK: - Organizations
 
-    lazy var organization = OrganizationRecord(id: "O0")
+    private(set) lazy var organization = OrganizationRecord(id: "O0")
 
     // MARK: - Semesters
 
-    lazy var semesters = [
+    private(set) lazy var semesters = [
         SemesterResponse(id: "S0", title: "Winter 2016/17".localized, beginsAt: Date(timeIntervalSince1970: 1_475_338_860),
                          endsAt: Date(timeIntervalSince1970: 1_488_388_860)),
         SemesterResponse(id: "S1", title: "Summer 2017".localized, beginsAt: Date(timeIntervalSince1970: 1_491_004_800),
@@ -38,44 +39,82 @@ struct MockResponses {
 
     // MARK: - Users
 
-    lazy var currentUser = UserResponse(id: "U0", username: "murphy", givenName: "Murphy", familyName: "Cooper")
+    private(set) lazy var currentUser = UserResponse(id: "U0", username: "murphy", givenName: "Murphy", familyName: "Cooper")
 
-    lazy var theCount = UserResponse(id: "U1", username: "theCount".localized, givenName: "Count".localized,
-                                     familyName: "von Count".localized)
+    private(set) lazy var theCount = UserResponse(id: "U1", username: "theCount".localized, givenName: "Count".localized,
+                                                  familyName: "von Count".localized)
 
-    lazy var professorProton = UserResponse(id: "U2", username: "proton", givenName: "Professor", familyName: "Proton")
+    private(set) lazy var professorProton = UserResponse(id: "U2", username: "proton", givenName: "Professor", familyName: "Proton")
 
-    lazy var langdon = UserResponse(id: "U3", username: "langdon", givenName: "Robert", familyName: "Langdon")
+    private(set) lazy var langdon = UserResponse(id: "U3", username: "langdon", givenName: "Robert", familyName: "Langdon")
 
-    lazy var tesla = UserResponse(id: "U4", username: "tesla", givenName: "Nikola", familyName: "Tesla")
+    private(set) lazy var tesla = UserResponse(id: "U4", username: "tesla", givenName: "Nikola", familyName: "Tesla")
 
-    lazy var cooper = UserResponse(id: "U5", username: "coop", givenName: "Joseph", familyName: "Cooper")
+    private(set) lazy var cooper = UserResponse(id: "U5", username: "coop", givenName: "Joseph", familyName: "Cooper")
 
     // MARK: - Courses
 
-    lazy var courses = [
+    private let programmingCourseSummary = [
+        "In this course, you will learn the basics of computer programming.".localized,
+        "",
+        "Please refer to https://google.com/ if you have any questions.".localized
+    ].joined(separator: "\n")
+
+    private(set) lazy var courses = [
         CourseResponse(id: "C0", number: "1.00000000001", title: "Numerical Analysis".localized,
                        subtitle: "Optimizing Algorithms for Computers".localized, location: "Bielefeld Room".localized,
                        groupId: 1, lecturers: [theCount], beginSemesterId: "S3", endSemesterId: "S3"),
         CourseResponse(id: "C1", number: "3.14", title: "Linear Algebra I".localized,
                        subtitle: "Vectors and Stuff".localized, location: "Hugo Kulka Room".localized,
+                       groupId: 1, lecturers: [cooper, theCount], beginSemesterId: "S2", endSemesterId: "S2"),
+        CourseResponse(id: "C2", number: "3.14", title: "Linear Algebra II".localized,
+                       subtitle: "Vectors and Stuff".localized, location: "Hugo Kulka Room".localized,
                        groupId: 1, lecturers: [cooper, theCount], beginSemesterId: "S3", endSemesterId: "S3"),
-        CourseResponse(id: "C2", number: "42", title: "Computer Architecture".localized,
+        CourseResponse(id: "C3", number: "42", title: "Computer Architecture".localized,
                        location: "Multimedia Room".localized, summary: "In this lecture, you will learn how to…",
-                       groupId: 3, lecturers: [professorProton], beginSemesterId: "S3", endSemesterId: "S3"),
-        CourseResponse(id: "C3", number: nil, title: "Theoretical Stud.IP Science".localized,
+                       groupId: 3, lecturers: [professorProton], beginSemesterId: "S2", endSemesterId: "S2"),
+        CourseResponse(id: "C4", number: nil, title: "Theoretical Stud.IP Science".localized,
                        groupId: 4, lecturers: [professorProton], beginSemesterId: "S3", endSemesterId: "S3"),
-        CourseResponse(id: "C3", number: nil, title: "Data Science 101".localized,
+        CourseResponse(id: "C5", number: nil, title: "Data Science 101".localized,
                        groupId: 4, lecturers: [tesla], beginSemesterId: "S3", endSemesterId: "S3"),
-        CourseResponse(id: "C4", number: nil, title: "StudApp Feedback".localized,
+        CourseResponse(id: "C6", number: nil, title: "StudApp Feedback".localized,
                        groupId: 5, lecturers: [tesla], beginSemesterId: "S0", endSemesterId: "S3"),
+        CourseResponse(id: "C7", number: "10011", title: "Coding Crash Course".localized,
+                       subtitle: "Telling the Computer What to Do".localized, location: "Basement".localized,
+                       summary: programmingCourseSummary, groupId: 2, lecturers: [langdon], beginSemesterId: "S3", endSemesterId: "S3"),
+    ]
+
+    // MARK: - Files
+
+    private(set) lazy var codingCourseFolders = [
+        FolderResponse(id: "F0", userId: langdon.id, name: "Slides".localized, createdAt: now - 60 * 60 * 24,
+                       modifiedAt: now - 60 * 60 * 24),
+        FolderResponse(id: "F1", userId: tesla.id, name: "Exercises".localized, createdAt: now - 60 * 60 * 24 * 5,
+                       modifiedAt: now - 60 * 60 * 4),
+        FolderResponse(id: "F2", userId: tesla.id, name: "Solutions".localized, createdAt: now - 60 * 60 * 24 * 5,
+                       modifiedAt: now - 60 * 60 * 36)
+    ]
+
+    private(set) lazy var codingCourseDocuments = [
+        DocumentResponse(id: "F3", location: .studIp, userId: tesla.id, name: "Organization.pdf".localized,
+                         createdAt: now - 60 * 60 * 24 * 20, modifiedAt: now - 60 * 60 * 24 * 20, size: 1024 * 42, downloadCount: 96),
+        DocumentResponse(id: "F4", location: .external, externalUrl: URL(string: "https://dropbox.com/test.mp4"), userId: langdon.id,
+                         name: "Installing Swift.mp4".localized, createdAt: now - 60 * 60 * 24 * 19,
+                         modifiedAt: now - 60 * 60 * 24 * 19, size: 1024 * 1024 * 67)
+    ]
+
+    // MARK: - Events
+
+    private(set) lazy var events = [
+        EventResponse(id: "E0", courseId: "C7", startsAt: now + 60 * 60 * 12, endsAt: now + 60 * 60 * 13.5,
+                      location: "Basement".localized),
+        EventResponse(id: "E1", courseId: "C7", startsAt: now + 60 * 60 * 48, endsAt: now + 60 * 60 * 49.5,
+                      location: "Basement".localized),
     ]
 
     // MARK: - Inserting Data
 
     mutating func insert(into context: NSManagedObjectContext) throws {
-        let now = Date()
-
         let organization = try self.organization.coreDataObject(in: context)
 
         let user = try currentUser.coreDataObject(organization: organization, in: context)
@@ -94,6 +133,20 @@ struct MockResponses {
             course.state.announcementsUpdatedAt = now
             course.state.childFilesUpdatedAt = now
             course.state.eventsUpdatedAt = now
+        }
+
+        let codingCourse = try Course.fetch(byId: "C7", in: context)!
+
+        try codingCourseFolders.forEach { response in
+            try response.coreDataObject(course: codingCourse, in: context)
+        }
+
+        try codingCourseDocuments.forEach { response in
+            try response.coreDataObject(course: codingCourse, in: context)
+        }
+
+        try events.forEach { response in
+            try response.coreDataObject(user: user, in: context)
         }
     }
 }

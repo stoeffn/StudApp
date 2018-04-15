@@ -202,13 +202,27 @@
 
 "Bielefeld Room" = "Bielefeld Room";
 "Multimedia Room" = "Multimedia Room";
+"Basement" = "Basement";
 
 // MARK: Courses
 
 "Numerical Analysis" = "Numerical Analysis";
 "Optimizing Algorithms for Computers" = "Optimizing Algorithms for Computers";
 "Linear Algebra I" = "Linear Algebra I";
+"Linear Algebra II" = "Linear Algebra II";
 "Computer Architecture" = "Computer Architecture";
 "Theoretical Stud.IP Science" = "Theoretical Stud.IP Science";
 "Data Science 101" = "Data Science 101";
 "StudApp Feedback" = "StudApp Feedback";
+"Coding Crash Course" = "Coding Crash Course";
+"Telling the Computer What to Do" = "Telling the Computer What to Do";
+"In this course, you will learn the basics of computer programming." = "In this course, you will learn the basics of computer programming.";
+"Please refer to https://google.com/ if you have any questions." = "Please refer to https://google.com/ if you have any questions.";
+
+// MARK: Files
+
+"Slides" = "Slides";
+"Exercises" = "Exercises";
+"Solutions" = "Solutions";
+"Organization.pdf" = "Organization.pdf";
+"Installing Swift.mp4" = "Installing Swift.mp4";
