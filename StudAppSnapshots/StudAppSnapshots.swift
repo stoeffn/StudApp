@@ -29,6 +29,10 @@ final class StudAppSnapshots: XCTestCase {
         app.setUpSnapshot()
         app.launchArguments += [Distributions.uiTestArgument]
         app.launch()
+
+        if app.runsOniPad {
+            XCUIDevice.shared.orientation = .landscapeLeft
+        }
     }
 
     // MARK: - Courses
@@ -37,8 +41,39 @@ final class StudAppSnapshots: XCTestCase {
         let app = XCUIApplication()
         app.buttons["Winter 2017/18".localized(language: deviceLanguage)].tap()
         app.buttons["Summer 2018".localized(language: deviceLanguage)].tap()
-        app.staticTexts["Data Science 101".localized(language: deviceLanguage)].tap()
+
+        if app.runsOniPad {
+            app.staticTexts["Data Science 101".localized(language: deviceLanguage)].tap()
+        }
 
         snapshot("01-Courses")
+    }
+
+    func testCourse() {
+        let app = XCUIApplication()
+        guard !app.runsOniPad else { return }
+
+        app.buttons["Summer 2018".localized(language: deviceLanguage)].tap()
+        app.staticTexts["Data Science 101".localized(language: deviceLanguage)].tap()
+
+        snapshot("02-Course")
+    }
+
+    // MARK: - Events
+
+    func testEvents() {
+        let app = XCUIApplication()
+        app.buttons["Events".localized(language: deviceLanguage)].tap()
+
+        snapshot("03-Events")
+    }
+
+    // MARK: - Downloads
+
+    func testDownloads() {
+        let app = XCUIApplication()
+        app.buttons["Downloads".localized(language: deviceLanguage)].tap()
+
+        snapshot("04-Downloads")
     }
 }

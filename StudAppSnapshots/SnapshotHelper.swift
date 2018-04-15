@@ -33,6 +33,10 @@ extension XCUIApplication {
     func setUpSnapshot() {
         Snapshot.setupSnapshot(self)
     }
+
+    var runsOniPad: Bool {
+        return windows.element(boundBy: 0).horizontalSizeClass == .regular && windows.element(boundBy: 0).verticalSizeClass == .regular
+    }
 }
 
 func snapshot(_ name: String, waitForLoadingIndicator: Bool) {
