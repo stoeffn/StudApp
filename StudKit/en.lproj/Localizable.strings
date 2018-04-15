@@ -200,9 +200,9 @@
 
 // MARK: Rooms
 
-"Bielefeld Room" = "Bielefeld Room";
-"Multimedia Room" = "Multimedia Room";
-"Basement" = "Basement";
+"Main Building\nBielefeld Room" = "Main Building\nBielefeld Room";
+"Building 42\nMultimedia Room" = "Building 42\nMultimedia Room";
+"Main Building\nBasement" = "Main Building\nBasement";
 
 // MARK: Courses
 
@@ -218,6 +218,10 @@
 "Telling the Computer What to Do" = "Telling the Computer What to Do";
 "In this course, you will learn the basics of computer programming." = "In this course, you will learn the basics of computer programming.";
 "Please refer to https://google.com/ if you have any questions." = "Please refer to https://google.com/ if you have any questions.";
+
+// MARK: Annoucements
+
+"Remember to Bring Your Laptops!" = "Remember to Bring Your Laptops!";
 
 // MARK: Files
 

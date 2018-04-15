@@ -19,6 +19,11 @@ import CoreData
 
 struct MockResponses {
     private let now = Date()
+    private lazy var today = now.startOfDay
+    private lazy var minute: TimeInterval = 60
+    private lazy var hour: TimeInterval = minute * 60
+    private lazy var day: TimeInterval = hour * 24
+    private lazy var week: TimeInterval = day * 7
 
     // MARK: - Organizations
 
@@ -62,7 +67,7 @@ struct MockResponses {
 
     private(set) lazy var courses = [
         CourseResponse(id: "C0", number: "1.00000000001", title: "Numerical Analysis".localized,
-                       subtitle: "Optimizing Algorithms for Computers".localized, location: "Bielefeld Room".localized,
+                       subtitle: "Optimizing Algorithms for Computers".localized, location: "Main Building\nBielefeld Room".localized,
                        groupId: 1, lecturers: [theCount], beginSemesterId: "S3", endSemesterId: "S3"),
         CourseResponse(id: "C1", number: "3.14", title: "Linear Algebra I".localized,
                        subtitle: "Vectors and Stuff".localized, location: "Hugo Kulka Room".localized,
@@ -71,7 +76,7 @@ struct MockResponses {
                        subtitle: "Vectors and Stuff".localized, location: "Hugo Kulka Room".localized,
                        groupId: 1, lecturers: [cooper, theCount], beginSemesterId: "S3", endSemesterId: "S3"),
         CourseResponse(id: "C3", number: "42", title: "Computer Architecture".localized,
-                       location: "Multimedia Room".localized, summary: "In this lecture, you will learn how to…",
+                       location: "Building 42\nMultimedia Room".localized, summary: "In this lecture, you will learn how to…",
                        groupId: 3, lecturers: [professorProton], beginSemesterId: "S2", endSemesterId: "S2"),
         CourseResponse(id: "C4", number: nil, title: "Theoretical Stud.IP Science".localized,
                        groupId: 4, lecturers: [professorProton], beginSemesterId: "S3", endSemesterId: "S3"),
@@ -80,36 +85,56 @@ struct MockResponses {
         CourseResponse(id: "C6", number: nil, title: "StudApp Feedback".localized,
                        groupId: 5, lecturers: [tesla], beginSemesterId: "S0", endSemesterId: "S3"),
         CourseResponse(id: "C7", number: "10011", title: "Coding Crash Course".localized,
-                       subtitle: "Telling the Computer What to Do".localized, location: "Basement".localized,
+                       subtitle: "Telling the Computer What to Do".localized, location: "Main Building\nBasement".localized,
                        summary: programmingCourseSummary, groupId: 2, lecturers: [langdon], beginSemesterId: "S3", endSemesterId: "S3"),
+    ]
+
+    // MARK: - Announcements
+
+    private(set) lazy var announcements = [
+        AnnouncementResponse(id: "A0", courseIds: ["C7"], userId: langdon.id, createdAt: today - day * 3, modifiedAt: today - day * 3,
+                             expiresAfter: week, title: "Remember to Bring Your Laptops!".localized)
     ]
 
     // MARK: - Files
 
     private(set) lazy var codingCourseFolders = [
-        FolderResponse(id: "F0", userId: langdon.id, name: "Slides".localized, createdAt: now - 60 * 60 * 24,
-                       modifiedAt: now - 60 * 60 * 24),
-        FolderResponse(id: "F1", userId: tesla.id, name: "Exercises".localized, createdAt: now - 60 * 60 * 24 * 5,
-                       modifiedAt: now - 60 * 60 * 4),
-        FolderResponse(id: "F2", userId: tesla.id, name: "Solutions".localized, createdAt: now - 60 * 60 * 24 * 5,
-                       modifiedAt: now - 60 * 60 * 36)
+        FolderResponse(id: "F0", userId: langdon.id, name: "Slides".localized, createdAt: now - week, modifiedAt: now - day),
+        FolderResponse(id: "F1", userId: tesla.id, name: "Exercises".localized, createdAt: now - hour * 5, modifiedAt: now - hour * 4),
+        FolderResponse(id: "F2", userId: tesla.id, name: "Solutions".localized, createdAt: now - week, modifiedAt: now - hour * 8)
     ]
 
     private(set) lazy var codingCourseDocuments = [
         DocumentResponse(id: "F3", location: .studIp, userId: tesla.id, name: "Organization.pdf".localized,
-                         createdAt: now - 60 * 60 * 24 * 20, modifiedAt: now - 60 * 60 * 24 * 20, size: 1024 * 42, downloadCount: 96),
+                         createdAt: now - day * 20, modifiedAt: now - day * 20, size: 1024 * 42, downloadCount: 96),
         DocumentResponse(id: "F4", location: .external, externalUrl: URL(string: "https://dropbox.com/test.mp4"), userId: langdon.id,
-                         name: "Installing Swift.mp4".localized, createdAt: now - 60 * 60 * 24 * 19,
-                         modifiedAt: now - 60 * 60 * 24 * 19, size: 1024 * 1024 * 67)
+                         name: "Installing Swift.mp4".localized, createdAt: now - day * 19, modifiedAt: now - day * 19,
+                         size: 1024 * 1024 * 67)
     ]
 
     // MARK: - Events
 
     private(set) lazy var events = [
-        EventResponse(id: "E0", courseId: "C7", startsAt: now + 60 * 60 * 12, endsAt: now + 60 * 60 * 13.5,
-                      location: "Basement".localized),
-        EventResponse(id: "E1", courseId: "C7", startsAt: now + 60 * 60 * 48, endsAt: now + 60 * 60 * 49.5,
-                      location: "Basement".localized),
+        EventResponse(id: "E0", courseId: "C7", startsAt: today + hour * 12, endsAt: today + hour * 13.5,
+                      location: "Main Building\nBasement".localized),
+        EventResponse(id: "E1", courseId: "C5", startsAt: today + hour * 14, endsAt: today + hour * 15,
+                      location: "Building 42\nMultimedia Room".localized),
+        EventResponse(id: "E2", courseId: "C0", startsAt: today + hour * 16.25, endsAt: today + hour * 17.75,
+                      location: "Building 42\nMultimedia Room".localized),
+        EventResponse(id: "E3", courseId: "C2", startsAt: today + day + hour * 8.25, endsAt: today + day + hour * 9.75,
+                      location: "Main Building\nBielefeld Room".localized),
+        EventResponse(id: "E4", courseId: "C7", startsAt: today + day + hour * 11, endsAt: today + day + hour * 12.5,
+                      location: "Main Building\nBasement".localized),
+        EventResponse(id: "E5", courseId: "C4", startsAt: today + day + hour * 13.25, endsAt: today + day + hour * 14.75,
+                      location: "Main Building\nBielefeld Room".localized),
+        EventResponse(id: "E6", courseId: "C0", startsAt: today + day * 2 + hour * 10, endsAt: today + day * 2 + hour * 10.5,
+                      location: "Main Building\nBielefeld Room".localized),
+        EventResponse(id: "E7", courseId: "C4", startsAt: today + day * 2 + hour * 14, endsAt: today + day * 2 + hour * 15.5,
+                      location: "Main Building\nBielefeld Room".localized),
+        EventResponse(id: "E8", courseId: "C2", startsAt: today + day * 4 + hour * 9, endsAt: today + day * 4 + hour * 10.5,
+                      location: "Main Building\nBielefeld Room".localized),
+        EventResponse(id: "E9", courseId: "C5", startsAt: today + day * 5 + hour * 10, endsAt: today + day * 5 + hour * 16,
+                      location: "Building 42\nMultimedia Room".localized),
     ]
 
     // MARK: - Inserting Data
@@ -135,6 +160,10 @@ struct MockResponses {
             course.state.eventsUpdatedAt = now
         }
 
+        try announcements.forEach { response in
+            try response.coreDataObject(organization: organization, in: context)
+        }
+
         let codingCourse = try Course.fetch(byId: "C7", in: context)!
 
         try codingCourseFolders.forEach { response in
@@ -142,11 +171,22 @@ struct MockResponses {
         }
 
         try codingCourseDocuments.forEach { response in
-            try response.coreDataObject(course: codingCourse, in: context)
+            let document = try response.coreDataObject(course: codingCourse, in: context)
+            guard ["F3"].contains(document.id) else { return }
+            document.state.downloadedAt = now
+            document.downloadedBy.formUnion([user])
         }
 
         try events.forEach { response in
-            try response.coreDataObject(user: user, in: context)
+            let event = try response.coreDataObject(user: user, in: context)
+            event.id += "-A"
+        }
+
+        try events.forEach { response in
+            let event = try response.coreDataObject(user: user, in: context)
+            event.id += "-B"
+            event.startsAt += week
+            event.endsAt += week
         }
     }
 }

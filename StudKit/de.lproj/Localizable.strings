@@ -199,9 +199,9 @@
 
 // MARK: Rooms
 
-"Bielefeld Room" = "Bielefeld-Raum";
-"Multimedia Room" = "Multimedia-Raum";
-"Basement" = "Keller";
+"Main Building\nBielefeld Room" = "Hauptgebäude\nBielefeld-Raum";
+"Building 42\nMultimedia Room" = "Gebäude 42\nMultimedia-Raum";
+"Main Building\nBasement" = "Hauptgebäude\nKeller";
 
 // MARK: Courses
 
@@ -217,6 +217,10 @@
 "Telling the Computer What to Do" = "Dem Computer sagen, was er zu machen hat";
 "In this course, you will learn the basics of computer programming." = "In dieser Veranstaltung lernen Sie die Basics des Programmierens.";
 "Please refer to https://google.com/ if you have any questions." = "Wenden Sie sich an https://google.com/, falls Fragen auftreten sollten.";
+
+// MARK: Annoucements
+
+"Remember to Bring Your Laptops!" = "Denkt an Eure Laptops!";
 
 // MARK: Files
 

@@ -35,6 +35,6 @@ final class StudAppUITests: XCTestCase {
     // MARK: - Testing
 
     func testDemo() {
-        wait(for: [], timeout: 60)
+        sleep(60 * 10)
     }
 }
