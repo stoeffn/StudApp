@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zpT-z8-jkY">
-                                <rect key="frame" x="0.0" y="0.0" width="306.5" height="140"/>
+                                <rect key="frame" x="0.0" y="0.0" width="306.5" height="156"/>
                                 <subviews>
                                     <textView multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xrX-03-iqJ">
                                         <rect key="frame" x="8" y="8" width="290.5" height="124"/>
@@ -36,7 +36,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="xrX-03-iqJ" secondAttribute="bottom" constant="8" id="7nV-1r-RPx"/>
+                                    <constraint firstAttribute="bottom" secondItem="xrX-03-iqJ" secondAttribute="bottom" constant="24" id="7nV-1r-RPx"/>
                                     <constraint firstAttribute="trailing" secondItem="xrX-03-iqJ" secondAttribute="trailing" constant="8" id="7x7-IF-pOF"/>
                                     <constraint firstItem="xrX-03-iqJ" firstAttribute="leading" secondItem="zpT-z8-jkY" secondAttribute="leading" constant="8" id="M1H-D7-MzP"/>
                                     <constraint firstItem="xrX-03-iqJ" firstAttribute="top" secondItem="zpT-z8-jkY" secondAttribute="top" constant="8" id="X0p-kP-wRj"/>

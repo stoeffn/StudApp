@@ -133,8 +133,8 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="Choose your university, company, or organization to sign in and access your courses, documents, announcements, and events." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3de-75-mDO">
-                                    <rect key="frame" x="16" y="202" width="343" height="58"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="Choose your university, company, or organization to sign in and access your courses, documents, announcements, and events." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3de-75-mDO">
+                                    <rect key="frame" x="16.5" y="202" width="342.5" height="58"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <accessibilityTraits key="traits" staticText="YES" summaryElement="YES"/>
                                     </accessibility>
@@ -170,9 +170,9 @@
                                 </constraint>
                                 <constraint firstItem="3de-75-mDO" firstAttribute="centerX" secondItem="FVG-Pm-g43" secondAttribute="centerX" id="NtS-gK-R8t"/>
                                 <constraint firstItem="sgJ-zb-13H" firstAttribute="trailing" secondItem="FVG-Pm-g43" secondAttribute="trailingMargin" id="X5p-va-YUN"/>
-                                <constraint firstItem="3de-75-mDO" firstAttribute="leading" secondItem="FVG-Pm-g43" secondAttribute="leadingMargin" priority="750" constant="8" id="fnK-bC-1jY"/>
+                                <constraint firstItem="3de-75-mDO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FVG-Pm-g43" secondAttribute="leadingMargin" constant="8" id="fnK-bC-1jY"/>
                                 <constraint firstAttribute="bottomMargin" secondItem="3de-75-mDO" secondAttribute="bottom" constant="32" id="mgX-Mm-U6L"/>
-                                <constraint firstAttribute="trailingMargin" secondItem="3de-75-mDO" secondAttribute="trailing" priority="750" constant="8" id="zPG-x1-PFs"/>
+                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="3de-75-mDO" secondAttribute="trailing" constant="8" id="zPG-x1-PFs"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -199,20 +199,22 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Organization Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n90-pQ-UJ7">
-                                            <rect key="frame" x="74" y="11" width="167" height="34"/>
+                                            <rect key="frame" x="70" y="6" width="167" height="43.5"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="n90-pQ-UJ7" firstAttribute="leading" secondItem="kzK-ZY-Guw" secondAttribute="trailing" constant="16" id="0CU-60-VjS"/>
+                                        <constraint firstItem="n90-pQ-UJ7" firstAttribute="leading" secondItem="kzK-ZY-Guw" secondAttribute="trailing" constant="12" id="0CU-60-VjS">
+                                            <variation key="widthClass=regular" constant="16"/>
+                                        </constraint>
                                         <constraint firstItem="kzK-ZY-Guw" firstAttribute="top" relation="greaterThanOrEqual" secondItem="WYb-c9-lKF" secondAttribute="topMargin" constant="-4" id="0e5-5W-3Fu"/>
                                         <constraint firstItem="kzK-ZY-Guw" firstAttribute="leading" secondItem="WYb-c9-lKF" secondAttribute="leadingMargin" id="F7N-iK-0hz"/>
                                         <constraint firstItem="kzK-ZY-Guw" firstAttribute="centerY" secondItem="WYb-c9-lKF" secondAttribute="centerY" id="MGS-Xe-hdh"/>
                                         <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="n90-pQ-UJ7" secondAttribute="trailing" id="QUP-8T-sqZ"/>
-                                        <constraint firstItem="n90-pQ-UJ7" firstAttribute="top" secondItem="WYb-c9-lKF" secondAttribute="topMargin" id="Yln-UG-M9q"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="n90-pQ-UJ7" secondAttribute="bottom" id="ok6-jH-SIu"/>
+                                        <constraint firstItem="n90-pQ-UJ7" firstAttribute="top" secondItem="WYb-c9-lKF" secondAttribute="top" constant="6" id="Yln-UG-M9q"/>
+                                        <constraint firstAttribute="bottom" secondItem="n90-pQ-UJ7" secondAttribute="bottom" constant="6" id="ok6-jH-SIu"/>
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="kzK-ZY-Guw" secondAttribute="bottom" constant="-4" id="t15-hW-9J1"/>
                                     </constraints>
                                 </tableViewCellContentView>

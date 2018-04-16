@@ -25,7 +25,7 @@ final class OrganizationCell: UITableViewCell {
     var organization: Organization! {
         didSet {
             titleLabel?.text = organization.title
-            titleLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 3 : 1
+            titleLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 3 : 2
 
             iconView?.image = organization.iconThumbnail
         }

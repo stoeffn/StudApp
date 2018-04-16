@@ -78,7 +78,10 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         coordinator.animate(alongsideTransition: { _ in
             self.tableView.tableHeaderView?.layoutIfNeeded()
             self.tableView.tableHeaderView = self.tableView.tableHeaderView
-        }, completion: nil)
+        }, completion: { _ in
+            self.tableView.tableHeaderView?.layoutIfNeeded()
+            self.tableView.tableHeaderView = self.tableView.tableHeaderView
+        })
     }
 
     // MARK: - Navigation
