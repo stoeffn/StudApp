@@ -119,7 +119,7 @@
                 <viewControllerPlaceholder storyboardName="About" id="RVa-94-5EL" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jm1-wZ-H8G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="646" y="999"/>
+            <point key="canvasLocation" x="514" y="1059"/>
         </scene>
         <!--Organization List Controller-->
         <scene sceneID="yCO-3G-g8A">
@@ -130,14 +130,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="FVG-Pm-g43">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="280"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="Choose your university, company, or organization to sign in and access your courses, documents, announcements, and events." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3de-75-mDO">
-                                    <rect key="frame" x="8" y="182" width="359" height="58"/>
+                                    <rect key="frame" x="16" y="202" width="343" height="58"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <accessibilityTraits key="traits" staticText="YES" summaryElement="YES"/>
                                     </accessibility>
+                                    <constraints>
+                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="512" id="DKB-ce-QCz"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                     <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -150,7 +153,7 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to StudApp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sgJ-zb-13H">
-                                    <rect key="frame" x="8" y="144" width="359" height="27"/>
+                                    <rect key="frame" x="8" y="144" width="359" height="46"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -162,16 +165,19 @@
                                 <constraint firstItem="sgJ-zb-13H" firstAttribute="leading" secondItem="FVG-Pm-g43" secondAttribute="leadingMargin" id="4CE-Jn-4CX"/>
                                 <constraint firstItem="sgJ-zb-13H" firstAttribute="top" secondItem="CXI-Vm-Pb9" secondAttribute="bottom" constant="8" id="F6q-T9-vdk"/>
                                 <constraint firstItem="3de-75-mDO" firstAttribute="firstBaseline" secondItem="sgJ-zb-13H" secondAttribute="baseline" multiplier="1.05" constant="24" symbolType="layoutAnchor" id="JmC-f4-3TG"/>
-                                <constraint firstItem="CXI-Vm-Pb9" firstAttribute="top" secondItem="FVG-Pm-g43" secondAttribute="topMargin" id="Kl6-6H-n57"/>
+                                <constraint firstItem="CXI-Vm-Pb9" firstAttribute="top" secondItem="FVG-Pm-g43" secondAttribute="topMargin" id="Kl6-6H-n57">
+                                    <variation key="heightClass=regular-widthClass=regular" constant="32"/>
+                                </constraint>
+                                <constraint firstItem="3de-75-mDO" firstAttribute="centerX" secondItem="FVG-Pm-g43" secondAttribute="centerX" id="NtS-gK-R8t"/>
                                 <constraint firstItem="sgJ-zb-13H" firstAttribute="trailing" secondItem="FVG-Pm-g43" secondAttribute="trailingMargin" id="X5p-va-YUN"/>
-                                <constraint firstItem="3de-75-mDO" firstAttribute="leading" secondItem="FVG-Pm-g43" secondAttribute="leadingMargin" id="fnK-bC-1jY"/>
+                                <constraint firstItem="3de-75-mDO" firstAttribute="leading" secondItem="FVG-Pm-g43" secondAttribute="leadingMargin" priority="750" constant="8" id="fnK-bC-1jY"/>
                                 <constraint firstAttribute="bottomMargin" secondItem="3de-75-mDO" secondAttribute="bottom" constant="32" id="mgX-Mm-U6L"/>
-                                <constraint firstAttribute="trailingMargin" secondItem="3de-75-mDO" secondAttribute="trailing" id="zPG-x1-PFs"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="3de-75-mDO" secondAttribute="trailing" priority="750" constant="8" id="zPG-x1-PFs"/>
                             </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrganizationCell" rowHeight="56" id="ORc-qu-TMd" customClass="OrganizationCell" customModule="StudKitUI" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="335.5" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="355.5" width="375" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ORc-qu-TMd" id="WYb-c9-lKF">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
@@ -220,7 +226,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ActionCell" rowHeight="125" id="SHW-lG-keo" customClass="ActionCell" customModule="StudKitUI" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="391.5" width="375" height="125"/>
+                                <rect key="frame" x="0.0" y="411.5" width="375" height="125"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SHW-lG-keo" id="lMn-nc-ZTG">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
@@ -260,6 +266,30 @@
                                     <outlet property="actionButton" destination="wcA-Nb-ux4" id="wt0-mG-ZbW"/>
                                     <outlet property="subtitleLabel" destination="Jdd-Q4-AeW" id="mZM-TW-utz"/>
                                     <outlet property="titleLabel" destination="BeU-G9-inE" id="vJY-FO-2A4"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddOrganizationCell" textLabel="rVp-sg-jzh" style="IBUITableViewCellStyleDefault" id="U3h-pF-Ea4">
+                                <rect key="frame" x="0.0" y="536.5" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="U3h-pF-Ea4" id="kX1-vE-van">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Add Organization…" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rVp-sg-jzh">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="YlF-Qk-EVC" kind="popoverPresentation" identifier="disclaimer" popoverAnchorView="CXI-Vm-Pb9" id="Wz2-0U-0VG">
+                                        <segue key="commit" inheritsFrom="parent" id="b3Y-aH-eJb"/>
+                                        <segue key="preview" inheritsFrom="commit" id="ACe-s7-5OA"/>
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -310,12 +340,21 @@
             </objects>
             <point key="canvasLocation" x="-73" y="609"/>
         </scene>
+        <!--Disclaimer-->
+        <scene sceneID="DGA-TI-phM">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Disclaimer" id="YlF-Qk-EVC" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z3b-rX-fu3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="754" y="1059"/>
+        </scene>
     </scenes>
     <resources>
         <image name="AppIcon" width="512" height="512"/>
         <image name="MoreBarButtonGlyph" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Wz2-0U-0VG"/>
         <segue reference="TCx-cd-Y82"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -96,6 +96,11 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         switch sender {
         case let organizationCell as OrganizationCell:
             prepare(for: .signIntoOrganization(organizationCell.organization), destination: segue.destination)
+        case let addOrganizationCell as UITableViewCell where addOrganizationCell.reuseIdentifier == addOrganizationCellIdentifier:
+            segue.destination.popoverPresentationController?.delegate = self
+            segue.destination.popoverPresentationController?.sourceView = addOrganizationCell
+            segue.destination.popoverPresentationController?.sourceRect = addOrganizationCell.bounds
+            prepare(for: .disclaimer(withText: addOrganizationDisclaimer), destination: segue.destination)
         default:
             prepareForRoute(using: segue, sender: sender)
         }
@@ -103,33 +108,57 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
 
     // MARK: - Table View Data Source
 
-    override func numberOfSections(in _: UITableView) -> Int {
-        return 1
+    private enum Sections: Int {
+        case organizations, addOrganization
     }
 
-    override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return viewModel.error == nil ? viewModel.numberOfRows : 1
+    private let addOrganizationCellIdentifier = "AddOrganizationCell"
+
+    private let addOrganizationDisclaimer = [
+        "StudApp is free for all kinds of organizations!".localized,
+        "",
+        "It just needs to be activated by an admin of your organization.".localized,
+        "Please contact me at %@ if you would like to support StudApp.".localized(App.feedbackMailAddress),
+        "",
+        "Note that StudApp requires Stud.IP 4 or newer.".localized
+    ].joined(separator: "\n")
+
+    override func numberOfSections(in _: UITableView) -> Int {
+        return 2
+    }
+
+    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case Sections.organizations.rawValue:
+            return viewModel.error == nil ? viewModel.numberOfRows : 1
+        case Sections.addOrganization.rawValue:
+            return 1
+        default:
+            fatalError()
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let error = viewModel.error {
+        switch indexPath.section {
+        case Sections.organizations.rawValue where viewModel.error != nil:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ActionCell.typeIdentifier,
                                                            for: indexPath) as? ActionCell else { fatalError() }
             cell.titleLabel.text = "Error Loading Organizations".localized
-            cell.subtitleLabel.text = error.localizedDescription
+            cell.subtitleLabel.text = viewModel.error?.localizedDescription
             cell.actionButton.setTitle("Retry".localized, for: .normal)
             cell.action = { [unowned self] in self.viewModel.update() }
             return cell
+        case Sections.organizations.rawValue:
+            let cell = tableView.dequeueReusableCell(withIdentifier: OrganizationCell.typeIdentifier, for: indexPath)
+            (cell as? OrganizationCell)?.organization = viewModel[rowAt: indexPath.row]
+            return cell
+        case Sections.addOrganization.rawValue:
+            let cell = tableView.dequeueReusableCell(withIdentifier: addOrganizationCellIdentifier, for: indexPath)
+            cell.textLabel?.text = "Add Organization…".localized
+            return cell
+        default:
+            fatalError()
         }
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: OrganizationCell.typeIdentifier, for: indexPath)
-        (cell as? OrganizationCell)?.organization = viewModel[rowAt: indexPath.row]
-        return cell
-    }
-
-    override func tableView(_: UITableView, titleForFooterInSection _: Int) -> String? {
-        return "If are an administrator and would like to add your organization, please contact me at %@."
-            .localized(App.feedbackMailAddress)
     }
 
     // MARK: - Table View Delegate
@@ -173,5 +202,13 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     @IBAction
     func cancelButtonTapped(_: Any) {
         performSegue(withRoute: .unwindToApp)
+    }
+}
+
+// MARK: - Popover Presentation
+
+extension OrganizationListController: UIPopoverPresentationControllerDelegate {
+    public func adaptivePresentationStyle(for _: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
     }
 }

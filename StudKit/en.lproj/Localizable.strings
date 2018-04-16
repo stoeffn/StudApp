@@ -157,7 +157,11 @@
 "Welcome to StudApp" = "Welcome to StudApp";
 "Choose your university, company, or organization to sign in and access your courses, documents, announcements, and events." = "Choose your university, company, or organization to sign in and access your courses, documents, announcements, and events.";
 "Error Loading Organizations" = "Error Loading Organizations";
-"If are an administrator and would like to add your organization, please contact me at %@." = "If are an administrator and would like to add your organization, please contact me at %@.";
+"Add Organization…" = "Add Organization…";
+"StudApp is free for all kinds of organizations!" = "StudApp is free for all kinds of organizations!";
+"It just needs to be activated by an admin of your organization." = "It just needs to be activated by an admin of your organization.";
+"Please contact me at %@ if you would like to support StudApp." = "Please contact me at %@ if you would like to support StudApp.";
+"Note that StudApp requires Stud.IP 4 or newer." = "Note that StudApp requires Stud.IP 4 or newer.";
 
 // MARK: Signing In
 

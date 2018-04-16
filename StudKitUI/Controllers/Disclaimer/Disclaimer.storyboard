@@ -16,18 +16,17 @@
             <objects>
                 <viewController id="M7p-i4-4UT" customClass="DisclaimerController" customModule="StudKitUI" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="VcG-V4-add">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="122"/>
+                        <rect key="frame" x="0.0" y="0.0" width="308" height="140"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zpT-z8-jkY">
-                                <rect key="frame" x="0.0" y="0.0" width="400" height="122"/>
+                                <rect key="frame" x="0.0" y="0.0" width="306.5" height="140"/>
                                 <subviews>
                                     <textView multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xrX-03-iqJ">
-                                        <rect key="frame" x="8" y="8" width="384" height="106"/>
+                                        <rect key="frame" x="8" y="8" width="290.5" height="124"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="384" id="bYV-3r-vIm"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="256" id="zNw-a9-vxm"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="zNw-a9-vxm"/>
                                         </constraints>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
@@ -52,7 +51,7 @@
                         <viewLayoutGuide key="safeArea" id="JKA-8N-iEz"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="400" height="122"/>
+                    <size key="freeformSize" width="308" height="140"/>
                     <connections>
                         <outlet property="containerView" destination="zpT-z8-jkY" id="mbA-3e-R3y"/>
                         <outlet property="disclaimerView" destination="xrX-03-iqJ" id="w9T-tU-5Ua"/>
