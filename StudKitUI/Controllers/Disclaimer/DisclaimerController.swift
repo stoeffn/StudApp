@@ -31,7 +31,16 @@ final class DisclaimerController: UIViewController, Routable {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         preferredContentSize = containerView.bounds.size
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        UIView.animate(withDuration: UI.defaultAnimationDuration) {
+            self.preferredContentSize = self.containerView.bounds.size
+        }
     }
 
     func prepareContent(for route: Routes) {
