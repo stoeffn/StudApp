@@ -91,14 +91,30 @@ final class CourseController: UITableViewController, Routable {
     }
 
     func update(forced: Bool = false) {
+        let group = DispatchGroup()
+
+        group.enter()
         announcementsViewModel.update(forced: forced) {
             let placeholderIndex = IndexPath(row: self.announcementsViewModel.numberOfRows, section: Sections.announcements.rawValue)
-            self.tableView.reloadRows(at: [placeholderIndex], with: .fade)
+            self.tableView.update {
+                self.tableView.reloadRows(at: [placeholderIndex], with: .fade)
+            }
+
+            group.leave()
         }
+
+        group.enter()
         fileListViewModel.update(forced: forced) {
             let placeholderIndex = IndexPath(row: self.fileListViewModel.numberOfRows, section: Sections.documents.rawValue)
-            self.tableView.reloadRows(at: [placeholderIndex], with: .fade)
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) { self.refreshControl?.endRefreshing() }
+            self.tableView.update {
+                self.tableView.reloadRows(at: [placeholderIndex], with: .fade)
+            }
+
+            group.leave()
+        }
+
+        group.notify(queue: .main) {
+            self.refreshControl?.endRefreshing()
         }
     }
 
