@@ -27,7 +27,7 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Semesters".localized
+        navigationItem.title = "Courses".localized
 
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
@@ -97,6 +97,7 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
             let endsAt = semester.endsAt.formatted(using: .monthAndYear)
             cell.textLabel?.text = semester.title
             cell.detailTextLabel?.text = "%@ – %@".localized(beginsAt, endsAt)
+            cell.detailTextLabel?.accessibilityLabel = "from %@ to %@".localized(beginsAt, endsAt)
             cell.accessoryType = semester.state.isHidden ? .none : .checkmark
             return cell
         default:
@@ -104,7 +105,15 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
         }
     }
 
-    // MARK: - Tbale View Delegate
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case Sections.settings.rawValue: return "Settings".localized
+        case Sections.semesters.rawValue: return "Semesters".localized
+        default: fatalError()
+        }
+    }
+
+    // MARK: - Table View Delegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
