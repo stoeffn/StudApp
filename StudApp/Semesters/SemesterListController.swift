@@ -35,8 +35,6 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
 
         tableView.tableFooterView = nil
 
-        showsHiddenCoursesSwitch.isOn = UserDefaults.studKit.showsHiddenCourses
-
         updateEmptyView()
     }
 
@@ -64,6 +62,13 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
 
     private enum Sections: Int {
         case settings, semesters
+
+        var cellIdentifier: String {
+            switch self {
+            case .settings: return "SettingCell"
+            case .semesters: return "SemesterCell"
+            }
+        }
     }
 
     override func numberOfSections(in _: UITableView) -> Int {
@@ -81,11 +86,12 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: SemesterCell.typeIdentifier, for: indexPath)
-            (cell as? SemesterCell)?.semester = viewModel[rowAt: indexPath.row]
+            let cell = tableView.dequeueReusableCell(withIdentifier: Sections.settings.cellIdentifier, for: indexPath)
+            cell.textLabel?.text = "Show Hidden Courses".localized
+            cell.accessoryType = UserDefaults.studKit.showsHiddenCourses ? .checkmark : .none
             return cell
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SemesterCell2", for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: Sections.semesters.cellIdentifier, for: indexPath)
             let semester = viewModel[rowAt: indexPath.row]
             let beginsAt = semester.beginsAt.formatted(using: .monthAndYear)
             let endsAt = semester.endsAt.formatted(using: .monthAndYear)
@@ -101,14 +107,15 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
     // MARK: - Tbale View Delegate
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
         tableView.deselectRow(at: indexPath, animated: true)
 
         switch indexPath.section {
         case 0:
-            break
+            UserDefaults.studKit.showsHiddenCourses = !UserDefaults.studKit.showsHiddenCourses
+            cell?.accessoryType = UserDefaults.studKit.showsHiddenCourses ? .checkmark : .none
         case 1:
             let semester = viewModel[rowAt: indexPath.row]
-            let cell = tableView.cellForRow(at: indexPath)
             semester.state.isHidden = !semester.state.isHidden
             cell?.accessoryType = semester.state.isHidden ? .none : .checkmark
         default:
@@ -141,10 +148,6 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
 
     // MARK: - User Interface
 
-    @IBOutlet var showsHiddenCoursesLabel: UILabel!
-
-    @IBOutlet var showsHiddenCoursesSwitch: UISwitch!
-
     @IBOutlet var emptyView: UIView!
 
     @IBOutlet var emptyViewTopConstraint: NSLayoutConstraint!
@@ -172,11 +175,6 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
     }
 
     // MARK: - User Interaction
-
-    @IBAction
-    func showsHiddenCoursesSwitchValueChanged(_: Any) {
-        UserDefaults.studKit.showsHiddenCourses = showsHiddenCoursesSwitch.isOn
-    }
 
     @IBAction
     func doneButtonTapped(_: Any) {

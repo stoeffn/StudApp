@@ -114,7 +114,6 @@
 		246F3ACD1FAC881100A477FF /* CourseListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246F3ACC1FAC881100A477FF /* CourseListViewModel.swift */; };
 		24712BD81FB858CC0067E416 /* File+StudIp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BD71FB858CC0067E416 /* File+StudIp.swift */; };
 		24712BE61FB8B0E20067E416 /* SemesterListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BE51FB8B0E20067E416 /* SemesterListController.swift */; };
-		24712BE81FB8B4420067E416 /* SemesterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BE71FB8B4420067E416 /* SemesterCell.swift */; };
 		24712BEA1FB8B48A0067E416 /* ByTypeNameIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BE91FB8B48A0067E416 /* ByTypeNameIdentifiable.swift */; };
 		24712BF41FB8B80B0067E416 /* DateComponentsFormatter+Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BF11FB8B80A0067E416 /* DateComponentsFormatter+Shared.swift */; };
 		24712BF51FB8B80B0067E416 /* Date+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BF21FB8B80A0067E416 /* Date+Formatting.swift */; };
@@ -521,7 +520,6 @@
 		24712BD71FB858CC0067E416 /* File+StudIp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "File+StudIp.swift"; sourceTree = "<group>"; };
 		24712BE31FB888E30067E416 /* WorkingSetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkingSetViewModel.swift; sourceTree = "<group>"; };
 		24712BE51FB8B0E20067E416 /* SemesterListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterListController.swift; sourceTree = "<group>"; };
-		24712BE71FB8B4420067E416 /* SemesterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterCell.swift; sourceTree = "<group>"; };
 		24712BE91FB8B48A0067E416 /* ByTypeNameIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ByTypeNameIdentifiable.swift; sourceTree = "<group>"; };
 		24712BF11FB8B80A0067E416 /* DateComponentsFormatter+Shared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateComponentsFormatter+Shared.swift"; sourceTree = "<group>"; };
 		24712BF21FB8B80A0067E416 /* Date+Formatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Formatting.swift"; sourceTree = "<group>"; };
@@ -1308,7 +1306,6 @@
 		247793581FC8901E00090F4D /* Semesters */ = {
 			isa = PBXGroup;
 			children = (
-				24712BE71FB8B4420067E416 /* SemesterCell.swift */,
 				24712BE51FB8B0E20067E416 /* SemesterListController.swift */,
 				24E60B671FC8C754000EDD2A /* Semesters.storyboard */,
 			);
@@ -2390,7 +2387,6 @@
 				248C025B202E58A0004CB8C9 /* SettingsController.swift in Sources */,
 				244FC16D2048333C00A5304B /* AnnouncementNavigationController.swift in Sources */,
 				2450AC7A1FDC79B6004F1267 /* SafariActivity.swift in Sources */,
-				24712BE81FB8B4420067E416 /* SemesterCell.swift in Sources */,
 				242B035B1FD71AB700863B08 /* CourseCell.swift in Sources */,
 				24FD786E1FBF81EA0072F860 /* DownloadListController.swift in Sources */,
 				242B03701FD7464C00863B08 /* ColorCell.swift in Sources */,

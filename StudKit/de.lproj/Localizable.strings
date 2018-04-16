@@ -142,6 +142,7 @@
 // MARK: Semesters
 
 "Semesters" = "Semester";
+"Show Hidden Courses" = "Versteckte Veranstaltungen zeigen";
 "It Looks Like There Are No Semesters" = "Es scheint, als gäbe es keine Semester";
 "You can try to reload the semesters from Stud.IP." = "Du kannst versuchen, die Semester erneut aus Stud.IP zu laden.";
 
