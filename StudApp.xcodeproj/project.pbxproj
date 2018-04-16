@@ -259,6 +259,8 @@
 		24D9EF851FB75818006776B7 /* FileProviderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9EF841FB75818006776B7 /* FileProviderExtension.swift */; };
 		24D9EF9E1FB75819006776B7 /* StudFileProvider.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 24D9EF821FB75818006776B7 /* StudFileProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		24DB13B3207BCDBD003B003E /* Distributions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DB13B2207BCDBD003B003E /* Distributions.swift */; };
+		24E0934C2084F7070067C123 /* DisclaimerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E0934B2084F7070067C123 /* DisclaimerController.swift */; };
+		24E0934E2084F7100067C123 /* Disclaimer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E0934D2084F7100067C123 /* Disclaimer.storyboard */; };
 		24E2AD1A1FF2CECC001D3E27 /* Events.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E2AD191FF2CECC001D3E27 /* Events.storyboard */; };
 		24E2AD1D1FF2D5B0001D3E27 /* EventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E2AD1C1FF2D5B0001D3E27 /* EventListViewModel.swift */; };
 		24E4B99A1FF25C640061983C /* CachingFileProviderEnumerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BF71FB8CD0B0067E416 /* CachingFileProviderEnumerator.swift */; };
@@ -647,6 +649,8 @@
 		24D9EF8A1FB75819006776B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24D9EF8B1FB75819006776B7 /* StudFileProvider.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudFileProvider.entitlements; sourceTree = "<group>"; };
 		24DB13B2207BCDBD003B003E /* Distributions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Distributions.swift; sourceTree = "<group>"; };
+		24E0934B2084F7070067C123 /* DisclaimerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerController.swift; sourceTree = "<group>"; };
+		24E0934D2084F7100067C123 /* Disclaimer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Disclaimer.storyboard; sourceTree = "<group>"; };
 		24E2AD191FF2CECC001D3E27 /* Events.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Events.storyboard; sourceTree = "<group>"; };
 		24E2AD1C1FF2D5B0001D3E27 /* EventListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewModel.swift; sourceTree = "<group>"; };
 		24E4B9A31FF25E8C0061983C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -883,6 +887,7 @@
 			children = (
 				24EBC4341FCDCA0000181455 /* About */,
 				248C0274202F9E25004CB8C9 /* Confetti */,
+				24E0934A2084F6E50067C123 /* Disclaimer */,
 				2477935F1FC890C100090F4D /* SignIn */,
 				241FD96E1FA9191500FBD750 /* BorderlessNavigationController.swift */,
 			);
@@ -1762,6 +1767,15 @@
 			path = StudFileProvider;
 			sourceTree = "<group>";
 		};
+		24E0934A2084F6E50067C123 /* Disclaimer */ = {
+			isa = PBXGroup;
+			children = (
+				24E0934B2084F7070067C123 /* DisclaimerController.swift */,
+				24E0934D2084F7100067C123 /* Disclaimer.storyboard */,
+			);
+			path = Disclaimer;
+			sourceTree = "<group>";
+		};
 		24E2AD1B1FF2CEDE001D3E27 /* Events */ = {
 			isa = PBXGroup;
 			children = (
@@ -2293,6 +2307,7 @@
 				247CC2AB203898130067207B /* About.storyboard in Resources */,
 				244FC1662048210200A5304B /* HtmlContentStyle.css in Resources */,
 				24390EF62038AF840064E49A /* Assets.xcassets in Resources */,
+				24E0934E2084F7100067C123 /* Disclaimer.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2589,6 +2604,7 @@
 				247CC2A6203897FB0067207B /* UITableViewCell+Utils.swift in Sources */,
 				244FC1682048219600A5304B /* HtmlContentService.swift in Sources */,
 				247CC29D203897CA0067207B /* SafariServices+Constants.swift in Sources */,
+				24E0934C2084F7070067C123 /* DisclaimerController.swift in Sources */,
 				247CC2A5203897F70067207B /* UITableView+Utils.swift in Sources */,
 				247CC2972038976A0067207B /* UIViewController+Routes.swift in Sources */,
 				24390EEF2038A0450064E49A /* ByTypeNameIdentifiable+Conformances.swift in Sources */,

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M7p-i4-4UT">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Disclaimer Controller-->
+        <scene sceneID="5DL-Ks-L3o">
+            <objects>
+                <viewController id="M7p-i4-4UT" customClass="DisclaimerController" customModule="StudKitUI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="VcG-V4-add">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="122"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zpT-z8-jkY">
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="122"/>
+                                <subviews>
+                                    <textView multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xrX-03-iqJ">
+                                        <rect key="frame" x="8" y="8" width="384" height="106"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="384" id="bYV-3r-vIm"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="256" id="zNw-a9-vxm"/>
+                                        </constraints>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</string>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES" shipmentTrackingNumber="YES" flightNumber="YES" lookupSuggestion="YES"/>
+                                    </textView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="xrX-03-iqJ" secondAttribute="bottom" constant="8" id="7nV-1r-RPx"/>
+                                    <constraint firstAttribute="trailing" secondItem="xrX-03-iqJ" secondAttribute="trailing" constant="8" id="7x7-IF-pOF"/>
+                                    <constraint firstItem="xrX-03-iqJ" firstAttribute="leading" secondItem="zpT-z8-jkY" secondAttribute="leading" constant="8" id="M1H-D7-MzP"/>
+                                    <constraint firstItem="xrX-03-iqJ" firstAttribute="top" secondItem="zpT-z8-jkY" secondAttribute="top" constant="8" id="X0p-kP-wRj"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="zpT-z8-jkY" firstAttribute="leading" secondItem="JKA-8N-iEz" secondAttribute="leading" id="zW6-JR-GU9"/>
+                            <constraint firstItem="zpT-z8-jkY" firstAttribute="top" secondItem="VcG-V4-add" secondAttribute="topMargin" id="zfE-vL-mwz"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="JKA-8N-iEz"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="400" height="122"/>
+                    <connections>
+                        <outlet property="containerView" destination="zpT-z8-jkY" id="mbA-3e-R3y"/>
+                        <outlet property="disclaimerView" destination="xrX-03-iqJ" id="w9T-tU-5Ua"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4xK-6b-xCE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+    </scenes>
+</document>

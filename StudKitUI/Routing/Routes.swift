@@ -33,7 +33,7 @@ public enum Routes {
 
     case courseList(for: User?)
 
-    case disclaimer(with: String)
+    case disclaimer(withText: String)
 
     case downloadList(for: User?)
 
