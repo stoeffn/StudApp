@@ -83,23 +83,24 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        let navigationController = splitViewController?.detailNavigationController ?? self.navigationController
-        (navigationController as? BorderlessNavigationController)?.toolBarView = dateTabBarContainer
+        let isTopController = self == self.navigationController?.topViewController
 
-        guard self == navigationController?.topViewController else {
-            return super.viewWillTransition(to: size, with: coordinator)
+        if isTopController {
+            let navigationController = splitViewController?.detailNavigationController as? BorderlessNavigationController
+            navigationController?.toolBarView = nil
         }
 
         super.viewWillTransition(to: size, with: coordinator)
 
         coordinator.animate(alongsideTransition: { _ in
-            let navigationController = self.splitViewController?.detailNavigationController ?? self.navigationController
-            (navigationController as? BorderlessNavigationController)?.toolBarView = self.dateTabBarContainer
+            if isTopController {
+                let newNavigationController = self.splitViewController?.detailNavigationController as? BorderlessNavigationController
+                newNavigationController?.toolBarView = self.dateTabBarContainer
+            }
+
             self.updateEmptyView()
             self.dateTabBar.invalidateLayout()
-        }, completion: { _ in
-            self.updateEmptyView()
-        })
+        }, completion: nil)
     }
 
     // MARK: - Navigation

@@ -48,7 +48,10 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         } else {
             tableView.tableHeaderView = searchController.searchBar
         }
+    }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         updateEmptyView()
     }
 
