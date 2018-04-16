@@ -62,23 +62,79 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
 
     // MARK: - Table View Data Source
 
-    override func numberOfSections(in _: UITableView) -> Int {
-        return 1
+    private enum Sections: Int {
+        case settings, semesters
     }
 
-    override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
-        return viewModel.numberOfRows
+    override func numberOfSections(in _: UITableView) -> Int {
+        return 2
+    }
+
+    override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0: return 1
+        case 1: return viewModel.numberOfRows
+        default: fatalError()
+        }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SemesterCell.typeIdentifier, for: indexPath)
-        (cell as? SemesterCell)?.semester = viewModel[rowAt: indexPath.row]
-        return cell
+        switch indexPath.section {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: SemesterCell.typeIdentifier, for: indexPath)
+            (cell as? SemesterCell)?.semester = viewModel[rowAt: indexPath.row]
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SemesterCell2", for: indexPath)
+            let semester = viewModel[rowAt: indexPath.row]
+            let beginsAt = semester.beginsAt.formatted(using: .monthAndYear)
+            let endsAt = semester.endsAt.formatted(using: .monthAndYear)
+            cell.textLabel?.text = semester.title
+            cell.detailTextLabel?.text = "%@ – %@".localized(beginsAt, endsAt)
+            cell.accessoryType = semester.state.isHidden ? .none : .checkmark
+            return cell
+        default:
+            fatalError()
+        }
+    }
+
+    // MARK: - Tbale View Delegate
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        switch indexPath.section {
+        case 0:
+            break
+        case 1:
+            let semester = viewModel[rowAt: indexPath.row]
+            let cell = tableView.cellForRow(at: indexPath)
+            semester.state.isHidden = !semester.state.isHidden
+            cell?.accessoryType = semester.state.isHidden ? .none : .checkmark
+        default:
+            fatalError()
+        }
     }
 
     // MARK: - Data Source Delegate
 
-    func dataDidChange<Source>(in _: Source) {
+    func data<Section: DataSourceSection>(changedIn _: Section.Row, at index: Int, change: DataChange<Section.Row, Int>,
+                                          in section: Section) {
+        let indexPath = IndexPath(row: index, section: Sections.semesters.rawValue)
+        switch change {
+        case .insert:
+            tableView.insertRows(at: [indexPath], with: .automatic)
+        case .delete:
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        case .update:
+            tableView.reloadRows(at: [indexPath], with: .fade)
+        case let .move(newIndex):
+            let newIndexPath = IndexPath(row: newIndex, section: Sections.semesters.rawValue)
+            tableView.moveRow(at: indexPath, to: newIndexPath)
+        }
+    }
+
+    func dataDidChange<Section>(in _: Section) {
         tableView.endUpdates()
         updateEmptyView()
     }
