@@ -154,8 +154,8 @@
 // MARK: Organizations
 
 "Organizations" = "Organizations";
-"Choose Your Organization" = "Choose Your Organization";
-"Choose the organization, university, or company you would like to sign into." = "Choose the organization, university, or company you would like to sign into.";
+"Welcome to StudApp" = "Welcome to StudApp";
+"Choose your university, company, or organization to sign in and access your courses, documents, announcements, and events." = "Choose your university, company, or organization to sign in and access your courses, documents, announcements, and events.";
 "Error Loading Organizations" = "Error Loading Organizations";
 "If are an administrator and would like to add your organization, please contact me at %@." = "If are an administrator and would like to add your organization, please contact me at %@.";
 

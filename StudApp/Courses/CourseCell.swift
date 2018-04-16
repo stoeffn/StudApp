@@ -40,7 +40,7 @@ final class CourseCell: UITableViewCell {
             accessibilityLabel = [
                 course.title,
                 "by %@".localized(lecturerNames),
-                UserDefaults.studKit.showsHiddenCourses ? hiddenStateDescription : nil
+                UserDefaults.studKit.showsHiddenCourses ? hiddenStateDescription : nil,
             ].compactMap { $0 }.joined(separator: " ")
 
             accessibilityCustomActions = [

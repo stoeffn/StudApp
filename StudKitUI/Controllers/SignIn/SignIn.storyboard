@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nJg-0c-dPm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nJg-0c-dPm">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
@@ -121,20 +121,20 @@
             </objects>
             <point key="canvasLocation" x="646" y="999"/>
         </scene>
-        <!--Choose Your Organization-->
+        <!--Organization List Controller-->
         <scene sceneID="yCO-3G-g8A">
             <objects>
                 <tableViewController id="7Cl-OR-2Sy" customClass="OrganizationListController" customModule="StudKitUI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="QYh-3Q-84Z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="FVG-Pm-g43">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" id="FVG-Pm-g43">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="280"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose the organization, university, or company you would like to sign into." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3de-75-mDO">
-                                    <rect key="frame" x="16" y="16" width="343" height="38"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="Choose your university, company, or organization to sign in and access your courses, documents, announcements, and events." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3de-75-mDO">
+                                    <rect key="frame" x="8" y="182" width="359" height="58"/>
                                     <accessibility key="accessibilityConfiguration">
                                         <accessibilityTraits key="traits" staticText="YES" summaryElement="YES"/>
                                     </accessibility>
@@ -142,18 +142,36 @@
                                     <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppIcon" translatesAutoresizingMaskIntoConstraints="NO" id="CXI-Vm-Pb9">
+                                    <rect key="frame" x="123" y="8" width="128" height="128"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="128" id="KLH-oG-tjX"/>
+                                        <constraint firstAttribute="width" secondItem="CXI-Vm-Pb9" secondAttribute="height" multiplier="1:1" id="aDJ-9n-w0b"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to StudApp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sgJ-zb-13H">
+                                    <rect key="frame" x="8" y="144" width="359" height="27"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
-                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="3de-75-mDO" secondAttribute="bottom" constant="16" id="7Gt-Op-Xuc"/>
-                                <constraint firstAttribute="trailingMargin" secondItem="3de-75-mDO" secondAttribute="trailing" constant="8" id="Fvi-kT-rx4"/>
-                                <constraint firstItem="3de-75-mDO" firstAttribute="top" secondItem="FVG-Pm-g43" secondAttribute="topMargin" constant="8" id="hEf-vn-5kV"/>
-                                <constraint firstItem="3de-75-mDO" firstAttribute="leading" secondItem="FVG-Pm-g43" secondAttribute="leadingMargin" constant="8" id="iLF-tL-fWr"/>
+                                <constraint firstItem="CXI-Vm-Pb9" firstAttribute="centerX" secondItem="FVG-Pm-g43" secondAttribute="centerX" id="1Wu-hn-CHz"/>
+                                <constraint firstItem="sgJ-zb-13H" firstAttribute="leading" secondItem="FVG-Pm-g43" secondAttribute="leadingMargin" id="4CE-Jn-4CX"/>
+                                <constraint firstItem="sgJ-zb-13H" firstAttribute="top" secondItem="CXI-Vm-Pb9" secondAttribute="bottom" constant="8" id="F6q-T9-vdk"/>
+                                <constraint firstItem="3de-75-mDO" firstAttribute="firstBaseline" secondItem="sgJ-zb-13H" secondAttribute="baseline" multiplier="1.05" constant="24" symbolType="layoutAnchor" id="JmC-f4-3TG"/>
+                                <constraint firstItem="CXI-Vm-Pb9" firstAttribute="top" secondItem="FVG-Pm-g43" secondAttribute="topMargin" id="Kl6-6H-n57"/>
+                                <constraint firstItem="sgJ-zb-13H" firstAttribute="trailing" secondItem="FVG-Pm-g43" secondAttribute="trailingMargin" id="X5p-va-YUN"/>
+                                <constraint firstItem="3de-75-mDO" firstAttribute="leading" secondItem="FVG-Pm-g43" secondAttribute="leadingMargin" id="fnK-bC-1jY"/>
+                                <constraint firstAttribute="bottomMargin" secondItem="3de-75-mDO" secondAttribute="bottom" constant="32" id="mgX-Mm-U6L"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="3de-75-mDO" secondAttribute="trailing" id="zPG-x1-PFs"/>
                             </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="OrganizationCell" rowHeight="56" id="ORc-qu-TMd" customClass="OrganizationCell" customModule="StudKitUI" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="127.5" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="335.5" width="375" height="56"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ORc-qu-TMd" id="WYb-c9-lKF">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="55.5"/>
@@ -202,7 +220,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ActionCell" rowHeight="125" id="SHW-lG-keo" customClass="ActionCell" customModule="StudKitUI" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="183.5" width="375" height="125"/>
+                                <rect key="frame" x="0.0" y="391.5" width="375" height="125"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SHW-lG-keo" id="lMn-nc-ZTG">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="124.5"/>
@@ -250,8 +268,8 @@
                             <outlet property="delegate" destination="7Cl-OR-2Sy" id="svM-PJ-UPk"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Choose Your Organization" id="LTe-ZH-A1M">
-                        <barButtonItem key="backBarButtonItem" title="Organization" id="nQF-Pa-JnJ"/>
+                    <navigationItem key="navigationItem" id="LTe-ZH-A1M">
+                        <barButtonItem key="backBarButtonItem" title="Organizations" id="nQF-Pa-JnJ"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="htM-Nw-MEZ">
                             <connections>
                                 <action selector="cancelButtonTapped:" destination="7Cl-OR-2Sy" id="bEL-m7-NB8"/>
@@ -266,6 +284,7 @@
                     <connections>
                         <outlet property="cancelButton" destination="htM-Nw-MEZ" id="hCd-LA-DiZ"/>
                         <outlet property="disclaimerLabel" destination="3de-75-mDO" id="XoZ-OX-fkm"/>
+                        <outlet property="welcomeLabel" destination="sgJ-zb-13H" id="DGG-ny-DAX"/>
                         <segue destination="RVa-94-5EL" kind="presentation" identifier="about" modalPresentationStyle="formSheet" id="xKV-DX-Nra"/>
                     </connections>
                 </tableViewController>
@@ -273,10 +292,10 @@
             </objects>
             <point key="canvasLocation" x="645.60000000000002" y="608.54572713643188"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Borderless Navigation Controller-->
         <scene sceneID="6yh-zB-2Ps">
             <objects>
-                <navigationController storyboardIdentifier="SignInNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="nJg-0c-dPm" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SignInNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="nJg-0c-dPm" customClass="BorderlessNavigationController" customModule="StudKitUI" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FQZ-8j-RNu">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

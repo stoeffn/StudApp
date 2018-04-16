@@ -154,8 +154,8 @@
 // MARK: Organizations
 
 "Organizations" = "Organisationen";
-"Choose Your Organization" = "Wähle Deine Organisation";
-"Choose the organization, university, or company you would like to sign into." = "Wähle die Organisation, Hochschule oder Firma, bei der Du Dich anmelden möchtest.";
+"Welcome to StudApp" = "Willkommen bei StudApp";
+"Choose your university, company, or organization to sign in and access your courses, documents, announcements, and events." = "Wähle Deine Universität, Unternehmen oder Organisation, um Dich anzumelden und auf Deine Veranstaltungen, Dokumente, Ankündigungen und Termine zuzugreifen.";
 "Error Loading Organizations" = "Fehler beim Laden der Organisationen";
 "If are an administrator and would like to add your organization, please contact me at %@." = "Wenn Du ein Administrator bist und Deine Organisation hinzufügen möchtest, sende bitte eine E-Mail an %@.";
 

@@ -62,7 +62,7 @@ struct MockResponses {
     private let programmingCourseSummary = [
         "In this course, you will learn the basics of computer programming.".localized,
         "",
-        "Please refer to https://google.com/ if you have any questions.".localized
+        "Please refer to https://google.com/ if you have any questions.".localized,
     ].joined(separator: "\n")
 
     private(set) lazy var courses = [
@@ -93,7 +93,7 @@ struct MockResponses {
 
     private(set) lazy var announcements = [
         AnnouncementResponse(id: "A0", courseIds: ["C7"], userId: langdon.id, createdAt: today - day * 3, modifiedAt: today - day * 3,
-                             expiresAfter: week, title: "Remember to Bring Your Laptops!".localized)
+                             expiresAfter: week, title: "Remember to Bring Your Laptops!".localized),
     ]
 
     // MARK: - Files
@@ -101,7 +101,7 @@ struct MockResponses {
     private(set) lazy var codingCourseFolders = [
         FolderResponse(id: "F0", userId: langdon.id, name: "Slides".localized, createdAt: now - week, modifiedAt: now - day),
         FolderResponse(id: "F1", userId: tesla.id, name: "Exercises".localized, createdAt: now - hour * 5, modifiedAt: now - hour * 4),
-        FolderResponse(id: "F2", userId: tesla.id, name: "Solutions".localized, createdAt: now - week, modifiedAt: now - hour * 8)
+        FolderResponse(id: "F2", userId: tesla.id, name: "Solutions".localized, createdAt: now - week, modifiedAt: now - hour * 8),
     ]
 
     private(set) lazy var codingCourseDocuments = [
@@ -109,7 +109,7 @@ struct MockResponses {
                          createdAt: now - day * 20, modifiedAt: now - day * 20, size: 1024 * 42, downloadCount: 96),
         DocumentResponse(id: "F4", location: .external, externalUrl: URL(string: "https://dropbox.com/test.mp4"), userId: langdon.id,
                          name: "Installing Swift.mp4".localized, createdAt: now - day * 19, modifiedAt: now - day * 19,
-                         size: 1024 * 1024 * 67)
+                         size: 1024 * 1024 * 67),
     ]
 
     private(set) lazy var numericalAnalysisCourseDocuments = [

@@ -33,7 +33,6 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
 
         htmlContentService = ServiceContainer.default[HtmlContentService.self]
 
-        navigationItem.title = "Choose Your Organization".localized
         navigationItem.hidesBackButton = true
         navigationItem.backBarButtonItem?.title = "Organizations".localized
         navigationItem.rightBarButtonItem?.accessibilityLabel = "More".localized
@@ -49,7 +48,12 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         tableView.tableHeaderView?.layoutIfNeeded()
         tableView.tableHeaderView = tableView.tableHeaderView
 
-        disclaimerLabel.text = "Choose the organization, university, or company you would like to sign into.".localized
+        welcomeLabel.text = "Welcome to StudApp".localized
+        welcomeLabel.font = UIFont.preferredFont(forTextStyle: .title1).bold
+
+        disclaimerLabel.text = """
+        Choose your university, company, or organization to sign in and access your courses, documents, announcements, and events.
+        """.localized
 
         observations = [
             viewModel.observe(\.isUpdating) { [weak self] _, _ in
@@ -135,6 +139,8 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     }
 
     // MARK: - User Interface
+
+    @IBOutlet var welcomeLabel: UILabel!
 
     @IBOutlet var disclaimerLabel: UILabel!
 
