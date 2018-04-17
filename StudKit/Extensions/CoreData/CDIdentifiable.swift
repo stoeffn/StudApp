@@ -98,6 +98,7 @@ extension CDIdentifiable where Self: NSManagedObject {
     @discardableResult
     static func update<Value, Values: Sequence>(_ existingObjectsFetchRequest: NSFetchRequest<Self>? = nil,
                                                 with values: Values, in context: NSManagedObjectContext,
+                                                deleteHandler: ((Self) -> Void)? = nil,
                                                 transform: (Value) throws -> Self) throws -> [Self] where Values.Element == Value {
         let existingObjectsFetchRequest = existingObjectsFetchRequest ?? Self.fetchRequest(predicate: NSPredicate(value: false))
         existingObjectsFetchRequest.propertiesToFetch = ["id"]
@@ -110,7 +111,7 @@ extension CDIdentifiable where Self: NSManagedObject {
 
         let deletedIds = Set(existingIds).subtracting(updatedIds)
         let deletedObjects = existingObjects.filter { deletedIds.contains($0.id) }
-        deletedObjects.forEach(context.delete)
+        deletedObjects.forEach(deleteHandler ?? context.delete)
 
         return updatedObjects
     }

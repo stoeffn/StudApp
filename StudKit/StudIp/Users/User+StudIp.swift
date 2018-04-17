@@ -41,6 +41,7 @@ extension User {
     func updateAuthoredCourses(_ existingObjects: NSFetchRequest<Course>, with responses: [CourseResponse]) throws -> Set<Course> {
         guard let context = managedObjectContext else { fatalError() }
 
+        // TODO: Reset relationship instead of deleting in order to provide multi-user support.
         let courses = try Course.update(existingObjects, with: responses, in: context) { response in
             try response.coreDataObject(organization: organization, author: self, in: context)
         }
@@ -71,7 +72,8 @@ extension User {
             studIpService.api.requestCollection(.eventsForUser(withId: self.id)) { (result: Result<[EventResponse]>) in
                 context.perform {
                     let result = result.map { responses in
-                        try Event.update(with: responses, in: context) { response in
+                        // TODO: Reset relationship instead of deleting in order to provide multi-user support.
+                        try Event.update(self.eventsFetchRequest, with: responses, in: context) { response in
                             try response.coreDataObject(user: self.in(context), in: context)
                         }
                     }.map(Set.init)
