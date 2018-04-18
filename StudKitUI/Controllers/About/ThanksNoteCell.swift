@@ -34,12 +34,15 @@ final class ThanksNoteCell: UITableViewCell {
 
     var thanksNote: ThanksNote! {
         didSet {
+            let hasLink = thanksNote.url != nil
+
             textLabel?.text = thanksNote.title
             detailTextLabel?.text = thanksNote.description
 
-            let hasLink = thanksNote.url != nil
             selectionStyle = hasLink ? .default : .none
             textLabel?.textColor = hasLink ? UI.Colors.tint : .black
+
+            accessoryType = hasLink ? .disclosureIndicator : .none
         }
     }
 
