@@ -32,9 +32,9 @@ public extension DataSourceSectionDelegate where Self: UITableViewController {
         let indexPath = IndexPath(row: index, section: 0)
         switch change {
         case .insert:
-            tableView.insertRows(at: [indexPath], with: .automatic)
+            tableView.insertRows(at: [indexPath], with: .top)
         case .delete:
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            tableView.deleteRows(at: [indexPath], with: .top)
         case .update:
             tableView.reloadRows(at: [indexPath], with: .fade)
         case let .move(newIndex):
