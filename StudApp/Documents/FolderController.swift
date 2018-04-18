@@ -40,7 +40,7 @@ final class FolderController: UITableViewController, Routable {
         }
 
         tableView.tableHeaderView = nil
-        tableView.estimatedRowHeight = 72
+        tableView.estimatedRowHeight = FileCell.estimatedHeight
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -40,6 +40,7 @@ final class CourseController: UITableViewController, Routable {
             tableView.dragInteractionEnabled = true
         }
 
+        tableView.estimatedRowHeight = FileCell.estimatedHeight
         tableView.tableHeaderView?.translatesAutoresizingMaskIntoConstraints = false
         tableView.tableHeaderView?.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
         tableView.tableHeaderView?.topAnchor.constraint(equalTo: tableView.topAnchor).isActive = true

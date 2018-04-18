@@ -34,6 +34,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         navigationItem.rightBarButtonItem?.accessibilityLabel = "More".localized
 
         tableView.register(CourseHeader.self, forHeaderFooterViewReuseIdentifier: CourseHeader.typeIdentifier)
+        tableView.estimatedRowHeight = FileCell.estimatedHeight
         tableView.estimatedSectionHeaderHeight = CourseHeader.estimatedHeight
 
         if #available(iOS 11.0, *) {
@@ -173,6 +174,11 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     }
 
     // MARK: - Data Source Delegate
+
+    func dataWillChange<Source>(in _: Source) {
+        tableView.reloadData()
+        tableView.beginUpdates()
+    }
 
     func dataDidChange<Source>(in _: Source) {
         tableView.endUpdates()

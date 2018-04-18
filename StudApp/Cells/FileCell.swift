@@ -20,6 +20,8 @@ import StudKit
 import StudKitUI
 
 final class FileCell: UITableViewCell {
+    static let estimatedHeight: CGFloat = 72
+
     private let fileIconService = ServiceContainer.default[FileIconService.self]
     private let reachabilityService = ServiceContainer.default[ReachabilityService.self]
 
