@@ -247,7 +247,7 @@ final class CourseController: UITableViewController, Routable {
             return cell
         case .events? where indexPath.row == 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: emptyCellIdentifier, for: indexPath)
-            let isLoaded = User.current?.state.eventsUpdatedAt != nil
+            let isLoaded = User.current?.state.eventsUpdatedAt != nil || viewModel.course.state.eventsUpdatedAt != nil
             cell.textLabel?.text = isLoaded ? "No Upcoming Events".localized : "Not Loaded".localized
             return cell
         case .events?:
