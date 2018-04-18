@@ -33,6 +33,7 @@ final class FolderController: UITableViewController, Routable {
         refreshControl?.addTarget(self, action: #selector(refreshControlTriggered(_:)), for: .valueChanged)
 
         navigationItem.title = viewModel.container.title
+        navigationItem.rightBarButtonItem = nil
 
         if #available(iOS 11.0, *) {
             tableView.dragDelegate = self
@@ -141,12 +142,11 @@ final class FolderController: UITableViewController, Routable {
 
     override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath,
                             withSender _: Any?) -> Bool {
+        guard indexPath.row < viewModel.numberOfRows else { return false }
+        let file = viewModel[rowAt: indexPath.row]
+
         switch action {
-        case #selector(CustomMenuItems.share(_:)):
-            return true
         case #selector(CustomMenuItems.remove(_:)):
-            guard indexPath.row < viewModel.numberOfRows else { return false }
-            let file = viewModel[rowAt: indexPath.row]
             return file.state.isDownloaded
         default:
             return false

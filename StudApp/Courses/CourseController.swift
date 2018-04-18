@@ -307,21 +307,14 @@ final class CourseController: UITableViewController, Routable {
 
     override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath,
                             withSender _: Any?) -> Bool {
+        guard indexPath.row < fileListViewModel.numberOfRows else { return false }
+        let file = fileListViewModel[rowAt: indexPath.row]
+
         switch Sections(rawValue: indexPath.section) {
         case .info?, .announcements?, .summary?:
             return action == #selector(copy(_:))
         case .documents?:
-            guard indexPath.row < fileListViewModel.numberOfRows else { return false }
-            let file = fileListViewModel[rowAt: indexPath.row]
-
-            switch action {
-            case #selector(CustomMenuItems.share(_:)):
-                return true
-            case #selector(CustomMenuItems.remove(_:)):
-                return file.state.isDownloaded
-            default:
-                return false
-            }
+            return action == #selector(CustomMenuItems.remove(_:)) && file.state.isDownloaded
         case .events?, nil:
             return false
         }
