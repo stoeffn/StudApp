@@ -46,7 +46,7 @@ public enum App {
         // MARK: Callbacks
 
         /// URL that is opened in response to a successful authorization.
-        public static let signInCallback = URL(string: "http://127.0.0.1:8080/sign-in")!
+        public static let signInCallback = URL(string: "\(scheme)://sign-in")!
     }
 
     // MARK: - Identifiers

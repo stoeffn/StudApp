@@ -43,7 +43,7 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
         isActivityIndicatorHidden = true
 
         observations = [
-            viewModel.observe(\.state) { [weak self] _, _ in
+            viewModel.observe(\.state, options: [.initial]) { [weak self] _, _ in
                 guard let `self` = self else { return }
                 self.updateUserInterface(for: self.viewModel.state)
             },
@@ -69,19 +69,13 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        animateWithSpring {
-            self.areOrganizationViewsHidden = false
-            self.isActivityIndicatorHidden = false
-        }
+        animateWithSpring { self.areOrganizationViewsHidden = false }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        animateWithSpring {
-            self.areOrganizationViewsHidden = true
-            self.isActivityIndicatorHidden = true
-        }
+        animateWithSpring { self.areOrganizationViewsHidden = true }
     }
 
     // MARK: - Navigation
@@ -175,9 +169,11 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
             return present(controller, animated: true, completion: nil)
         }
 
-        let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { _, _ in
+        let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { url, _ in
             self.authenticationSession = nil
-            self.performSegue(withRoute: .unwindToSignIn)
+
+            guard let url = url else { return self.performSegue(withRoute: .unwindToSignIn) }
+            self.viewModel.finishAuthorization(with: url)
         }
         session.start()
 

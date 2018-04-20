@@ -107,6 +107,11 @@ public final class SignInViewModel: NSObject {
         updateCredentials()
     }
 
+    public func finishAuthorization(with url: URL) {
+        state = .updatingAccessToken
+        updateAccessToken(withCallbackUrl: url)
+    }
+
     public func retry() {
         switch state {
         case .updatingCredentials:
