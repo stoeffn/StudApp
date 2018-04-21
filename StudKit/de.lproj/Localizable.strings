@@ -169,7 +169,6 @@
 "Error Signing In" = "Fehler beim Anmelden";
 "It seems like your organization does not support StudApp anymore." = "Es scheint, als würde Deine Organisation StudApp nicht mehr unterstützen.";
 "There was an error authorizing StudApp to access your organization." = "Es gab einen Fehler dabei, StudApp für Deine Organisation zu autorisieren.";
-"Invalid Server Callback." = "Ungültige Server-Rückmeldung.";
 
 // MARK: Color Picker
 
@@ -223,7 +222,7 @@
 "In this course, you will learn the basics of computer programming." = "In dieser Veranstaltung lernen Sie die Basics des Programmierens.";
 "Please refer to https://google.com/ if you have any questions." = "Wenden Sie sich an https://google.com/, falls Fragen auftreten sollten.";
 
-// MARK: Annoucements
+// MARK: Announcements
 
 "Remember to Bring Your Laptops!" = "Denkt an Eure Laptops!";
 

@@ -16,15 +16,13 @@
 //  along with this program. If not, see http://www.gnu.org/licenses/.
 //
 
-import Swifter
-
 public final class SignInViewModel: NSObject {
 
     // MARK: - Errors
 
     @objc(SignInViewModelErrors)
     public enum Errors: Int, LocalizedError {
-        case authorizationFailed, invalidConsumerKey, invalidCallback
+        case authorizationFailed, invalidConsumerKey
 
         public var errorDescription: String? {
             switch self {
@@ -32,8 +30,6 @@ public final class SignInViewModel: NSObject {
                 return "There was an error authorizing StudApp to access your organization.".localized
             case .invalidConsumerKey:
                 return "It seems like your organization does not support StudApp anymore.".localized
-            case .invalidCallback:
-                return "Invalid Server Callback.".localized
             }
         }
     }
@@ -64,10 +60,6 @@ public final class SignInViewModel: NSObject {
         self.organization = organization
     }
 
-    deinit {
-        server.stop()
-    }
-
     // MARK: - Providing Metadata
 
     public func updateOrganizationIcon() {
@@ -75,31 +67,6 @@ public final class SignInViewModel: NSObject {
             try? self.coreDataService.viewContext.saveAndWaitWhenChanged()
         }
     }
-
-    // MARK: - Callback Server
-
-    private lazy var server: HttpServer = {
-        let server = HttpServer()
-        server["/sign-in"] = { [weak self] request in
-            guard self?.state == .authorizing else { fatalError() }
-
-            guard !request.queryParams.isEmpty else {
-                return .movedPermanently("\(App.scheme)://\(request.path)")
-            }
-
-            DispatchQueue.main.async {
-                if let url = URL(string: request.path) {
-                    self?.state = .updatingAccessToken
-                    self?.updateAccessToken(withCallbackUrl: url)
-                } else {
-                    self?.error = Errors.invalidCallback
-                }
-            }
-
-            return .ok(.text(""))
-        }
-        return server
-    }()
 
     // MARK: - Signing In
 
@@ -154,20 +121,14 @@ public final class SignInViewModel: NSObject {
                 return self.error = result.error ?? Errors.invalidConsumerKey
             }
 
-            do {
-                try self.server.start()
-                self.authorizationUrl = url
-                self.state = .authorizing
-            } catch {
-                self.error = error
-            }
+            self.authorizationUrl = url
+            self.state = .authorizing
         }
     }
 
     private func updateAccessToken(withCallbackUrl url: URL) {
         guard state == .updatingAccessToken, let oAuth1 = oAuth1 else { fatalError() }
 
-        server.stop()
         oAuth1.createAccessToken(fromAuthorizationCallbackUrl: url) { result in
             guard result.isSuccess else {
                 return self.error = result.error ?? Errors.authorizationFailed

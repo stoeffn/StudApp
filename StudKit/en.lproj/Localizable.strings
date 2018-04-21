@@ -169,7 +169,6 @@
 "Error Signing In" = "Error Signing In";
 "It seems like your organization does not support StudApp anymore." = "It seems your this organization does not support StudApp anymore.";
 "There was an error authorizing StudApp to access your organization." = "There was an error authorizing StudApp to access your organization.";
-"Invalid Server Callback." = "Invalid Server Callback.";
 
 // MARK: Color Picker
 
@@ -224,7 +223,7 @@
 "In this course, you will learn the basics of computer programming." = "In this course, you will learn the basics of computer programming.";
 "Please refer to https://google.com/ if you have any questions." = "Please refer to https://google.com/ if you have any questions.";
 
-// MARK: Annoucements
+// MARK: Announcements
 
 "Remember to Bring Your Laptops!" = "Remember to Bring Your Laptops!";
 

@@ -83,8 +83,6 @@ extension AboutViewModel: DataSourceSection {
         (title: "Rasmus Fuhse", description: "API Support and Technical Expertise", url: nil),
         (title: "Stud.IP e.V.", description: "Development of APIs", url: URL(string: "http://studip.de/")),
         (title: "icons8", description: "Glyphs", url: URL(string: "https://icons8.com/")),
-        (title: "Swifter", description: "Tiny HTTP server engine",
-         url: URL(string: "https://github.com/httpswift/swifter/blob/stable/LICENSE")),
     ]
 
     public var numberOfRows: Int {
