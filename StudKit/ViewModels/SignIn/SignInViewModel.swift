@@ -38,7 +38,7 @@ public final class SignInViewModel: NSObject {
 
     @objc
     public enum State: Int {
-        case updatingCredentials, updatingRequestToken, authorizing, updatingAccessToken, signingIn, signedIn
+        case updatingCredentials, updatingRequestToken, authorizing, updatingAccessToken, signingIn, signedIn, canceled
     }
 
     public let organization: Organization
@@ -79,6 +79,10 @@ public final class SignInViewModel: NSObject {
         updateAccessToken(withCallbackUrl: url)
     }
 
+    public func cancel() {
+        state = .canceled
+    }
+
     public func retry() {
         switch state {
         case .updatingCredentials:
@@ -90,7 +94,7 @@ public final class SignInViewModel: NSObject {
             updateAccessToken(withCallbackUrl: url)
         case .signingIn:
             signIn()
-        case .authorizing, .signedIn:
+        case .authorizing, .signedIn, .canceled:
             break
         }
     }
@@ -131,7 +135,9 @@ public final class SignInViewModel: NSObject {
 
         oAuth1.createAccessToken(fromAuthorizationCallbackUrl: url) { result in
             guard result.isSuccess else {
-                return self.error = result.error ?? Errors.authorizationFailed
+                let error = result.error ?? Errors.authorizationFailed
+                guard case OAuth1<StudIpOAuth1Routes>.Errors.missingVerifier = error else { return self.error = error }
+                return self.cancel()
             }
 
             self.state = .signingIn

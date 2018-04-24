@@ -42,7 +42,8 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
     enum Errors: Error {
         case alreadyAuthorized
         case notAuthorized
-        case noServiceName
+        case missingVerifier
+        case missingServiceName
     }
 
     // MARK: - Life Cycle
@@ -136,9 +137,7 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
         guard !isAuthorized else { return completion(.failure(Errors.alreadyAuthorized)) }
 
         guard let verifier = decodeVerifier(fromAuthorizationCallbackUrl: url) else {
-            let context = DecodingError.Context(codingPath: [CodingKeys.verifier], debugDescription: "")
-            let error = DecodingError.keyNotFound(CodingKeys.verifier, context)
-            return completion(.failure(error))
+            return completion(.failure(Errors.missingVerifier))
         }
         self.verifier = verifier
 
@@ -298,7 +297,7 @@ extension OAuth1: PersistableApiAuthorizing {
 
     func persistCredentials() throws {
         guard isAuthorized, let token = token, let tokenSecret = tokenSecret else { throw Errors.notAuthorized }
-        guard let service = service, !service.isEmpty else { throw Errors.noServiceName }
+        guard let service = service, !service.isEmpty else { throw Errors.missingServiceName }
 
         let keychainService = ServiceContainer.default[KeychainService.self]
         try keychainService.save(password: consumerKey, for: service, account: CodingKeys.consumerKey.rawValue)
@@ -308,7 +307,7 @@ extension OAuth1: PersistableApiAuthorizing {
     }
 
     func removeCredentials() throws {
-        guard let service = service, !service.isEmpty else { throw Errors.noServiceName }
+        guard let service = service, !service.isEmpty else { throw Errors.missingServiceName }
 
         let keychainService = ServiceContainer.default[KeychainService.self]
         try keychainService.delete(from: service, account: CodingKeys.consumerKey.rawValue)

@@ -157,6 +157,8 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
         case .signedIn:
             UINotificationFeedbackGenerator().notificationOccurred(.success)
             performSegue(withRoute: .unwindToApp)
+        case .canceled:
+            performSegue(withRoute: .unwindToSignIn)
         }
     }
 
@@ -186,7 +188,7 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
             Targets.current.open(url: url, completion: nil)
         }))
         controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: { _ in
-            self.dismiss(animated: true, completion: nil)
+            self.viewModel.cancel()
         }))
         controller.popoverPresentationController?.sourceView = iconView
         controller.popoverPresentationController?.sourceRect = iconView.bounds
@@ -201,13 +203,13 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
         presentedViewController?.dismiss(animated: true, completion: nil)
 
         guard let url = notification.userInfo?[Notification.Name.safariViewControllerDidLoadAppUrlKey] as? URL else {
-            return performSegue(withRoute: .unwindToSignIn)
+            return viewModel.cancel()
         }
 
         viewModel.finishAuthorization(with: url)
     }
 
     func safariViewControllerDidFinish(_: SFSafariViewController) {
-        performSegue(withRoute: .unwindToSignIn)
+        viewModel.cancel()
     }
 }
