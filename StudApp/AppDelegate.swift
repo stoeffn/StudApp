@@ -109,11 +109,6 @@ extension AppDelegate: UIApplicationDelegate {
     // MARK: Opening a URL-Specified Resource
 
     func application(_: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
-        guard
-            let sourceApplication = options[.sourceApplication] as? String,
-            sourceApplication == safariServicesBundleIdentifier
-        else { return false }
-
         NotificationCenter.default.post(name: .safariViewControllerDidLoadAppUrl, object: self, userInfo: [
             Notification.Name.safariViewControllerDidLoadAppUrlKey: url,
         ])

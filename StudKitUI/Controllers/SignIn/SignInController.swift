@@ -163,31 +163,48 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
     // MARK: - Authorizing the Application
 
     private func authorize(at url: URL) {
-        guard #available(iOSApplicationExtension 11.0, *), Targets.current == .app else {
-            let controller = htmlContentService.safariViewController(for: url)
+        let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        controller.addAction(UIAlertAction(title: "Authenticated Session", style: .default, handler: { _ in
+            guard #available(iOSApplicationExtension 11.0, *), Targets.current == .app else { return }
+
+            let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { url, _ in
+                self.authenticationSession = nil
+
+                guard let url = url else { return self.performSegue(withRoute: .unwindToSignIn) }
+                self.viewModel.finishAuthorization(with: url)
+            }
+            session.start()
+
+            self.authenticationSession = session
+        }))
+        controller.addAction(UIAlertAction(title: "Safari Controller", style: .default, handler: { _ in
+            let controller = self.htmlContentService.safariViewController(for: url)
             controller.delegate = self
-            return present(controller, animated: true, completion: nil)
-        }
+            self.present(controller, animated: true, completion: nil)
+        }))
+        controller.addAction(UIAlertAction(title: "Safari", style: .default, handler: { _ in
+            Targets.current.open(url: url, completion: nil)
+        }))
+        controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        controller.popoverPresentationController?.sourceView = iconView
+        controller.popoverPresentationController?.sourceRect = iconView.bounds
 
-        let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { url, _ in
-            self.authenticationSession = nil
-
-            guard let url = url else { return self.performSegue(withRoute: .unwindToSignIn) }
-            self.viewModel.finishAuthorization(with: url)
-        }
-        session.start()
-
-        authenticationSession = session
+        present(controller, animated: true, completion: nil)
     }
 
     // MARK: - Notifications
 
     @objc
-    private func safariViewControllerDidLoadAppUrl(notification _: Notification) {
+    private func safariViewControllerDidLoadAppUrl(notification: Notification) {
         presentedViewController?.dismiss(animated: true, completion: nil)
 
-        guard viewModel.state == .authorizing else { return }
-        performSegue(withRoute: .unwindToSignIn)
+        guard let url = notification.userInfo?[Notification.Name.safariViewControllerDidLoadAppUrlKey] as? URL else {
+            return performSegue(withRoute: .unwindToSignIn)
+        }
+
+        viewModel.finishAuthorization(with: url)
     }
 
     func safariViewControllerDidFinish(_: SFSafariViewController) {
