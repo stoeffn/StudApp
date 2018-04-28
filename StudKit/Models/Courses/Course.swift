@@ -138,7 +138,7 @@ extension Course {
     }
 
     public var nextEvent: Event? {
-        let predicate = NSPredicate(format: "course == %@ AND endsAt >= %@", self, Date() as CVarArg)
+        let predicate = NSPredicate(format: "isCanceled == NO AND course == %@ AND endsAt >= %@", self, Date() as CVarArg)
         let fetchRequest = Event.fetchRequest(predicate: predicate, sortDescriptors: Event.defaultSortDescriptors, limit: 1, offset: 0)
         return (try? managedObjectContext?.fetch(fetchRequest).first) ?? nil
     }

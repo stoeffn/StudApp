@@ -49,9 +49,7 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
             },
             viewModel.observe(\.error) { [weak self] _, _ in
                 guard let `self` = self, let error = self.viewModel.error else { return }
-                self.animateWithSpring {
-                    self.isActivityIndicatorHidden = true
-                }
+                self.animateWithSpring { self.isActivityIndicatorHidden = true }
                 self.present(self.controller(for: error), animated: true, completion: nil)
             },
             viewModel.organization.observe(\.iconData, options: [.initial]) { [weak self] _, _ in
