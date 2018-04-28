@@ -40,7 +40,7 @@ public final class EventListViewModel: FetchedResultsControllerDataSource {
         sectionNameKeyPath: "daysSince1970", cacheName: nil)
 
     public func section(from sectionInfo: NSFetchedResultsSectionInfo) -> Section? {
-        return (sectionInfo.objects?.first as? Event)?.startsAt.startOfDay
+        return (sectionInfo.objects?.first as? Event)?.startsAt
     }
 
     public func fetch() {
@@ -55,7 +55,7 @@ public final class EventListViewModel: FetchedResultsControllerDataSource {
     }
 
     public func sectionIndex(for date: Date) -> Int? {
-        return controller.sections?.index { self.section(from: $0) == date.startOfDay }
+        return controller.sections?.index { self.section(from: $0)?.startOfDay == date.startOfDay }
     }
 
     public var nowIndexPath: IndexPath? {
