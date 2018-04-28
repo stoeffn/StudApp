@@ -125,7 +125,7 @@ To give you a broad overview, here are the frameworks and libraries used in _Stu
 * `XCTest`—testing my app
 
 #### Third-Party
-* [Swifter](https://github.com/httpswift/swifter)—Spinning up a simple redirect server needed when signing in
+_None_
 
 ## Testing
 Ensuring quality requires automated testing. I use _XCTest_ to unit-test my models with a focus on parsing API responses as well as updating and fetching data.
