@@ -168,11 +168,11 @@ extension DateTabBarView: UICollectionViewDelegateFlowLayout {
 
     public func scrollViewDidEndScrollingAnimation(_: UIScrollView) {
         isScrolling = false
-        updateSelection()
+        updateSelection(forced: true)
     }
 
     public func scrollViewWillBeginDecelerating(_: UIScrollView) {
-        updateSelection(forced: false)
+        updateSelection()
     }
 
     public func scrollViewDidEndDecelerating(_: UIScrollView) {

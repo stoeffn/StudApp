@@ -58,6 +58,7 @@ final class CourseController: UITableViewController, Routable {
 
         let navigationController = splitViewController?.detailNavigationController ?? self.navigationController
         (navigationController as? BorderlessNavigationController)?.usesDefaultAppearance = true
+        (navigationController as? BorderlessNavigationController)?.toolBarView = nil
 
         tableView.tableHeaderView?.layoutIfNeeded()
         tableView.tableHeaderView = tableView.tableHeaderView

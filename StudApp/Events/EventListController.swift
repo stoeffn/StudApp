@@ -75,13 +75,6 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         }
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        let navigationController = splitViewController?.detailNavigationController ?? self.navigationController
-        (navigationController as? BorderlessNavigationController)?.toolBarView = nil
-    }
-
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         let isTopController = self == self.navigationController?.topViewController
 

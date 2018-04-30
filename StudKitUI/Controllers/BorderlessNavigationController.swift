@@ -50,9 +50,7 @@ public final class BorderlessNavigationController: UINavigationController {
         super.viewWillTransition(to: size, with: coordinator)
 
         /// Set the status bar background view, which makes for the blur effect, behind the status bar at all times.
-        coordinator.animateAlongsideTransition(in: navigationController?.view, animation: { _ in
-            self.updateLayout()
-        }, completion: nil)
+        coordinator.animateAlongsideTransition(in: navigationController?.view, animation: { _ in self.updateLayout() }, completion: nil)
     }
 
     public override func viewDidLayoutSubviews() {
@@ -71,27 +69,39 @@ public final class BorderlessNavigationController: UINavigationController {
 
     public var toolBarView: UIView? {
         willSet {
-            guard newValue != toolBarView else { return }
-            toolBarView?.removeFromSuperview()
+            guard let toolBarView = toolBarView, newValue != toolBarView else { return }
+
+            UIView.transition(with: toolBarView, duration: UI.defaultAnimationDuration, options: [], animations: {
+                self.updateLayout(collapsedToolBar: true)
+            }, completion: nil)
         }
         didSet {
             guard oldValue != toolBarView, let toolBarView = toolBarView else { return }
+
             view.insertSubview(toolBarView, aboveSubview: navigationBarBackgroundBlurView)
-            updateLayout()
+            updateLayout(collapsedToolBar: true)
+
+            UIView.transition(with: toolBarView, duration: UI.defaultAnimationDuration, options: [], animations: {
+                self.updateLayout()
+            }, completion: nil)
         }
     }
 
     /// Whether to use the default navigation bar appearance with background and hairline.
     public var usesDefaultAppearance: Bool = false {
         didSet {
-            updateAppearance()
-            updateLayout()
+            UIView.animate(withDuration: UI.defaultAnimationDuration) {
+                self.updateAppearance()
+                self.updateLayout()
+            }
         }
     }
 
     // Whether the navigation bar background view is hidden.
     public var isNavigationBarBackgroundHidden: Bool = false {
-        didSet { updateAppearance() }
+        didSet {
+            UIView.animate(withDuration: UI.defaultAnimationDuration) { self.updateAppearance() }
+        }
     }
 
     /// View with a light blur effect to be placed beneath the status and navigation bar. With no content behind it, it appears
@@ -119,17 +129,21 @@ public final class BorderlessNavigationController: UINavigationController {
     }
 
     /// Update the navigation bar background views' frames. Needs to be called every time the layout changes.
-    public func updateLayout() {
+    public func updateLayout(collapsedToolBar: Bool = false) {
         guard let navigationBarFrame = navigationBarBackgroundFrame else { return }
-
         let toolBarViewHeight = toolBarView?.bounds.height ?? 0
+
         let backgroundHeight = navigationBarFrame.height + toolBarViewHeight + additionalHeight
         let backgroundSize = CGSize(width: navigationBar.bounds.width, height: backgroundHeight)
         let backgroundFrame = CGRect(origin: navigationBarFrame.origin, size: backgroundSize)
-
         navigationBarBackgroundAlphaView.frame = backgroundFrame
         navigationBarBackgroundBlurView.frame = backgroundFrame
-        toolBarView?.frame = CGRect(x: 0, y: navigationBarFrame.height, width: navigationBar.bounds.width, height: toolBarViewHeight)
+
+        let toolBarSize = CGSize(width: navigationBar.bounds.width, height: toolBarViewHeight)
+        let toolbarVerticalOffset = collapsedToolBar ? -toolBarViewHeight : 0
+        let toolBarFrame = CGRect(origin: CGPoint(x: 0, y: navigationBarFrame.height + toolbarVerticalOffset), size: toolBarSize)
+        toolBarView?.frame = toolBarFrame
+        toolBarView?.alpha = collapsedToolBar ? 0 : 1
     }
 
     private func updateAppearance() {

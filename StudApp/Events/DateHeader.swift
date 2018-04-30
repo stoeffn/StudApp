@@ -84,7 +84,7 @@ final class DateHeader: UITableViewHeaderFooterView {
         titleLabel.leadingAnchor.constraint(equalTo: spacingView.trailingAnchor, constant: 16).isActive = true
         titleLabel.trailingAnchor.constraint(equalTo: readableContentGuide.trailingAnchor).isActive = true
         titleLabel.bottomAnchor.constraint(equalTo: readableContentGuide.bottomAnchor).isActive = true
-        titleLabel.heightAnchor.constraint(equalTo: spacingView.heightAnchor, multiplier: 0.6).isActive = true
+        titleLabel.heightAnchor.constraint(equalTo: spacingView.heightAnchor, multiplier: 0.8).isActive = true
 
         updateAppearance()
 
