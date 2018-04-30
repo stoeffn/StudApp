@@ -163,35 +163,21 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
     // MARK: - Authorizing the Application
 
     private func authorize(at url: URL) {
-        let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        controller.addAction(UIAlertAction(title: "Authenticated Session", style: .default, handler: { _ in
-            guard #available(iOSApplicationExtension 11.0, *), Targets.current == .app else { return }
-
-            let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { url, _ in
-                self.authenticationSession = nil
-
-                guard let url = url else { return self.performSegue(withRoute: .unwindToSignIn) }
-                self.viewModel.finishAuthorization(with: url)
+        guard #available(iOSApplicationExtension 11.0, *), Targets.current == .app else {
+            guard let controller = htmlContentService.safariViewController(for: url) else {
+                return Targets.current.open(url: url, completion: nil)
             }
-            session.start()
-
-            self.authenticationSession = session
-        }))
-        controller.addAction(UIAlertAction(title: "Safari Controller", style: .default, handler: { _ in
-            guard let controller = self.htmlContentService.safariViewController(for: url) else { return }
             controller.delegate = self
-            self.present(controller, animated: true, completion: nil)
-        }))
-        controller.addAction(UIAlertAction(title: "Safari", style: .default, handler: { _ in
-            Targets.current.open(url: url, completion: nil)
-        }))
-        controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: { _ in
-            self.viewModel.cancel()
-        }))
-        controller.popoverPresentationController?.sourceView = iconView
-        controller.popoverPresentationController?.sourceRect = iconView.bounds
+            return present(controller, animated: true, completion: nil)
+        }
 
-        present(controller, animated: true, completion: nil)
+        let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { url, _ in
+            self.authenticationSession = nil
+            guard let url = url else { return self.performSegue(withRoute: .unwindToSignIn) }
+            self.viewModel.finishAuthorization(with: url)
+        }
+        session.start()
+        authenticationSession = session
     }
 
     // MARK: - Notifications
