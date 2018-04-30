@@ -55,6 +55,7 @@ final class EventCell: UITableViewCell {
     // MARK: - User Interface
 
     @IBOutlet var startsAtLabel: UILabel!
+
     @IBOutlet var endsAtLabel: UILabel!
 
     @IBOutlet var colorView: UIView!
@@ -62,7 +63,9 @@ final class EventCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
 
     @IBOutlet var cancellationContainer: UIStackView!
+
     @IBOutlet var cancellationLabel: UILabel!
+
     @IBOutlet var cancellationReasonLabel: UILabel!
 
     @IBOutlet var locationLabel: UILabel!
@@ -75,5 +78,12 @@ final class EventCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         colorView.backgroundColor = event.course.color
+    }
+
+    var showsTimes: Bool = true {
+        didSet {
+            startsAtLabel.isHidden = !showsTimes
+            endsAtLabel.isHidden = !showsTimes
+        }
     }
 }

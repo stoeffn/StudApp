@@ -233,8 +233,13 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let viewModel = viewModel else { fatalError() }
 
+        let event = viewModel[rowAt: indexPath]
+        let previousEvent = indexPath.row > 0 ? viewModel[rowAt: IndexPath(row: indexPath.row - 1, section: indexPath.section)] : nil
+        let hasSameTimesAsPreviousEvent = event.startsAt == previousEvent?.startsAt && event.endsAt == previousEvent?.endsAt
+
         let cell = tableView.dequeueReusableCell(withIdentifier: EventCell.typeIdentifier, for: indexPath)
-        (cell as? EventCell)?.event = viewModel[rowAt: indexPath]
+        (cell as? EventCell)?.event = event
+        (cell as? EventCell)?.showsTimes = !hasSameTimesAsPreviousEvent
         cell.selectionStyle = viewModel.container is Course ? .none : .default
         cell.accessoryType = viewModel.container is Course ? .none : .disclosureIndicator
         return cell
