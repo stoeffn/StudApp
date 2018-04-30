@@ -162,7 +162,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     private var dateTabBarUpdatesContinuously = true
 
     private func reloadDateTabBar() {
-        dateTabBar.isDateEnabled = { [weak self] date in self?.viewModel?.contains(date) ?? false }
+        dateTabBar.isDateEnabled = { [weak self] date in self?.viewModel?.sectionIndex(for: date) != nil }
 
         guard let viewModel = viewModel, dateTabBar != nil, viewModel.numberOfSections > 0 else { return }
         dateTabBar.didSelectDate = didSelect

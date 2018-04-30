@@ -55,14 +55,17 @@ public final class EventListViewModel: FetchedResultsControllerDataSource {
     }
 
     public func sectionIndex(for date: Date) -> Int? {
-        return controller.sections?.index { self.section(from: $0)?.startOfDay == date.startOfDay }
+        return controller.sections?.index { sectionInfo in
+            guard let sectionDate = self.section(from: sectionInfo) else { return false }
+            return sectionDate.isInSameDay(as: date)
+        }
     }
 
     public var nowIndexPath: IndexPath? {
         let today = Date()
 
         let sectionIndex = enumerated()
-            .filter { $0.element >= today.startOfDay }
+            .filter { $0.element.isInSameDay(as: today) }
             .first?
             .offset
         guard let section = sectionIndex else { return nil }

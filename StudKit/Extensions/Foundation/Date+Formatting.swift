@@ -73,6 +73,11 @@ public extension Date {
         return Calendar.current.date(from: components) ?? self
     }
 
+    /// Returns whether this date is within the same day as another date.
+    public func isInSameDay(as date: Date) -> Bool {
+        return Calendar.current.isDate(self, inSameDayAs: date)
+    }
+
     /// Returns this date as a formatted string using the formatter given.
     public func formatted(using formatter: DateFormatter) -> String {
         return formatter.string(from: self)
