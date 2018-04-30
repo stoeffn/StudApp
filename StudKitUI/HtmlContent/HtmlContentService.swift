@@ -58,7 +58,8 @@ public final class HtmlContentService: NSObject {
         return view
     }
 
-    public func safariViewController(for url: URL) -> SFSafariViewController {
+    public func safariViewController(for url: URL) -> SFSafariViewController? {
+        guard ["http", "https"].contains(url.scheme) else { return nil }
         let controller = SFSafariViewController(url: url)
         controller.preferredControlTintColor = UI.Colors.tint
         return controller

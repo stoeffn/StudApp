@@ -88,7 +88,7 @@ final class PreviewController: QLPreviewController, Routable {
     // MARK: - Utilities
 
     static func controllerForDownloadOrPreview(_ file: File, delegate: QLPreviewControllerDelegate,
-                                               handler: @escaping (UIViewController) -> Void) {
+                                               handler: @escaping (UIViewController?) -> Void) {
         if let externalUrl = file.externalUrl, !file.isLocationSecure {
             return handler(ServiceContainer.default[HtmlContentService.self].safariViewController(for: externalUrl))
         }

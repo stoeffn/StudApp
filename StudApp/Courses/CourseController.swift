@@ -17,6 +17,7 @@
 //
 
 import MobileCoreServices
+import SafariServices
 import QuickLook
 import StudKit
 import StudKitUI
@@ -338,6 +339,7 @@ final class CourseController: UITableViewController, Routable {
         case .documents?:
             guard let cell = tableView.cellForRow(at: indexPath) as? FileCell, !cell.file.isFolder else { return }
             PreviewController.controllerForDownloadOrPreview(cell.file, delegate: self) { controller in
+                guard let controller = controller else { return }
                 self.present(controller, animated: true, completion: nil)
             }
         default:
@@ -461,7 +463,9 @@ extension CourseController: UIViewControllerPreviewingDelegate, QLPreviewControl
 
 extension CourseController: UITextViewDelegate {
     public func textView(_: UITextView, shouldInteractWith url: URL, in _: NSRange, interaction _: UITextItemInteraction) -> Bool {
-        let safariController = ServiceContainer.default[HtmlContentService.self].safariViewController(for: url)
+        guard let safariController = ServiceContainer.default[HtmlContentService.self].safariViewController(for: url) else {
+            return true
+        }
         present(safariController, animated: true, completion: nil)
         return false
     }

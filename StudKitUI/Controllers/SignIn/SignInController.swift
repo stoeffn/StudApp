@@ -178,7 +178,7 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
             self.authenticationSession = session
         }))
         controller.addAction(UIAlertAction(title: "Safari Controller", style: .default, handler: { _ in
-            let controller = self.htmlContentService.safariViewController(for: url)
+            guard let controller = self.htmlContentService.safariViewController(for: url) else { return }
             controller.delegate = self
             self.present(controller, animated: true, completion: nil)
         }))

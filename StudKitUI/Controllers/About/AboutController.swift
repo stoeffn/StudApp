@@ -168,9 +168,11 @@ final class AboutController: UITableViewController, Routable {
 
         switch Sections(rawValue: indexPath.section) {
         case .links? where cell === websiteCell:
-            present(htmlContentService.safariViewController(for: App.Urls.website), animated: true, completion: nil)
+            guard let controller = htmlContentService.safariViewController(for: App.Urls.website) else { break }
+            present(controller, animated: true, completion: nil)
         case .links? where cell === privacyCell:
-            present(htmlContentService.safariViewController(for: App.Urls.privacyPolicy), animated: true, completion: nil)
+            guard let controller = htmlContentService.safariViewController(for: App.Urls.privacyPolicy) else { break }
+            present(controller, animated: true, completion: nil)
         case .feedback? where cell === sendFeedbackCell:
             openFeedbackMailComposer()
             tableView.deselectRow(at: indexPath, animated: true)
@@ -181,8 +183,11 @@ final class AboutController: UITableViewController, Routable {
             presentTips()
             tableView.deselectRow(at: indexPath, animated: true)
         case .thanks?:
-            guard let url = viewModel[rowAt: indexPath.row].url else { break }
-            present(htmlContentService.safariViewController(for: url), animated: true, completion: nil)
+            guard
+                let url = viewModel[rowAt: indexPath.row].url,
+                let controller = htmlContentService.safariViewController(for: url)
+            else { break }
+            present(controller, animated: true, completion: nil)
         default:
             break
         }

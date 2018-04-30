@@ -155,7 +155,8 @@ final class AppController: UITabBarController {
                 self.performSegue(withRoute: .about)
             },
             UIAlertAction(title: "Help".localized, style: .default) { _ in
-                self.present(self.htmlContentService.safariViewController(for: App.Urls.help), animated: true, completion: nil)
+                guard let controller = self.htmlContentService.safariViewController(for: App.Urls.help) else { return }
+                self.present(controller, animated: true, completion: nil)
             },
             UIAlertAction(title: "Settings".localized, style: .default) { _ in
                 self.performSegue(withRoute: .settings)

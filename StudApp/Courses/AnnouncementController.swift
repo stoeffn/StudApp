@@ -70,8 +70,11 @@ extension AnnouncementController: WKNavigationDelegate {
         guard navigationAction.navigationType != .other else { return decisionHandler(.allow) }
 
         defer { decisionHandler(.cancel) }
-        guard let url = navigationAction.request.url else { return }
-        present(htmlContentService.safariViewController(for: url), animated: true, completion: nil)
+        guard
+            let url = navigationAction.request.url,
+            let controller = htmlContentService.safariViewController(for: url)
+        else { return }
+        present(controller, animated: true, completion: nil)
     }
 
     func webView(_: WKWebView, didFinish _: WKNavigation!) {

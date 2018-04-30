@@ -61,7 +61,7 @@ final class SafariActivity: UIActivity, ByTypeNameIdentifiable {
             return UIApplication.shared.open(url, options: [:], completionHandler: activityDidFinish)
         }
 
-        let safariController = htmlContentService.safariViewController(for: url)
+        guard let safariController = htmlContentService.safariViewController(for: url) else { return }
         controller.present(safariController, animated: true) {
             self.activityDidFinish(true)
         }
