@@ -185,7 +185,7 @@ public extension File {
         switch location {
         case .invalid: return false
         case .studIp: return true
-        case .external: return !["http", "ftp"].contains(externalUrl?.scheme ?? "")
+        case .external: return !["http", "ftp"].contains(externalUrl?.scheme)
         }
     }
 

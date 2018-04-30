@@ -42,7 +42,7 @@ public final class DownloadListViewModel: FetchedResultsControllerDataSource {
 
     public private(set) lazy var controller: NSFetchedResultsController<File> = NSFetchedResultsController(
         fetchRequest: user.downloadsFetchRequest, managedObjectContext: coreDataService.viewContext,
-        sectionNameKeyPath: "course.title", cacheName: nil)
+        sectionNameKeyPath: "course.sectionId", cacheName: nil)
 
     public func section(from sectionInfo: NSFetchedResultsSectionInfo) -> Course? {
         return (sectionInfo.objects?.first as? File)?.course

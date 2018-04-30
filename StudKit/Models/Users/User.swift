@@ -149,7 +149,8 @@ extension User {
 
     public var downloadsFetchRequest: NSFetchRequest<File> {
         let sortDescriptors = [
-            NSSortDescriptor(keyPath: \File.course.title, ascending: true),
+            NSSortDescriptor(keyPath: \File.course.groupId, ascending: true),
+            NSSortDescriptor(key: "course.title", ascending: true, selector: #selector(NSString.localizedStandardCompare(_:))),
         ] + File.defaultSortDescriptors
         return File.fetchRequest(predicate: downloadsPredicate(), sortDescriptors: sortDescriptors,
                                  relationshipKeyPathsForPrefetching: ["state"])

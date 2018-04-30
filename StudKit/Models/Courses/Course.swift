@@ -142,6 +142,11 @@ extension Course {
         let fetchRequest = Event.fetchRequest(predicate: predicate, sortDescriptors: Event.defaultSortDescriptors, limit: 1, offset: 0)
         return (try? managedObjectContext?.fetch(fetchRequest).first) ?? nil
     }
+
+    /// Internal ordering id used for ordering by both group and title.
+    @objc var sectionId: String {
+        return "\(groupId)-\(title)"
+    }
 }
 
 // MARK: - Files Container
