@@ -58,14 +58,15 @@ extension FolderResponse: Decodable {
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        let isSubfolder = try container.superDecoder().codingPath.first?.stringValue == CodingKeys.folders.stringValue
         id = try container.decode(String.self, forKey: .id)
         userId = try container.decodeIfPresent(String.self, forKey: .userId)?.nilWhenEmpty
         name = try container.decode(String.self, forKey: .name)
         createdAt = try StudIp.decodeDate(in: container, forKey: .createdAt)
         modifiedAt = try StudIp.decodeDate(in: container, forKey: .modifiedAt)
         summary = try container.decodeIfPresent(String.self, forKey: .summary)?.nilWhenEmpty
-        folders = try container.decodeIfPresent(Set<FolderResponse>.self, forKey: .folders)
-        documents = try container.decodeIfPresent(Set<DocumentResponse>.self, forKey: .documents)
+        folders = !isSubfolder ? try container.decodeIfPresent(Set<FolderResponse>.self, forKey: .folders) ?? [] : nil
+        documents = !isSubfolder ? try container.decodeIfPresent(Set<DocumentResponse>.self, forKey: .documents) ?? [] : nil
     }
 }
 
