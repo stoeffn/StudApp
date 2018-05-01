@@ -54,15 +54,13 @@ public final class PersistentHistoryService {
     public func mergeHistory(into context: NSManagedObjectContext) throws {
         guard #available(iOSApplicationExtension 11.0, *), Distributions.current != .uiTest else { return }
 
-        let historyFetchRequest = NSPersistentHistoryChangeRequest
-            .fetchHistory(after: Targets.current.lastHistoryTransactionTimestamp ?? .distantPast)
+        let mergedAt = Targets.current.lastHistoryTransactionTimestamp ?? .distantPast
+        let historyFetchRequest = NSPersistentHistoryChangeRequest.fetchHistory(after: mergedAt)
 
         guard
             let historyResult = try context.execute(historyFetchRequest) as? NSPersistentHistoryResult,
             let history = historyResult.result as? [NSPersistentHistoryTransaction]
-        else {
-            fatalError("Cannot convert persistent history fetch result to transactions.")
-        }
+        else { fatalError("Cannot convert persistent history fetch result to transactions.") }
 
         for transaction in history {
             context.mergeChanges(fromContextDidSave: transaction.objectIDNotification())

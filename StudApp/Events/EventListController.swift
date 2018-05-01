@@ -73,6 +73,11 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
             tableView.scrollToRow(at: nowIndexPath, at: .top, animated: true)
             updateDateTabBarSelection()
         }
+
+        // Hack needed until navigation bar tool bar support has been refactored.
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(Int(UI.defaultAnimationDuration * 1000))) {
+            self.updateDateTabBarSelection()
+        }
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
