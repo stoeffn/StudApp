@@ -108,7 +108,7 @@ extension AppDelegate: UIApplicationDelegate {
 
     // MARK: Opening a URL-Specified Resource
 
-    func application(_: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
+    func application(_: UIApplication, open url: URL, options _: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
         NotificationCenter.default.post(name: .safariViewControllerDidLoadAppUrl, object: self, userInfo: [
             Notification.Name.safariViewControllerDidLoadAppUrlKey: url,
         ])

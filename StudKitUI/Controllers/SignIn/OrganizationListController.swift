@@ -123,7 +123,7 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         "It just needs to be activated by an admin of your organization.".localized,
         "Please contact me at %@ if you would like to support StudApp.".localized(App.feedbackMailAddress),
         "",
-        "Note that StudApp requires Stud.IP 4 or newer.".localized
+        "Note that StudApp requires Stud.IP 4 or newer.".localized,
     ].joined(separator: "\n")
 
     override func numberOfSections(in _: UITableView) -> Int {

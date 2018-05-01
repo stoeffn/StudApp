@@ -105,7 +105,7 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
         }
     }
 
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case Sections.settings.rawValue: return "Settings".localized
         case Sections.semesters.rawValue: return "Semesters".localized

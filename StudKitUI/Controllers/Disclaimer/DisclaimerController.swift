@@ -50,9 +50,9 @@ final class DisclaimerController: UIViewController, Routable {
 
     // MARK: - User Interface
 
-    @IBOutlet weak var containerView: UIView!
+    @IBOutlet var containerView: UIView!
 
-    @IBOutlet weak var disclaimerView: UITextView!
+    @IBOutlet var disclaimerView: UITextView!
 
     // MARK: - User Interaction
 

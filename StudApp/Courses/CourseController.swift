@@ -17,8 +17,8 @@
 //
 
 import MobileCoreServices
-import SafariServices
 import QuickLook
+import SafariServices
 import StudKit
 import StudKitUI
 

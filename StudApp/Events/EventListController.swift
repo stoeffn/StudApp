@@ -81,7 +81,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        let isTopController = self == self.navigationController?.topViewController
+        let isTopController = self == navigationController?.topViewController
 
         if isTopController {
             let navigationController = splitViewController?.detailNavigationController as? BorderlessNavigationController
