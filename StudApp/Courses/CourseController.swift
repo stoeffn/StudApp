@@ -26,6 +26,7 @@ final class CourseController: UITableViewController, Routable {
     private var viewModel: CourseViewModel!
     private var announcementsViewModel: AnnouncementListViewModel!
     private var fileListViewModel: FileListViewModel!
+    private var updateNextEventTimer: Timer?
 
     // MARK: - Life Cycle
 
@@ -72,6 +73,8 @@ final class CourseController: UITableViewController, Routable {
 
         let navigationController = splitViewController?.detailNavigationController ?? self.navigationController
         (navigationController as? BorderlessNavigationController)?.usesDefaultAppearance = false
+
+        updateNextEventTimer?.invalidate()
     }
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -353,6 +356,16 @@ final class CourseController: UITableViewController, Routable {
     // MARK: - User Interface
 
     @IBOutlet var subtitleLabel: UILabel!
+
+    private func scheduleUpdateTimer(for event: Event) {
+        let timer = Timer(fire: event.endsAt, interval: 0, repeats: false) { [weak self] _ in
+            self?.tableView.reloadSections(IndexSet(integer: Sections.events.rawValue), with: .fade)
+        }
+        RunLoop.main.add(timer, forMode: .defaultRunLoopMode)
+
+        updateNextEventTimer?.invalidate()
+        updateNextEventTimer = timer
+    }
 
     // MARK: - User Interaction
 

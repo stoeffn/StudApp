@@ -33,12 +33,16 @@ final class DateHeader: UITableViewHeaderFooterView {
         initUserInterface()
     }
 
+    deinit {
+        updateTimer.invalidate()
+    }
+
     var date: Date! {
-        didSet {
-            let formattedDate = date.formattedAsRelativeDateFromNow
-            titleLabel.text = formattedDate
-            accessibilityLabel = formattedDate
-        }
+        didSet { updateLabel() }
+    }
+
+    private lazy var updateTimer = Timer(fire: Date().startOfDay, interval: 60 * 60 * 24, repeats: true) { [weak self] _ in
+        self?.updateLabel()
     }
 
     // MARK: - User Interface
@@ -93,11 +97,19 @@ final class DateHeader: UITableViewHeaderFooterView {
 
         NotificationCenter.default.addObserver(self, selector: #selector(reduceTransparencyDidChange(notification:)),
                                                name: .UIAccessibilityReduceTransparencyStatusDidChange, object: nil)
+
+        RunLoop.main.add(updateTimer, forMode: .defaultRunLoopMode)
     }
 
     private func updateAppearance() {
         let isTransparencyReduced = UIAccessibilityIsReduceTransparencyEnabled()
         whiteView.isHidden = !isTransparencyReduced
+    }
+
+    private func updateLabel() {
+        let formattedDate = date.formattedAsRelativeDateFromNow
+        titleLabel.text = formattedDate
+        accessibilityLabel = formattedDate
     }
 
     // MARK: - Notifications
