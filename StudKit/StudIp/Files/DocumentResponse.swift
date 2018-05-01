@@ -33,11 +33,14 @@ extension File.Location {
 }
 
 struct DocumentResponse: IdentifiableResponse {
+    static let extensionDelimiter = "."
+
     let id: String
     let location: File.Location
     let externalUrl: URL?
     let userId: String?
     let name: String
+    let mimeType: String?
     let createdAt: Date
     let modifiedAt: Date
     let summary: String?
@@ -45,13 +48,14 @@ struct DocumentResponse: IdentifiableResponse {
     let downloadCount: Int?
 
     init(id: String, location: File.Location = .invalid, externalUrl: URL? = nil, userId: String? = nil, name: String = "",
-         createdAt: Date = .distantPast, modifiedAt: Date = .distantPast, summary: String? = nil, size: Int? = nil,
-         downloadCount: Int? = nil) {
+         mimeType: String? = nil, createdAt: Date = .distantPast, modifiedAt: Date = .distantPast, summary: String? = nil,
+         size: Int? = nil, downloadCount: Int? = nil) {
         self.id = id
         self.location = location
         self.externalUrl = externalUrl
         self.userId = userId
         self.name = name
+        self.mimeType = mimeType
         self.createdAt = createdAt
         self.modifiedAt = modifiedAt
         self.summary = summary
@@ -69,6 +73,7 @@ extension DocumentResponse: Decodable {
         case externalUrl = "url"
         case userId = "user_id"
         case name
+        case mimeType = "mime_type"
         case createdAt = "mkdate"
         case modifiedAt = "chdate"
         case summary = "description"
@@ -83,6 +88,7 @@ extension DocumentResponse: Decodable {
         location = File.Location(rawLocation: try? container.decode(String.self, forKey: .location), externalUrl: externalUrl)
         userId = try container.decodeIfPresent(String.self, forKey: .userId)?.nilWhenEmpty
         name = try container.decode(String.self, forKey: .name)
+        mimeType = try container.decodeIfPresent(String.self, forKey: .mimeType)
         createdAt = try StudIp.decodeDate(in: container, forKey: .createdAt)
         modifiedAt = try StudIp.decodeDate(in: container, forKey: .modifiedAt)
         summary = try container.decodeIfPresent(String.self, forKey: .summary)?.nilWhenEmpty
@@ -100,11 +106,11 @@ extension DocumentResponse {
         document.location = location
         document.externalUrl = externalUrl
         document.organization = course.organization
-        document.typeIdentifier = typeIdentifier
+        document.typeIdentifier = typeIdentifier ?? ""
         document.course = course
         document.parent = parent ?? document.parent
         document.owner = try User.fetch(byId: userId, in: context)
-        document.name = name
+        document.name = extendedName
         document.createdAt = createdAt
         document.modifiedAt = modifiedAt
         document.size = size ?? -1
@@ -113,9 +119,24 @@ extension DocumentResponse {
         return document
     }
 
-    var typeIdentifier: String {
-        guard let fileExtension = name.components(separatedBy: ".").last else { return "" }
-        let typeIdentifier = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension as CFString, nil)
-        return typeIdentifier?.takeRetainedValue() as String? ?? ""
+    var extendedName: String {
+        guard
+            !name.contains(DocumentResponse.extensionDelimiter),
+            let typeIdentifier = typeIdentifier,
+            let `extension` = UTTypeCopyPreferredTagWithClass(typeIdentifier as CFString, kUTTagClassFilenameExtension)
+        else { return name }
+        return "\(name)\(DocumentResponse.extensionDelimiter)\(`extension`.takeRetainedValue())"
+    }
+
+    var typeIdentifier: String? {
+        guard let mimeType = mimeType else {
+            guard let fileExtension = name.components(separatedBy: DocumentResponse.extensionDelimiter).last else { return nil }
+
+            let typeIdentifier = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileExtension as CFString, nil)
+            return typeIdentifier?.takeRetainedValue() as String?
+        }
+
+        let typeIdentifier = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, mimeType as CFString, nil)
+        return typeIdentifier?.takeRetainedValue() as String?
     }
 }
