@@ -64,7 +64,7 @@ public extension Date {
     ///
     /// - returns: The first moment of the given date.
     public var startOfDay: Date {
-        return Calendar(identifier: .gregorian).startOfDay(for: self)
+        return Calendar.current.startOfDay(for: self)
     }
 
     /// The first day of the date's month.
@@ -110,9 +110,7 @@ public extension Date {
     ///
     /// - returns: "yesterday", "today", and "tomorrow", the weekdays for the next week, or defaults to a long date
     public var formattedAsRelativeDateFromNow: String {
-        let today = Calendar(identifier: .gregorian).startOfDay(for: Date())
-        let date = Calendar(identifier: .gregorian).startOfDay(for: self)
-        return date.formatted(asRelativeDateFrom: today)
+        return startOfDay.formatted(asRelativeDateFrom: Date().startOfDay)
     }
 
     /// Returns the difference from another date in days as relative date string.
