@@ -113,6 +113,7 @@ public final class DateTabBarView: UIView {
         else { return self.selectedDate = endsAt }
 
         self.selectedDate = newDate
+        didSelectDate?(newDate)
 
         guard let isDateEnabled = self.isDateEnabled, !isDateEnabled(newDate) else { return }
         accessibilityDecrement()
@@ -126,6 +127,7 @@ public final class DateTabBarView: UIView {
         else { return self.selectedDate = startsAt }
 
         self.selectedDate = newDate
+        didSelectDate?(newDate)
 
         guard let isDateEnabled = self.isDateEnabled, !isDateEnabled(newDate) else { return }
         accessibilityIncrement()
