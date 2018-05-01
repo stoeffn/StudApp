@@ -43,6 +43,7 @@
 "Sign Out" = "Abmelden";
 "Send Feedback" = "Feedback senden";
 "Open in Safari" = "In Safari öffnen";
+"Swipe down to refresh." = "Streiche nach unten, um zu aktualisieren.";
 
 // MARK: Generic Errors
 
@@ -136,7 +137,8 @@
 // MARK: Documents
 
 "Documents" = "Dokumente";
-"Empty Folder" = "Leerer Ordner";
+"Nothing to See Here" = "Hier gibt es nichts zu sehen";
+"This folder is empty." = "Dieser Ordner is leer.";
 "Something went wrong downloading \"%@\"" = "Beim Herunterladen von \"%@\" lief etwas schief";
 
 // MARK: Semesters

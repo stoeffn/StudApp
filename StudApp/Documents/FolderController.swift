@@ -181,17 +181,19 @@ final class FolderController: UITableViewController, Routable {
 
     @IBOutlet var emptyViewTitleLabel: UILabel!
 
+    @IBOutlet var emptyViewSubtitleLabel: UILabel!
+
     private func updateEmptyView() {
         guard view != nil else { return }
 
         let isEmpty = viewModel?.isEmpty ?? false
         let isLoaded = (viewModel.container as? File)?.state.childFilesUpdatedAt != nil
 
-        emptyViewTitleLabel.text = isLoaded ? "Empty Folder".localized : "Not Loaded".localized
+        emptyViewTitleLabel.text = isLoaded ? "Nothing to See Here".localized : "Not Loaded".localized
+        emptyViewSubtitleLabel.text = isLoaded ? "This folder is empty.".localized : "Swipe down to refresh.".localized
 
         tableView.backgroundView = isEmpty ? emptyView : nil
         tableView.separatorStyle = isEmpty ? .none : .singleLine
-        tableView.bounces = !isEmpty
 
         if let navigationBarHeight = navigationController?.navigationBar.bounds.height {
             emptyViewTopConstraint.constant = navigationBarHeight * 2 + 32

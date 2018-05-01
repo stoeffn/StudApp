@@ -43,6 +43,7 @@
 "Sign Out" = "Sign Out";
 "Send Feedback" = "Send Feedback";
 "Open in Safari" = "Open in Safari";
+"Swipe down to refresh." = "Swipe down to refresh.";
 
 // MARK: Generic Errors
 
@@ -136,7 +137,8 @@
 // MARK: Documents
 
 "Documents" = "Documents";
-"Empty Folder" = "Empty Folder";
+"Nothing to See Here" = "Nothing to See Here";
+"This folder is empty." = "This folder is empty.";
 "Something went wrong downloading \"%@\"" = "Something went wrong downloading \"%@\"";
 
 // MARK: Semesters

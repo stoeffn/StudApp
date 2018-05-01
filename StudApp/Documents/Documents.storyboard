@@ -25,7 +25,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="Ja2-LE-MzR">
-                            <rect key="frame" x="0.0" y="0.0" width="768" height="196"/>
+                            <rect key="frame" x="0.0" y="0.0" width="768" height="256"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FilesGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="geI-cb-iIV">
@@ -43,25 +43,34 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Empty Folder" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDi-kW-Y7K">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing to See Here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDi-kW-Y7K">
                                     <rect key="frame" x="8" y="149.5" width="752" height="20.5"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This folder is empty." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVY-Fo-Vjy">
+                                    <rect key="frame" x="205" y="175" width="359" height="18"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                    <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstItem="FVY-Fo-Vjy" firstAttribute="leading" secondItem="Ja2-LE-MzR" secondAttribute="leadingMargin" constant="197" id="6bB-xu-K5U"/>
                                 <constraint firstItem="hDi-kW-Y7K" firstAttribute="leading" secondItem="Ja2-LE-MzR" secondAttribute="leadingMargin" id="CCm-dJ-Niw"/>
                                 <constraint firstItem="hDi-kW-Y7K" firstAttribute="firstBaseline" secondItem="geI-cb-iIV" secondAttribute="baseline" multiplier="1.1" constant="24.5" symbolType="layoutAnchor" id="HGq-kr-gUg"/>
                                 <constraint firstItem="geI-cb-iIV" firstAttribute="centerX" secondItem="Ja2-LE-MzR" secondAttribute="centerX" id="Ili-iI-g6D"/>
+                                <constraint firstItem="FVY-Fo-Vjy" firstAttribute="firstBaseline" secondItem="hDi-kW-Y7K" secondAttribute="baseline" multiplier="1.025" constant="20" symbolType="layoutAnchor" id="Mu5-GR-z7l"/>
                                 <constraint firstAttribute="trailingMargin" secondItem="hDi-kW-Y7K" secondAttribute="trailing" id="Y8R-rA-ovH"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="FVY-Fo-Vjy" secondAttribute="trailing" constant="196" id="efi-m6-Wvm"/>
                                 <constraint firstItem="geI-cb-iIV" firstAttribute="top" secondItem="Ja2-LE-MzR" secondAttribute="top" constant="32" id="h9S-xN-zRk"/>
                             </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FileCell" rowHeight="72" id="MiK-aa-ddU" customClass="FileCell" customModule="StudApp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="224" width="768" height="72"/>
+                                <rect key="frame" x="0.0" y="284" width="768" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MiK-aa-ddU" id="hzQ-nn-Nfz">
                                     <rect key="frame" x="0.0" y="0.0" width="702" height="71.5"/>
@@ -331,6 +340,7 @@
                     </refreshControl>
                     <connections>
                         <outlet property="emptyView" destination="Ja2-LE-MzR" id="Vnp-LN-fPm"/>
+                        <outlet property="emptyViewSubtitleLabel" destination="FVY-Fo-Vjy" id="YNm-6k-gAF"/>
                         <outlet property="emptyViewTitleLabel" destination="hDi-kW-Y7K" id="dKD-DG-WoR"/>
                         <outlet property="emptyViewTopConstraint" destination="h9S-xN-zRk" id="TVX-Qd-dcn"/>
                     </connections>
