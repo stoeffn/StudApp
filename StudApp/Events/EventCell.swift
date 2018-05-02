@@ -38,7 +38,7 @@ final class EventCell: UITableViewCell {
 
             summaryLabel.isHidden = event.summary == nil
             summaryLabel.text = event.summary
-            summaryLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 2 : 1
+            summaryLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 5 : 3
 
             cancellationLabel.isHidden = !event.isCanceled
             cancellationLabel.text = "Canceled".localized

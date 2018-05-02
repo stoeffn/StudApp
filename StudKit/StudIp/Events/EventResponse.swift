@@ -20,6 +20,7 @@ import CoreData
 
 struct EventResponse: IdentifiableResponse {
     let id: String
+    let title: String?
     let courseId: String?
     let startsAt: Date
     let endsAt: Date
@@ -29,9 +30,11 @@ struct EventResponse: IdentifiableResponse {
     let summary: String?
     let category: String?
 
-    init(id: String, courseId: String? = nil, startsAt: Date = .distantPast, endsAt: Date = .distantPast, isCanceled: Bool = false,
-         cancellationReason: String? = nil, location: String? = nil, summary: String? = nil, category: String? = nil) {
+    init(id: String, title: String? = nil, courseId: String? = nil, startsAt: Date = .distantPast, endsAt: Date = .distantPast,
+         isCanceled: Bool = false, cancellationReason: String? = nil, location: String? = nil, summary: String? = nil,
+         category: String? = nil) {
         self.id = id
+        self.title = title
         self.courseId = courseId
         self.startsAt = startsAt
         self.endsAt = endsAt
@@ -48,6 +51,7 @@ struct EventResponse: IdentifiableResponse {
 extension EventResponse: Decodable {
     enum CodingKeys: String, CodingKey {
         case id = "event_id"
+        case title
         case courseId = "course"
         case startsAt = "start"
         case endsAt = "end"
@@ -61,6 +65,7 @@ extension EventResponse: Decodable {
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
+        title = try container.decodeIfPresent(String.self, forKey: .title)
         courseId = StudIp.transform(idPath: try container.decodeIfPresent(String.self, forKey: .courseId))
         startsAt = try StudIp.decodeDate(in: container, forKey: .startsAt)
         endsAt = try StudIp.decodeDate(in: container, forKey: .endsAt)
@@ -92,7 +97,10 @@ extension EventResponse {
         event.isCanceled = isCanceled
         event.cancellationReason = cancellationReason
         event.location = location
-        event.summary = summary
+        event.summary = try [
+            title?.replacingMatches(for: ",? *\(course.title)", with: ""),
+            summary
+        ].compactMap { $0 }.joined(separator: "—")
         event.category = category
         return event
     }
