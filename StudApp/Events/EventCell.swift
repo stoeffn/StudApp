@@ -42,8 +42,12 @@ final class EventCell: UITableViewCell {
 
             cancellationLabel.isHidden = !event.isCanceled
             cancellationLabel.text = "Canceled".localized
+
             cancellationReasonLabel.isHidden = event.cancellationReason == nil
             cancellationReasonLabel.text = event.cancellationReason
+
+            notEnrolledLabel?.isHidden = event.course != nil
+            notEnrolledLabel?.text = "Not Enrolled".localized
 
             locationLabel.isHidden = event.location == nil
             locationLabel.text = event.location
@@ -73,6 +77,8 @@ final class EventCell: UITableViewCell {
     @IBOutlet var cancellationLabel: UILabel!
 
     @IBOutlet var cancellationReasonLabel: UILabel!
+
+    @IBOutlet var notEnrolledLabel: UILabel?
 
     @IBOutlet var locationLabel: UILabel!
 

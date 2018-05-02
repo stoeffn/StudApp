@@ -170,20 +170,27 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ea3-F0-kRL">
-                                                            <rect key="frame" x="0.0" y="62.5" width="106" height="19.5"/>
+                                                            <rect key="frame" x="0.0" y="62.5" width="209" height="19.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Canceled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfa-A6-v9I" customClass="BadgeLabel" customModule="StudKitUI">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="57" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="65" height="17"/>
                                                                     <color key="backgroundColor" red="0.83921568629999999" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reason" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRd-4L-eOE" customClass="BadgeLabel" customModule="StudKitUI">
-                                                                    <rect key="frame" x="61" y="0.0" width="45" height="16"/>
+                                                                    <rect key="frame" x="69" y="0.0" width="53" height="17"/>
                                                                     <color key="backgroundColor" white="0.59999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Enrolled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmq-lS-hrK" customClass="BadgeLabel" customModule="StudKitUI">
+                                                                    <rect key="frame" x="126" y="0.0" width="83" height="17"/>
+                                                                    <color key="backgroundColor" red="1" green="0.74117647058823533" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -219,6 +226,7 @@ Gebäude 3703: Technische Informatik</string>
                                     <outlet property="colorView" destination="IlG-54-gIF" id="INj-MI-sNS"/>
                                     <outlet property="endsAtLabel" destination="f6P-D0-CJi" id="wrv-Qk-Kbf"/>
                                     <outlet property="locationLabel" destination="Abz-JA-Be0" id="L8B-ca-3iW"/>
+                                    <outlet property="notEnrolledLabel" destination="lmq-lS-hrK" id="TxM-cS-xmN"/>
                                     <outlet property="startsAtLabel" destination="75U-EO-shn" id="e42-IW-NfK"/>
                                     <outlet property="summaryLabel" destination="8Qy-4Z-DhP" id="Vvz-ZH-6rf"/>
                                     <outlet property="titleLabel" destination="kSZ-KN-NH2" id="jRt-vE-iYn"/>
