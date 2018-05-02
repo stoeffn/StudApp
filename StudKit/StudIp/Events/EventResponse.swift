@@ -97,10 +97,7 @@ extension EventResponse {
         event.isCanceled = isCanceled
         event.cancellationReason = cancellationReason
         event.location = location
-        event.summary = try [
-            title?.replacingMatches(for: ",? *\(course.title)", with: ""),
-            summary
-        ].compactMap { $0 }.joined(separator: "—")
+        event.summary = try courseId != nil ? title?.replacingMatches(for: ",? *\(course.title)", with: "") : summary
         event.category = category
         return event
     }
