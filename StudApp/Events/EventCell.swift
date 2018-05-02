@@ -34,14 +34,20 @@ final class EventCell: UITableViewCell {
             colorView.backgroundColor = event.course.color
 
             titleLabel.text = event.course.title
+            titleLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 3 : 2
 
-            cancellationContainer.isHidden = !event.isCanceled
+            summaryLabel.isHidden = event.summary == nil
+            summaryLabel.text = event.summary
+            summaryLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 2 : 1
+
+            cancellationLabel.isHidden = !event.isCanceled
             cancellationLabel.text = "Canceled".localized
             cancellationReasonLabel.isHidden = event.cancellationReason == nil
             cancellationReasonLabel.text = event.cancellationReason
 
-            locationLabel.isHidden = event.isCanceled || event.location == nil
+            locationLabel.isHidden = event.location == nil
             locationLabel.text = event.location
+            locationLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 5 : 3
 
             let fromToTimes = "from %@ to %@".localized(startsAt, endsAt)
             let atLocation = event.location != nil ? "at %@".localized(event.location ?? "") : nil
@@ -62,7 +68,7 @@ final class EventCell: UITableViewCell {
 
     @IBOutlet var titleLabel: UILabel!
 
-    @IBOutlet var cancellationContainer: UIStackView!
+    @IBOutlet var summaryLabel: UILabel!
 
     @IBOutlet var cancellationLabel: UILabel!
 
