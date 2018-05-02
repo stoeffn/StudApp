@@ -103,15 +103,17 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
     // MARK: - Navigation
 
-    override func shouldPerformSegue(withIdentifier _: String, sender _: Any?) -> Bool {
-        return viewModel?.container is User
+    override func shouldPerformSegue(withIdentifier _: String, sender: Any?) -> Bool {
+        if let cell = sender as? EventCell, cell.event.course != nil {
+            return viewModel?.container is User
+        }
+        return false
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let cell = sender as? EventCell {
-            return prepare(for: .course(cell.event.course), destination: segue.destination)
+        if let cell = sender as? EventCell, let course = cell.event.course {
+            return prepare(for: .course(course), destination: segue.destination)
         }
-
         prepareForRoute(using: segue, sender: sender)
     }
 
@@ -245,8 +247,8 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         let cell = tableView.dequeueReusableCell(withIdentifier: EventCell.typeIdentifier, for: indexPath)
         (cell as? EventCell)?.event = event
         (cell as? EventCell)?.showsTimes = !hasSameTimesAsPreviousEvent
-        cell.selectionStyle = viewModel.container is Course ? .none : .default
-        cell.accessoryType = viewModel.container is Course ? .none : .disclosureIndicator
+        cell.selectionStyle = viewModel.container is Course || event.course == nil ? .none : .default
+        cell.accessoryType = viewModel.container is Course || event.course == nil ? .none : .disclosureIndicator
         return cell
     }
 

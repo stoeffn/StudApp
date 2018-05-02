@@ -29,7 +29,7 @@ public final class Event: NSManagedObject, CDCreatable, CDIdentifiable, CDSortab
 
     // MARK: Specifying Location
 
-    @NSManaged public var course: Course
+    @NSManaged public var course: Course?
 
     @NSManaged public var organization: Organization
 
@@ -64,7 +64,7 @@ public final class Event: NSManagedObject, CDCreatable, CDIdentifiable, CDSortab
     // MARK: - Describing
 
     public override var description: String {
-        return "<Event id: \(id), course: \(course.id)>"
+        return "<Event id: \(id), course: \(String(describing: course?.id))>"
     }
 }
 

@@ -31,12 +31,12 @@ final class EventCell: UITableViewCell {
             startsAtLabel.text = startsAt
             endsAtLabel.text = endsAt
 
-            colorView.backgroundColor = event.course.color
+            colorView.backgroundColor = event.course?.color ?? UI.Colors.studBlue
 
-            titleLabel.text = event.course.title
+            titleLabel.text = event.course?.title ?? event.summary
             titleLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 3 : 2
 
-            summaryLabel.isHidden = event.summary == nil
+            summaryLabel.isHidden = event.summary == nil || event.course == nil
             summaryLabel.text = event.summary
             summaryLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 5 : 3
 
@@ -52,7 +52,7 @@ final class EventCell: UITableViewCell {
             let fromToTimes = "from %@ to %@".localized(startsAt, endsAt)
             let atLocation = event.location != nil ? "at %@".localized(event.location ?? "") : nil
             let cancellation = event.isCanceled ? "Canceled".localized : nil
-            accessibilityLabel = [event.course.title, fromToTimes, atLocation, cancellation, event.cancellationReason]
+            accessibilityLabel = [event.course?.title, event.summary, fromToTimes, atLocation, cancellation, event.cancellationReason]
                 .compactMap { $0 }
                 .joined(separator: ", ")
         }
@@ -78,12 +78,12 @@ final class EventCell: UITableViewCell {
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
-        colorView.backgroundColor = event.course.color
+        colorView.backgroundColor = event.course?.color ?? UI.Colors.studBlue
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        colorView.backgroundColor = event.course.color
+        colorView.backgroundColor = event.course?.color ?? UI.Colors.studBlue
     }
 
     var showsTimes: Bool = true {

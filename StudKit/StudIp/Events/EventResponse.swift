@@ -82,14 +82,14 @@ extension EventResponse: Decodable {
 extension EventResponse {
     @discardableResult
     func coreDataObject(course: Course? = nil, user: User? = nil, in context: NSManagedObjectContext) throws -> Event {
-        guard let course = try course ?? Course.fetch(byId: courseId, in: context) else {
-            let description = "You need to either provide a course or convert a event response with a valid course id."
-            let context = DecodingError.Context(codingPath: [CodingKeys.courseId], debugDescription: description)
-            throw DecodingError.keyNotFound(CodingKeys.courseId, context)
+        let course = try course ?? Course.fetch(byId: courseId, in: context)
+        guard let organization = course?.organization ?? user?.organization else {
+            let context = DecodingError.Context(codingPath: [], debugDescription: "You need to provide an organization.")
+            throw DecodingError.dataCorrupted(context)
         }
 
         let (event, _) = try Event.fetch(byId: id, orCreateIn: context)
-        event.organization = course.organization
+        event.organization = organization
         event.course = course
         event.users.formUnion([user].compactMap { $0 })
         event.startsAt = startsAt
@@ -97,7 +97,7 @@ extension EventResponse {
         event.isCanceled = isCanceled
         event.cancellationReason = cancellationReason
         event.location = location
-        event.summary = try courseId != nil ? title?.replacingMatches(for: ",? *\(course.title)", with: "") : summary
+        event.summary = try courseId != nil ? title?.replacingMatches(for: ",? *\(course?.title ?? "")", with: "") : summary
         event.category = category
         return event
     }
