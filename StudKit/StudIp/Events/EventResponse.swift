@@ -97,8 +97,16 @@ extension EventResponse {
         event.isCanceled = isCanceled
         event.cancellationReason = cancellationReason
         event.location = location
-        event.summary = try courseId != nil ? title?.replacingMatches(for: ",? *\(course?.title ?? "")", with: "") : summary
+        event.summary = try sanitizedSummary(courseTitle: course?.title)
         event.category = category
         return event
+    }
+
+    func sanitizedSummary(courseTitle: String?) throws -> String? {
+        guard courseId != nil else { return summary }
+        guard let courseTitle = courseTitle else { return try title?.replacingMatches(for: " *\\(.*\\)", with: "") }
+        return title?.replacingOccurrences(of: courseTitle, with: "")
+            .replacingOccurrences(of: ", :", with: ":")
+            .trimmingCharacters(in: CharacterSet(charactersIn: " ,:"))
     }
 }
