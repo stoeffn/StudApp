@@ -164,7 +164,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Abz-JA-Be0">
-                                                            <rect key="frame" x="0.0" y="49" width="249.5" height="34"/>
+                                                            <rect key="frame" x="0.0" y="47" width="249.5" height="34"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <string key="text">Raum 023: Multimedia-Hörsaal
 Gebäude 3703: Technische Informatik</string>
@@ -173,17 +173,17 @@ Gebäude 3703: Technische Informatik</string>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ea3-F0-kRL">
-                                                            <rect key="frame" x="0.0" y="49.5" width="106" height="16"/>
+                                                            <rect key="frame" x="0.0" y="47.5" width="122" height="17"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Canceled" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfa-A6-v9I" customClass="BadgeLabel" customModule="StudKitUI">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="57" height="16"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="65" height="17"/>
                                                                     <color key="backgroundColor" red="0.83921568629999999" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reason" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NRd-4L-eOE" customClass="BadgeLabel" customModule="StudKitUI">
-                                                                    <rect key="frame" x="61" y="0.0" width="45" height="16"/>
+                                                                    <rect key="frame" x="69" y="0.0" width="53" height="17"/>
                                                                     <color key="backgroundColor" white="0.59999999999999998" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -202,7 +202,7 @@ Gebäude 3703: Technische Informatik</string>
                                                         <constraint firstItem="Abz-JA-Be0" firstAttribute="leading" secondItem="ea3-F0-kRL" secondAttribute="leading" id="MOz-3o-cbH"/>
                                                         <constraint firstItem="Abz-JA-Be0" firstAttribute="top" secondItem="ea3-F0-kRL" secondAttribute="top" id="RBb-gB-hAS"/>
                                                         <constraint firstAttribute="trailing" secondItem="kSZ-KN-NH2" secondAttribute="trailing" id="a4x-av-amS"/>
-                                                        <constraint firstItem="ea3-F0-kRL" firstAttribute="firstBaseline" secondItem="kSZ-KN-NH2" secondAttribute="baseline" multiplier="1.05" constant="20" symbolType="layoutAnchor" id="c0L-1w-kdS"/>
+                                                        <constraint firstItem="ea3-F0-kRL" firstAttribute="firstBaseline" secondItem="kSZ-KN-NH2" secondAttribute="baseline" constant="20" symbolType="layoutAnchor" id="c0L-1w-kdS"/>
                                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Abz-JA-Be0" secondAttribute="bottom" constant="2" id="srP-mL-Cwt"/>
                                                     </constraints>
                                                 </view>

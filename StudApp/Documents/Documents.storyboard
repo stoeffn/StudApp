@@ -50,7 +50,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This folder is empty." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVY-Fo-Vjy">
-                                    <rect key="frame" x="205" y="175" width="359" height="18"/>
+                                    <rect key="frame" x="8" y="175" width="752" height="18"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                     <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
@@ -58,13 +58,13 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="FVY-Fo-Vjy" firstAttribute="leading" secondItem="Ja2-LE-MzR" secondAttribute="leadingMargin" constant="197" id="6bB-xu-K5U"/>
+                                <constraint firstItem="FVY-Fo-Vjy" firstAttribute="leading" secondItem="Ja2-LE-MzR" secondAttribute="leadingMargin" id="6bB-xu-K5U"/>
                                 <constraint firstItem="hDi-kW-Y7K" firstAttribute="leading" secondItem="Ja2-LE-MzR" secondAttribute="leadingMargin" id="CCm-dJ-Niw"/>
                                 <constraint firstItem="hDi-kW-Y7K" firstAttribute="firstBaseline" secondItem="geI-cb-iIV" secondAttribute="baseline" multiplier="1.1" constant="24.5" symbolType="layoutAnchor" id="HGq-kr-gUg"/>
                                 <constraint firstItem="geI-cb-iIV" firstAttribute="centerX" secondItem="Ja2-LE-MzR" secondAttribute="centerX" id="Ili-iI-g6D"/>
                                 <constraint firstItem="FVY-Fo-Vjy" firstAttribute="firstBaseline" secondItem="hDi-kW-Y7K" secondAttribute="baseline" multiplier="1.025" constant="20" symbolType="layoutAnchor" id="Mu5-GR-z7l"/>
                                 <constraint firstAttribute="trailingMargin" secondItem="hDi-kW-Y7K" secondAttribute="trailing" id="Y8R-rA-ovH"/>
-                                <constraint firstAttribute="trailingMargin" secondItem="FVY-Fo-Vjy" secondAttribute="trailing" constant="196" id="efi-m6-Wvm"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="FVY-Fo-Vjy" secondAttribute="trailing" id="efi-m6-Wvm"/>
                                 <constraint firstItem="geI-cb-iIV" firstAttribute="top" secondItem="Ja2-LE-MzR" secondAttribute="top" constant="32" id="h9S-xN-zRk"/>
                             </constraints>
                         </view>

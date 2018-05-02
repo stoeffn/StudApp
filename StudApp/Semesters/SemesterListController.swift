@@ -77,20 +77,20 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0: return 1
-        case 1: return viewModel.numberOfRows
+        case Sections.settings.rawValue: return 1
+        case Sections.semesters.rawValue: return viewModel.numberOfRows
         default: fatalError()
         }
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
-        case 0:
+        case Sections.settings.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: Sections.settings.cellIdentifier, for: indexPath)
             cell.textLabel?.text = "Show Hidden Courses".localized
             cell.accessoryType = UserDefaults.studKit.showsHiddenCourses ? .checkmark : .none
             return cell
-        case 1:
+        case Sections.semesters.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: Sections.semesters.cellIdentifier, for: indexPath)
             let semester = viewModel[rowAt: indexPath.row]
             let beginsAt = semester.beginsAt.formatted(using: .monthAndYear)
@@ -120,10 +120,10 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
         tableView.deselectRow(at: indexPath, animated: true)
 
         switch indexPath.section {
-        case 0:
+        case Sections.settings.rawValue:
             UserDefaults.studKit.showsHiddenCourses = !UserDefaults.studKit.showsHiddenCourses
             cell?.accessoryType = UserDefaults.studKit.showsHiddenCourses ? .checkmark : .none
-        case 1:
+        case Sections.semesters.rawValue:
             let semester = viewModel[rowAt: indexPath.row]
             semester.state.isHidden = !semester.state.isHidden
             cell?.accessoryType = semester.state.isHidden ? .none : .checkmark
