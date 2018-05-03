@@ -20,10 +20,12 @@ import CoreData
 import MobileCoreServices
 
 extension File.Location {
-    init(rawLocation: String?, externalUrl: URL?) {
+    init(rawLocation: String?, externalUrl: URL?, mimeType: String?) {
         switch rawLocation {
         case "disk", nil:
             self = .studIp
+        case "url" where externalUrl != nil && mimeType == "application/octet-stream":
+            self = .website
         case "url" where externalUrl != nil:
             self = .external
         default:
@@ -85,10 +87,11 @@ extension DocumentResponse: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(String.self, forKey: .id)
         externalUrl = try? container.decode(URL.self, forKey: .externalUrl)
-        location = File.Location(rawLocation: try? container.decode(String.self, forKey: .location), externalUrl: externalUrl)
+        mimeType = try container.decodeIfPresent(String.self, forKey: .mimeType)
+        location = File.Location(rawLocation: try? container.decode(String.self, forKey: .location),
+                                 externalUrl: externalUrl, mimeType: mimeType)
         userId = try container.decodeIfPresent(String.self, forKey: .userId)?.nilWhenEmpty
         name = try container.decode(String.self, forKey: .name)
-        mimeType = try container.decodeIfPresent(String.self, forKey: .mimeType)
         createdAt = try StudIp.decodeDate(in: container, forKey: .createdAt)
         modifiedAt = try StudIp.decodeDate(in: container, forKey: .modifiedAt)
         summary = try container.decodeIfPresent(String.self, forKey: .summary)?.nilWhenEmpty
@@ -120,15 +123,20 @@ extension DocumentResponse {
     }
 
     var extendedName: String {
+        guard location != .website else { return "\(name)\(DocumentResponse.extensionDelimiter)url" }
+
         guard
             !name.contains(DocumentResponse.extensionDelimiter),
             let typeIdentifier = typeIdentifier,
             let `extension` = UTTypeCopyPreferredTagWithClass(typeIdentifier as CFString, kUTTagClassFilenameExtension)
         else { return name }
+
         return "\(name)\(DocumentResponse.extensionDelimiter)\(`extension`.takeRetainedValue())"
     }
 
     var typeIdentifier: String? {
+        guard location != .website else { return kUTTypeURL as String }
+
         guard let mimeType = mimeType else {
             guard let fileExtension = name.components(separatedBy: DocumentResponse.extensionDelimiter).last else { return nil }
 

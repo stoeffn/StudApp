@@ -31,9 +31,10 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
     /// - invalid: Invalid configuration or inaccessible content.
     /// - studIp: Content can be retrieved via the _Stud.IP_ API.
     /// - external: Content is hosted by an external file provider.
+    /// - website: Link to a web page.
     @objc
     public enum Location: Int {
-        case invalid, studIp, external
+        case invalid, studIp, external, website
     }
 
     // MARK: Identification
@@ -186,6 +187,7 @@ public extension File {
         case .invalid: return false
         case .studIp: return true
         case .external: return !["http", "ftp"].contains(externalUrl?.scheme)
+        case .website: return false
         }
     }
 

@@ -69,7 +69,7 @@ final class FileCell: UITableViewCell {
             let modifiedAtBy = ["Modified".localized, modifiedAt, modifiedBy].compactMap { $0 }.joined(separator: " ")
             let folderOrDocument = file.isFolder ? "Folder".localized : "Document".localized
             let sizeOrItemCount = file.isFolder ? "%d items".localized(file.children.count) : size
-            let hostedBy = file.location == .external ? "hosted by %@".localized(host ?? "") : nil
+            let hostedBy = file.location == .external || file.location == .website ? "hosted by %@".localized(host ?? "") : nil
 
             accessibilityLabel = [
                 folderOrDocument, file.title, modifiedAtBy, sizeOrItemCount, hostedBy,
@@ -93,24 +93,31 @@ final class FileCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
 
     @IBOutlet var modifiedAtContainer: UIStackView!
+
     @IBOutlet var modifiedAtLabel: UILabel!
 
     @IBOutlet var userContainer: UIStackView!
+
     @IBOutlet var userLabel: UILabel!
 
     @IBOutlet var sizeContainer: UIStackView!
+
     @IBOutlet var sizeLabel: UILabel!
 
     @IBOutlet var hostContainer: UIStackView!
+
     @IBOutlet var hostLabel: UILabel!
 
     @IBOutlet var downloadCountContainer: UIStackView!
+
     @IBOutlet var downloadCountLabel: UILabel!
 
     @IBOutlet var childCountContainer: UIStackView?
+
     @IBOutlet var childCountLabel: UILabel?
 
     @IBOutlet var activityIndicator: StudIpActivityIndicator?
+
     @IBOutlet var downloadGlyph: UIImageView?
 
     private func initUserInterface() {
@@ -121,7 +128,7 @@ final class FileCell: UITableViewCell {
     private func updateSubtitleHiddenStates() {
         guard let file = file else { return }
         sizeContainer.isHidden = file.size <= 0
-        hostContainer.isHidden = file.location != .external
+        hostContainer.isHidden = file.location != .external && file.location != .website
         downloadCountContainer.isHidden = file.downloadCount <= 0 || frame.width < 512
         childCountContainer?.isHidden = !file.isFolder || file.state.childFilesUpdatedAt == nil
         userContainer.isHidden = file.owner == nil || frame.width < 512
