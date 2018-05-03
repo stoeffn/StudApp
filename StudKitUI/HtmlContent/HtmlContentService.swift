@@ -45,6 +45,12 @@ public final class HtmlContentService: NSObject {
         """
     }
 
+    public func attributedString(for htmlContent: String) -> NSAttributedString? {
+        guard let htmlData = styledHtmlContent(for: htmlContent).data(using: .utf8) else { return nil }
+        return try? NSAttributedString(data: htmlData, options: [.documentType: NSAttributedString.DocumentType.html],
+                                       documentAttributes: nil)
+    }
+
     public func view() -> WKWebView {
         let preferences = WKPreferences()
         preferences.javaScriptEnabled = false

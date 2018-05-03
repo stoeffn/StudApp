@@ -35,10 +35,8 @@ enum StudIp {
     /// trimming whitespace.
     static func transform(courseSummary: String?) -> String? {
         return try! courseSummary?
-            .replacingMatches(for: "<[^>]+>", with: "")
             .replacingMatches(for: "[\n\r]+", with: "\n")
-            .replacingMatches(for: "Literatur:\\W*$", with: "")
-            .decodedHTML
+            .replacingMatches(for: "(Literatur:)?(<\\/?p>|&nbsp;|\\W)*$", with: "")
             .trimmingCharacters(in: .whitespacesAndNewlines)
             .nilWhenEmpty
     }

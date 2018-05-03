@@ -23,6 +23,7 @@ import StudKit
 import StudKitUI
 
 final class CourseController: UITableViewController, Routable {
+    private let htmlContentService = ServiceContainer.default[HtmlContentService.self]
     private var viewModel: CourseViewModel!
     private var announcementsViewModel: AnnouncementListViewModel!
     private var fileListViewModel: FileListViewModel!
@@ -262,7 +263,8 @@ final class CourseController: UITableViewController, Routable {
             return cell
         case .summary?:
             let cell = tableView.dequeueReusableCell(withIdentifier: SummaryCell.typeIdentifier, for: indexPath)
-            (cell as? SummaryCell)?.textView.text = viewModel.course.summary
+            guard let summary = viewModel.course.summary else { return cell }
+            (cell as? SummaryCell)?.textView.attributedText = htmlContentService.attributedString(for: summary)
             return cell
         case nil:
             fatalError()
