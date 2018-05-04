@@ -31,6 +31,12 @@ final class AnnouncementController: UIViewController, Routable {
         initUserInterface()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        announcement.isNew = false
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         ServiceContainer.default[StoreService.self].requestReview()

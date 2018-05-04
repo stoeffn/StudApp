@@ -41,6 +41,7 @@ final class PreviewController: QLPreviewController, Routable {
                 return self.present(alert, animated: true, completion: nil)
             }
 
+            self.file.isNew = false
             self.refreshCurrentPreviewItem()
         }
     }

@@ -49,6 +49,7 @@ final class FileCell: UITableViewCell {
             iconView.image = nil
             fileIconService.icon(for: file) { self.iconView?.image = $0 }
 
+            unreadIndicatorContainerView.isHidden = !file.isNew
             unreadIndicatorView.backgroundColor = file.course.color
 
             titleLabel.text = file.title

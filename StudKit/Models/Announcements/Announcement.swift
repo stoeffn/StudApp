@@ -48,6 +48,8 @@ public final class Announcement: NSManagedObject, CDCreatable, CDIdentifiable, C
     /// When this annoucement was created.
     @NSManaged public var createdAt: Date
 
+    @NSManaged public var isNew: Bool
+
     /// When this annoucement was last modified.
     @NSManaged public var modifiedAt: Date
 

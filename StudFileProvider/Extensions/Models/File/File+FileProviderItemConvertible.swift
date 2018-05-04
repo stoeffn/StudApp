@@ -49,6 +49,7 @@ extension File: FileProviderItemConvertible {
                 try? FileManager.default.removeItem(at: url)
                 try FileManager.default.createIntermediateDirectories(forFileAt: url)
                 try FileManager.default.copyItem(at: self.localUrl(in: .downloads), to: url)
+                self.isNew = false
                 completion?(nil)
             } catch {
                 completion?(error)

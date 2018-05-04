@@ -93,6 +93,8 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
 
     @NSManaged public var createdAt: Date
 
+    @NSManaged public var isNew: Bool
+
     @NSManaged public var modifiedAt: Date
 
     // MARK: Managing Metadata

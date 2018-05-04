@@ -49,6 +49,8 @@ final class FolderController: UITableViewController, Routable {
 
         update()
         updateEmptyView()
+
+        (viewModel.container as? File)?.isNew = false
     }
 
     override func viewDidAppear(_ animated: Bool) {

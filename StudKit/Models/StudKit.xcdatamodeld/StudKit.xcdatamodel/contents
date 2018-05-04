@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E202" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Announcement" representedClassName="Announcement" syncable="YES">
         <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="expiresAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="htmlContent" attributeType="String" defaultValueString=" " syncable="YES"/>
         <attribute name="id" attributeType="String" minValueString="1" syncable="YES"/>
+        <attribute name="isNew" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="modifiedAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="textContent" attributeType="String" defaultValueString=" " syncable="YES"/>
         <attribute name="title" attributeType="String" minValueString="1" syncable="YES"/>
@@ -81,6 +82,7 @@
         <attribute name="downloadCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="externalUrlString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="String" minValueString="1" syncable="YES"/>
+        <attribute name="isNew" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="location" attributeType="Integer 64" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="modifiedAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
@@ -195,11 +197,11 @@
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="state" inverseEntity="User" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Announcement" positionX="-8210" positionY="-1854" width="128" height="195"/>
+        <element name="Announcement" positionX="-8210" positionY="-1854" width="128" height="210"/>
         <element name="Course" positionX="-8784" positionY="-2124" width="128" height="285"/>
         <element name="CourseState" positionX="-8786" positionY="-2322" width="128" height="150"/>
         <element name="Event" positionX="-8210" positionY="-2094" width="128" height="210"/>
-        <element name="File" positionX="-8208" positionY="-1638" width="128" height="300"/>
+        <element name="File" positionX="-8208" positionY="-1638" width="128" height="315"/>
         <element name="FileState" positionX="-8210" positionY="-1329" width="128" height="150"/>
         <element name="Organization" positionX="-9522" positionY="-2043" width="128" height="240"/>
         <element name="OrganizationState" positionX="-8847" positionY="-1764" width="128" height="105"/>

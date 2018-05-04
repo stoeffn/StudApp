@@ -28,6 +28,8 @@ final class AnnouncementCell: UITableViewCell {
             let modifiedAt = announcement.modifiedAt.formattedAsShortDifferenceFromNow
             let userFullname = announcement.user?.nameComponents.formatted()
 
+            unreadIndicatorContainerView.isHidden = !announcement.isNew
+
             titleLabel.text = announcement.title
             titleLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 3 : 1
 
