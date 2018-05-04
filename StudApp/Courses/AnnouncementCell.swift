@@ -30,6 +30,7 @@ final class AnnouncementCell: UITableViewCell {
 
             titleLabel.text = announcement.title
             titleLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 3 : 1
+
             modifiedAtLabel.text = modifiedAt
             userLabel.text = userFullname
             updateSubtitleHiddenStates()
@@ -48,6 +49,10 @@ final class AnnouncementCell: UITableViewCell {
 
     @IBOutlet var colorView: UIView!
 
+    @IBOutlet var unreadIndicatorContainerView: UIView!
+
+    @IBOutlet var unreadIndicatorView: UIView!
+
     @IBOutlet var titleLabel: UILabel!
 
     @IBOutlet var modifiedAtLabel: UILabel!
@@ -58,16 +63,21 @@ final class AnnouncementCell: UITableViewCell {
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
+
+        unreadIndicatorView.backgroundColor = color
         colorView.backgroundColor = color
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+
+        unreadIndicatorView.backgroundColor = color
         colorView.backgroundColor = color
     }
 
     @IBInspectable var color: UIColor = UI.Colors.studBlue {
         didSet {
+            unreadIndicatorView.backgroundColor = color
             colorView.backgroundColor = color
         }
     }

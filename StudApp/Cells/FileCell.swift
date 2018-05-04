@@ -49,6 +49,8 @@ final class FileCell: UITableViewCell {
             iconView.image = nil
             fileIconService.icon(for: file) { self.iconView?.image = $0 }
 
+            unreadIndicatorView.backgroundColor = file.course.color
+
             titleLabel.text = file.title
             titleLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 3 : 1
 
@@ -90,6 +92,10 @@ final class FileCell: UITableViewCell {
 
     @IBOutlet var iconView: UIImageView!
 
+    @IBOutlet var unreadIndicatorContainerView: UIView!
+
+    @IBOutlet var unreadIndicatorView: UIView!
+
     @IBOutlet var titleLabel: UILabel!
 
     @IBOutlet var modifiedAtContainer: UIStackView!
@@ -123,6 +129,16 @@ final class FileCell: UITableViewCell {
     private func initUserInterface() {
         NotificationCenter.default.addObserver(self, selector: #selector(reachabilityDidChange(notification:)),
                                                name: .reachabilityDidChange, object: nil)
+    }
+
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+        unreadIndicatorView.backgroundColor = file.course.color
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        unreadIndicatorView.backgroundColor = file.course.color
     }
 
     private func updateSubtitleHiddenStates() {

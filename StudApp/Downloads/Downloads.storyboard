@@ -97,16 +97,45 @@
                                                     </constraints>
                                                 </view>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="wgl-9L-6Gs">
-                                                    <rect key="frame" x="58" y="6" width="614" height="38.5"/>
+                                                    <rect key="frame" x="58" y="0.0" width="614" height="50"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Assignment 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcf-XD-Ysk">
-                                                            <rect key="frame" x="0.0" y="0.0" width="102.5" height="20.5"/>
-                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Kp-2K-Kzb">
+                                                            <rect key="frame" x="0.0" y="0.0" width="116.5" height="32"/>
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E76-WP-Dv3">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="14" height="32"/>
+                                                                    <subviews>
+                                                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eIk-tV-bGc">
+                                                                            <rect key="frame" x="0.0" y="10.5" width="10" height="10"/>
+                                                                            <color key="backgroundColor" red="0.33725490200000002" green="0.50980392159999999" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" secondItem="eIk-tV-bGc" secondAttribute="height" multiplier="1:1" id="2i3-Mf-NcO"/>
+                                                                                <constraint firstAttribute="width" constant="10" id="4JX-rs-apW"/>
+                                                                            </constraints>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                    <integer key="value" value="5"/>
+                                                                                </userDefinedRuntimeAttribute>
+                                                                            </userDefinedRuntimeAttributes>
+                                                                        </view>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <constraints>
+                                                                        <constraint firstItem="eIk-tV-bGc" firstAttribute="leading" secondItem="E76-WP-Dv3" secondAttribute="leading" id="5Ak-6o-Xv0"/>
+                                                                        <constraint firstItem="eIk-tV-bGc" firstAttribute="centerY" secondItem="E76-WP-Dv3" secondAttribute="centerY" id="b6g-tA-8tQ"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="eIk-tV-bGc" secondAttribute="trailing" constant="4" id="cDu-BJ-CtA"/>
+                                                                    </constraints>
+                                                                </view>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Assignment 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpc-YH-Hgj">
+                                                                    <rect key="frame" x="14" y="0.0" width="102.5" height="32"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GJG-Fh-Lnk">
-                                                            <rect key="frame" x="0.0" y="22.5" width="404.5" height="16"/>
+                                                            <rect key="frame" x="0.0" y="34" width="404.5" height="16"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="gJd-0c-aQd">
                                                                     <rect key="frame" x="0.0" y="0.0" width="79.5" height="16"/>
@@ -260,7 +289,9 @@
                                     <outlet property="modifiedAtLabel" destination="aoH-9v-kZt" id="9u2-oo-wSL"/>
                                     <outlet property="sizeContainer" destination="3kW-RH-xaS" id="Yr9-Cm-hdR"/>
                                     <outlet property="sizeLabel" destination="7EU-Xw-gAJ" id="REU-E7-zwO"/>
-                                    <outlet property="titleLabel" destination="fcf-XD-Ysk" id="UBO-yB-1QI"/>
+                                    <outlet property="titleLabel" destination="fpc-YH-Hgj" id="5Ip-gk-4pz"/>
+                                    <outlet property="unreadIndicatorContainerView" destination="E76-WP-Dv3" id="wYR-n0-9xT"/>
+                                    <outlet property="unreadIndicatorView" destination="eIk-tV-bGc" id="2OZ-yl-xqb"/>
                                     <outlet property="userContainer" destination="Ekt-bJ-adT" id="Wmf-hE-nlZ"/>
                                     <outlet property="userLabel" destination="uSH-sW-hm7" id="rqh-D0-IrA"/>
                                 </connections>
@@ -322,7 +353,7 @@
         <image name="HostSubtitleGlyph" width="16" height="16"/>
         <image name="SizeSubtitleGlyph" width="16" height="16"/>
         <image name="TimeSubtitleGlyph" width="16" height="16"/>
-        <image name="UserBarButtonGlyph" width="25" height="25"/>
+        <image name="UserBarButtonGlyph" width="28" height="28"/>
         <image name="UserSubtitleGlyph" width="16" height="16"/>
     </resources>
     <color key="tintColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
