@@ -208,7 +208,9 @@
 
 "Main Building\nBielefeld Room" = "Hauptgebäude\nBielefeld-Raum";
 "Building 42\nMultimedia Room" = "Gebäude 42\nMultimedia-Raum";
+"Building 42\nRoom 135" = "Gebäude 42\nRaum 135";
 "Main Building\nBasement" = "Hauptgebäude\nKeller";
+"Main Building\nHugo Kulka Room" = "Hauptgebäude\nHugo Kulka Raum";
 
 // MARK: Courses
 
@@ -216,6 +218,7 @@
 "Optimizing Algorithms for Computers" = "Algorithmen für Computer optimieren";
 "Linear Algebra I" = "Lineare Algebra I";
 "Linear Algebra II" = "Lineare Algebra II";
+"Vectors and Stuff" = "Vektoren und so";
 "Computer Architecture" = "Rechnerstrukturen";
 "Theoretical Stud.IP Science" = "Grundlagen Theoretischen Stud.IPs";
 "Data Science 101" = "Data Science 101";
@@ -224,6 +227,7 @@
 "Telling the Computer What to Do" = "Dem Computer sagen, was er zu machen hat";
 "In this course, you will learn the basics of computer programming." = "In dieser Veranstaltung lernen Sie die Basics des Programmierens.";
 "Please refer to https://google.com/ if you have any questions." = "Wenden Sie sich an https://google.com/, falls Fragen auftreten sollten.";
+"Building Your Own Operating System" = "Baue Dein eigenes Betriebssystem";
 
 // MARK: Announcements
 
@@ -236,9 +240,17 @@
 "Solutions" = "Lösungen";
 "Organization.pdf" = "Organisation.pdf";
 "Installing Swift.mp4" = "Swift installieren.mp4";
+"How to Use Swift Playgrounds" = "Wie man Swift Playgrounds benutzt";
 "Exercise 0.pdf" = "Übung 0.pdf";
 "Exercise 1.pdf" = "Übung 1.pdf";
 "Exercise 2.pdf" = "Übung 2.pdf";
 "Exercise 3.pdf" = "Übung 3.pdf";
 "BigData.csv" = "BigData.csv";
 "Slides.pdf" = "Folien.pdf";
+
+// MARK: Events
+
+"What can for loops do for me?" = "for-Schleifen vs if-Schleifen";
+"Functional Concepts" = "Funktionale Konzepte";
+"Data Preprocessing" = "Data Preprocessing";
+"Group 0" = "Gruppe 0";
