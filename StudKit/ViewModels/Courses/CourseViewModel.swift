@@ -27,7 +27,7 @@ public final class CourseViewModel {
         return [
             Row(title: "Semesters".localized, glyph: #imageLiteral(resourceName: "DateSpanTableViewGlyph"), value: course.semestersDescription),
             Row(title: "Course Number".localized, glyph: #imageLiteral(resourceName: "NumberTableViewGlyph"), value: course.number),
-            Row(title: "Location".localized, glyph: #imageLiteral(resourceName: "LocationTableViewGlyph"), value: course.location),
+            Row(title: "Location".localized, glyph: #imageLiteral(resourceName: "LocationTableViewGlyph"), value: course.location?.replacingOccurrences(of: "\n", with: ", ")),
         ]
     }
 }
