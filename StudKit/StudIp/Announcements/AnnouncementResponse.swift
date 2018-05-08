@@ -85,6 +85,7 @@ extension AnnouncementResponse {
         announcement.courses = Set(courses)
         announcement.user = try User.fetch(byId: userId, in: context)
         announcement.createdAt = createdAt
+        announcement.isNew = announcement.isNew || announcement.modifiedAt < modifiedAt
         announcement.modifiedAt = modifiedAt
         announcement.expiresAt = createdAt + expiresAfter
         announcement.title = title

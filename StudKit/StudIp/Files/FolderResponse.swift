@@ -83,6 +83,7 @@ extension FolderResponse {
         folder.owner = try User.fetch(byId: userId, in: context)
         folder.name = name
         folder.createdAt = createdAt
+        folder.isNew = folder.isNew || folder.modifiedAt < modifiedAt
         folder.modifiedAt = modifiedAt
         folder.size = -1
         folder.downloadCount = -1

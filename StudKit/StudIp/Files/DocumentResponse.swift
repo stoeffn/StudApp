@@ -115,6 +115,7 @@ extension DocumentResponse {
         document.owner = try User.fetch(byId: userId, in: context)
         document.name = extendedName
         document.createdAt = createdAt
+        document.isNew = document.isNew || document.modifiedAt < modifiedAt
         document.modifiedAt = modifiedAt
         document.size = size ?? -1
         document.downloadCount = downloadCount ?? -1
