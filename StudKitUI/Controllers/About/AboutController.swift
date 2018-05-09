@@ -48,6 +48,7 @@ final class AboutController: UITableViewController, Routable {
 
         websiteCell.textLabel?.text = "Website".localized
         privacyCell.textLabel?.text = "Privacy Policy".localized
+        gitHubCell.textLabel?.text = "GitHub".localized
 
         sendFeedbackCell.textLabel?.text = "Send Feedback".localized
         rateAppCell.textLabel?.text = "Rate StudApp".localized
@@ -73,6 +74,8 @@ final class AboutController: UITableViewController, Routable {
     @IBOutlet var websiteCell: UITableViewCell!
 
     @IBOutlet var privacyCell: UITableViewCell!
+
+    @IBOutlet var gitHubCell: UITableViewCell!
 
     @IBOutlet var sendFeedbackCell: UITableViewCell!
 
@@ -131,6 +134,8 @@ final class AboutController: UITableViewController, Routable {
 
     override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
         switch Sections(rawValue: section) {
+        case .links?:
+            return "StudApp is open source—feel free to contribute!".localized
         case .feedback?:
             return "I would appreciate your review on the App Store!".localized
         case .tip?:
@@ -140,7 +145,7 @@ final class AboutController: UITableViewController, Routable {
             ].joined(separator: " ")
         case .thanks?:
             return "Without you, this app could not exist. Thank you ❤️".localized
-        case .app?, .links?, nil:
+        case .app?, nil:
             return nil
         }
     }
@@ -172,6 +177,9 @@ final class AboutController: UITableViewController, Routable {
             present(controller, animated: true, completion: nil)
         case .links? where cell === privacyCell:
             guard let controller = htmlContentService.safariViewController(for: App.Urls.privacyPolicy) else { break }
+            present(controller, animated: true, completion: nil)
+        case .links? where cell === gitHubCell:
+            guard let controller = htmlContentService.safariViewController(for: App.Urls.gitHub) else { break }
             present(controller, animated: true, completion: nil)
         case .feedback? where cell === sendFeedbackCell:
             openFeedbackMailComposer()

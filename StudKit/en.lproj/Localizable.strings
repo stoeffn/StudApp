@@ -55,6 +55,7 @@
 // MARK: Generic Terms
 
 "Stud.IP" = "Stud.IP";
+"GitHub" = "GitHub";
 "Website" = "Website";
 "Help" = "Help";
 "Privacy Policy" = "Privacy Policy";
@@ -101,8 +102,8 @@
 
 "About" = "About";
 "Feedback for %@" = "Feedback for %@";
+"StudApp is open source—feel free to contribute!" = "StudApp is open source—feel free to contribute!";
 "Rate StudApp" = "Rate StudApp";
-"Manage Subscriptions…" = "Manage Subscriptions…";
 "I would appreciate your review on the App Store!" = "I would appreciate your review on the App Store!";
 "Could not launch App Store" = "Could not launch App Store";
 "It would be kind if you rated StudApp anyway by opening the App Store manually." = "It would be kind if you rated StudApp anyway by opening the App Store manually.";

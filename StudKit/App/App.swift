@@ -35,6 +35,8 @@ public enum App {
 
         public static let termsOfUse = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!
 
+        public static let gitHub = URL(string: "https://github.com/stoeffn/StudApp")!
+
         // MARK: iTunes and App Store
 
         /// App Store URL.
