@@ -78,7 +78,7 @@ struct MockResponses {
         CourseResponse(id: "C3", number: "42", title: "Computer Architecture".localized,
                        location: "Building 42\nMultimedia Room".localized, summary: "In this lecture, you will learn how to…",
                        groupId: 3, lecturers: [professorProton], beginSemesterId: "S2", endSemesterId: "S2"),
-        CourseResponse(id: "C4", number: nil, title: "Theoretical Stud.IP Science".localized,
+        CourseResponse(id: "C4", number: nil, title: "Theoretical Computer Science".localized,
                        groupId: 4, lecturers: [professorProton], beginSemesterId: "S3", endSemesterId: "S3"),
         CourseResponse(id: "C5", number: nil, title: "Data Science 101".localized,
                        groupId: 4, lecturers: [tesla], beginSemesterId: "S3", endSemesterId: "S3"),
@@ -197,7 +197,7 @@ struct MockResponses {
 
         try codingCourseDocuments.forEach { response in
             let document = try response.coreDataObject(course: codingCourse, in: context)
-            guard document.id != "F3" else { return }
+            guard document.id == "F4" else { return }
             document.state.downloadedAt = now
             document.downloadedBy.formUnion([user])
         }
