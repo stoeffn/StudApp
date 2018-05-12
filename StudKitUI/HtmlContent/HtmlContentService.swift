@@ -17,6 +17,7 @@
 //
 
 import SafariServices
+import StudKit
 import WebKit
 
 public final class HtmlContentService: NSObject {
@@ -46,7 +47,9 @@ public final class HtmlContentService: NSObject {
     }
 
     public func attributedString(for htmlContent: String) -> NSAttributedString? {
-        guard let htmlData = styledHtmlContent(for: htmlContent).data(using: .utf8) else { return nil }
+        guard Distributions.current != .uiTest, let htmlData = styledHtmlContent(for: htmlContent).data(using: .utf8) else {
+            return NSAttributedString(string: htmlContent)
+        }
         return try? NSAttributedString(data: htmlData, options: [.documentType: NSAttributedString.DocumentType.html],
                                        documentAttributes: nil)
     }

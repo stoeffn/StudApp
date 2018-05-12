@@ -23,7 +23,7 @@ public class StudKitServiceProvider: ServiceProvider {
 
     func provideReachabilityService() -> ReachabilityService {
         let service = ReachabilityService()
-        service.isActive = true
+        service.isActive = Distributions.current != .uiTest
         return service
     }
 
