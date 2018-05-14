@@ -23,6 +23,14 @@ final class AnnouncementCell: UITableViewCell {
 
     // MARK: - Life Cycle
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        guard #available(iOS 11, *) else { return }
+        unreadIndicatorView.accessibilityIgnoresInvertColors = true
+        colorView.accessibilityIgnoresInvertColors = true
+    }
+
     var announcement: Announcement! {
         didSet {
             let modifiedAt = announcement.modifiedAt.formattedAsShortDifferenceFromNow

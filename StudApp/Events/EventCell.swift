@@ -23,6 +23,15 @@ final class EventCell: UITableViewCell {
 
     // MARK: - Life Cycle
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        guard #available(iOS 11.0, *) else { return }
+        colorView.accessibilityIgnoresInvertColors = true
+        cancellationLabel.accessibilityIgnoresInvertColors = true
+        notEnrolledLabel?.accessibilityIgnoresInvertColors = true
+    }
+
     var event: Event! {
         didSet {
             let startsAt = event.startsAt.formatted(using: .shortTime)

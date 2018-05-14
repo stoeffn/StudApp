@@ -67,6 +67,10 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
 
         viewModel.fetch()
         viewModel.update()
+
+        if #available(iOSApplicationExtension 11.0, *) {
+            iconView.accessibilityIgnoresInvertColors = true
+        }
     }
 
     deinit {
@@ -171,6 +175,8 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     }
 
     // MARK: - User Interface
+
+    @IBOutlet var iconView: UIImageView!
 
     @IBOutlet var welcomeLabel: UILabel!
 

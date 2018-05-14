@@ -31,8 +31,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="85.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="AppIcon" translatesAutoresizingMaskIntoConstraints="NO" id="DJi-Yk-Aot">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" image="AppIcon" translatesAutoresizingMaskIntoConstraints="NO" id="DJi-Yk-Aot">
                                                     <rect key="frame" x="16" y="11" width="64" height="64"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" none="YES"/>
                                                     </accessibility>
@@ -40,6 +41,11 @@
                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="128" id="KDK-qd-Tbk"/>
                                                         <constraint firstAttribute="width" secondItem="DJi-Yk-Aot" secondAttribute="height" multiplier="1:1" id="vA3-zO-BV1"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="14"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by Steffen Ryll" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DUJ-55-7Tc">
                                                     <rect key="frame" x="88" y="47" width="104.5" height="19.5"/>
@@ -54,7 +60,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Debug" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJt-cd-ESa" customClass="BadgeLabel" customModule="StudKitUI">
-                                                    <rect key="frame" x="169" y="24" width="48" height="17"/>
+                                                    <rect key="frame" x="169" y="25" width="40" height="16"/>
                                                     <color key="backgroundColor" red="0.83921568629999999" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -343,6 +349,7 @@
                     <connections>
                         <outlet property="distributionLabel" destination="vJt-cd-ESa" id="iwZ-p5-3QF"/>
                         <outlet property="gitHubCell" destination="Lhx-eS-y2m" id="wEO-M8-zsA"/>
+                        <outlet property="iconView" destination="DJi-Yk-Aot" id="Cpo-ZY-9Z2"/>
                         <outlet property="privacyCell" destination="axc-HH-V1k" id="dhC-6h-2SG"/>
                         <outlet property="rateAppCell" destination="JXh-el-PDW" id="Lnf-3w-5jD"/>
                         <outlet property="sendFeedbackCell" destination="kVr-Vb-jof" id="ToP-2O-FF3"/>

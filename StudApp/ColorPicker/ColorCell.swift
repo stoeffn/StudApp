@@ -24,19 +24,19 @@ final class ColorCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        initUserInterface()
+
+        clipsToBounds = false
+
+        isAccessibilityElement = true
+        accessibilityTraits |= UIAccessibilityTraitButton
+
+        guard #available(iOS 11.0, *) else { return }
+        glowView.accessibilityIgnoresInvertColors = true
     }
 
     // MARK: - User Interface
 
     @IBOutlet var glowView: GlowView!
-
-    private func initUserInterface() {
-        clipsToBounds = false
-
-        isAccessibilityElement = true
-        accessibilityTraits |= UIAccessibilityTraitButton
-    }
 
     var color: UIColor? {
         didSet { glowView.color = color }

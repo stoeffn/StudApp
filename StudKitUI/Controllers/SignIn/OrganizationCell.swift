@@ -22,6 +22,13 @@ final class OrganizationCell: UITableViewCell {
 
     // MARK: - Life Cycle
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        guard #available(iOS 11.0, *) else { return }
+        iconView.accessibilityIgnoresInvertColors = true
+    }
+
     var organization: Organization! {
         didSet {
             titleLabel?.text = organization.title

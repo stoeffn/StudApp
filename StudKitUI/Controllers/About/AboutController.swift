@@ -54,6 +54,11 @@ final class AboutController: UITableViewController, Routable {
         rateAppCell.textLabel?.text = "Rate StudApp".localized
 
         tipCell.textLabel?.text = "Leave a Tip".localized
+
+        if #available(iOSApplicationExtension 11.0, *) {
+            iconView.accessibilityIgnoresInvertColors = true
+            distributionLabel.accessibilityIgnoresInvertColors = true
+        }
     }
 
     func prepareContent(for route: Routes) {
@@ -64,6 +69,8 @@ final class AboutController: UITableViewController, Routable {
     }
 
     // MARK: - User Interface
+
+    @IBOutlet var iconView: UIImageView!
 
     @IBOutlet var titleLabel: UILabel!
 

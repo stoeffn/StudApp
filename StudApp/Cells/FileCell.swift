@@ -27,14 +27,15 @@ final class FileCell: UITableViewCell {
 
     // MARK: - Life Cycle
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        initUserInterface()
-    }
+    override func awakeFromNib() {
+        super.awakeFromNib()
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        initUserInterface()
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityDidChange(notification:)),
+                                               name: .reachabilityDidChange, object: nil)
+
+        guard #available(iOS 11.0, *) else { return }
+        unreadIndicatorView.accessibilityIgnoresInvertColors = true
+        iconView.accessibilityIgnoresInvertColors = true
     }
 
     var file: File! {
@@ -126,11 +127,6 @@ final class FileCell: UITableViewCell {
     @IBOutlet var activityIndicator: StudIpActivityIndicator?
 
     @IBOutlet var downloadGlyph: UIImageView?
-
-    private func initUserInterface() {
-        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityDidChange(notification:)),
-                                               name: .reachabilityDidChange, object: nil)
-    }
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)

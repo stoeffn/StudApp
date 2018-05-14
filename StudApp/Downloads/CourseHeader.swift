@@ -72,6 +72,10 @@ final class CourseHeader: UITableViewHeaderFooterView {
         isAccessibilityElement = true
         accessibilityTraits |= UIAccessibilityTraitButton
 
+        if #available(iOS 11.0, *) {
+            colorView.accessibilityIgnoresInvertColors = true
+        }
+
         NotificationCenter.default.addObserver(self, selector: #selector(reduceTransparencyDidChange(notification:)),
                                                name: .UIAccessibilityReduceTransparencyStatusDidChange, object: nil)
     }

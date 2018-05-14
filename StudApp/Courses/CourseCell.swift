@@ -22,6 +22,13 @@ final class CourseCell: UITableViewCell {
 
     // MARK: - Life Cycle
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        guard #available(iOS 11.0, *) else { return }
+        colorView.accessibilityIgnoresInvertColors = true
+    }
+
     var course: Course! {
         didSet {
             let lecturerNames = course.lecturers

@@ -62,6 +62,9 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
 
         viewModel.updateOrganizationIcon()
         viewModel.startAuthorization()
+
+        guard #available(iOS 11, *) else { return }
+        iconView.accessibilityIgnoresInvertColors = true
     }
 
     override func viewWillAppear(_ animated: Bool) {

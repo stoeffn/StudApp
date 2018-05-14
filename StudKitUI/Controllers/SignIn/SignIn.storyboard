@@ -145,12 +145,18 @@
                                     <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppIcon" translatesAutoresizingMaskIntoConstraints="NO" id="CXI-Vm-Pb9">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppIcon" translatesAutoresizingMaskIntoConstraints="NO" id="CXI-Vm-Pb9">
                                     <rect key="frame" x="123" y="8" width="128" height="128"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="128" id="KLH-oG-tjX"/>
                                         <constraint firstAttribute="width" secondItem="CXI-Vm-Pb9" secondAttribute="height" multiplier="1:1" id="aDJ-9n-w0b"/>
                                     </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="28"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to StudApp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sgJ-zb-13H">
                                     <rect key="frame" x="8" y="144" width="359" height="46"/>
@@ -316,6 +322,7 @@
                     <connections>
                         <outlet property="cancelButton" destination="htM-Nw-MEZ" id="hCd-LA-DiZ"/>
                         <outlet property="disclaimerLabel" destination="3de-75-mDO" id="XoZ-OX-fkm"/>
+                        <outlet property="iconView" destination="CXI-Vm-Pb9" id="46f-XN-Par"/>
                         <outlet property="welcomeLabel" destination="sgJ-zb-13H" id="DGG-ny-DAX"/>
                         <segue destination="RVa-94-5EL" kind="presentation" identifier="about" modalPresentationStyle="formSheet" id="xKV-DX-Nra"/>
                     </connections>
