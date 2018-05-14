@@ -168,7 +168,7 @@ final class FileProviderExtension: NSFileProviderExtension {
     override func setFavoriteRank(_ favoriteRank: NSNumber?, forItemIdentifier itemIdentifier: NSFileProviderItemIdentifier,
                                   completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void) {
         modifyItem(withIdentifier: itemIdentifier, completionHandler: completionHandler) { object in
-            object.itemState.favoriteRank = favoriteRank?.intValue ?? Int(NSFileProviderFavoriteRankUnranked)
+            object.itemState.favoriteRank = favoriteRank?.int64Value ?? Int64(NSFileProviderFavoriteRankUnranked)
         }
     }
 

@@ -33,7 +33,7 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
     /// - external: Content is hosted by an external file provider.
     /// - website: Link to a web page.
     @objc
-    public enum Location: Int {
+    public enum Location: Int64 {
         case invalid, studIp, external, website
     }
 
@@ -84,7 +84,7 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
     ///
     /// - Warning: Due to Core Data restrictions, this property cannot be optional. Thus, it uses `-1` as an invalid state, e.g.
     ///            for folders.
-    @NSManaged public var size: Int
+    @NSManaged public var size: Int64
 
     /// Files contained in this file in case of a folder.
     @NSManaged public var children: Set<File>
@@ -103,7 +103,7 @@ public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
     ///
     /// - Warning: Due to Core Data restrictions, this property cannot be optional. Thus, it uses `-1` as an invalid state, e.g.
     ///            for folders.
-    @NSManaged public var downloadCount: Int
+    @NSManaged public var downloadCount: Int64
 
     @NSManaged public var downloadedBy: Set<User>
 

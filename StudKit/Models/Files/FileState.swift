@@ -33,7 +33,7 @@ public final class FileState: NSManagedObject, CDCreatable, CDSortable {
 
     // MARK: Managing Metadata
 
-    @NSManaged public var favoriteRank: Int
+    @NSManaged public var favoriteRank: Int64
 
     @NSManaged public var tagData: Data?
 
@@ -48,7 +48,7 @@ public final class FileState: NSManagedObject, CDCreatable, CDSortable {
     public required convenience init(createIn context: NSManagedObjectContext) {
         self.init(context: context)
 
-        favoriteRank = fileProviderFavoriteRankUnranked
+        favoriteRank = Int64(fileProviderFavoriteRankUnranked)
     }
 
     // MARK: - Sorting

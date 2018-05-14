@@ -23,7 +23,7 @@ public protocol FileProviderItemConvertibleState: class {
     /// Item convertible this state describes.
     var item: FileProviderItemConvertible { get }
 
-    var favoriteRank: Int { get set }
+    var favoriteRank: Int64 { get set }
 
     var lastUsedAt: Date? { get set }
 

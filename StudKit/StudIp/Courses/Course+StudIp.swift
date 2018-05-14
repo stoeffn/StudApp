@@ -121,7 +121,7 @@ extension Course {
             guard result.isSuccess else { return completion(.failure(result.error)) }
 
             context.perform {
-                self.groupId = groupId
+                self.groupId = Int64(groupId)
                 completion(result.map { _ in })
             }
         }

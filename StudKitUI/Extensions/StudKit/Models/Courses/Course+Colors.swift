@@ -20,6 +20,6 @@ import StudKit
 
 public extension Course {
     public var color: UIColor {
-        return UI.Colors.pickerColors[groupId]?.color ?? UI.Colors.studBlue
+        return UI.Colors.pickerColors[Int(groupId)]?.color ?? UI.Colors.studBlue
     }
 }

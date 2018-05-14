@@ -117,8 +117,8 @@ extension DocumentResponse {
         document.createdAt = createdAt
         document.isNew = document.isNew || document.modifiedAt < modifiedAt
         document.modifiedAt = modifiedAt
-        document.size = size ?? -1
-        document.downloadCount = downloadCount ?? -1
+        document.size = Int64(size ?? -1)
+        document.downloadCount = Int64(downloadCount ?? -1)
         document.summary = summary
         return document
     }

@@ -93,7 +93,7 @@ extension CourseResponse {
         course.title = title
         course.subtitle = subtitle
         course.summary = summary
-        course.groupId = groupId
+        course.groupId = Int64(groupId)
         course.location = location
         course.lecturers = Set(lecturers)
         course.semesters = Set(semesters)
