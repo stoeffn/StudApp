@@ -19,7 +19,6 @@
 import XCTest
 
 final class StudAppSnapshots: XCTestCase {
-
     // MARK: - Life Cycle
 
     override func setUp() {
@@ -29,16 +28,17 @@ final class StudAppSnapshots: XCTestCase {
         app.setUpSnapshot()
         app.launchArguments += [Distributions.uiTestArgument]
         app.launch()
-
-        if app.runsOniPad {
-            XCUIDevice.shared.orientation = .landscapeLeft
-        }
     }
 
     // MARK: - Courses
 
     func testCourses() {
         let app = XCUIApplication()
+
+        if app.runsOniPad {
+            XCUIDevice.shared.orientation = .landscapeLeft
+        }
+
         app.buttons["Winter 2017/18".localized(language: deviceLanguage)].tap()
         app.buttons["Summer 2018".localized(language: deviceLanguage)].tap()
 
@@ -53,6 +53,10 @@ final class StudAppSnapshots: XCTestCase {
         let app = XCUIApplication()
         guard !app.runsOniPad else { return }
 
+        if app.runsOniPad {
+            XCUIDevice.shared.orientation = .landscapeLeft
+        }
+
         app.buttons["Summer 2018".localized(language: deviceLanguage)].tap()
         app.staticTexts["Coding Crash Course".localized(language: deviceLanguage)].tap()
 
@@ -63,6 +67,11 @@ final class StudAppSnapshots: XCTestCase {
 
     func testEvents() {
         let app = XCUIApplication()
+
+        if app.runsOniPad {
+            XCUIDevice.shared.orientation = .landscapeLeft
+        }
+
         app.buttons["Events".localized(language: deviceLanguage)].tap()
 
         snapshot("03-Events")
@@ -72,6 +81,11 @@ final class StudAppSnapshots: XCTestCase {
 
     func testDownloads() {
         let app = XCUIApplication()
+
+        if app.runsOniPad {
+            XCUIDevice.shared.orientation = .landscapeLeft
+        }
+
         app.buttons["Downloads".localized(language: deviceLanguage)].tap()
 
         snapshot("04-Downloads")

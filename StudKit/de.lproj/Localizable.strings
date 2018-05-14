@@ -228,7 +228,7 @@
 "Data Science 101" = "Data Science 101";
 "StudApp Feedback" = "StudApp Feedback";
 "Coding Crash Course" = "Programmier-Crash-Kurs";
-"Telling the Computer What to Do" = "Dem Computer sagen, was er zu machen hat";
+"Telling Computers What to Do" = "Computern sagen, was sie zu tun haben";
 "In this course, you will learn the basics of computer programming." = "In dieser Veranstaltung lernen Sie die Basics des Programmierens.";
 "Please refer to https://google.com/ if you have any questions." = "Wenden Sie sich an https://google.com/, falls Fragen auftreten sollten.";
 "Building Your Own Operating System" = "Baue Dein eigenes Betriebssystem";
@@ -254,7 +254,7 @@
 
 // MARK: Events
 
-"What can for loops do for me?" = "for-Schleifen vs if-Schleifen";
+"What can for-loops do for me?" = "Was können for-Schleifen?";
 "Functional Concepts" = "Funktionale Konzepte";
 "Data Preprocessing" = "Data Preprocessing";
 "Group 0" = "Gruppe 0";

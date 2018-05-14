@@ -229,7 +229,7 @@
 "Data Science 101" = "Data Science 101";
 "StudApp Feedback" = "StudApp Feedback";
 "Coding Crash Course" = "Coding Crash Course";
-"Telling the Computer What to Do" = "Telling the Computer What to Do";
+"Telling Computers What to Do" = "Telling Computers What to Do";
 "In this course, you will learn the basics of computer programming." = "In this course, you will learn the basics of computer programming.";
 "Please refer to https://google.com/ if you have any questions." = "Please refer to https://google.com/ if you have any questions.";
 "Building Your Own Operating System" = "Building Your Own Operating System";
@@ -255,7 +255,7 @@
 
 // MARK: Events
 
-"What can for loops do for me?" = "What can for loops do for me?";
+"What can for-loops do for me?" = "What can for loops do for me?";
 "Functional Concepts" = "Functional Concepts";
 "Data Preprocessing" = "Data Preprocessing";
 "Group 0" = "Group 0";

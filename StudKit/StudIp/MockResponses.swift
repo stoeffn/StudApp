@@ -85,7 +85,7 @@ struct MockResponses {
         CourseResponse(id: "C6", number: nil, title: "StudApp Feedback".localized,
                        groupId: 5, lecturers: [tesla], beginSemesterId: "S0", endSemesterId: "S3"),
         CourseResponse(id: "C7", number: "10011", title: "Coding Crash Course".localized,
-                       subtitle: "Telling the Computer What to Do".localized, location: "Main Building\nBasement".localized,
+                       subtitle: "Telling Computers What to Do".localized, location: "Main Building\nBasement".localized,
                        summary: programmingCourseSummary, groupId: 2, lecturers: [langdon], beginSemesterId: "S3", endSemesterId: "S3"),
     ]
 
@@ -136,18 +136,18 @@ struct MockResponses {
     // MARK: - Events
 
     private(set) lazy var events = [
-        EventResponse(id: "E0", title: "What can for loops do for me?".localized, courseId: "C7", startsAt: today + hour * 12,
+        EventResponse(id: "E0", title: "What can for-loops do for me?".localized, courseId: "C7", startsAt: today + hour * 12,
                       endsAt: today + hour * 13.5, location: "Main Building\nBasement".localized),
         EventResponse(id: "E1", title: "Data Preprocessing".localized, courseId: "C5", startsAt: today + hour * 14,
                       endsAt: today + hour * 15, location: "Building 42\nMultimedia Room".localized),
-        EventResponse(id: "E2", title: "Group 0".localized, courseId: "C0", startsAt: today + hour * 16.25,
-                      endsAt: today + hour * 17.75, location: "Main Building\nHugo Kulka Room".localized),
-        EventResponse(id: "E3", courseId: "C2", startsAt: today + day + hour * 8.25, endsAt: today + day + hour * 9.75,
-                      location: "Main Building\nBielefeld Room".localized),
-        EventResponse(id: "E4", title: "Functional Concepts".localized, courseId: "C7", startsAt: today + day + hour * 11,
-                      endsAt: today + day + hour * 12.5, location: "Main Building\nBasement".localized),
-        EventResponse(id: "E5", startsAt: today + day + hour * 12, endsAt: today + day + hour * 13.5,
+        EventResponse(id: "E2", startsAt: today + day + hour * 15.5, endsAt: today + day + hour * 17,
                       location: "Building 42\nRoom 135".localized, summary: "Building Your Own Operating System".localized),
+        EventResponse(id: "E3", title: "Group 0".localized, courseId: "C0", startsAt: today + hour * 16.25,
+                      endsAt: today + hour * 17.75, location: "Main Building\nHugo Kulka Room".localized),
+        EventResponse(id: "E4", courseId: "C2", startsAt: today + day + hour * 8.25, endsAt: today + day + hour * 9.75,
+                      location: "Main Building\nBielefeld Room".localized),
+        EventResponse(id: "E5", title: "Functional Concepts".localized, courseId: "C7", startsAt: today + day + hour * 11,
+                      endsAt: today + day + hour * 12.5, location: "Main Building\nBasement".localized),
         EventResponse(id: "E6", courseId: "C4", startsAt: today + day + hour * 13.25, endsAt: today + day + hour * 14.75,
                       location: "Main Building\nBielefeld Room".localized),
         EventResponse(id: "E7", courseId: "C0", startsAt: today + day * 2 + hour * 10, endsAt: today + day * 2 + hour * 10.5,
