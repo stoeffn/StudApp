@@ -69,6 +69,7 @@ final class FileCell: UITableViewCell {
             updateSubtitleHiddenStates()
             updateReachabilityIndicator()
 
+            let isNewState = file.isNew ? "New".localized : nil
             let modifiedBy = userFullname != nil ? "by %@".localized(userFullname ?? "") : nil
             let modifiedAtBy = ["Modified".localized, modifiedAt, modifiedBy].compactMap { $0 }.joined(separator: " ")
             let folderOrDocument = file.isFolder ? "Folder".localized : "Document".localized
@@ -76,13 +77,20 @@ final class FileCell: UITableViewCell {
             let hostedBy = file.location == .external || file.location == .website ? "hosted by %@".localized(host ?? "") : nil
 
             accessibilityLabel = [
-                folderOrDocument, file.title, modifiedAtBy, sizeOrItemCount, hostedBy,
+                isNewState, folderOrDocument, file.title, modifiedAtBy, sizeOrItemCount, hostedBy,
             ].compactMap { $0 }.joined(separator: ", ")
 
             let shareAction = UIAccessibilityCustomAction(name: "Share".localized, target: self, selector: #selector(share(_:)))
             let removeAction = UIAccessibilityCustomAction(name: "Remove".localized, target: self, selector: #selector(remove(_:)))
+            let markAction = file.isNew
+                ? UIAccessibilityCustomAction(name: "Mark as Seen".localized, target: self, selector: #selector(markAsSeen(_:)))
+                : UIAccessibilityCustomAction(name: "Mark as New".localized, target: self, selector: #selector(markAsNew(_:)))
 
-            accessibilityCustomActions = [shareAction, file.state.isDownloaded ? removeAction : nil].compactMap { $0 }
+            accessibilityCustomActions = [
+                file.state.isDownloaded ? shareAction : nil,
+                file.state.isDownloaded ? removeAction : nil,
+                !file.isFolder ? markAction : nil
+            ].compactMap { $0 }
         }
     }
 

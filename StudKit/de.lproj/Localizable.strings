@@ -67,6 +67,7 @@
 
 // MARK: Generic States
 
+"New" = "Neu";
 "Hidden" = "Versteckt";
 "Visible" = "Sichtbar";
 "Collapsed" = "Eingeklappt";

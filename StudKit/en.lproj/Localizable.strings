@@ -67,6 +67,7 @@
 
 // MARK: Generic States
 
+"New" = "New";
 "Hidden" = "Hidden";
 "Visible" = "Visible";
 "Collapsed" = "Collapsed";
