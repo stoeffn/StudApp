@@ -41,7 +41,10 @@ final class PreviewController: QLPreviewController, Routable {
                 return self.present(alert, animated: true, completion: nil)
             }
 
-            self.file.isNew = false
+            if self.file.isNew {
+                self.file.isNew = false
+            }
+
             self.refreshCurrentPreviewItem()
         }
     }
@@ -91,6 +94,9 @@ final class PreviewController: QLPreviewController, Routable {
     static func controllerForDownloadOrPreview(_ file: File, delegate: QLPreviewControllerDelegate,
                                                handler: @escaping (UIViewController?) -> Void) {
         if let externalUrl = file.externalUrl, !file.isLocationSecure {
+            if file.isNew {
+                file.isNew = false
+            }
             return handler(ServiceContainer.default[HtmlContentService.self].safariViewController(for: externalUrl))
         }
 

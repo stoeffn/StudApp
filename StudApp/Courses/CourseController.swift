@@ -453,6 +453,10 @@ extension CourseController: UIViewControllerPreviewingDelegate, QLPreviewControl
             let file = fileListViewModel[rowAt: indexPath.row]
             guard !file.isFolder else { return nil }
 
+            if let externalUrl = file.externalUrl, !file.isLocationSecure {
+                return ServiceContainer.default[HtmlContentService.self].safariViewController(for: externalUrl)
+            }
+
             let previewController = PreviewController()
             previewController.prepareContent(for: .preview(for: file, self))
             return previewController

@@ -50,7 +50,9 @@ final class FolderController: UITableViewController, Routable {
         update()
         updateEmptyView()
 
-        (viewModel.container as? File)?.isNew = false
+        if let file = viewModel.container as? File, file.isNew {
+            file.isNew = false
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -251,6 +253,10 @@ extension FolderController: UIViewControllerPreviewingDelegate, QLPreviewControl
         guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
         let file = viewModel[rowAt: indexPath.row]
         guard !file.isFolder else { return nil }
+
+        if let externalUrl = file.externalUrl, !file.isLocationSecure {
+            return ServiceContainer.default[HtmlContentService.self].safariViewController(for: externalUrl)
+        }
 
         let previewController = PreviewController()
         previewController.prepareContent(for: .preview(for: file, self))

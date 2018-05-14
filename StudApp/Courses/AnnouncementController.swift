@@ -34,7 +34,9 @@ final class AnnouncementController: UIViewController, Routable {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        announcement.isNew = false
+        if announcement.isNew {
+            announcement.isNew = false
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
