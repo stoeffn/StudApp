@@ -132,19 +132,57 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     // MARK: - Table View Delegate
 
     @available(iOS 11.0, *)
-    override func tableView(_: UITableView,
-                            trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        func removeHandler(action _: UIContextualAction, view _: UIView, handler: @escaping (Bool) -> Void) {
-            guard let viewModel = viewModel else { fatalError() }
-            let file = viewModel[rowAt: indexPath]
-            let success = viewModel.removeDownload(file)
+    private func removeSwipeAction(for file: File) -> UIContextualAction? {
+        guard file.state.isDownloaded else { return nil }
+        let action = UIContextualAction(style: .destructive, title: "Remove".localized) { _, _, handler in
+            let success = self.viewModel?.removeDownload(file) ?? false
             handler(success)
         }
+        action.backgroundColor = UI.Colors.studRed
+        return action
+    }
 
-        let removeAction = UIContextualAction(style: .destructive, title: "Remove".localized, handler: removeHandler)
-        removeAction.backgroundColor = UI.Colors.studRed
+    @available(iOS 11.0, *)
+    private func markAsNewSwipeAction(for file: File) -> UIContextualAction? {
+        guard !file.isFolder, !file.isNew else { return nil }
+        let action = UIContextualAction(style: .normal, title: "Mark as New".localized) { _, _, handler in
+            file.isNew = true
+            handler(true)
+        }
+        action.backgroundColor = file.course.color
+        action.image = #imageLiteral(resourceName: "MarkAsNewActionGlypph")
+        return action
+    }
 
-        return UISwipeActionsConfiguration(actions: [removeAction])
+    @available(iOS 11.0, *)
+    private func markAsSeenSwipeAction(for file: File) -> UIContextualAction? {
+        guard !file.isFolder, file.isNew else { return nil }
+        let action = UIContextualAction(style: .normal, title: "Mark as Seen".localized) { _, _, handler in
+            file.isNew = false
+            handler(true)
+        }
+        action.backgroundColor = file.course.color
+        action.image = #imageLiteral(resourceName: "MarkAsSeenActionGlyph")
+        return action
+    }
+
+    @available(iOS 11.0, *)
+    override func tableView(_: UITableView,
+                            leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard let file = viewModel?[rowAt: indexPath] else { return nil }
+        return UISwipeActionsConfiguration(actions: [
+            markAsNewSwipeAction(for: file),
+            markAsSeenSwipeAction(for: file),
+        ].compactMap { $0 })
+    }
+
+    @available(iOS 11.0, *)
+    override func tableView(_: UITableView,
+                            trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard let file = viewModel?[rowAt: indexPath] else { return nil }
+        return UISwipeActionsConfiguration(actions: [
+            removeSwipeAction(for: file),
+        ].compactMap { $0 })
     }
 
     override func tableView(_: UITableView, shouldShowMenuForRowAt _: IndexPath) -> Bool {
@@ -181,11 +219,6 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     }
 
     // MARK: - Data Source Delegate
-
-    func dataWillChange<Source>(in _: Source) {
-        tableView.reloadData()
-        tableView.beginUpdates()
-    }
 
     func dataDidChange<Source>(in _: Source) {
         tableView.endUpdates()

@@ -140,6 +140,45 @@ final class FolderController: UITableViewController, Routable {
 
     // MARK: - Table View Delegate
 
+    @available(iOS 11.0, *)
+    private func markAsNewSwipeAction(for file: File) -> UIContextualAction? {
+        guard !file.isFolder, !file.isNew else { return nil }
+        let action = UIContextualAction(style: .normal, title: "Mark as New".localized) { _, _, handler in
+            file.isNew = true
+            handler(true)
+        }
+        action.backgroundColor = file.course.color
+        action.image = #imageLiteral(resourceName: "MarkAsNewActionGlypph")
+        return action
+    }
+
+    @available(iOS 11.0, *)
+    private func markAsSeenSwipeAction(for file: File) -> UIContextualAction? {
+        guard !file.isFolder, file.isNew else { return nil }
+        let action = UIContextualAction(style: .normal, title: "Mark as Seen".localized) { _, _, handler in
+            file.isNew = false
+            handler(true)
+        }
+        action.backgroundColor = file.course.color
+        action.image = #imageLiteral(resourceName: "MarkAsSeenActionGlyph")
+        return action
+    }
+
+    @available(iOS 11.0, *)
+    override func tableView(_: UITableView,
+                            leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let file = viewModel[rowAt: indexPath.row]
+        return UISwipeActionsConfiguration(actions: [
+            markAsNewSwipeAction(for: file),
+            markAsSeenSwipeAction(for: file),
+        ].compactMap { $0 })
+    }
+
+    @available(iOS 11.0, *)
+    override func tableView(_: UITableView, trailingSwipeActionsConfigurationForRowAt _: IndexPath) -> UISwipeActionsConfiguration? {
+        return UISwipeActionsConfiguration(actions: [])
+    }
+
     override func tableView(_: UITableView, shouldShowMenuForRowAt _: IndexPath) -> Bool {
         return true
     }

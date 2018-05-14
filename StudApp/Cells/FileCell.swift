@@ -89,7 +89,7 @@ final class FileCell: UITableViewCell {
             accessibilityCustomActions = [
                 file.state.isDownloaded ? shareAction : nil,
                 file.state.isDownloaded ? removeAction : nil,
-                !file.isFolder ? markAction : nil
+                !file.isFolder ? markAction : nil,
             ].compactMap { $0 }
         }
     }
@@ -189,12 +189,12 @@ final class FileCell: UITableViewCell {
     }
 
     @objc
-    func markAsNew(_ sender: Any?) {
+    func markAsNew(_: Any?) {
         file.isNew = true
     }
 
     @objc
-    func markAsSeen(_ sender: Any?) {
+    func markAsSeen(_: Any?) {
         file.isNew = false
     }
 

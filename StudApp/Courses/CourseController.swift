@@ -301,6 +301,80 @@ final class CourseController: UITableViewController, Routable {
 
     // MARK: - Table View Delegate
 
+    @available(iOS 11.0, *)
+    private func markAsNewSwipeAction(for annoucement: Announcement) -> UIContextualAction? {
+        guard !annoucement.isNew else { return nil }
+        let action = UIContextualAction(style: .normal, title: "Mark as New".localized) { _, _, handler in
+            annoucement.isNew = true
+            handler(true)
+        }
+        action.backgroundColor = viewModel.course.color
+        action.image = #imageLiteral(resourceName: "MarkAsNewActionGlypph")
+        return action
+    }
+
+    @available(iOS 11.0, *)
+    private func markAsSeenSwipeAction(for annoucement: Announcement) -> UIContextualAction? {
+        guard annoucement.isNew else { return nil }
+        let action = UIContextualAction(style: .normal, title: "Mark as New".localized) { _, _, handler in
+            annoucement.isNew = false
+            handler(true)
+        }
+        action.backgroundColor = viewModel.course.color
+        action.image = #imageLiteral(resourceName: "MarkAsSeenActionGlyph")
+        return action
+    }
+
+    @available(iOS 11.0, *)
+    private func markAsNewSwipeAction(for file: File) -> UIContextualAction? {
+        guard !file.isFolder, !file.isNew else { return nil }
+        let action = UIContextualAction(style: .normal, title: "Mark as New".localized) { _, _, handler in
+            file.isNew = true
+            handler(true)
+        }
+        action.backgroundColor = file.course.color
+        action.image = #imageLiteral(resourceName: "MarkAsNewActionGlypph")
+        return action
+    }
+
+    @available(iOS 11.0, *)
+    private func markAsSeenSwipeAction(for file: File) -> UIContextualAction? {
+        guard !file.isFolder, file.isNew else { return nil }
+        let action = UIContextualAction(style: .normal, title: "Mark as New".localized) { _, _, handler in
+            file.isNew = false
+            handler(true)
+        }
+        action.backgroundColor = file.course.color
+        action.image = #imageLiteral(resourceName: "MarkAsSeenActionGlyph")
+        return action
+    }
+
+    @available(iOS 11.0, *)
+    override func tableView(_: UITableView,
+                            leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        switch Sections(rawValue: indexPath.section) {
+        case .announcements? where !announcementsViewModel.isEmpty:
+            guard let announcement = announcementsViewModel?[rowAt: indexPath.row] else { return nil }
+            return UISwipeActionsConfiguration(actions: [
+                markAsNewSwipeAction(for: announcement),
+                markAsSeenSwipeAction(for: announcement),
+            ].compactMap { $0 })
+        case .documents? where !fileListViewModel.isEmpty:
+            guard let file = fileListViewModel?[rowAt: indexPath.row] else { return nil }
+            return UISwipeActionsConfiguration(actions: [
+                markAsNewSwipeAction(for: file),
+                markAsSeenSwipeAction(for: file),
+            ].compactMap { $0 })
+        default:
+            return nil
+        }
+    }
+
+    @available(iOS 11.0, *)
+    override func tableView(_: UITableView, trailingSwipeActionsConfigurationForRowAt _: IndexPath) -> UISwipeActionsConfiguration? {
+        return UISwipeActionsConfiguration(actions: [])
+    }
+
     override func tableView(_: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
         switch Sections(rawValue: indexPath.section) {
         case .info?,
@@ -315,22 +389,24 @@ final class CourseController: UITableViewController, Routable {
     override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath,
                             withSender _: Any?) -> Bool {
         switch (Sections(rawValue: indexPath.section), action) {
-        case (.info?, #selector(copy(_:))), (.announcements?, #selector(copy(_:))), (.summary?, #selector(copy(_:))):
+        case (.info?, #selector(copy(_:))),
+             (.announcements?, #selector(copy(_:))) where !announcementsViewModel.isEmpty,
+             (.summary?, #selector(copy(_:))):
             return true
-        case (.announcements?, #selector(CustomMenuItems.markAsNew(_:))):
+        case (.announcements?, #selector(CustomMenuItems.markAsNew(_:))) where !announcementsViewModel.isEmpty:
             guard indexPath.row < announcementsViewModel.numberOfRows else { return false }
             return !announcementsViewModel[rowAt: indexPath.row].isNew
-        case (.announcements?, #selector(CustomMenuItems.markAsSeen(_:))):
+        case (.announcements?, #selector(CustomMenuItems.markAsSeen(_:))) where !announcementsViewModel.isEmpty:
             guard indexPath.row < announcementsViewModel.numberOfRows else { return false }
             return announcementsViewModel[rowAt: indexPath.row].isNew
-        case (.documents?, #selector(CustomMenuItems.remove(_:))):
+        case (.documents?, #selector(CustomMenuItems.remove(_:))) where !fileListViewModel.isEmpty:
             guard indexPath.row < fileListViewModel.numberOfRows else { return false }
             return fileListViewModel[rowAt: indexPath.row].state.isDownloaded
-        case (.documents?, #selector(CustomMenuItems.markAsNew(_:))):
+        case (.documents?, #selector(CustomMenuItems.markAsNew(_:))) where !fileListViewModel.isEmpty:
             guard indexPath.row < fileListViewModel.numberOfRows else { return false }
             let file = fileListViewModel[rowAt: indexPath.row]
             return !file.isNew && !file.isFolder
-        case (.documents?, #selector(CustomMenuItems.markAsSeen(_:))):
+        case (.documents?, #selector(CustomMenuItems.markAsSeen(_:))) where !fileListViewModel.isEmpty:
             guard indexPath.row < fileListViewModel.numberOfRows else { return false }
             let file = fileListViewModel[rowAt: indexPath.row]
             return file.isNew && !file.isFolder

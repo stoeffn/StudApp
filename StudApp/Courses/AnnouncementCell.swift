@@ -107,12 +107,12 @@ final class AnnouncementCell: UITableViewCell {
     // MARK: - User Interaction
 
     @objc
-    func markAsNew(_ sender: Any?) {
+    func markAsNew(_: Any?) {
         announcement.isNew = true
     }
 
     @objc
-    func markAsSeen(_ sender: Any?) {
+    func markAsSeen(_: Any?) {
         announcement.isNew = false
     }
 }
