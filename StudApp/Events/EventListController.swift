@@ -245,9 +245,11 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         let hasSameTimesAsPreviousEvent = event.startsAt == previousEvent?.startsAt && event.endsAt == previousEvent?.endsAt
 
         let cell = tableView.dequeueReusableCell(withIdentifier: EventCell.typeIdentifier, for: indexPath)
+        let accessoryViewFrame = CGRect(x: 0, y: 0, width: 8, height: 13)
         (cell as? EventCell)?.event = event
         (cell as? EventCell)?.showsTimes = !hasSameTimesAsPreviousEvent
         cell.selectionStyle = viewModel.container is Course || event.course == nil ? .none : .default
+        cell.accessoryView = event.course == nil ? UIView(frame: accessoryViewFrame) : nil
         cell.accessoryType = viewModel.container is Course || event.course == nil ? .none : .disclosureIndicator
         return cell
     }
