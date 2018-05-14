@@ -105,7 +105,7 @@ extension DocumentResponse: Decodable {
 extension DocumentResponse {
     @discardableResult
     func coreDataObject(course: Course, parent: File? = nil, in context: NSManagedObjectContext) throws -> File {
-        let (document, _) = try File.fetch(byId: id, orCreateIn: context)
+        let (document, isNew) = try File.fetch(byId: id, orCreateIn: context)
         document.location = location
         document.externalUrl = externalUrl
         document.organization = course.organization
@@ -115,7 +115,8 @@ extension DocumentResponse {
         document.owner = try User.fetch(byId: userId, in: context)
         document.name = extendedName
         document.createdAt = createdAt
-        document.isNew = document.isNew || document.modifiedAt < modifiedAt
+        document.isNew = StudIp.isNew(wasNew: document.isNew, locallyModifiedAt: isNew ? nil : document.modifiedAt,
+                                      modifiedAt: modifiedAt)
         document.modifiedAt = modifiedAt
         document.size = Int64(size ?? -1)
         document.downloadCount = Int64(downloadCount ?? -1)

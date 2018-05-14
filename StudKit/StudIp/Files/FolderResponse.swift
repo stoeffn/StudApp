@@ -75,7 +75,7 @@ extension FolderResponse: Decodable {
 extension FolderResponse {
     @discardableResult
     func coreDataObject(course: Course, parent: File? = nil, in context: NSManagedObjectContext) throws -> File {
-        let (folder, _) = try File.fetch(byId: id, orCreateIn: context)
+        let (folder, isNew) = try File.fetch(byId: id, orCreateIn: context)
         folder.organization = course.organization
         folder.typeIdentifier = kUTTypeFolder as String
         folder.parent = parent ?? folder.parent
@@ -83,7 +83,7 @@ extension FolderResponse {
         folder.owner = try User.fetch(byId: userId, in: context)
         folder.name = name
         folder.createdAt = createdAt
-        folder.isNew = folder.isNew || folder.modifiedAt < modifiedAt
+        folder.isNew = StudIp.isNew(wasNew: folder.isNew, locallyModifiedAt: isNew ? nil : folder.modifiedAt, modifiedAt: modifiedAt)
         folder.modifiedAt = modifiedAt
         folder.size = -1
         folder.downloadCount = -1

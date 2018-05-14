@@ -18,6 +18,12 @@
 
 enum StudIp {
 
+    // MARK: - Logic
+
+    static func isNew(wasNew: Bool, locallyModifiedAt: Date?, modifiedAt: Date) -> Bool {
+        return wasNew || (locallyModifiedAt ?? .distantPast < modifiedAt && modifiedAt >= Date() - 60 * 60 * 24 * 7)
+    }
+
     // MARK: - Custom Transforms
 
     static func transform(idPath: String?) -> String? {

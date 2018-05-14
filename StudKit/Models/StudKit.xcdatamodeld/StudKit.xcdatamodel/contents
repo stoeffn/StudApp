@@ -5,7 +5,7 @@
         <attribute name="expiresAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="htmlContent" attributeType="String" defaultValueString=" " syncable="YES"/>
         <attribute name="id" attributeType="String" minValueString="1" syncable="YES"/>
-        <attribute name="isNew" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isNew" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="modifiedAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="textContent" attributeType="String" defaultValueString=" " syncable="YES"/>
         <attribute name="title" attributeType="String" minValueString="1" syncable="YES"/>
@@ -82,7 +82,7 @@
         <attribute name="downloadCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="externalUrlString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" attributeType="String" minValueString="1" syncable="YES"/>
-        <attribute name="isNew" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isNew" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="location" attributeType="Integer 64" defaultValueString="1" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="modifiedAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>

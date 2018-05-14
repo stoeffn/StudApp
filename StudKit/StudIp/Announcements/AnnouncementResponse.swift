@@ -79,13 +79,14 @@ extension AnnouncementResponse: Decodable {
 extension AnnouncementResponse {
     @discardableResult
     func coreDataObject(organization: Organization, in context: NSManagedObjectContext) throws -> Announcement {
-        let (announcement, _) = try Announcement.fetch(byId: id, orCreateIn: context)
+        let (announcement, isNew) = try Announcement.fetch(byId: id, orCreateIn: context)
         let courses = try Course.fetch(byIds: courseIds, in: context)
         announcement.organization = organization
         announcement.courses = Set(courses)
         announcement.user = try User.fetch(byId: userId, in: context)
         announcement.createdAt = createdAt
-        announcement.isNew = announcement.isNew || announcement.modifiedAt < modifiedAt
+        announcement.isNew = StudIp.isNew(wasNew: announcement.isNew, locallyModifiedAt: isNew ? nil : announcement.modifiedAt,
+                                          modifiedAt: modifiedAt)
         announcement.modifiedAt = modifiedAt
         announcement.expiresAt = createdAt + expiresAfter
         announcement.title = title
