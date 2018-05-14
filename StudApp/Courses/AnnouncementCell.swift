@@ -96,4 +96,16 @@ final class AnnouncementCell: UITableViewCell {
         guard let announcement = announcement else { return }
         userContainer.isHidden = announcement.user == nil
     }
+
+    // MARK: - User Interaction
+
+    @objc
+    func markAsNew(_ sender: Any?) {
+        announcement.isNew = true
+    }
+
+    @objc
+    func markAsSeen(_ sender: Any?) {
+        announcement.isNew = false
+    }
 }

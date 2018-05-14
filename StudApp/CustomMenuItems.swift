@@ -34,6 +34,12 @@ public protocol CustomMenuItems: NSObjectProtocol {
 
     @objc
     func color(_ sender: Any?)
+
+    @objc
+    func markAsNew(_ sender: Any?)
+
+    @objc
+    func markAsSeen(_ sender: Any?)
 }
 
 // MARK: - Utilities
@@ -45,5 +51,7 @@ func addCustomMenuItems(to menuController: UIMenuController) {
         UIMenuItem(title: "Hide".localized, action: #selector(CustomMenuItems.hide(_:))),
         UIMenuItem(title: "Show".localized, action: #selector(CustomMenuItems.show(_:))),
         UIMenuItem(title: "Color".localized, action: #selector(CustomMenuItems.color(_:))),
+        UIMenuItem(title: "Mark as New".localized, action: #selector(CustomMenuItems.markAsNew(_:))),
+        UIMenuItem(title: "Mark as Seen".localized, action: #selector(CustomMenuItems.markAsSeen(_:))),
     ]
 }

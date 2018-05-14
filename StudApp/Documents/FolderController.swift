@@ -152,6 +152,10 @@ final class FolderController: UITableViewController, Routable {
         switch action {
         case #selector(CustomMenuItems.remove(_:)):
             return file.state.isDownloaded
+        case #selector(CustomMenuItems.markAsNew(_:)):
+            return !file.isNew && !file.isFolder
+        case #selector(CustomMenuItems.markAsSeen(_:)):
+            return file.isNew && !file.isFolder
         default:
             return false
         }

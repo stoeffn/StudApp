@@ -44,6 +44,8 @@
 "Send Feedback" = "Feedback senden";
 "Open in Safari" = "In Safari öffnen";
 "Swipe down to refresh." = "Streiche nach unten, um zu aktualisieren.";
+"Mark as New" = "Als neu markieren";
+"Mark as Seen" = "Als gesehen markieren";
 
 // MARK: Generic Errors
 

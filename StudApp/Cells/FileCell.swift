@@ -50,7 +50,7 @@ final class FileCell: UITableViewCell {
             iconView.image = nil
             fileIconService.icon(for: file) { self.iconView?.image = $0 }
 
-            unreadIndicatorContainerView.isHidden = !file.isNew || file.isFolder || file.modifiedAt < Date() - 60 * 60 * 24 * 7
+            unreadIndicatorContainerView.isHidden = !file.isNew || file.isFolder
             unreadIndicatorView.backgroundColor = file.course.color
 
             titleLabel.text = file.title
@@ -178,6 +178,16 @@ final class FileCell: UITableViewCell {
         } catch {
             return false
         }
+    }
+
+    @objc
+    func markAsNew(_ sender: Any?) {
+        file.isNew = true
+    }
+
+    @objc
+    func markAsSeen(_ sender: Any?) {
+        file.isNew = false
     }
 
     // MARK: - Accessibility

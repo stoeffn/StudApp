@@ -314,15 +314,27 @@ final class CourseController: UITableViewController, Routable {
 
     override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath,
                             withSender _: Any?) -> Bool {
-        guard indexPath.row < fileListViewModel.numberOfRows else { return false }
-        let file = fileListViewModel[rowAt: indexPath.row]
-
-        switch Sections(rawValue: indexPath.section) {
-        case .info?, .announcements?, .summary?:
-            return action == #selector(copy(_:))
-        case .documents?:
-            return action == #selector(CustomMenuItems.remove(_:)) && file.state.isDownloaded
-        case .events?, nil:
+        switch (Sections(rawValue: indexPath.section), action) {
+        case (.info?, #selector(copy(_:))), (.announcements?, #selector(copy(_:))), (.summary?, #selector(copy(_:))):
+            return true
+        case (.announcements?, #selector(CustomMenuItems.markAsNew(_:))):
+            guard indexPath.row < announcementsViewModel.numberOfRows else { return false }
+            return !announcementsViewModel[rowAt: indexPath.row].isNew
+        case (.announcements?, #selector(CustomMenuItems.markAsSeen(_:))):
+            guard indexPath.row < announcementsViewModel.numberOfRows else { return false }
+            return announcementsViewModel[rowAt: indexPath.row].isNew
+        case (.documents?, #selector(CustomMenuItems.remove(_:))):
+            guard indexPath.row < fileListViewModel.numberOfRows else { return false }
+            return fileListViewModel[rowAt: indexPath.row].state.isDownloaded
+        case (.documents?, #selector(CustomMenuItems.markAsNew(_:))):
+            guard indexPath.row < fileListViewModel.numberOfRows else { return false }
+            let file = fileListViewModel[rowAt: indexPath.row]
+            return !file.isNew && !file.isFolder
+        case (.documents?, #selector(CustomMenuItems.markAsSeen(_:))):
+            guard indexPath.row < fileListViewModel.numberOfRows else { return false }
+            let file = fileListViewModel[rowAt: indexPath.row]
+            return file.isNew && !file.isFolder
+        default:
             return false
         }
     }

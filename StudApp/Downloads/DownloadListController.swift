@@ -151,11 +151,18 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         return true
     }
 
-    override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt _: IndexPath,
+    override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath,
                             withSender _: Any?) -> Bool {
+        guard let viewModel = self.viewModel else { return false }
+        let file = viewModel[rowAt: indexPath]
+
         switch action {
-        case #selector(CustomMenuItems.share(_:)), #selector(CustomMenuItems.remove(_:)):
-            return true
+        case #selector(CustomMenuItems.remove(_:)), #selector(CustomMenuItems.share(_:)):
+            return file.state.isDownloaded
+        case #selector(CustomMenuItems.markAsNew(_:)):
+            return !file.isNew && !file.isFolder
+        case #selector(CustomMenuItems.markAsSeen(_:)):
+            return file.isNew && !file.isFolder
         default:
             return false
         }
