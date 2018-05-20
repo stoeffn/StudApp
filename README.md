@@ -29,21 +29,30 @@ And—just like _Stud.IP_ itself—_StudApp_ is completely open source and free 
 
 Generally, _StudApp_ can be used with every _Stud.IP_ instance and most _iPhone_, _iPad_, and _iPod touch_ devices.
 
-Please note that you need at least **Stud.IP 4.0** as well as **iOS 10.0**.
+Please note that you need at least **Stud.IP 4.0.4** as well as **iOS 10.0**.
 
 ## Features
 
-* Organizing courses (e.g. by selecting semesters or applying colors)
-* Viewing general course information, announcements, events, and files
-* Document download management with powerful search
-* Complete offline availability
+* Organizing Courses
+    * Grouping by collapsable semesters and selecting relevant semsters
+    * Setting course colors (available since _Stud.IP 4.2_)
+    * Hiding courses one-by-one
+* Document Management
+    * Downloading and special downloads section with powerful search
+    * Support for downloading or linking to external documents (e.g. hosted by _iCloud Drive_)
+    * Support for web-links as files
+    * File extension inference
+* Rich announcements
+* Events timetable
+* Highlighting new data and manual (un-)highlighting
+* Complete offline availability and cache management
 * Integrates with _iOS's_ native _Files_ app
 * Integration into _Spotlight_ search and _Handoff_
-* Usage of _3D Touch_, _Drag'n'Drop_, haptic feedback, and more
+* Usage of _3D Touch_, _Quick Actions_, _Drag'n'Drop_, _Haptic Feedback_, and more
 * Fully translated into _English_ and _German_
-* Optimized for accessibility features like _Dynamic Type_ and _VoiceOver_
+* Optimized for accessibility features like _Dynamic Type_, _VoiceOver_, and _Smart Invert_
 
-> See [my blog post](https://stoeffn.de/projects/studapp/) if you want to learn more about _StudApp_'s features and the motivations behind this project!
+> See [my blog post](https://stoeffn.de/projects/studapp/) if you want to learn more about the motivations behind this project!
 
 ## Using StudApp
 
