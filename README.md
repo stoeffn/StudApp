@@ -1,13 +1,32 @@
 #  StudApp—Stud.IP to Go
+
 StudApp is an _iOS_ application for the [Stud.IP learning platform](http://www.studip.de), which is used by more than half a million students and lecturers at over 40 _German_ universities and 30 other organizations like the _German Football Association_ or a state police. 
 
 This project aims to take this platform to the next level by leveraging native capabilities of _iOS_. With _StudApp_, it easier than ever to browse your courses, documents, and announcements! Being officially certified by _Stud.IP e.V._, it provides excellent ways to stay up-to-date.
 
 And—just like _Stud.IP_ itself—_StudApp_ is completely open source and free to be used by anyone as an [no-cost app on the App Store](https://itunes.apple.com/us/app/studapp/id1317593772?mt=8).
 
-<img src="https://studapp.stoeffn.de/static/img/iPhone.png" alt="Screenshot: Course Overview" height="720" />
+<table border="0">
+    <tr>
+        <td width="33%">
+            <img src="./Screenshots/iPhone-X-Courses.png" alt="Screenshot: Course Overview on iPhone X" />
+        </td>
+        <td width="33%">
+            <img src="./Screenshots/iPhone-X-Events.png" alt="Screenshot: Events on iPhone X" />
+        </td>
+        <td width="33%">
+            <img src="./Screenshots/iPhone-X-Downloads.png" alt="Screenshot: Downloads on iPhone X" />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3">
+            <img src="./Screenshots/iPad-Pro-Courses.png" alt="Screenshot: Courses on iPad Pro" />
+        </td>
+    </tr>
+</table>
 
 ## Compatibility
+
 Generally, _StudApp_ can be used with every _Stud.IP_ instance and most _iPhone_, _iPad_, and _iPod touch_ devices.
 
 Please note that you need at least **Stud.IP 4.0** as well as **iOS 10.0**.
@@ -27,12 +46,15 @@ Please note that you need at least **Stud.IP 4.0** as well as **iOS 10.0**.
 > See [my blog post](https://stoeffn.de/projects/studapp/) if you want to learn more about _StudApp_'s features and the motivations behind this project!
 
 ## Using StudApp
+
 It is easy to get started!
 
 ### Students and Lecturers
+
 Make sure your organizations supports _StudApp_ and [download it from the App Store](https://itunes.apple.com/us/app/studapp/id1317593772?mt=8)!
 
 ### Administrators
+
 Do you want to add support for _StudApp_ at your university, school, club, or other kind of organization? Glad to hear that!
 
 I've made it very easy for you:
@@ -69,6 +91,7 @@ I've made it very easy for you:
 * Organizations are backed by _CloudKit_ and can be updated on the fly
 
 ## Architecture
+
 If you want to know more about how _StudApp_ works, you've come to the right place! I'll give a general perspective on how things work.
 
 > There are many topics that I've discussed in detail in other blog posts or will do so in the future. Give them a read if you like!
@@ -76,9 +99,11 @@ If you want to know more about how _StudApp_ works, you've come to the right pla
 > You can also find more elaborate information as documentation comments in the source code. I encourage you to check it out!
 
 ### Patterns
+
 This section gives a broad overview over design patterns used in _StudApp_ with the goal to make its code easy to understand and maintain.
 
-#### Layout
+#### Project Layout
+
 _StudApp_ is divided into five distinct targets (and—where useful—accompanying testing targets):
 
 **StudApp** is the actual iOS application with all view controllers and storyboards except those shared by multiple targets.
@@ -94,19 +119,23 @@ _StudApp_ is divided into five distinct targets (and—where useful—accompanyi
 Each targets groups sources files logically instead of by type, sometimes nested. For instance, `Api`, `HttpMethods`, and `Result+Api` are all contained within one group. Extensions that operate on another framework's objects are grouped by framework.
 
 #### MVVM
+
 This project utilizes the [MVVM](https://de.wikipedia.org/wiki/Model_View_ViewModel) _"Model-View-ViewModel"_ pattern, which encourages separation of view and business logic and makes both easier to reuse and test. All models live in _StudKit_, e.g. in the form of database models and services. View models also reside in _StudKit_. Views and controllers form the View part of MVVM.
 
 Using this approach as an addition to _Apple_'s _MVC_ actually makes a lot of sense for this project as I am able to reuse much of my view model logic in both the main app and the file provider. It also makes developing a potential _macOS_ app way easier.
 
 #### Dependency Injection
+
 Another pattern that _StudApp_ uses is [Dependency Injection](https://en.wikipedia.org/wiki/Dependency_injection), which makes unit testing a lot easier. For example, I swap the real API class with a mock subclass that always returns specific responses.
 
 I've implement a minimal approach that lets targets register instances for specific types at launch. Later, services can resolve these instances at runtime.
 
 ### Frameworks and Libraries
+
 To give you a broad overview, here are the frameworks and libraries used in _StudApp_:
 
 #### First-Party
+
 * `CloudKit`—Managing and updating organizations
 * `CommonCrypto`—signing requests
 * `CoreData`—persisting and organizing data
@@ -124,18 +153,18 @@ To give you a broad overview, here are the frameworks and libraries used in _Stu
 * `WebKit`—rendering web-based content like announcements
 * `XCTest`—testing my app
 
-#### Third-Party
-_None_
-
 ## Testing
+
 Ensuring quality requires automated testing. I use _XCTest_ to unit-test my models with a focus on parsing API responses as well as updating and fetching data.
 
 I've created a way to automatically load mock data into _Core Data_ when running UI tests. Those tests will be automated in the future.
 
 ## Code and Licensing
+
 As mentioned in the introduction, _StudApp_ is completely open source and licensed under _GPL-3.0_. See [LICENSE.md](LICENSE.md) for details.
 
 ### Why I chose GPL
+
 Since _StudApp_ is a complete software available on the _App Store_ and not a library, I want to encourage sharing improvements and prevent people from releasing their own closed source modified version since it took many months to build.
 
 The thing about _GPL_ is that it requires source disclosure and forbids sublicencing, i.e. using something in a non-_GPL_-project. To that end, it is a perfect fit. Especially because _Stud.IP_ follows the same approach.
