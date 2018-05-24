@@ -2450,6 +2450,7 @@
 				24557A15203F3FCE00492B74 /* KeychainService.swift in Sources */,
 				2469F810202CB8A0007FB3B6 /* PersistableApiAuthorizing.swift in Sources */,
 				2448D4971FA8DFB200DAB97E /* StudKitServiceProvider.swift in Sources */,
+				245F770820B5CB5C001FF052 /* Localizable.swift in Sources */,
 				24712BF41FB8B80B0067E416 /* DateComponentsFormatter+Shared.swift in Sources */,
 				24FD78701FBF826D0072F860 /* DownloadListViewModel.swift in Sources */,
 				24E2AD1D1FF2D5B0001D3E27 /* EventListViewModel.swift in Sources */,
