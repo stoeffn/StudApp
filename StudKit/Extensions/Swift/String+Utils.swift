@@ -16,8 +16,6 @@
 //  along with this program. If not, see http://www.gnu.org/licenses/.
 //
 
-import Foundation
-
 public extension String {
     /// Returns `nil` in case of an empty string. Otherwise, this method returns the string itself.
     public var nilWhenEmpty: String? {

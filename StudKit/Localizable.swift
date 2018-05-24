@@ -16,6 +16,8 @@
 //  along with this program. If not, see http://www.gnu.org/licenses/.
 //
 
+import Foundation
+
 /// Something that can be localized.
 ///
 /// - Remark: `Localizable.strings` and `Localizable.stringsdict` are expected in the `StudKit` bundle.

@@ -19,8 +19,6 @@
 		24015C1F2082826D000609A3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 249DD6FD1FC8B896006DA46E /* Localizable.strings */; };
 		24015C2020828271000609A3 /* Distributions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DB13B2207BCDBD003B003E /* Distributions.swift */; };
 		24015C2120828276000609A3 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 24F1ABBD204B45D100972305 /* Localizable.stringsdict */; };
-		24015C2220828282000609A3 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360D81FAA5D3800BBBAED /* String+Utils.swift */; };
-		24015C2320828283000609A3 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D360D81FAA5D3800BBBAED /* String+Utils.swift */; };
 		24015C262082833E000609A3 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E91FCDFAC700F4A099 /* App.swift */; };
 		24015C272082833F000609A3 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E91FCDFAC700F4A099 /* App.swift */; };
 		2407A07B1FF2B75A006D41C5 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407A07A1FF2B75A006D41C5 /* Event.swift */; };
@@ -257,6 +255,12 @@
 		24D7293D1FC736120097777F /* FileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7293C1FC736120097777F /* FileCell.swift */; };
 		24D729411FC7490C0097777F /* Int+ByteCountFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D729401FC7490C0097777F /* Int+ByteCountFormatting.swift */; };
 		24D729451FC74B600097777F /* PersonNameComponents+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D729441FC74B600097777F /* PersonNameComponents+Formatting.swift */; };
+		24D7537620B7444E00BB505F /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245F770720B5CB5C001FF052 /* Localizable.swift */; };
+		24D7537720B7444F00BB505F /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245F770720B5CB5C001FF052 /* Localizable.swift */; };
+		24D7537820B7445900BB505F /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245F770920B5CBB7001FF052 /* Strings.swift */; };
+		24D7537920B7445B00BB505F /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245F770920B5CBB7001FF052 /* Strings.swift */; };
+		24D7537A20B7445E00BB505F /* MockStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245F770B20B5DCE0001FF052 /* MockStrings.swift */; };
+		24D7537B20B7445E00BB505F /* MockStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245F770B20B5DCE0001FF052 /* MockStrings.swift */; };
 		24D9EF561FB7559C006776B7 /* SemesterListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9EF551FB7559C006776B7 /* SemesterListViewModel.swift */; };
 		24D9EF851FB75818006776B7 /* FileProviderExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9EF841FB75818006776B7 /* FileProviderExtension.swift */; };
 		24D9EF9E1FB75819006776B7 /* StudFileProvider.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 24D9EF821FB75818006776B7 /* StudFileProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -2362,11 +2366,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24015C2320828283000609A3 /* String+Utils.swift in Sources */,
 				24015C1320827E34000609A3 /* StudAppSnapshots.swift in Sources */,
 				24015C1A20827E41000609A3 /* SnapshotHelper.swift in Sources */,
+				24D7537620B7444E00BB505F /* Localizable.swift in Sources */,
 				24015C262082833E000609A3 /* App.swift in Sources */,
+				24D7537820B7445900BB505F /* Strings.swift in Sources */,
 				24015C1B2082815D000609A3 /* Distributions.swift in Sources */,
+				24D7537A20B7445E00BB505F /* MockStrings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2428,8 +2434,10 @@
 			files = (
 				2448D42D1FA8DA2400DAB97E /* StudAppUITests.swift in Sources */,
 				24015C272082833F000609A3 /* App.swift in Sources */,
+				24D7537920B7445B00BB505F /* Strings.swift in Sources */,
+				24D7537720B7444F00BB505F /* Localizable.swift in Sources */,
+				24D7537B20B7445E00BB505F /* MockStrings.swift in Sources */,
 				24015C2020828271000609A3 /* Distributions.swift in Sources */,
-				24015C2220828282000609A3 /* String+Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -39,11 +39,11 @@ final class StudAppSnapshots: XCTestCase {
             XCUIDevice.shared.orientation = .landscapeLeft
         }
 
-        app.buttons["Winter 2017/18".localized(language: deviceLanguage)].tap()
-        app.buttons["Summer 2018".localized(language: deviceLanguage)].tap()
+        app.buttons[MockStrings.Semesters.winter1718.localized(language: deviceLanguage)].tap()
+        app.buttons[MockStrings.Semesters.summer18.localized(language: deviceLanguage)].tap()
 
         if app.runsOniPad {
-            app.staticTexts["Coding Crash Course".localized(language: deviceLanguage)].tap()
+            app.staticTexts[MockStrings.Courses.coding.localized(language: deviceLanguage)].tap()
         }
 
         snapshot("01-Courses")
@@ -57,8 +57,8 @@ final class StudAppSnapshots: XCTestCase {
             XCUIDevice.shared.orientation = .landscapeLeft
         }
 
-        app.buttons["Summer 2018".localized(language: deviceLanguage)].tap()
-        app.staticTexts["Coding Crash Course".localized(language: deviceLanguage)].tap()
+        app.buttons[MockStrings.Semesters.summer18.localized(language: deviceLanguage)].tap()
+        app.staticTexts[MockStrings.Courses.coding.localized(language: deviceLanguage)].tap()
 
         snapshot("02-Course")
     }
@@ -72,7 +72,7 @@ final class StudAppSnapshots: XCTestCase {
             XCUIDevice.shared.orientation = .landscapeLeft
         }
 
-        app.buttons["Events".localized(language: deviceLanguage)].tap()
+        app.buttons[Strings.Terms.events.localized(language: deviceLanguage)].tap()
 
         snapshot("03-Events")
     }
@@ -86,7 +86,7 @@ final class StudAppSnapshots: XCTestCase {
             XCUIDevice.shared.orientation = .landscapeLeft
         }
 
-        app.buttons["Downloads".localized(language: deviceLanguage)].tap()
+        app.buttons[Strings.Terms.downloads.localized(language: deviceLanguage)].tap()
 
         snapshot("04-Downloads")
     }
