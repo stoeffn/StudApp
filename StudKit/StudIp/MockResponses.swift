@@ -42,6 +42,14 @@ struct MockResponses {
                          beginsAt: Date(timeIntervalSince1970: 1_522_540_800), endsAt: Date(timeIntervalSince1970: 1_535_760_000)),
     ]
 
+    mutating func insertSemesters(into context: NSManagedObjectContext, user: User) throws {
+        try semesters.forEach { response in
+            let semester = try response.coreDataObject(organization: user.organization, in: context)
+            semester.state.isHidden = false
+            semester.state.isCollapsed = true
+        }
+    }
+
     // MARK: - Users
 
     private(set) lazy var currentUser = UserResponse(id: "U0", username: "murphy", givenName: "Murphy", familyName: "Cooper")
@@ -88,12 +96,27 @@ struct MockResponses {
                        beginSemesterId: "S3", endSemesterId: "S3"),
     ]
 
+    mutating func insertCourses(into context: NSManagedObjectContext, user: User) throws {
+        try courses.forEach { response in
+            let course = try response.coreDataObject(organization: user.organization, author: user, in: context)
+            course.state.announcementsUpdatedAt = now
+            course.state.childFilesUpdatedAt = now
+            course.state.eventsUpdatedAt = now
+        }
+    }
+
     // MARK: - Announcements
 
     private(set) lazy var announcements = [
         AnnouncementResponse(id: "A0", courseIds: ["C7"], userId: langdon.id, createdAt: today - day * 3, modifiedAt: today - day * 3,
                              expiresAfter: week, title: MockStrings.Announcements.bringLaptops.localized),
     ]
+
+    mutating func insertAnnouncements(into context: NSManagedObjectContext, user: User) throws {
+        try announcements.forEach { response in
+            try response.coreDataObject(organization: user.organization, in: context)
+        }
+    }
 
     // MARK: - Files
 
@@ -135,6 +158,35 @@ struct MockResponses {
                          createdAt: now - day * 16, modifiedAt: now - day * 16, size: 1024 * 128, downloadCount: 256),
     ]
 
+    mutating func insertFiles(into context: NSManagedObjectContext, user: User) throws {
+        let codingCourse = try Course.fetch(byId: "C7", in: context)!
+        let numericalAnalysisCourse = try Course.fetch(byId: "C0", in: context)!
+        let dataScienceCourse = try Course.fetch(byId: "C5", in: context)!
+
+        try codingCourseFolders.forEach { response in
+            try response.coreDataObject(course: codingCourse, in: context)
+        }
+
+        try codingCourseDocuments.forEach { response in
+            let document = try response.coreDataObject(course: codingCourse, in: context)
+            guard document.id == "F4" else { return }
+            document.state.downloadedAt = now
+            document.downloadedBy.formUnion([user])
+        }
+
+        try numericalAnalysisCourseDocuments.forEach { response in
+            let document = try response.coreDataObject(course: numericalAnalysisCourse, in: context)
+            document.state.downloadedAt = now
+            document.downloadedBy.formUnion([user])
+        }
+
+        try dataScienceCourseDocuments.forEach { response in
+            let document = try response.coreDataObject(course: dataScienceCourse, in: context)
+            document.state.downloadedAt = now
+            document.downloadedBy.formUnion([user])
+        }
+    }
+
     // MARK: - Events
 
     private(set) lazy var events = [
@@ -163,60 +215,7 @@ struct MockResponses {
                       location: MockStrings.Locations.bielefeldRoom.localized),
     ]
 
-    // MARK: - Inserting Data
-
-    mutating func insert(into context: NSManagedObjectContext) throws {
-        let organization = try self.organization.coreDataObject(in: context)
-
-        let user = try currentUser.coreDataObject(organization: organization, in: context)
-        user.state.authoredCoursesUpdatedAt = now
-        user.state.eventsUpdatedAt = now
-        User.current = user
-
-        try semesters.forEach { response in
-            let semester = try response.coreDataObject(organization: organization, in: context)
-            semester.state.isHidden = false
-            semester.state.isCollapsed = true
-        }
-
-        try courses.forEach { response in
-            let course = try response.coreDataObject(organization: organization, author: user, in: context)
-            course.state.announcementsUpdatedAt = now
-            course.state.childFilesUpdatedAt = now
-            course.state.eventsUpdatedAt = now
-        }
-
-        try announcements.forEach { response in
-            try response.coreDataObject(organization: organization, in: context)
-        }
-
-        let codingCourse = try Course.fetch(byId: "C7", in: context)!
-        let numericalAnalysisCourse = try Course.fetch(byId: "C0", in: context)!
-        let dataScienceCourse = try Course.fetch(byId: "C5", in: context)!
-
-        try codingCourseFolders.forEach { response in
-            try response.coreDataObject(course: codingCourse, in: context)
-        }
-
-        try codingCourseDocuments.forEach { response in
-            let document = try response.coreDataObject(course: codingCourse, in: context)
-            guard document.id == "F4" else { return }
-            document.state.downloadedAt = now
-            document.downloadedBy.formUnion([user])
-        }
-
-        try numericalAnalysisCourseDocuments.forEach { response in
-            let document = try response.coreDataObject(course: numericalAnalysisCourse, in: context)
-            document.state.downloadedAt = now
-            document.downloadedBy.formUnion([user])
-        }
-
-        try dataScienceCourseDocuments.forEach { response in
-            let document = try response.coreDataObject(course: dataScienceCourse, in: context)
-            document.state.downloadedAt = now
-            document.downloadedBy.formUnion([user])
-        }
-
+    mutating func insertEvents(into context: NSManagedObjectContext, user: User) throws {
         try events.forEach { response in
             let event = try response.coreDataObject(user: user, in: context)
             event.id += "-A"
@@ -228,5 +227,22 @@ struct MockResponses {
             event.startsAt += week
             event.endsAt += week
         }
+    }
+
+    // MARK: - Inserting Data
+
+    mutating func insert(into context: NSManagedObjectContext) throws {
+        let organization = try self.organization.coreDataObject(in: context)
+
+        let user = try currentUser.coreDataObject(organization: organization, in: context)
+        user.state.authoredCoursesUpdatedAt = now
+        user.state.eventsUpdatedAt = now
+        User.current = user
+
+        try insertSemesters(into: context, user: user)
+        try insertCourses(into: context, user: user)
+        try insertAnnouncements(into: context, user: user)
+        try insertFiles(into: context, user: user)
+        try insertEvents(into: context, user: user)
     }
 }
