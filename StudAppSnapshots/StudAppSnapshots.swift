@@ -19,6 +19,7 @@
 import XCTest
 
 final class StudAppSnapshots: XCTestCase {
+
     // MARK: - Life Cycle
 
     override func setUp() {

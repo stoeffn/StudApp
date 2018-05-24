@@ -16,8 +16,8 @@
 //  along with this program. If not, see http://www.gnu.org/licenses/.
 //
 
-import UIKit
 import StudKit
+import UIKit
 
 public extension UIAlertController {
     public convenience init(confirmationWithAction actionTitle: String?, sourceView: UIView, sourceRect: CGRect? = nil,

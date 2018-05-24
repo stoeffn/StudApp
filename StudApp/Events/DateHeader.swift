@@ -114,7 +114,8 @@ final class DateHeader: UITableViewHeaderFooterView {
 
     // MARK: - Notifications
 
-    @objc private func reduceTransparencyDidChange(notification _: Notification) {
+    @objc
+    private func reduceTransparencyDidChange(notification _: Notification) {
         updateAppearance()
     }
 }
