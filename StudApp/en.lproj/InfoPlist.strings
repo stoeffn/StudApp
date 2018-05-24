@@ -20,6 +20,6 @@
 
 // MARK: Home Screen Quick Actions
 
-"Courses" = "Courses";
-"Events" = "Events";
-"Downloads" = "Downloads";
+"QuickActions.courses" = "Courses";
+"QuickActions.events" = "Events";
+"QuickActions.downloads" = "Downloads";
