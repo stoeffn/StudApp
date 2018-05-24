@@ -22,17 +22,15 @@ final class ThanksNoteCell: UITableViewCell {
 
     // MARK: - Life Cycle
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        // Weirdly, you have to manually set the cell style here again. Otherwise, it defaults to the basic style.
+        super.init(style: .value2, reuseIdentifier: reuseIdentifier)
+        initUserInterface()
+    }
 
-        textLabel?.font = .preferredFont(forTextStyle: .footnote)
-        textLabel?.adjustsFontForContentSizeCategory = true
-        textLabel?.numberOfLines = 2
-
-        detailTextLabel?.font = .preferredFont(forTextStyle: .footnote)
-        detailTextLabel?.adjustsFontForContentSizeCategory = true
-        detailTextLabel?.textColor = UI.Colors.greyText
-        detailTextLabel?.numberOfLines = 2
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        initUserInterface()
     }
 
     var thanksNote: ThanksNote! {
@@ -47,5 +45,18 @@ final class ThanksNoteCell: UITableViewCell {
 
             accessoryType = hasLink ? .disclosureIndicator : .none
         }
+    }
+
+    // MARK: - User Interface
+
+    private func initUserInterface() {
+        textLabel?.font = .preferredFont(forTextStyle: .footnote)
+        textLabel?.adjustsFontForContentSizeCategory = true
+        textLabel?.numberOfLines = 2
+
+        detailTextLabel?.font = .preferredFont(forTextStyle: .footnote)
+        detailTextLabel?.adjustsFontForContentSizeCategory = true
+        detailTextLabel?.textColor = UI.Colors.greyText
+        detailTextLabel?.numberOfLines = 2
     }
 }
