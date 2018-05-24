@@ -45,9 +45,9 @@ final class AppController: UITabBarController {
 
         super.viewWillAppear(animated)
 
-        tabBar.items?[Tabs.courses.rawValue].title = "Courses".localized
-        tabBar.items?[Tabs.events.rawValue].title = "Events".localized
-        tabBar.items?[Tabs.downloads.rawValue].title = "Downloads".localized
+        tabBar.items?[Tabs.courses.rawValue].title = Strings.Terms.courses.localized
+        tabBar.items?[Tabs.events.rawValue].title = Strings.Terms.events.localized
+        tabBar.items?[Tabs.downloads.rawValue].title = Strings.Terms.downloads.localized
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -66,9 +66,9 @@ final class AppController: UITabBarController {
             selectedIndex = Tabs.courses.rawValue
             coursesController?.restoreUserActivityState(activity)
         default:
-            let title = "Something went wrong continuing your activity.".localized
-            let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
+            let alert = UIAlertController(title: Strings.Errors.userActivityRestoration.localized, message: nil,
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: Strings.Actions.okay.localized, style: .default, handler: nil))
             return present(alert, animated: true, completion: nil)
         }
     }
@@ -151,21 +151,21 @@ final class AppController: UITabBarController {
         guard let currentUser = User.current else { fatalError() }
 
         let actions = [
-            UIAlertAction(title: "About".localized, style: .default) { _ in
+            UIAlertAction(title: Strings.Terms.about.localized, style: .default) { _ in
                 self.performSegue(withRoute: .about)
             },
-            UIAlertAction(title: "Help".localized, style: .default) { _ in
+            UIAlertAction(title: Strings.Terms.help.localized, style: .default) { _ in
                 guard let controller = self.htmlContentService.safariViewController(for: App.Urls.help) else { return }
                 self.present(controller, animated: true, completion: nil)
             },
-            UIAlertAction(title: "Settings".localized, style: .default) { _ in
+            UIAlertAction(title: Strings.Terms.help.localized, style: .default) { _ in
                 self.performSegue(withRoute: .settings)
             },
-            UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil),
+            UIAlertAction(title: Strings.Terms.help.localized, style: .cancel, handler: nil),
         ]
 
         let currentUserFullName = currentUser.nameComponents.formatted(style: .long)
-        let title = "Signed in as %@ at %@".localized(currentUserFullName, currentUser.organization.title)
+        let title = Strings.Callouts.signedInAsAt.localized(currentUserFullName, currentUser.organization.title)
         let controller = UIAlertController(title: title, message: nil, preferredStyle: .actionSheet)
         controller.popoverPresentationController?.barButtonItem = barButtonItem
         actions.forEach(controller.addAction)

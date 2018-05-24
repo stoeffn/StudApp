@@ -32,21 +32,16 @@ extension Organization {
 
         init?(from error: Error?) {
             switch error {
-            case nil:
-                return nil
-            case CKError.networkUnavailable?, CKError.networkFailure?:
-                self = .networkError
-            default:
-                self = .internalError
+            case nil: return nil
+            case CKError.networkUnavailable?, CKError.networkFailure?: self = .networkError
+            default: self = .internalError
             }
         }
 
         var errorDescription: String? {
             switch self {
-            case .internalError:
-                return "Unfortunately, there was an internal error.".localized
-            case .networkError:
-                return "There seems to be a problem with the internet connection.".localized
+            case .internalError: return Strings.Errors.internal.localized
+            case .networkError: return Strings.Errors.internetConnection.localized
             }
         }
     }

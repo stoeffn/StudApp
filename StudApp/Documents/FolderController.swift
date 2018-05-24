@@ -143,7 +143,7 @@ final class FolderController: UITableViewController, Routable {
     @available(iOS 11.0, *)
     private func markAsNewSwipeAction(for file: File) -> UIContextualAction? {
         guard !file.isFolder, !file.isNew else { return nil }
-        let action = UIContextualAction(style: .normal, title: "Mark as New".localized) { _, _, handler in
+        let action = UIContextualAction(style: .normal, title: Strings.Actions.markAsNew.localized) { _, _, handler in
             file.isNew = true
             handler(true)
         }
@@ -155,7 +155,7 @@ final class FolderController: UITableViewController, Routable {
     @available(iOS 11.0, *)
     private func markAsSeenSwipeAction(for file: File) -> UIContextualAction? {
         guard !file.isFolder, file.isNew else { return nil }
-        let action = UIContextualAction(style: .normal, title: "Mark as Seen".localized) { _, _, handler in
+        let action = UIContextualAction(style: .normal, title: Strings.Actions.markAsSeen.localized) { _, _, handler in
             file.isNew = false
             handler(true)
         }
@@ -236,8 +236,9 @@ final class FolderController: UITableViewController, Routable {
         let isEmpty = viewModel?.isEmpty ?? false
         let isLoaded = (viewModel.container as? File)?.state.childFilesUpdatedAt != nil
 
-        emptyViewTitleLabel.text = isLoaded ? "Nothing to See Here".localized : "Not Loaded".localized
-        emptyViewSubtitleLabel.text = isLoaded ? "This folder is empty.".localized : "Swipe down to refresh.".localized
+        emptyViewTitleLabel.text = isLoaded ? Strings.Callouts.noFiles.localized : Strings.States.notLoaded.localized
+        emptyViewSubtitleLabel.text = isLoaded ? Strings.Callouts.noFilesSubtitle.localized
+            : Strings.Callouts.noFilesSubtitle.localized
 
         tableView.backgroundView = isEmpty ? emptyView : nil
         tableView.separatorStyle = isEmpty ? .none : .singleLine

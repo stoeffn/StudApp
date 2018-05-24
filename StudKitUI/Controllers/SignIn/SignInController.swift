@@ -119,14 +119,14 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
 
     func controller(for error: Error) -> UIViewController {
         let message = error.localizedDescription
-        let controller = UIAlertController(title: "Error Signing In".localized, message: message, preferredStyle: .alert)
-        controller.addAction(UIAlertAction(title: "Retry".localized, style: .default) { _ in
+        let controller = UIAlertController(title: Strings.Errors.generic.localized, message: message, preferredStyle: .alert)
+        controller.addAction(UIAlertAction(title: Strings.Actions.retry.localized, style: .default) { _ in
             self.animateWithSpring {
                 self.isActivityIndicatorHidden = false
             }
             self.viewModel.retry()
         })
-        controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel) { _ in
+        controller.addAction(UIAlertAction(title: Strings.Actions.cancel.localized, style: .cancel) { _ in
             self.performSegue(withRoute: .unwindToSignIn)
         })
         return controller

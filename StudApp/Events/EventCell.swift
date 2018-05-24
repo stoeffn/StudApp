@@ -50,21 +50,21 @@ final class EventCell: UITableViewCell {
             summaryLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 5 : 3
 
             cancellationLabel.isHidden = !event.isCanceled
-            cancellationLabel.text = "Canceled".localized
+            cancellationLabel.text = Strings.States.canceled.localized
 
             cancellationReasonLabel.isHidden = event.cancellationReason == nil
             cancellationReasonLabel.text = event.cancellationReason
 
             notEnrolledLabel?.isHidden = event.course != nil
-            notEnrolledLabel?.text = "Not Enrolled".localized
+            notEnrolledLabel?.text = Strings.States.notEnrolled.localized
 
             locationLabel.isHidden = event.location == nil
             locationLabel.text = event.location
             locationLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 5 : 3
 
-            let fromToTimes = "from %@ to %@".localized(startsAt, endsAt)
-            let atLocation = event.location != nil ? "at %@".localized(event.location ?? "") : nil
-            let cancellation = event.isCanceled ? "Canceled".localized : nil
+            let fromToTimes = Strings.Formats.fromTo.localized(startsAt, endsAt)
+            let atLocation = event.location != nil ? Strings.Formats.atLocation.localized(event.location ?? "") : nil
+            let cancellation = event.isCanceled ? Strings.States.canceled.localized : nil
             accessibilityLabel = [event.course?.title, event.summary, fromToTimes, atLocation, cancellation, event.cancellationReason]
                 .compactMap { $0 }
                 .joined(separator: ", ")

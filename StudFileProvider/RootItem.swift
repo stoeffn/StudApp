@@ -34,7 +34,7 @@ final class RootItem: NSObject, NSFileProviderItem {
 
     let itemIdentifier: NSFileProviderItemIdentifier = .rootContainer
 
-    let filename = "Stud.IP".localized
+    let filename = Strings.Terms.studIP.localized
 
     let typeIdentifier = kUTTypeFolder as String
 

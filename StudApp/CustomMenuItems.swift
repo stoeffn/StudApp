@@ -17,6 +17,7 @@
 //
 
 import UIKit
+import StudKit
 
 @objc
 public protocol CustomMenuItems: NSObjectProtocol {
@@ -46,12 +47,12 @@ public protocol CustomMenuItems: NSObjectProtocol {
 
 func addCustomMenuItems(to menuController: UIMenuController) {
     menuController.menuItems = [
-        UIMenuItem(title: "Share".localized, action: #selector(CustomMenuItems.share(_:))),
-        UIMenuItem(title: "Remove".localized, action: #selector(CustomMenuItems.remove(_:))),
-        UIMenuItem(title: "Hide".localized, action: #selector(CustomMenuItems.hide(_:))),
-        UIMenuItem(title: "Show".localized, action: #selector(CustomMenuItems.show(_:))),
-        UIMenuItem(title: "Color".localized, action: #selector(CustomMenuItems.color(_:))),
-        UIMenuItem(title: "Mark as New".localized, action: #selector(CustomMenuItems.markAsNew(_:))),
-        UIMenuItem(title: "Mark as Seen".localized, action: #selector(CustomMenuItems.markAsSeen(_:))),
+        UIMenuItem(title: Strings.Actions.share.localized, action: #selector(CustomMenuItems.share(_:))),
+        UIMenuItem(title: Strings.Actions.remove.localized, action: #selector(CustomMenuItems.remove(_:))),
+        UIMenuItem(title: Strings.Actions.hide.localized, action: #selector(CustomMenuItems.hide(_:))),
+        UIMenuItem(title: Strings.Actions.show.localized, action: #selector(CustomMenuItems.show(_:))),
+        UIMenuItem(title: Strings.Terms.color.localized, action: #selector(CustomMenuItems.color(_:))),
+        UIMenuItem(title: Strings.Actions.markAsNew.localized, action: #selector(CustomMenuItems.markAsNew(_:))),
+        UIMenuItem(title: Strings.Actions.markAsSeen.localized, action: #selector(CustomMenuItems.markAsSeen(_:))),
     ]
 }

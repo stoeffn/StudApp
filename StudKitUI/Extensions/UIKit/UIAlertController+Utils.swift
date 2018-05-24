@@ -17,12 +17,13 @@
 //
 
 import UIKit
+import StudKit
 
 public extension UIAlertController {
     public convenience init(confirmationWithAction actionTitle: String?, sourceView: UIView, sourceRect: CGRect? = nil,
                             handler: @escaping (UIAlertAction) -> Void) {
         self.init(title: nil, message: nil, preferredStyle: .actionSheet)
-        addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))
+        addAction(UIAlertAction(title: Strings.Actions.cancel.localized, style: .cancel))
         addAction(UIAlertAction(title: actionTitle, style: .destructive, handler: handler))
         popoverPresentationController?.sourceView = sourceView
         popoverPresentationController?.sourceRect = sourceRect ?? sourceView.bounds

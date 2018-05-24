@@ -60,8 +60,8 @@ final class FileCell: UITableViewCell {
             userLabel.text = userFullname
             sizeLabel.text = size
             hostLabel.text = host
-            downloadCountLabel.text = "%dx".localized(file.downloadCount)
-            childCountLabel?.text = "%d items".localized(file.children.count)
+            downloadCountLabel.text = Strings.Formats.numberOfTimes.localized(file.downloadCount)
+            childCountLabel?.text = Strings.Formats.numberOfTimes.localized(file.children.count)
 
             activityIndicator?.isHidden = !file.state.isDownloading
             downloadGlyph?.isHidden = !file.isDownloadable || !file.isLocationSecure
@@ -69,22 +69,27 @@ final class FileCell: UITableViewCell {
             updateSubtitleHiddenStates()
             updateReachabilityIndicator()
 
-            let isNewState = file.isNew ? "New".localized : nil
-            let modifiedBy = userFullname != nil ? "by %@".localized(userFullname ?? "") : nil
-            let modifiedAtBy = ["Modified".localized, modifiedAt, modifiedBy].compactMap { $0 }.joined(separator: " ")
-            let folderOrDocument = file.isFolder ? "Folder".localized : "Document".localized
-            let sizeOrItemCount = file.isFolder ? "%d items".localized(file.children.count) : size
-            let hostedBy = file.location == .external || file.location == .website ? "hosted by %@".localized(host ?? "") : nil
+            let isNewState = file.isNew ? Strings.States.new.localized : nil
+            let modifiedBy = userFullname != nil ? Strings.Formats.byEntity.localized(userFullname ?? "") : nil
+            let modifiedAtBy = [Strings.States.modified.localized, modifiedAt, modifiedBy].compactMap { $0 }.joined(separator: " ")
+            let folderOrDocument = file.isFolder ? Strings.Terms.folder.localized : Strings.Terms.document.localized
+            let sizeOrItemCount = file.isFolder ? Strings.Formats.numberOfItems.localized(file.children.count) : size
+            let hostedBy = file.location == .external || file.location == .website
+                ? Strings.Formats.hostedBy.localized(host ?? "") : nil
 
             accessibilityLabel = [
                 isNewState, folderOrDocument, file.title, modifiedAtBy, sizeOrItemCount, hostedBy,
             ].compactMap { $0 }.joined(separator: ", ")
 
-            let shareAction = UIAccessibilityCustomAction(name: "Share".localized, target: self, selector: #selector(share(_:)))
-            let removeAction = UIAccessibilityCustomAction(name: "Remove".localized, target: self, selector: #selector(remove(_:)))
+            let shareAction = UIAccessibilityCustomAction(name: Strings.Actions.share.localized, target: self,
+                                                          selector: #selector(share(_:)))
+            let removeAction = UIAccessibilityCustomAction(name: Strings.Actions.remove.localized, target: self,
+                                                           selector: #selector(remove(_:)))
             let markAction = file.isNew
-                ? UIAccessibilityCustomAction(name: "Mark as Seen".localized, target: self, selector: #selector(markAsSeen(_:)))
-                : UIAccessibilityCustomAction(name: "Mark as New".localized, target: self, selector: #selector(markAsNew(_:)))
+                ? UIAccessibilityCustomAction(name: Strings.Actions.markAsSeen.localized, target: self,
+                                              selector: #selector(markAsSeen(_:)))
+                : UIAccessibilityCustomAction(name: Strings.Actions.markAsSeen.localized, target: self,
+                                              selector: #selector(markAsNew(_:)))
 
             accessibilityCustomActions = [
                 file.state.isDownloaded ? shareAction : nil,
@@ -203,10 +208,10 @@ final class FileCell: UITableViewCell {
     override var accessibilityValue: String? {
         get {
             guard !file.isFolder else { return nil }
-            guard file.isAvailable else { return "Unavailable".localized }
-            guard !file.state.isDownloading else { return "Downloading".localized }
-            guard file.state.isDownloaded else { return "Not Downloaded".localized }
-            return "Downloaded".localized
+            guard file.isAvailable else { return Strings.States.unavailable.localized }
+            guard !file.state.isDownloading else { return Strings.States.downloading.localized }
+            guard file.state.isDownloaded else { return Strings.States.notDownloaded.localized }
+            return Strings.States.downloaded.localized
         }
         set {}
     }

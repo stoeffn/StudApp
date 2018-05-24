@@ -45,14 +45,16 @@ final class AnnouncementCell: UITableViewCell {
             userLabel.text = userFullname
             updateSubtitleHiddenStates()
 
-            let isNewState = announcement.isNew ? "New".localized : nil
-            let modifiedBy = userFullname != nil ? "by %@".localized(userFullname ?? "") : nil
-            let modifiedAtBy = ["Modified".localized, modifiedAt, modifiedBy].compactMap { $0 }.joined(separator: " ")
+            let isNewState = announcement.isNew ? Strings.States.new.localized : nil
+            let modifiedBy = userFullname != nil ? Strings.Formats.byEntity.localized(userFullname ?? "") : nil
+            let modifiedAtBy = [Strings.Formats.modifiedBy.localized, modifiedAt, modifiedBy].compactMap { $0 }.joined(separator: " ")
             accessibilityLabel = [isNewState, announcement.title, modifiedAtBy].compactMap { $0 }.joined(separator: ", ")
 
             let markAction = announcement.isNew
-                ? UIAccessibilityCustomAction(name: "Mark as Seen".localized, target: self, selector: #selector(markAsSeen(_:)))
-                : UIAccessibilityCustomAction(name: "Mark as New".localized, target: self, selector: #selector(markAsNew(_:)))
+                ? UIAccessibilityCustomAction(name: Strings.Actions.markAsSeen.localized, target: self,
+                                              selector: #selector(markAsSeen(_:)))
+                : UIAccessibilityCustomAction(name: Strings.Actions.markAsNew.localized, target: self,
+                                              selector: #selector(markAsNew(_:)))
 
             accessibilityCustomActions = [markAction]
         }

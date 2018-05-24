@@ -34,8 +34,8 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Courses".localized
-        navigationItem.rightBarButtonItem?.accessibilityLabel = "More".localized
+        navigationItem.title = Strings.Terms.courses.localized
+        navigationItem.rightBarButtonItem?.accessibilityLabel = Strings.Terms.more.localized
 
         refreshControl?.addTarget(self, action: #selector(refreshControlTriggered(_:)), for: .valueChanged)
 
@@ -119,9 +119,9 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
     override func restoreUserActivityState(_ activity: NSUserActivity) {
         guard let course = Course.fetch(byObjectId: activity.objectIdentifier) else {
-            let title = "Something went wrong continuing your activity.".localized
-            let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
+            let alert = UIAlertController(title: Strings.Errors.userActivityRestoration.localized, message: nil,
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: Strings.Actions.okay.localized, style: .default, handler: nil))
             return present(alert, animated: true, completion: nil)
         }
 
@@ -317,9 +317,9 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
         let isEmpty = viewModel?.isEmpty ?? false
 
-        emptyViewTitleLabel.text = "It Looks Like There Are No Semesters".localized
-        emptyViewSubtitleLabel.text = "You can try to reload the semesters from Stud.IP.".localized
-        emptyViewActionButton.setTitle("Reload".localized, for: .normal)
+        emptyViewTitleLabel.text = Strings.Callouts.noSemesters.localized
+        emptyViewSubtitleLabel.text = Strings.Callouts.noSemestersSubtitle.localized
+        emptyViewActionButton.setTitle(Strings.Actions.reload.localized, for: .normal)
 
         tableView.backgroundView = isEmpty ? emptyView : nil
         tableView.separatorStyle = isEmpty ? .none : .singleLine
@@ -348,7 +348,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     private func colorAction(for cell: CourseCell?) -> UIContextualAction? {
         guard let cell = cell, user?.organization.supportsSettingCourseGroups ?? false else { return nil }
 
-        let action = UIContextualAction(style: .normal, title: "Color".localized) { _, _, success in
+        let action = UIContextualAction(style: .normal, title: Strings.Terms.color.localized) { _, _, success in
             success(cell.color(nil))
         }
         action.backgroundColor = cell.colorView.backgroundColor
@@ -361,7 +361,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         guard let cell = cell, !cell.course.isHidden else { return nil }
 
         let style: UIContextualAction.Style = UserDefaults.studKit.showsHiddenCourses ? .normal : .destructive
-        let action = UIContextualAction(style: style, title: "Hide".localized) { _, _, success in
+        let action = UIContextualAction(style: style, title: Strings.Actions.hide.localized) { _, _, success in
             success(cell.hide(nil))
         }
         action.backgroundColor = UI.Colors.studRed
@@ -373,7 +373,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     private func showAction(for cell: CourseCell?) -> UIContextualAction? {
         guard let cell = cell, cell.course.isHidden else { return nil }
 
-        let action = UIContextualAction(style: .normal, title: "Show".localized) { _, _, success in
+        let action = UIContextualAction(style: .normal, title: Strings.Actions.show.localized) { _, _, success in
             success(cell.show(nil))
         }
         action.backgroundColor = UI.Colors.tint

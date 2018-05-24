@@ -26,10 +26,8 @@ public final class SignInViewModel: NSObject {
 
         public var errorDescription: String? {
             switch self {
-            case .authorizationFailed:
-                return "There was an error authorizing StudApp to access your organization.".localized
-            case .invalidConsumerKey:
-                return "It seems like your organization does not support StudApp anymore.".localized
+            case .authorizationFailed: return Strings.Errors.organizationAuthorization.localized
+            case .invalidConsumerKey: return Strings.Errors.organizationUnsupported.localized
             }
         }
     }

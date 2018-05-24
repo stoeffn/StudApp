@@ -35,9 +35,9 @@ final class PreviewController: QLPreviewController, Routable {
 
         file.download { result in
             guard result.isSuccess else {
-                let title = result.error?.localizedDescription ?? "Something went wrong downloading \"%@\"".localized(self.file.title)
+                let title = result.error?.localizedDescription ?? Strings.Errors.downloadingDocument.localized(self.file.title)
                 let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
+                alert.addAction(UIAlertAction(title: Strings.Actions.okay.localized, style: .default, handler: nil))
                 return self.present(alert, animated: true, completion: nil)
             }
 
@@ -83,7 +83,7 @@ final class PreviewController: QLPreviewController, Routable {
     override var previewActionItems: [UIPreviewActionItem] {
         guard file.state.isDownloaded else { return [] }
         return [
-            UIPreviewAction(title: "Remove".localized, style: .destructive) { _, _ in
+            UIPreviewAction(title: Strings.Actions.remove.localized, style: .destructive) { _, _ in
                 try? self.file.removeDownload()
             },
         ]
@@ -104,9 +104,9 @@ final class PreviewController: QLPreviewController, Routable {
             file.download { result in
                 guard result.isFailure else { return UINotificationFeedbackGenerator().notificationOccurred(.success) }
 
-                let title = result.error?.localizedDescription ?? "Something went wrong downloading \"%@\"".localized(file.title)
+                let title = result.error?.localizedDescription ?? Strings.Errors.downloadingDocument.localized(file.title)
                 let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
+                alert.addAction(UIAlertAction(title: Strings.Actions.okay.localized, style: .default, handler: nil))
                 return handler(alert)
             }
             return

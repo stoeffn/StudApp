@@ -27,7 +27,7 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Courses".localized
+        navigationItem.title = Strings.Terms.courses.localized
 
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
@@ -87,7 +87,7 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
         switch indexPath.section {
         case Sections.settings.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: Sections.settings.cellIdentifier, for: indexPath)
-            cell.textLabel?.text = "Show Hidden Courses".localized
+            cell.textLabel?.text = Strings.Actions.showHiddenCourses.localized
             cell.accessoryType = UserDefaults.studKit.showsHiddenCourses ? .checkmark : .none
             return cell
         case Sections.semesters.rawValue:
@@ -96,8 +96,8 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
             let beginsAt = semester.beginsAt.formatted(using: .monthAndYear)
             let endsAt = semester.endsAt.formatted(using: .monthAndYear)
             cell.textLabel?.text = semester.title
-            cell.detailTextLabel?.text = "%@ – %@".localized(beginsAt, endsAt)
-            cell.detailTextLabel?.accessibilityLabel = "from %@ to %@".localized(beginsAt, endsAt)
+            cell.detailTextLabel?.text = Strings.Formats.range.localized(beginsAt, endsAt)
+            cell.detailTextLabel?.accessibilityLabel = Strings.Formats.fromTo.localized(beginsAt, endsAt)
             cell.accessoryType = semester.state.isHidden ? .none : .checkmark
             return cell
         default:
@@ -107,8 +107,8 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
 
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case Sections.settings.rawValue: return "Settings".localized
-        case Sections.semesters.rawValue: return "Semesters".localized
+        case Sections.settings.rawValue: return Strings.Terms.settings.localized
+        case Sections.semesters.rawValue: return Strings.Terms.semesters.localized
         default: fatalError()
         }
     }
@@ -170,9 +170,9 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
     private func updateEmptyView() {
         guard view != nil else { return }
 
-        emptyViewTitleLabel.text = "It Looks Like There Are No Semesters".localized
-        emptyViewSubtitleLabel.text = "You can try to reload the semesters from Stud.IP.".localized
-        emptyViewActionButton.setTitle("Reload".localized, for: .normal)
+        emptyViewTitleLabel.text = Strings.Callouts.noSemesters.localized
+        emptyViewSubtitleLabel.text = Strings.Callouts.noSemestersSubtitle.localized
+        emptyViewActionButton.setTitle(Strings.Actions.reload.localized, for: .normal)
 
         tableView.backgroundView = viewModel.isEmpty ? emptyView : nil
         tableView.separatorStyle = viewModel.isEmpty ? .none : .singleLine

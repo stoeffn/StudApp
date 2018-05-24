@@ -28,7 +28,7 @@ final class ColorPickerController: UICollectionViewController, Routable {
         super.viewDidLoad()
 
         preferredContentSize = CGSize(width: 256, height: 256)
-        navigationItem.title = "Choose Color".localized
+        navigationItem.title = Strings.Actions.chooseColor.localized
     }
 
     func prepareContent(for route: Routes) {

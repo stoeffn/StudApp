@@ -231,7 +231,7 @@ final class CourseController: UITableViewController, Routable {
         case .announcements? where indexPath.row == announcementsViewModel.numberOfRows:
             let cell = tableView.dequeueReusableCell(withIdentifier: emptyCellIdentifier, for: indexPath)
             let isLoaded = announcementsViewModel.course.state.childFilesUpdatedAt != nil
-            cell.textLabel?.text = isLoaded ? "No Announcements".localized : "Not Loaded".localized
+            cell.textLabel?.text = isLoaded ? Strings.Callouts.noAnnouncements.localized : Strings.States.notLoaded.localized
             return cell
         case .announcements?:
             let cell = tableView.dequeueReusableCell(withIdentifier: AnnouncementCell.typeIdentifier, for: indexPath)
@@ -241,7 +241,7 @@ final class CourseController: UITableViewController, Routable {
         case .documents? where indexPath.row == fileListViewModel.numberOfRows:
             let cell = tableView.dequeueReusableCell(withIdentifier: emptyCellIdentifier, for: indexPath)
             let isLoaded = (fileListViewModel.container as? Course)?.state.childFilesUpdatedAt != nil
-            cell.textLabel?.text = isLoaded ? "No Documents".localized : "Not Loaded".localized
+            cell.textLabel?.text = isLoaded ? Strings.Callouts.noDocuments.localized : Strings.States.notLoaded.localized
             return cell
         case .documents?:
             let cell = tableView.dequeueReusableCell(withIdentifier: FileCell.typeIdentifier, for: indexPath)
@@ -254,11 +254,11 @@ final class CourseController: UITableViewController, Routable {
         case .events? where indexPath.row == 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: emptyCellIdentifier, for: indexPath)
             let isLoaded = User.current?.state.eventsUpdatedAt != nil || viewModel.course.state.eventsUpdatedAt != nil
-            cell.textLabel?.text = isLoaded ? "No Upcoming Events".localized : "Not Loaded".localized
+            cell.textLabel?.text = isLoaded ? Strings.Callouts.noUpcomingEvents.localized : Strings.States.notLoaded.localized
             return cell
         case .events?:
             let cell = tableView.dequeueReusableCell(withIdentifier: allEventsCellIdentifier, for: indexPath)
-            cell.textLabel?.text = "All Events".localized
+            cell.textLabel?.text = Strings.Terms.allEvents.localized
             cell.detailTextLabel?.text = viewModel.course.state.eventsUpdatedAt != nil ? String(viewModel.course.events.count) : nil
             return cell
         case .summary?:
@@ -286,14 +286,14 @@ final class CourseController: UITableViewController, Routable {
         case .info?:
             return nil
         case .announcements?:
-            return "Announcements".localized
+            return Strings.Terms.announcements.localized
         case .documents?:
-            return "Documents".localized
+            return Strings.Terms.documents.localized
         case .events?:
-            guard let nextEvent = viewModel.course.nextEvent else { return "Events".localized }
-            return "Next Event: %@".localized(nextEvent.startsAt.formattedAsRelativeDateFromNow)
+            guard let nextEvent = viewModel.course.nextEvent else { return Strings.Terms.events.localized }
+            return Strings.Formats.nextEventAt.localized(nextEvent.startsAt.formattedAsRelativeDateFromNow)
         case .summary?:
-            return "Summary".localized
+            return Strings.Terms.summary.localized
         case nil:
             fatalError()
         }
@@ -304,7 +304,7 @@ final class CourseController: UITableViewController, Routable {
     @available(iOS 11.0, *)
     private func markAsNewSwipeAction(for annoucement: Announcement) -> UIContextualAction? {
         guard !annoucement.isNew else { return nil }
-        let action = UIContextualAction(style: .normal, title: "Mark as New".localized) { _, _, handler in
+        let action = UIContextualAction(style: .normal, title: Strings.Actions.markAsNew.localized) { _, _, handler in
             annoucement.isNew = true
             handler(true)
         }
@@ -316,7 +316,7 @@ final class CourseController: UITableViewController, Routable {
     @available(iOS 11.0, *)
     private func markAsSeenSwipeAction(for annoucement: Announcement) -> UIContextualAction? {
         guard annoucement.isNew else { return nil }
-        let action = UIContextualAction(style: .normal, title: "Mark as New".localized) { _, _, handler in
+        let action = UIContextualAction(style: .normal, title: Strings.Actions.markAsSeen.localized) { _, _, handler in
             annoucement.isNew = false
             handler(true)
         }
@@ -328,7 +328,7 @@ final class CourseController: UITableViewController, Routable {
     @available(iOS 11.0, *)
     private func markAsNewSwipeAction(for file: File) -> UIContextualAction? {
         guard !file.isFolder, !file.isNew else { return nil }
-        let action = UIContextualAction(style: .normal, title: "Mark as New".localized) { _, _, handler in
+        let action = UIContextualAction(style: .normal, title: Strings.Actions.markAsNew.localized) { _, _, handler in
             file.isNew = true
             handler(true)
         }
@@ -340,7 +340,7 @@ final class CourseController: UITableViewController, Routable {
     @available(iOS 11.0, *)
     private func markAsSeenSwipeAction(for file: File) -> UIContextualAction? {
         guard !file.isFolder, file.isNew else { return nil }
-        let action = UIContextualAction(style: .normal, title: "Mark as New".localized) { _, _, handler in
+        let action = UIContextualAction(style: .normal, title: Strings.Actions.markAsSeen.localized) { _, _, handler in
             file.isNew = false
             handler(true)
         }

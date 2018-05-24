@@ -30,8 +30,8 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
         registerForPreviewing(with: self, sourceView: tableView)
 
-        navigationItem.title = "Downloads".localized
-        navigationItem.rightBarButtonItem?.accessibilityLabel = "More".localized
+        navigationItem.title = Strings.Terms.downloads.localized
+        navigationItem.rightBarButtonItem?.accessibilityLabel = Strings.Terms.more.localized
 
         tableView.register(CourseHeader.self, forHeaderFooterViewReuseIdentifier: CourseHeader.typeIdentifier)
         tableView.estimatedRowHeight = FileCell.estimatedHeight
@@ -82,9 +82,9 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
     override func restoreUserActivityState(_ activity: NSUserActivity) {
         guard let file = File.fetch(byObjectId: activity.objectIdentifier), !file.isFolder else {
-            let title = "Something went wrong continuing your activity.".localized
-            let alert = UIAlertController(title: title, message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay".localized, style: .default, handler: nil))
+            let alert = UIAlertController(title: Strings.Errors.userActivityRestoration.localized, message: nil,
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: Strings.Actions.okay.localized, style: .default, handler: nil))
             return present(alert, animated: true, completion: nil)
         }
 
@@ -134,7 +134,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     @available(iOS 11.0, *)
     private func removeSwipeAction(for file: File) -> UIContextualAction? {
         guard file.state.isDownloaded else { return nil }
-        let action = UIContextualAction(style: .destructive, title: "Remove".localized) { _, _, handler in
+        let action = UIContextualAction(style: .destructive, title: Strings.Actions.remove.localized) { _, _, handler in
             let success = self.viewModel?.removeDownload(file) ?? false
             handler(success)
         }
@@ -145,7 +145,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     @available(iOS 11.0, *)
     private func markAsNewSwipeAction(for file: File) -> UIContextualAction? {
         guard !file.isFolder, !file.isNew else { return nil }
-        let action = UIContextualAction(style: .normal, title: "Mark as New".localized) { _, _, handler in
+        let action = UIContextualAction(style: .normal, title: Strings.Actions.markAsNew.localized) { _, _, handler in
             file.isNew = true
             handler(true)
         }
@@ -157,7 +157,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     @available(iOS 11.0, *)
     private func markAsSeenSwipeAction(for file: File) -> UIContextualAction? {
         guard !file.isFolder, file.isNew else { return nil }
-        let action = UIContextualAction(style: .normal, title: "Mark as Seen".localized) { _, _, handler in
+        let action = UIContextualAction(style: .normal, title: Strings.Actions.markAsSeen.localized) { _, _, handler in
             file.isNew = false
             handler(true)
         }
@@ -253,8 +253,8 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
         let isEmpty = viewModel?.isEmpty ?? false
 
-        emptyViewTitleLabel.text = "It Looks Like There Are No Downloads Yet".localized
-        emptyViewSubtitleLabel.text = "Open the app \"Files\" or browse your courses to get started.".localized
+        emptyViewTitleLabel.text = Strings.Callouts.noDownloads.localized
+        emptyViewSubtitleLabel.text = Strings.Callouts.noDownloadsSubtitle.localized
 
         tableView.backgroundView = isEmpty ? emptyView : nil
         tableView.separatorStyle = isEmpty ? .none : .singleLine

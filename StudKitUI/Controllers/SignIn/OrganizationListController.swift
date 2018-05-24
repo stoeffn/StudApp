@@ -34,8 +34,8 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         htmlContentService = ServiceContainer.default[HtmlContentService.self]
 
         navigationItem.hidesBackButton = true
-        navigationItem.backBarButtonItem?.title = "Organizations".localized
-        navigationItem.rightBarButtonItem?.accessibilityLabel = "More".localized
+        navigationItem.backBarButtonItem?.title = Strings.Terms.organizations.localized
+        navigationItem.rightBarButtonItem?.accessibilityLabel = Strings.Terms.more.localized
 
         if Targets.current != .fileProviderUI {
             navigationItem.leftBarButtonItem = nil
@@ -48,12 +48,10 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         tableView.tableHeaderView?.layoutIfNeeded()
         tableView.tableHeaderView = tableView.tableHeaderView
 
-        welcomeLabel.text = "Welcome to StudApp".localized
+        welcomeLabel.text = Strings.Callouts.welcomeToStudApp.localized
         welcomeLabel.font = UIFont.preferredFont(forTextStyle: .title1).bold
 
-        disclaimerLabel.text = """
-        Choose your university, company, or organization to sign in and access your courses, documents, announcements, and events.
-        """.localized
+        disclaimerLabel.text = Strings.Callouts.organizationsSubtitle.localized
 
         observations = [
             viewModel.observe(\.isUpdating) { [weak self] _, _ in
@@ -107,7 +105,7 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
             segue.destination.popoverPresentationController?.delegate = self
             segue.destination.popoverPresentationController?.sourceView = addOrganizationCell
             segue.destination.popoverPresentationController?.sourceRect = addOrganizationCell.bounds
-            prepare(for: .disclaimer(withText: addOrganizationDisclaimer), destination: segue.destination)
+            prepare(for: .disclaimer(withText: Strings.Callouts.studAppDisclaimer.localized), destination: segue.destination)
         default:
             prepareForRoute(using: segue, sender: sender)
         }
@@ -120,15 +118,6 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     }
 
     private let addOrganizationCellIdentifier = "AddOrganizationCell"
-
-    private let addOrganizationDisclaimer = [
-        "StudApp is free for all kinds of organizations!".localized,
-        "",
-        "It just needs to be activated by an admin of your organization.".localized,
-        "Please contact me at %@ if you would like to support StudApp.".localized(App.feedbackMailAddress),
-        "",
-        "Note that StudApp requires Stud.IP 4 or newer.".localized,
-    ].joined(separator: "\n")
 
     override func numberOfSections(in _: UITableView) -> Int {
         return 2
@@ -150,9 +139,9 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         case Sections.organizations.rawValue where viewModel.error != nil:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ActionCell.typeIdentifier,
                                                            for: indexPath) as? ActionCell else { fatalError() }
-            cell.titleLabel.text = "Error Loading Organizations".localized
+            cell.titleLabel.text = Strings.Errors.organizationsUpdate.localized
             cell.subtitleLabel.text = viewModel.error?.localizedDescription
-            cell.actionButton.setTitle("Retry".localized, for: .normal)
+            cell.actionButton.setTitle(Strings.Actions.retry.localized, for: .normal)
             cell.action = { [unowned self] in self.viewModel.update() }
             return cell
         case Sections.organizations.rawValue:
@@ -161,7 +150,7 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
             return cell
         case Sections.addOrganization.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: addOrganizationCellIdentifier, for: indexPath)
-            cell.textLabel?.text = "Add Organization…".localized
+            cell.textLabel?.text = Strings.Actions.addOrganization.localized
             return cell
         default:
             fatalError()
@@ -186,14 +175,14 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
 
     func controllerForMore(at barButtonItem: UIBarButtonItem? = nil) -> UIViewController {
         let actions = [
-            UIAlertAction(title: "About".localized, style: .default) { _ in
+            UIAlertAction(title: Strings.Terms.about.localized, style: .default) { _ in
                 self.performSegue(withRoute: .about)
             },
-            UIAlertAction(title: "Help".localized, style: .default) { _ in
+            UIAlertAction(title: Strings.Terms.help.localized, style: .default) { _ in
                 guard let controller = self.htmlContentService.safariViewController(for: App.Urls.help) else { return }
                 self.present(controller, animated: true, completion: nil)
             },
-            UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil),
+            UIAlertAction(title: Strings.Actions.cancel.localized, style: .cancel, handler: nil),
         ]
 
         let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)

@@ -30,7 +30,7 @@ final class AboutController: UITableViewController, Routable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "About".localized
+        navigationItem.title = Strings.Terms.about.localized
 
         tableView.register(ThanksNoteCell.self, forCellReuseIdentifier: ThanksNoteCell.typeIdentifier)
 
@@ -44,16 +44,16 @@ final class AboutController: UITableViewController, Routable {
         }
 
         distributionLabel.text = Distributions.current.description
-        subtitleLabel.text = "by %@".localized(App.authorName)
+        subtitleLabel.text = Strings.Formats.byEntity.localized(App.authorName)
 
-        websiteCell.textLabel?.text = "Website".localized
-        privacyCell.textLabel?.text = "Privacy Policy".localized
-        gitHubCell.textLabel?.text = "GitHub".localized
+        websiteCell.textLabel?.text = Strings.Terms.website.localized
+        privacyCell.textLabel?.text = Strings.Terms.privacyPolicy.localized
+        gitHubCell.textLabel?.text = Strings.Terms.gitHub.localized
 
-        sendFeedbackCell.textLabel?.text = "Send Feedback".localized
-        rateAppCell.textLabel?.text = "Rate StudApp".localized
+        sendFeedbackCell.textLabel?.text = Strings.Actions.sendFeedback.localized
+        rateAppCell.textLabel?.text = Strings.Actions.rateStudApp.localized
 
-        tipCell.textLabel?.text = "Leave a Tip".localized
+        tipCell.textLabel?.text = Strings.Actions.leaveTip.localized
 
         if #available(iOSApplicationExtension 11.0, *) {
             iconView.accessibilityIgnoresInvertColors = true
@@ -132,28 +132,18 @@ final class AboutController: UITableViewController, Routable {
 
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch Sections(rawValue: section) {
-        case .thanks?:
-            return "Thanks to".localized
-        case .app?, .links?, .tip?, .feedback?, nil:
-            return nil
+        case .thanks?: return Strings.Callouts.thanksTo.localized
+        case .app?, .links?, .tip?, .feedback?, nil: return nil
         }
     }
 
     override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
         switch Sections(rawValue: section) {
-        case .links?:
-            return "StudApp is open source—feel free to contribute!".localized
-        case .feedback?:
-            return "I would appreciate your review on the App Store!".localized
-        case .tip?:
-            return [
-                "If you really like this app you can leave a tip to support further development.".localized,
-                "Thank you so much for even considering!".localized,
-            ].joined(separator: " ")
-        case .thanks?:
-            return "Without you, this app could not exist. Thank you ❤️".localized
-        case .app?, nil:
-            return nil
+        case .links?: return Strings.Callouts.openSourceDisclaimer.localized
+        case .feedback?: return Strings.Callouts.feedbackDisclaimer.localized
+        case .tip?: return Strings.Callouts.tippingDisclaimer.localized
+        case .thanks?: return Strings.Callouts.supportersDisclaimer.localized
+        case .app?, nil: return nil
         }
     }
 
@@ -264,7 +254,7 @@ final class AboutController: UITableViewController, Routable {
         let mailController = MFMailComposeViewController()
         mailController.mailComposeDelegate = self
         mailController.setToRecipients([App.feedbackMailAddress])
-        mailController.setSubject("Feedback for %@".localized(App.name))
+        mailController.setSubject(Strings.Callouts.feedbackTitle.localized)
 
         if MFMailComposeViewController.canSendMail() {
             present(mailController, animated: true, completion: nil)
@@ -275,10 +265,9 @@ final class AboutController: UITableViewController, Routable {
         Targets.current.open(url: App.Urls.review) { success in
             guard !success else { return }
 
-            let title = "Could not launch App Store".localized
-            let message = "It would be kind if you rated StudApp anyway by opening the App Store manually.".localized
-            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Okay".localized, style: .cancel, handler: nil))
+            let alert = UIAlertController(title: Strings.Errors.launchingAppStore.localized,
+                                          message: Strings.Callouts.rateManually.localized, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: Strings.Actions.okay.localized, style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
     }
@@ -301,16 +290,12 @@ final class AboutController: UITableViewController, Routable {
         viewModel.tipProducts { products in
             self.navigationItem.setActivityIndicatorHidden(true)
 
-            let message = [
-                "If you really like this app you can leave a tip to support further development.".localized,
-                "Thank you so much for even considering!".localized,
-            ].joined(separator: " ")
-            let controller = UIAlertController(title: "Leave a Tip".localized, message: message, preferredStyle: .alert)
-            products
-                .sorted { $0.price.decimalValue < $1.price.decimalValue }
+            let controller = UIAlertController(title: Strings.Actions.leaveTip.localized,
+                                               message: Strings.Callouts.tippingDisclaimer.localized, preferredStyle: .alert)
+            products.sorted { $0.price.decimalValue < $1.price.decimalValue }
                 .map(self.alertAction)
                 .forEach(controller.addAction)
-            controller.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
+            controller.addAction(UIAlertAction(title: Strings.Actions.cancel.localized, style: .cancel, handler: nil))
             self.present(controller, animated: true, completion: nil)
         }
     }
@@ -322,9 +307,9 @@ final class AboutController: UITableViewController, Routable {
         case .purchased, .restored, .deferred:
             navigationItem.setActivityIndicatorHidden(true)
 
-            let message = "I am glad there are people like you who value the work put into apps.".localized
-            let controller = UIAlertController(title: "Thank You So Much!".localized, message: message, preferredStyle: .alert)
-            controller.addAction(UIAlertAction(title: "Okay".localized, style: .cancel) { _ in
+            let controller = UIAlertController(title: Strings.Callouts.thankYou.localized,
+                                               message: Strings.Callouts.thankYouForTipping.localized, preferredStyle: .alert)
+            controller.addAction(UIAlertAction(title: Strings.Actions.okay.localized, style: .cancel) { _ in
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
                     self.presentedViewController?.dismiss(animated: true) {
                         guard #available(iOSApplicationExtension 10.3, *) else { return }
@@ -336,10 +321,9 @@ final class AboutController: UITableViewController, Routable {
         case .failed:
             navigationItem.setActivityIndicatorHidden(true)
 
-            let title = transaction.error?.localizedDescription ?? "Something Went Wrong".localized
-            let message = "It would be kind if you retried in a little bit.".localized
-            let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            controller.addAction(UIAlertAction(title: "Okay".localized, style: .cancel, handler: nil))
+            let title = transaction.error?.localizedDescription ?? Strings.Errors.generic.localized
+            let controller = UIAlertController(title: title, message: Strings.Callouts.tipLater.localized, preferredStyle: .alert)
+            controller.addAction(UIAlertAction(title: Strings.Actions.okay.localized, style: .cancel, handler: nil))
             present(controller, animated: true, completion: nil)
         default:
             break

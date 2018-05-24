@@ -33,8 +33,8 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
         refreshControl?.addTarget(self, action: #selector(refreshControlTriggered(_:)), for: .valueChanged)
 
-        navigationItem.title = "Events".localized
-        navigationItem.rightBarButtonItem?.accessibilityLabel = "More".localized
+        navigationItem.title = Strings.Terms.events.localized
+        navigationItem.rightBarButtonItem?.accessibilityLabel = Strings.Terms.more.localized
 
         tableView.register(DateHeader.self, forHeaderFooterViewReuseIdentifier: DateHeader.typeIdentifier)
         tableView.estimatedSectionHeaderHeight = DateHeader.estimatedHeight
@@ -188,11 +188,11 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         tableView.separatorStyle = isEmpty ? .none : .singleLine
 
         if isEmpty && viewModel?.container is User {
-            emptyViewTitleLabel.text = "It Looks Like You Are Free".localized
-            emptyViewSubtitleLabel.text = "There are no events within the next two weeks for you.".localized
+            emptyViewTitleLabel.text = Strings.Callouts.noEvents.localized
+            emptyViewSubtitleLabel.text = Strings.Callouts.noEventsSubtitle.localized
         } else {
-            emptyViewTitleLabel.text = "You're All Caught Up".localized
-            emptyViewSubtitleLabel.text = "There are no more events to show.".localized
+            emptyViewTitleLabel.text = Strings.Callouts.noMoreEvents.localized
+            emptyViewSubtitleLabel.text = Strings.Callouts.noMoreEventsSubtitle.localized
         }
 
         if isEmpty {

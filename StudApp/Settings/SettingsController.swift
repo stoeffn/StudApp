@@ -27,12 +27,12 @@ final class SettingsController: UITableViewController, Routable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Settings".localized
+        navigationItem.title = Strings.Terms.settings.localized
 
-        downloadsCell.textLabel?.text = "Downloads".localized
-        removeAllDownloadsCell.textLabel?.text = "Remove All Downloads".localized
+        downloadsCell.textLabel?.text = Strings.Terms.downloads.localized
+        removeAllDownloadsCell.textLabel?.text = Strings.Actions.removeAllDownloads.localized
 
-        signOutCell.textLabel?.text = "Sign Out".localized
+        signOutCell.textLabel?.text = Strings.Actions.signOut.localized
 
         updateDownloadsSize()
     }
@@ -52,7 +52,7 @@ final class SettingsController: UITableViewController, Routable {
 
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch Sections(rawValue: section) {
-        case .documents?: return "Documents".localized
+        case .documents?: return Strings.Terms.documents.localized
         case .account?, nil: return nil
         }
     }
@@ -60,14 +60,11 @@ final class SettingsController: UITableViewController, Routable {
     override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
         switch Sections(rawValue: section) {
         case .documents?:
-            return [
-                "This accounts for the combined sizes of all documents that you have downloaded.".localized,
-                "They are not backed up by iTunes or iCloud.".localized,
-            ].joined(separator: " ")
+            return Strings.Callouts.downloadsSizeDisclaimer.localized
         case .account?:
             guard let currentUser = User.current else { return nil }
             let currentUserFullName = currentUser.nameComponents.formatted(style: .long)
-            return "Signed in as %@ at %@".localized(currentUserFullName, currentUser.organization.title)
+            return Strings.Callouts.signedInAsAt.localized(currentUserFullName, currentUser.organization.title)
         case nil:
             return nil
         }

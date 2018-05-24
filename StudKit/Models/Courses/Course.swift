@@ -117,7 +117,7 @@ public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDSorta
             return semesters.first?.title
         default:
             let sortedSemesters = semesters.sorted { $0.beginsAt < $1.beginsAt }
-            return "%@ – %@".localized(sortedSemesters.first?.title ?? "", sortedSemesters.last?.title ?? "")
+            return Strings.Formats.range.localized(sortedSemesters.first?.title ?? "", sortedSemesters.last?.title ?? "")
         }
     }
 }

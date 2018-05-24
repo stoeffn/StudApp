@@ -17,6 +17,7 @@
 //
 
 import UIKit
+import StudKit
 
 final class EmptyCourseController: UIViewController {
 
@@ -25,8 +26,8 @@ final class EmptyCourseController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        titleLabel.text = "No Course".localized
-        subtitleLabel.text = "Select a course on the left to get started.".localized
+        titleLabel.text = Strings.Callouts.noCourse.localized
+        subtitleLabel.text = Strings.Callouts.noCourseSubtitle.localized
     }
 
     // MARK: - User Interface

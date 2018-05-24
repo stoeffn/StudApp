@@ -34,7 +34,7 @@ final class SafariActivity: UIActivity, ByTypeNameIdentifiable {
     }
 
     override var activityTitle: String {
-        return "Open in Safari".localized
+        return Strings.Actions.openInSafari.localized
     }
 
     override var activityImage: UIImage {

@@ -43,15 +43,15 @@ final class CourseCell: UITableViewCell {
             titleLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 3 : 1
             lecturersLabel.text = lecturerNames
 
-            let hiddenStateDescription = course.isHidden ? "Hidden".localized : "Visible".localized
+            let hiddenStateDescription = course.isHidden ? Strings.States.hidden.localized : Strings.States.visible.localized
             accessibilityLabel = [
                 course.title,
-                "by %@".localized(lecturerNames),
+                Strings.Formats.byEntity.localized(lecturerNames),
                 UserDefaults.studKit.showsHiddenCourses ? hiddenStateDescription : nil,
             ].compactMap { $0 }.joined(separator: " ")
 
             accessibilityCustomActions = [
-                UIAccessibilityCustomAction(name: "Color".localized, target: self, selector: #selector(color(_:))),
+                UIAccessibilityCustomAction(name: Strings.Terms.color.localized, target: self, selector: #selector(color(_:))),
             ]
         }
     }

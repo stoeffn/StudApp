@@ -42,7 +42,7 @@ final class SemesterHeader: UITableViewHeaderFooterView {
             setGlyphRotation(isCollapsed: isCollapsed, animated: true)
 
             accessibilityLabel = semester.title
-            accessibilityValue = semester.isCurrent ? "Current".localized : nil
+            accessibilityValue = semester.isCurrent ? Strings.States.current.localized : nil
         }
     }
 
@@ -146,7 +146,7 @@ final class SemesterHeader: UITableViewHeaderFooterView {
     // MARK: - Accessibility
 
     override var accessibilityValue: String? {
-        get { return isCollapsed ? "Collapsed".localized : "Expanded".localized }
+        get { return isCollapsed ? Strings.States.collapsed.localized : Strings.States.expanded.localized }
         set {}
     }
 

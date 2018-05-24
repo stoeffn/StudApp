@@ -25,9 +25,9 @@ public final class CourseViewModel {
 
     private var rows: [Row] {
         return [
-            Row(title: "Semesters".localized, glyph: #imageLiteral(resourceName: "DateSpanTableViewGlyph"), value: course.semestersDescription),
-            Row(title: "Course Number".localized, glyph: #imageLiteral(resourceName: "NumberTableViewGlyph"), value: course.number),
-            Row(title: "Location".localized, glyph: #imageLiteral(resourceName: "LocationTableViewGlyph"), value: course.location?.replacingOccurrences(of: "\n", with: ", ")),
+            Row(title: Strings.Terms.semesters.localized, glyph: #imageLiteral(resourceName: "DateSpanTableViewGlyph"), value: course.semestersDescription),
+            Row(title: Strings.Terms.courseNumber.localized, glyph: #imageLiteral(resourceName: "NumberTableViewGlyph"), value: course.number),
+            Row(title: Strings.Terms.location.localized, glyph: #imageLiteral(resourceName: "LocationTableViewGlyph"), value: course.location?.replacingOccurrences(of: "\n", with: ", ")),
         ]
     }
 }

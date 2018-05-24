@@ -101,7 +101,7 @@ public extension Date {
     /// Returns the difference to `date`, formatted as a localized string that includes the units w/o seconds.
     public func formatted(asShortDifferenceFrom date: Date) -> String? {
         guard let differenceString = DateComponentsFormatter.short.string(from: self, to: date) else { return nil }
-        let localizedString = "%@ ago".localized(differenceString)
+        let localizedString = Strings.Formats.timeAgo.localized(differenceString)
         let fixedLocalizedString = try? localizedString.replacingMatches(for: "(?<=Jahre)|(?<=Monate)|(?<=Tage)", with: "n")
         return fixedLocalizedString ?? localizedString
     }
@@ -118,9 +118,9 @@ public extension Date {
     /// - returns: "yesterday", "today", and "tomorrow", the weekdays for the next week, or defaults to a long date
     public func formatted(asRelativeDateFrom date: Date) -> String {
         switch days(since: date) {
-        case -1: return "Yesterday".localized
-        case 0: return "Today".localized
-        case 1: return "Tomorrow".localized
+        case -1: return Strings.Days.yesterday.localized
+        case 0: return Strings.Days.today.localized
+        case 1: return Strings.Days.tomorrow.localized
         case 2 ... 7: return formatted(using: .weekday)
         default: return formatted(using: .longDate)
         }
