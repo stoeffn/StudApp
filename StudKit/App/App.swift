@@ -79,7 +79,7 @@ public enum App {
     // MARK: - Feedback
 
     /// Email address to send app feedback to.
-    public static let feedbackMailAddress = "studapp@stoeffn.de"
+    public static let feedbackEmailAddress = "studapp@stoeffn.de"
 
     /// URL scheme registered with this application.
     public static let scheme = "studapp"

@@ -232,7 +232,7 @@ final class AboutController: UITableViewController, Routable {
         case .links? where cell === privacyCell:
             UIPasteboard.general.url = App.Urls.privacyPolicy
         case .feedback? where cell === sendFeedbackCell:
-            UIPasteboard.general.string = App.feedbackMailAddress
+            UIPasteboard.general.string = App.feedbackEmailAddress
         case .feedback? where cell === rateAppCell:
             UIPasteboard.general.url = App.Urls.review
         case .thanks?:
@@ -253,7 +253,7 @@ final class AboutController: UITableViewController, Routable {
     private func openFeedbackMailComposer() {
         let mailController = MFMailComposeViewController()
         mailController.mailComposeDelegate = self
-        mailController.setToRecipients([App.feedbackMailAddress])
+        mailController.setToRecipients([App.feedbackEmailAddress])
         mailController.setSubject(Strings.Callouts.feedbackTitle.localized)
 
         if MFMailComposeViewController.canSendMail() {

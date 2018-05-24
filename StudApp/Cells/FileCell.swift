@@ -61,7 +61,7 @@ final class FileCell: UITableViewCell {
             sizeLabel.text = size
             hostLabel.text = host
             downloadCountLabel.text = Strings.Formats.numberOfTimes.localized(file.downloadCount)
-            childCountLabel?.text = Strings.Formats.numberOfTimes.localized(file.children.count)
+            childCountLabel?.text = Strings.Formats.numberOfItems.localized(file.children.count)
 
             activityIndicator?.isHidden = !file.state.isDownloading
             downloadGlyph?.isHidden = !file.isDownloadable || !file.isLocationSecure

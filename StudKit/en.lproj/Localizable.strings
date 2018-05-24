@@ -16,246 +16,214 @@
 //  along with this program. If not, see http://www.gnu.org/licenses/.
 //
 
-// MARK: - StudKit
+// MARK: - StudApp
 
-// MARK: Formats
+// MARK: Actions
 
-"%dx" = "%dx"; // Example: "11x" (eleven times)
-"%@ ago" = "%@ ago"; // Example "two months ago"
-"by %@" = "by %@"; // Example: "by Steve Jobs"
-"hosted by %@" = "hosted by %@"; // Example: "hosted by dropbox.com"
-"%@ – %@" = "%@ – %@"; // Example: "April – May"
-"from %@ to %@" = "from %@ to %@"; // Example: "from April 2018 to September 2018"
-"at %@" = "at %@"; // Example "at room 404"
+"Actions.addOrganizatiion"      = "Add Organization…";
+"Actions.chooseColor"           = "Choose Color";
+"Actions.dismiss"               = "Dismiss";
+"Actions.hide"                  = "Hide";
+"Actions.show"                  = "Show";
+"Actions.leaveTip"              = "Leave a Tip";
+"Actions.markAsNew"             = "Mark as New";
+"Actions.markAsSeen"            = "Mark as Seen";
+"Actions.okay"                  = "Okay";
+"Actions.cancel"                = "Cancel";
+"Actions.openInSafari"          = "Open in Safari";
+"Actions.rateStudApp"           = "Rate StudApp";
+"Actions.remove"                = "Remove";
+"Actions.removeAllDownloads"    = "Remove All Downloads";
+"Actions.retry"                 = "Retry";
+"Actions.reload"                = "Reload";
+"Actions.sendFeedback"          = "Send Feedback";
+"Actions.share"                 = "Share";
+"Actions.showHiddenCourses"     = "Show Hidden Courses";
+"Actions.signOut"               = "Sign Out";
 
-// MARK: Generic Actions
+// MARK: Callouts
 
-"Okay" = "Okay";
-"Cancel" = "Cancel";
-"More" = "More";
-"Share" = "Share";
-"Retry" = "Retry";
-"Reload" = "Reload";
-"Dismiss" = "Dismiss";
-"Remove" = "Remove";
-"Hide" = "Hide";
-"Show" = "Show";
-"Sign Out" = "Sign Out";
-"Send Feedback" = "Send Feedback";
-"Open in Safari" = "Open in Safari";
-"Swipe down to refresh." = "Swipe down to refresh.";
-"Mark as New" = "Mark as New";
-"Mark as Seen" = "Mark as Seen";
-
-// MARK: Generic Errors
-
-"Something Went Wrong" = "Something Went Wrong";
-"Something Went Wrong Continuing Your Activity." = "Something Went Wrong Continuing Your Activity.";
-"There seems to be a problem with the internet connection." = "There seems to be a problem with the internet connection.";
-"Unfortunately, there was an internal error." = "Unfortunately, there was an internal error. Please contact app support if this occurs repeatedly.";
-
-// MARK: Generic Terms
-
-"Stud.IP" = "Stud.IP";
-"GitHub" = "GitHub";
-"Website" = "Website";
-"Help" = "Help";
-"Privacy Policy" = "Privacy Policy";
-"Terms of Use" = "Terms of Use";
-"Folder" = "Folder";
-"Document" = "Document";
-
-// MARK: Generic States
-
-"New" = "New";
-"Hidden" = "Hidden";
-"Visible" = "Visible";
-"Collapsed" = "Collapsed";
-"Expanded" = "Expanded";
-"Modified" = "Modified";
-"Not Loaded" = "Not Loaded";
-"Not Downloaded" = "Not Downloaded";
-"Downloading" = "Downloading";
-"Downloaded" = "Downloaded";
-"Unavailable" = "Unavailable";
-"Canceled" = "Canceled";
-"Current" = "Current";
-"No Selection" = "No Selection";
-"Not Enrolled" = "Not Enrolled";
+"Callouts.downloadsSizeDisclaimer"  = "This accounts for the combined sizes of all documents that you have downloaded. They are not backed up by iTunes or iCloud.";
+"Callouts.feedbackDisclaimer"       = "I would appreciate your review on the App Store!";
+"Callouts.feedbackTitle"            = "Feedback for StudApp";
+"Callouts.noAnnouncements"          = "No Announcements";
+"Callouts.noCourse"                 = "Nothing to See Here";
+"Callouts.noCourseSubtitle"         = "Select a course on the left to get started.";
+"Callouts.noDocuments"              = "No Documents";
+"Callouts.noDownloads"              = "It Looks There Are No Downloads Yet";
+"Callouts.noDownloadsSubtitle"      = "Open the app \"Files\" or browse your courses to get started.";
+"Callouts.noEvents"                 = "It Looks Like You Are Free";
+"Callouts.noEventsSubtitle"         = "There are no events within the next two weeks for you.";
+"Callouts.noFiles"                  = "This Folder Is Empty";
+"Callouts.noFilesSubtitle"          = "Swipe down to refresh.";
+"Callouts.noMoreEvents"             = "You're All Caught Up";
+"Callouts.noMoreEventsSubtitle"     = "There are no more events to show.";
+"Callouts.openSourceDisclaimer"     = "StudApp is open source—feel free to contribute!";
+"Callouts.organizationsSubtitle"    = "Choose your university, company, or organization to sign in and access your courses, documents, announcements, and events.";
+"Callouts.noSemesters"              = "Nothing to See Here";
+"Callouts.noSemestersSubtitle"      = "Oddly enough, there are no semesters. Did you disable all of them?";
+"Callouts.noUpcomingEvents"         = "No Upcoming Events";
+"Callouts.rateManually"             = "It would be kind if you rated StudApp anyway by opening the App Store manually.";
+"Callouts.signedInAsAt"             = "Signed in as %@ at %@";
+"Callouts.studAppDisclaimer"        = "StudApp is free for all kinds of organizations!\n\nIt just needs to be activated by an admin of your organization.\nPlease contact me at %@ if you would like to support StudApp.\n\nNote that StudApp requires Stud.IP 4 or newer.";
+"Callouts.supportersDisclaimer"     = "Without you, this app could not exist. Thank you ❤️";
+"Callouts.tipLater"                 = "It would be kind if you retried in a little bit.";
+"Callouts.tippingDisclaimer"        = "If you really like this app you can leave a tip to support further development. Thank you so much for even considering!";
+"Callouts.thankYou"                 = "Thank You So Much!";
+"Callouts.thankYouForTipping"       = "I am glad there are people like you who value the amount of work put into apps.";
+"Callouts.thanksTo"                 = "Thanks to";
+"Callouts.welcomeToStudApp"         = "Welcome to StudApp";
 
 // MARK: Colors
 
-"Yellow" = "Yellow";
-"Red" = "Red";
-"Orange" = "Orange";
-"Light Orange" = "Light Orange";
-"Green" = "Green";
-"Light Green" = "Light Green";
-"Light Blue" = "Light Blue";
-"Blue" = "Blue";
-"Purple" = "Purple";
+"Colors.yellow"         = "Yellow";
+"Colors.red"            = "Red";
+"Colors.orange"         = "Orange";
+"Colors.lightOrange"    = "Light Orange";
+"Colors.green"          = "Green";
+"Colors.lightGreen"     = "Light Green";
+"Colors.lightBlue"      = "Light Blue";
+"Colors.blue"           = "Blue";
+"Colors.purple"         = "Purple";
 
 // MARK: Days
 
-"Yesterday" = "Yesterday";
-"Today" = "Today";
-"Tomorrow" = "Tomorrow";
+"Days.yesterday"    = "Yesterday";
+"Days.today"        = "Today";
+"Days.tomorrow"     = "Tomorrow";
 
-// MARK: About
+// MARK: Errors
 
-"About" = "About";
-"Feedback for %@" = "Feedback for %@";
-"StudApp is open source—feel free to contribute!" = "StudApp is open source—feel free to contribute!";
-"Rate StudApp" = "Rate StudApp";
-"I would appreciate your review on the App Store!" = "I would appreciate your review on the App Store!";
-"Could not launch App Store" = "Could not launch App Store";
-"It would be kind if you rated StudApp anyway by opening the App Store manually." = "It would be kind if you rated StudApp anyway by opening the App Store manually.";
-"Leave a Tip" = "Leave a Tip";
-"If you really like this app you can leave a tip to support further development." = "If you really like this app you can leave a tip to support further development.";
-"Thank you so much for even considering!" = "Thank you so much for even considering!";
-"I am glad there are people like you who value the work put into apps." = "I am glad there are people like you who value the work put into apps.";
-"Thank You So Much!" = "Thank You So Much!";
-"It would be kind if you retried in a little bit." = "It would be kind if you retried in a little bit.";
-"Thanks to" = "Thanks to";
-"Without you, this app could not exist. Thank you ❤️" = "Without you, this app could not exist. Thank you ❤️";
+"Errors.downloadingDocument"        = "Something Went Wrong Downloading \"%@\"";
+"Errors.generic"                    = "Something Went Wrong";
+"Errors.internal"                   = "Unfortunately, there was an internal error. Please contact app support if this occurs repeatedly.";
+"Errors.internetConnection"         = "There seems to be a problem with the internet connection.";
+"Errors.launchingAppStore"          = "App Store Could Not Be Launched";
+"Errors.organizationAuthorization"  = "There was an error authorizing StudApp to access your organization.";
+"Errors.organizationUnsupported"    = "It seems your this organization does not support StudApp anymore.";
+"Errors.organizationsUpdate"        = "Error Loading Organizations";
+"Errors.userActivityRestoration"    = "Something Went Wrong Continuing Your Activity";
 
-// MARK: Settings
+// MARK: Formats
 
-"Settings" = "Settings";
-"Remove All Downloads" = "Remove All Downloads";
-"This accounts for the combined sizes of all documents that you have downloaded." = "This accounts for the combined sizes of all documents that you have downloaded.";
-"They are not backed up by iTunes or iCloud." = "They are not backed up by iTunes or iCloud.";
-"Signed in as %@ at %@" = "Signed in as %@ at %@";
+"Formats.atLocation"    = "at %@";
+"Formats.byEntity"      = "by %@";
+"Formats.fromTo"        = "from %@ to %@";
+"Formats.hostedBy"      = "hosted by %@";
+"Formats.modifiedBy"    = "modified by %@";
+"Formats.nextEventAt"   = "Next Event: %@";
+"Formats.numberOfTimes" = "%dx";
+"Formats.range"         = "%@ – %@";
+"Formats.timeAgo"       = "%@ ago";
 
-// MARK: Courses
+// MARK: States
 
-"Courses" = "Courses";
-"No Course" = "No Course";
-"Select a course on the left to get started." = "Select a course on the left to get started.";
-"Course Number" = "Course Number";
-"Location" = "Location";
-"Announcements" = "Announcements";
-"No Announcements" = "No Announcements";
-"No Documents" = "No Documents";
-"Summary" = "Summary";
+"States.bookmarked"     = "Bookmarked";
+"States.canceled"       = "Canceled";
+"States.collapsed"      = "Collapsed";
+"States.expanded"       = "Expanded";
+"States.current"        = "Current";
+"States.hidden"         = "Hidden";
+"States.visible"        = "Visible";
+"States.new"            = "New";
+"States.modified"       = "Modified";
+"States.notDownloaded"  = "Not Downloaded";
+"States.downloading"    = "Downloading";
+"States.downloaded"     = "Downloaded";
+"States.notLoaded"      = "Not Loaded";
+"States.unavailable"    = "Unavailable";
 
-// MARK: Documents
+// MARK: Terms
 
-"Documents" = "Documents";
-"Nothing to See Here" = "Nothing to See Here";
-"This folder is empty." = "This folder is empty.";
-"Something went wrong downloading \"%@\"" = "Something went wrong downloading \"%@\"";
-
-// MARK: Semesters
-
-"Semesters" = "Semesters";
-"Show Hidden Courses" = "Show Hidden Courses";
-"It Looks Like There Are No Semesters" = "It Looks Like There Are No Semesters";
-"You can try to reload the semesters from Stud.IP." = "You can try to reload the semesters from Stud.IP.";
-
-// MARK: Downloads
-
-"Downloads" = "Downloads";
-"It Looks Like There Are No Downloads Yet" = "It Looks Like There Are No Downloads Yet";
-"Open the app \"Files\" or browse your courses to get started." = "Open the app \"Files\" or browse your courses to get started.";
-
-// MARK: Organizations
-
-"Organizations" = "Organizations";
-"Welcome to StudApp" = "Welcome to StudApp";
-"Choose your university, company, or organization to sign in and access your courses, documents, announcements, and events." = "Choose your university, company, or organization to sign in and access your courses, documents, announcements, and events.";
-"Error Loading Organizations" = "Error Loading Organizations";
-"Add Organization…" = "Add Organization…";
-"StudApp is free for all kinds of organizations!" = "StudApp is free for all kinds of organizations!";
-"It just needs to be activated by an admin of your organization." = "It just needs to be activated by an admin of your organization.";
-"Please contact me at %@ if you would like to support StudApp." = "Please contact me at %@ if you would like to support StudApp.";
-"Note that StudApp requires Stud.IP 4 or newer." = "Note that StudApp requires Stud.IP 4 or newer.";
-
-// MARK: Signing In
-
-"Error Signing In" = "Error Signing In";
-"It seems like your organization does not support StudApp anymore." = "It seems your this organization does not support StudApp anymore.";
-"There was an error authorizing StudApp to access your organization." = "There was an error authorizing StudApp to access your organization.";
-
-// MARK: Color Picker
-
-"Color" = "Color";
-"Choose Color" = "Choose Color";
-
-// MARK: Events
-
-"Events" = "Events";
-"All Events" = "All Events";
-"It Looks Like You Are Free" = "It Looks Like You Are Free";
-"There are no events within the next two weeks for you." = "There are no events within the next two weeks for you.";
-"No More Events" = "No More Events";
-"You're All Caught Up" = "You're All Caught Up";
-"There are no more events to show." = "There are no more events to show.";
-"Next Event: %@" = "Next Event: %@";
-"No Upcoming Events" = "No Upcoming Events";
+"Terms.about"           = "About";
+"Terms.announcements"   = "Announcements";
+"Terms.color"           = "Color";
+"Terms.course"          = "Course";
+"Terms.courses"         = "Courses";
+"Terms.courseNumber"    = "Course Number";
+"Terms.document"        = "Document";
+"Terms.documents"       = "Documents";
+"Terms.downloads"       = "Downloads";
+"Terms.events"          = "Events";
+"Terms.allEvents"       = "All Events";
+"Terms.folder"          = "Folder";
+"Terms.gitHub"          = "GitHub";
+"Terms.help"            = "Help";
+"Terms.location"        = "Location";
+"Terms.more"            = "More";
+"Terms.organizations"   = "Organizations";
+"Terms.privacyPolicy"   = "Privacy Policy";
+"Terms.semesters"       = "Semesters";
+"Terms.settings"        = "Settings";
+"Terms.studIP"          = "Stud.IP";
+"Terms.summary"         = "Summary";
+"Terms.termsOfUse"      = "Terms of Use";
+"Terms.website"         = "Website";
 
 // MARK: - Mock Data
 
-// MARK: Semesters
+// MARK: Announcements
 
-"Winter 2016/17" = "Winter 2016/17";
-"Summer 2017" = "Summer 2017";
-"Winter 2017/18" = "Winter 2017/18";
-"Summer 2018" = "Summer 2018";
-
-// MARK: Users
-
-"theCount" = "theCount";
-"Count" = "Count";
-"von Count" = "von Count";
-
-// MARK: Rooms
-
-"Main Building\nBielefeld Room" = "Main Building\nBielefeld Room";
-"Building 42\nMultimedia Room" = "Building 42\nMultimedia Room";
-"Building 42\nRoom 135" = "Building 42\nRoom 135";
-"Main Building\nBasement" = "Main Building\nBasement";
-"Main Building\nHugo Kulka Room" = "Main Building\nHugo Kulka Room";
+"Announcements.bringLaptops"    = "Remember to Bring Your Laptops!";
 
 // MARK: Courses
 
-"Numerical Analysis" = "Numerical Analysis";
-"Optimizing Algorithms for Computers" = "Optimizing Algorithms for Computers";
-"Linear Algebra I" = "Linear Algebra I";
-"Linear Algebra II" = "Linear Algebra II";
-"Vectors and Stuff" = "Vectors and Stuff";
-"Computer Architecture" = "Computer Architecture";
-"Theoretical Computer Science" = "Theoretical Computer Science";
-"Data Science 101" = "Data Science 101";
-"StudApp Feedback" = "StudApp Feedback";
-"Coding Crash Course" = "Coding Crash Course";
-"Telling Computers What to Do" = "Telling Computers What to Do";
-"In this course, you will learn the basics of computer programming." = "In this course, you will learn the basics of computer programming.";
-"Please refer to https://google.com/ if you have any questions." = "Please refer to https://google.com/ if you have any questions.";
-"Building Your Own Operating System" = "Building Your Own Operating System";
+"Courses.numericalAnalysis"             = "Numerical Analysis";
+"Courses.numericalAnalysisSubtitle"     = "Optimizing Algorithms for Computers";
+"Courses.linearAlgebraI"                = "Linear Algebra I";
+"Courses.linearAlgebraII"               = "Linear Algebra II";
+"Courses.linearAlgebraSubtitle"         = "Vectors and Stuff";
+"Courses.computerArchitecture"          = "Computer Architecture";
+"Courses.theoreticalComputerScience"    = "Theoretical Computer Science";
+"Courses.dataScience"                   = "Data Science 101";
+"Courses.studAppFeedback"               = "StudApp Feedback";
+"Courses.coding"                        = "Coding Crash Course";
+"Courses.codingSubtitle"                = "Telling Computers What to Do";
+"Courses.codingSummary"                 = "In this course, you will learn the basics of computer programming. Please refer to https://google.com/ if you have any questions.";
+"Courses.operatingSystems"              = "Building Your Own Operating System";
 
-// MARK: Announcements
+// MARK: Documents
 
-"Remember to Bring Your Laptops!" = "Remember to Bring Your Laptops!";
+"Documents.organization"            = "Organization.pdf";
+"Documents.installingSwift"         = "Installing Swift.mp4";
+"Documents.usingSwiftPlaygrounds"   = "How to Use Swift Playgrounds";
+"Documents.bigData"                 = "BigData.csv";
+"Documents.slides"                  = "Slides.pdf";
+"Documents.exercise0"               = "Exercise 0.pdf";
+"Documents.exercise1"               = "Exercise 1.pdf";
+"Documents.exercise2"               = "Exercise 2.pdf";
+"Documents.exercise3"               = "Exercise 3.pdf";
 
-// MARK: Files
+// MARK: Folders
 
-"Slides" = "Slides";
-"Exercises" = "Exercises";
-"Solutions" = "Solutions";
-"Organization.pdf" = "Organization.pdf";
-"Installing Swift.mp4" = "Installing Swift.mp4";
-"How to Use Swift Playgrounds" = "How to Use Swift Playgrounds";
-"Exercise 0.pdf" = "Exercise 0.pdf";
-"Exercise 1.pdf" = "Exercise 1.pdf";
-"Exercise 2.pdf" = "Exercise 2.pdf";
-"Exercise 3.pdf" = "Exercise 3.pdf";
-"BigData.csv" = "BigData.csv";
-"Slides.pdf" = "Slides.pdf";
+"Folders.slides"    = "Slides";
+"Folders.exercises" = "Exercises";
+"Folders.solutions" = "Solutions";
 
 // MARK: Events
 
-"What can for-loops do for me?" = "What can for loops do for me?";
-"Functional Concepts" = "Functional Concepts";
-"Data Preprocessing" = "Data Preprocessing";
-"Group 0" = "Group 0";
+"Events.forLoops"               = "What can for loops do for me?";
+"Events.functionalProgramming"  = "Functional Concepts";
+"Events.dataPreprocessing"      = "Data Preprocessing";
+"Events.group0"                 = "Group 0";
+
+// MARK: Locations
+
+"Locations.bielefeldRoom"   = "Main Building\nBielefeld Room";
+"Locations.multimediaRoom"  = "Building 42\nMultimedia Room";
+"Locations.room135"         = "Building 42\nRoom 135";
+"Locations.basement"        = "Main Building\nBasement";
+"Locations.hugoKulkaRoom"   = "Main Building\nHugo Kulka Room";
+
+// MARK: Semesters
+
+"Semesters.winter1617"  = "Winter 2016/17";
+"Semesters.summer17"    = "Summer 2017";
+"Semesters.winter1718"  = "Winter 2017/18";
+"Semesters.summer18"    = "Summer 2018";
+
+// MARK: Users
+
+"Users.theCount"            = "theCount";
+"Users.theCountGivenName"   = "Count";
+"Users.theCountFamilyName"  = "von Count";

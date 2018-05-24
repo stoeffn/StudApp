@@ -105,7 +105,8 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
             segue.destination.popoverPresentationController?.delegate = self
             segue.destination.popoverPresentationController?.sourceView = addOrganizationCell
             segue.destination.popoverPresentationController?.sourceRect = addOrganizationCell.bounds
-            prepare(for: .disclaimer(withText: Strings.Callouts.studAppDisclaimer.localized), destination: segue.destination)
+            let text = Strings.Callouts.studAppDisclaimer.localized(App.feedbackEmailAddress)
+            prepare(for: .disclaimer(withText: text), destination: segue.destination)
         default:
             prepareForRoute(using: segue, sender: sender)
         }
