@@ -55,7 +55,7 @@ class BadgeLabel: UILabel {
     // MARK: - Layout
 
     override func drawText(in rect: CGRect) {
-        super.drawText(in: UIEdgeInsetsInsetRect(rect, insets))
+        super.drawText(in: rect.inset(by: insets))
     }
 
     open override var intrinsicContentSize: CGSize {

@@ -54,7 +54,7 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
             },
             viewModel.organization.observe(\.iconData, options: [.initial]) { [weak self] _, _ in
                 guard let `self` = self else { return }
-                UIView.transition(with: self.view, duration: 0.1, options: .transitionCrossDissolve, animations: {
+                UIView.transition(with: self.view, duration: 0.1, options: UIView.AnimationOptions.transitionCrossDissolve, animations: {
                     self.iconView.image = self.viewModel.organization.icon ?? self.viewModel.organization.iconThumbnail
                 }, completion: nil)
             },
@@ -114,7 +114,7 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
 
     private func animateWithSpring(animations: @escaping () -> Void) {
         UIView.animate(withDuration: UI.defaultAnimationDuration, delay: 0, usingSpringWithDamping: 0.7,
-                       initialSpringVelocity: 0, options: .curveEaseOut, animations: animations, completion: nil)
+                       initialSpringVelocity: 0, options: UIView.AnimationOptions.curveEaseOut, animations: animations, completion: nil)
     }
 
     func controller(for error: Error) -> UIViewController {

@@ -162,7 +162,7 @@ final class AboutController: UITableViewController, Routable {
     override func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
         // Needs to be overriden in order to activate dynamic row sizing. This value is not set in interface builder because it
         // would reset the rows' sizes to the default size in preview.
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {

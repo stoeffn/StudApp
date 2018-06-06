@@ -39,11 +39,11 @@ extension Targets {
     public struct Context {
         let currentTarget: Targets
         let extensionContext: NSExtensionContext?
-        let openUrl: ((URL, [String: Any], ((Bool) -> Void)?) -> Void)?
+        let openUrl: ((URL, [UIApplication.OpenExternalURLOptionsKey: Any], ((Bool) -> Void)?) -> Void)?
         let preferredContentSizeCategory: (() -> UIContentSizeCategory)?
 
         public init(currentTarget: Targets, extensionContext: NSExtensionContext? = nil,
-                    openUrl: ((URL, [String: Any], ((Bool) -> Void)?) -> Void)? = nil,
+                    openUrl: ((URL, [UIApplication.OpenExternalURLOptionsKey: Any], ((Bool) -> Void)?) -> Void)? = nil,
                     preferredContentSizeCategory: (() -> UIContentSizeCategory)? = nil) {
             self.currentTarget = currentTarget
             self.extensionContext = extensionContext

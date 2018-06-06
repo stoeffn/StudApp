@@ -46,7 +46,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
 
-            tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+            tableView.sectionHeaderHeight = UITableView.automaticDimension
         }
 
         updateEmptyView()

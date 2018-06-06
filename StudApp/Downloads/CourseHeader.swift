@@ -70,19 +70,18 @@ final class CourseHeader: UITableViewHeaderFooterView {
         titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2).isActive = true
 
         isAccessibilityElement = true
-        accessibilityTraits |= UIAccessibilityTraitButton
+        accessibilityTraits = UIAccessibilityTraits.button
 
         if #available(iOS 11.0, *) {
             colorView.accessibilityIgnoresInvertColors = true
         }
 
         NotificationCenter.default.addObserver(self, selector: #selector(reduceTransparencyDidChange(notification:)),
-                                               name: .UIAccessibilityReduceTransparencyStatusDidChange, object: nil)
+                                               name: UIAccessibility.reduceTransparencyStatusDidChangeNotification, object: nil)
     }
 
     private func updateAppearance() {
-        let isTransparencyReduced = UIAccessibilityIsReduceTransparencyEnabled()
-        colorView.backgroundColor = isTransparencyReduced ? course?.color : course?.color.withAlphaComponent(0.4)
+        colorView.backgroundColor = UIAccessibility.isReduceTransparencyEnabled ? course?.color : course?.color.withAlphaComponent(0.4)
     }
 
     // MARK: - Notifications

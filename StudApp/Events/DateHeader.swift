@@ -55,7 +55,7 @@ final class DateHeader: UITableViewHeaderFooterView {
 
     private(set) lazy var whiteView: UIView = {
         let view = UIView()
-        view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
         view.backgroundColor = .white
         return view
     }()
@@ -93,16 +93,16 @@ final class DateHeader: UITableViewHeaderFooterView {
         updateAppearance()
 
         isAccessibilityElement = true
-        accessibilityTraits |= UIAccessibilityTraitButton
+        accessibilityTraits = UIAccessibilityTraits.button
 
         NotificationCenter.default.addObserver(self, selector: #selector(reduceTransparencyDidChange(notification:)),
-                                               name: .UIAccessibilityReduceTransparencyStatusDidChange, object: nil)
+                                               name: UIAccessibility.reduceTransparencyStatusDidChangeNotification, object: nil)
 
         RunLoop.main.add(updateTimer, forMode: .defaultRunLoopMode)
     }
 
     private func updateAppearance() {
-        let isTransparencyReduced = UIAccessibilityIsReduceTransparencyEnabled()
+        let isTransparencyReduced = UIAccessibility.isReduceTransparencyEnabled
         whiteView.isHidden = !isTransparencyReduced
     }
 

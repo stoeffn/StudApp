@@ -37,7 +37,7 @@ public final class BorderlessNavigationController: UINavigationController {
         usesDefaultAppearance = false
 
         NotificationCenter.default.addObserver(self, selector: #selector(reduceTransparencyDidChange(notification:)),
-                                               name: .UIAccessibilityReduceTransparencyStatusDidChange, object: nil)
+                                               name: UIAccessibility.reduceTransparencyStatusDidChangeNotification, object: nil)
     }
 
     public override func viewDidAppear(_ animated: Bool) {
@@ -147,7 +147,7 @@ public final class BorderlessNavigationController: UINavigationController {
     }
 
     private func updateAppearance() {
-        let isTransparencyReduced = UIAccessibilityIsReduceTransparencyEnabled()
+        let isTransparencyReduced = UIAccessibility.isReduceTransparencyEnabled
         navigationBarBackgroundBlurView.isHidden = isNavigationBarBackgroundHidden || usesDefaultAppearance || isTransparencyReduced
         navigationBarBackgroundAlphaView.isHidden = isNavigationBarBackgroundHidden || usesDefaultAppearance
         navigationBarBackgroundAlphaView.alpha = isTransparencyReduced ? 1 : 0.5

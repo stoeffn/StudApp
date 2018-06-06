@@ -18,7 +18,7 @@
 
 public extension UIFont {
     /// Returns a version of this font, adding the font traits given. May return the original font on failure.
-    public func addingTraits(_ traits: UIFontDescriptorSymbolicTraits) -> UIFont {
+    public func addingTraits(_ traits: UIFontDescriptor.SymbolicTraits) -> UIFont {
         if let boldFontDescriptor = fontDescriptor.withSymbolicTraits([fontDescriptor.symbolicTraits, traits]) {
             return UIFont(descriptor: boldFontDescriptor, size: pointSize)
         }

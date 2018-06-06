@@ -34,7 +34,7 @@ extension AppDelegate: UIApplicationDelegate {
 
     // MARK: Initializing the App
 
-    func application(_: UIApplication, willFinishLaunchingWithOptions _: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
+    func application(_: UIApplication, willFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         let context = Targets.Context(currentTarget: .app, extensionContext: nil, openUrl: UIApplication.shared.open,
                                       preferredContentSizeCategory: { UIApplication.shared.preferredContentSizeCategory })
 
@@ -50,7 +50,7 @@ extension AppDelegate: UIApplicationDelegate {
         return true
     }
 
-    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         try? historyService.mergeHistory(into: coreDataService.viewContext)
         try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
 
@@ -92,7 +92,7 @@ extension AppDelegate: UIApplicationDelegate {
     // MARK: Continuing User Activity and Handling Quick Actions
 
     func application(_: UIApplication, continue userActivity: NSUserActivity,
-                     restorationHandler _: @escaping ([Any]?) -> Void) -> Bool {
+                     restorationHandler _: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         window?.rootViewController?.restoreUserActivityState(userActivity)
         return true
     }
@@ -108,7 +108,7 @@ extension AppDelegate: UIApplicationDelegate {
 
     // MARK: Opening a URL-Specified Resource
 
-    func application(_: UIApplication, open url: URL, options _: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
+    func application(_: UIApplication, open url: URL, options _: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         NotificationCenter.default.post(name: .safariViewControllerDidLoadAppUrl, object: self, userInfo: [
             Notification.Name.safariViewControllerDidLoadAppUrlKey: url,
         ])

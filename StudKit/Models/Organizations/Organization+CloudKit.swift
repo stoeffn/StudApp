@@ -53,7 +53,7 @@ extension Organization {
         : NSPredicate(format: "isEnabledInTestFlight == YES")
 
     private var idPredicate: NSPredicate {
-        return NSPredicate(format: "recordID == %@", CKRecordID(recordName: id))
+        return NSPredicate(format: "recordID == %@", CKRecord.ID(recordName: id))
     }
 
     // MARK: - Updating

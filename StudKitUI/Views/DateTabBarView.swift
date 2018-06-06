@@ -50,7 +50,7 @@ public final class DateTabBarView: UIView {
         layout.scrollDirection = .horizontal
 
         let view = UICollectionView(frame: bounds, collectionViewLayout: layout)
-        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        view.autoresizingMask = [UIView.AutoresizingMask.flexibleHeight, UIView.AutoresizingMask.flexibleWidth]
         view.showsHorizontalScrollIndicator = false
         view.showsVerticalScrollIndicator = false
         view.alwaysBounceHorizontal = true
