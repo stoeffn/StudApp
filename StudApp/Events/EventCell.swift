@@ -56,7 +56,7 @@ final class EventCell: UITableViewCell {
             cancellationReasonLabel.text = event.cancellationReason
 
             notEnrolledLabel?.isHidden = event.course != nil
-            notEnrolledLabel?.text = Strings.States.notEnrolled.localized
+            notEnrolledLabel?.text = Strings.States.bookmarked.localized
 
             locationLabel.isHidden = event.location == nil
             locationLabel.text = event.location
