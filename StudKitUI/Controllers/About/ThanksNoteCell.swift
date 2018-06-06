@@ -22,7 +22,7 @@ final class ThanksNoteCell: UITableViewCell {
 
     // MARK: - Life Cycle
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    override init(style _: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         // Weirdly, you have to manually set the cell style here again. Otherwise, it defaults to the basic style.
         super.init(style: .value2, reuseIdentifier: reuseIdentifier)
         initUserInterface()

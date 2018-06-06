@@ -58,7 +58,7 @@ final class SafariActivity: UIActivity, ByTypeNameIdentifiable {
         guard let url = url else { return activityDidFinish(false) }
 
         guard let controller = controller else {
-            return UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: activityDidFinish)
+            return UIApplication.shared.open(url, options: [:], completionHandler: activityDidFinish)
         }
 
         guard let safariController = htmlContentService.safariViewController(for: url) else { return }
@@ -66,9 +66,4 @@ final class SafariActivity: UIActivity, ByTypeNameIdentifiable {
             self.activityDidFinish(true)
         }
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

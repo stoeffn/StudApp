@@ -48,7 +48,7 @@ public final class StudIpActivityIndicator: UIView {
 
     private lazy var outerCircle: CAShapeLayer = {
         let circle = CAShapeLayer()
-        circle.lineCap = convertToCAShapeLayerLineCap(convertFromCAShapeLayerLineCap(CAShapeLayerLineCap.butt))
+        circle.lineCap = .butt
         circle.fillColor = UIColor.clear.cgColor
         circle.strokeColor = UI.Colors.studBlue.cgColor
         circle.strokeStart = 0
@@ -82,7 +82,7 @@ public final class StudIpActivityIndicator: UIView {
         animation.fromValue = 0.75
         animation.toValue = 0.25
         animation.autoreverses = true
-        animation.timingFunction = CAMediaTimingFunction(name: convertToCAMediaTimingFunctionName(convertFromCAMediaTimingFunctionName(CAMediaTimingFunctionName.easeInEaseOut)))
+        animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         animation.isRemovedOnCompletion = false
         return animation
     }()
@@ -112,24 +112,4 @@ public final class StudIpActivityIndicator: UIView {
         outerCircle.add(rotateAnimation, forKey: "rotation")
         outerCircle.add(strokeAnimation, forKey: "stroke")
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToCAShapeLayerLineCap(_ input: String) -> CAShapeLayerLineCap {
-	return CAShapeLayerLineCap(rawValue: input)
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromCAShapeLayerLineCap(_ input: CAShapeLayerLineCap) -> String {
-	return input.rawValue
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToCAMediaTimingFunctionName(_ input: String) -> CAMediaTimingFunctionName {
-	return CAMediaTimingFunctionName(rawValue: input)
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromCAMediaTimingFunctionName(_ input: CAMediaTimingFunctionName) -> String {
-	return input.rawValue
 }

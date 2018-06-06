@@ -34,7 +34,7 @@ public final class ConfettiView: UIView {
 
     private lazy var emitterLayer: CAEmitterLayer = {
         let layer = CAEmitterLayer()
-        layer.emitterShape = convertToCAEmitterLayerEmitterShape(convertFromCAEmitterLayerEmitterShape(CAEmitterLayerEmitterShape.line))
+        layer.emitterShape = .line
         layer.emitterCells = UI.Colors.pickerColors.values.map { confetto(withColor: $0.color) }
         return layer
     }()
@@ -81,14 +81,4 @@ public final class ConfettiView: UIView {
             confetto.scaleSpeed = -0.1 * intensity
         }
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToCAEmitterLayerEmitterShape(_ input: String) -> CAEmitterLayerEmitterShape {
-	return CAEmitterLayerEmitterShape(rawValue: input)
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertFromCAEmitterLayerEmitterShape(_ input: CAEmitterLayerEmitterShape) -> String {
-	return input.rawValue
 }
