@@ -56,7 +56,7 @@ final class PreviewController: QLPreviewController, Routable {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+        super.viewWillDisappear(animated)
 
         ServiceContainer.default[StoreService.self].requestReview()
 
