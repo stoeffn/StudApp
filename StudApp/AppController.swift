@@ -158,10 +158,10 @@ final class AppController: UITabBarController {
                 guard let controller = self.htmlContentService.safariViewController(for: App.Urls.help) else { return }
                 self.present(controller, animated: true, completion: nil)
             },
-            UIAlertAction(title: Strings.Terms.help.localized, style: .default) { _ in
+            UIAlertAction(title: Strings.Terms.settings.localized, style: .default) { _ in
                 self.performSegue(withRoute: .settings)
             },
-            UIAlertAction(title: Strings.Terms.help.localized, style: .cancel, handler: nil),
+            UIAlertAction(title: Strings.Actions.cancel.localized, style: .cancel, handler: nil),
         ]
 
         let currentUserFullName = currentUser.nameComponents.formatted(style: .long)

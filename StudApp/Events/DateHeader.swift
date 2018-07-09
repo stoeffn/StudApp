@@ -98,7 +98,7 @@ final class DateHeader: UITableViewHeaderFooterView {
         NotificationCenter.default.addObserver(self, selector: #selector(reduceTransparencyDidChange(notification:)),
                                                name: UIAccessibility.reduceTransparencyStatusDidChangeNotification, object: nil)
 
-        RunLoop.main.add(updateTimer, forMode: .defaultRunLoopMode)
+        RunLoop.main.add(updateTimer, forMode: .default)
     }
 
     private func updateAppearance() {

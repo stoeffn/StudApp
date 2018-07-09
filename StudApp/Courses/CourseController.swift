@@ -451,7 +451,7 @@ final class CourseController: UITableViewController, Routable {
         let timer = Timer(fire: event.endsAt, interval: 0, repeats: false) { [weak self] _ in
             self?.tableView.reloadSections(IndexSet(integer: Sections.events.rawValue), with: .fade)
         }
-        RunLoop.main.add(timer, forMode: .defaultRunLoopMode)
+        RunLoop.main.add(timer, forMode: .default)
 
         updateNextEventTimer?.invalidate()
         updateNextEventTimer = timer

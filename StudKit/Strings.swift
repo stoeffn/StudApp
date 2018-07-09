@@ -140,7 +140,6 @@ public enum Strings {
         case hidden, visible
         case new, modified
         case notDownloaded, downloading, downloaded
-        case notEnrolled
         case notLoaded
         case unavailable
     }
