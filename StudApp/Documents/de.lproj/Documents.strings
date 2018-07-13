@@ -1,0 +1,30 @@
+
+/* Class = "UINavigationItem"; title = "Folder"; ObjectID = "9SH-3S-wkD"; */
+"9SH-3S-wkD.title" = "Folder";
+
+/* Class = "UILabel"; text = "This folder is empty."; ObjectID = "FVY-Fo-Vjy"; */
+"FVY-Fo-Vjy.text" = "This folder is empty.";
+
+/* Class = "UILabel"; text = "dropbox.com"; ObjectID = "QJh-Td-OOF"; */
+"QJh-Td-OOF.text" = "dropbox.com";
+
+/* Class = "UILabel"; text = "123x"; ObjectID = "WTL-TR-8EF"; */
+"WTL-TR-8EF.text" = "123x";
+
+/* Class = "UILabel"; text = "yesterday"; ObjectID = "gY8-ap-TZ6"; */
+"gY8-ap-TZ6.text" = "yesterday";
+
+/* Class = "UILabel"; text = "Nothing to See Here"; ObjectID = "hDi-kW-Y7K"; */
+"hDi-kW-Y7K.text" = "Nothing to See Here";
+
+/* Class = "UILabel"; text = "Assignment 1"; ObjectID = "kbO-2e-HPH"; */
+"kbO-2e-HPH.text" = "Assignment 1";
+
+/* Class = "UILabel"; text = "3 items"; ObjectID = "tkX-dl-1qP"; */
+"tkX-dl-1qP.text" = "3 items";
+
+/* Class = "UILabel"; text = "42 KB"; ObjectID = "xbW-et-E1b"; */
+"xbW-et-E1b.text" = "42 KB";
+
+/* Class = "UILabel"; text = "Steve Jobs"; ObjectID = "zh0-SE-Qj0"; */
+"zh0-SE-Qj0.text" = "Steve Jobs";

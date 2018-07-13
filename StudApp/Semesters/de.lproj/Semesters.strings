@@ -1,0 +1,21 @@
+
+/* Class = "UIButton"; normalTitle = "Reload"; ObjectID = "21M-Rg-kwj"; */
+"21M-Rg-kwj.normalTitle" = "Reload";
+
+/* Class = "UILabel"; text = "You can try to reload the semesters from Stud.IP."; ObjectID = "b4B-WZ-h5c"; */
+"b4B-WZ-h5c.text" = "You can try to reload the semesters from Stud.IP.";
+
+/* Class = "UILabel"; text = "It Looks Like There Are No Semesters"; ObjectID = "cOv-3H-SZb"; */
+"cOv-3H-SZb.text" = "It Looks Like There Are No Semesters";
+
+/* Class = "UILabel"; text = "Month – Month"; ObjectID = "cR3-6H-Bid"; */
+"cR3-6H-Bid.text" = "Month – Month";
+
+/* Class = "UINavigationItem"; title = "Semesters"; ObjectID = "vkk-T4-jfp"; */
+"vkk-T4-jfp.title" = "Semesters";
+
+/* Class = "UILabel"; text = "Show Hidden Courses"; ObjectID = "xEd-sN-xg6"; */
+"xEd-sN-xg6.text" = "Show Hidden Courses";
+
+/* Class = "UILabel"; text = "Semester"; ObjectID = "ySA-JE-954"; */
+"ySA-JE-954.text" = "Semester";

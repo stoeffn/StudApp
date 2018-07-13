@@ -1,0 +1,36 @@
+
+/* Class = "UILabel"; text = "9:00"; ObjectID = "75U-EO-shn"; */
+"75U-EO-shn.text" = "9:00";
+
+/* Class = "UILabel"; text = "Optionales Thema"; ObjectID = "8Qy-4Z-DhP"; */
+"8Qy-4Z-DhP.text" = "Optionales Thema";
+
+/* Class = "UILabel"; text = "Raum 023: Multimedia-Hörsaal\nGebäude 3703: Technische Informatik"; ObjectID = "Abz-JA-Be0"; */
+"Abz-JA-Be0.text" = "Raum 023: Multimedia-Hörsaal\nGebäude 3703: Technische Informatik";
+
+/* Class = "UITabBarItem"; title = "Events"; ObjectID = "BsL-ez-XaG"; */
+"BsL-ez-XaG.title" = "Events";
+
+/* Class = "UILabel"; text = "Reason"; ObjectID = "NRd-4L-eOE"; */
+"NRd-4L-eOE.text" = "Reason";
+
+/* Class = "UILabel"; text = "There are no events within the next two weeks for you."; ObjectID = "Zu2-Lt-Pqz"; */
+"Zu2-Lt-Pqz.text" = "There are no events within the next two weeks for you.";
+
+/* Class = "UILabel"; text = "10:30"; ObjectID = "f6P-D0-CJi"; */
+"f6P-D0-CJi.text" = "10:30";
+
+/* Class = "UINavigationItem"; title = "Events"; ObjectID = "fF8-aA-dA2"; */
+"fF8-aA-dA2.title" = "Events";
+
+/* Class = "UILabel"; text = "Übung zu Grundlagen digitaler Systeme"; ObjectID = "kSZ-KN-NH2"; */
+"kSZ-KN-NH2.text" = "Übung zu Grundlagen digitaler Systeme";
+
+/* Class = "UILabel"; text = "It Looks Like You Are Free"; ObjectID = "kj8-QX-atC"; */
+"kj8-QX-atC.text" = "It Looks Like You Are Free";
+
+/* Class = "UILabel"; text = "Not Enrolled"; ObjectID = "lmq-lS-hrK"; */
+"lmq-lS-hrK.text" = "Not Enrolled";
+
+/* Class = "UILabel"; text = "Canceled"; ObjectID = "pfa-A6-v9I"; */
+"pfa-A6-v9I.text" = "Canceled";

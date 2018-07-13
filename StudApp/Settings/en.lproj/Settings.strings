@@ -1,0 +1,36 @@
+
+/* Class = "UILabel"; text = "Remove All Downloads"; ObjectID = "1hX-cj-Hpc"; */
+"1hX-cj-Hpc.text" = "Remove All Downloads";
+
+/* Class = "UILabel"; text = "New Announcements"; ObjectID = "2sF-Tu-a5K"; */
+"2sF-Tu-a5K.text" = "New Announcements";
+
+/* Class = "UITableViewSection"; footerTitle = "Signed in as Professor Proton at CalTech."; ObjectID = "9Vt-qs-3MV"; */
+"9Vt-qs-3MV.footerTitle" = "Signed in as Professor Proton at CalTech.";
+
+/* Class = "UILabel"; text = "Notifications"; ObjectID = "V6z-Ga-ele"; */
+"V6z-Ga-ele.text" = "Notifications";
+
+/* Class = "UILabel"; text = "Updated Documents"; ObjectID = "bl5-3V-sxe"; */
+"bl5-3V-sxe.text" = "Updated Documents";
+
+/* Class = "UITableViewSection"; headerTitle = "Notifications"; ObjectID = "mRq-cL-hlp"; */
+"mRq-cL-hlp.headerTitle" = "Notifications";
+
+/* Class = "UILabel"; text = "Downloads"; ObjectID = "sMn-eF-12u"; */
+"sMn-eF-12u.text" = "Downloads";
+
+/* Class = "UITableViewSection"; footerTitle = "This accounts for the combined sizes of all documents that you have downloaded. They are not backed up by iTunes or iCloud."; ObjectID = "tBm-Vk-7V1"; */
+"tBm-Vk-7V1.footerTitle" = "This accounts for the combined sizes of all documents that you have downloaded. They are not backed up by iTunes or iCloud.";
+
+/* Class = "UITableViewSection"; headerTitle = "Documents"; ObjectID = "tBm-Vk-7V1"; */
+"tBm-Vk-7V1.headerTitle" = "Documents";
+
+/* Class = "UILabel"; text = "Sign Out"; ObjectID = "vFg-Df-ja9"; */
+"vFg-Df-ja9.text" = "Sign Out";
+
+/* Class = "UILabel"; text = "42 MB"; ObjectID = "w8o-fX-UgS"; */
+"w8o-fX-UgS.text" = "42 MB";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "yDK-7S-19c"; */
+"yDK-7S-19c.title" = "Settings";

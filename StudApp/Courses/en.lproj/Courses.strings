@@ -1,0 +1,102 @@
+
+/* Class = "UIButton"; normalTitle = "Reload"; ObjectID = "14A-k0-KOd"; */
+"14A-k0-KOd.normalTitle" = "Reload";
+
+/* Class = "UILabel"; text = "10:30"; ObjectID = "2AH-aU-jiH"; */
+"2AH-aU-jiH.text" = "10:30";
+
+/* Class = "UILabel"; text = "Programming I"; ObjectID = "4ty-MF-qcd"; */
+"4ty-MF-qcd.text" = "Programming I";
+
+/* Class = "UILabel"; text = "Steve Jobs"; ObjectID = "6OW-9N-Hja"; */
+"6OW-9N-Hja.text" = "Steve Jobs";
+
+/* Class = "UILabel"; text = "No Course"; ObjectID = "7eK-eX-Dx6"; */
+"7eK-eX-Dx6.text" = "No Course";
+
+/* Class = "UILabel"; text = "Steve Jobs"; ObjectID = "ANc-MQ-L9V"; */
+"ANc-MQ-L9V.text" = "Steve Jobs";
+
+/* Class = "UILabel"; text = "dropbox.com"; ObjectID = "AiG-K1-4vZ"; */
+"AiG-K1-4vZ.text" = "dropbox.com";
+
+/* Class = "UILabel"; text = "It Looks Like There Are No Semesters"; ObjectID = "Bkx-xV-ynE"; */
+"Bkx-xV-ynE.text" = "It Looks Like There Are No Semesters";
+
+/* Class = "UILabel"; text = "yesterday"; ObjectID = "Cqr-Fs-H1e"; */
+"Cqr-Fs-H1e.text" = "yesterday";
+
+/* Class = "UILabel"; text = "Subtitle"; ObjectID = "Ept-S8-Lfb"; */
+"Ept-S8-Lfb.text" = "Subtitle";
+
+/* Class = "UILabel"; text = "42"; ObjectID = "ICf-fi-jaH"; */
+"ICf-fi-jaH.text" = "42";
+
+/* Class = "UILabel"; text = "Canceled"; ObjectID = "Ikw-dG-gSK"; */
+"Ikw-dG-gSK.text" = "Canceled";
+
+/* Class = "UINavigationItem"; title = "Courses"; ObjectID = "JrY-VB-OIX"; */
+"JrY-VB-OIX.title" = "Courses";
+
+/* Class = "UILabel"; text = "Raum 023: Multimedia-Hörsaal\nGebäude 3703: Technische Informatik"; ObjectID = "LeM-W1-tWh"; */
+"LeM-W1-tWh.text" = "Raum 023: Multimedia-Hörsaal\nGebäude 3703: Technische Informatik";
+
+/* Class = "UILabel"; text = "You can try to reload the semesters from Stud.IP."; ObjectID = "OXQ-Xl-gyc"; */
+"OXQ-Xl-gyc.text" = "You can try to reload the semesters from Stud.IP.";
+
+/* Class = "UILabel"; text = "Select a course on the left to get started."; ObjectID = "XMZ-t0-4Wb"; */
+"XMZ-t0-4Wb.text" = "Select a course on the left to get started.";
+
+/* Class = "UINavigationItem"; title = "Announcement"; ObjectID = "YSc-JM-8f0"; */
+"YSc-JM-8f0.title" = "Announcement";
+
+/* Class = "UILabel"; text = "Übung zu Grundlagen digitaler Systeme"; ObjectID = "Zb8-2w-BR2"; */
+"Zb8-2w-BR2.text" = "Übung zu Grundlagen digitaler Systeme";
+
+/* Class = "UILabel"; text = "This is an Important Message!"; ObjectID = "btC-Vm-3wI"; */
+"btC-Vm-3wI.text" = "This is an Important Message!";
+
+/* Class = "UILabel"; text = "9:00"; ObjectID = "cZE-L5-pTz"; */
+"cZE-L5-pTz.text" = "9:00";
+
+/* Class = "UITabBarItem"; title = "Courses"; ObjectID = "dLT-Hn-vzN"; */
+"dLT-Hn-vzN.title" = "Courses";
+
+/* Class = "UILabel"; text = "Assignment 1"; ObjectID = "dak-9Z-wNt"; */
+"dak-9Z-wNt.text" = "Assignment 1";
+
+/* Class = "UILabel"; text = "All Events"; ObjectID = "ehP-bX-sde"; */
+"ehP-bX-sde.text" = "All Events";
+
+/* Class = "UILabel"; text = "12345"; ObjectID = "f8b-oJ-u7n"; */
+"f8b-oJ-u7n.text" = "12345";
+
+/* Class = "UILabel"; text = "Steve Jobs"; ObjectID = "iEE-BD-yxy"; */
+"iEE-BD-yxy.text" = "Steve Jobs";
+
+/* Class = "UILabel"; text = "Optionales Thema"; ObjectID = "l1n-tv-dpm"; */
+"l1n-tv-dpm.text" = "Optionales Thema";
+
+/* Class = "UILabel"; text = "123x"; ObjectID = "lCH-Ni-UTa"; */
+"lCH-Ni-UTa.text" = "123x";
+
+/* Class = "UILabel"; text = "No Data"; ObjectID = "mfb-9F-mgz"; */
+"mfb-9F-mgz.text" = "No Data";
+
+/* Class = "UILabel"; text = "42 KB"; ObjectID = "pZj-hp-JSK"; */
+"pZj-hp-JSK.text" = "42 KB";
+
+/* Class = "UILabel"; text = "3 items"; ObjectID = "r0a-rE-yUe"; */
+"r0a-rE-yUe.text" = "3 items";
+
+/* Class = "UILabel"; text = "Course Number"; ObjectID = "w0J-7F-tTZ"; */
+"w0J-7F-tTZ.text" = "Course Number";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."; ObjectID = "wAp-AW-Jvp"; */
+"wAp-AW-Jvp.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+
+/* Class = "UILabel"; text = "yesterday"; ObjectID = "wvx-4e-eir"; */
+"wvx-4e-eir.text" = "yesterday";
+
+/* Class = "UILabel"; text = "Reason"; ObjectID = "zk5-Lt-jQi"; */
+"zk5-Lt-jQi.text" = "Reason";

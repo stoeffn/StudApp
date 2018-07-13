@@ -1,0 +1,27 @@
+
+/* Class = "UILabel"; text = "Choose your university, company, or organization to sign in and access your courses, documents, announcements, and events."; ObjectID = "3de-75-mDO"; */
+"3de-75-mDO.text" = "Choose your university, company, or organization to sign in and access your courses, documents, announcements, and events.";
+
+/* Class = "UILabel"; text = "Error Loading Organizations"; ObjectID = "BeU-G9-inE"; */
+"BeU-G9-inE.text" = "Error Loading Organizations";
+
+/* Class = "UILabel"; text = "Detailed error message."; ObjectID = "Jdd-Q4-AeW"; */
+"Jdd-Q4-AeW.text" = "Detailed error message.";
+
+/* Class = "UILabel"; text = "University Name That Might Be Quite Long"; ObjectID = "MFk-Mm-3qX"; */
+"MFk-Mm-3qX.text" = "University Name That Might Be Quite Long";
+
+/* Class = "UILabel"; text = "Organization Name"; ObjectID = "n90-pQ-UJ7"; */
+"n90-pQ-UJ7.text" = "Organization Name";
+
+/* Class = "UIBarButtonItem"; title = "Organizations"; ObjectID = "nQF-Pa-JnJ"; */
+"nQF-Pa-JnJ.title" = "Organizations";
+
+/* Class = "UILabel"; text = "Add Organization…"; ObjectID = "rVp-sg-jzh"; */
+"rVp-sg-jzh.text" = "Add Organization…";
+
+/* Class = "UILabel"; text = "Welcome to StudApp"; ObjectID = "sgJ-zb-13H"; */
+"sgJ-zb-13H.text" = "Welcome to StudApp";
+
+/* Class = "UIButton"; normalTitle = "Retry"; ObjectID = "wcA-Nb-ux4"; */
+"wcA-Nb-ux4.normalTitle" = "Retry";

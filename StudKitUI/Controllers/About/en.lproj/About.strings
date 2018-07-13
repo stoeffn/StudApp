@@ -1,0 +1,51 @@
+
+/* Class = "UITableViewSection"; footerTitle = "StudApp is open source—feel free to contribute!"; ObjectID = "758-sQ-Hgl"; */
+"758-sQ-Hgl.footerTitle" = "StudApp is open source—feel free to contribute!";
+
+/* Class = "UITableViewSection"; footerTitle = "If you really like this app you can leave a tip to support further development. Thank you so much for even considering!"; ObjectID = "APa-2m-LEr"; */
+"APa-2m-LEr.footerTitle" = "If you really like this app you can leave a tip to support further development. Thank you so much for even considering!";
+
+/* Class = "UILabel"; text = "Send Feedback"; ObjectID = "DJb-tD-zKr"; */
+"DJb-tD-zKr.text" = "Send Feedback";
+
+/* Class = "UILabel"; text = "by Steffen Ryll"; ObjectID = "DUJ-55-7Tc"; */
+"DUJ-55-7Tc.text" = "by Steffen Ryll";
+
+/* Class = "UITableViewSection"; footerTitle = "We would appreciate your review on the App Store!"; ObjectID = "Eia-pm-paX"; */
+"Eia-pm-paX.footerTitle" = "We would appreciate your review on the App Store!";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "FAB-Mo-ny4"; */
+"FAB-Mo-ny4.text" = "Description";
+
+/* Class = "UILabel"; text = "Privacy Policy"; ObjectID = "GwE-6w-624"; */
+"GwE-6w-624.text" = "Privacy Policy";
+
+/* Class = "UILabel"; text = "Leave a Tip"; ObjectID = "Jd5-22-Tdj"; */
+"Jd5-22-Tdj.text" = "Leave a Tip";
+
+/* Class = "UILabel"; text = "Rate StudApp"; ObjectID = "RxS-sA-OrP"; */
+"RxS-sA-OrP.text" = "Rate StudApp";
+
+/* Class = "UILabel"; text = "Website"; ObjectID = "U4I-Hx-8aq"; */
+"U4I-Hx-8aq.text" = "Website";
+
+/* Class = "UILabel"; text = "StudApp"; ObjectID = "jQ0-8Q-JdH"; */
+"jQ0-8Q-JdH.text" = "StudApp";
+
+/* Class = "UILabel"; text = "GitHub"; ObjectID = "oSM-1p-KqP"; */
+"oSM-1p-KqP.text" = "GitHub";
+
+/* Class = "UITableViewSection"; footerTitle = "Without you, this app could not exist. Thank you ❤️"; ObjectID = "sTE-d9-Eoz"; */
+"sTE-d9-Eoz.footerTitle" = "Without you, this app could not exist. Thank you ❤️";
+
+/* Class = "UITableViewSection"; headerTitle = "Thanks to"; ObjectID = "sTE-d9-Eoz"; */
+"sTE-d9-Eoz.headerTitle" = "Thanks to";
+
+/* Class = "UILabel"; text = "Debug"; ObjectID = "vJt-cd-ESa"; */
+"vJt-cd-ESa.text" = "Debug";
+
+/* Class = "UINavigationItem"; title = "About"; ObjectID = "vLm-Gs-WnM"; */
+"vLm-Gs-WnM.title" = "About";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "xhX-r9-UEg"; */
+"xhX-r9-UEg.text" = "Title";
