@@ -67,7 +67,7 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Notifications" footerTitle="StudApp will show new or updated documents in the notification center." id="mRq-cL-hlp">
+                            <tableViewSection headerTitle="Notifications" footerTitle="If enabled, StudApp will notify you when there are new or updated documents." id="mRq-cL-hlp">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="gk2-sr-4u5">
                                         <rect key="frame" x="0.0" y="251" width="375" height="44"/>

@@ -64,11 +64,13 @@ public final class NotificationService {
 
         let id = "\(App.id)-files"
         let json = """
-            "aps": {
-                "content-available": 1,
-                "alert": "Hello, World!"
-            },
-            "type": "\(id)"
+            {
+                "aps": {
+                    "content-available": 1,
+                    "alert": "Hello, World!"
+                },
+                "type": "\(id)"
+            }
         """
         let thenSettings = Hook.ThenSettings(url: apnsUrl(forDeviceToken: deviceToken), json: json)
         return Hook(id: id, title: "StudApp: Files", ifType: .documentChange, thenSettings: thenSettings)

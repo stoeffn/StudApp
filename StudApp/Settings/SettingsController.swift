@@ -102,7 +102,9 @@ final class SettingsController: UITableViewController, Routable {
             guard let currentUser = User.current else { return nil }
             let currentUserFullName = currentUser.nameComponents.formatted(style: .long)
             return Strings.Callouts.signedInAsAt.localized(currentUserFullName, currentUser.organization.title)
-        case .notifications?, nil:
+        case .notifications?:
+            return "If enabled, StudApp will notify you when there are new or updated documents."
+        case nil:
             return nil
         }
     }
