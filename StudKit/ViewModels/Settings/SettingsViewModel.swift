@@ -62,21 +62,17 @@ public final class SettingsViewModel: NSObject {
             guard areNotificationsAllowed else { return areNotificationsEnabled = false }
             guard areNotificationsEnabled else { return }
 
-            notificationService.requestAuthorization(options: notificationService.silentNotificationAuthorizationsOptions) {
+            notificationService.requestAuthorization(options: notificationService.userNotificationAuthorizationsOptions) {
                 self.updateNotificationSettings()
             }
         }
     }
-
-    @objc public private(set) dynamic var areNotificationsProvisional = false
 
     public func updateNotificationSettings() {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             DispatchQueue.main.async {
                 self.areNotificationsAllowed = settings.authorizationStatus != .denied
                 self.areNotificationsEnabled = self.areNotificationsEnabled && self.areNotificationsAllowed
-                guard #available(iOS 12, *) else { return }
-                self.areNotificationsProvisional = settings.authorizationStatus == .provisional
             }
         }
     }

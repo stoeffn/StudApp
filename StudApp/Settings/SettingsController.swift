@@ -63,10 +63,6 @@ final class SettingsController: UITableViewController, Routable {
             viewModel.observe(\.areNotificationsEnabled) { [weak self] (_, _) in
                 self?.view.setNeedsLayout()
             },
-            viewModel.observe(\.areNotificationsProvisional, options: [.old, .new]) { [weak self] (_, change) in
-                self?.areNotificationsProvisionalDidChange(change: change)
-                self?.view.setNeedsLayout()
-            },
         ]
     }
 
@@ -81,8 +77,6 @@ final class SettingsController: UITableViewController, Routable {
 
     private enum Sections: Int {
         case documents, notifications, account
-
-        static let showAlertsCellIndexPath = IndexPath(row: 2, section: Sections.notifications.rawValue)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -122,8 +116,6 @@ final class SettingsController: UITableViewController, Routable {
         case configureNotificationsCell?:
             guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
             UIApplication.shared.open(url) { _ in }
-        case deliverProminentlyCell?:
-            viewModel?.requestProminentDelivery()
         case signOutCell?:
             signOut()
         default:
@@ -161,24 +153,9 @@ final class SettingsController: UITableViewController, Routable {
 
     @IBOutlet var configureNotificationsCell: UITableViewCell!
 
-    @IBOutlet var deliverProminentlyCell: UITableViewCell!
-
     @IBAction
     func notificationsSwitchValueChanged(_: Any) {
         viewModel?.areNotificationsEnabled.toggle()
-        view.setNeedsLayout()
-    }
-
-    private func areNotificationsProvisionalDidChange(change: NSKeyValueObservedChange<Bool>) {
-        guard change.oldValue != change.newValue else { return }
-
-        tableView.update { tableView in
-            if change.newValue ?? false {
-                tableView.insertRows(at: [Sections.showAlertsCellIndexPath], with: .automatic)
-            } else {
-                tableView.deleteRows(at: [Sections.showAlertsCellIndexPath], with: .automatic)
-            }
-        }
     }
 
     // MARK: Signing Out
