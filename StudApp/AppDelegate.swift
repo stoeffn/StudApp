@@ -18,6 +18,7 @@
 
 import StudKit
 import StudKitUI
+import UserNotifications
 
 @UIApplicationMain
 final class AppDelegate: UIResponder {
@@ -56,7 +57,7 @@ extension AppDelegate: UIApplicationDelegate {
         try? historyService.mergeHistory(into: coreDataService.viewContext)
         try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
 
-        UIApplication.shared.registerForRemoteNotifications()
+        registerForRemoteNotifications()
 
         window?.tintColor = UI.Colors.tint
         addCustomMenuItems(to: UIMenuController.shared)
@@ -93,6 +94,16 @@ extension AppDelegate: UIApplicationDelegate {
     }
 
     // MARK: Handling Remote Notification Registration
+
+    func registerForRemoteNotifications() {
+        guard #available(iOS 12, *) else {
+            return UIApplication.shared.registerForRemoteNotifications()
+        }
+
+        notificationService.requestAuthorization(options: notificationService.silentNotificationAuthorizationsOptions) {
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+    }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         notificationService.deviceToken = deviceToken

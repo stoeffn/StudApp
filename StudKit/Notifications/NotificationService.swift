@@ -51,6 +51,12 @@ public final class NotificationService {
             .appendingPathComponent(deviceToken.hex, isDirectory: true)
     }
 
+    public func requestAuthorization(options: UNAuthorizationOptions, completion: @escaping () -> Void) {
+        UNUserNotificationCenter.current().requestAuthorization(options: options) { (_, _) in
+            DispatchQueue.main.async { completion() }
+        }
+    }
+
     // MARK: - Hooks
 
     var documentHook: Hook? {
@@ -80,5 +86,16 @@ public final class NotificationService {
 
     func updateOrCreateHooks() {
         hooks.forEach { updateOrCreate(hook: $0) { _ in } }
+    }
+
+    // MARK: - Options
+
+    public var silentNotificationAuthorizationsOptions: UNAuthorizationOptions {
+        guard #available(iOSApplicationExtension 12.0, *) else { return [] }
+        return [.provisional]
+    }
+
+    public var userNotificationAuthorizationsOptions: UNAuthorizationOptions {
+        return [.alert, .sound, .badge]
     }
 }

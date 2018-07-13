@@ -16,12 +16,13 @@
 //  along with this program. If not, see http://www.gnu.org/licenses/.
 //
 
+import UserNotifications
+
 public final class SettingsViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
+    private let notificationService = ServiceContainer.default[NotificationService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]
     private let storageService = ServiceContainer.default[StorageService.self]
-
-    public override init() {}
 
     // MARK: - Downloads
 
@@ -47,5 +48,35 @@ public final class SettingsViewModel: NSObject {
 
     // MARK: - Notifications
 
-    @objc public dynamic var areNotificationsEnabled = false
+    @objc public private(set) dynamic var areNotificationsAllowed = false
+
+    @objc public dynamic var areNotificationsEnabled = false {
+        didSet {
+            guard areNotificationsAllowed else { return areNotificationsEnabled = false }
+            guard areNotificationsEnabled else { return }
+
+            notificationService.requestAuthorization(options: notificationService.silentNotificationAuthorizationsOptions) {
+                self.updateNotificationSettings()
+            }
+        }
+    }
+
+    @objc public private(set) dynamic var areNotificationsProvisional = false
+
+    public func updateNotificationSettings() {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            DispatchQueue.main.async {
+                self.areNotificationsAllowed = settings.authorizationStatus != .denied
+                self.areNotificationsEnabled = self.areNotificationsEnabled && self.areNotificationsAllowed
+                guard #available(iOS 12, *) else { return }
+                self.areNotificationsProvisional = settings.authorizationStatus == .provisional
+            }
+        }
+    }
+
+    public func requestAlerts() {
+        notificationService.requestAuthorization(options: notificationService.userNotificationAuthorizationsOptions) {
+            self.updateNotificationSettings()
+        }
+    }
 }
