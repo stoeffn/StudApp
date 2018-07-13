@@ -20,7 +20,16 @@ import StudKit
 import StudKitUI
 
 final class SettingsController: UITableViewController, Routable {
-    private var viewModel: SettingsViewModel!
+    private var observations: Set<NSKeyValueObservation> = []
+
+    // MARK: - View Model
+
+    var viewModel: SettingsViewModel? {
+        didSet {
+            guard let viewModel = viewModel else { return }
+            observations = self.observations(for: viewModel)
+        }
+    }
 
     // MARK: - Life Cycle
 
@@ -28,13 +37,17 @@ final class SettingsController: UITableViewController, Routable {
         super.viewDidLoad()
 
         navigationItem.title = Strings.Terms.settings.localized
-
         downloadsCell.textLabel?.text = Strings.Terms.downloads.localized
         removeAllDownloadsCell.textLabel?.text = Strings.Actions.removeAllDownloads.localized
-
         signOutCell.textLabel?.text = Strings.Actions.signOut.localized
+    }
 
-        updateDownloadsSize()
+    private func observations(for viewModel: SettingsViewModel) -> Set<NSKeyValueObservation> {
+        return [
+            viewModel.observe(\.areNotificationsEnabled, options: [.old, .new]) { [weak self] (_, change) in
+                self?.areNotificationsEnabledDidChange(change: change)
+            },
+        ]
     }
 
     // MARK: - Navigation
@@ -47,12 +60,25 @@ final class SettingsController: UITableViewController, Routable {
     // MARK: - Table View Data Source
 
     private enum Sections: Int {
-        case documents, account
+        case documents, notifications, account
+
+        static let collapsibleNotificationIndexPaths = [
+            IndexPath(row: 1, section: Sections.notifications.rawValue),
+            IndexPath(row: 2, section: Sections.notifications.rawValue),
+        ]
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch Sections(rawValue: section) {
+        case .notifications? where !(viewModel?.areNotificationsEnabled ?? false): return 1
+        default: return super.tableView(tableView, numberOfRowsInSection: section)
+        }
     }
 
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch Sections(rawValue: section) {
         case .documents?: return Strings.Terms.documents.localized
+        case .notifications?: return "Notifications"
         case .account?, nil: return nil
         }
     }
@@ -65,7 +91,7 @@ final class SettingsController: UITableViewController, Routable {
             guard let currentUser = User.current else { return nil }
             let currentUserFullName = currentUser.nameComponents.formatted(style: .long)
             return Strings.Callouts.signedInAsAt.localized(currentUserFullName, currentUser.organization.title)
-        case nil:
+        case .notifications?, nil:
             return nil
         }
     }
@@ -87,31 +113,51 @@ final class SettingsController: UITableViewController, Routable {
 
     // MARK: - User Interface
 
+    override func viewWillLayoutSubviews() {
+        downloadsCell.detailTextLabel?.text = viewModel?.sizeOfDownloadsDirectory?.formattedAsByteCount ?? "—"
+        notificationsSwitch.isOn = viewModel?.areNotificationsEnabled ?? false
+    }
+
+    // MARK: Managing Downloads
+
     @IBOutlet var downloadsCell: UITableViewCell!
 
     @IBOutlet var removeAllDownloadsCell: UITableViewCell!
 
-    @IBOutlet var signOutCell: UITableViewCell!
-
-    private func updateDownloadsSize() {
-        downloadsCell.detailTextLabel?.text = viewModel.sizeOfDownloadsDirectory?.formattedAsByteCount ?? "—"
-    }
-
-    // MARK: - User Interaction
-
-    @IBAction
-    func doneButtonTapped(_: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-
     private func removeAllDownloads() {
         let confirmation = UIAlertController(confirmationWithAction: removeAllDownloadsCell.textLabel?.text,
                                              sourceView: removeAllDownloadsCell) { _ in
-            try? self.viewModel.removeAllDownloads()
-            self.updateDownloadsSize()
+            try? self.viewModel?.removeAllDownloads()
+            self.view.setNeedsLayout()
         }
         present(confirmation, animated: true, completion: nil)
     }
+
+    // MARK: Managing Notifications
+
+    @IBOutlet var notificationsSwitch: UISwitch!
+
+    @IBAction
+    func notificationsSwitchValueChanged(_: Any) {
+        viewModel?.areNotificationsEnabled.toggle()
+        view.setNeedsLayout()
+    }
+
+    private func areNotificationsEnabledDidChange(change: NSKeyValueObservedChange<Bool>) {
+        guard change.oldValue != change.newValue else { return }
+
+        tableView.update { tableView in
+            if change.newValue ?? false {
+                tableView.insertRows(at: Sections.collapsibleNotificationIndexPaths, with: .automatic)
+            } else {
+                tableView.deleteRows(at: Sections.collapsibleNotificationIndexPaths, with: .automatic)
+            }
+        }
+    }
+
+    // MARK: Signing Out
+
+    @IBOutlet var signOutCell: UITableViewCell!
 
     private func signOut() {
         let confirmation = UIAlertController(confirmationWithAction: signOutCell.textLabel?.text,

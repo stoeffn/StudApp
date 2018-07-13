@@ -17,12 +17,12 @@
 //
 
 public extension UITableView {
-    public func update(updates: @escaping () -> Void) {
+    public func update(updates: @escaping (UITableView) -> Void) {
         if #available(iOSApplicationExtension 11.0, *) {
-            performBatchUpdates(updates, completion: nil)
+            performBatchUpdates({ updates(self) }, completion: nil)
         } else {
             beginUpdates()
-            updates()
+            updates(self)
             endUpdates()
         }
     }

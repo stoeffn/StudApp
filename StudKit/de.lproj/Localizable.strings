@@ -20,7 +20,7 @@
 
 // MARK: Actions
 
-"Actions.addOrganizatiion"      = "Organisation hinzufügen…";
+"Actions.addOrganization"       = "Organisation hinzufügen…";
 "Actions.chooseColor"           = "Farbe auswählen";
 "Actions.dismiss"               = "Schließen";
 "Actions.hide"                  = "Verstecken";

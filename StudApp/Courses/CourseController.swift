@@ -103,20 +103,14 @@ final class CourseController: UITableViewController, Routable {
         group.enter()
         announcementsViewModel.update(forced: forced) {
             let placeholderIndex = IndexPath(row: self.announcementsViewModel.numberOfRows, section: Sections.announcements.rawValue)
-            self.tableView.update {
-                self.tableView.reloadRows(at: [placeholderIndex], with: .fade)
-            }
-
+            self.tableView.update { $0.reloadRows(at: [placeholderIndex], with: .fade) }
             group.leave()
         }
 
         group.enter()
         fileListViewModel.update(forced: forced) {
             let placeholderIndex = IndexPath(row: self.fileListViewModel.numberOfRows, section: Sections.documents.rawValue)
-            self.tableView.update {
-                self.tableView.reloadRows(at: [placeholderIndex], with: .fade)
-            }
-
+            self.tableView.update { $0.reloadRows(at: [placeholderIndex], with: .fade) }
             group.leave()
         }
 

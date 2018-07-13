@@ -20,7 +20,7 @@
 
 // MARK: Actions
 
-"Actions.addOrganizatiion"      = "Add Organization…";
+"Actions.addOrganization"       = "Add Organization…";
 "Actions.chooseColor"           = "Choose Color";
 "Actions.dismiss"               = "Dismiss";
 "Actions.hide"                  = "Hide";

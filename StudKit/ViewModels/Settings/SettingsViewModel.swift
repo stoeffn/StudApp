@@ -16,12 +16,14 @@
 //  along with this program. If not, see http://www.gnu.org/licenses/.
 //
 
-public final class SettingsViewModel {
+public final class SettingsViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]
     private let storageService = ServiceContainer.default[StorageService.self]
 
-    public init() {}
+    public override init() {}
+
+    // MARK: - Downloads
 
     /// The total combined file sizes in the downloaded documents directory.
     public var sizeOfDownloadsDirectory: Int? {
@@ -42,4 +44,8 @@ public final class SettingsViewModel {
         }
         try coreDataService.viewContext.saveAndWaitWhenChanged()
     }
+
+    // MARK: - Notifications
+
+    @objc public dynamic var areNotificationsEnabled = false
 }
