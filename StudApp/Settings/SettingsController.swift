@@ -40,12 +40,32 @@ final class SettingsController: UITableViewController, Routable {
         downloadsCell.textLabel?.text = Strings.Terms.downloads.localized
         removeAllDownloadsCell.textLabel?.text = Strings.Actions.removeAllDownloads.localized
         signOutCell.textLabel?.text = Strings.Actions.signOut.localized
+
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground),
+                                               name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel?.updateNotificationSettings()
+    }
+
+    @objc
+    private func willEnterForeground() {
+        viewModel?.updateNotificationSettings()
     }
 
     private func observations(for viewModel: SettingsViewModel) -> Set<NSKeyValueObservation> {
         return [
-            viewModel.observe(\.areNotificationsEnabled, options: [.old, .new]) { [weak self] (_, change) in
-                self?.areNotificationsEnabledDidChange(change: change)
+            viewModel.observe(\.areNotificationsAllowed) { [weak self] (_, _) in
+                self?.view.setNeedsLayout()
+            },
+            viewModel.observe(\.areNotificationsEnabled) { [weak self] (_, _) in
+                self?.view.setNeedsLayout()
+            },
+            viewModel.observe(\.areNotificationsProvisional, options: [.old, .new]) { [weak self] (_, change) in
+                self?.areNotificationsProvisionalDidChange(change: change)
+                self?.view.setNeedsLayout()
             },
         ]
     }
@@ -62,15 +82,12 @@ final class SettingsController: UITableViewController, Routable {
     private enum Sections: Int {
         case documents, notifications, account
 
-        static let collapsibleNotificationIndexPaths = [
-            IndexPath(row: 1, section: Sections.notifications.rawValue),
-            IndexPath(row: 2, section: Sections.notifications.rawValue),
-        ]
+        static let showAlertsCellIndexPath = IndexPath(row: 2, section: Sections.notifications.rawValue)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch Sections(rawValue: section) {
-        case .notifications? where !(viewModel?.areNotificationsEnabled ?? false): return 1
+        case .notifications? where !(viewModel?.areNotificationsEnabled ?? false): return 2
         default: return super.tableView(tableView, numberOfRowsInSection: section)
         }
     }
@@ -102,6 +119,11 @@ final class SettingsController: UITableViewController, Routable {
         switch tableView.cellForRow(at: indexPath) {
         case removeAllDownloadsCell?:
             removeAllDownloads()
+        case configureNotificationsCell?:
+            guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+            UIApplication.shared.open(url) { _ in }
+        case showAlertsCell?:
+            viewModel?.requestAlerts()
         case signOutCell?:
             signOut()
         default:
@@ -115,6 +137,7 @@ final class SettingsController: UITableViewController, Routable {
 
     override func viewWillLayoutSubviews() {
         downloadsCell.detailTextLabel?.text = viewModel?.sizeOfDownloadsDirectory?.formattedAsByteCount ?? "—"
+        notificationsSwitch.isEnabled = viewModel?.areNotificationsAllowed ?? false
         notificationsSwitch.isOn = viewModel?.areNotificationsEnabled ?? false
     }
 
@@ -137,20 +160,24 @@ final class SettingsController: UITableViewController, Routable {
 
     @IBOutlet var notificationsSwitch: UISwitch!
 
+    @IBOutlet var configureNotificationsCell: UITableViewCell!
+
+    @IBOutlet var showAlertsCell: UITableViewCell!
+
     @IBAction
     func notificationsSwitchValueChanged(_: Any) {
         viewModel?.areNotificationsEnabled.toggle()
         view.setNeedsLayout()
     }
 
-    private func areNotificationsEnabledDidChange(change: NSKeyValueObservedChange<Bool>) {
+    private func areNotificationsProvisionalDidChange(change: NSKeyValueObservedChange<Bool>) {
         guard change.oldValue != change.newValue else { return }
 
         tableView.update { tableView in
             if change.newValue ?? false {
-                tableView.insertRows(at: Sections.collapsibleNotificationIndexPaths, with: .automatic)
+                tableView.insertRows(at: [Sections.showAlertsCellIndexPath], with: .automatic)
             } else {
-                tableView.deleteRows(at: Sections.collapsibleNotificationIndexPaths, with: .automatic)
+                tableView.deleteRows(at: [Sections.showAlertsCellIndexPath], with: .automatic)
             }
         }
     }
@@ -160,8 +187,7 @@ final class SettingsController: UITableViewController, Routable {
     @IBOutlet var signOutCell: UITableViewCell!
 
     private func signOut() {
-        let confirmation = UIAlertController(confirmationWithAction: signOutCell.textLabel?.text,
-                                             sourceView: signOutCell) { _ in
+        let confirmation = UIAlertController(confirmationWithAction: signOutCell.textLabel?.text, sourceView: signOutCell) { _ in
             self.performSegue(withRoute: .unwindToAppAndSignOut)
         }
         present(confirmation, animated: true, completion: nil)
