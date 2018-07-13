@@ -23,6 +23,7 @@ import StudKitUI
 final class AppDelegate: UIResponder {
     private var coreDataService: CoreDataService!
     private var historyService: PersistentHistoryService!
+    private var notificationService: NotificationService!
     private var studIpService: StudIpService!
 
     var window: UIWindow?
@@ -45,6 +46,7 @@ extension AppDelegate: UIApplicationDelegate {
 
         coreDataService = ServiceContainer.default[CoreDataService.self]
         historyService = ServiceContainer.default[PersistentHistoryService.self]
+        notificationService = ServiceContainer.default[NotificationService.self]
         studIpService = ServiceContainer.default[StudIpService.self]
 
         return true
@@ -54,8 +56,9 @@ extension AppDelegate: UIApplicationDelegate {
         try? historyService.mergeHistory(into: coreDataService.viewContext)
         try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
 
-        window?.tintColor = UI.Colors.tint
+        UIApplication.shared.registerForRemoteNotifications()
 
+        window?.tintColor = UI.Colors.tint
         addCustomMenuItems(to: UIMenuController.shared)
 
         return true
@@ -87,6 +90,12 @@ extension AppDelegate: UIApplicationDelegate {
 
     func application(_: UIApplication, shouldRestoreApplicationState _: NSCoder) -> Bool {
         return studIpService.isSignedIn && Distributions.current != .uiTest
+    }
+
+    // MARK: Handling Remote Notification Registration
+
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        notificationService.deviceToken = deviceToken
     }
 
     // MARK: Continuing User Activity and Handling Quick Actions

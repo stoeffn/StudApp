@@ -16,6 +16,10 @@
 //  along with this program. If not, see http://www.gnu.org/licenses/.
 //
 
-final class NotificationService {
-    
+extension Data {
+    var hex: String {
+        return String(format: "%@", self as CVarArg)
+            .trimmingCharacters(in: CharacterSet(charactersIn: "<>"))
+            .replacingOccurrences(of: " ", with: "")
+    }
 }

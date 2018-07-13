@@ -23,6 +23,8 @@
 		24015C272082833F000609A3 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E91FCDFAC700F4A099 /* App.swift */; };
 		2407A07B1FF2B75A006D41C5 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407A07A1FF2B75A006D41C5 /* Event.swift */; };
 		2407A07E1FF2B982006D41C5 /* EventResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407A07D1FF2B982006D41C5 /* EventResponse.swift */; };
+		241598C920F8DE5D0008076A /* Hook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241598C820F8DE5D0008076A /* Hook.swift */; };
+		241598CB20F8F50E0008076A /* Data+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241598CA20F8F50E0008076A /* Data+Utils.swift */; };
 		241C67E51FCDD78100F4A099 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E41FCDD78100F4A099 /* AboutViewModel.swift */; };
 		241C67EA1FCDFAC700F4A099 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241C67E91FCDFAC700F4A099 /* App.swift */; };
 		242266081FE3D45F00FA7CA6 /* Announcement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242266071FE3D45F00FA7CA6 /* Announcement.swift */; };
@@ -407,6 +409,8 @@
 		24015C1420827E34000609A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2407A07A1FF2B75A006D41C5 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		2407A07D1FF2B982006D41C5 /* EventResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventResponse.swift; sourceTree = "<group>"; };
+		241598C820F8DE5D0008076A /* Hook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hook.swift; sourceTree = "<group>"; };
+		241598CA20F8F50E0008076A /* Data+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Utils.swift"; sourceTree = "<group>"; };
 		241C67E41FCDD78100F4A099 /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
 		241C67E71FCDEA3700F4A099 /* ThanksNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThanksNoteCell.swift; sourceTree = "<group>"; };
 		241C67E91FCDFAC700F4A099 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -813,6 +817,15 @@
 			path = Preview;
 			sourceTree = "<group>";
 		};
+		241598C720F8DE410008076A /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				246D7F2120F85681000B1EB1 /* NotificationService.swift */,
+				241598C820F8DE5D0008076A /* Hook.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		241FD9631FA8FF8A00FBD750 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -991,6 +1004,7 @@
 				2448D45F1FA8DC1D00DAB97E /* Extensions */,
 				2457CDA4203F4BF80021B31D /* Keychain */,
 				24D360BE1FAA585B00BBBAED /* Models */,
+				241598C720F8DE410008076A /* Notifications */,
 				2457CDA5203F4BFF0021B31D /* Reachability */,
 				2448D4741FA8DE1700DAB97E /* Services */,
 				24D462791FE1C4D200DE3B3A /* Store */,
@@ -1039,6 +1053,7 @@
 			children = (
 				246F3ABD1FAC877400A477FF /* DataSource */,
 				24712BE91FB8B48A0067E416 /* ByTypeNameIdentifiable.swift */,
+				241598CA20F8F50E0008076A /* Data+Utils.swift */,
 				248C0241202E4C57004CB8C9 /* RangeIterator.swift */,
 				248C0244202E4C57004CB8C9 /* Result.swift */,
 				24D360D91FAA5D3800BBBAED /* String+HTML.swift */,
@@ -1191,7 +1206,6 @@
 			children = (
 				241C67E91FCDFAC700F4A099 /* App.swift */,
 				24DB13B2207BCDBD003B003E /* Distributions.swift */,
-				246D7F2120F85681000B1EB1 /* NotificationService.swift */,
 				24FD785D1FBF45B10072F860 /* Targets.swift */,
 				24FD785B1FBF45030072F860 /* Targets+NSPersistentHistory.swift */,
 				243CC2BF1FDF19BB00FE7376 /* UserActivities.swift */,
@@ -2502,6 +2516,7 @@
 				24D3610A1FAA5E2300BBBAED /* SemesterState.swift in Sources */,
 				248C0249202E4DFC004CB8C9 /* FetchedResultsControllerDelegateHelper.swift in Sources */,
 				248C0250202E523C004CB8C9 /* AnnouncementListViewModel.swift in Sources */,
+				241598CB20F8F50E0008076A /* Data+Utils.swift in Sources */,
 				24FD785E1FBF45B10072F860 /* Targets.swift in Sources */,
 				2448D48F1FA8DEE800DAB97E /* FileManager+Utils.swift in Sources */,
 				24D360CC1FAA5AFE00BBBAED /* CDIdentifiable.swift in Sources */,
@@ -2547,6 +2562,7 @@
 				24D360D31FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift in Sources */,
 				24DB13B3207BCDBD003B003E /* Distributions.swift in Sources */,
 				24557A0D203DE59700492B74 /* MockStudIpService.swift in Sources */,
+				241598C920F8DE5D0008076A /* Hook.swift in Sources */,
 				243CC2BE1FDF0A7F00FE7376 /* CDSortable.swift in Sources */,
 				24D360DF1FAA5D3800BBBAED /* String+HTML.swift in Sources */,
 				248C0261202E5BB6004CB8C9 /* OAuth1Routes.swift in Sources */,

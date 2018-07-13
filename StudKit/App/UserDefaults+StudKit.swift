@@ -20,7 +20,7 @@
 
 extension UserDefaults {
     private enum Keys: String {
-        case didRequestRatingAt, showsHiddenCourses, userId
+        case deviceToken, didRequestRatingAt, showsHiddenCourses, userId
     }
 }
 
@@ -29,6 +29,11 @@ extension UserDefaults {
 public extension UserDefaults {
     public static var studKit: UserDefaults {
         return ServiceContainer.default[StorageService.self].defaults
+    }
+
+    @objc public dynamic var deviceToken: Data? {
+        get { return object(forKey: Keys.deviceToken.rawValue) as? Data }
+        set { set(newValue, forKey: Keys.deviceToken.rawValue) }
     }
 
     @objc public dynamic var didRequestRatingAt: Date? {
