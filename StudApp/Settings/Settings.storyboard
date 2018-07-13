@@ -121,7 +121,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Show Alerts" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hC2-6W-EbK">
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Deliver Prominently" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hC2-6W-EbK">
                                                     <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -173,10 +173,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="configureNotificationsCell" destination="4N4-tj-aIy" id="K7i-MY-0Gg"/>
+                        <outlet property="deliverProminentlyCell" destination="ybg-Ej-NdF" id="NVO-x5-tBe"/>
                         <outlet property="downloadsCell" destination="Og1-kj-hFK" id="TSg-zx-ipc"/>
                         <outlet property="notificationsSwitch" destination="1Go-C6-nMO" id="anP-s7-H2s"/>
                         <outlet property="removeAllDownloadsCell" destination="rOA-iJ-jk4" id="2GT-N4-qSX"/>
-                        <outlet property="showAlertsCell" destination="ybg-Ej-NdF" id="oay-qx-AtM"/>
                         <outlet property="signOutCell" destination="jfr-di-olq" id="0Zk-vc-Mir"/>
                         <segue destination="ck3-5K-MO2" kind="unwind" identifier="unwindToAppAndSignOut" customClass="UIStoryboardSegueWithCompletion" customModule="StudKitUI" unwindAction="unwindToAppAndSignOutWith:" id="j54-3z-0dd"/>
                     </connections>

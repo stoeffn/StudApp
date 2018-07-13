@@ -24,6 +24,11 @@ public final class SettingsViewModel: NSObject {
     private let studIpService = ServiceContainer.default[StudIpService.self]
     private let storageService = ServiceContainer.default[StorageService.self]
 
+    override public init() {
+        super.init()
+        self.areNotificationsEnabled = storageService.defaults.areNotificationsEnabled
+    }
+
     // MARK: - Downloads
 
     /// The total combined file sizes in the downloaded documents directory.
@@ -52,6 +57,8 @@ public final class SettingsViewModel: NSObject {
 
     @objc public dynamic var areNotificationsEnabled = false {
         didSet {
+            storageService.defaults.areNotificationsEnabled = areNotificationsEnabled
+
             guard areNotificationsAllowed else { return areNotificationsEnabled = false }
             guard areNotificationsEnabled else { return }
 
@@ -74,7 +81,7 @@ public final class SettingsViewModel: NSObject {
         }
     }
 
-    public func requestAlerts() {
+    public func requestProminentDelivery() {
         notificationService.requestAuthorization(options: notificationService.userNotificationAuthorizationsOptions) {
             self.updateNotificationSettings()
         }

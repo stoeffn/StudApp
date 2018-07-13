@@ -24,7 +24,7 @@ public final class NotificationService {
 
     // MARK: - Life Cycle
 
-    init() {
+    public init() {
         deviceToken = storageService.defaults.deviceToken
     }
 
@@ -92,10 +92,11 @@ public final class NotificationService {
 
     public var silentNotificationAuthorizationsOptions: UNAuthorizationOptions {
         guard #available(iOSApplicationExtension 12.0, *) else { return [] }
-        return [.provisional]
+        return [.alert, .sound, .badge, .provisional, .providesAppNotificationSettings]
     }
 
     public var userNotificationAuthorizationsOptions: UNAuthorizationOptions {
-        return [.alert, .sound, .badge]
+        guard #available(iOSApplicationExtension 12.0, *) else { return [.alert, .sound, .badge] }
+        return [.alert, .sound, .badge, .providesAppNotificationSettings]
     }
 }
