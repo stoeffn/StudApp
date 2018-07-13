@@ -122,14 +122,13 @@ final class SettingsController: UITableViewController, Routable {
         case configureNotificationsCell?:
             guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
             UIApplication.shared.open(url) { _ in }
-        case showAlertsCell?:
-            viewModel?.requestAlerts()
+        case deliverProminentlyCell?:
+            viewModel?.requestProminentDelivery()
         case signOutCell?:
             signOut()
         default:
             break
         }
-
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
@@ -162,7 +161,7 @@ final class SettingsController: UITableViewController, Routable {
 
     @IBOutlet var configureNotificationsCell: UITableViewCell!
 
-    @IBOutlet var showAlertsCell: UITableViewCell!
+    @IBOutlet var deliverProminentlyCell: UITableViewCell!
 
     @IBAction
     func notificationsSwitchValueChanged(_: Any) {

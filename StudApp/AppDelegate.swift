@@ -57,6 +57,7 @@ extension AppDelegate: UIApplicationDelegate {
         try? historyService.mergeHistory(into: coreDataService.viewContext)
         try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
 
+        UNUserNotificationCenter.current().delegate = self
         registerForRemoteNotifications()
 
         window?.tintColor = UI.Colors.tint
@@ -134,5 +135,14 @@ extension AppDelegate: UIApplicationDelegate {
         ])
 
         return true
+    }
+}
+
+// MARK: - User Notifications
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, openSettingsFor notification: UNNotification?) {
+        guard studIpService.isSignedIn else { return }
+        window?.rootViewController?.performSegue(withRoute: .settings)
     }
 }
