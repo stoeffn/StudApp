@@ -124,6 +124,7 @@
 "States.bookmarked"     = "Vorgemerkt";
 "States.canceled"       = "Entfällt";
 "States.collapsed"      = "Eingeklappt";
+"States.deleted"        = "Gelöscht";
 "States.expanded"       = "Ausgeklappt";
 "States.current"        = "Aktuell";
 "States.hidden"         = "Versteckt";

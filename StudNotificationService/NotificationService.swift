@@ -26,12 +26,10 @@ final class NotificationService: UNNotificationServiceExtension {
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
         self.contentHandler = contentHandler
         self.content = request.content
-
-        guard let content = augmentedNotification(for: request.content) else { return self.content = nil }
-        contentHandler(content)
+        contentHandler(augmentedNotification(for: request.content))
     }
 
-    func augmentedNotification(for content: UNNotificationContent) -> UNNotificationContent? {
+    func augmentedNotification(for content: UNNotificationContent) -> UNNotificationContent {
         guard let type = content.userInfo["type"] as? String else { return content }
 
         switch NotificationTypes(rawValue: type) {
@@ -44,7 +42,7 @@ final class NotificationService: UNNotificationServiceExtension {
         }
     }
 
-    func augmentedDocumentUpdateNotification(for content: UNNotificationContent) -> UNNotificationContent? {
+    func augmentedDocumentUpdateNotification(for content: UNNotificationContent) -> UNNotificationContent {
         guard let mutableContent = content.mutableCopy() as? UNMutableNotificationContent else { return content }
         let ownerFullname = content.userInfo[DocumentUpdateNotification.CodingKeys.ownerFullname.rawValue] as? String
 
@@ -56,16 +54,18 @@ final class NotificationService: UNNotificationServiceExtension {
         return mutableContent
     }
 
-    func augmentedBlubberMessageNotification(for content: UNNotificationContent) -> UNNotificationContent? {
+    func augmentedBlubberMessageNotification(for content: UNNotificationContent) -> UNNotificationContent {
         guard let mutableContent = content.mutableCopy() as? UNMutableNotificationContent else { return content }
         let change = content.userInfo[MessengerNotification.CodingKeys.changeType.rawValue] as? String
         let userFullname = content.userInfo[MessengerNotification.CodingKeys.userFullname.rawValue] as? String
         let text = content.userInfo[MessengerNotification.CodingKeys.messageText.rawValue] as? String
 
-        guard change != MessengerNotification.ChangeTypes.deleted.rawValue else { return nil }
-
         mutableContent.subtitle = userFullname ?? mutableContent.subtitle
         mutableContent.body = text ?? mutableContent.body
+
+        if change == MessengerNotification.ChangeTypes.deleted.rawValue {
+            mutableContent.body = Strings.States.deleted.localized
+        }
 
         guard #available(iOSApplicationExtension 12.0, *) else { return mutableContent }
 

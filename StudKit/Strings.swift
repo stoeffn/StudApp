@@ -140,6 +140,7 @@ public enum Strings {
         case canceled
         case collapsed, expanded
         case current
+        case deleted
         case hidden, visible
         case new, modified
         case notDownloaded, downloading, downloaded

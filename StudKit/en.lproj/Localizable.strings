@@ -126,6 +126,7 @@
 "States.collapsed"      = "Collapsed";
 "States.expanded"       = "Expanded";
 "States.current"        = "Current";
+"States.deleted"        = "Deleted";
 "States.hidden"         = "Hidden";
 "States.visible"        = "Visible";
 "States.new"            = "New";
