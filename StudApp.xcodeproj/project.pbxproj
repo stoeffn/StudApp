@@ -113,6 +113,7 @@
 		2465E2E320FA23AF00E8FF2E /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		2465E2E620FA2B2000E8FF2E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2465E2E820FA2B2000E8FF2E /* Localizable.strings */; };
 		2465E2EC20FA3CB100E8FF2E /* Messenger.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2465E2EB20FA3CB100E8FF2E /* Messenger.storyboard */; };
+		2465E2EE20FA3FF900E8FF2E /* MessengerNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2465E2ED20FA3FF900E8FF2E /* MessengerNotification.swift */; };
 		2467A8BC1FD307CE00F25720 /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2467A8BB1FD307CE00F25720 /* PreviewController.swift */; };
 		2469EF6F1FCF5BCB008A122B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2448D4131FA8DA2400DAB97E /* Assets.xcassets */; };
 		2469F810202CB8A0007FB3B6 /* PersistableApiAuthorizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469F80F202CB8A0007FB3B6 /* PersistableApiAuthorizing.swift */; };
@@ -547,6 +548,7 @@
 		2465E2E720FA2B2000E8FF2E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2465E2E920FA2B2200E8FF2E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2465E2EB20FA3CB100E8FF2E /* Messenger.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Messenger.storyboard; sourceTree = "<group>"; };
+		2465E2ED20FA3FF900E8FF2E /* MessengerNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessengerNotification.swift; sourceTree = "<group>"; };
 		2467A8BB1FD307CE00F25720 /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
 		2469EF6A1FCF4D07008A122B /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 		2469F80F202CB8A0007FB3B6 /* PersistableApiAuthorizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistableApiAuthorizing.swift; sourceTree = "<group>"; };
@@ -856,6 +858,7 @@
 				2465E2D120FA0EDB00E8FF2E /* DocumentUpdateNotification.swift */,
 				246D7F2120F85681000B1EB1 /* HookService.swift */,
 				241598C820F8DE5D0008076A /* Hook.swift */,
+				2465E2ED20FA3FF900E8FF2E /* MessengerNotification.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -2604,6 +2607,7 @@
 				24712BF41FB8B80B0067E416 /* DateComponentsFormatter+Shared.swift in Sources */,
 				24FD78701FBF826D0072F860 /* DownloadListViewModel.swift in Sources */,
 				24E2AD1D1FF2D5B0001D3E27 /* EventListViewModel.swift in Sources */,
+				2465E2EE20FA3FF900E8FF2E /* MessengerNotification.swift in Sources */,
 				248C0260202E5BB6004CB8C9 /* OAuth1.swift in Sources */,
 				24D360DE1FAA5D3800BBBAED /* String+Utils.swift in Sources */,
 				24BF7B6B1FF674100013BA23 /* FetchedResultsControllerSource.swift in Sources */,

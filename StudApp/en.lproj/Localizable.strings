@@ -22,3 +22,5 @@
 
 "Notifications.documentUpdateTitle" = "%@";
 "Notifications.documentUpdateBody" = "%@ changed \"%@\".";
+"Notifications.messageTitle" = "%@";
+"Notifications.messageBody" = "%@";

@@ -53,6 +53,7 @@ public struct Hook: Codable {
 extension Hook {
     enum IfTypes: String, Codable {
         case documentChange = "IfFilerefHook"
+        case blubberMessage = "IfBlubberHook"
     }
 }
 

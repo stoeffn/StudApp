@@ -48,7 +48,7 @@ public final class HookService {
 
     // MARK: - Hooks
 
-    var documentHook: Hook? {
+    var documentUpdateHook: Hook? {
         guard
             let deviceToken = deviceToken?.hex,
             let jsonData = try? jsonEncoder.encode(DocumentUpdateNotification.template),
@@ -63,8 +63,23 @@ public final class HookService {
             thenSettings: Hook.ThenSettings(json: json, deviceToken: deviceToken))
     }
 
+    var messageHook: Hook? {
+        guard
+            let deviceToken = deviceToken?.hex,
+            let jsonData = try? jsonEncoder.encode(MessengerNotification.template),
+            let json = String(data: jsonData, encoding: .utf8)
+        else { return nil }
+
+        return Hook(
+            id: "\(deviceToken.prefix(16))-message",
+            title: "StudApp: Blubber Message",
+            ifType: .blubberMessage,
+            thenType: .socketHook,
+            thenSettings: Hook.ThenSettings(json: json, deviceToken: deviceToken))
+    }
+
     var hooks: [Hook] {
-        return [documentHook].compactMap { $0 }
+        return [documentUpdateHook, messageHook].compactMap { $0 }
     }
 
     // MARK: - Updating Hooks
