@@ -22,6 +22,7 @@ public struct MessengerNotification: Codable {
         case notification = "aps"
         case messageId
         case messageText
+        case changeType
         case contextType
         case contextId
         case contextTitle
@@ -34,6 +35,7 @@ public struct MessengerNotification: Codable {
     let notification: ApplePushNotification
     let messageId: String
     let messageText: String
+    let changeType: ChangeTypes
     let contextType: ContextTypes
     let contextId: String
     let contextTitle: String
@@ -41,11 +43,12 @@ public struct MessengerNotification: Codable {
     let userId: String
     let userFullname: String
 
-    init(notification: ApplePushNotification, messageId: String, messageText: String, contextId: String, contextType: ContextTypes,
-         contextTitle: String, threadId: String, userId: String, userFullname: String) {
+    init(notification: ApplePushNotification, messageId: String, messageText: String, changeType: ChangeTypes, contextId: String,
+         contextType: ContextTypes, contextTitle: String, threadId: String, userId: String, userFullname: String) {
         self.notification = notification
         self.messageId = messageId
         self.messageText = messageText
+        self.changeType = changeType
         self.contextType = contextType
         self.contextId = contextId
         self.contextTitle = contextTitle
@@ -65,6 +68,15 @@ extension MessengerNotification {
 }
 
 extension MessengerNotification {
+    enum ChangeTypes: String, Codable {
+        case created
+        case deleted
+        case edited
+        case template = "{{change}}"
+    }
+}
+
+extension MessengerNotification {
     static let template = MessengerNotification(
         notification: ApplePushNotification(
             alert: ApplePushNotification.Alert(
@@ -75,6 +87,7 @@ extension MessengerNotification {
             threadIdentifier: "{{context_id}}-messages"),
         messageId: "{{id}}",
         messageText: "{{content}}",
+        changeType: ChangeTypes.template,
         contextId: "{{context_id}}",
         contextType: ContextTypes.template,
         contextTitle: "{{context_title}}",
