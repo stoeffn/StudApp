@@ -141,6 +141,15 @@ extension AppDelegate: UIApplicationDelegate {
 // MARK: - User Notifications
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
+    // MARK: Receiving Notifications
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler(.alert)
+    }
+
+    // MARK: Displaying Notification Settings
+
     func userNotificationCenter(_ center: UNUserNotificationCenter, openSettingsFor notification: UNNotification?) {
         guard studIpService.isSignedIn else { return }
         window?.rootViewController?.performSegue(withRoute: .settings)
