@@ -142,6 +142,8 @@ public class StudIpService {
             let error = discoveryResult.error ?? userResult.error ?? semesterResult.error ?? coursesResult?.error
             let result = Result(userResult.value, error: error)
             completion(result)
+
+            ServiceContainer.default[NotificationService.self].updateOrCreateHooks()
         }
     }
 

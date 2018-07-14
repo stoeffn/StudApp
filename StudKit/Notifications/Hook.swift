@@ -18,7 +18,7 @@
 
 public struct Hook: Codable {
     enum CodingKeys: String, CodingKey {
-        case id
+        case id = "hook_id"
         case title = "name"
         case isActive = "activated"
         case isImportant = "cronjob"

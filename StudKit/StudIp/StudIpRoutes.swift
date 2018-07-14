@@ -149,9 +149,9 @@ public enum StudIpRoutes: ApiRoutes {
     var contentType: String? {
         switch self {
         case .announcementsInCourse, .courses, .currentUser, .discovery, .eventsForUser, .eventsInCourse, .folder,
-             .fileContents, .profilePicture, .rootFolderForCourse, .semesters, .updateOrCreateHook:
+             .fileContents, .profilePicture, .rootFolderForCourse, .semesters:
             return nil
-        case .setGroupForCourse:
+        case .setGroupForCourse, .updateOrCreateHook:
             return "application/json"
         }
     }

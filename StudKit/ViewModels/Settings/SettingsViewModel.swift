@@ -76,10 +76,4 @@ public final class SettingsViewModel: NSObject {
             }
         }
     }
-
-    public func requestProminentDelivery() {
-        notificationService.requestAuthorization(options: notificationService.userNotificationAuthorizationsOptions) {
-            self.updateNotificationSettings()
-        }
-    }
 }
