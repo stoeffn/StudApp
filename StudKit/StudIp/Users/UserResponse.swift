@@ -18,7 +18,7 @@
 
 import CoreData
 
-struct UserResponse: IdentifiableResponse {
+struct UserResponse: IdentifiableResponse, Equatable {
     let id: String
     let username: String
     let givenName: String

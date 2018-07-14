@@ -173,4 +173,10 @@ public class StudIpService {
             }
         }
     }
+
+    public func getMessages(id: String, completion: @escaping ResultHandler<[Message]>) {
+        api.requestDecoded(.messagesInCourse(withId: id)) { (result: Result<CollectionResponse<Message>>) in
+            completion(result.map { $0.items })
+        }
+    }
 }

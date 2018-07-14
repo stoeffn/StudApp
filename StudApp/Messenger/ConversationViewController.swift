@@ -25,12 +25,14 @@
 import UIKit
 import MessageKit
 import MapKit
+import StudKit
+import StudKitUI
 
 internal class ConversationViewController: MessagesViewController {
 
     let refreshControl = UIRefreshControl()
     
-    var messageList: [MockMessage] = []
+    var messageList: [Message] = []
     
     var isTyping = false
     
@@ -42,18 +44,6 @@ internal class ConversationViewController: MessagesViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        let messagesToFetch = UserDefaults.standard.mockMessagesCount()
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            SampleData.shared.getMessages(count: messagesToFetch) { messages in
-                DispatchQueue.main.async {
-                    self.messageList = messages
-                    self.messagesCollectionView.reloadData()
-                    self.messagesCollectionView.scrollToBottom()
-                }
-            }
-        }
 
         messagesCollectionView.messagesDataSource = self
         messagesCollectionView.messagesLayoutDelegate = self
@@ -67,17 +57,24 @@ internal class ConversationViewController: MessagesViewController {
         
         messagesCollectionView.addSubview(refreshControl)
         refreshControl.addTarget(self, action: #selector(ConversationViewController.loadMoreMessages), for: .valueChanged)
-        
-        navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(image: UIImage(named: "ic_keyboard"),
-                            style: .plain,
-                            target: self,
-                            action: #selector(ConversationViewController.handleKeyboardButton)),
-            UIBarButtonItem(image: UIImage(named: "ic_typing"),
-                            style: .plain,
-                            target: self,
-                            action: #selector(ConversationViewController.handleTyping))
-        ]
+
+        update()
+        iMessage()
+
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            self.update()
+        }
+    }
+
+    func update() {
+        ServiceContainer.default[StudIpService.self].getMessages(id: "a07535cf2f8a72df33c12ddfa4b53dde") { result in
+            DispatchQueue.main.async {
+                let messages = result.value?.sorted { $0.sentDate < $1.sentDate } ?? self.messageList
+                guard messages != self.messageList else { return }
+                self.messageList = messages
+                self.messagesCollectionView.reloadData()
+            }
+        }
     }
     
     @objc func handleTyping() {
@@ -108,15 +105,7 @@ internal class ConversationViewController: MessagesViewController {
     }
     
     @objc func loadMoreMessages() {
-        DispatchQueue.global(qos: .userInitiated).asyncAfter(deadline: DispatchTime.now() + 4) {
-            SampleData.shared.getMessages(count: 10) { messages in
-                DispatchQueue.main.async {
-                    self.messageList.insert(contentsOf: messages, at: 0)
-                    self.messagesCollectionView.reloadDataAndKeepOffset()
-                    self.refreshControl.endRefreshing()
-                }
-            }
-        }
+        update()
     }
     
     @objc func handleKeyboardButton() {
@@ -312,7 +301,7 @@ extension ConversationViewController: MessagesDisplayDelegate {
     // MARK: - All Messages
     
     func backgroundColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
-        return isFromCurrentSender(message: message) ? UIColor(red: 69/255, green: 193/255, blue: 89/255, alpha: 1) : UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
+        return isFromCurrentSender(message: message) ? UI.Colors.studBlue : UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
     }
 
     func messageStyle(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> MessageStyle {
@@ -432,28 +421,6 @@ extension ConversationViewController: MessageLabelDelegate {
 extension ConversationViewController: MessageInputBarDelegate {
 
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
-        
-        // Each NSTextAttachment that contains an image will count as one empty character in the text: String
-        
-        for component in inputBar.inputTextView.components {
-            
-            if let image = component as? UIImage {
-                
-                let imageMessage = MockMessage(image: image, sender: currentSender(), messageId: UUID().uuidString, date: Date())
-                messageList.append(imageMessage)
-                messagesCollectionView.insertSections([messageList.count - 1])
-                
-            } else if let text = component as? String {
-                
-                let attributedText = NSAttributedString(string: text, attributes: [.font: UIFont.systemFont(ofSize: 15), .foregroundColor: UIColor.blue])
-                
-                let message = MockMessage(attributedText: attributedText, sender: currentSender(), messageId: UUID().uuidString, date: Date())
-                messageList.append(message)
-                messagesCollectionView.insertSections([messageList.count - 1])
-            }
-            
-        }
-        
         inputBar.inputTextView.text = String()
         messagesCollectionView.scrollToBottom()
     }

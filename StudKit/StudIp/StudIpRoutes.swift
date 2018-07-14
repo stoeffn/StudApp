@@ -62,6 +62,8 @@ public enum StudIpRoutes: ApiRoutes {
     /// Updates the hook given or creates it when it doesn't exist.
     case updateOrCreateHook(Hook)
 
+    case messagesInCourse(withId: String)
+
     var identifier: String {
         switch self {
         case .announcementsInCourse: return "/course/:course_id/news"
@@ -78,6 +80,7 @@ public enum StudIpRoutes: ApiRoutes {
         case .semesters: return "/semester/:semester_id"
         case .setGroupForCourse: return "/user/:user_id/courses/:course_id"
         case .updateOrCreateHook: return "/hooks"
+        case .messagesInCourse: return ""
         }
     }
 
@@ -111,6 +114,8 @@ public enum StudIpRoutes: ApiRoutes {
             return "user/\(userId)/courses/\(courseId)"
         case .updateOrCreateHook:
             return "hooks"
+        case let .messagesInCourse(courseId):
+            return "course/\(courseId)/blubber"
         }
     }
 
@@ -138,13 +143,14 @@ public enum StudIpRoutes: ApiRoutes {
         case .semesters: return CollectionResponse<SemesterResponse>.self
         case .setGroupForCourse: return nil
         case .updateOrCreateHook: return Hook.self
+        case .messagesInCourse: return CollectionResponse<Message>.self
         }
     }
 
     var method: HttpMethods {
         switch self {
         case .announcementsInCourse, .courses, .currentUser, .discovery, .eventsForUser, .eventsInCourse, .folder,
-             .fileContents, .profilePicture, .rootFolderForCourse, .semesters:
+             .fileContents, .profilePicture, .rootFolderForCourse, .semesters, .messagesInCourse:
             return .get
         case .deleteHook:
             return .delete
@@ -158,7 +164,7 @@ public enum StudIpRoutes: ApiRoutes {
     var contentType: String? {
         switch self {
         case .announcementsInCourse, .courses, .currentUser, .deleteHook, .discovery, .eventsForUser, .eventsInCourse, .folder,
-             .fileContents, .profilePicture, .rootFolderForCourse, .semesters:
+             .fileContents, .profilePicture, .rootFolderForCourse, .semesters, .messagesInCourse:
             return nil
         case .setGroupForCourse, .updateOrCreateHook:
             return "application/json"
@@ -168,7 +174,7 @@ public enum StudIpRoutes: ApiRoutes {
     var body: Data? {
         switch self {
         case .announcementsInCourse, .courses, .currentUser, .deleteHook, .discovery, .eventsForUser, .eventsInCourse, .folder,
-             .fileContents, .profilePicture, .rootFolderForCourse, .semesters:
+             .fileContents, .profilePicture, .rootFolderForCourse, .semesters, .messagesInCourse:
             return nil
         case let .setGroupForCourse(_, _, groupId):
             return "{\"group\": \(groupId)}".data(using: .utf8)

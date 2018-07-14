@@ -18,7 +18,7 @@
 
 import MessageKit
 
-struct Message: Decodable {
+public struct Message: Decodable, Equatable {
     var blubber_id: String
     var author: UserResponse
     var content: String
@@ -26,20 +26,20 @@ struct Message: Decodable {
 }
 
 extension Message: MessageType {
-    var sender: Sender {
+    public var sender: Sender {
         return Sender(id: author.id, displayName: author.givenName + " " + author.familyName)
     }
 
-    var messageId: String {
+    public var messageId: String {
         return blubber_id
     }
 
-    var sentDate: Date {
+    public var sentDate: Date {
         guard let timeInterval = TimeInterval(mkdate) else { return .distantPast }
         return Date(timeIntervalSince1970: timeInterval)
     }
 
-    var kind: MessageKind {
+    public var kind: MessageKind {
         return .text(content)
     }
 }
