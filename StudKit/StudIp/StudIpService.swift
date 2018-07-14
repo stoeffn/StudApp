@@ -80,6 +80,8 @@ public class StudIpService {
 
     /// Removes the default credential used for authentication, replaces it with an empty credential, and clears the database.
     func signOut() {
+        ServiceContainer.default[NotificationService.self].deleteHooks()
+
         try? (api.authorizing as? PersistableApiAuthorizing)?.removeCredentials()
 
         api.session.configuration.httpCookieStorage?.removeCookies(since: .distantPast)

@@ -90,6 +90,14 @@ public final class NotificationService {
         hooks.forEach { updateOrCreate(hook: $0) { _ in } }
     }
 
+    func deleteHook(withId hookId: String, completion: @escaping ResultHandler<Void>) {
+        studIpService.api.request(.deleteHook(withId: hookId)) { completion($0.map { _ in }) }
+    }
+
+    func deleteHooks() {
+        hooks.forEach { deleteHook(withId: $0.id) { _ in } }
+    }
+
     // MARK: - Options
 
     public var silentNotificationAuthorizationsOptions: UNAuthorizationOptions {

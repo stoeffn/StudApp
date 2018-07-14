@@ -27,6 +27,9 @@ public enum StudIpRoutes: ApiRoutes {
     /// Returns all courses that a user with the given id is enrolled in.
     case courses(forUserId: String)
 
+    /// Deletes a hook.
+    case deleteHook(withId: String)
+
     /// Returns information on what routes are available.
     case discovery
 
@@ -64,6 +67,7 @@ public enum StudIpRoutes: ApiRoutes {
         case .announcementsInCourse: return "/course/:course_id/news"
         case .currentUser: return "/user"
         case .courses: return "/user/:user_id"
+        case .deleteHook: return "/hooks/:hook_id"
         case .discovery: return "/discovery"
         case .fileContents: return "/file/:file_ref_id/download"
         case .folder: return "/folder/:folder_id"
@@ -85,6 +89,8 @@ public enum StudIpRoutes: ApiRoutes {
             return "user"
         case let .courses(userId):
             return "user/\(userId)/courses"
+        case let .deleteHook(hookId):
+            return "hooks/\(hookId)"
         case .discovery:
             return "discovery"
         case let .eventsForUser(userId):
@@ -122,6 +128,7 @@ public enum StudIpRoutes: ApiRoutes {
         case .announcementsInCourse: return CollectionResponse<AnnouncementResponse>.self
         case .currentUser: return UserResponse.self
         case .courses: return CollectionResponse<CourseResponse>.self
+        case .deleteHook: return nil
         case .discovery: return DiscoveryResponse.self
         case .eventsForUser, .eventsInCourse: return CollectionResponse<EventResponse>.self
         case .fileContents: return nil
@@ -139,6 +146,8 @@ public enum StudIpRoutes: ApiRoutes {
         case .announcementsInCourse, .courses, .currentUser, .discovery, .eventsForUser, .eventsInCourse, .folder,
              .fileContents, .profilePicture, .rootFolderForCourse, .semesters:
             return .get
+        case .deleteHook:
+            return .delete
         case .setGroupForCourse:
             return .patch
         case .updateOrCreateHook:
@@ -148,7 +157,7 @@ public enum StudIpRoutes: ApiRoutes {
 
     var contentType: String? {
         switch self {
-        case .announcementsInCourse, .courses, .currentUser, .discovery, .eventsForUser, .eventsInCourse, .folder,
+        case .announcementsInCourse, .courses, .currentUser, .deleteHook, .discovery, .eventsForUser, .eventsInCourse, .folder,
              .fileContents, .profilePicture, .rootFolderForCourse, .semesters:
             return nil
         case .setGroupForCourse, .updateOrCreateHook:
@@ -158,7 +167,7 @@ public enum StudIpRoutes: ApiRoutes {
 
     var body: Data? {
         switch self {
-        case .announcementsInCourse, .courses, .currentUser, .discovery, .eventsForUser, .eventsInCourse, .folder,
+        case .announcementsInCourse, .courses, .currentUser, .deleteHook, .discovery, .eventsForUser, .eventsInCourse, .folder,
              .fileContents, .profilePicture, .rootFolderForCourse, .semesters:
             return nil
         case let .setGroupForCourse(_, _, groupId):
