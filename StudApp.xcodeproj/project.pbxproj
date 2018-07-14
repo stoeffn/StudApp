@@ -106,6 +106,8 @@
 		245F770820B5CB5C001FF052 /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245F770720B5CB5C001FF052 /* Localizable.swift */; };
 		245F770A20B5CBB7001FF052 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245F770920B5CBB7001FF052 /* Strings.swift */; };
 		245F770C20B5DCE0001FF052 /* MockStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245F770B20B5DCE0001FF052 /* MockStrings.swift */; };
+		2465E2D020FA09A000E8FF2E /* ApplePushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2465E2CF20FA09A000E8FF2E /* ApplePushNotification.swift */; };
+		2465E2D220FA0EDB00E8FF2E /* DocumentUpdateNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2465E2D120FA0EDB00E8FF2E /* DocumentUpdateNotification.swift */; };
 		2467A8BC1FD307CE00F25720 /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2467A8BB1FD307CE00F25720 /* PreviewController.swift */; };
 		2469EF6F1FCF5BCB008A122B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2448D4131FA8DA2400DAB97E /* Assets.xcassets */; };
 		2469F810202CB8A0007FB3B6 /* PersistableApiAuthorizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469F80F202CB8A0007FB3B6 /* PersistableApiAuthorizing.swift */; };
@@ -523,6 +525,8 @@
 		245F770720B5CB5C001FF052 /* Localizable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
 		245F770920B5CBB7001FF052 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		245F770B20B5DCE0001FF052 /* MockStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStrings.swift; sourceTree = "<group>"; };
+		2465E2CF20FA09A000E8FF2E /* ApplePushNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePushNotification.swift; sourceTree = "<group>"; };
+		2465E2D120FA0EDB00E8FF2E /* DocumentUpdateNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentUpdateNotification.swift; sourceTree = "<group>"; };
 		2467A8BB1FD307CE00F25720 /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
 		2469EF6A1FCF4D07008A122B /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 		2469F80F202CB8A0007FB3B6 /* PersistableApiAuthorizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistableApiAuthorizing.swift; sourceTree = "<group>"; };
@@ -820,6 +824,8 @@
 		241598C720F8DE410008076A /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
+				2465E2CF20FA09A000E8FF2E /* ApplePushNotification.swift */,
+				2465E2D120FA0EDB00E8FF2E /* DocumentUpdateNotification.swift */,
 				246D7F2120F85681000B1EB1 /* NotificationService.swift */,
 				241598C820F8DE5D0008076A /* Hook.swift */,
 			);
@@ -2475,6 +2481,7 @@
 				241C67E51FCDD78100F4A099 /* AboutViewModel.swift in Sources */,
 				24712BEA1FB8B48A0067E416 /* ByTypeNameIdentifiable.swift in Sources */,
 				24712BF61FB8B80B0067E416 /* DateFormatter+Shared.swift in Sources */,
+				2465E2D220FA0EDB00E8FF2E /* DocumentUpdateNotification.swift in Sources */,
 				24D360E71FAA5D7600BBBAED /* Course+StudIp.swift in Sources */,
 				248C0245202E4C58004CB8C9 /* RangeIterator.swift in Sources */,
 				2448D4951FA8DF6000DAB97E /* StorageService.swift in Sources */,
@@ -2561,6 +2568,7 @@
 				2448D4A51FA8E07E00DAB97E /* Result+Api.swift in Sources */,
 				24D360D31FAA5CF400BBBAED /* NSMangedObjectContext+Utils.swift in Sources */,
 				24DB13B3207BCDBD003B003E /* Distributions.swift in Sources */,
+				2465E2D020FA09A000E8FF2E /* ApplePushNotification.swift in Sources */,
 				24557A0D203DE59700492B74 /* MockStudIpService.swift in Sources */,
 				241598C920F8DE5D0008076A /* Hook.swift in Sources */,
 				243CC2BE1FDF0A7F00FE7376 /* CDSortable.swift in Sources */,

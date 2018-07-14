@@ -65,16 +65,16 @@ extension Hook {
 extension Hook {
     struct ThenSettings: Codable {
         enum CodingKeys: String, CodingKey {
-            case url = "webhook_url"
             case json
+            case deviceToken = "device_token"
         }
 
-        let url: URL
         let json: String
+        let deviceToken: String
 
-        init(url: URL, json: String) {
-            self.url = url
+        init(json: String, deviceToken: String) {
             self.json = json
+            self.deviceToken = deviceToken
         }
     }
 }
