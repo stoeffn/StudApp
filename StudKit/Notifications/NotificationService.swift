@@ -19,6 +19,7 @@
 import UserNotifications
 
 public final class NotificationService {
+    private let jsonEncoder = ServiceContainer.default[JSONEncoder.self]
     private let storageService = ServiceContainer.default[StorageService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]
 
@@ -48,20 +49,18 @@ public final class NotificationService {
     // MARK: - Hooks
 
     var documentHook: Hook? {
-        guard let deviceToken = deviceToken else { return nil }
+        guard
+            let deviceToken = deviceToken?.hex,
+            let jsonData = try? jsonEncoder.encode(DocumentUpdateNotification.template),
+            let json = String(data: jsonData, encoding: .utf8)
+        else { return nil }
 
-        let id = "\(App.id)-files"
-        let json = """
-            {
-                "aps": {
-                    "content-available": 1,
-                    "alert": "Hello, World!"
-                },
-                "type": "\(id)"
-            }
-        """
-        let thenSettings = Hook.ThenSettings(url: apnsUrl(forDeviceToken: deviceToken), json: json)
-        return Hook(id: id, title: "StudApp: Files", ifType: .documentChange, thenType: .socketHook, thenSettings: thenSettings)
+        return Hook(
+            id: "\(deviceToken.prefix(16))-documentUpdate",
+            title: "StudApp: Document Updates",
+            ifType: .documentChange,
+            thenType: .socketHook,
+            thenSettings: Hook.ThenSettings(json: json, deviceToken: deviceToken))
     }
 
     var hooks: [Hook] {

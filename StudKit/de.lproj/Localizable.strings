@@ -119,6 +119,11 @@
 "Formats.range"         = "%@ – %@";
 "Formats.timeAgo"       = "vor %@";
 
+// MARK: Notifications
+
+"Notifications.documentUpdateTitle" = "\"%@\" wurde von %@ geändert";
+"Notifications.documentUpdateBody" = "%@";
+
 // MARK: States
 
 "States.bookmarked"     = "Vorgemerkt";

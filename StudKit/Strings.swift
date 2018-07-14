@@ -132,6 +132,12 @@ public enum Strings {
         case timeAgo
     }
 
+    /// Notification titles and messages.
+    public enum Notifications: String, Localizable {
+        case documentUpdateTitle
+        case documentUpdateBody
+    }
+
     /// Generic states.
     ///
     /// - Remark: Use title-case.
