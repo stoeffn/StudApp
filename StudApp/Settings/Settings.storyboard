@@ -157,6 +157,7 @@
                     <connections>
                         <outlet property="configureNotificationsCell" destination="4N4-tj-aIy" id="K7i-MY-0Gg"/>
                         <outlet property="downloadsCell" destination="Og1-kj-hFK" id="TSg-zx-ipc"/>
+                        <outlet property="notificationsLabel" destination="V6z-Ga-ele" id="uKb-Ft-tLj"/>
                         <outlet property="notificationsSwitch" destination="1Go-C6-nMO" id="anP-s7-H2s"/>
                         <outlet property="removeAllDownloadsCell" destination="rOA-iJ-jk4" id="2GT-N4-qSX"/>
                         <outlet property="signOutCell" destination="jfr-di-olq" id="0Zk-vc-Mir"/>

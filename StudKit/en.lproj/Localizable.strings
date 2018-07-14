@@ -21,7 +21,9 @@
 // MARK: Actions
 
 "Actions.addOrganization"       = "Add Organization…";
+"Actions.allowNotifications"    = "Allow Notifications";
 "Actions.chooseColor"           = "Choose Color";
+"Actions.configureInSettings"   = "Configure in Settings…";
 "Actions.dismiss"               = "Dismiss";
 "Actions.hide"                  = "Hide";
 "Actions.show"                  = "Show";
@@ -58,6 +60,7 @@
 "Callouts.noFilesSubtitle"          = "Swipe down to refresh.";
 "Callouts.noMoreEvents"             = "You're All Caught Up";
 "Callouts.noMoreEventsSubtitle"     = "There are no more events to show.";
+"Callouts.notifications"            = "If enabled, StudApp will notify you when there are new or updated documents.";
 "Callouts.openSourceDisclaimer"     = "StudApp is open source—feel free to contribute!";
 "Callouts.organizationsSubtitle"    = "Choose your university, company, or organization to sign in and access your courses, documents, announcements, and events.";
 "Callouts.noSemesters"              = "Nothing to See Here";
@@ -151,6 +154,7 @@
 "Terms.help"            = "Help";
 "Terms.location"        = "Location";
 "Terms.more"            = "More";
+"Terms.notifications"   = "Notifications";
 "Terms.organizations"   = "Organizations";
 "Terms.privacyPolicy"   = "Privacy Policy";
 "Terms.semesters"       = "Semesters";

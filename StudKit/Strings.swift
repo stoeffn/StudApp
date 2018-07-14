@@ -23,7 +23,9 @@ public enum Strings {
     /// - Remark: Use title-case.
     public enum Actions: String, Localizable {
         case addOrganization
+        case allowNotifications
         case chooseColor
+        case configureInSettings
         case dismiss
         case hide, show
         case leaveTip
@@ -51,6 +53,7 @@ public enum Strings {
         case noEvents, noEventsSubtitle
         case noFiles, noFilesSubtitle
         case noMoreEvents, noMoreEventsSubtitle
+        case notifications
         case openSourceDisclaimer
         case organizationsSubtitle
         case noSemesters, noSemestersSubtitle
@@ -160,6 +163,7 @@ public enum Strings {
         case help
         case location
         case more
+        case notifications
         case organizations
         case privacyPolicy
         case semesters

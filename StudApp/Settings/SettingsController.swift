@@ -39,6 +39,8 @@ final class SettingsController: UITableViewController, Routable {
         navigationItem.title = Strings.Terms.settings.localized
         downloadsCell.textLabel?.text = Strings.Terms.downloads.localized
         removeAllDownloadsCell.textLabel?.text = Strings.Actions.removeAllDownloads.localized
+        notificationsLabel.text = Strings.Actions.allowNotifications.localized
+        configureNotificationsCell.textLabel?.text = Strings.Actions.configureInSettings.localized
         signOutCell.textLabel?.text = Strings.Actions.signOut.localized
 
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground),
@@ -96,7 +98,7 @@ final class SettingsController: UITableViewController, Routable {
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch Sections(rawValue: adjustedSectionIndex(forSection: section)) {
         case .documents?: return Strings.Terms.documents.localized
-        case .notifications?: return "Notifications"
+        case .notifications?: return Strings.Terms.notifications.localized
         case .account?, nil: return nil
         }
     }
@@ -110,7 +112,7 @@ final class SettingsController: UITableViewController, Routable {
             let currentUserFullName = currentUser.nameComponents.formatted(style: .long)
             return Strings.Callouts.signedInAsAt.localized(currentUserFullName, currentUser.organization.title)
         case .notifications?:
-            return "If enabled, StudApp will notify you when there are new or updated documents."
+            return Strings.Callouts.notifications.localized
         case nil:
             return nil
         }
@@ -162,6 +164,8 @@ final class SettingsController: UITableViewController, Routable {
     }
 
     // MARK: Managing Notifications
+
+    @IBOutlet var notificationsLabel: UILabel!
 
     @IBOutlet var notificationsSwitch: UISwitch!
 
