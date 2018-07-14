@@ -249,7 +249,7 @@ internal class ConversationViewController: MessagesViewController {
 extension ConversationViewController: MessagesDataSource {
 
     func currentSender() -> Sender {
-        return SampleData.shared.currentSender
+        return Sender(id: "205f3efb7997a0fc9755da2b535038da", displayName: "Testaccount Dozent")
     }
     
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
