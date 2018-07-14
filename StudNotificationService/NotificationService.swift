@@ -21,25 +21,55 @@ import UserNotifications
 
 final class NotificationService: UNNotificationServiceExtension {
     private var contentHandler: ((UNNotificationContent) -> Void)?
-    private var content: UNMutableNotificationContent?
+    private var content: UNNotificationContent?
 
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
         self.contentHandler = contentHandler
-        content = (request.content.mutableCopy() as? UNMutableNotificationContent)
+        self.content = request.content
 
-        guard let content = content else { return }
+        guard
+            let rawType = request.content.userInfo["type"] as? String,
+            let type = NotificationTypes(rawValue: rawType)
+        else { return contentHandler(request.content) }
 
-        if #available(iOSApplicationExtension 12.0, *) {
-            let ownerFullname = content.userInfo[DocumentUpdateNotification.CodingKeys.ownerFullname.rawValue] as? String
-            content.summaryArgumentCount = 1
-            content.summaryArgument = ownerFullname ?? content.summaryArgument
+        switch type {
+        case .documentUpdate:
+            contentHandler(augmentedDocumentUpdateNotification(for: request.content))
+        case .blubberMessage:
+            contentHandler(augmentedBlubberMessageNotification(for: request.content))
         }
+    }
 
-        contentHandler(content)
+    func augmentedDocumentUpdateNotification(for content: UNNotificationContent) -> UNNotificationContent {
+        guard let mutableContent = content.mutableCopy() as? UNMutableNotificationContent else { return content }
+        let ownerFullname = content.userInfo[DocumentUpdateNotification.CodingKeys.ownerFullname.rawValue] as? String
+
+        guard #available(iOSApplicationExtension 12.0, *) else { return mutableContent }
+
+        mutableContent.summaryArgumentCount = 1
+        mutableContent.summaryArgument = ownerFullname ?? content.summaryArgument
+
+        return mutableContent
+    }
+
+    func augmentedBlubberMessageNotification(for content: UNNotificationContent) -> UNNotificationContent {
+        guard let mutableContent = content.mutableCopy() as? UNMutableNotificationContent else { return content }
+        let userFullname = content.userInfo[MessengerNotification.CodingKeys.userFullname.rawValue] as? String
+        let text = content.userInfo[MessengerNotification.CodingKeys.messageText.rawValue] as? String
+
+        mutableContent.subtitle = userFullname ?? mutableContent.subtitle
+        mutableContent.body = text ?? mutableContent.body
+
+        guard #available(iOSApplicationExtension 12.0, *) else { return mutableContent }
+
+        mutableContent.summaryArgumentCount = 1
+        mutableContent.summaryArgument = userFullname ?? content.summaryArgument
+
+        return mutableContent
     }
 
     override func serviceExtensionTimeWillExpire() {
-        guard let contentHandler = contentHandler, let content = content else { return }
-        contentHandler(content)
+        guard let content = content else { return }
+        contentHandler?(content)
     }
 }

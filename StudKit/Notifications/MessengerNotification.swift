@@ -84,6 +84,7 @@ extension MessengerNotification {
                 titleArguments: ["{{context_name}}"],
                 bodyKey: "Notifications.messageBody",
                 bodyArguments: ["{{user_name}}", "{{content}}"]),
+            isMutable: 1,
             threadIdentifier: "{{context_id}}-messages"),
         messageId: "{{id}}",
         messageText: "{{content}}",
