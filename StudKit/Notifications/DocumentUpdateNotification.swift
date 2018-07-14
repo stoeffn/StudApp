@@ -23,8 +23,9 @@ struct DocumentUpdateNotification: Codable {
         case documentTitle
         case ownerId
         case ownerFullname
-        case courseId
-        case courseTitle
+        case rangeType
+        case rangeId
+        case rangeTitle
     }
 
     let notification: ApplePushNotification
@@ -32,18 +33,29 @@ struct DocumentUpdateNotification: Codable {
     let documentTitle: String
     let ownerId: String
     let ownerFullname: String
-    let courseId: String
-    let courseTitle: String
+    let rangeType: RangeTypes
+    let rangeId: String
+    let rangeTitle: String
 
     init(notification: ApplePushNotification, documentId: String, documentTitle: String, ownerId: String, ownerFullname: String,
-         courseId: String, courseTitle: String) {
+         rangeType: RangeTypes, rangeId: String, rangeTitle: String) {
         self.notification = notification
         self.documentId = documentId
         self.documentTitle = documentTitle
         self.ownerId = ownerId
         self.ownerFullname = ownerFullname
-        self.courseId = courseId
-        self.courseTitle = courseTitle
+        self.rangeType = rangeType
+        self.rangeId = rangeId
+        self.rangeTitle = rangeTitle
+    }
+}
+
+extension DocumentUpdateNotification {
+    enum RangeTypes: String, Codable {
+        case course
+        case institute
+        case template = "{{range_type}}"
+        case user
     }
 }
 
@@ -52,14 +64,15 @@ extension DocumentUpdateNotification {
         notification: ApplePushNotification(
             alert: ApplePushNotification.Alert(
                 titleKey: "Notifications.documentUpdateTitle",
-                titleArguments: ["{{name}}"],
+                titleArguments: ["{{range_name}}"],
                 bodyKey: "Notifications.documentUpdateBody",
-                bodyArguments: [""]),
-                threadIdentifier: "course-{{course_id}}-documents"),
+                bodyArguments: ["{{name}}", "{{user_name}}"]),
+                threadIdentifier: "{{range_type}}-{{range_id}}-documents"),
         documentId: "{{id}}",
         documentTitle: "{{name}}",
         ownerId: "{{user_id}}",
         ownerFullname: "{{user_name}}",
-        courseId: "{{course_id}}",
-        courseTitle: "{{course_title}}")
+        rangeType: RangeTypes.template,
+        rangeId: "{{range_id}}",
+        rangeTitle: "{{range_title}}")
 }
