@@ -180,6 +180,7 @@
 		2465E38820FA4B0000E8FF2E /* Settings+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2465E38620FA4B0000E8FF2E /* Settings+UserDefaults.swift */; };
 		2465E38B20FA4D4400E8FF2E /* MessageKitAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2465E38920FA4D1700E8FF2E /* MessageKitAssets.bundle */; };
 		2465E38D20FA500800E8FF2E /* MessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2465E38C20FA500800E8FF2E /* MessageResponse.swift */; };
+		2465E38F20FA6C3100E8FF2E /* NotificationTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2465E38E20FA6C3100E8FF2E /* NotificationTypes.swift */; };
 		2467A8BC1FD307CE00F25720 /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2467A8BB1FD307CE00F25720 /* PreviewController.swift */; };
 		2469EF6F1FCF5BCB008A122B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2448D4131FA8DA2400DAB97E /* Assets.xcassets */; };
 		2469F810202CB8A0007FB3B6 /* PersistableApiAuthorizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469F80F202CB8A0007FB3B6 /* PersistableApiAuthorizing.swift */; };
@@ -690,6 +691,7 @@
 		2465E38620FA4B0000E8FF2E /* Settings+UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Settings+UserDefaults.swift"; sourceTree = "<group>"; };
 		2465E38920FA4D1700E8FF2E /* MessageKitAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MessageKitAssets.bundle; sourceTree = "<group>"; };
 		2465E38C20FA500800E8FF2E /* MessageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageResponse.swift; sourceTree = "<group>"; };
+		2465E38E20FA6C3100E8FF2E /* NotificationTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTypes.swift; sourceTree = "<group>"; };
 		2467A8BB1FD307CE00F25720 /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
 		2469EF6A1FCF4D07008A122B /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 		2469F80F202CB8A0007FB3B6 /* PersistableApiAuthorizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistableApiAuthorizing.swift; sourceTree = "<group>"; };
@@ -1008,6 +1010,7 @@
 				246D7F2120F85681000B1EB1 /* HookService.swift */,
 				241598C820F8DE5D0008076A /* Hook.swift */,
 				2465E2ED20FA3FF900E8FF2E /* MessengerNotification.swift */,
+				2465E38E20FA6C3100E8FF2E /* NotificationTypes.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -2998,6 +3001,7 @@
 				24E4B9A41FF25E8C0061983C /* Constants.swift in Sources */,
 				248C0247202E4C58004CB8C9 /* ReachabilityService.swift in Sources */,
 				24D360E81FAA5D7600BBBAED /* Course.swift in Sources */,
+				2465E38F20FA6C3100E8FF2E /* NotificationTypes.swift in Sources */,
 				242B03741FD7470200863B08 /* ColorPickerViewModel.swift in Sources */,
 				24B091EB2036EC6A00A5037A /* DocumentResponse.swift in Sources */,
 				2448D4AB1FA8E07E00DAB97E /* Api.swift in Sources */,

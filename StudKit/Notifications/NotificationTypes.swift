@@ -16,11 +16,7 @@
 //  along with this program. If not, see http://www.gnu.org/licenses/.
 //
 
-// MARK: - StudApp
-
-// MARK: Notifications
-
-"Notifications.documentUpdateTitle" = "%@";
-"Notifications.documentUpdateBody" = "%@ changed \"%@\".";
-"Notifications.messageTitle" = "%@";
-"Notifications.messageBody" = "%@: %@";
+public enum NotificationTypes: String, Codable {
+    case documentUpdate
+    case blubberMessage
+}

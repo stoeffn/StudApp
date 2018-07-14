@@ -61,6 +61,8 @@ internal class ConversationViewController: MessagesViewController {
         update()
         iMessage()
 
+        navigationItem.title = "Lehrveranstaltung"
+
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             self.update()
         }
@@ -249,7 +251,7 @@ internal class ConversationViewController: MessagesViewController {
 extension ConversationViewController: MessagesDataSource {
 
     func currentSender() -> Sender {
-        return Sender(id: "205f3efb7997a0fc9755da2b535038da", displayName: "Testaccount Dozent")
+        return Sender(id: User.current!.id, displayName: User.current!.nameComponents.formatted())
     }
     
     func numberOfSections(in messagesCollectionView: MessagesCollectionView) -> Int {
@@ -422,7 +424,9 @@ extension ConversationViewController: MessageInputBarDelegate {
 
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
         ServiceContainer.default[StudIpService.self].sendMessage(id: "a07535cf2f8a72df33c12ddfa4b53dde", text: inputBar.inputTextView.text) { _ in
-            self.messagesCollectionView.scrollToBottom()
+            DispatchQueue.main.async {
+                self.messagesCollectionView.scrollToBottom()
+            }
         }
         inputBar.inputTextView.text = String()
     }

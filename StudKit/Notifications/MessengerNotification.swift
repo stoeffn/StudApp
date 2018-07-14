@@ -18,33 +18,49 @@
 
 public struct MessengerNotification: Codable {
     public enum CodingKeys: String, CodingKey {
+        case type
         case notification = "aps"
         case messageId
         case messageText
+        case contextType
+        case contextId
+        case contextTitle
         case threadId
-        case threadTitle
         case userId
         case userFullname
     }
 
+    let type = NotificationTypes.blubberMessage
     let notification: ApplePushNotification
     let messageId: String
     let messageText: String
+    let contextType: ContextTypes
+    let contextId: String
+    let contextTitle: String
     let threadId: String
-    let threadTitle: String
     let userId: String
     let userFullname: String
 
-
-    init(notification: ApplePushNotification, messageId: String, messageText: String, threadId: String, threadTitle: String,
-         userId: String, userFullname: String) {
+    init(notification: ApplePushNotification, messageId: String, messageText: String, contextId: String, contextType: ContextTypes,
+         contextTitle: String, threadId: String, userId: String, userFullname: String) {
         self.notification = notification
         self.messageId = messageId
         self.messageText = messageText
+        self.contextType = contextType
+        self.contextId = contextId
+        self.contextTitle = contextTitle
         self.threadId = threadId
-        self.threadTitle = threadTitle
         self.userId = userId
         self.userFullname = userFullname
+    }
+}
+
+extension MessengerNotification {
+    enum ContextTypes: String, Codable {
+        case course
+        case `private`
+        case `public`
+        case template = "{{context_type}}"
     }
 }
 
@@ -53,15 +69,17 @@ extension MessengerNotification {
         notification: ApplePushNotification(
             alert: ApplePushNotification.Alert(
                 titleKey: "Notifications.messageTitle",
-                titleArguments: ["{{von_name}}"],
+                titleArguments: ["{{context_name}}"],
                 bodyKey: "Notifications.messageBody",
-                bodyArguments: ["{{nachricht}}"]),
-            threadIdentifier: "{{thread_id}}-messages"),
-        messageId: "{{blubber_id}}",
-        messageText: "{{nachricht}}",
+                bodyArguments: ["{{user_name}}", "{{content}}"]),
+            threadIdentifier: "{{context_id}}-messages"),
+        messageId: "{{id}}",
+        messageText: "{{content}}",
+        contextId: "{{context_id}}",
+        contextType: ContextTypes.template,
+        contextTitle: "{{context_title}}",
         threadId: "{{thread_id}}",
-        threadTitle: "Thread Title",
-        userId: "{{von_id}}",
-        userFullname: "{{von_name}}")
+        userId: "{{user_id}}",
+        userFullname: "{{user_name}}")
 }
 

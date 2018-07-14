@@ -18,6 +18,7 @@
 
 public struct DocumentUpdateNotification: Codable {
     public enum CodingKeys: String, CodingKey {
+        case type
         case notification = "aps"
         case documentId
         case documentTitle
@@ -28,6 +29,7 @@ public struct DocumentUpdateNotification: Codable {
         case rangeTitle
     }
 
+    let type = NotificationTypes.documentUpdate
     let notification: ApplePushNotification
     let documentId: String
     let documentTitle: String
