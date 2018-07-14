@@ -26,6 +26,9 @@ public final class StorageService {
         guard let defaults = UserDefaults(suiteName: App.groupIdentifier) else {
             fatalError("Cannot initialize user defaults for app group with identifier '\(App.groupIdentifier)'")
         }
+        defaults.register(defaults: [
+            UserDefaults.Keys.areNotificationsEnabled.rawValue: true
+        ])
         return defaults
     }()
 

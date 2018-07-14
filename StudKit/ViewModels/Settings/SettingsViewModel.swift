@@ -61,11 +61,11 @@ public final class SettingsViewModel: NSObject {
 
     @objc public dynamic var areNotificationsEnabled = false {
         didSet {
+            guard allowsNotifications else { return areNotificationsEnabled = false }
+
             storageService.defaults.areNotificationsEnabled = areNotificationsEnabled
 
-            guard allowsNotifications else { return areNotificationsEnabled = false }
-            guard areNotificationsEnabled else { return }
-
+            if #available(iOS 12, *) { return }
             notificationService.requestAuthorization(options: notificationService.userNotificationAuthorizationsOptions) {
                 self.updateNotificationSettings()
             }

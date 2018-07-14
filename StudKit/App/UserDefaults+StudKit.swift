@@ -19,7 +19,7 @@
 // MARK: - Keys
 
 extension UserDefaults {
-    private enum Keys: String {
+    enum Keys: String {
         case areNotificationsEnabled, deviceToken, didRequestRatingAt, showsHiddenCourses, userId
     }
 }
