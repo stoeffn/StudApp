@@ -16,6 +16,7 @@
 //  along with this program. If not, see http://www.gnu.org/licenses/.
 //
 
+import StudKit
 import UserNotifications
 
 final class NotificationService: UNNotificationServiceExtension {
@@ -27,7 +28,13 @@ final class NotificationService: UNNotificationServiceExtension {
         content = (request.content.mutableCopy() as? UNMutableNotificationContent)
 
         guard let content = content else { return }
-        content.title = "\(content.title) [modified]"
+
+        if #available(iOSApplicationExtension 12.0, *) {
+            let ownerFullname = content.userInfo[DocumentUpdateNotification.CodingKeys.ownerFullname.rawValue] as? String
+            content.summaryArgumentCount = 1
+            content.summaryArgument = ownerFullname ?? content.summaryArgument
+        }
+
         contentHandler(content)
     }
 

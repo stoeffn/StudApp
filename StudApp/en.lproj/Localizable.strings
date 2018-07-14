@@ -21,4 +21,4 @@
 // MARK: Notifications
 
 "Notifications.documentUpdateTitle" = "%@";
-"Notifications.documentUpdateBody" = "\"%@\" was modified by %@";
+"Notifications.documentUpdateBody" = "%@ changed \"%@\".";

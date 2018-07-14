@@ -16,8 +16,8 @@
 //  along with this program. If not, see http://www.gnu.org/licenses/.
 //
 
-struct DocumentUpdateNotification: Codable {
-    enum CodingKeys: String, CodingKey {
+public struct DocumentUpdateNotification: Codable {
+    public enum CodingKeys: String, CodingKey {
         case notification = "aps"
         case documentId
         case documentTitle
@@ -66,7 +66,7 @@ extension DocumentUpdateNotification {
                 titleKey: "Notifications.documentUpdateTitle",
                 titleArguments: ["{{range_name}}"],
                 bodyKey: "Notifications.documentUpdateBody",
-                bodyArguments: ["{{name}}", "{{user_name}}"]),
+                bodyArguments: ["{{user_name}}", "{{name}}"]),
             isMutable: 1,
             threadIdentifier: "{{range_type}}-{{range_id}}-documents"),
         documentId: "{{id}}",
