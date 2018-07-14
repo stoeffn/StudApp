@@ -12,7 +12,7 @@
         <!--Messenger-->
         <scene sceneID="k1x-JH-5I2">
             <objects>
-                <tableViewController id="fKm-wj-oAN" sceneMemberID="viewController">
+                <tableViewController id="fKm-wj-oAN" customClass="MessengerController" customModule="StudApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="WfV-pg-F18">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
