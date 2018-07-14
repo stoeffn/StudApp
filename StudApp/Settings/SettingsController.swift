@@ -59,10 +59,10 @@ final class SettingsController: UITableViewController, Routable {
 
     private func observations(for viewModel: SettingsViewModel) -> Set<NSKeyValueObservation> {
         return [
-            viewModel.observe(\.allowsNotifications) { [weak self] (_, _) in
+            viewModel.observe(\.allowsNotifications) { [weak self] _, _ in
                 self?.view.setNeedsLayout()
             },
-            viewModel.observe(\.areNotificationsEnabled) { [weak self] (_, _) in
+            viewModel.observe(\.areNotificationsEnabled) { [weak self] _, _ in
                 self?.view.setNeedsLayout()
             },
         ]
@@ -87,7 +87,7 @@ final class SettingsController: UITableViewController, Routable {
         return section + 1
     }
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in _: UITableView) -> Int {
         return viewModel?.supportsNotifications ?? false ? 3 : 2
     }
 

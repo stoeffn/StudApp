@@ -41,7 +41,7 @@ public final class NotificationService {
     }
 
     public func requestAuthorization(options: UNAuthorizationOptions, completion: @escaping () -> Void) {
-        UNUserNotificationCenter.current().requestAuthorization(options: options) { (_, _) in
+        UNUserNotificationCenter.current().requestAuthorization(options: options) { _, _ in
             DispatchQueue.main.async { completion() }
         }
     }

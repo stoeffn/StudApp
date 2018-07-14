@@ -27,7 +27,7 @@ public final class StorageService {
             fatalError("Cannot initialize user defaults for app group with identifier '\(App.groupIdentifier)'")
         }
         defaults.register(defaults: [
-            UserDefaults.Keys.areNotificationsEnabled.rawValue: true
+            UserDefaults.Keys.areNotificationsEnabled.rawValue: true,
         ])
         return defaults
     }()

@@ -67,7 +67,7 @@ extension DocumentUpdateNotification {
                 titleArguments: ["{{range_name}}"],
                 bodyKey: "Notifications.documentUpdateBody",
                 bodyArguments: ["{{name}}", "{{user_name}}"]),
-                threadIdentifier: "{{range_type}}-{{range_id}}-documents"),
+            threadIdentifier: "{{range_type}}-{{range_id}}-documents"),
         documentId: "{{id}}",
         documentTitle: "{{name}}",
         ownerId: "{{user_id}}",

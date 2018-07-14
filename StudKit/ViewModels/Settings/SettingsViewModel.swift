@@ -24,9 +24,9 @@ public final class SettingsViewModel: NSObject {
     private let studIpService = ServiceContainer.default[StudIpService.self]
     private let storageService = ServiceContainer.default[StorageService.self]
 
-    override public init() {
+    public override init() {
         super.init()
-        self.areNotificationsEnabled = storageService.defaults.areNotificationsEnabled
+        areNotificationsEnabled = storageService.defaults.areNotificationsEnabled
     }
 
     // MARK: - Downloads

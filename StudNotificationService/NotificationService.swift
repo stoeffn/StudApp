@@ -25,12 +25,12 @@ final class NotificationService: UNNotificationServiceExtension {
     override func didReceive(_ request: UNNotificationRequest, withContentHandler contentHandler: @escaping (UNNotificationContent) -> Void) {
         self.contentHandler = contentHandler
         content = (request.content.mutableCopy() as? UNMutableNotificationContent)
-        
+
         guard let content = content else { return }
         content.title = "\(content.title) [modified]"
         contentHandler(content)
     }
-    
+
     override func serviceExtensionTimeWillExpire() {
         guard let contentHandler = contentHandler, let content = content else { return }
         contentHandler(content)

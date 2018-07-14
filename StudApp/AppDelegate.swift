@@ -106,7 +106,7 @@ extension AppDelegate: UIApplicationDelegate {
         }
     }
 
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+    func application(_: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         notificationService.deviceToken = deviceToken
     }
 
@@ -141,16 +141,17 @@ extension AppDelegate: UIApplicationDelegate {
 // MARK: - User Notifications
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
+
     // MARK: Receiving Notifications
 
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification,
+    func userNotificationCenter(_: UNUserNotificationCenter, willPresent _: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler(.alert)
     }
 
     // MARK: Displaying Notification Settings
 
-    func userNotificationCenter(_ center: UNUserNotificationCenter, openSettingsFor notification: UNNotification?) {
+    func userNotificationCenter(_: UNUserNotificationCenter, openSettingsFor _: UNNotification?) {
         guard studIpService.isSignedIn else { return }
         window?.rootViewController?.performSegue(withRoute: .settings)
     }
