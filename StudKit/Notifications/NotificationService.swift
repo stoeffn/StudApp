@@ -33,22 +33,10 @@ public final class NotificationService {
     public var deviceToken: Data? {
         didSet {
             storageService.defaults.deviceToken = deviceToken
+
+            guard deviceToken != oldValue else { return }
             updateOrCreateHooks()
         }
-    }
-
-    var apnsUrl: URL {
-        switch Distributions.current {
-        case .debug: return URL(string: "https://api.development.push.apple.com:443")!
-        default: return URL(string: "https://api.push.apple.com:443")!
-        }
-    }
-
-    func apnsUrl(forDeviceToken deviceToken: Data) -> URL {
-        return apnsUrl
-            .appendingPathComponent("3", isDirectory: true)
-            .appendingPathComponent("device", isDirectory: true)
-            .appendingPathComponent(deviceToken.hex, isDirectory: true)
     }
 
     public func requestAuthorization(options: UNAuthorizationOptions, completion: @escaping () -> Void) {
