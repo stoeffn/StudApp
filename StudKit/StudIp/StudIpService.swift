@@ -80,7 +80,7 @@ public class StudIpService {
 
     /// Removes the default credential used for authentication, replaces it with an empty credential, and clears the database.
     func signOut() {
-        ServiceContainer.default[NotificationService.self].deleteHooks()
+        ServiceContainer.default[HookService.self].deleteHooks()
 
         try? (api.authorizing as? PersistableApiAuthorizing)?.removeCredentials()
 
@@ -145,7 +145,7 @@ public class StudIpService {
             let result = Result(userResult.value, error: error)
             completion(result)
 
-            ServiceContainer.default[NotificationService.self].updateOrCreateHooks()
+            ServiceContainer.default[HookService.self].updateOrCreateHooks()
         }
     }
 

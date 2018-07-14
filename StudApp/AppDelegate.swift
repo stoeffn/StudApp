@@ -24,7 +24,7 @@ import UserNotifications
 final class AppDelegate: UIResponder {
     private var coreDataService: CoreDataService!
     private var historyService: PersistentHistoryService!
-    private var notificationService: NotificationService!
+    private var notificationService: HookService!
     private var studIpService: StudIpService!
 
     var window: UIWindow?
@@ -47,7 +47,7 @@ extension AppDelegate: UIApplicationDelegate {
 
         coreDataService = ServiceContainer.default[CoreDataService.self]
         historyService = ServiceContainer.default[PersistentHistoryService.self]
-        notificationService = ServiceContainer.default[NotificationService.self]
+        notificationService = ServiceContainer.default[HookService.self]
         studIpService = ServiceContainer.default[StudIpService.self]
 
         return true

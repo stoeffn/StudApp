@@ -18,7 +18,7 @@
 
 import UserNotifications
 
-public final class NotificationService {
+public final class HookService {
     private let jsonEncoder = ServiceContainer.default[JSONEncoder.self]
     private let storageService = ServiceContainer.default[StorageService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]

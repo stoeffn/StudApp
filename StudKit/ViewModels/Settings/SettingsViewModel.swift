@@ -20,7 +20,7 @@ import UserNotifications
 
 public final class SettingsViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
-    private let notificationService = ServiceContainer.default[NotificationService.self]
+    private let notificationService = ServiceContainer.default[HookService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]
     private let storageService = ServiceContainer.default[StorageService.self]
 
