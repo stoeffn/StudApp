@@ -108,6 +108,9 @@
 		245F770C20B5DCE0001FF052 /* MockStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245F770B20B5DCE0001FF052 /* MockStrings.swift */; };
 		2465E2D020FA09A000E8FF2E /* ApplePushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2465E2CF20FA09A000E8FF2E /* ApplePushNotification.swift */; };
 		2465E2D220FA0EDB00E8FF2E /* DocumentUpdateNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2465E2D120FA0EDB00E8FF2E /* DocumentUpdateNotification.swift */; };
+		2465E2DA20FA237200E8FF2E /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2465E2D920FA237200E8FF2E /* NotificationService.swift */; };
+		2465E2DE20FA237200E8FF2E /* StudNotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2465E2D720FA237100E8FF2E /* StudNotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2465E2E320FA23AF00E8FF2E /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		2467A8BC1FD307CE00F25720 /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2467A8BB1FD307CE00F25720 /* PreviewController.swift */; };
 		2469EF6F1FCF5BCB008A122B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2448D4131FA8DA2400DAB97E /* Assets.xcassets */; };
 		2469F810202CB8A0007FB3B6 /* PersistableApiAuthorizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469F80F202CB8A0007FB3B6 /* PersistableApiAuthorizing.swift */; };
@@ -354,6 +357,13 @@
 			remoteGlobalIDString = 2448D43E1FA8DB1E00DAB97E;
 			remoteInfo = StudKit;
 		};
+		2465E2DC20FA237200E8FF2E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2448D4011FA8DA2400DAB97E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2465E2D620FA237100E8FF2E;
+			remoteInfo = StudNotificationService;
+		};
 		247CC28E203896C70067207B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2448D4011FA8DA2400DAB97E /* Project object */;
@@ -397,6 +407,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				24D9EF9E1FB75819006776B7 /* StudFileProvider.appex in Embed App Extensions */,
+				2465E2DE20FA237200E8FF2E /* StudNotificationService.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -527,6 +538,10 @@
 		245F770B20B5DCE0001FF052 /* MockStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStrings.swift; sourceTree = "<group>"; };
 		2465E2CF20FA09A000E8FF2E /* ApplePushNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePushNotification.swift; sourceTree = "<group>"; };
 		2465E2D120FA0EDB00E8FF2E /* DocumentUpdateNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentUpdateNotification.swift; sourceTree = "<group>"; };
+		2465E2D720FA237100E8FF2E /* StudNotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = StudNotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		2465E2D920FA237200E8FF2E /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		2465E2DB20FA237200E8FF2E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2465E2E220FA238B00E8FF2E /* StudNotificationService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudNotificationService.entitlements; sourceTree = "<group>"; };
 		2467A8BB1FD307CE00F25720 /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
 		2469EF6A1FCF4D07008A122B /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 		2469F80F202CB8A0007FB3B6 /* PersistableApiAuthorizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistableApiAuthorizing.swift; sourceTree = "<group>"; };
@@ -768,6 +783,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2465E2D420FA237100E8FF2E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2465E2E320FA23AF00E8FF2E /* CloudKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		247CC285203896C70067207B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -934,6 +957,7 @@
 				247CC28A203896C70067207B /* StudKitUI */,
 				24D9EF831FB75818006776B7 /* StudFileProvider */,
 				243817901FC76BDC004052D0 /* StudFileProviderUI */,
+				2465E2D820FA237200E8FF2E /* StudNotificationService */,
 				2448D40A1FA8DA2400DAB97E /* Products */,
 				243817A01FC86203004052D0 /* Frameworks */,
 				2448D4131FA8DA2400DAB97E /* Assets.xcassets */,
@@ -954,6 +978,7 @@
 				2438178F1FC76BDC004052D0 /* StudFileProviderUI.appex */,
 				247CC289203896C70067207B /* StudKitUI.framework */,
 				24015C1020827E34000609A3 /* StudAppSnapshots.xctest */,
+				2465E2D720FA237100E8FF2E /* StudNotificationService.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1304,6 +1329,16 @@
 				244FC17020486EDF00A5304B /* OrganizationState.swift */,
 			);
 			path = Organizations;
+			sourceTree = "<group>";
+		};
+		2465E2D820FA237200E8FF2E /* StudNotificationService */ = {
+			isa = PBXGroup;
+			children = (
+				2465E2E220FA238B00E8FF2E /* StudNotificationService.entitlements */,
+				2465E2D920FA237200E8FF2E /* NotificationService.swift */,
+				2465E2DB20FA237200E8FF2E /* Info.plist */,
+			);
+			path = StudNotificationService;
 			sourceTree = "<group>";
 		};
 		2469EF691FCF4CDB008A122B /* Cells */ = {
@@ -2001,6 +2036,7 @@
 				2448D4531FA8DB1E00DAB97E /* PBXTargetDependency */,
 				24D9EF9D1FB75819006776B7 /* PBXTargetDependency */,
 				247CC28F203896C70067207B /* PBXTargetDependency */,
+				2465E2DD20FA237200E8FF2E /* PBXTargetDependency */,
 			);
 			name = StudApp;
 			productName = StudApp;
@@ -2081,6 +2117,23 @@
 			productReference = 2448D4471FA8DB1E00DAB97E /* StudKitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		2465E2D620FA237100E8FF2E /* StudNotificationService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2465E2DF20FA237200E8FF2E /* Build configuration list for PBXNativeTarget "StudNotificationService" */;
+			buildPhases = (
+				2465E2D320FA237100E8FF2E /* Sources */,
+				2465E2D420FA237100E8FF2E /* Frameworks */,
+				2465E2D520FA237100E8FF2E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StudNotificationService;
+			productName = StudNotificationService;
+			productReference = 2465E2D720FA237100E8FF2E /* StudNotificationService.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		247CC288203896C70067207B /* StudKitUI */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 247CC292203896C70067207B /* Build configuration list for PBXNativeTarget "StudKitUI" */;
@@ -2123,7 +2176,8 @@
 		2448D4011FA8DA2400DAB97E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0930;
+				DefaultBuildSystemTypeForWorkspace = Latest;
+				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = "Steffen Ryll";
 				TargetAttributes = {
@@ -2207,6 +2261,27 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2448D4081FA8DA2400DAB97E;
 					};
+					2465E2D620FA237100E8FF2E = {
+						CreatedOnToolsVersion = 10.0;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.DataProtection = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
+					};
 					247CC288203896C70067207B = {
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1000;
@@ -2259,6 +2334,7 @@
 				24D9EF811FB75818006776B7 /* StudFileProvider */,
 				2438178E1FC76BDC004052D0 /* StudFileProviderUI */,
 				24015C0F20827E34000609A3 /* StudAppSnapshots */,
+				2465E2D620FA237100E8FF2E /* StudNotificationService */,
 			);
 		};
 /* End PBXProject section */
@@ -2336,6 +2412,13 @@
 				248525AC20387AA300BC4CAB /* rootFolder.json in Resources */,
 				24D361631FAA641600BBBAED /* courseCollection+20.json in Resources */,
 				24D361621FAA641600BBBAED /* semesterCollection.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2465E2D520FA237100E8FF2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2644,6 +2727,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2465E2D320FA237100E8FF2E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2465E2DA20FA237200E8FF2E /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		247CC284203896C70067207B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2746,6 +2837,11 @@
 			isa = PBXTargetDependency;
 			target = 2448D43E1FA8DB1E00DAB97E /* StudKit */;
 			targetProxy = 2448D4521FA8DB1E00DAB97E /* PBXContainerItemProxy */;
+		};
+		2465E2DD20FA237200E8FF2E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2465E2D620FA237100E8FF2E /* StudNotificationService */;
+			targetProxy = 2465E2DC20FA237200E8FF2E /* PBXContainerItemProxy */;
 		};
 		247CC28F203896C70067207B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -3210,6 +3306,45 @@
 			};
 			name = Release;
 		};
+		2465E2E020FA237200E8FF2E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = StudNotificationService/StudNotificationService.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X63VKA93X8;
+				INFOPLIST_FILE = StudNotificationService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = SteffenRyll.StudApp.StudNotificationService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2465E2E120FA237200E8FF2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_ENTITLEMENTS = StudNotificationService/StudNotificationService.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X63VKA93X8;
+				INFOPLIST_FILE = StudNotificationService/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = SteffenRyll.StudApp.StudNotificationService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		247CC293203896C70067207B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3373,6 +3508,15 @@
 			buildConfigurations = (
 				2448D45B1FA8DB1E00DAB97E /* Debug */,
 				2448D45C1FA8DB1E00DAB97E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2465E2DF20FA237200E8FF2E /* Build configuration list for PBXNativeTarget "StudNotificationService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2465E2E020FA237200E8FF2E /* Debug */,
+				2465E2E120FA237200E8FF2E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
