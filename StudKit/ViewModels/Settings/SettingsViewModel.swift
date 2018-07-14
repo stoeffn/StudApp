@@ -53,13 +53,17 @@ public final class SettingsViewModel: NSObject {
 
     // MARK: - Notifications
 
-    @objc public private(set) dynamic var areNotificationsAllowed = false
+    public var supportsNotifications: Bool {
+        return User.current?.organization.supportsNotifications ?? false
+    }
+
+    @objc public private(set) dynamic var allowsNotifications = false
 
     @objc public dynamic var areNotificationsEnabled = false {
         didSet {
             storageService.defaults.areNotificationsEnabled = areNotificationsEnabled
 
-            guard areNotificationsAllowed else { return areNotificationsEnabled = false }
+            guard allowsNotifications else { return areNotificationsEnabled = false }
             guard areNotificationsEnabled else { return }
 
             notificationService.requestAuthorization(options: notificationService.userNotificationAuthorizationsOptions) {
@@ -71,8 +75,8 @@ public final class SettingsViewModel: NSObject {
     public func updateNotificationSettings() {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             DispatchQueue.main.async {
-                self.areNotificationsAllowed = settings.authorizationStatus != .denied
-                self.areNotificationsEnabled = self.areNotificationsEnabled && self.areNotificationsAllowed
+                self.allowsNotifications = settings.authorizationStatus != .denied
+                self.areNotificationsEnabled = self.areNotificationsEnabled && self.allowsNotifications
             }
         }
     }

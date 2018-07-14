@@ -96,4 +96,8 @@ extension Organization {
         let route = StudIpRoutes.setGroupForCourse(withId: "", andUserWithId: "", groupId: 0)
         return routesAvailability?.supports(route: route) ?? false
     }
+
+    public var supportsNotifications: Bool {
+        return routesAvailability?.supports(route: StudIpRoutes.deleteHook(withId: "")) ?? false
+    }
 }

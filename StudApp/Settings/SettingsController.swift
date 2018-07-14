@@ -57,7 +57,7 @@ final class SettingsController: UITableViewController, Routable {
 
     private func observations(for viewModel: SettingsViewModel) -> Set<NSKeyValueObservation> {
         return [
-            viewModel.observe(\.areNotificationsAllowed) { [weak self] (_, _) in
+            viewModel.observe(\.allowsNotifications) { [weak self] (_, _) in
                 self?.view.setNeedsLayout()
             },
             viewModel.observe(\.areNotificationsEnabled) { [weak self] (_, _) in
@@ -79,15 +79,22 @@ final class SettingsController: UITableViewController, Routable {
         case documents, notifications, account
     }
 
+    func adjustedSectionIndex(forSection section: Int) -> Int {
+        let supportsNotifications = viewModel?.supportsNotifications ?? false
+        guard !supportsNotifications, section > 0 else { return section }
+        return section + 1
+    }
+
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel?.supportsNotifications ?? false ? 3 : 2
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch Sections(rawValue: section) {
-        case .notifications? where !(viewModel?.areNotificationsEnabled ?? false): return 2
-        default: return super.tableView(tableView, numberOfRowsInSection: section)
-        }
+        return super.tableView(tableView, numberOfRowsInSection: adjustedSectionIndex(forSection: section))
     }
 
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch Sections(rawValue: section) {
+        switch Sections(rawValue: adjustedSectionIndex(forSection: section)) {
         case .documents?: return Strings.Terms.documents.localized
         case .notifications?: return "Notifications"
         case .account?, nil: return nil
@@ -95,7 +102,7 @@ final class SettingsController: UITableViewController, Routable {
     }
 
     override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
-        switch Sections(rawValue: section) {
+        switch Sections(rawValue: adjustedSectionIndex(forSection: section)) {
         case .documents?:
             return Strings.Callouts.downloadsSizeDisclaimer.localized
         case .account?:
@@ -107,6 +114,11 @@ final class SettingsController: UITableViewController, Routable {
         case nil:
             return nil
         }
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let adjustedIndexPath = IndexPath(row: indexPath.row, section: adjustedSectionIndex(forSection: indexPath.section))
+        return super.tableView(tableView, cellForRowAt: adjustedIndexPath)
     }
 
     // MARK: - Table View Delegate
@@ -130,7 +142,7 @@ final class SettingsController: UITableViewController, Routable {
 
     override func viewWillLayoutSubviews() {
         downloadsCell.detailTextLabel?.text = viewModel?.sizeOfDownloadsDirectory?.formattedAsByteCount ?? "—"
-        notificationsSwitch.isEnabled = viewModel?.areNotificationsAllowed ?? false
+        notificationsSwitch.isEnabled = viewModel?.allowsNotifications ?? false
         notificationsSwitch.isOn = viewModel?.areNotificationsEnabled ?? false
     }
 
