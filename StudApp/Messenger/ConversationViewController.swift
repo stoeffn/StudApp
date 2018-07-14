@@ -421,8 +421,10 @@ extension ConversationViewController: MessageLabelDelegate {
 extension ConversationViewController: MessageInputBarDelegate {
 
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
+        ServiceContainer.default[StudIpService.self].sendMessage(id: "a07535cf2f8a72df33c12ddfa4b53dde", text: inputBar.inputTextView.text) { _ in
+            self.messagesCollectionView.scrollToBottom()
+        }
         inputBar.inputTextView.text = String()
-        messagesCollectionView.scrollToBottom()
     }
 
 }

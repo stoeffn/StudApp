@@ -179,4 +179,10 @@ public class StudIpService {
             completion(result.map { $0.items })
         }
     }
+
+    public func sendMessage(id: String, text: String, completion: @escaping ResultHandler<Void>) {
+        api.request(.sendMessageToCourse(withId: id, message: text)) { (result: Result<Data>) in
+            completion(result.map { _ in () })
+        }
+    }
 }

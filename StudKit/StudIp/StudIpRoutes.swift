@@ -64,6 +64,8 @@ public enum StudIpRoutes: ApiRoutes {
 
     case messagesInCourse(withId: String)
 
+    case sendMessageToCourse(withId: String, message: String)
+
     var identifier: String {
         switch self {
         case .announcementsInCourse: return "/course/:course_id/news"
@@ -81,6 +83,7 @@ public enum StudIpRoutes: ApiRoutes {
         case .setGroupForCourse: return "/user/:user_id/courses/:course_id"
         case .updateOrCreateHook: return "/hooks"
         case .messagesInCourse: return ""
+        case .sendMessageToCourse: return ""
         }
     }
 
@@ -116,6 +119,8 @@ public enum StudIpRoutes: ApiRoutes {
             return "hooks"
         case let .messagesInCourse(courseId):
             return "course/\(courseId)/blubber"
+        case let .sendMessageToCourse(courseId, _):
+            return "course/\(courseId)/blubber"
         }
     }
 
@@ -144,6 +149,7 @@ public enum StudIpRoutes: ApiRoutes {
         case .setGroupForCourse: return nil
         case .updateOrCreateHook: return Hook.self
         case .messagesInCourse: return CollectionResponse<Message>.self
+        case .sendMessageToCourse: return nil
         }
     }
 
@@ -156,7 +162,7 @@ public enum StudIpRoutes: ApiRoutes {
             return .delete
         case .setGroupForCourse:
             return .patch
-        case .updateOrCreateHook:
+        case .updateOrCreateHook, .sendMessageToCourse:
             return .post
         }
     }
@@ -166,7 +172,7 @@ public enum StudIpRoutes: ApiRoutes {
         case .announcementsInCourse, .courses, .currentUser, .deleteHook, .discovery, .eventsForUser, .eventsInCourse, .folder,
              .fileContents, .profilePicture, .rootFolderForCourse, .semesters, .messagesInCourse:
             return nil
-        case .setGroupForCourse, .updateOrCreateHook:
+        case .setGroupForCourse, .updateOrCreateHook, .sendMessageToCourse:
             return "application/json"
         }
     }
@@ -178,6 +184,8 @@ public enum StudIpRoutes: ApiRoutes {
             return nil
         case let .setGroupForCourse(_, _, groupId):
             return "{\"group\": \(groupId)}".data(using: .utf8)
+        case let .sendMessageToCourse(courseId, text):
+            return "{\"content\": \"\(text)\"}".data(using: .utf8)
         case let .updateOrCreateHook(hook):
             return try? ServiceContainer.default[JSONEncoder.self].encode(hook)
         }
