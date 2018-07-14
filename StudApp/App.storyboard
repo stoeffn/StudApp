@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B8u-Ro-L8Q">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="B8u-Ro-L8Q">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14270.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -24,6 +24,7 @@
                         <segue destination="2bU-cg-kHC" kind="presentation" identifier="signIn" id="WBg-jL-T5h"/>
                         <segue destination="AZc-n8-OsC" kind="relationship" relationship="viewControllers" id="g3S-Ak-cad"/>
                         <segue destination="7zx-Ja-wvv" kind="relationship" relationship="viewControllers" id="ERR-J5-G4Y"/>
+                        <segue destination="GoL-h5-BgJ" kind="relationship" relationship="viewControllers" id="PNM-1t-k2S"/>
                         <segue destination="KYP-jD-J4O" kind="relationship" relationship="viewControllers" id="bFd-ds-8U0"/>
                     </connections>
                 </tabBarController>
@@ -77,6 +78,16 @@
             </objects>
             <point key="canvasLocation" x="119" y="375"/>
         </scene>
+        <!--Messenger-->
+        <scene sceneID="gf3-AN-aUj">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Messenger" id="GoL-h5-BgJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Messenger" image="MailTableViewGlyph" id="D4u-k5-F44"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="op1-C9-G5O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="395" y="379"/>
+        </scene>
         <!--Settings-->
         <scene sceneID="eg3-ct-J0P">
             <objects>
@@ -91,8 +102,9 @@
         <image name="CoursesTabBarGlyph" width="27" height="27"/>
         <image name="DownloadsLandscapeTabBarGlyph" width="20" height="20"/>
         <image name="DownloadsTabBarGlyph" width="28" height="28"/>
-        <image name="EventsLandscapeTabBarGlyph" width="17" height="17"/>
-        <image name="EventsTabBarGlyph" width="23" height="23"/>
+        <image name="EventsLandscapeTabBarGlyph" width="18" height="18"/>
+        <image name="EventsTabBarGlyph" width="25" height="25"/>
+        <image name="MailTableViewGlyph" width="24" height="24"/>
     </resources>
     <color key="tintColor" red="0.32941176470588235" green="0.50588235294117645" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

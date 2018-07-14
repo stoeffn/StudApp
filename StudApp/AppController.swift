@@ -118,7 +118,7 @@ final class AppController: UITabBarController {
     // MARK: - User Interface
 
     private enum Tabs: Int {
-        case courses, events, downloads
+        case courses, events, messenger, downloads
     }
 
     var coursesController: CourseListController? {

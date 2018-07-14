@@ -112,6 +112,7 @@
 		2465E2DE20FA237200E8FF2E /* StudNotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2465E2D720FA237100E8FF2E /* StudNotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2465E2E320FA23AF00E8FF2E /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		2465E2E620FA2B2000E8FF2E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2465E2E820FA2B2000E8FF2E /* Localizable.strings */; };
+		2465E2EC20FA3CB100E8FF2E /* Messenger.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2465E2EB20FA3CB100E8FF2E /* Messenger.storyboard */; };
 		2467A8BC1FD307CE00F25720 /* PreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2467A8BB1FD307CE00F25720 /* PreviewController.swift */; };
 		2469EF6F1FCF5BCB008A122B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2448D4131FA8DA2400DAB97E /* Assets.xcassets */; };
 		2469F810202CB8A0007FB3B6 /* PersistableApiAuthorizing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469F80F202CB8A0007FB3B6 /* PersistableApiAuthorizing.swift */; };
@@ -545,6 +546,7 @@
 		2465E2E220FA238B00E8FF2E /* StudNotificationService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StudNotificationService.entitlements; sourceTree = "<group>"; };
 		2465E2E720FA2B2000E8FF2E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2465E2E920FA2B2200E8FF2E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2465E2EB20FA3CB100E8FF2E /* Messenger.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Messenger.storyboard; sourceTree = "<group>"; };
 		2467A8BB1FD307CE00F25720 /* PreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewController.swift; sourceTree = "<group>"; };
 		2469EF6A1FCF4D07008A122B /* ActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCell.swift; sourceTree = "<group>"; };
 		2469F80F202CB8A0007FB3B6 /* PersistableApiAuthorizing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistableApiAuthorizing.swift; sourceTree = "<group>"; };
@@ -996,6 +998,7 @@
 				2450AC6F1FDC4036004F1267 /* Documents */,
 				24E626731FA920490040F9F7 /* Downloads */,
 				24E2AD1B1FF2CEDE001D3E27 /* Events */,
+				2465E2EA20FA3C8F00E8FF2E /* Messenger */,
 				241412E91FD30C8100DEE0AF /* Preview */,
 				248C0258202E58A0004CB8C9 /* Settings */,
 				247793581FC8901E00090F4D /* Semesters */,
@@ -1343,6 +1346,14 @@
 				2465E2DB20FA237200E8FF2E /* Info.plist */,
 			);
 			path = StudNotificationService;
+			sourceTree = "<group>";
+		};
+		2465E2EA20FA3C8F00E8FF2E /* Messenger */ = {
+			isa = PBXGroup;
+			children = (
+				2465E2EB20FA3CB100E8FF2E /* Messenger.storyboard */,
+			);
+			path = Messenger;
 			sourceTree = "<group>";
 		};
 		2469EF691FCF4CDB008A122B /* Cells */ = {
@@ -2372,6 +2383,7 @@
 				2448D4141FA8DA2400DAB97E /* Assets.xcassets in Resources */,
 				248C0269202E6393004CB8C9 /* Settings.storyboard in Resources */,
 				24E60B661FC8C749000EDD2A /* Downloads.storyboard in Resources */,
+				2465E2EC20FA3CB100E8FF2E /* Messenger.storyboard in Resources */,
 				24A6C14D1FD75C56004BBEA5 /* ColorPicker.storyboard in Resources */,
 				24ABFC481FD714AF00CD1646 /* Courses.storyboard in Resources */,
 				2450AC711FDC405E004F1267 /* Documents.storyboard in Resources */,
