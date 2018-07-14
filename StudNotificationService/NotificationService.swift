@@ -27,20 +27,24 @@ final class NotificationService: UNNotificationServiceExtension {
         self.contentHandler = contentHandler
         self.content = request.content
 
-        guard
-            let rawType = request.content.userInfo["type"] as? String,
-            let type = NotificationTypes(rawValue: rawType)
-        else { return contentHandler(request.content) }
+        guard let content = augmentedNotification(for: request.content) else { return self.content = nil }
+        contentHandler(content)
+    }
 
-        switch type {
-        case .documentUpdate:
-            contentHandler(augmentedDocumentUpdateNotification(for: request.content))
-        case .blubberMessage:
-            contentHandler(augmentedBlubberMessageNotification(for: request.content))
+    func augmentedNotification(for content: UNNotificationContent) -> UNNotificationContent? {
+        guard let type = content.userInfo["type"] as? String else { return content }
+
+        switch NotificationTypes(rawValue: type) {
+        case .documentUpdate?:
+            return augmentedDocumentUpdateNotification(for: content)
+        case .blubberMessage?:
+            return augmentedBlubberMessageNotification(for: content)
+        case nil:
+            return content
         }
     }
 
-    func augmentedDocumentUpdateNotification(for content: UNNotificationContent) -> UNNotificationContent {
+    func augmentedDocumentUpdateNotification(for content: UNNotificationContent) -> UNNotificationContent? {
         guard let mutableContent = content.mutableCopy() as? UNMutableNotificationContent else { return content }
         let ownerFullname = content.userInfo[DocumentUpdateNotification.CodingKeys.ownerFullname.rawValue] as? String
 
@@ -52,10 +56,13 @@ final class NotificationService: UNNotificationServiceExtension {
         return mutableContent
     }
 
-    func augmentedBlubberMessageNotification(for content: UNNotificationContent) -> UNNotificationContent {
+    func augmentedBlubberMessageNotification(for content: UNNotificationContent) -> UNNotificationContent? {
         guard let mutableContent = content.mutableCopy() as? UNMutableNotificationContent else { return content }
+        let change = content.userInfo[MessengerNotification.CodingKeys.changeType.rawValue] as? String
         let userFullname = content.userInfo[MessengerNotification.CodingKeys.userFullname.rawValue] as? String
         let text = content.userInfo[MessengerNotification.CodingKeys.messageText.rawValue] as? String
+
+        guard change != MessengerNotification.ChangeTypes.deleted.rawValue else { return nil }
 
         mutableContent.subtitle = userFullname ?? mutableContent.subtitle
         mutableContent.body = text ?? mutableContent.body

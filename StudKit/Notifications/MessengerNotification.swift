@@ -67,7 +67,7 @@ extension MessengerNotification {
     }
 }
 
-extension MessengerNotification {
+public extension MessengerNotification {
     enum ChangeTypes: String, Codable {
         case created
         case deleted
