@@ -16,7 +16,7 @@
 //  along with this program. If not, see http://www.gnu.org/licenses/.
 //
 
-// MARK: - StudApp
+// MARK: - StudKit
 
 // MARK: Actions
 
@@ -118,11 +118,6 @@
 "Formats.numberOfTimes" = "%dx";
 "Formats.range"         = "%@ – %@";
 "Formats.timeAgo"       = "vor %@";
-
-// MARK: Notifications
-
-"Notifications.documentUpdateTitle" = "\"%@\" wurde von %@ geändert";
-"Notifications.documentUpdateBody" = "%@";
 
 // MARK: States
 
