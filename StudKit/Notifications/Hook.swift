@@ -24,6 +24,7 @@ public struct Hook: Codable {
         case isImportant = "cronjob"
         case ifType = "if_type"
         case isEditable = "editable"
+        case thenType = "then_type"
         case thenSettings = "then_settings"
     }
 
@@ -33,16 +34,18 @@ public struct Hook: Codable {
     let isEditable: Bool
     let isImportant: Bool
     let ifType: IfTypes
+    let thenType: ThenTypes
     let thenSettings: ThenSettings
 
     init(id: String, title: String, isActive: Bool = true, isEditable: Bool = false, isImportant: Bool = false, ifType: IfTypes,
-         thenSettings: ThenSettings) {
+         thenType: ThenTypes, thenSettings: ThenSettings) {
         self.id = id
         self.title = title
         self.isActive = isActive
         self.isEditable = isEditable
         self.isImportant = isImportant
         self.ifType = ifType
+        self.thenType = thenType
         self.thenSettings = thenSettings
     }
 }
@@ -50,6 +53,12 @@ public struct Hook: Codable {
 extension Hook {
     enum IfTypes: String, Codable {
         case documentChange = "IfFilerefHook"
+    }
+}
+
+extension Hook {
+    enum ThenTypes: String, Codable {
+        case socketHook = "ThenSocketHook"
     }
 }
 

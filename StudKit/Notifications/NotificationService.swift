@@ -73,7 +73,7 @@ public final class NotificationService {
             }
         """
         let thenSettings = Hook.ThenSettings(url: apnsUrl(forDeviceToken: deviceToken), json: json)
-        return Hook(id: id, title: "StudApp: Files", ifType: .documentChange, thenSettings: thenSettings)
+        return Hook(id: id, title: "StudApp: Files", ifType: .documentChange, thenType: .socketHook, thenSettings: thenSettings)
     }
 
     var hooks: [Hook] {
