@@ -22,6 +22,7 @@ struct ApplePushNotification: Codable {
         case badgeNumber = "badge"
         case soundName = "sound"
         case isContentAvailable = "content-available"
+        case isMutable = "mutable-content"
         case categoryIdentifier = "category"
         case threadIdentifier = "thread-id"
     }
@@ -30,15 +31,17 @@ struct ApplePushNotification: Codable {
     let badgeNumber: Int?
     let soundName: String?
     let isContentAvailable: Int?
+    let isMutable: Int?
     let categoryIdentifier: String?
     let threadIdentifier: String?
 
     init(alert: Alert? = nil, badgeNumber: Int? = nil, soundName: String? = nil, isContentAvailable: Int? = nil,
-         categoryIdentifier: String? = nil, threadIdentifier: String? = nil) {
+         isMutable: Int? = nil, categoryIdentifier: String? = nil, threadIdentifier: String? = nil) {
         self.alert = alert
         self.badgeNumber = badgeNumber
         self.soundName = soundName
         self.isContentAvailable = isContentAvailable
+        self.isMutable = isMutable
         self.categoryIdentifier = categoryIdentifier
         self.threadIdentifier = threadIdentifier
     }
