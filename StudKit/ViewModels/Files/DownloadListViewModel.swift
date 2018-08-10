@@ -18,6 +18,16 @@
 
 import CoreData
 
+public final class FetchedDownloadsController: NSFetchedResultsController<File> {
+    override public func sectionIndexTitle(forSectionName sectionName: String) -> String? {
+        let name = sectionName
+            .components(separatedBy: "-")
+            .dropFirst()
+            .joined(separator: "-")
+        return super.sectionIndexTitle(forSectionName: name)
+    }
+}
+
 /// Manages a list of downloaded documents.
 ///
 /// In order to display initial data, you must call `fetch()`. Changes in the view context are automatically propagated to
@@ -40,7 +50,7 @@ public final class DownloadListViewModel: FetchedResultsControllerDataSource {
         controller.delegate = fetchedResultControllerDelegateHelper
     }
 
-    public private(set) lazy var controller: NSFetchedResultsController<File> = NSFetchedResultsController(
+    public private(set) lazy var controller: NSFetchedResultsController<File> = FetchedDownloadsController(
         fetchRequest: user.downloadsFetchRequest, managedObjectContext: coreDataService.viewContext,
         sectionNameKeyPath: "course.sectionId", cacheName: nil)
 
