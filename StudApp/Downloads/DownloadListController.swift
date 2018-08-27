@@ -31,11 +31,16 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         registerForPreviewing(with: self, sourceView: tableView)
 
         navigationItem.title = Strings.Terms.downloads.localized
-        navigationItem.rightBarButtonItem?.accessibilityLabel = Strings.Terms.more.localized
+        navigationItem.leftBarButtonItem = editButtonItem
+        navigationItem.rightBarButtonItems = [moreButton]
+
+        moreButton.accessibilityLabel = Strings.Terms.more.localized
+        removeButton.accessibilityLabel = Strings.Actions.remove.localized
 
         tableView.register(CourseHeader.self, forHeaderFooterViewReuseIdentifier: CourseHeader.typeIdentifier)
         tableView.estimatedRowHeight = FileCell.estimatedHeight
         tableView.estimatedSectionHeaderHeight = CourseHeader.estimatedHeight
+        tableView.allowsMultipleSelectionDuringEditing = true
 
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
@@ -212,6 +217,8 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let viewModel = viewModel else { fatalError() }
+        guard !tableView.isEditing else { return }
+
         let file = viewModel[rowAt: indexPath]
         let previewController = PreviewController()
         previewController.prepareContent(for: .preview(for: file, self))
@@ -233,6 +240,10 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
     // MARK: - User Interface
 
+    @IBOutlet var removeButton: UIBarButtonItem!
+
+    @IBOutlet var moreButton: UIBarButtonItem!
+
     @IBOutlet var emptyView: UIView!
 
     @IBOutlet var emptyViewTopConstraint: NSLayoutConstraint!
@@ -247,6 +258,11 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         searchController.searchResultsUpdater = self
         return searchController
     }()
+
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        navigationItem.rightBarButtonItems = [editing ? removeButton : moreButton]
+    }
 
     private func updateEmptyView() {
         guard view != nil else { return }
@@ -268,8 +284,18 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     // MARK: - User Interaction
 
     @IBAction
-    func userButtonTapped(_ sender: Any) {
+    func moreButtonTapped(_ sender: Any) {
         (tabBarController as? AppController)?.userButtonTapped(sender)
+    }
+
+    @IBAction
+    func removeButtonTapped(_ sender: Any) {
+        let controller = UIAlertController(confirmationWithAction: Strings.Actions.remove.localized, barButtonItem: removeButton) { _ in
+            self.tableView.indexPathsForSelectedRows?
+                .compactMap { self.viewModel?[rowAt: $0] }
+                .forEach { self.viewModel?.removeDownload($0) }
+        }
+        present(controller, animated: true, completion: nil)
     }
 }
 

@@ -64,6 +64,7 @@ public final class DownloadListViewModel: FetchedResultsControllerDataSource {
         try? controller.performFetch()
     }
 
+    @discardableResult
     public func removeDownload(_ file: File) -> Bool {
         do {
             try file.removeDownload()
