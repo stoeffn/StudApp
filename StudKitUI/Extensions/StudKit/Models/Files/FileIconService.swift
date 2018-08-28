@@ -19,26 +19,44 @@
 import StudKit
 
 public final class FileIconService {
-    private lazy var iconCache = NSCache<NSURL, UIImage>()
+    private lazy var iconForPathExtension = NSCache<NSString, UIImage>()
+    private var isUpdatingIconForPathExtension = Set<String>()
+    private var handlersForPathExtension = [String: [(UIImage) -> Void]]()
 
     public func icon(for file: File, completion: @escaping (UIImage) -> Void) {
         guard !file.isFolder else { return completion(#imageLiteral(resourceName: "FolderIcon")) }
 
-        let fileNameExtension = file.localUrl(in: .fileProvider).pathExtension
-        let dummyFileName = BaseDirectories.fileProvider.url.appendingPathComponent("dummy.\(fileNameExtension)")
+        let pathExtension = file.localUrl(in: .fileProvider).pathExtension
+        icon(forPathExtension: pathExtension, completion: completion)
+    }
 
-        if let icon = iconCache.object(forKey: dummyFileName as NSURL) { return completion(icon) }
+    public func icon(forPathExtension pathExtension: String, completion: @escaping (UIImage) -> Void) {
+        if let icon = iconForPathExtension.object(forKey: pathExtension as NSString) {
+            return completion(icon)
+        }
+
+        let isUpdating = isUpdatingIconForPathExtension.contains(pathExtension)
+        isUpdatingIconForPathExtension.insert(pathExtension)
+        handlersForPathExtension[pathExtension, default: []].append(completion)
+
+        guard !isUpdating else { return }
 
         DispatchQueue.global(qos: .utility).async {
-            let controller = UIDocumentInteractionController(url: dummyFileName)
-            controller.name = dummyFileName.absoluteString
-
-            guard let icon = controller.icons.first else { fatalError() }
+            let icon = self.icon(forPathExtension: pathExtension)
 
             DispatchQueue.main.async {
-                self.iconCache.setObject(icon, forKey: dummyFileName as NSURL)
-                completion(icon)
+                self.iconForPathExtension.setObject(icon, forKey: pathExtension as NSString)
+                self.handlersForPathExtension[pathExtension]?.forEach { $0(icon) }
+                self.handlersForPathExtension[pathExtension]?.removeAll()
+                self.isUpdatingIconForPathExtension.remove(pathExtension)
             }
         }
+    }
+
+    private func icon(forPathExtension pathExtension: String) -> UIImage {
+        let dummyFileName = BaseDirectories.fileProvider.url.appendingPathComponent("dummy.\(pathExtension)")
+        let controller = UIDocumentInteractionController(url: dummyFileName)
+        controller.name = dummyFileName.absoluteString
+        return controller.icons.first ?? #imageLiteral(resourceName: "FolderIcon")
     }
 }
