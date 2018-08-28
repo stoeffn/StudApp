@@ -80,6 +80,18 @@ public extension FetchedResultsControllerDataSource {
         return controller.sections?[index].numberOfObjects ?? 0
     }
 
+    public var numberOfRows: Int {
+        return controller.sections?
+            .reduce(0) { $0 + $1.numberOfObjects } ?? 0
+    }
+
+    public func index(for indexPath: IndexPath) -> Int {
+        let indexUntilSection = controller.sections?
+            .prefix(upTo: indexPath.section)
+            .reduce(0) { $0 + $1.numberOfObjects } ?? 0
+        return indexUntilSection + indexPath.row
+    }
+
     public subscript(sectionAt index: Int) -> Section {
         guard
             let sectionInfo = controller.sections?[index],
@@ -90,6 +102,22 @@ public extension FetchedResultsControllerDataSource {
 
     public subscript(rowAt indexPath: IndexPath) -> Row {
         return row(from: controller.object(at: indexPath))
+    }
+
+    public subscript(rowAt index: Int) -> Row {
+        var index = index
+
+        for section in 0 ..< numberOfSections {
+            guard index < numberOfRows(inSection: section) else {
+                index -= numberOfRows(inSection: section)
+                continue
+            }
+
+            let indexPath = IndexPath(row: index, section: section)
+            return row(from: controller.object(at: indexPath))
+        }
+
+        fatalError("Invalid index: \(index)")
     }
 
     public func indexPath(for row: Row) -> IndexPath? {

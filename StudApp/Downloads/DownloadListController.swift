@@ -222,6 +222,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         let file = viewModel[rowAt: indexPath]
         let previewController = PreviewController()
         previewController.prepareContent(for: .preview(for: file, self))
+        previewController.currentPreviewItemIndex = viewModel.index(for: indexPath)
         present(previewController, animated: true, completion: nil)
     }
 
@@ -357,5 +358,17 @@ extension DownloadListController: UIViewControllerPreviewingDelegate, QLPreviewC
             let cell = tableView.cellForRow(at: indexPath) as? FileCell
         else { return nil }
         return cell.iconView
+    }
+}
+
+// MARK: - QuickLook Previewing
+
+extension DownloadListController: QLPreviewControllerDataSource {
+    public func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
+        return viewModel?.numberOfRows ?? 0
+    }
+
+    public func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
+        return viewModel![rowAt: index]
     }
 }

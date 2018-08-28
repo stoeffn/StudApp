@@ -31,8 +31,6 @@ final class PreviewController: QLPreviewController, Routable {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        dataSource = self
-
         file.download { result in
             guard result.isSuccess else {
                 let title = result.error?.localizedDescription ?? Strings.Errors.downloadingDocument.localized(self.file.title)
@@ -70,6 +68,12 @@ final class PreviewController: QLPreviewController, Routable {
         guard case let .preview(for: file, delegate) = route else { fatalError() }
         self.file = file
         self.delegate = delegate
+
+        if let dataSource = delegate as? QLPreviewControllerDataSource {
+            self.dataSource = dataSource
+        } else {
+            dataSource = self
+        }
     }
 
     // MARK: - Supporting User Activities
