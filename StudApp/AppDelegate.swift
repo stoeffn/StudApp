@@ -24,7 +24,7 @@ import UserNotifications
 final class AppDelegate: UIResponder {
     private var coreDataService: CoreDataService!
     private var historyService: PersistentHistoryService!
-    private var notificationService: HookService!
+    private var hookService: HookService!
     private var studIpService: StudIpService!
 
     var window: UIWindow?
@@ -47,7 +47,7 @@ extension AppDelegate: UIApplicationDelegate {
 
         coreDataService = ServiceContainer.default[CoreDataService.self]
         historyService = ServiceContainer.default[PersistentHistoryService.self]
-        notificationService = ServiceContainer.default[HookService.self]
+        hookService = ServiceContainer.default[HookService.self]
         studIpService = ServiceContainer.default[StudIpService.self]
 
         return true
@@ -101,13 +101,13 @@ extension AppDelegate: UIApplicationDelegate {
             return UIApplication.shared.registerForRemoteNotifications()
         }
 
-        notificationService.requestAuthorization(options: notificationService.silentNotificationAuthorizationsOptions) {
+        hookService.requestAuthorization(options: hookService.silentNotificationAuthorizationsOptions) {
             UIApplication.shared.registerForRemoteNotifications()
         }
     }
 
     func application(_: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        notificationService.deviceToken = deviceToken
+        hookService.deviceToken = deviceToken
     }
 
     // MARK: Continuing User Activity and Handling Quick Actions

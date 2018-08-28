@@ -20,7 +20,7 @@ import UserNotifications
 
 public final class SettingsViewModel: NSObject {
     private let coreDataService = ServiceContainer.default[CoreDataService.self]
-    private let notificationService = ServiceContainer.default[HookService.self]
+    private let hookService = ServiceContainer.default[HookService.self]
     private let studIpService = ServiceContainer.default[StudIpService.self]
     private let storageService = ServiceContainer.default[StorageService.self]
 
@@ -64,9 +64,11 @@ public final class SettingsViewModel: NSObject {
             guard allowsNotifications else { return areNotificationsEnabled = false }
 
             storageService.defaults.areNotificationsEnabled = areNotificationsEnabled
+            hookService.updateHooks()
 
             if #available(iOS 12, *) { return }
-            notificationService.requestAuthorization(options: notificationService.userNotificationAuthorizationsOptions) {
+
+            hookService.requestAuthorization(options: hookService.userNotificationAuthorizationsOptions) {
                 self.updateNotificationSettings()
             }
         }

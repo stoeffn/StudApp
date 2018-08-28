@@ -145,7 +145,7 @@ public class StudIpService {
             let result = Result(userResult.value, error: error)
             completion(result)
 
-            ServiceContainer.default[HookService.self].updateOrCreateHooks()
+            ServiceContainer.default[HookService.self].updateHooks()
         }
     }
 
