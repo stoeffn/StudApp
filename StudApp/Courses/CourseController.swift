@@ -299,7 +299,7 @@ final class CourseController: UITableViewController, Routable {
     private func markAsNewSwipeAction(for annoucement: Announcement) -> UIContextualAction? {
         guard !annoucement.isNew else { return nil }
         let action = UIContextualAction(style: .normal, title: Strings.Actions.markAsNew.localized) { _, _, handler in
-            annoucement.isNew = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) { annoucement.isNew = true }
             handler(true)
         }
         action.backgroundColor = viewModel.course.color
@@ -311,7 +311,7 @@ final class CourseController: UITableViewController, Routable {
     private func markAsSeenSwipeAction(for annoucement: Announcement) -> UIContextualAction? {
         guard annoucement.isNew else { return nil }
         let action = UIContextualAction(style: .normal, title: Strings.Actions.markAsSeen.localized) { _, _, handler in
-            annoucement.isNew = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) { annoucement.isNew = false }
             handler(true)
         }
         action.backgroundColor = viewModel.course.color
@@ -323,7 +323,7 @@ final class CourseController: UITableViewController, Routable {
     private func markAsNewSwipeAction(for file: File) -> UIContextualAction? {
         guard !file.isFolder, !file.isNew else { return nil }
         let action = UIContextualAction(style: .normal, title: Strings.Actions.markAsNew.localized) { _, _, handler in
-            file.isNew = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) { file.isNew = true }
             handler(true)
         }
         action.backgroundColor = file.course.color
@@ -335,7 +335,7 @@ final class CourseController: UITableViewController, Routable {
     private func markAsSeenSwipeAction(for file: File) -> UIContextualAction? {
         guard !file.isFolder, file.isNew else { return nil }
         let action = UIContextualAction(style: .normal, title: Strings.Actions.markAsSeen.localized) { _, _, handler in
-            file.isNew = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) { file.isNew = false }
             handler(true)
         }
         action.backgroundColor = file.course.color
