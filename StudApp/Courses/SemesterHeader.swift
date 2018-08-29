@@ -101,7 +101,7 @@ final class SemesterHeader: UITableViewHeaderFooterView {
         addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTap(_:))))
 
         isAccessibilityElement = true
-        accessibilityTraits = UIAccessibilityTraits.button
+        accessibilityTraits.insert(.button)
     }
 
     private func setGlyphRotation(isCollapsed: Bool, animated: Bool = true) {

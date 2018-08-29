@@ -93,7 +93,7 @@ final class DateHeader: UITableViewHeaderFooterView {
         updateAppearance()
 
         isAccessibilityElement = true
-        accessibilityTraits = UIAccessibilityTraits.button
+        accessibilityTraits.insert(.button)
 
         NotificationCenter.default.addObserver(self, selector: #selector(reduceTransparencyDidChange(notification:)),
                                                name: UIAccessibility.reduceTransparencyStatusDidChangeNotification, object: nil)
