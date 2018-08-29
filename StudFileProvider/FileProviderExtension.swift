@@ -75,6 +75,8 @@ final class FileProviderExtension: NSFileProviderExtension {
     }
 
     override func enumerator(for containerItemIdentifier: NSFileProviderItemIdentifier) throws -> NSFileProviderEnumerator {
+        studIpService.loadCredentials()
+
         guard studIpService.isSignedIn else {
             throw NSFileProviderError(.notAuthenticated, userInfo: [
                 NSFileProviderError.reasonKey: NSFileProviderError.Reasons.notSignedIn.rawValue,

@@ -30,14 +30,7 @@ public class StudIpService {
 
     convenience init() {
         self.init(api: Api<StudIpRoutes>())
-
-        guard let currentUser = User.current else { return }
-        let oAuth1 = try? OAuth1<StudIpOAuth1Routes>(fromPersistedService: currentUser.objectIdentifier.rawValue)
-        let apiUrl = currentUser.organization.apiUrl
-        oAuth1?.baseUrl = apiUrl
-
-        api.baseUrl = apiUrl
-        api.authorizing = oAuth1
+        loadCredentials()
     }
 
     // MARK: - Authorizing
@@ -48,6 +41,17 @@ public class StudIpService {
     ///            credential being stored. Thus, the password might have changed in the meantime.
     public var isSignedIn: Bool {
         return api.authorizing?.isAuthorized ?? false
+    }
+
+    public func loadCredentials() {
+        guard let currentUser = User.current else { return }
+
+        let oAuth1 = try? OAuth1<StudIpOAuth1Routes>(fromPersistedService: currentUser.objectIdentifier.rawValue)
+        let apiUrl = currentUser.organization.apiUrl
+        oAuth1?.baseUrl = apiUrl
+
+        api.baseUrl = apiUrl
+        api.authorizing = oAuth1
     }
 
     func sign(into organization: Organization, authorizing: ApiAuthorizing, completion: @escaping ResultHandler<User>) {
