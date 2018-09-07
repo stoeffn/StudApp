@@ -70,7 +70,7 @@ final class CourseHeader: UITableViewHeaderFooterView {
         titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2).isActive = true
 
         isAccessibilityElement = true
-        accessibilityTraits = UIAccessibilityTraits.button
+        accessibilityTraits.insert(.button)
 
         if #available(iOS 11.0, *) {
             colorView.accessibilityIgnoresInvertColors = true

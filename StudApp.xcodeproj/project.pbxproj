@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		24015BFF20812862000609A3 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
-		24015C002081286A000609A3 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
-		24015C012081286D000609A3 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
-		24015C022081288C000609A3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245B6AD51FCB327800302CD0 /* StoreKit.framework */; };
 		24015C1320827E34000609A3 /* StudAppSnapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24015C1220827E34000609A3 /* StudAppSnapshots.swift */; };
 		24015C1A20827E41000609A3 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24015C0720826C54000609A3 /* SnapshotHelper.swift */; };
 		24015C1B2082815D000609A3 /* Distributions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DB13B2207BCDBD003B003E /* Distributions.swift */; };
@@ -87,6 +83,10 @@
 		244FC16F20483F0900A5304B /* SummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FC16E20483F0900A5304B /* SummaryCell.swift */; };
 		244FC17120486EDF00A5304B /* OrganizationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FC17020486EDF00A5304B /* OrganizationState.swift */; };
 		244FC17320486EEC00A5304B /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244FC17220486EEC00A5304B /* UserState.swift */; };
+		244FC773211C9B340084FE12 /* StudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2448D43F1FA8DB1E00DAB97E /* StudKit.framework */; };
+		244FC774211C9BC10084FE12 /* StudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2448D43F1FA8DB1E00DAB97E /* StudKit.framework */; };
+		244FC775211C9BC60084FE12 /* StudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2448D43F1FA8DB1E00DAB97E /* StudKit.framework */; };
+		244FC776211C9BC90084FE12 /* StudKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 247CC289203896C70067207B /* StudKitUI.framework */; };
 		2450AC6D1FDC1582004F1267 /* CourseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC6C1FDC1582004F1267 /* CourseViewModel.swift */; };
 		2450AC711FDC405E004F1267 /* Documents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2450AC701FDC405E004F1267 /* Documents.storyboard */; };
 		2450AC731FDC406F004F1267 /* FolderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2450AC721FDC406F004F1267 /* FolderController.swift */; };
@@ -110,7 +110,6 @@
 		2465E2D220FA0EDB00E8FF2E /* DocumentUpdateNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2465E2D120FA0EDB00E8FF2E /* DocumentUpdateNotification.swift */; };
 		2465E2DA20FA237200E8FF2E /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2465E2D920FA237200E8FF2E /* NotificationService.swift */; };
 		2465E2DE20FA237200E8FF2E /* StudNotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2465E2D720FA237100E8FF2E /* StudNotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		2465E2E320FA23AF00E8FF2E /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2446F9731FC8D16900D6AB6C /* CloudKit.framework */; };
 		2465E2E620FA2B2000E8FF2E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2465E2E820FA2B2000E8FF2E /* Localizable.strings */; };
 		2465E2EC20FA3CB100E8FF2E /* Messenger.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2465E2EB20FA3CB100E8FF2E /* Messenger.storyboard */; };
 		2465E2EE20FA3FF900E8FF2E /* MessengerNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2465E2ED20FA3FF900E8FF2E /* MessengerNotification.swift */; };
@@ -593,6 +592,10 @@
 		244FC16E20483F0900A5304B /* SummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCell.swift; sourceTree = "<group>"; };
 		244FC17020486EDF00A5304B /* OrganizationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationState.swift; sourceTree = "<group>"; };
 		244FC17220486EEC00A5304B /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
+		244FC76A211C9AF80084FE12 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		244FC76C211C9B030084FE12 /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
+		244FC76E211C9B0F0084FE12 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		244FC770211C9B180084FE12 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		2450AC6C1FDC1582004F1267 /* CourseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseViewModel.swift; sourceTree = "<group>"; };
 		2450AC701FDC405E004F1267 /* Documents.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Documents.storyboard; sourceTree = "<group>"; };
 		2450AC721FDC406F004F1267 /* FolderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderController.swift; sourceTree = "<group>"; };
@@ -892,7 +895,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24015BFF20812862000609A3 /* CloudKit.framework in Frameworks */,
+				244FC776211C9BC90084FE12 /* StudKitUI.framework in Frameworks */,
+				244FC775211C9BC60084FE12 /* StudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -943,6 +947,7 @@
 			files = (
 				24D612DA20FAA6AC0041FED0 /* StudKit.framework in Frameworks */,
 				2465E2E320FA23AF00E8FF2E /* CloudKit.framework in Frameworks */,
+				244FC773211C9B340084FE12 /* StudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -965,7 +970,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24015C002081286A000609A3 /* CloudKit.framework in Frameworks */,
+				244FC774211C9BC10084FE12 /* StudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1088,6 +1093,10 @@
 		243817A01FC86203004052D0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				244FC770211C9B180084FE12 /* MobileCoreServices.framework */,
+				244FC76E211C9B0F0084FE12 /* Foundation.framework */,
+				244FC76C211C9B030084FE12 /* CoreSpotlight.framework */,
+				244FC76A211C9AF80084FE12 /* CoreGraphics.framework */,
 				24A4B06020740BFC0019FFE1 /* FileProvider.framework */,
 				24C9BC832072D04300AF0D34 /* Swifter.framework */,
 				24A5BEEC2038D44D00F5F531 /* CoreData.framework */,

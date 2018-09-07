@@ -101,7 +101,8 @@ public extension Date {
     /// Returns the difference to `date`, formatted as a localized string that includes the units w/o seconds.
     public func formatted(asShortDifferenceFrom date: Date) -> String? {
         guard let differenceString = DateComponentsFormatter.short.string(from: self, to: date) else { return nil }
-        let localizedString = Strings.Formats.timeAgo.localized(differenceString)
+        let fixedDifferenceString = differenceString.components(separatedBy: ",").first ?? differenceString
+        let localizedString = Strings.Formats.timeAgo.localized(fixedDifferenceString)
         let fixedLocalizedString = try? localizedString.replacingMatches(for: "(?<=Jahre)|(?<=Monate)|(?<=Tage)", with: "n")
         return fixedLocalizedString ?? localizedString
     }

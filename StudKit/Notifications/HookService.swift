@@ -36,7 +36,7 @@ public final class HookService {
             storageService.defaults.deviceToken = deviceToken
 
             guard deviceToken != oldValue else { return }
-            updateOrCreateHooks()
+            updateHooks()
         }
     }
 
@@ -90,6 +90,14 @@ public final class HookService {
 
     func updateOrCreateHooks() {
         hooks.forEach { updateOrCreate(hook: $0) { _ in } }
+    }
+
+    func updateHooks() {
+        if storageService.defaults.areNotificationsEnabled {
+            updateOrCreateHooks()
+        } else {
+            deleteHooks()
+        }
     }
 
     func deleteHook(withId hookId: String, completion: @escaping ResultHandler<Void>) {

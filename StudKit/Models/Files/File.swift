@@ -254,6 +254,9 @@ extension File {
         activity.contentAttributeSet = searchableItemAttributes
         activity.keywords = keywords
         activity.objectIdentifier = objectIdentifier
+        if #available(iOSApplicationExtension 12.0, *) {
+            activity.isEligibleForPrediction = true
+        }
         return activity
     }
 }

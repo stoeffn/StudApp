@@ -28,7 +28,7 @@ final class ColorCell: UICollectionViewCell {
         clipsToBounds = false
 
         isAccessibilityElement = true
-        accessibilityTraits = UIAccessibilityTraits.button
+        accessibilityTraits.insert(.button)
 
         guard #available(iOS 11.0, *) else { return }
         glowView.accessibilityIgnoresInvertColors = true
