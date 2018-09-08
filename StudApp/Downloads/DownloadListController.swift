@@ -217,13 +217,22 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let viewModel = viewModel else { fatalError() }
-        guard !tableView.isEditing else { return }
+
+        guard !tableView.isEditing else {
+            updateRemoveButton()
+            return
+        }
 
         let file = viewModel[rowAt: indexPath]
         let previewController = PreviewController()
         previewController.prepareContent(for: .preview(for: file, self))
         previewController.currentPreviewItemIndex = viewModel.index(for: indexPath)
         present(previewController, animated: true, completion: nil)
+    }
+
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        guard tableView.isEditing else { return }
+        updateRemoveButton()
     }
 
     // MARK: - Data Source Delegate
@@ -262,6 +271,8 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
+
+        updateRemoveButton()
         navigationItem.rightBarButtonItems = [editing ? removeButton : moreButton]
     }
 
@@ -280,6 +291,10 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         if let navigationBarHeight = navigationController?.navigationBar.bounds.height {
             emptyViewTopConstraint.constant = navigationBarHeight * 2 + 32
         }
+    }
+
+    private func updateRemoveButton() {
+        removeButton.isEnabled = (tableView.indexPathsForSelectedRows?.count ?? 0) > 0
     }
 
     // MARK: - User Interaction
