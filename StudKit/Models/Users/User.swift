@@ -84,7 +84,7 @@ public final class User: NSManagedObject, CDCreatable, CDIdentifiable, CDSortabl
 // MARK: - Core Data Operations
 
 extension User {
-    private static var currentUserFromDefaults: User? {
+    static var currentUserFromDefaults: User? {
         guard Targets.current != .tests else { return nil }
 
         let coreDataService = ServiceContainer.default[CoreDataService.self]

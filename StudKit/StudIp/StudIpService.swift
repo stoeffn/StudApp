@@ -44,6 +44,7 @@ public class StudIpService {
     }
 
     public func loadCredentials() {
+        User.current = User.currentUserFromDefaults
         guard let currentUser = User.current else { return }
 
         let oAuth1 = try? OAuth1<StudIpOAuth1Routes>(fromPersistedService: currentUser.objectIdentifier.rawValue)
