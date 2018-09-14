@@ -40,8 +40,8 @@ final class StudAppSnapshots: XCTestCase {
             XCUIDevice.shared.orientation = .landscapeLeft
         }
 
-        app.buttons[MockStrings.Semesters.winter1718.localized(language: deviceLanguage)].tap()
-        app.buttons[MockStrings.Semesters.summer18.localized(language: deviceLanguage)].tap()
+        app.buttons[MockStrings.Semesters.winter1819.localized(language: deviceLanguage)].tap()
+        app.buttons[MockStrings.Semesters.summer19.localized(language: deviceLanguage)].tap()
 
         if app.runsOniPad {
             app.staticTexts[MockStrings.Courses.coding.localized(language: deviceLanguage)].tap()
@@ -58,7 +58,7 @@ final class StudAppSnapshots: XCTestCase {
             XCUIDevice.shared.orientation = .landscapeLeft
         }
 
-        app.buttons[MockStrings.Semesters.summer18.localized(language: deviceLanguage)].tap()
+        app.buttons[MockStrings.Semesters.summer19.localized(language: deviceLanguage)].tap()
         app.staticTexts[MockStrings.Courses.coding.localized(language: deviceLanguage)].tap()
 
         snapshot("02-Course")

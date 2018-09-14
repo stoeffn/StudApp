@@ -230,7 +230,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         present(previewController, animated: true, completion: nil)
     }
 
-    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didDeselectRowAt _: IndexPath) {
         guard tableView.isEditing else { return }
         updateRemoveButton()
     }
@@ -305,7 +305,7 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
     }
 
     @IBAction
-    func removeButtonTapped(_ sender: Any) {
+    func removeButtonTapped(_: Any) {
         let controller = UIAlertController(confirmationWithAction: Strings.Actions.remove.localized, barButtonItem: removeButton) { _ in
             self.tableView.indexPathsForSelectedRows?
                 .compactMap { self.viewModel?[rowAt: $0] }
@@ -379,11 +379,11 @@ extension DownloadListController: UIViewControllerPreviewingDelegate, QLPreviewC
 // MARK: - QuickLook Previewing
 
 extension DownloadListController: QLPreviewControllerDataSource {
-    public func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
+    public func numberOfPreviewItems(in _: QLPreviewController) -> Int {
         return viewModel?.numberOfRows ?? 0
     }
 
-    public func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
+    public func previewController(_: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
         return viewModel![rowAt: index]
     }
 }

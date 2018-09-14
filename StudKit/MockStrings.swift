@@ -50,7 +50,7 @@ public enum MockStrings {
     }
 
     public enum Semesters: String, Localizable {
-        case winter1617, summer17, winter1718, summer18
+        case winter1718, summer18, winter1819, summer19
     }
 
     public enum Users: String, Localizable {

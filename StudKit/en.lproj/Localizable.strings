@@ -221,10 +221,10 @@
 
 // MARK: Semesters
 
-"Semesters.winter1617"  = "Winter 2016/17";
-"Semesters.summer17"    = "Summer 2017";
 "Semesters.winter1718"  = "Winter 2017/18";
 "Semesters.summer18"    = "Summer 2018";
+"Semesters.winter1819"  = "Winter 2018/19";
+"Semesters.summer19"    = "Summer 2019";
 
 // MARK: Users
 

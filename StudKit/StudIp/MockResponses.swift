@@ -32,13 +32,13 @@ struct MockResponses {
     // MARK: - Semesters
 
     private(set) lazy var semesters = [
-        SemesterResponse(id: "S0", title: MockStrings.Semesters.winter1617.localized,
+        SemesterResponse(id: "S0", title: MockStrings.Semesters.winter1718.localized,
                          beginsAt: Date(timeIntervalSince1970: 1_475_338_860), endsAt: Date(timeIntervalSince1970: 1_488_388_860)),
-        SemesterResponse(id: "S1", title: MockStrings.Semesters.summer17.localized,
+        SemesterResponse(id: "S1", title: MockStrings.Semesters.summer18.localized,
                          beginsAt: Date(timeIntervalSince1970: 1_491_004_800), endsAt: Date(timeIntervalSince1970: 1_504_224_000)),
-        SemesterResponse(id: "S2", title: MockStrings.Semesters.winter1718.localized,
+        SemesterResponse(id: "S2", title: MockStrings.Semesters.winter1819.localized,
                          beginsAt: Date(timeIntervalSince1970: 1_504_282_860), endsAt: Date(timeIntervalSince1970: 1_519_924_860)),
-        SemesterResponse(id: "S3", title: MockStrings.Semesters.summer18.localized,
+        SemesterResponse(id: "S3", title: MockStrings.Semesters.summer19.localized,
                          beginsAt: Date(timeIntervalSince1970: 1_522_540_800), endsAt: Date(timeIntervalSince1970: 1_535_760_000)),
     ]
 

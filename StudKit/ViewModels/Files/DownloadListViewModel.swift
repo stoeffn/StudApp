@@ -19,7 +19,7 @@
 import CoreData
 
 public final class FetchedDownloadsController: NSFetchedResultsController<File> {
-    override public func sectionIndexTitle(forSectionName sectionName: String) -> String? {
+    public override func sectionIndexTitle(forSectionName sectionName: String) -> String? {
         let name = sectionName
             .components(separatedBy: "-")
             .dropFirst()

@@ -163,8 +163,7 @@ open class Snapshot: NSObject {
             waitForLoadingIndicatorToDisappear(within: timeout)
         }
 
-        // more information about this, check out https://docs.fastlane.tools/actions/snapshot/#how-does-it-work
-        print("snapshot: \(name)")
+        print("snapshot: \(name)") // more information about this, check out https://docs.fastlane.tools/actions/snapshot/#how-does-it-work
 
         sleep(1) // Waiting for the animation to be finished (kind of)
 
@@ -177,16 +176,9 @@ open class Snapshot: NSObject {
                 return
             }
 
-            guard let window = app.windows.allElementsBoundByIndex.first(where: { $0.frame.isEmpty == false }) else {
-                print("Couldn't find an element window in XCUIApplication with a non-empty frame.")
-                return
-            }
-
+            let window = app.windows.firstMatch
             let screenshot = window.screenshot()
-            guard
-                let simulator = ProcessInfo().environment["SIMULATOR_DEVICE_NAME"],
-                let screenshotsDir = screenshotsDirectory
-            else { return }
+            guard let simulator = ProcessInfo().environment["SIMULATOR_DEVICE_NAME"], let screenshotsDir = screenshotsDirectory else { return }
             let path = screenshotsDir.appendingPathComponent("\(simulator)-\(name).png")
             do {
                 try screenshot.pngRepresentation.write(to: path)
@@ -203,8 +195,7 @@ open class Snapshot: NSObject {
         #endif
 
         let networkLoadingIndicator = XCUIApplication().otherElements.deviceStatusBars.networkLoadingIndicators.element
-        let networkLoadingIndicatorDisappeared = XCTNSPredicateExpectation(
-            predicate: NSPredicate(format: "exists == false"), object: networkLoadingIndicator)
+        let networkLoadingIndicatorDisappeared = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: networkLoadingIndicator)
         _ = XCTWaiter.wait(for: [networkLoadingIndicatorDisappeared], timeout: timeout)
     }
 
@@ -278,7 +269,7 @@ private extension XCUIElementQuery {
     }
 
     var deviceStatusBars: XCUIElementQuery {
-        let deviceWidth = XCUIApplication().frame.width
+        let deviceWidth = XCUIApplication().windows.firstMatch.frame.width
 
         let isStatusBar = NSPredicate { evaluatedObject, _ in
             guard let element = evaluatedObject as? XCUIElementAttributes else { return false }
@@ -298,4 +289,4 @@ private extension CGFloat {
 
 // Please don't remove the lines below
 // They are used to detect outdated configuration files
-// SnapshotHelperVersion [1.10]
+// SnapshotHelperVersion [1.12]
