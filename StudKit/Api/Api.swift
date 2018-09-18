@@ -69,9 +69,9 @@ class Api<Routes: ApiRoutes> {
             return url
         }
 
-        guard let url = baseUrl?.appendingPathComponent(route.path) else { throw Errors.missingBaseUrl }
+        guard let url = URL(string: route.path, relativeTo: baseUrl) else { throw Errors.missingBaseUrl }
 
-        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: true)
         components?.queryItems = parameters
 
         guard let urlWithParameters = components?.url else {
