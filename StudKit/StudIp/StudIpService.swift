@@ -117,6 +117,8 @@ public class StudIpService {
     // MARK: - Updating
 
     func updateMainData(organization: Organization, forced: Bool = false, completion: @escaping ResultHandler<User>) {
+        guard let context = organization.managedObjectContext else { fatalError() }
+
         let group = DispatchGroup()
         var discoveryResult: Result<ApiRoutesAvailablity>!
         var userResult: Result<User>!
@@ -124,25 +126,35 @@ public class StudIpService {
         var coursesResult: Result<Set<Course>>?
 
         group.enter()
-        organization.updateDiscovery(forced: forced) { result in
-            discoveryResult = result
-            group.leave()
-        }
+        Organization.update(in: context) { _ in
+            context.performAndWait {
+                try? context.saveAndWaitWhenChanged()
+                self.api.baseUrl = organization.apiUrl
+            }
 
-        group.enter()
-        organization.updateCurrentUser(forced: forced) { result in
-            userResult = result
+            group.enter()
+            organization.updateDiscovery(forced: forced) { result in
+                discoveryResult = result
+                group.leave()
+            }
 
-            organization.updateSemesters(forced: forced) { result in
-                semesterResult = result
+            group.enter()
+            organization.updateCurrentUser(forced: forced) { result in
+                userResult = result
 
-                guard let user = userResult.value else { return group.leave() }
+                organization.updateSemesters(forced: forced) { result in
+                    semesterResult = result
 
-                user.updateAuthoredCourses(forced: forced) { result in
-                    coursesResult = result
-                    group.leave()
+                    guard let user = userResult.value else { return group.leave() }
+
+                    user.updateAuthoredCourses(forced: forced) { result in
+                        coursesResult = result
+                        group.leave()
+                    }
                 }
             }
+
+            group.leave()
         }
 
         group.notify(queue: .main) {
