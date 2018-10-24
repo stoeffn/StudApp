@@ -70,6 +70,7 @@ public final class HookService {
     // MARK: - Updating Hooks
 
     func updateOrCreate(hook: Hook, completion: @escaping ResultHandler<Hook>) {
+        guard User.current?.organization.supportsNotifications ?? false else { return }
         studIpService.api.requestDecoded(.updateOrCreateHook(hook)) { (result: Result<Hook>) in completion(result) }
     }
 
@@ -86,6 +87,7 @@ public final class HookService {
     }
 
     func deleteHook(withId hookId: String, completion: @escaping ResultHandler<Void>) {
+        guard User.current?.organization.supportsNotifications ?? false else { return }
         studIpService.api.request(.deleteHook(withId: hookId)) { completion($0.map { _ in }) }
     }
 
