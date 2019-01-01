@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Tv5-Vz-jtS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Tv5-Vz-jtS">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -60,7 +56,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Debug" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vJt-cd-ESa" customClass="BadgeLabel" customModule="StudKitUI">
-                                                    <rect key="frame" x="169" y="25" width="40" height="16"/>
+                                                    <rect key="frame" x="169" y="25.5" width="40" height="16"/>
                                                     <color key="backgroundColor" red="0.83921568629999999" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -70,12 +66,13 @@
                                             <constraints>
                                                 <constraint firstItem="vJt-cd-ESa" firstAttribute="baseline" secondItem="jQ0-8Q-JdH" secondAttribute="baseline" id="6mJ-0o-Kk9"/>
                                                 <constraint firstItem="jQ0-8Q-JdH" firstAttribute="leading" secondItem="DJi-Yk-Aot" secondAttribute="trailing" constant="8" id="JU5-kS-nUV"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="DUJ-55-7Tc" secondAttribute="trailing" id="Jh0-xD-om0"/>
                                                 <constraint firstItem="DJi-Yk-Aot" firstAttribute="leading" secondItem="YKI-T9-X1A" secondAttribute="leadingMargin" id="UfU-To-ham"/>
                                                 <constraint firstItem="DJi-Yk-Aot" firstAttribute="top" secondItem="YKI-T9-X1A" secondAttribute="topMargin" id="Z2l-ig-Rg1"/>
                                                 <constraint firstItem="DUJ-55-7Tc" firstAttribute="firstBaseline" secondItem="jQ0-8Q-JdH" secondAttribute="baseline" constant="24" symbolType="layoutAnchor" id="ccJ-KM-z2R"/>
                                                 <constraint firstItem="jQ0-8Q-JdH" firstAttribute="top" secondItem="YKI-T9-X1A" secondAttribute="topMargin" constant="8" id="iug-Q7-8eE"/>
                                                 <constraint firstItem="DJi-Yk-Aot" firstAttribute="bottom" secondItem="YKI-T9-X1A" secondAttribute="bottomMargin" priority="750" id="jWi-BU-HVl"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="DUJ-55-7Tc" secondAttribute="bottom" constant="8" id="kAE-Ks-i6h"/>
+                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="DUJ-55-7Tc" secondAttribute="bottom" constant="8" id="kAE-Ks-i6h"/>
                                                 <constraint firstItem="vJt-cd-ESa" firstAttribute="leading" secondItem="jQ0-8Q-JdH" secondAttribute="trailing" constant="4" id="tme-1n-7Gh"/>
                                                 <constraint firstItem="DUJ-55-7Tc" firstAttribute="leading" secondItem="jQ0-8Q-JdH" secondAttribute="leading" id="uJh-BC-86f"/>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="vJt-cd-ESa" secondAttribute="trailing" id="xra-rs-VFZ"/>
@@ -94,14 +91,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Website" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="U4I-Hx-8aq">
-                                                    <rect key="frame" x="56" y="0.0" width="284" height="43.5"/>
+                                                    <rect key="frame" x="55" y="0.0" width="285" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="WebsiteTableViewGlyph" id="ww9-aI-WYR">
-                                                    <rect key="frame" x="16" y="9" width="25" height="25"/>
+                                                    <rect key="frame" x="16" y="9" width="24" height="24"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <accessibility key="accessibilityConfiguration">
@@ -128,14 +125,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Privacy Policy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="GwE-6w-624">
-                                                    <rect key="frame" x="56" y="0.0" width="284" height="43.5"/>
+                                                    <rect key="frame" x="55" y="0.0" width="285" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="PrivacyTableViewGlyph" id="Hin-0r-WaT">
-                                                    <rect key="frame" x="16" y="9" width="25" height="25"/>
+                                                    <rect key="frame" x="16" y="9" width="24" height="24"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <accessibility key="accessibilityConfiguration">
@@ -162,14 +159,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="GitHub" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="oSM-1p-KqP">
-                                                    <rect key="frame" x="56" y="0.0" width="284" height="43.5"/>
+                                                    <rect key="frame" x="69" y="0.0" width="271" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="GitHubTableViewGlyph" id="jB5-UI-Ypj">
-                                                    <rect key="frame" x="16" y="9" width="25" height="25"/>
+                                                    <rect key="frame" x="16" y="2" width="38" height="38"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <accessibility key="accessibilityConfiguration">
@@ -200,14 +197,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Send Feedback" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="DJb-tD-zKr">
-                                                    <rect key="frame" x="56" y="0.0" width="303" height="43.5"/>
+                                                    <rect key="frame" x="55" y="0.0" width="304" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="MailTableViewGlyph" id="SYO-pf-jd9">
-                                                    <rect key="frame" x="16" y="9" width="25" height="25"/>
+                                                    <rect key="frame" x="16" y="9" width="24" height="24"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <accessibility key="accessibilityConfiguration">
@@ -234,14 +231,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Rate StudApp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="RxS-sA-OrP">
-                                                    <rect key="frame" x="56" y="0.0" width="303" height="43.5"/>
+                                                    <rect key="frame" x="55" y="0.0" width="304" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="RateTableViewGlyph" id="c9B-Ky-sgk">
-                                                    <rect key="frame" x="16" y="9" width="25" height="25"/>
+                                                    <rect key="frame" x="16" y="9" width="24" height="24"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <accessibility key="accessibilityConfiguration">
@@ -272,14 +269,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Leave a Tip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" id="Jd5-22-Tdj">
-                                                    <rect key="frame" x="56" y="0.0" width="303" height="43.5"/>
+                                                    <rect key="frame" x="55" y="0.0" width="304" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <color key="textColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="TipTableViewGlyph" id="wjL-jv-qGZ">
-                                                    <rect key="frame" x="16" y="9" width="25" height="25"/>
+                                                    <rect key="frame" x="16" y="9" width="24" height="24"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <accessibility key="accessibilityConfiguration">
@@ -391,12 +388,12 @@
     </scenes>
     <resources>
         <image name="AppIcon" width="512" height="512"/>
-        <image name="GitHubTableViewGlyph" width="25" height="25"/>
-        <image name="MailTableViewGlyph" width="25" height="25"/>
-        <image name="PrivacyTableViewGlyph" width="25" height="25"/>
-        <image name="RateTableViewGlyph" width="25" height="25"/>
-        <image name="TipTableViewGlyph" width="25" height="25"/>
-        <image name="WebsiteTableViewGlyph" width="25" height="25"/>
+        <image name="GitHubTableViewGlyph" width="37.5" height="37.5"/>
+        <image name="MailTableViewGlyph" width="24" height="24"/>
+        <image name="PrivacyTableViewGlyph" width="24" height="24"/>
+        <image name="RateTableViewGlyph" width="24" height="24"/>
+        <image name="TipTableViewGlyph" width="24" height="24"/>
+        <image name="WebsiteTableViewGlyph" width="24" height="24"/>
     </resources>
     <color key="tintColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
