@@ -89,9 +89,7 @@ I've made it very easy for you:
 2. Run `xcode-select --install` in your shell in order to install headers for `CommonCrypto`
 3. Run `brew install swiftlint` for installing an addtional Swift linting tool
 4. Run `brew install swiftformat` for installing a _Swift_ source code formatting tool
-5. Run `brew install carthage` for installing a simple, decentralized dependency manager for _Cocoa_
-6. Run `carthage update` to checkout and compile dependencies
-7. Open `StudApp/StudApp.xcodeproj`
+5. Open `StudApp/StudApp.xcodeproj`
 
 ## Trivia
 
