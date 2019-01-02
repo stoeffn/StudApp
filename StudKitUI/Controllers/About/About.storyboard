@@ -421,7 +421,7 @@
         <!--Logging-->
         <scene sceneID="cZZ-aq-wKO">
             <objects>
-                <tableViewController id="X2Z-VH-26N" sceneMemberID="viewController">
+                <tableViewController id="X2Z-VH-26N" customClass="LoggingController" customModule="StudKitUI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="dev-yJ-7kO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -430,7 +430,7 @@
                             <tableViewSection id="mf5-id-RUp">
                                 <string key="footerTitle">When enabled, StudApp will collect information to help troubleshoot problems with the app. For privacy reasons, this log will only be stored in memory. This means that it will not be persisted on your device or uploaded anywhere. Do not enable this option unless specifically instructed to.</string>
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="debugSettingCell" id="wwT-IU-9li" customClass="DebugSettingTableViewCell" customModule="NunavBus" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="debugSettingCell" id="wwT-IU-9li">
                                         <rect key="frame" x="0.0" y="35" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wwT-IU-9li" id="QgW-Ft-lDG">
@@ -445,6 +445,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="vVa-me-r3G">
                                                     <rect key="frame" x="310" y="6.5" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="inMemoryLogValueSwitchValueDidChange" destination="X2Z-VH-26N" eventType="valueChanged" id="qUQ-rD-YSC"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -461,7 +464,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Log" footerTitle="" id="ULq-UM-tzm">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="debugSettingCell" rowHeight="256" id="UC9-M3-qeR" customClass="DebugSettingTableViewCell" customModule="NunavBus" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="debugSettingCell" rowHeight="256" id="UC9-M3-qeR">
                                         <rect key="frame" x="0.0" y="234.5" width="375" height="256"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UC9-M3-qeR" id="ndo-TC-lLF">
@@ -494,8 +497,16 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Logging" id="CRN-Na-TMh">
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="Neq-Us-64k"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="Neq-Us-64k">
+                            <connections>
+                                <action selector="didTapActionButton" destination="X2Z-VH-26N" id="pFi-Dy-uUH"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="inMemoryLogSwitch" destination="vVa-me-r3G" id="vgP-DL-HzA"/>
+                        <outlet property="logTextView" destination="xY2-1V-XSB" id="KXU-Ie-fPi"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t8q-j3-FMf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

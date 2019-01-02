@@ -117,7 +117,7 @@ final class AboutController: UITableViewController, Routable {
 
     private let debugSettingsCellIndexPath = IndexPath(row: 1, section: Sections.app.rawValue)
 
-    var showsDebugSettings = false {
+    var showsDebugSettings = InMemoryLog.shared.isActive {
         didSet {
             tableView.beginUpdates()
             if showsDebugSettings {
