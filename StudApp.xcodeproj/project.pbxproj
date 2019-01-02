@@ -127,6 +127,8 @@
 		24712BF41FB8B80B0067E416 /* DateComponentsFormatter+Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BF11FB8B80A0067E416 /* DateComponentsFormatter+Shared.swift */; };
 		24712BF51FB8B80B0067E416 /* Date+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BF21FB8B80A0067E416 /* Date+Formatting.swift */; };
 		24712BF61FB8B80B0067E416 /* DateFormatter+Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BF31FB8B80B0067E416 /* DateFormatter+Shared.swift */; };
+		247267E321DD56500061126C /* InMemoryLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247267E221DD56500061126C /* InMemoryLog.swift */; };
+		247267E521DD57EE0061126C /* LoggingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247267E421DD57EE0061126C /* LoggingController.swift */; };
 		24798FBA20387DE300E87630 /* Result+ApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2448D4AE1FA8E0AB00DAB97E /* Result+ApiTests.swift */; };
 		24798FBB2038825C00E87630 /* StudIpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D3612C1FAA60E000BBBAED /* StudIpTests.swift */; };
 		24798FBC2038867A00E87630 /* NSFetchRequestResultUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D361321FAA632F00BBBAED /* NSFetchRequestResultUtilsTests.swift */; };
@@ -566,6 +568,8 @@
 		24712BF21FB8B80A0067E416 /* Date+Formatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Formatting.swift"; sourceTree = "<group>"; };
 		24712BF31FB8B80B0067E416 /* DateFormatter+Shared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Shared.swift"; sourceTree = "<group>"; };
 		24712BF71FB8CD0B0067E416 /* CachingFileProviderEnumerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingFileProviderEnumerator.swift; sourceTree = "<group>"; };
+		247267E221DD56500061126C /* InMemoryLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InMemoryLog.swift; sourceTree = "<group>"; };
+		247267E421DD57EE0061126C /* LoggingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingController.swift; sourceTree = "<group>"; };
 		247CC289203896C70067207B /* StudKitUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StudKitUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		247CC28B203896C70067207B /* StudKitUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StudKitUI.h; sourceTree = "<group>"; };
 		247CC28C203896C70067207B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1043,6 +1047,7 @@
 				2448D49C1FA8E07E00DAB97E /* Api */,
 				2457CDA6203F4C180021B31D /* App */,
 				2448D45F1FA8DC1D00DAB97E /* Extensions */,
+				247267E121DD56360061126C /* Logging */,
 				2457CDA4203F4BF80021B31D /* Keychain */,
 				24D360BE1FAA585B00BBBAED /* Models */,
 				241598C720F8DE410008076A /* Notifications */,
@@ -1372,6 +1377,14 @@
 				24BF7B6A1FF674100013BA23 /* FetchedResultsControllerSource.swift */,
 			);
 			path = DataSource;
+			sourceTree = "<group>";
+		};
+		247267E121DD56360061126C /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				247267E221DD56500061126C /* InMemoryLog.swift */,
+			);
+			path = Logging;
 			sourceTree = "<group>";
 		};
 		247793581FC8901E00090F4D /* Semesters */ = {
@@ -1894,6 +1907,7 @@
 			children = (
 				24EBC4371FCDCA4300181455 /* AboutController.swift */,
 				241C67E71FCDEA3700F4A099 /* ThanksNoteCell.swift */,
+				247267E421DD57EE0061126C /* LoggingController.swift */,
 				24EBC4351FCDCA3200181455 /* About.storyboard */,
 			);
 			path = About;
@@ -2580,6 +2594,7 @@
 				2469F810202CB8A0007FB3B6 /* PersistableApiAuthorizing.swift in Sources */,
 				2448D4971FA8DFB200DAB97E /* StudKitServiceProvider.swift in Sources */,
 				245F770820B5CB5C001FF052 /* Localizable.swift in Sources */,
+				247267E321DD56500061126C /* InMemoryLog.swift in Sources */,
 				24712BF41FB8B80B0067E416 /* DateComponentsFormatter+Shared.swift in Sources */,
 				24FD78701FBF826D0072F860 /* DownloadListViewModel.swift in Sources */,
 				24E2AD1D1FF2D5B0001D3E27 /* EventListViewModel.swift in Sources */,
@@ -2756,6 +2771,7 @@
 				247CC2B9203898500067207B /* FilledButton.swift in Sources */,
 				247CC29B203897C10067207B /* Routes.swift in Sources */,
 				247CC2B82038984D0067207B /* DateTabBarCell.swift in Sources */,
+				247267E521DD57EE0061126C /* LoggingController.swift in Sources */,
 				247CC2AE2038981F0067207B /* OrganizationCell.swift in Sources */,
 				247CC2BB203898570067207B /* StudIpActivityIndicator.swift in Sources */,
 				247CC2AA2038980E0067207B /* ThanksNoteCell.swift in Sources */,
