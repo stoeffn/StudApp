@@ -112,9 +112,16 @@ class Api<Routes: ApiRoutes> {
         do {
             let url = try self.url(for: route, parameters: parameters)
             let request = self.request(for: url, method: route.method, body: route.body, contentType: route.contentType)
+            InMemoryLog.shared.log("\(request)")
+
             let task = session.dataTask(with: request) { data, response, error in
                 let response = response as? HTTPURLResponse
-                completion(Result(data, error: error, statusCode: response?.statusCode))
+                let result = Result(data, error: error, statusCode: response?.statusCode)
+
+                InMemoryLog.shared.log(String(describing: response))
+                InMemoryLog.shared.log(String(data: data ?? Data(), encoding: .utf8) ?? "No data")
+
+                completion(result)
             }
             task.resume()
             return task
@@ -142,7 +149,9 @@ class Api<Routes: ApiRoutes> {
             fatalError("Trying to decode response from untyped API route '\(route)'.")
         }
         return request(route, parameters: parameters) { result in
-            completion(result.decoded(type))
+            let result = result.decoded(type)
+            InMemoryLog.shared.log(String(describing: result))
+            completion(result)
         }
     }
 
