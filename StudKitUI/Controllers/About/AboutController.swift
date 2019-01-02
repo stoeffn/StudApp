@@ -104,14 +104,35 @@ final class AboutController: UITableViewController, Routable {
         present(controller, animated: true, completion: nil)
     }
 
+    @IBAction
+    func debugSettingsRecognizerTriggered(_: Any) {
+        showsDebugSettings.toggle()
+    }
+
     // MARK: - Table View Data Source
 
     private enum Sections: Int {
         case app, links, feedback, tip, thanks
     }
 
+    private let debugSettingsCellIndexPath = IndexPath(row: 1, section: Sections.app.rawValue)
+
+    var showsDebugSettings = false {
+        didSet {
+            tableView.beginUpdates()
+            if showsDebugSettings {
+                tableView.insertRows(at: [debugSettingsCellIndexPath], with: .top)
+            } else {
+                tableView.deleteRows(at: [debugSettingsCellIndexPath], with: .top)
+            }
+            tableView.endUpdates()
+        }
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch Sections(rawValue: section) {
+        case .app? where !showsDebugSettings:
+            return super.tableView(tableView, numberOfRowsInSection: section) - 1
         case .thanks?:
             return viewModel.numberOfRows
         case .app?, .links?, .tip?, .feedback?, nil:
@@ -331,7 +352,7 @@ final class AboutController: UITableViewController, Routable {
     }
 }
 
-// MARK: - Composong Feedback
+// MARK: - Composing Feedback
 
 extension AboutController: MFMailComposeViewControllerDelegate {
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith _: MFMailComposeResult,
