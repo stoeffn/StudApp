@@ -33,7 +33,8 @@ public final class InMemoryLog {
 
     public func log(_ error: Error, file: StaticString = #file, line: UInt = #line) {
         guard isActive else { return }
-        logItems.append((date: Date(), file: file, line: line, message: String(describing: error)))
+        let message = "\(String(describing: error))—\(error.localizedDescription)"
+        logItems.append((date: Date(), file: file, line: line, message: message))
     }
 
     public var formattedLog: String {
