@@ -20,7 +20,6 @@
 import XCTest
 
 final class TransformsTests: XCTestCase {
-
     // MARK: - Transforming Id Paths
 
     func testTransformIdPath_IdPath() {

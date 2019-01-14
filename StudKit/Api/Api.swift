@@ -30,7 +30,6 @@
 /// - Remark: This class is not marked `final` in order to allow subclassing for mock implementations. Usually, you will not
 ///           need to subclass it.
 class Api<Routes: ApiRoutes> {
-
     // MARK: - Errors
 
     /// Custom errors that may occur additionally to error returned by `URLSession`.

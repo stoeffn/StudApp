@@ -20,7 +20,6 @@ import CoreData
 
 @objc(User)
 public final class User: NSManagedObject, CDCreatable, CDIdentifiable, CDSortable {
-
     // MARK: Identification
 
     public static let entity = ObjectIdentifier.Entites.user

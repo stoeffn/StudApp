@@ -41,7 +41,8 @@ public final class FileListViewModel: FetchedResultsControllerDataSourceSection 
 
     public private(set) lazy var controller: NSFetchedResultsController<File> = NSFetchedResultsController(
         fetchRequest: container.childFilesFetchRequest, managedObjectContext: coreDataService.viewContext,
-        sectionNameKeyPath: nil, cacheName: nil)
+        sectionNameKeyPath: nil, cacheName: nil
+    )
 
     /// Updates data from the server.
     public func update(forced: Bool = false, completion: (() -> Void)? = nil) {

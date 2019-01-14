@@ -20,7 +20,6 @@ import CoreData
 
 @objc(SemesterState)
 public final class SemesterState: NSManagedObject, CDCreatable, CDSortable {
-
     // MARK: Specifying Location
 
     @NSManaged public var semester: Semester

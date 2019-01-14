@@ -20,7 +20,6 @@
 import XCTest
 
 final class StringRegexTests: XCTestCase {
-
     // MARK: - Replacing Matches
 
     func testReplacingMatches_Match() {

@@ -26,7 +26,6 @@ import MobileCoreServices
 /// after at a certain point of time.
 @objc(Announcement)
 public final class Announcement: NSManagedObject, CDCreatable, CDIdentifiable, CDSortable {
-
     // MARK: Identification
 
     public static let entity = ObjectIdentifier.Entites.announcement

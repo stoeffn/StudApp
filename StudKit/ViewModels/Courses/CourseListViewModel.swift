@@ -60,7 +60,8 @@ public final class CourseListViewModel: FetchedResultsControllerDataSourceSectio
 
     public private(set) lazy var controller: NSFetchedResultsController<Course> = NSFetchedResultsController(
         fetchRequest: user.authoredCoursesFetchRequest(in: semester, includingHidden: showsHiddenCourses),
-        managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil
+    )
 
     /// Fetches initial data.
     public func fetch() {

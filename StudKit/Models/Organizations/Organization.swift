@@ -20,7 +20,6 @@ import CoreData
 
 @objc(Organization)
 public final class Organization: NSManagedObject, CDCreatable, CDIdentifiable, CDSortable {
-
     // MARK: Identification
 
     public static let entity = ObjectIdentifier.Entites.organization

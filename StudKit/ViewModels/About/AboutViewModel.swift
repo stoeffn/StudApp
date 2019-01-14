@@ -19,7 +19,6 @@
 import StoreKit
 
 public final class AboutViewModel: NSObject, SKProductsRequestDelegate {
-
     // MARK: - Life Cycle
 
     public override init() {

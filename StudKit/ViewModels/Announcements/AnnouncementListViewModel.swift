@@ -36,7 +36,8 @@ public final class AnnouncementListViewModel: FetchedResultsControllerDataSource
 
     public private(set) lazy var controller: NSFetchedResultsController<Announcement> = NSFetchedResultsController(
         fetchRequest: course.unexpiredAnnouncementsFetchRequest, managedObjectContext: coreDataService.viewContext,
-        sectionNameKeyPath: nil, cacheName: nil)
+        sectionNameKeyPath: nil, cacheName: nil
+    )
 
     public func update(forced: Bool = false, completion: (() -> Void)? = nil) {
         coreDataService.performBackgroundTask { context in

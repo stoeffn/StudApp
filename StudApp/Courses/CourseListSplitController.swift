@@ -19,7 +19,6 @@
 import StudKitUI
 
 final class CourseListSplitController: UISplitViewController {
-
     // MARK: - Life Cycle
 
     override func viewDidLoad() {

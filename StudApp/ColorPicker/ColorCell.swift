@@ -19,7 +19,6 @@
 import StudKit
 
 final class ColorCell: UICollectionViewCell {
-
     // MARK: - Life Cycle
 
     override func awakeFromNib() {

@@ -23,7 +23,6 @@ import QuickLook
 
 @objc(File)
 public final class File: NSManagedObject, CDCreatable, CDIdentifiable, CDSortable {
-
     // MARK: Location Types
 
     /// Describes where the content of a file is stored.

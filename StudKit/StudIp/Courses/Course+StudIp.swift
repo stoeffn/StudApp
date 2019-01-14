@@ -21,7 +21,6 @@ import CoreSpotlight
 import FileProvider
 
 extension Course {
-
     // MARK: - Updating Files
 
     public func updateChildFiles(forced: Bool = false, completion: @escaping ResultHandler<Set<File>>) {

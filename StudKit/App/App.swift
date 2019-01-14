@@ -20,11 +20,9 @@ import Foundation
 
 /// Provides constants regarding app information.
 public enum App {
-
     // MARK: - Urls
 
     public enum Urls {
-
         // MARK: Website
 
         public static let website = URL(string: "https://studapp.stoeffn.de/")!

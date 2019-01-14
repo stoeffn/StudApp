@@ -20,7 +20,6 @@ import CoreData
 
 @objc(OrganizationState)
 public final class OrganizationState: NSManagedObject, CDCreatable, CDSortable {
-
     // MARK: Specifying Location
 
     @NSManaged public var organization: Organization

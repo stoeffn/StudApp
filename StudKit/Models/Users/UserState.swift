@@ -20,7 +20,6 @@ import CoreData
 
 @objc(UserState)
 public final class UserState: NSManagedObject, CDCreatable, CDSortable {
-
     // MARK: Specifying Location
 
     @NSManaged public var user: User

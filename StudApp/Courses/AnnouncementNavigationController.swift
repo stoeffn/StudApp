@@ -19,7 +19,6 @@
 import StudKitUI
 
 final class AnnouncementNavigationController: UINavigationController {
-
     // MARK: - Dismissal
 
     override func dismiss(animated: Bool, completion: (() -> Void)? = nil) {

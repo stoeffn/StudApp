@@ -17,7 +17,6 @@
 //
 
 enum StudIp {
-
     // MARK: - Logic
 
     static func isNew(wasNew: Bool, locallyModifiedAt: Date?, modifiedAt: Date) -> Bool {

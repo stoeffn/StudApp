@@ -17,7 +17,6 @@
 //
 
 final class DateTabBarCell: UICollectionViewCell {
-
     // MARK: - Life Cycle
 
     override init(frame: CGRect) {

@@ -19,7 +19,6 @@
 import XCTest
 
 final class StudAppUITests: XCTestCase {
-
     // MARK: - Life Cycle
 
     override func setUp() {

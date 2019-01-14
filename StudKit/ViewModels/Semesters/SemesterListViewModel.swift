@@ -43,7 +43,8 @@ public final class SemesterListViewModel: FetchedResultsControllerDataSourceSect
 
     public private(set) lazy var controller: NSFetchedResultsController<SemesterState> = NSFetchedResultsController(
         fetchRequest: respectsHiddenStates ? organization.visibleSemesterStatesFetchRequest : organization.semesterStatesFetchRequest,
-        managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        managedObjectContext: coreDataService.viewContext, sectionNameKeyPath: nil, cacheName: nil
+    )
 
     public func row(from object: SemesterState) -> Semester {
         return object.semester

@@ -20,7 +20,6 @@
 import XCTest
 
 final class ResultTests: XCTestCase {
-
     // MARK: - Initializing
 
     func testInit_Value_Success() {

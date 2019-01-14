@@ -60,7 +60,8 @@ public final class HookService {
             title: "StudApp: Document Updates",
             ifType: .documentChange,
             thenType: .socketHook,
-            thenSettings: Hook.ThenSettings(json: json, deviceToken: deviceToken))
+            thenSettings: Hook.ThenSettings(json: json, deviceToken: deviceToken)
+        )
     }
 
     var hooks: [Hook] {

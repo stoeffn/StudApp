@@ -33,7 +33,6 @@ final class AppDelegate: UIResponder {
 // MARK: - Application Delegate
 
 extension AppDelegate: UIApplicationDelegate {
-
     // MARK: Initializing the App
 
     func application(_: UIApplication, willFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
@@ -141,7 +140,6 @@ extension AppDelegate: UIApplicationDelegate {
 // MARK: - User Notifications
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
-
     // MARK: Receiving Notifications
 
     func userNotificationCenter(_: UNUserNotificationCenter, willPresent _: UNNotification,

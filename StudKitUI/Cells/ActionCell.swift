@@ -17,7 +17,6 @@
 //
 
 public final class ActionCell: UITableViewCell {
-
     // MARK: - Life Cycle
 
     public override func awakeFromNib() {

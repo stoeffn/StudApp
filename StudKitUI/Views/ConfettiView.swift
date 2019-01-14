@@ -17,7 +17,6 @@
 //
 
 public final class ConfettiView: UIView {
-
     // MARK: - Life Cycle
 
     public override init(frame: CGRect) {

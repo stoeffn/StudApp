@@ -21,7 +21,6 @@ import UIKit
 /// A custom navigation controller has a transparent and borderless navigation bar and handles keeping a light blur effect
 /// beneath the status and navigation bar in order to make it legible at all times.
 public final class BorderlessNavigationController: UINavigationController {
-
     // MARK: - Life Cycle
 
     public override func viewDidLoad() {

@@ -20,7 +20,6 @@ import StudKit
 import StudKitUI
 
 final class AnnouncementCell: UITableViewCell {
-
     // MARK: - Life Cycle
 
     override func awakeFromNib() {

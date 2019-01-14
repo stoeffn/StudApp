@@ -20,7 +20,6 @@ import CoreData
 import CoreSpotlight
 
 extension User {
-
     // MARK: - Updating Courses
 
     func updateAuthoredCourses(forced: Bool = false, completion: @escaping ResultHandler<Set<Course>>) {

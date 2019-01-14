@@ -19,7 +19,6 @@
 import StudKitUI
 
 final class SummaryCell: UITableViewCell {
-
     // MARK: - User Interface
 
     @IBOutlet var textView: UITextView! {

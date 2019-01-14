@@ -21,7 +21,6 @@ import SafariServices
 import StudKit
 
 final class OrganizationListController: UITableViewController, Routable, DataSourceSectionDelegate {
-
     // MARK: - Life Cycle
 
     private var htmlContentService: HtmlContentService!

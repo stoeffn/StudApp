@@ -37,7 +37,8 @@ public final class EventListViewModel: FetchedResultsControllerDataSource {
 
     public private(set) lazy var controller: NSFetchedResultsController<Event> = NSFetchedResultsController(
         fetchRequest: container.eventsFetchRequest, managedObjectContext: coreDataService.viewContext,
-        sectionNameKeyPath: "daysSince1970", cacheName: nil)
+        sectionNameKeyPath: "daysSince1970", cacheName: nil
+    )
 
     public func section(from sectionInfo: NSFetchedResultsSectionInfo) -> Section? {
         return (sectionInfo.objects?.first as? Event)?.startsAt.startOfDay

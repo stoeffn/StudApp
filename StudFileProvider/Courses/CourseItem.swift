@@ -21,7 +21,6 @@ import MobileCoreServices
 import StudKit
 
 final class CourseItem: NSObject, NSFileProviderItem {
-
     // MARK: - Life Cycle
 
     init(from course: Course, childItemCount: Int?) {

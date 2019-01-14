@@ -19,7 +19,6 @@
 import StudKit
 
 final class CourseCell: UITableViewCell {
-
     // MARK: - Life Cycle
 
     override func awakeFromNib() {

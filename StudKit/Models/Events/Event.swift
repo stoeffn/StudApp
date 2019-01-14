@@ -20,7 +20,6 @@ import CoreData
 
 @objc(Event)
 public final class Event: NSManagedObject, CDCreatable, CDIdentifiable, CDSortable {
-
     // MARK: Identification
 
     public static let entity = ObjectIdentifier.Entites.event

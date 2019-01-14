@@ -21,7 +21,6 @@ import MobileCoreServices
 import StudKit
 
 final class RootItem: NSObject, NSFileProviderItem {
-
     // MARK: - Life Cycle
 
     override init() {

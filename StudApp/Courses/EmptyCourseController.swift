@@ -20,7 +20,6 @@ import StudKit
 import UIKit
 
 final class EmptyCourseController: UIViewController {
-
     // MARK: - Life Cycle
 
     override func viewDidLoad() {

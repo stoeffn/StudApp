@@ -19,7 +19,6 @@
 import CoreData
 
 extension Organization {
-
     // MARK: - Updating Discovery
 
     func updateDiscovery(forced: Bool = false, completion: @escaping ResultHandler<ApiRoutesAvailablity>) {

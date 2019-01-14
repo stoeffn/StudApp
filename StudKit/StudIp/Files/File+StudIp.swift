@@ -20,7 +20,6 @@ import CoreData
 import CoreSpotlight
 
 extension File {
-
     // MARK: - Updating Children
 
     public func updateChildFiles(forced: Bool = false, completion: @escaping ResultHandler<Set<File>>) {

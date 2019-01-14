@@ -25,7 +25,6 @@ import MobileCoreServices
 /// Besides containing some metadata such as a title and location, each course is alse the root node of a file structure.
 @objc(Course)
 public final class Course: NSManagedObject, CDCreatable, CDIdentifiable, CDSortable {
-
     // MARK: Identification
 
     public static let entity = ObjectIdentifier.Entites.course

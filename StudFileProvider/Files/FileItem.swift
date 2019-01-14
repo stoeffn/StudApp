@@ -21,7 +21,6 @@ import StudKit
 
 /// Represents a document or folder item.
 final class FileItem: NSObject, NSFileProviderItem {
-
     // MARK: - Life Cycle
 
     init(from file: File, childItemCount: Int?, parentItemIdentifier: NSFileProviderItemIdentifier) {

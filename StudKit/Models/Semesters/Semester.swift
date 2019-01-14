@@ -20,7 +20,6 @@ import CoreData
 
 @objc(Semester)
 public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDSortable {
-
     // MARK: Identifications
 
     public static let entity = ObjectIdentifier.Entites.semester

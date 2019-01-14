@@ -20,7 +20,6 @@ import CoreData
 
 @objc(FileState)
 public final class FileState: NSManagedObject, CDCreatable, CDSortable {
-
     // MARK: Specifying Location
 
     @NSManaged public var file: File

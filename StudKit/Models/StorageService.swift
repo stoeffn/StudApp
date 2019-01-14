@@ -19,7 +19,6 @@
 import MobileCoreServices
 
 public final class StorageService {
-
     // MARK: - User Defaults
 
     lazy var defaults: UserDefaults = {

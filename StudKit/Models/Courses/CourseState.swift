@@ -21,7 +21,6 @@ import CoreData
 /// Represents the current state of a course.
 @objc(CourseState)
 public final class CourseState: NSManagedObject, CDCreatable, CDSortable {
-
     // MARK: Specifying Location
 
     @NSManaged public var course: Course
