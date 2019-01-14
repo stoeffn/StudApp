@@ -64,7 +64,7 @@ public class StudIpService {
         api.baseUrl = organization.apiUrl
         api.authorizing = authorizing
 
-        updateMainData(organization: organization) { result in
+        updateMainData(organization: organization, forced: true) { result in
             guard let user = result.value else {
                 self.signOut()
                 return completion(result)
