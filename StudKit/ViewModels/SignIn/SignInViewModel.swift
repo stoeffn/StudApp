@@ -17,7 +17,6 @@
 //
 
 public final class SignInViewModel: NSObject {
-
     // MARK: - Errors
 
     @objc(SignInViewModelErrors)
@@ -69,19 +68,24 @@ public final class SignInViewModel: NSObject {
     // MARK: - Signing In
 
     public func startAuthorization() {
+        InMemoryLog.shared.log("Starting authorization…")
         updateCredentials()
     }
 
     public func finishAuthorization(with url: URL) {
+        InMemoryLog.shared.log("Finishing authorization…")
         state = .updatingAccessToken
         updateAccessToken(withCallbackUrl: url)
     }
 
     public func cancel() {
+        InMemoryLog.shared.log("Canceling authorization…")
         state = .canceled
     }
 
     public func retry() {
+        InMemoryLog.shared.log("Retrying authorization…")
+
         switch state {
         case .updatingCredentials:
             updateCredentials()
@@ -98,15 +102,21 @@ public final class SignInViewModel: NSObject {
     }
 
     private func updateCredentials() {
+        InMemoryLog.shared.log("Updating credentials…")
         guard state == .updatingCredentials else { fatalError() }
 
         organization.apiCredentials { result in
             guard let credentials = result.value else {
-                return self.error = result.error ?? Errors.invalidConsumerKey
+                let error = result.error ?? Errors.invalidConsumerKey
+                InMemoryLog.shared.log(error)
+                return self.error = error
             }
 
-            let oAuth1 = OAuth1<StudIpOAuth1Routes>(callbackUrl: App.Urls.signInCallback,
-                                                    consumerKey: credentials.consumerKey, consumerSecret: credentials.consumerSecret)
+            let oAuth1 = OAuth1<StudIpOAuth1Routes>(
+                callbackUrl: App.Urls.signInCallback,
+                consumerKey: credentials.consumerKey,
+                consumerSecret: credentials.consumerSecret
+            )
             oAuth1.baseUrl = self.organization.apiUrl
             self.oAuth1 = oAuth1
 
@@ -116,11 +126,14 @@ public final class SignInViewModel: NSObject {
     }
 
     private func updateRequestToken() {
+        InMemoryLog.shared.log("Updating request token…")
         guard state == .updatingRequestToken, let oAuth1 = oAuth1 else { fatalError() }
 
         oAuth1.createRequestToken { result in
             guard let url = self.oAuth1?.authorizationUrl else {
-                return self.error = result.error ?? Errors.invalidConsumerKey
+                let error = result.error ?? Errors.invalidConsumerKey
+                InMemoryLog.shared.log(error)
+                return self.error = error
             }
 
             self.authorizationUrl = url
@@ -129,11 +142,13 @@ public final class SignInViewModel: NSObject {
     }
 
     private func updateAccessToken(withCallbackUrl url: URL) {
+        InMemoryLog.shared.log("Updating access token…")
         guard state == .updatingAccessToken, let oAuth1 = oAuth1 else { fatalError() }
 
         oAuth1.createAccessToken(fromAuthorizationCallbackUrl: url) { result in
             guard result.isSuccess else {
                 let error = result.error ?? Errors.authorizationFailed
+                InMemoryLog.shared.log(error)
                 guard case OAuth1<StudIpOAuth1Routes>.Errors.missingVerifier = error else { return self.error = error }
                 return self.cancel()
             }
@@ -144,11 +159,14 @@ public final class SignInViewModel: NSObject {
     }
 
     private func signIn() {
+        InMemoryLog.shared.log("Signing in…")
         guard state == .signingIn, let oAuth1 = oAuth1 else { fatalError() }
 
         studIpService.sign(into: organization, authorizing: oAuth1) { result in
             guard result.isSuccess else {
-                return self.error = result.error ?? Errors.authorizationFailed
+                let error = result.error ?? Errors.authorizationFailed
+                InMemoryLog.shared.log(error)
+                return self.error = error
             }
 
             self.state = .signedIn

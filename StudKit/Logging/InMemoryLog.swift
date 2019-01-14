@@ -17,7 +17,7 @@
 //
 
 public final class InMemoryLog {
-    var logItems: [(date: Date, message: String)] = []
+    var logItems: [(date: Date, file: StaticString, line: UInt, message: String)] = []
 
     public var isActive = false {
         didSet {
@@ -26,14 +26,19 @@ public final class InMemoryLog {
         }
     }
 
-    public func log(_ message: String) {
+    public func log(_ message: String, file: StaticString = #file, line: UInt = #line) {
         guard isActive else { return }
-        logItems.append((date: Date(), message: message))
+        logItems.append((date: Date(), file: file, line: line, message: message))
+    }
+
+    public func log(_ error: Error, file: StaticString = #file, line: UInt = #line) {
+        guard isActive else { return }
+        logItems.append((date: Date(), file: file, line: line, message: String(describing: error)))
     }
 
     public var formattedLog: String {
         return logItems
-            .map { "[\($0.date)]: \($0.message)" }
+            .map { "[\($0.date) @ \($0.file):\($0.line)]: \($0.message)" }
             .joined(separator: "\n")
     }
 

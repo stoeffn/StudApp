@@ -96,8 +96,11 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
     func decodeParameters(fromResponseData data: Data) throws -> [CodingKeys: String] {
         guard let response = String(data: data, encoding: .utf8) else {
             let context = DecodingError.Context(codingPath: [], debugDescription: "Data could not be converted to string.")
-            throw DecodingError.dataCorrupted(context)
+            let error = DecodingError.dataCorrupted(context)
+            InMemoryLog.shared.log(String(describing: error))
+            throw error
         }
+
         let keysAndValues = response
             .split(separator: "&")
             .map(String.init)
@@ -119,12 +122,17 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
     /// - Precondition: You must first create a request token. Otherwise, this property is `nil`.
     var authorizationUrl: URL? {
         let parameters = [URLQueryItem(name: CodingKeys.token.rawValue, value: token)]
-        return try? api.url(for: .authorize, parameters: parameters)
+        let url = try? api.url(for: .authorize, parameters: parameters)
+        InMemoryLog.shared.log("Authorization URL: \(String(describing: url))")
+        return url
     }
 
     /// Creates a request token that can be used for asking a user for permissions.
     func createRequestToken(completion: @escaping ResultHandler<Void>) {
-        guard !isAuthorized else { return completion(.failure(Errors.alreadyAuthorized)) }
+        guard !isAuthorized else {
+            InMemoryLog.shared.log(Errors.alreadyAuthorized)
+            return completion(.failure(Errors.alreadyAuthorized))
+        }
 
         api.request(.requestToken) { result in
             DispatchQueue.main.async {
@@ -134,15 +142,22 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
     }
 
     func createAccessToken(fromAuthorizationCallbackUrl url: URL, completion: @escaping ResultHandler<Void>) {
-        guard !isAuthorized else { return completion(.failure(Errors.alreadyAuthorized)) }
+        InMemoryLog.shared.log("Authorization Callback URL: \(url)")
+
+        guard !isAuthorized else {
+            InMemoryLog.shared.log(Errors.alreadyAuthorized)
+            return completion(.failure(Errors.alreadyAuthorized))
+        }
 
         guard let verifier = decodeVerifier(fromAuthorizationCallbackUrl: url) else {
+            InMemoryLog.shared.log(Errors.missingVerifier)
             return completion(.failure(Errors.missingVerifier))
         }
         self.verifier = verifier
 
         api.request(.accessToken) { result in
             DispatchQueue.main.async {
+                InMemoryLog.shared.log(String(describing: result))
                 self.isAuthorized = result.isSuccess
                 self.handleResponse(result: result, completion: completion)
             }
@@ -159,6 +174,7 @@ final class OAuth1<Routes: OAuth1Routes>: ApiAuthorizing {
             tokenSecret = parameters[.tokenSecret]
             completion(.success(()))
         } catch {
+            InMemoryLog.shared.log(error)
             completion(.failure(error))
         }
     }

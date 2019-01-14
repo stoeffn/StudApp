@@ -117,6 +117,7 @@ public class StudIpService {
     // MARK: - Updating
 
     func updateMainData(organization: Organization, forced: Bool = false, completion: @escaping ResultHandler<User>) {
+        InMemoryLog.shared.log("Updating main data…")
         guard let context = organization.managedObjectContext else { fatalError() }
 
         let group = DispatchGroup()
@@ -125,6 +126,7 @@ public class StudIpService {
         var semesterResult: Result<Set<Semester>>!
         var coursesResult: Result<Set<Course>>?
 
+        InMemoryLog.shared.log("Updating organization…")
         group.enter()
         Organization.update(in: context) { _ in
             context.performAndWait {
@@ -132,21 +134,25 @@ public class StudIpService {
                 self.api.baseUrl = organization.apiUrl
             }
 
+            InMemoryLog.shared.log("Updating discovery…")
             group.enter()
             organization.updateDiscovery(forced: forced) { result in
                 discoveryResult = result
                 group.leave()
             }
 
+            InMemoryLog.shared.log("Updating current user…")
             group.enter()
             organization.updateCurrentUser(forced: forced) { result in
                 userResult = result
 
+                InMemoryLog.shared.log("Updating semesters…")
                 organization.updateSemesters(forced: forced) { result in
                     semesterResult = result
 
                     guard let user = userResult.value else { return group.leave() }
 
+                    InMemoryLog.shared.log("Updating authored courses…")
                     user.updateAuthoredCourses(forced: forced) { result in
                         coursesResult = result
                         group.leave()
@@ -159,8 +165,8 @@ public class StudIpService {
 
         group.notify(queue: .main) {
             let error = discoveryResult.error ?? userResult.error ?? semesterResult.error ?? coursesResult?.error
-            let result = Result(userResult.value, error: error)
-            completion(result)
+            InMemoryLog.shared.log(String(describing: error))
+            completion(Result(userResult.value, error: error))
 
             ServiceContainer.default[HookService.self].updateHooks()
         }

@@ -118,6 +118,7 @@ class Api<Routes: ApiRoutes> {
                 let response = response as? HTTPURLResponse
                 let result = Result(data, error: error, statusCode: response?.statusCode)
 
+                InMemoryLog.shared.log(String(describing: error))
                 InMemoryLog.shared.log(String(describing: response))
                 InMemoryLog.shared.log(String(data: data ?? Data(), encoding: .utf8) ?? "No data")
 
