@@ -97,6 +97,6 @@ extension Organization {
     }
 
     public var supportsNotifications: Bool {
-        return routesAvailability?.supports(route: StudIpRoutes.deleteHook(withId: "")) ?? false
+        return false // Disable globally for now
     }
 }
