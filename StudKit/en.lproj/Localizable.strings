@@ -68,7 +68,7 @@
 "Callouts.noUpcomingEvents"         = "No Upcoming Events";
 "Callouts.rateManually"             = "It would be kind if you rated StudApp anyway by opening the App Store manually.";
 "Callouts.signedInAsAt"             = "Signed in as %@ at %@";
-"Callouts.studAppDisclaimer"        = "StudApp is free for all kinds of organizations!\n\nIt just needs to be activated by an admin of your organization.\nPlease contact me at %@ if you would like to support StudApp.\n\nNote that StudApp requires Stud.IP 4 or newer.";
+"Callouts.studAppDisclaimer"        = "StudApp is free for all kinds of organizations!\n\nIt just needs to be activated by an administrator of your organization. If you're a student, this means that you should contact your Stud.IP helpdesk and ask them to enable StudApp. The website at %@ has information on how to activate StudApp.";
 "Callouts.supportersDisclaimer"     = "Without you, this app could not exist. Thank you ❤️";
 "Callouts.tipLater"                 = "It would be kind if you retried in a little bit.";
 "Callouts.tippingDisclaimer"        = "If you really like this app you can leave a tip to support further development. Thank you so much for even considering!";

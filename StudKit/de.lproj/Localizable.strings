@@ -53,7 +53,7 @@
 "Callouts.noCourseSubtitle"         = "Wähle links eine Veranstaltung aus, um zu beginnen.";
 "Callouts.noDocuments"              = "Keine Dokumente";
 "Callouts.noDownloads"              = "Es scheint, als gäbe es noch keine Downloads";
-"Callouts.noDownloadsSubtitle"      = "Öffne die App \"Dateien\" oder durchsuche deine Veranstaltungen, um zu beginnen.";
+"Callouts.noDownloadsSubtitle"      = "Öffne die App \"Dateien\" oder durchsuche Deine Veranstaltungen, um zu beginnen.";
 "Callouts.noEvents"                 = "Es scheint, als hättest Du frei";
 "Callouts.noEventsSubtitle"         = "Innerhalb der nächsten zwei Wochen gibt es keine Termine für Dich.";
 "Callouts.noFiles"                  = "Dieser Ordner ist leer";
@@ -68,7 +68,7 @@
 "Callouts.noUpcomingEvents"         = "Keine anstehenden Termine";
 "Callouts.rateManually"             = "Es wäre freundlich, falls Du StudApp trotzdem bewertest, indem Du den App Store manuell öffnest.";
 "Callouts.signedInAsAt"             = "Angemeldet als %@ bei %@";
-"Callouts.studAppDisclaimer"        = "StudApp ist kostenlos für jegliche Art an Organisation!\n\nEs muss bloß von einem Admin Deiner Organisation aktiviert werden.\nBitte kontaktiere mich mit %@, wenn Du StudApp unterstützen möchtest.\n\nHinweis: StudApp benötigt Stud.IP 4 oder neuer.";
+"Callouts.studAppDisclaimer"        = "StudApp ist kostenlos für jegliche Art an Organisation!\n\Sie muss bloß von einem Administrator Deiner Organisation aktiviert werden. Falls Du studierst bedeutet das, dass Du Deinen Stud.IP-Helpdesk beten müsstest, StudApp zu aktivieren. Die Website %@ hat mehr Informationen zur Aktivierung.";
 "Callouts.supportersDisclaimer"     = "Ohne Euch könnte diese App nicht existieren. Danke ❤️";
 "Callouts.tipLater"                 = "Es wäre freundlich, wenn Du es in Kürze nochmal probieren würdest.";
 "Callouts.tippingDisclaimer"        = "Wenn Dir diese App wirklich gefällt, kannst ein Trinkgeld dalassen, um zukünftige Entwicklungen zu unterstützen. Vielen Dank, dass Du überhaupt daran denkst!";
