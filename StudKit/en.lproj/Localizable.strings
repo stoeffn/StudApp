@@ -51,6 +51,7 @@
 "Callouts.noAnnouncements"          = "No Announcements";
 "Callouts.noCourse"                 = "Nothing to See Here";
 "Callouts.noCourseSubtitle"         = "Select a course on the left to get started.";
+"Callouts.noCourseSummary"          = "No course summary";
 "Callouts.noDocuments"              = "No Documents";
 "Callouts.noDownloads"              = "It Looks There Are No Downloads Yet";
 "Callouts.noDownloadsSubtitle"      = "Open the app \"Files\" or browse your courses to get started.";

@@ -181,7 +181,7 @@ final class CourseController: UITableViewController, Routable {
     private let allEventsCellIdentifier = "AllEventsCell"
 
     private enum Sections: Int {
-        case info, announcements, documents, events, summary
+        case announcements, documents, events, summary
     }
 
     private func index<Section: DataSourceSection>(for section: Section) -> Sections? {
@@ -193,21 +193,19 @@ final class CourseController: UITableViewController, Routable {
 
     override func numberOfSections(in _: UITableView) -> Int {
         guard viewModel != nil else { return 0 }
-        return viewModel.course.summary != nil ? 5 : 4
+        return 4
     }
 
     override func tableView(_: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch Sections(rawValue: section) {
-        case .info?:
-            return viewModel.numberOfRows
         case .announcements?:
             return announcementsViewModel.numberOfRows + 1
         case .documents?:
             return fileListViewModel.numberOfRows + 1
-        case .summary?:
-            return 1
         case .events?:
             return 2
+        case .summary?:
+            return viewModel.numberOfRows + 1
         case nil:
             fatalError()
         }
@@ -215,13 +213,6 @@ final class CourseController: UITableViewController, Routable {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch Sections(rawValue: indexPath.section) {
-        case .info?:
-            let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.typeIdentifier, for: indexPath)
-            let row = viewModel[rowAt: indexPath.row]
-            cell.imageView?.image = row.glyph
-            cell.textLabel?.text = row.title
-            cell.detailTextLabel?.text = row.value
-            return cell
         case .announcements? where indexPath.row == announcementsViewModel.numberOfRows:
             let cell = tableView.dequeueReusableCell(withIdentifier: emptyCellIdentifier, for: indexPath)
             let isLoaded = announcementsViewModel.course.state.announcementsUpdatedAt != nil
@@ -255,10 +246,24 @@ final class CourseController: UITableViewController, Routable {
             cell.textLabel?.text = Strings.Terms.allEvents.localized
             cell.detailTextLabel?.text = viewModel.course.state.eventsUpdatedAt != nil ? String(viewModel.course.events.count) : nil
             return cell
-        case .summary?:
+        case .summary? where indexPath.row == 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: SummaryCell.typeIdentifier, for: indexPath)
-            guard let summary = viewModel.course.summary else { return cell }
+            guard let summary = viewModel.course.summary else {
+                (cell as? SummaryCell)?.textView.text = Strings.Callouts.noCourseSummary.localized
+                (cell as? SummaryCell)?.textView.alpha = 0.4
+                (cell as? SummaryCell)?.textView.isUserInteractionEnabled = false
+                return cell
+            }
             (cell as? SummaryCell)?.textView.attributedText = htmlContentService.attributedString(for: summary)
+            (cell as? SummaryCell)?.textView.alpha = 1
+            (cell as? SummaryCell)?.textView.isUserInteractionEnabled = true
+            return cell
+        case .summary?:
+            let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.typeIdentifier, for: indexPath)
+            let row = viewModel[rowAt: indexPath.row - 1]
+            cell.imageView?.image = row.glyph
+            cell.textLabel?.text = row.title
+            cell.detailTextLabel?.text = row.value
             return cell
         case nil:
             fatalError()
@@ -277,8 +282,6 @@ final class CourseController: UITableViewController, Routable {
 
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch Sections(rawValue: section) {
-        case .info?:
-            return nil
         case .announcements?:
             return Strings.Terms.announcements.localized
         case .documents?:
@@ -371,9 +374,9 @@ final class CourseController: UITableViewController, Routable {
 
     override func tableView(_: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
         switch Sections(rawValue: indexPath.section) {
-        case .info?,
-             .announcements? where !announcementsViewModel.isEmpty,
-             .documents? where !fileListViewModel.isEmpty:
+        case .announcements? where !announcementsViewModel.isEmpty,
+             .documents? where !fileListViewModel.isEmpty,
+             .summary? where indexPath.row > 0:
             return true
         default:
             return false
@@ -383,8 +386,7 @@ final class CourseController: UITableViewController, Routable {
     override func tableView(_: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath,
                             withSender _: Any?) -> Bool {
         switch (Sections(rawValue: indexPath.section), action) {
-        case (.info?, #selector(copy(_:))),
-             (.announcements?, #selector(copy(_:))) where !announcementsViewModel.isEmpty,
+        case (.announcements?, #selector(copy(_:))) where !announcementsViewModel.isEmpty,
              (.summary?, #selector(copy(_:))):
             return true
         case (.announcements?, #selector(CustomMenuItems.markAsNew(_:))) where !announcementsViewModel.isEmpty:
@@ -411,12 +413,12 @@ final class CourseController: UITableViewController, Routable {
 
     override func tableView(_: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender _: Any?) {
         switch Sections(rawValue: indexPath.section) {
-        case .info? where action == #selector(copy(_:)):
-            UIPasteboard.general.string = viewModel[rowAt: indexPath.row].value
         case .announcements?:
             UIPasteboard.general.string = announcementsViewModel[rowAt: indexPath.row].textContent
-        case .info?, .documents?:
+        case .documents?:
             break
+        case .summary? where action == #selector(copy(_:)):
+            UIPasteboard.general.string = viewModel[rowAt: indexPath.row - 1].value
         case .events?, .summary?, nil:
             fatalError()
         }
@@ -502,13 +504,13 @@ extension CourseController: DataSourceSectionDelegate {
 extension CourseController: UITableViewDragDelegate {
     private func itemProviders(forIndexPath indexPath: IndexPath) -> [NSItemProvider] {
         switch Sections(rawValue: indexPath.section) {
-        case .info?:
-            guard let data = viewModel[rowAt: indexPath.row].value?.data(using: .utf8) else { return [] }
-            return [NSItemProvider(item: data as NSData, typeIdentifier: kUTTypePlainText as String)]
         case .announcements? where !announcementsViewModel.isEmpty:
             return [announcementsViewModel[rowAt: indexPath.row].itemProvider].compactMap { $0 }
         case .documents? where !fileListViewModel.isEmpty:
             return [fileListViewModel[rowAt: indexPath.row].itemProvider].compactMap { $0 }
+        case .summary? where indexPath.row > 0:
+            guard let data = viewModel[rowAt: indexPath.row - 1].value?.data(using: .utf8) else { return [] }
+            return [NSItemProvider(item: data as NSData, typeIdentifier: kUTTypePlainText as String)]
         default:
             return []
         }

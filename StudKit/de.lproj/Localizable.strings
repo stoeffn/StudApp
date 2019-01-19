@@ -51,6 +51,7 @@
 "Callouts.noAnnouncements"          = "Keine Ankündigungen";
 "Callouts.noCourse"                 = "Hier gibt es nichts zu sehen";
 "Callouts.noCourseSubtitle"         = "Wähle links eine Veranstaltung aus, um zu beginnen.";
+"Callouts.noCourseSummary"          = "Keine Veranstaltungsbeschreibung.";
 "Callouts.noDocuments"              = "Keine Dokumente";
 "Callouts.noDownloads"              = "Es scheint, als gäbe es noch keine Downloads";
 "Callouts.noDownloadsSubtitle"      = "Öffne die App \"Dateien\" oder durchsuche Deine Veranstaltungen, um zu beginnen.";

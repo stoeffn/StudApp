@@ -47,7 +47,7 @@ public enum Strings {
         case downloadsSizeDisclaimer
         case feedbackDisclaimer, feedbackTitle
         case noAnnouncements
-        case noCourse, noCourseSubtitle
+        case noCourse, noCourseSubtitle, noCourseSummary
         case noDocuments
         case noDownloads, noDownloadsSubtitle
         case noEvents, noEventsSubtitle
