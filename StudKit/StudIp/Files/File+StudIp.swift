@@ -30,7 +30,8 @@ extension File {
         update(lastUpdatedAt: updatedAt, expiresAfter: 60 * 10, forced: forced, completion: completion) { updaterCompletion in
             studIpService.api.requestDecoded(.folder(withId: self.id)) { (result: Result<FolderResponse>) in
                 context.perform {
-                    updaterCompletion(result.map { try self.updateChildFiles(from: $0) })
+                    let result = result.map { try self.updateChildFiles(from: $0) }
+                    updaterCompletion(result)
                 }
             }
         }

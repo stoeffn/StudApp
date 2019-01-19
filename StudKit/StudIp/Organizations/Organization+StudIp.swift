@@ -29,7 +29,8 @@ extension Organization {
         update(lastUpdatedAt: updatedAt, expiresAfter: 60 * 10, forced: forced, completion: completion) { updaterCompletion in
             studIpService.api.requestDecoded(.discovery) { (result: Result<DiscoveryResponse>) in
                 context.perform {
-                    updaterCompletion(result.map { try self.updateDiscovery(with: $0) })
+                    let result = result.map { try self.updateDiscovery(with: $0) }
+                    updaterCompletion(result)
                 }
             }
         }
@@ -52,7 +53,8 @@ extension Organization {
         update(lastUpdatedAt: updatedAt, expiresAfter: 60 * 10, forced: forced, completion: completion) { updaterCompletion in
             studIpService.api.requestDecoded(.currentUser) { (result: Result<UserResponse>) in
                 context.perform {
-                    updaterCompletion(result.map { try $0.coreDataObject(organization: self, in: context) })
+                    let result = result.map { try $0.coreDataObject(organization: self, in: context) }
+                    updaterCompletion(result)
                 }
             }
         }
@@ -68,7 +70,8 @@ extension Organization {
         update(lastUpdatedAt: updatedAt, expiresAfter: 60 * 10, forced: forced, completion: completion) { updaterCompletion in
             studIpService.api.requestCollection(.semesters) { (result: Result<[SemesterResponse]>) in
                 context.perform {
-                    updaterCompletion(result.map { try self.updateSemesters(Semester.fetchRequest(), with: $0) })
+                    let result = result.map { try self.updateSemesters(Semester.fetchRequest(), with: $0) }
+                    updaterCompletion(result)
                 }
             }
         }

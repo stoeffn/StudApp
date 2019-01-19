@@ -31,7 +31,8 @@ extension Course {
         update(lastUpdatedAt: updatedAt, expiresAfter: 60 * 10, forced: forced, completion: completion) { updaterCompletion in
             context.perform {
                 studIpService.api.requestDecoded(.rootFolderForCourse(withId: self.id)) { (result: Result<FolderResponse>) in
-                    updaterCompletion(result.map { try self.updateChildFiles(from: $0) })
+                    let result = result.map { try self.updateChildFiles(from: $0) }
+                    updaterCompletion(result)
                 }
             }
         }
@@ -68,7 +69,8 @@ extension Course {
         update(lastUpdatedAt: updatedAt, expiresAfter: 60 * 10, forced: forced, completion: completion) { updaterCompletion in
             studIpService.api.requestCollection(.announcementsInCourse(withId: self.id)) { (result: Result<[AnnouncementResponse]>) in
                 context.perform {
-                    updaterCompletion(result.map { try self.updateAnnouncements(from: $0) })
+                    let result = result.map { try self.updateAnnouncements(from: $0) }
+                    updaterCompletion(result)
                 }
             }
         }
@@ -94,7 +96,8 @@ extension Course {
         update(lastUpdatedAt: updatedAt, expiresAfter: 60 * 10, forced: forced, completion: completion) { updaterCompletion in
             studIpService.api.requestCollection(.eventsInCourse(withId: self.id)) { (result: Result<[EventResponse]>) in
                 context.perform {
-                    updaterCompletion(result.map { try self.updateEvents(from: $0) })
+                    let result = result.map { try self.updateEvents(from: $0) }
+                    updaterCompletion(result)
                 }
             }
         }

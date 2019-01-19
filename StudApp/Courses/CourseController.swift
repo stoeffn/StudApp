@@ -224,7 +224,7 @@ final class CourseController: UITableViewController, Routable {
             return cell
         case .announcements? where indexPath.row == announcementsViewModel.numberOfRows:
             let cell = tableView.dequeueReusableCell(withIdentifier: emptyCellIdentifier, for: indexPath)
-            let isLoaded = announcementsViewModel.course.state.childFilesUpdatedAt != nil
+            let isLoaded = announcementsViewModel.course.state.announcementsUpdatedAt != nil
             cell.textLabel?.text = isLoaded ? Strings.Callouts.noAnnouncements.localized : Strings.States.notLoaded.localized
             return cell
         case .announcements?:
