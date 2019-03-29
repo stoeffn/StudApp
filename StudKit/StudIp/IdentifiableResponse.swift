@@ -23,8 +23,8 @@ protocol IdentifiableResponse: Hashable {
 // MARK: - Hashing
 
 extension IdentifiableResponse {
-    var hashValue: Int {
-        return id.hashValue
+    func hash(into hasher: inout Hasher) {
+        id.hash(into: &hasher)
     }
 
     static func == (lhs: Self, rhs: Self) -> Bool {

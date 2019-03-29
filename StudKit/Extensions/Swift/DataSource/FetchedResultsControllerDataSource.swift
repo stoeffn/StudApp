@@ -38,6 +38,8 @@ public extension FetchedResultsControllerDataSource {
             delegate?.data(changedIn: section, at: sectionIndex, change: .update(section), in: self)
         case .move:
             delegate?.data(changedIn: section, at: sectionIndex, change: .move(to: sectionIndex), in: self)
+        @unknown default:
+            fatalError()
         }
     }
 
@@ -59,6 +61,8 @@ public extension FetchedResultsControllerDataSource {
         case .move:
             guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
             delegate?.data(changedIn: row, at: indexPath, change: .move(to: newIndexPath), in: self)
+        @unknown default:
+            fatalError()
         }
     }
 

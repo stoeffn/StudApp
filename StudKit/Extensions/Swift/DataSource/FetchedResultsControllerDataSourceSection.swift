@@ -45,6 +45,8 @@ public extension FetchedResultsControllerDataSourceSection {
         case .move:
             guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
             delegate?.data(changedIn: row, at: indexPath.row, change: .move(to: newIndexPath.row), in: self)
+        @unknown default:
+            fatalError()
         }
     }
 

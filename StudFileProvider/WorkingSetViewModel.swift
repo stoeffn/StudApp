@@ -94,6 +94,8 @@ extension WorkingSetViewModel: NSFetchedResultsControllerDelegate {
         case .move:
             guard let indexPath = indexPath, let newIndexPath = newIndexPath else { return }
             delegate?.data(changedIn: fileConvertible, at: indexPath.row, change: .move(to: newIndexPath.row), in: self)
+        @unknown default:
+            fatalError()
         }
     }
 }

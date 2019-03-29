@@ -35,7 +35,7 @@ public protocol CDCreatable {
 
 // MARK: - Default Implementation
 
-extension CDCreatable where Self: CDCreatable {
+extension CDCreatable {
     public init(createIn context: NSManagedObjectContext) {
         self.init(context: context)
     }
