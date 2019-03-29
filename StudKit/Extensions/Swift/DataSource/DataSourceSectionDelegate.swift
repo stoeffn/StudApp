@@ -16,7 +16,7 @@
 //  along with this program. If not, see http://www.gnu.org/licenses/.
 //
 
-public protocol DataSourceSectionDelegate: class {
+public protocol DataSourceSectionDelegate: AnyObject {
     func dataWillChange<Section: DataSourceSection>(in section: Section)
 
     func dataDidChange<Section: DataSourceSection>(in section: Section)
@@ -28,10 +28,10 @@ public protocol DataSourceSectionDelegate: class {
 // MARK: - Default Implementation
 
 public extension DataSourceSectionDelegate {
-    public func dataWillChange<Section: DataSourceSection>(in _: Section) {}
+    func dataWillChange<Section: DataSourceSection>(in _: Section) {}
 
-    public func dataDidChange<Section: DataSourceSection>(in _: Section) {}
+    func dataDidChange<Section: DataSourceSection>(in _: Section) {}
 
-    public func data<Section: DataSourceSection>(changedIn _: Section.Row, at _: Int, change _: DataChange<Section.Row, Int>,
-                                                 in _: Section?) {}
+    func data<Section: DataSourceSection>(changedIn _: Section.Row, at _: Int, change _: DataChange<Section.Row, Int>,
+                                          in _: Section?) {}
 }

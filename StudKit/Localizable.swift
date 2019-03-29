@@ -54,12 +54,12 @@ public extension Localizable {
         return bundle
     }
 
-    public func localized(language: String? = nil, _ arguments: CVarArg...) -> String {
+    func localized(language: String? = nil, _ arguments: CVarArg...) -> String {
         let format = bundle(forLanguage: language).localizedString(forKey: localizationKey, value: localizationKey, table: nil)
         return String(format: format, arguments: arguments)
     }
 
-    public var localized: String {
+    var localized: String {
         return localized()
     }
 

@@ -25,8 +25,8 @@ public protocol FetchedResultsControllerDataSource: FetchedResultsControllerSour
 }
 
 public extension FetchedResultsControllerDataSource {
-    public func controller(didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int,
-                           for type: NSFetchedResultsChangeType) {
+    func controller(didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int,
+                    for type: NSFetchedResultsChangeType) {
         let section = self.section(from: sectionInfo)
 
         switch type {
@@ -41,8 +41,8 @@ public extension FetchedResultsControllerDataSource {
         }
     }
 
-    public func controller(didChange object: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType,
-                           newIndexPath: IndexPath?) {
+    func controller(didChange object: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType,
+                    newIndexPath: IndexPath?) {
         guard let object = object as? Object else { fatalError() }
         let row = self.row(from: object)
 
@@ -62,37 +62,37 @@ public extension FetchedResultsControllerDataSource {
         }
     }
 
-    public func controllerWillChangeContent() {
+    func controllerWillChangeContent() {
         delegate?.dataWillChange(in: self)
     }
 
-    public func controllerDidChangeContent() {
+    func controllerDidChangeContent() {
         delegate?.dataDidChange(in: self)
     }
 }
 
 public extension FetchedResultsControllerDataSource {
-    public var numberOfSections: Int {
+    var numberOfSections: Int {
         return controller.sections?.count ?? 0
     }
 
-    public func numberOfRows(inSection index: Int) -> Int {
+    func numberOfRows(inSection index: Int) -> Int {
         return controller.sections?[index].numberOfObjects ?? 0
     }
 
-    public var numberOfRows: Int {
+    var numberOfRows: Int {
         return controller.sections?
             .reduce(0) { $0 + $1.numberOfObjects } ?? 0
     }
 
-    public func index(for indexPath: IndexPath) -> Int {
+    func index(for indexPath: IndexPath) -> Int {
         let indexUntilSection = controller.sections?
             .prefix(upTo: indexPath.section)
             .reduce(0) { $0 + $1.numberOfObjects } ?? 0
         return indexUntilSection + indexPath.row
     }
 
-    public subscript(sectionAt index: Int) -> Section {
+    subscript(sectionAt index: Int) -> Section {
         guard
             let sectionInfo = controller.sections?[index],
             let section = section(from: sectionInfo)
@@ -100,11 +100,11 @@ public extension FetchedResultsControllerDataSource {
         return section
     }
 
-    public subscript(rowAt indexPath: IndexPath) -> Row {
+    subscript(rowAt indexPath: IndexPath) -> Row {
         return row(from: controller.object(at: indexPath))
     }
 
-    public subscript(rowAt index: Int) -> Row {
+    subscript(rowAt index: Int) -> Row {
         var index = index
 
         for section in 0 ..< numberOfSections {
@@ -120,15 +120,15 @@ public extension FetchedResultsControllerDataSource {
         fatalError("Invalid index: \(index)")
     }
 
-    public func indexPath(for row: Row) -> IndexPath? {
+    func indexPath(for row: Row) -> IndexPath? {
         return controller.indexPath(forObject: object(from: row))
     }
 
-    public var sectionIndexTitles: [String]? {
+    var sectionIndexTitles: [String]? {
         return controller.sectionIndexTitles
     }
 
-    public func section(forSectionIndexTitle title: String, at index: Int) -> Int {
+    func section(forSectionIndexTitle title: String, at index: Int) -> Int {
         return controller.section(forSectionIndexTitle: title, at: index)
     }
 }

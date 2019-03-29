@@ -35,7 +35,7 @@ final class CourseListSplitController: UISplitViewController {
 
         view.backgroundColor = UI.Colors.greyText
 
-        if !isCollapsed && viewControllers.count == 1 {
+        if !isCollapsed, viewControllers.count == 1 {
             performSegue(withRoute: .emptyCourse)
         }
     }

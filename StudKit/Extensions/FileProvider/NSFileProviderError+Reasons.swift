@@ -20,10 +20,10 @@ import FileProvider
 
 @available(iOSApplicationExtension 11.0, *)
 public extension NSFileProviderError {
-    public enum Reasons: String {
+    enum Reasons: String {
         case notSignedIn
         case noVerifiedPurchase
     }
 
-    public static let reasonKey = "reason"
+    static let reasonKey = "reason"
 }

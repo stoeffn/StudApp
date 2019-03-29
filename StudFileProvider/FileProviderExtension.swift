@@ -141,7 +141,7 @@ final class FileProviderExtension: NSFileProviderExtension {
 
     private func modifyItem(withIdentifier identifier: NSFileProviderItemIdentifier,
                             completionHandler: @escaping (NSFileProviderItem?, Error?) -> Void,
-                            task: ((inout FileProviderItemConvertible) -> Void)) {
+                            task: (inout FileProviderItemConvertible) -> Void) {
         do {
             guard var object = object(for: identifier) else { throw NSFileProviderError(.noSuchItem) }
             task(&object)

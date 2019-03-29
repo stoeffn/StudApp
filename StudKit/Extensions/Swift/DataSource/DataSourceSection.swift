@@ -27,7 +27,7 @@ public protocol DataSourceSection: Sequence {
 // MARK: - Utilities
 
 public extension DataSourceSection {
-    public var isEmpty: Bool {
+    var isEmpty: Bool {
         return numberOfRows == 0
     }
 }
@@ -35,7 +35,7 @@ public extension DataSourceSection {
 // MARK: - Iterating
 
 public extension DataSourceSection {
-    public func makeIterator() -> RangeIterator<Row> {
+    func makeIterator() -> RangeIterator<Row> {
         return RangeIterator(range: 0 ..< numberOfRows) { self[rowAt: $0] }
     }
 }

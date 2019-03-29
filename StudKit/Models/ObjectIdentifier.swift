@@ -41,7 +41,7 @@ public struct ObjectIdentifier: ByTypeNameIdentifiable {
 
 public extension ObjectIdentifier {
     /// Available entity typs.
-    public enum Entites: String {
+    enum Entites: String {
         case announcement, course, courseState, event, file, fileState, organization, root, semester, semesterState, user, workingSet
     }
 }
@@ -54,7 +54,7 @@ public extension ObjectIdentifier {
     /// - Parameter context: Context to fetch object in.
     /// - Returns: The object if found, `nil` otherwise.
     /// - Precondition: The _Core Data_ entity must be the capitalized entity type and it must conform to `CDIdentifiable`.
-    public func fetch(in context: NSManagedObjectContext) throws -> CDIdentifiable? {
+    func fetch(in context: NSManagedObjectContext) throws -> CDIdentifiable? {
         switch entity {
         case .root, .workingSet:
             fatalError("Cannot fetch object for root container or working set.")

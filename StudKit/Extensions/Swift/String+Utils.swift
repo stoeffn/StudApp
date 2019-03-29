@@ -18,11 +18,11 @@
 
 public extension String {
     /// Returns `nil` in case of an empty string. Otherwise, this method returns the string itself.
-    public var nilWhenEmpty: String? {
+    var nilWhenEmpty: String? {
         return isEmpty ? nil : self
     }
 
-    public var sanitizedAsFilename: String {
+    var sanitizedAsFilename: String {
         return replacingOccurrences(of: "/", with: "⁄")
             .replacingOccurrences(of: ": ", with: "：")
             .replacingOccurrences(of: ":", with: "：")

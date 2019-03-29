@@ -24,11 +24,11 @@ public protocol FetchedResultsControllerDataSourceSection: FetchedResultsControl
 }
 
 public extension FetchedResultsControllerDataSourceSection {
-    public func controller(didChange _: NSFetchedResultsSectionInfo, atSectionIndex _: Int,
-                           for _: NSFetchedResultsChangeType) {}
+    func controller(didChange _: NSFetchedResultsSectionInfo, atSectionIndex _: Int,
+                    for _: NSFetchedResultsChangeType) {}
 
-    public func controller(didChange object: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType,
-                           newIndexPath: IndexPath?) {
+    func controller(didChange object: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType,
+                    newIndexPath: IndexPath?) {
         guard let object = object as? Object else { return }
         let row = self.row(from: object)
 
@@ -48,26 +48,26 @@ public extension FetchedResultsControllerDataSourceSection {
         }
     }
 
-    public func controllerWillChangeContent() {
+    func controllerWillChangeContent() {
         delegate?.dataWillChange(in: self)
     }
 
-    public func controllerDidChangeContent() {
+    func controllerDidChangeContent() {
         delegate?.dataDidChange(in: self)
     }
 }
 
 public extension FetchedResultsControllerDataSourceSection {
-    public var numberOfRows: Int {
+    var numberOfRows: Int {
         return controller.sections?.first?.numberOfObjects ?? 0
     }
 
-    public subscript(rowAt index: Int) -> Row {
+    subscript(rowAt index: Int) -> Row {
         let object = controller.object(at: IndexPath(row: index, section: 0))
         return row(from: object)
     }
 
-    public func index(for row: Row) -> Int? {
+    func index(for row: Row) -> Int? {
         return controller.indexPath(forObject: object(from: row))?.row
     }
 }

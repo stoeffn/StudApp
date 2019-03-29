@@ -16,7 +16,7 @@ public extension NSFileProviderItemIdentifier {
     /// - semester: Semester by its id.
     /// - course: Course by its id.
     /// - file: Folder or document by its id.
-    public enum Models {
+    enum Models {
         case workingSet
         case root
         case semester(id: String)
@@ -29,7 +29,7 @@ public extension NSFileProviderItemIdentifier {
     }
 
     /// Item's id contained in this identifier, e.g. the course id.
-    public var id: String {
+    var id: String {
         guard let id = parts.last else {
             fatalError("Cannot parse item identifier '\(rawValue)'.")
         }
@@ -37,7 +37,7 @@ public extension NSFileProviderItemIdentifier {
     }
 
     /// Type of model that this item identifier describes.
-    public var model: Models {
+    var model: Models {
         if #available(iOSApplicationExtension 11.0, *) {
             if self == .workingSet {
                 return .workingSet

@@ -18,14 +18,14 @@
 
 public extension Int {
     /// Formatted as a string containing the value as a byte count in a huma-readable format.
-    public var formattedAsByteCount: String {
+    var formattedAsByteCount: String {
         return Int64(self).formattedAsByteCount
     }
 }
 
 public extension Int64 {
     /// Formatted as a string containing the value as a byte count in a huma-readable format.
-    public var formattedAsByteCount: String {
+    var formattedAsByteCount: String {
         return ByteCountFormatter.string(fromByteCount: self, countStyle: .file)
     }
 }

@@ -44,16 +44,16 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
 
         observations = [
             viewModel.observe(\.state, options: [.initial]) { [weak self] _, _ in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 self.updateUserInterface(for: self.viewModel.state)
             },
             viewModel.observe(\.error) { [weak self] _, _ in
-                guard let `self` = self, let error = self.viewModel.error else { return }
+                guard let self = self, let error = self.viewModel.error else { return }
                 self.animateWithSpring { self.isActivityIndicatorHidden = true }
                 self.present(self.controller(for: error), animated: true, completion: nil)
             },
             viewModel.organization.observe(\.iconData, options: [.initial]) { [weak self] _, _ in
-                guard let `self` = self else { return }
+                guard let self = self else { return }
                 UIView.transition(with: self.view, duration: 0.1, options: UIView.AnimationOptions.transitionCrossDissolve, animations: {
                     self.iconView.image = self.viewModel.organization.icon ?? self.viewModel.organization.iconThumbnail
                 }, completion: nil)

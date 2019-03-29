@@ -162,7 +162,7 @@ extension User: EventsContaining {
 // MARK: - Utilities
 
 public extension User {
-    public var nameComponents: PersonNameComponents {
+    var nameComponents: PersonNameComponents {
         var components = PersonNameComponents()
         components.givenName = givenName
         components.familyName = familyName
@@ -175,5 +175,5 @@ public extension User {
 // MARK: - Notification
 
 public extension Notification.Name {
-    public static let currentUserDidChange = Notification.Name(rawValue: "currentUserDidChange")
+    static let currentUserDidChange = Notification.Name(rawValue: "currentUserDidChange")
 }

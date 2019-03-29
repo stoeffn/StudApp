@@ -29,7 +29,7 @@ public protocol EventsContaining {
 }
 
 public extension EventsContaining {
-    public var eventsFetchRequest: NSFetchRequest<Event> {
+    var eventsFetchRequest: NSFetchRequest<Event> {
         return Event.fetchRequest(predicate: eventsPredicate, sortDescriptors: Event.defaultSortDescriptors)
     }
 }

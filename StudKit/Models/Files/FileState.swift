@@ -66,11 +66,11 @@ public final class FileState: NSManagedObject, CDCreatable, CDSortable {
 // MARK: - Utilites
 
 public extension FileState {
-    public var isDownloaded: Bool {
+    var isDownloaded: Bool {
         return downloadedAt != nil
     }
 
-    public var isMostRecentVersionDownloaded: Bool {
+    var isMostRecentVersionDownloaded: Bool {
         guard let downloadedAt = downloadedAt else { return false }
         return downloadedAt >= file.modifiedAt
     }

@@ -110,7 +110,7 @@ final class AppController: UITabBarController {
     }
 
     func presentSignInIfNeeded() {
-        if !viewModel.isSignedIn && presentedViewController == nil {
+        if !viewModel.isSignedIn, presentedViewController == nil {
             performSegue(withRoute: .signIn)
         }
     }

@@ -17,7 +17,7 @@
 //
 
 public extension NSMutableAttributedString {
-    public func addLink(for title: String, to url: URL?) {
+    func addLink(for title: String, to url: URL?) {
         guard let url = url, let range = string.range(of: title) else { return }
         addAttribute(.link, value: url, range: NSRange(range, in: title))
     }

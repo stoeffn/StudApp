@@ -19,7 +19,7 @@
 import CoreSpotlight
 
 public extension NSUserActivity {
-    public var objectIdentifier: ObjectIdentifier? {
+    var objectIdentifier: ObjectIdentifier? {
         get {
             guard let rawValue = userInfo?[CSSearchableItemActivityIdentifier] as? String else { return nil }
             return ObjectIdentifier(rawValue: rawValue)

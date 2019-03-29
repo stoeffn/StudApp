@@ -20,7 +20,7 @@ import CoreData
 import StudKit
 
 /// Something that can be converted to a file provider item, e.g. a course or file.
-public protocol FileProviderItemConvertible: class {
+public protocol FileProviderItemConvertible: AnyObject {
     /// Current state of this item.
     var itemState: FileProviderItemConvertibleState { get }
 

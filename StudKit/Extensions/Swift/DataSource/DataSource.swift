@@ -37,11 +37,11 @@ public protocol DataSource: Sequence {
 // MARK: - Default Implementation
 
 public extension DataSource {
-    public var sectionIndexTitles: [String]? {
+    var sectionIndexTitles: [String]? {
         return nil
     }
 
-    public func section(forSectionIndexTitle _: String, at _: Int) -> Int {
+    func section(forSectionIndexTitle _: String, at _: Int) -> Int {
         fatalError("Cannot get section for section index title: Not implemented.")
     }
 }
@@ -49,7 +49,7 @@ public extension DataSource {
 // MARK: - Utilities
 
 public extension DataSource {
-    public var isEmpty: Bool {
+    var isEmpty: Bool {
         return numberOfSections == 0
     }
 }

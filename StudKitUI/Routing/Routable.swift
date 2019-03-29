@@ -16,7 +16,7 @@
 //  along with this program. If not, see http://www.gnu.org/licenses/.
 //
 
-public protocol Routable: class {
+public protocol Routable: AnyObject {
     func prepareContent(for route: Routes)
 }
 

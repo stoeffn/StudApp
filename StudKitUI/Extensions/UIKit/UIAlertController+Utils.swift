@@ -20,8 +20,8 @@ import StudKit
 import UIKit
 
 public extension UIAlertController {
-    public convenience init(confirmationWithAction actionTitle: String?, barButtonItem: UIBarButtonItem? = nil,
-                            sourceView: UIView? = nil, sourceRect: CGRect? = nil, handler: @escaping (UIAlertAction) -> Void) {
+    convenience init(confirmationWithAction actionTitle: String?, barButtonItem: UIBarButtonItem? = nil,
+                     sourceView: UIView? = nil, sourceRect: CGRect? = nil, handler: @escaping (UIAlertAction) -> Void) {
         self.init(title: nil, message: nil, preferredStyle: .actionSheet)
         addAction(UIAlertAction(title: Strings.Actions.cancel.localized, style: .cancel))
         addAction(UIAlertAction(title: actionTitle, style: .destructive, handler: handler))

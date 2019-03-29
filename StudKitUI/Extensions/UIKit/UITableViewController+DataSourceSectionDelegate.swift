@@ -19,16 +19,16 @@
 import StudKit
 
 public extension DataSourceSectionDelegate where Self: UITableViewController {
-    public func dataWillChange<Section: DataSourceSection>(in _: Section) {
+    func dataWillChange<Section: DataSourceSection>(in _: Section) {
         tableView.beginUpdates()
     }
 
-    public func dataDidChange<Section: DataSourceSection>(in _: Section) {
+    func dataDidChange<Section: DataSourceSection>(in _: Section) {
         tableView.endUpdates()
     }
 
-    public func data<Section: DataSourceSection>(changedIn _: Section.Row, at index: Int, change: DataChange<Section.Row, Int>,
-                                                 in _: Section) {
+    func data<Section: DataSourceSection>(changedIn _: Section.Row, at index: Int, change: DataChange<Section.Row, Int>,
+                                          in _: Section) {
         let indexPath = IndexPath(row: index, section: 0)
         switch change {
         case .insert:

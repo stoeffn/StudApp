@@ -9,7 +9,7 @@
 import Foundation
 
 /// State of something that can be converted to a file provider item, including a back-reference to the item itself.
-public protocol FileProviderItemConvertibleState: class {
+public protocol FileProviderItemConvertibleState: AnyObject {
     /// Item convertible this state describes.
     var item: FileProviderItemConvertible { get }
 

@@ -17,16 +17,16 @@
 //
 
 public extension UIViewController {
-    public func performSegue(withRoute route: Routes) {
+    func performSegue(withRoute route: Routes) {
         performSegue(withIdentifier: route.segueIdentifier, sender: route)
     }
 
-    public func prepareForRoute(using segue: UIStoryboardSegue, sender: Any?) {
+    func prepareForRoute(using segue: UIStoryboardSegue, sender: Any?) {
         guard let route = sender as? Routes else { return }
         prepare(for: route, destination: segue.destination)
     }
 
-    public func prepare(for route: Routes, destination: UIViewController) {
+    func prepare(for route: Routes, destination: UIViewController) {
         if let controller = destination as? Routable {
             controller.prepareContent(for: route)
         } else if let navigationController = destination as? UINavigationController,

@@ -17,7 +17,7 @@
 //
 
 public extension UISplitViewController {
-    public var detailNavigationController: UINavigationController? {
+    var detailNavigationController: UINavigationController? {
         if isCollapsed {
             return viewControllers.first as? UINavigationController
         }

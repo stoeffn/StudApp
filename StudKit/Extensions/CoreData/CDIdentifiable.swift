@@ -35,13 +35,13 @@ public extension CDIdentifiable where Self: NSFetchRequestResult {
     ///   - id: Identifier to search for.
     ///   - context: Managed object context.
     /// - Returns: Object if found, `nil` otherwise.
-    public static func fetch(byId id: String?, in context: NSManagedObjectContext) throws -> Self? {
+    static func fetch(byId id: String?, in context: NSManagedObjectContext) throws -> Self? {
         guard let id = id else { return nil }
         let predicate = NSPredicate(format: "id == %@", id)
         return try context.fetch(Self.fetchRequest(predicate: predicate, limit: 1)).first
     }
 
-    public static func fetch(byIds ids: Set<String>, in context: NSManagedObjectContext) throws -> [Self] {
+    static func fetch(byIds ids: Set<String>, in context: NSManagedObjectContext) throws -> [Self] {
         let predicate = NSPredicate(format: "id IN %@", ids)
         return try context.fetch(Self.fetchRequest(predicate: predicate, limit: ids.count))
     }

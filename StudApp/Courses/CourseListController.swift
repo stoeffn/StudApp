@@ -53,7 +53,7 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
         observations = [
             UserDefaults.studKit.observe(\.showsHiddenCourses, options: [.old, .new]) { [weak self] _, change in
-                guard let `self` = self, change.newValue != change.oldValue else { return }
+                guard let self = self, change.newValue != change.oldValue else { return }
                 self.prepareContent(for: .courseList(for: User.current))
             },
         ]

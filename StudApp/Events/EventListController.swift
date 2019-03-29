@@ -187,7 +187,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         tableView.tableFooterView = isEmpty ? nil : emptyView
         tableView.separatorStyle = isEmpty ? .none : .singleLine
 
-        if isEmpty && viewModel?.container is User {
+        if isEmpty, viewModel?.container is User {
             emptyViewTitleLabel.text = Strings.Callouts.noEvents.localized
             emptyViewSubtitleLabel.text = Strings.Callouts.noEventsSubtitle.localized
         } else {

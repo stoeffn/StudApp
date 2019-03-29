@@ -21,7 +21,7 @@ public protocol ByTypeNameIdentifiable {}
 
 public extension ByTypeNameIdentifiable {
     /// This object's type name without generic type information, e.g. `Set` instead of `Set<Int>`.
-    public static var typeIdentifier: String {
+    static var typeIdentifier: String {
         let typeName = String(describing: Self.self)
         return typeName
             .components(separatedBy: "<")

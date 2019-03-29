@@ -22,9 +22,9 @@ import CoreData
 
 public extension NSFetchRequestResult {
     /// Returns a fetch request for this object, using the parameters given as its properties.
-    public static func fetchRequest(predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor] = [],
-                                    limit: Int? = nil, offset: Int? = nil, batchSize: Int? = nil,
-                                    relationshipKeyPathsForPrefetching: [String] = []) -> NSFetchRequest<Self> {
+    static func fetchRequest(predicate: NSPredicate? = nil, sortDescriptors: [NSSortDescriptor] = [],
+                             limit: Int? = nil, offset: Int? = nil, batchSize: Int? = nil,
+                             relationshipKeyPathsForPrefetching: [String] = []) -> NSFetchRequest<Self> {
         let request = NSFetchRequest<Self>(entityName: String(describing: Self.self))
         request.predicate = predicate
         request.sortDescriptors = sortDescriptors
@@ -36,7 +36,7 @@ public extension NSFetchRequestResult {
     }
 
     /// Returns an array of all objects of that type in a given context sorted by `sortDescriptors`.
-    public static func fetch(in context: NSManagedObjectContext, sortDescriptors: [NSSortDescriptor] = []) throws -> [Self] {
+    static func fetch(in context: NSManagedObjectContext, sortDescriptors: [NSSortDescriptor] = []) throws -> [Self] {
         return try context.fetch(fetchRequest(sortDescriptors: sortDescriptors))
     }
 }
@@ -44,7 +44,7 @@ public extension NSFetchRequestResult {
 // MARK: - Switching Contexts
 
 public extension NSFetchRequestResult where Self: NSManagedObject {
-    public func `in`(_ context: NSManagedObjectContext) -> Self {
+    func `in`(_ context: NSManagedObjectContext) -> Self {
         guard managedObjectContext !== context else { return self }
         guard let object = context.object(with: objectID) as? Self else {
             fatalError("Cannot find object '\(self)' in context '\(context)'.")

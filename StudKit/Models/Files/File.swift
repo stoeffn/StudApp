@@ -153,12 +153,12 @@ extension File: FilesContaining {
 
 public extension File {
     /// Whether this file should be treated as a folder that can contain other files.
-    public var isFolder: Bool {
+    var isFolder: Bool {
         return typeIdentifier == kUTTypeFolder as String
     }
 
     /// File name without extension.
-    public var title: String {
+    var title: String {
         return URL(string: name)?
             .deletingPathExtension()
             .lastPathComponent ?? name
@@ -166,7 +166,7 @@ public extension File {
 
     /// Whether this file is available for download, ignoring network connectivity conditions. May also be `true` for downloaded
     /// files if a more recent version is available.
-    public var isDownloadable: Bool {
+    var isDownloadable: Bool {
         return !isFolder
             && !state.isMostRecentVersionDownloaded
             && !state.isDownloading
@@ -175,7 +175,7 @@ public extension File {
 
     /// Whether this file is available. Returns `true` for folders as they can be enumerated and for documents iff downloaded
     /// or network is available.
-    public var isAvailable: Bool {
+    var isAvailable: Bool {
         guard location != .invalid else { return false }
         let reachabilityService = ServiceContainer.default[ReachabilityService.self]
         return (isFolder && state.childFilesUpdatedAt != nil)
@@ -183,7 +183,7 @@ public extension File {
             || reachabilityService.currentFlags.contains(.reachable)
     }
 
-    public var isLocationSecure: Bool {
+    var isLocationSecure: Bool {
         switch location {
         case .invalid: return false
         case .studIp: return true
@@ -192,15 +192,15 @@ public extension File {
         }
     }
 
-    public func localUrl(in directory: BaseDirectories) -> URL {
+    func localUrl(in directory: BaseDirectories) -> URL {
         return directory.containerUrl(forObjectId: objectIdentifier)
             .appendingPathComponent(name, isDirectory: isFolder)
     }
 
     @available(iOSApplicationExtension 11.0, *)
-    public var itemProvider: NSItemProvider? {
+    var itemProvider: NSItemProvider? {
         guard
-            !isFolder && state.isDownloaded,
+            !isFolder, state.isDownloaded,
             let itemProvider = NSItemProvider(contentsOf: localUrl(in: .downloads))
         else { return nil }
         itemProvider.suggestedName = name

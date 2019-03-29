@@ -27,31 +27,31 @@ extension UserDefaults {
 // MARK: - Settings
 
 public extension UserDefaults {
-    public static var studKit: UserDefaults {
+    static var studKit: UserDefaults {
         return ServiceContainer.default[StorageService.self].defaults
     }
 
-    @objc public dynamic var areNotificationsEnabled: Bool {
+    @objc dynamic var areNotificationsEnabled: Bool {
         get { return bool(forKey: Keys.areNotificationsEnabled.rawValue) }
         set { set(newValue, forKey: Keys.areNotificationsEnabled.rawValue) }
     }
 
-    @objc public dynamic var deviceToken: Data? {
+    @objc dynamic var deviceToken: Data? {
         get { return object(forKey: Keys.deviceToken.rawValue) as? Data }
         set { set(newValue, forKey: Keys.deviceToken.rawValue) }
     }
 
-    @objc public dynamic var didRequestRatingAt: Date? {
+    @objc dynamic var didRequestRatingAt: Date? {
         get { return object(forKey: Keys.didRequestRatingAt.rawValue) as? Date }
         set { set(newValue, forKey: Keys.didRequestRatingAt.rawValue) }
     }
 
-    @objc public dynamic var showsHiddenCourses: Bool {
+    @objc dynamic var showsHiddenCourses: Bool {
         get { return bool(forKey: Keys.showsHiddenCourses.rawValue) }
         set { set(newValue, forKey: Keys.showsHiddenCourses.rawValue) }
     }
 
-    @objc public dynamic var userId: String? {
+    @objc dynamic var userId: String? {
         get { return string(forKey: Keys.userId.rawValue) }
         set { set(newValue, forKey: Keys.userId.rawValue) }
     }

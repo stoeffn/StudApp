@@ -73,7 +73,7 @@ public final class Semester: NSManagedObject, CDCreatable, CDIdentifiable, CDSor
 // MARK: - Utilities
 
 public extension Semester {
-    public var isCurrent: Bool {
+    var isCurrent: Bool {
         let now = Date()
         return now >= beginsAt && now <= endsAt
     }

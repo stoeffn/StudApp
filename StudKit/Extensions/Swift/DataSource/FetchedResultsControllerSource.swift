@@ -33,18 +33,18 @@ public protocol FetchedResultsControllerSource {
 }
 
 public extension FetchedResultsControllerSource {
-    public func row(from object: Object) -> Row {
+    func row(from object: Object) -> Row {
         guard let row = object as? Row else { fatalError() }
         return row
     }
 
-    public func object(from row: Row) -> Object {
+    func object(from row: Row) -> Object {
         guard let object = row as? Object else { fatalError() }
         return object
     }
 
     /// Fetches initial data.
-    public func fetch() {
+    func fetch() {
         try? controller.performFetch()
     }
 }

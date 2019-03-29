@@ -17,7 +17,7 @@
 //
 
 /// Protocol for service providers that can register their services in a service container.
-public protocol ServiceProvider: class {
+public protocol ServiceProvider: AnyObject {
     /// Registers the provider's services in a container.
     ///
     /// - Parameter container: Service container in which the services will be registered.
