@@ -83,12 +83,8 @@ extension CDIdentifiable where Self: NSFetchRequestResult {
     public static func fetch(byObjectId objectId: ObjectIdentifier?, in context: NSManagedObjectContext? = nil) -> Self? {
         let context = context ?? ServiceContainer.default[CoreDataService.self].viewContext
 
-        guard
-            objectId?.entity == Self.entity,
-            let id = objectId?.id,
-            let object = try? Self.fetch(byId: id, in: context)
-        else { return nil }
-        return object
+        guard objectId?.entity == Self.entity, let id = objectId?.id else { return nil }
+        return try? Self.fetch(byId: id, in: context)
     }
 }
 

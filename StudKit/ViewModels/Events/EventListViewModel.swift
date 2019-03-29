@@ -56,7 +56,7 @@ public final class EventListViewModel: FetchedResultsControllerDataSource {
     }
 
     public func sectionIndex(for date: Date) -> Int? {
-        return controller.sections?.index { sectionInfo in
+        return controller.sections?.firstIndex { sectionInfo in
             guard let sectionDate = self.section(from: sectionInfo) else { return false }
             return sectionDate.isInSameDay(as: date)
         }

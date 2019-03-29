@@ -101,7 +101,7 @@ extension Organization {
             else { return }
 
             DispatchQueue.main.async {
-                organization?.iconThumbnailData = try? Data(contentsOf: iconThumbnailAsset.fileURL)
+                organization.iconThumbnailData = try? Data(contentsOf: iconThumbnailAsset.fileURL!)
             }
         }
 
@@ -125,7 +125,7 @@ extension Organization {
             else { return }
 
             DispatchQueue.main.async {
-                organization.iconData = try? Data(contentsOf: iconThumbnailAsset.fileURL)
+                organization.iconData = try? Data(contentsOf: iconThumbnailAsset.fileURL!)
             }
         }
 

@@ -139,7 +139,7 @@ extension Course {
     public var nextEvent: Event? {
         let predicate = NSPredicate(format: "isCanceled == NO AND course == %@ AND endsAt >= %@", self, Date() as CVarArg)
         let fetchRequest = Event.fetchRequest(predicate: predicate, sortDescriptors: Event.defaultSortDescriptors, limit: 1, offset: 0)
-        return (try? managedObjectContext?.fetch(fetchRequest).first) ?? nil
+        return try? managedObjectContext?.fetch(fetchRequest).first ?? nil
     }
 
     /// Internal ordering id used for ordering by both group and title.
