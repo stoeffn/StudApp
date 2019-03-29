@@ -95,8 +95,10 @@ extension DocumentResponse: Decodable {
         createdAt = try StudIp.decodeDate(in: container, forKey: .createdAt)
         modifiedAt = try StudIp.decodeDate(in: container, forKey: .modifiedAt)
         summary = try container.decodeIfPresent(String.self, forKey: .summary)?.nilWhenEmpty
-        size = Int(try container.decodeIfPresent(String.self, forKey: .size) ?? "")
-        downloadCount = Int(try container.decodeIfPresent(String.self, forKey: .downloadCount) ?? "")
+        size = try? container.decodeIfPresent(Int.self, forKey: .size)
+            ?? Int(try container.decodeIfPresent(String.self, forKey: .size) ?? "")
+        downloadCount = try? container.decodeIfPresent(Int.self, forKey: .downloadCount)
+            ?? Int(try container.decodeIfPresent(String.self, forKey: .downloadCount) ?? "")
     }
 }
 
