@@ -30,6 +30,10 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if #available(iOSApplicationExtension 13.0, *) {
+            isModalInPresentation = true
+        }
+
         htmlContentService = ServiceContainer.default[HtmlContentService.self]
 
         navigationItem.hidesBackButton = true
