@@ -66,8 +66,17 @@ final class FileProviderExtension: NSFileProviderExtension {
         switch objectIdentifier?.entity {
         case .root?:
             return RootItem()
-        case .semester?, .course?, .file?:
+        case .semester?, .course?:
             guard let object = object(for: identifier) else { throw NSFileProviderError(.noSuchItem) }
+            return object.fileProviderItem
+        case .file?:
+            guard let object = object(for: identifier) else { throw NSFileProviderError(.noSuchItem) }
+
+            // Apparantly, iOS 13 does not call startProvidingItem anymore so lets do it ourselves.
+            if #available(iOS 13.0, *), let url = urlForItem(withPersistentIdentifier: identifier) {
+                startProvidingItem(at: url) { _ in }
+            }
+
             return object.fileProviderItem
         default:
             throw NSFileProviderError(.noSuchItem)
