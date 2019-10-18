@@ -22,12 +22,14 @@
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can try to reload the semesters from Stud.IP." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OXQ-Xl-gyc">
                                     <rect key="frame" x="8" y="175" width="304" height="38"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                     <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CoursesGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="ITQ-RL-1uV">
                                     <rect key="frame" x="112" y="32" width="96" height="96"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="tintColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="84" id="v9t-Ko-Mmq">
@@ -43,12 +45,14 @@
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It Looks Like There Are No Semesters" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bkx-xV-ynE">
                                     <rect key="frame" x="8" y="149.5" width="304" height="20.5"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="14A-k0-KOd">
                                     <rect key="frame" x="135" y="218.5" width="50" height="32"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                     <state key="normal" title="Reload"/>
                                     <connections>
@@ -56,7 +60,7 @@
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="trailingMargin" secondItem="Bkx-xV-ynE" secondAttribute="trailing" id="6ZC-we-tlP"/>
                                 <constraint firstItem="OXQ-Xl-gyc" firstAttribute="leading" secondItem="wzE-zV-w24" secondAttribute="leadingMargin" id="6iV-LC-uoo"/>
@@ -144,7 +148,7 @@
                                             </constraints>
                                         </stackView>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="uGE-W8-6g2" firstAttribute="leading" secondItem="sfO-5F-cwN" secondAttribute="leadingMargin" id="8kA-QF-LmS"/>
                                         <constraint firstItem="uGE-W8-6g2" firstAttribute="top" secondItem="sfO-5F-cwN" secondAttribute="topMargin" constant="-2" id="B4N-OW-fVX"/>
@@ -152,6 +156,7 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="uGE-W8-6g2" secondAttribute="bottom" constant="-2" id="wqq-sI-2mK"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
@@ -174,7 +179,7 @@
                     <navigationItem key="navigationItem" title="Courses" id="JrY-VB-OIX">
                         <barButtonItem key="leftBarButtonItem" systemItem="edit" id="twc-Ub-WdZ">
                             <connections>
-                                <segue destination="rJs-oV-VCc" kind="presentation" identifier="semesterList" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="O49-dN-c8y"/>
+                                <segue destination="rJs-oV-VCc" kind="presentation" identifier="semesterList" modalPresentationStyle="currentContext" modalTransitionStyle="crossDissolve" id="O49-dN-c8y"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="UserBarButtonGlyph" id="SaT-DE-cnK">

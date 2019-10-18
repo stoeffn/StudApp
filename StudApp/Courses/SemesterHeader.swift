@@ -51,11 +51,11 @@ final class SemesterHeader: UITableViewHeaderFooterView {
     // MARK: - User Interface
 
     let highlightAnimationDuration = 0.15
-    let highlightedBackgroundColor = UIColor.systemGray2
+    let highlightedBackgroundColor = UIColor.systemGray.withAlphaComponent(0.6)
 
     var isHightlighted: Bool = false {
         didSet {
-            backgroundView?.backgroundColor = isHightlighted ? highlightedBackgroundColor : .systemBackground
+            backgroundView?.backgroundColor = isHightlighted ? highlightedBackgroundColor : .clear
         }
     }
 

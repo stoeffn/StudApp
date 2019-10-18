@@ -143,10 +143,10 @@
             </objects>
             <point key="canvasLocation" x="1429.5999999999999" y="-103.89805097451276"/>
         </scene>
-        <!--Borderless Navigation Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="1Rz-lA-yYv">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dbq-bM-eAu" customClass="BorderlessNavigationController" customModule="StudKitUI" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dbq-bM-eAu" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="j1E-Mk-AWe">

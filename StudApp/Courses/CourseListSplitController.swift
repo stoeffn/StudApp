@@ -26,6 +26,7 @@ final class CourseListSplitController: UISplitViewController {
 
         delegate = self
         preferredDisplayMode = .allVisible
+        primaryBackgroundStyle = .sidebar
 
         view.backgroundColor = .white
     }
