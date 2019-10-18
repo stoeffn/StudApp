@@ -65,22 +65,15 @@ extension AppDelegate: UIApplicationDelegate {
         return true
     }
 
-    // MARK: Responding to App State Changes and System Events
-
-    func applicationDidEnterBackground(_: UIApplication) {
-        try? coreDataService.viewContext.saveAndWaitWhenChanged()
-    }
-
-    func applicationWillEnterForeground(_: UIApplication) {
-        try? historyService.mergeHistory(into: coreDataService.viewContext)
-        try? historyService.deleteHistory(mergedInto: Targets.iOSTargets, in: coreDataService.viewContext)
-
-        ServiceContainer.default[ReachabilityService.self].update()
-        (window?.rootViewController as? AppController)?.updateViewModel()
-    }
 
     func applicationWillTerminate(_: UIApplication) {
         try? coreDataService.viewContext.saveAndWaitWhenChanged()
+    }
+    // MARK: Configuring and Discarding Scenes
+
+    func application(_: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession,
+                     options _: UIScene.ConnectionOptions) -> UISceneConfiguration {
+        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
     }
 
     // MARK: Managing App State Restoration
