@@ -23,7 +23,27 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private let historyService = ServiceContainer.default[PersistentHistoryService.self]
     private let reachabilityService = ServiceContainer.default[ReachabilityService.self]
 
+    #if targetEnvironment(macCatalyst)
+    static let toolbarGroupIdentifier = NSToolbarItem.Identifier(rawValue: "Group")
+    #endif
+
     var window: UIWindow?
+
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        guard let windowScene = scene as? UIWindowScene else { return }
+
+        #if targetEnvironment(macCatalyst)
+        let toolbar = NSToolbar(identifier: "Toolbar")
+        toolbar.delegate = self
+        toolbar.centeredItemIdentifier = SceneDelegate.toolbarGroupIdentifier
+
+        windowScene.titlebar?.toolbar = toolbar
+        windowScene.titlebar?.titleVisibility = .hidden
+
+        let rootViewController = window?.rootViewController as? UITabBarController
+        rootViewController?.tabBar.isHidden = true
+        #endif
+    }
 
     func sceneWillEnterForeground(_ scene: UIScene) {
         try? historyService.mergeHistory(into: coreDataService.viewContext)
@@ -31,6 +51,36 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         reachabilityService.update()
 
-        (window?.rootViewController as? AppController)?.updateViewModel()
+        let rootViewController = window?.rootViewController as? AppController
+        rootViewController?.updateViewModel()
     }
 }
+
+#if targetEnvironment(macCatalyst)
+extension SceneDelegate: NSToolbarDelegate {
+    func toolbar(_ toolbar: NSToolbar, itemForItemIdentifier itemIdentifier: NSToolbarItem.Identifier, willBeInsertedIntoToolbar flag: Bool) -> NSToolbarItem? {
+        guard itemIdentifier == SceneDelegate.toolbarGroupIdentifier else { return nil }
+
+        let items = [Strings.Terms.courses, Strings.Terms.events, Strings.Terms.downloads].map { $0.localized }
+        let group = NSToolbarItemGroup(itemIdentifier: SceneDelegate.toolbarGroupIdentifier, titles: items,
+                                       selectionMode: .selectOne, labels: items, target: self,
+                                       action: #selector(toolbarGroupSelectionDidChange))
+        group.setSelected(true, at: 0)
+        return group
+    }
+
+    @objc
+    func toolbarGroupSelectionDidChange(sender: NSToolbarItemGroup) {
+        let rootViewController = window?.rootViewController as? UITabBarController
+        rootViewController?.selectedIndex = sender.selectedIndex
+    }
+
+    func toolbarDefaultItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+        return [SceneDelegate.toolbarGroupIdentifier, NSToolbarItem.Identifier.flexibleSpace]
+    }
+
+    func toolbarAllowedItemIdentifiers(_ toolbar: NSToolbar) -> [NSToolbarItem.Identifier] {
+        return toolbarDefaultItemIdentifiers(toolbar)
+    }
+}
+#endif
