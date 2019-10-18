@@ -38,7 +38,7 @@ final class SemesterHeader: UITableViewHeaderFooterView {
         didSet {
             isCollapsed = semester.state.isCollapsed
             titleLabel.text = semester.title
-            titleLabel.textColor = semester.isCurrent ? UI.Colors.tint : .black
+            titleLabel.textColor = semester.isCurrent ? UI.Colors.tint : .label
             setGlyphRotation(isCollapsed: isCollapsed, animated: true)
 
             accessibilityLabel = semester.title
@@ -51,11 +51,11 @@ final class SemesterHeader: UITableViewHeaderFooterView {
     // MARK: - User Interface
 
     let highlightAnimationDuration = 0.15
-    let highlightedBackgroundColor = UIColor.lightGray.lightened(by: 0.2)
+    let highlightedBackgroundColor = UIColor.systemGray2
 
     var isHightlighted: Bool = false {
         didSet {
-            backgroundView?.backgroundColor = isHightlighted ? highlightedBackgroundColor : .white
+            backgroundView?.backgroundColor = isHightlighted ? highlightedBackgroundColor : .systemBackground
         }
     }
 
@@ -82,7 +82,7 @@ final class SemesterHeader: UITableViewHeaderFooterView {
     private(set) lazy var glyphImageView: UIImageView = {
         let view = UIImageView(image: #imageLiteral(resourceName: "DisclosureGlyph"))
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.tintColor = UI.Colors.greyGlyph
+        view.tintColor = .secondaryLabel
         return view
     }()
 

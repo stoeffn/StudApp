@@ -40,7 +40,7 @@ final class ThanksNoteCell: UITableViewCell {
             detailTextLabel?.text = thanksNote.description
 
             selectionStyle = hasLink ? .default : .none
-            textLabel?.textColor = hasLink ? UI.Colors.tint : .black
+            textLabel?.textColor = hasLink ? UI.Colors.tint : .label
 
             accessoryType = hasLink ? .disclosureIndicator : .none
         }
@@ -55,7 +55,7 @@ final class ThanksNoteCell: UITableViewCell {
 
         detailTextLabel?.font = .preferredFont(forTextStyle: .footnote)
         detailTextLabel?.adjustsFontForContentSizeCategory = true
-        detailTextLabel?.textColor = UI.Colors.greyText
+        detailTextLabel?.textColor = .secondaryLabel
         detailTextLabel?.numberOfLines = 2
     }
 }

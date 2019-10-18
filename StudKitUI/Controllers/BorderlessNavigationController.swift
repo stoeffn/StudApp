@@ -106,7 +106,7 @@ public final class BorderlessNavigationController: UINavigationController {
     /// View with a light blur effect to be placed beneath the status and navigation bar. With no content behind it, it appears
     /// white and therefore blends in with the background.
     private let navigationBarBackgroundBlurView: UIVisualEffectView = {
-        let view = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+        let view = UIVisualEffectView(effect: UIBlurEffect(style: .systemThickMaterial))
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()

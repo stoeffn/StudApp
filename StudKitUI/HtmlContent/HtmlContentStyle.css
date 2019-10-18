@@ -40,12 +40,24 @@ body {
     }
 }
 
+@media (prefers-color-scheme: dark) {
+    body {
+      background-color: #16161d;
+    }
+}
+
 /*
  * === TEXT ===
  */
 
 body, p, .formatted-content {
     font: -apple-system-body;
+}
+
+@media (prefers-color-scheme: dark) {
+    body, p, .formatted-content {
+        color: white;
+    }
 }
 
 /*

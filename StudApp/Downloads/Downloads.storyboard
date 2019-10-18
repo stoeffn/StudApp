@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="V9G-bX-yYl">
-    <device id="retina5_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="V9G-bX-yYl">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,7 +15,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DownloadList" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="28" id="cIb-HX-6m4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="X0M-6M-fk1">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="256"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -25,12 +23,12 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open the app &quot;Files&quot; or browse your courses to get started." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TMm-hn-B4O">
                                     <rect key="frame" x="8" y="161.33333333333334" width="398" height="38"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                    <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownloadsGlyph" translatesAutoresizingMaskIntoConstraints="NO" id="g2d-wr-nmJ">
                                     <rect key="frame" x="165" y="32" width="84" height="84"/>
-                                    <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="tintColor" systemColor="placeholderTextColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="84" id="728-gU-7yO">
                                             <variation key="widthClass=regular" constant="96"/>
@@ -55,7 +53,7 @@
                                 <constraint firstItem="fyl-2h-SyR" firstAttribute="leading" secondItem="X0M-6M-fk1" secondAttribute="leadingMargin" id="3Pz-dQ-dVb"/>
                                 <constraint firstItem="TMm-hn-B4O" firstAttribute="leading" secondItem="X0M-6M-fk1" secondAttribute="leadingMargin" id="5MD-vk-I1u"/>
                                 <constraint firstItem="g2d-wr-nmJ" firstAttribute="centerX" secondItem="X0M-6M-fk1" secondAttribute="centerX" id="C6P-SX-us7"/>
-                                <constraint firstItem="fyl-2h-SyR" firstAttribute="firstBaseline" secondItem="g2d-wr-nmJ" secondAttribute="baseline" multiplier="1.1" constant="24.5" symbolType="layoutAnchor" id="CTk-Fc-HxC"/>
+                                <constraint firstItem="fyl-2h-SyR" firstAttribute="firstBaseline" secondItem="g2d-wr-nmJ" secondAttribute="baseline" multiplier="1.1" constant="24.333333333333332" symbolType="layoutAnchor" id="CTk-Fc-HxC"/>
                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="TMm-hn-B4O" secondAttribute="bottom" constant="32" id="EZ8-GB-jTn"/>
                                 <constraint firstItem="TMm-hn-B4O" firstAttribute="firstBaseline" secondItem="fyl-2h-SyR" secondAttribute="baseline" multiplier="1.025" constant="20" symbolType="layoutAnchor" id="Ict-ww-Dkw"/>
                                 <constraint firstAttribute="trailingMargin" secondItem="TMm-hn-B4O" secondAttribute="trailing" id="aoM-xC-ZfU"/>
@@ -68,7 +66,7 @@
                                 <rect key="frame" x="0.0" y="284" width="414" height="72"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1zq-2J-AVl" id="11a-Vz-8MG">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="71.666666666666671"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="72"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FH0-1f-HVE">
@@ -79,6 +77,7 @@
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FolderIcon" translatesAutoresizingMaskIntoConstraints="NO" id="CSQ-4S-MVL">
                                                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -95,13 +94,13 @@
                                                     <rect key="frame" x="58" y="0.0" width="316" height="50"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Kp-2K-Kzb">
-                                                            <rect key="frame" x="0.0" y="0.0" width="116.33333333333333" height="24"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="116.33333333333333" height="32"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E76-WP-Dv3">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="14" height="24"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="14" height="32"/>
                                                                     <subviews>
                                                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eIk-tV-bGc">
-                                                                            <rect key="frame" x="0.0" y="7" width="10" height="10"/>
+                                                                            <rect key="frame" x="0.0" y="11" width="10" height="10"/>
                                                                             <color key="backgroundColor" red="0.33725490200000002" green="0.50980392159999999" blue="0.69019607839999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" secondItem="eIk-tV-bGc" secondAttribute="height" multiplier="1:1" id="2i3-Mf-NcO"/>
@@ -114,7 +113,6 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </view>
                                                                     </subviews>
-                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstItem="eIk-tV-bGc" firstAttribute="leading" secondItem="E76-WP-Dv3" secondAttribute="leading" id="5Ak-6o-Xv0"/>
                                                                         <constraint firstItem="eIk-tV-bGc" firstAttribute="centerY" secondItem="E76-WP-Dv3" secondAttribute="centerY" id="b6g-tA-8tQ"/>
@@ -122,7 +120,7 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Assignment 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpc-YH-Hgj">
-                                                                    <rect key="frame" x="13.999999999999993" y="0.0" width="102.33333333333331" height="24"/>
+                                                                    <rect key="frame" x="13.999999999999993" y="0.0" width="102.33333333333331" height="32"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
@@ -130,14 +128,14 @@
                                                             </subviews>
                                                         </stackView>
                                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="6" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GJG-Fh-Lnk">
-                                                            <rect key="frame" x="0.0" y="26" width="316" height="24"/>
+                                                            <rect key="frame" x="0.0" y="34" width="316" height="16"/>
                                                             <subviews>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="gJd-0c-aQd">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="85.333333333333329" height="24"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="77.333333333333329" height="16"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TimeSubtitleGlyph" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5g1-2F-zeA">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
-                                                                            <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                                                            <color key="tintColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" secondItem="5g1-2F-zeA" secondAttribute="height" multiplier="1:1" id="t1I-br-UMb"/>
                                                                             </constraints>
@@ -148,20 +146,20 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="yesterday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aoH-9v-kZt">
-                                                                            <rect key="frame" x="26.000000000000004" y="0.0" width="59.333333333333343" height="24"/>
+                                                                            <rect key="frame" x="18.000000000000004" y="0.0" width="59.333333333333343" height="16"/>
                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                                            <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
                                                                     <variation key="widthClass=regular" spacing="4"/>
                                                                 </stackView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="3kW-RH-xaS">
-                                                                    <rect key="frame" x="91.333333333333343" y="0.0" width="62.666666666666657" height="24"/>
+                                                                    <rect key="frame" x="83.333333333333343" y="0.0" width="54.666666666666657" height="16"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SizeSubtitleGlyph" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fPe-hx-rcP">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
-                                                                            <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                                                            <color key="tintColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" secondItem="fPe-hx-rcP" secondAttribute="height" multiplier="1:1" id="7LX-UB-q4R"/>
                                                                             </constraints>
@@ -172,9 +170,9 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="42 KB" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7EU-Xw-gAJ">
-                                                                            <rect key="frame" x="25.999999999999996" y="0.0" width="36.666666666666657" height="24"/>
+                                                                            <rect key="frame" x="17.999999999999996" y="0.0" width="36.666666666666657" height="16"/>
                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                                            <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
@@ -182,11 +180,11 @@
                                                                     <variation key="widthClass=regular" spacing="4"/>
                                                                 </stackView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="EZa-Uy-Ito">
-                                                                    <rect key="frame" x="160" y="0.0" width="92" height="24"/>
+                                                                    <rect key="frame" x="144" y="0.0" width="97.666666666666686" height="16"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HostSubtitleGlyph" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1aB-a3-TwZ">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
-                                                                            <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                                                            <color key="tintColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" secondItem="1aB-a3-TwZ" secondAttribute="height" multiplier="1:1" id="ghk-b7-HZG"/>
                                                                             </constraints>
@@ -197,9 +195,9 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="dropbox.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fow-gR-cn8">
-                                                                            <rect key="frame" x="26" y="0.0" width="66" height="24"/>
+                                                                            <rect key="frame" x="18" y="0.0" width="79.666666666666671" height="16"/>
                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                                            <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
@@ -207,11 +205,11 @@
                                                                     <variation key="widthClass=regular" spacing="4"/>
                                                                 </stackView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="PIu-v7-Dia">
-                                                                    <rect key="frame" x="258" y="0.0" width="26" height="24"/>
+                                                                    <rect key="frame" x="247.66666666666671" y="0.0" width="44.333333333333343" height="16"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DownloadCountSubtitleGlyph" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kd0-X6-vkE">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
-                                                                            <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                                                            <color key="tintColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" secondItem="Kd0-X6-vkE" secondAttribute="height" multiplier="1:1" id="Wfm-sm-V80"/>
                                                                             </constraints>
@@ -222,9 +220,9 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="123x" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u7Q-1S-fX7">
-                                                                            <rect key="frame" x="26" y="0.0" width="0.0" height="24"/>
+                                                                            <rect key="frame" x="18" y="0.0" width="26.333333333333329" height="16"/>
                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                                            <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
@@ -232,11 +230,11 @@
                                                                     <variation key="widthClass=regular" spacing="4"/>
                                                                 </stackView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="Ekt-bJ-adT">
-                                                                    <rect key="frame" x="290" y="0.0" width="26" height="24"/>
+                                                                    <rect key="frame" x="298" y="0.0" width="18" height="16"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserSubtitleGlyph" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hsZ-23-e2k">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
-                                                                            <color key="tintColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                                                            <color key="tintColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" secondItem="hsZ-23-e2k" secondAttribute="height" multiplier="1:1" id="6tP-jU-lyE"/>
                                                                             </constraints>
@@ -247,9 +245,9 @@
                                                                             </userDefinedRuntimeAttributes>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" ambiguous="YES" text="Steve Jobs" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSH-sW-hm7">
-                                                                            <rect key="frame" x="26" y="0.0" width="0.0" height="24"/>
+                                                                            <rect key="frame" x="18" y="0.0" width="0.0" height="16"/>
                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                                                                            <color key="textColor" white="0.59657738100000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
@@ -271,6 +269,7 @@
                                         <constraint firstItem="FH0-1f-HVE" firstAttribute="top" secondItem="11a-Vz-8MG" secondAttribute="topMargin" id="xsz-uh-UGY"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <bool key="isElement" value="YES"/>
                                 </accessibility>
@@ -333,7 +332,7 @@
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TZb-So-BBX">
-                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -350,16 +349,16 @@
         </scene>
     </scenes>
     <resources>
-        <image name="DownloadCountSubtitleGlyph" width="24" height="24"/>
+        <image name="DownloadCountSubtitleGlyph" width="16" height="16"/>
         <image name="DownloadsGlyph" width="512" height="512"/>
         <image name="DownloadsLandscapeTabBarGlyph" width="20" height="20"/>
         <image name="DownloadsTabBarGlyph" width="28" height="28"/>
         <image name="FolderIcon" width="512" height="512"/>
-        <image name="HostSubtitleGlyph" width="24" height="24"/>
-        <image name="SizeSubtitleGlyph" width="24" height="24"/>
-        <image name="TimeSubtitleGlyph" width="24" height="24"/>
-        <image name="UserBarButtonGlyph" width="40.052978515625" height="40.052978515625"/>
-        <image name="UserSubtitleGlyph" width="24" height="24"/>
+        <image name="HostSubtitleGlyph" width="16" height="16"/>
+        <image name="SizeSubtitleGlyph" width="16" height="16"/>
+        <image name="TimeSubtitleGlyph" width="16" height="16"/>
+        <image name="UserBarButtonGlyph" width="28" height="28"/>
+        <image name="UserSubtitleGlyph" width="16" height="16"/>
     </resources>
     <color key="tintColor" red="0.3294117647" green="0.50588235290000005" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

@@ -125,7 +125,7 @@ final class DateTabBarCell: UICollectionViewCell {
         tintColor = UI.Colors.tint
 
         let duration = animated ? UI.defaultAnimationDuration : 0
-        let textColor: UIColor = isEnabled ? .black : .lightGray
+        let textColor: UIColor = isEnabled ? .label : .lightGray
         let highlightsCell = isEnabled && (isHighlighted || isSelected)
 
         // Set the color here because the `tintColor` is not set correctly during initialization.
