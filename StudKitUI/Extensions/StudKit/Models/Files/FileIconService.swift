@@ -54,6 +54,7 @@ public final class FileIconService {
     }
 
     private func icon(forPathExtension pathExtension: String) -> UIImage {
+        guard !ProcessInfo.processInfo.isMacCatalystApp else { return #imageLiteral(resourceName: "FolderIcon") }
         let dummyFileName = BaseDirectories.fileProvider.url.appendingPathComponent("dummy.\(pathExtension)")
         let controller = UIDocumentInteractionController(url: dummyFileName)
         controller.name = dummyFileName.absoluteString
