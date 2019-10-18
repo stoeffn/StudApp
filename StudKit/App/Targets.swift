@@ -67,16 +67,6 @@ public extension Targets {
         guard self == Targets.current else { return .unspecified }
         return Targets.currentContext.preferredContentSizeCategory?() ?? .unspecified
     }
-
-    var prefersAccessibilityContentSize: Bool {
-        guard #available(iOS 11.0, *) else {
-            return [
-                .accessibilityMedium, .accessibilityLarge, .accessibilityExtraLarge,
-                .accessibilityExtraExtraLarge, .accessibilityExtraExtraExtraLarge,
-            ].contains(preferredContentSizeCategory)
-        }
-        return preferredContentSizeCategory.isAccessibilityCategory
-    }
 }
 
 // MARK: - Communicating with Other Processes

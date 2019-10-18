@@ -96,9 +96,7 @@ extension AppDelegate: UIApplicationDelegate {
     // MARK: Handling Remote Notification Registration
 
     func registerForRemoteNotifications() {
-        guard #available(iOS 12, *) else {
-            return UIApplication.shared.registerForRemoteNotifications()
-        }
+        UIApplication.shared.registerForRemoteNotifications()
 
         hookService.requestAuthorization(options: hookService.silentNotificationAuthorizationsOptions) {
             UIApplication.shared.registerForRemoteNotifications()

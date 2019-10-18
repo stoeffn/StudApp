@@ -18,7 +18,6 @@
 
 import FileProvider
 
-@available(iOSApplicationExtension 11.0, *)
 public extension NSFileProviderError {
     enum Reasons: String {
         case notSignedIn

@@ -74,15 +74,9 @@ extension ObjectIdentifier: RawRepresentable {
 
     private static let rawValueSeparator = "-"
 
-    private static let rootEntityRawValue: String = {
-        guard #available(iOS 11, *) else { return "root" }
-        return NSFileProviderItemIdentifier.rootContainer.rawValue
-    }()
+    private static let rootEntityRawValue = NSFileProviderItemIdentifier.rootContainer.rawValue
 
-    private static let workingSetEntityRawValue: String = {
-        guard #available(iOS 11, *) else { return "workingSet" }
-        return NSFileProviderItemIdentifier.workingSet.rawValue
-    }()
+    private static let workingSetEntityRawValue = NSFileProviderItemIdentifier.workingSet.rawValue
 
     public init?(rawValue: String) {
         let parts = rawValue.components(separatedBy: ObjectIdentifier.rawValueSeparator)

@@ -36,18 +36,14 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
 
         navigationItem.title = Strings.Terms.courses.localized
         navigationItem.rightBarButtonItem?.accessibilityLabel = Strings.Terms.more.localized
+        navigationController?.navigationBar.prefersLargeTitles = true
 
         refreshControl?.addTarget(self, action: #selector(refreshControlTriggered(_:)), for: .valueChanged)
 
         tableView.register(SemesterHeader.self, forHeaderFooterViewReuseIdentifier: SemesterHeader.typeIdentifier)
         tableView.tableHeaderView = nil
         tableView.estimatedSectionHeaderHeight = SemesterHeader.estimatedHeight
-
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = true
-
-            tableView.sectionHeaderHeight = UITableView.automaticDimension
-        }
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
 
         updateEmptyView()
 
@@ -182,7 +178,6 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
     /// Empty implementation that is needed in order for the menu to appear.
     override func tableView(_: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender _: Any?) {}
 
-    @available(iOS 11.0, *)
     override func tableView(_: UITableView,
                             leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let cell = tableView.cellForRow(at: indexPath) as? CourseCell
@@ -191,7 +186,6 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         ].compactMap { $0 })
     }
 
-    @available(iOS 11.0, *)
     override func tableView(_: UITableView,
                             trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let cell = tableView.cellForRow(at: indexPath) as? CourseCell
@@ -344,7 +338,6 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         performSegue(withRoute: route)
     }
 
-    @available(iOS 11.0, *)
     private func colorAction(for cell: CourseCell?) -> UIContextualAction? {
         guard let cell = cell, user?.organization.supportsSettingCourseGroups ?? false else { return nil }
 
@@ -356,7 +349,6 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         return action
     }
 
-    @available(iOS 11.0, *)
     private func hideAction(for cell: CourseCell?) -> UIContextualAction? {
         guard let cell = cell, !cell.course.isHidden else { return nil }
 
@@ -369,7 +361,6 @@ final class CourseListController: UITableViewController, DataSourceSectionDelega
         return action
     }
 
-    @available(iOS 11.0, *)
     private func showAction(for cell: CourseCell?) -> UIContextualAction? {
         guard let cell = cell, cell.course.isHidden else { return nil }
 

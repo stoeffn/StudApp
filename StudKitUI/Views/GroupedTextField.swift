@@ -53,17 +53,11 @@ public final class GroupedTextField: UITextField {
         didSet {
             switch Position(rawValue: position) {
             case .top?:
-                if #available(iOSApplicationExtension 11.0, *) {
-                    layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-                }
+                layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
             case .middle?:
-                if #available(iOSApplicationExtension 11.0, *) {
-                    layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-                }
+                layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
             case .bottom?:
-                if #available(iOSApplicationExtension 11.0, *) {
-                    layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
-                }
+                layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
             case .none:
                 fatalError("Cannot set position with raw value '\(position)'.")
             }

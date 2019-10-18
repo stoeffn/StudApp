@@ -66,8 +66,6 @@ public final class SettingsViewModel: NSObject {
             storageService.defaults.areNotificationsEnabled = areNotificationsEnabled
             hookService.updateHooks()
 
-            if #available(iOS 12, *) { return }
-
             hookService.requestAuthorization(options: hookService.userNotificationAuthorizationsOptions) {
                 self.updateNotificationSettings()
             }

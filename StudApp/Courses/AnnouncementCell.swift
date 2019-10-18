@@ -25,7 +25,6 @@ final class AnnouncementCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        guard #available(iOS 11, *) else { return }
         unreadIndicatorView.accessibilityIgnoresInvertColors = true
         colorView.accessibilityIgnoresInvertColors = true
     }
@@ -38,7 +37,7 @@ final class AnnouncementCell: UITableViewCell {
             unreadIndicatorContainerView.isHidden = !announcement.isNew
 
             titleLabel.text = announcement.title
-            titleLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 3 : 1
+            titleLabel.numberOfLines = Targets.current.preferredContentSizeCategory.isAccessibilityCategory ? 3 : 1
 
             modifiedAtLabel.text = modifiedAt
             userLabel.text = userFullname

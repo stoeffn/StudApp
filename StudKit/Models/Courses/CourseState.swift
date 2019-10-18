@@ -46,7 +46,7 @@ public final class CourseState: NSManagedObject, CDCreatable, CDSortable {
     public required convenience init(createIn context: NSManagedObjectContext) {
         self.init(context: context)
 
-        favoriteRank = Int64(fileProviderFavoriteRankUnranked)
+        favoriteRank = Int64(NSFileProviderFavoriteRankUnranked)
     }
 
     // MARK: - Sorting

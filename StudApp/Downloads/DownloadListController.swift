@@ -30,9 +30,13 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
         registerForPreviewing(with: self, sourceView: tableView)
 
+        navigationController?.navigationBar.prefersLargeTitles = true
+
         navigationItem.title = Strings.Terms.downloads.localized
         navigationItem.leftBarButtonItem = editButtonItem
         navigationItem.rightBarButtonItems = [moreButton]
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
 
         moreButton.accessibilityLabel = Strings.Terms.more.localized
         removeButton.accessibilityLabel = Strings.Actions.remove.localized
@@ -41,19 +45,9 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         tableView.estimatedRowHeight = FileCell.estimatedHeight
         tableView.estimatedSectionHeaderHeight = CourseHeader.estimatedHeight
         tableView.allowsMultipleSelectionDuringEditing = true
-
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = true
-
-            navigationItem.searchController = searchController
-            navigationItem.hidesSearchBarWhenScrolling = false
-
-            tableView.dragDelegate = self
-            tableView.dragInteractionEnabled = true
-            tableView.tableHeaderView = nil
-        } else {
-            tableView.tableHeaderView = searchController.searchBar
-        }
+        tableView.dragDelegate = self
+        tableView.dragInteractionEnabled = true
+        tableView.tableHeaderView = nil
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -136,7 +130,6 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
 
     // MARK: - Table View Delegate
 
-    @available(iOS 11.0, *)
     private func removeSwipeAction(for file: File) -> UIContextualAction? {
         guard file.state.isDownloaded else { return nil }
         let action = UIContextualAction(style: .destructive, title: Strings.Actions.remove.localized) { _, _, handler in
@@ -147,7 +140,6 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         return action
     }
 
-    @available(iOS 11.0, *)
     private func markAsNewSwipeAction(for file: File) -> UIContextualAction? {
         guard !file.isFolder, !file.isNew else { return nil }
         let action = UIContextualAction(style: .normal, title: Strings.Actions.markAsNew.localized) { _, _, handler in
@@ -159,7 +151,6 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         return action
     }
 
-    @available(iOS 11.0, *)
     private func markAsSeenSwipeAction(for file: File) -> UIContextualAction? {
         guard !file.isFolder, file.isNew else { return nil }
         let action = UIContextualAction(style: .normal, title: Strings.Actions.markAsSeen.localized) { _, _, handler in
@@ -171,7 +162,6 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         return action
     }
 
-    @available(iOS 11.0, *)
     override func tableView(_: UITableView,
                             leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let file = viewModel?[rowAt: indexPath] else { return nil }
@@ -181,7 +171,6 @@ final class DownloadListController: UITableViewController, DataSourceDelegate {
         ].compactMap { $0 })
     }
 
-    @available(iOS 11.0, *)
     override func tableView(_: UITableView,
                             trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard let file = viewModel?[rowAt: indexPath] else { return nil }
@@ -326,7 +315,6 @@ extension DownloadListController: UISearchResultsUpdating {
 
 // MARK: - Table View Drag Delegate
 
-@available(iOS 11.0, *)
 extension DownloadListController: UITableViewDragDelegate {
     private func itemProviders(forIndexPath indexPath: IndexPath) -> [NSItemProvider] {
         guard

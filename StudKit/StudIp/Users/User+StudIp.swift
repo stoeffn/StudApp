@@ -47,14 +47,12 @@ extension User {
 
         CSSearchableIndex.default().indexSearchableItems(courses.map { $0.searchableItem }) { _ in }
 
-        if #available(iOSApplicationExtension 11.0, *) {
-            NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
-            NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+        NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
+        NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
 
-            for semester in try organization.fetchVisibleSemesters(in: context) {
-                let itemidentifier = NSFileProviderItemIdentifier(rawValue: semester.objectIdentifier.rawValue)
-                NSFileProviderManager.default.signalEnumerator(for: itemidentifier) { _ in }
-            }
+        for semester in try organization.fetchVisibleSemesters(in: context) {
+            let itemidentifier = NSFileProviderItemIdentifier(rawValue: semester.objectIdentifier.rawValue)
+            NSFileProviderManager.default.signalEnumerator(for: itemidentifier) { _ in }
         }
 
         return Set(courses)

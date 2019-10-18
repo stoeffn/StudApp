@@ -99,12 +99,10 @@ public final class HookService {
     // MARK: - Options
 
     public var silentNotificationAuthorizationsOptions: UNAuthorizationOptions {
-        guard #available(iOSApplicationExtension 12.0, *) else { return [] }
         return [.alert, .sound, .badge, .provisional, .providesAppNotificationSettings]
     }
 
     public var userNotificationAuthorizationsOptions: UNAuthorizationOptions {
-        guard #available(iOSApplicationExtension 12.0, *) else { return [.alert, .sound, .badge] }
         return [.alert, .sound, .badge, .providesAppNotificationSettings]
     }
 }

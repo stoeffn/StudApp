@@ -38,11 +38,8 @@ final class CourseController: UITableViewController, Routable {
 
         refreshControl?.addTarget(self, action: #selector(refreshControlTriggered(_:)), for: .valueChanged)
 
-        if #available(iOS 11.0, *) {
-            tableView.dragDelegate = self
-            tableView.dragInteractionEnabled = true
-        }
-
+        tableView.dragDelegate = self
+        tableView.dragInteractionEnabled = true
         tableView.estimatedRowHeight = FileCell.estimatedHeight
         tableView.tableHeaderView?.translatesAutoresizingMaskIntoConstraints = false
         tableView.tableHeaderView?.centerXAnchor.constraint(equalTo: tableView.centerXAnchor).isActive = true
@@ -103,14 +100,14 @@ final class CourseController: UITableViewController, Routable {
         group.enter()
         announcementsViewModel.update(forced: forced) {
             let placeholderIndex = IndexPath(row: self.announcementsViewModel.numberOfRows, section: Sections.announcements.rawValue)
-            self.tableView.update { $0.reloadRows(at: [placeholderIndex], with: .fade) }
+            self.tableView.performBatchUpdates({ self.tableView.reloadRows(at: [placeholderIndex], with: .fade) }, completion: nil)
             group.leave()
         }
 
         group.enter()
         fileListViewModel.update(forced: forced) {
             let placeholderIndex = IndexPath(row: self.fileListViewModel.numberOfRows, section: Sections.documents.rawValue)
-            self.tableView.update { $0.reloadRows(at: [placeholderIndex], with: .fade) }
+            self.tableView.performBatchUpdates({ self.tableView.reloadRows(at: [placeholderIndex], with: .fade) }, completion: nil)
             group.leave()
         }
 
@@ -298,7 +295,6 @@ final class CourseController: UITableViewController, Routable {
 
     // MARK: - Table View Delegate
 
-    @available(iOS 11.0, *)
     private func markAsNewSwipeAction(for annoucement: Announcement) -> UIContextualAction? {
         guard !annoucement.isNew else { return nil }
         let action = UIContextualAction(style: .normal, title: Strings.Actions.markAsNew.localized) { _, _, handler in
@@ -310,7 +306,6 @@ final class CourseController: UITableViewController, Routable {
         return action
     }
 
-    @available(iOS 11.0, *)
     private func markAsSeenSwipeAction(for annoucement: Announcement) -> UIContextualAction? {
         guard annoucement.isNew else { return nil }
         let action = UIContextualAction(style: .normal, title: Strings.Actions.markAsSeen.localized) { _, _, handler in
@@ -322,7 +317,6 @@ final class CourseController: UITableViewController, Routable {
         return action
     }
 
-    @available(iOS 11.0, *)
     private func markAsNewSwipeAction(for file: File) -> UIContextualAction? {
         guard !file.isFolder, !file.isNew else { return nil }
         let action = UIContextualAction(style: .normal, title: Strings.Actions.markAsNew.localized) { _, _, handler in
@@ -334,7 +328,6 @@ final class CourseController: UITableViewController, Routable {
         return action
     }
 
-    @available(iOS 11.0, *)
     private func markAsSeenSwipeAction(for file: File) -> UIContextualAction? {
         guard !file.isFolder, file.isNew else { return nil }
         let action = UIContextualAction(style: .normal, title: Strings.Actions.markAsSeen.localized) { _, _, handler in
@@ -346,7 +339,6 @@ final class CourseController: UITableViewController, Routable {
         return action
     }
 
-    @available(iOS 11.0, *)
     override func tableView(_: UITableView,
                             leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         switch Sections(rawValue: indexPath.section) {
@@ -367,7 +359,6 @@ final class CourseController: UITableViewController, Routable {
         }
     }
 
-    @available(iOS 11.0, *)
     override func tableView(_: UITableView, trailingSwipeActionsConfigurationForRowAt _: IndexPath) -> UISwipeActionsConfiguration? {
         return UISwipeActionsConfiguration(actions: [])
     }
@@ -500,7 +491,6 @@ extension CourseController: DataSourceSectionDelegate {
 
 // MARK: - Table View Drag Delegate
 
-@available(iOS 11.0, *)
 extension CourseController: UITableViewDragDelegate {
     private func itemProviders(forIndexPath indexPath: IndexPath) -> [NSItemProvider] {
         switch Sections(rawValue: indexPath.section) {

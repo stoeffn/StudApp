@@ -84,10 +84,8 @@ extension Organization {
             try response.coreDataObject(organization: self, in: context)
         }
 
-        if #available(iOSApplicationExtension 11.0, *) {
-            NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
-            NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
-        }
+        NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
+        NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
 
         return Set(semesters)
     }

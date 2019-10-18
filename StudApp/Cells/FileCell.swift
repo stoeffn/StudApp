@@ -33,7 +33,6 @@ final class FileCell: UITableViewCell {
         NotificationCenter.default.addObserver(self, selector: #selector(reachabilityDidChange(notification:)),
                                                name: .reachabilityDidChange, object: nil)
 
-        guard #available(iOS 11.0, *) else { return }
         unreadIndicatorView.accessibilityIgnoresInvertColors = true
         iconView.accessibilityIgnoresInvertColors = true
     }
@@ -54,7 +53,7 @@ final class FileCell: UITableViewCell {
             unreadIndicatorView.backgroundColor = file.course.color
 
             titleLabel.text = file.title
-            titleLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 3 : 1
+            titleLabel.numberOfLines = Targets.current.preferredContentSizeCategory.isAccessibilityCategory ? 3 : 1
 
             modifiedAtLabel?.text = modifiedAt
             userLabel.text = userFullname

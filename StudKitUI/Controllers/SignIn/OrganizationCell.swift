@@ -24,14 +24,13 @@ final class OrganizationCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        guard #available(iOS 11.0, *) else { return }
         iconView.accessibilityIgnoresInvertColors = true
     }
 
     var organization: Organization! {
         didSet {
             titleLabel?.text = organization.title
-            titleLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 3 : 2
+            titleLabel.numberOfLines = Targets.current.preferredContentSizeCategory.isAccessibilityCategory ? 3 : 2
 
             iconView?.image = organization.iconThumbnail
         }

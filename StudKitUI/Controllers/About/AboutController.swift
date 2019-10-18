@@ -43,7 +43,10 @@ final class AboutController: UITableViewController, Routable {
             distributionLabel.isHidden = true
         }
 
+        iconView.accessibilityIgnoresInvertColors = true
+
         distributionLabel.text = Distributions.current.description
+        distributionLabel.accessibilityIgnoresInvertColors = true
         subtitleLabel.text = Strings.Formats.byEntity.localized(App.authorName)
 
         websiteCell.textLabel?.text = Strings.Terms.website.localized
@@ -54,11 +57,6 @@ final class AboutController: UITableViewController, Routable {
         rateAppCell.textLabel?.text = Strings.Actions.rateStudApp.localized
 
         tipCell.textLabel?.text = Strings.Actions.leaveTip.localized
-
-        if #available(iOSApplicationExtension 11.0, *) {
-            iconView.accessibilityIgnoresInvertColors = true
-            distributionLabel.accessibilityIgnoresInvertColors = true
-        }
     }
 
     func prepareContent(for route: Routes) {
@@ -333,7 +331,6 @@ final class AboutController: UITableViewController, Routable {
             controller.addAction(UIAlertAction(title: Strings.Actions.okay.localized, style: .cancel) { _ in
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
                     self.presentedViewController?.dismiss(animated: true) {
-                        guard #available(iOSApplicationExtension 10.3, *) else { return }
                         SKStoreReviewController.requestReview()
                     }
                 }

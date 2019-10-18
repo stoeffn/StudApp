@@ -63,7 +63,6 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
         viewModel.updateOrganizationIcon()
         viewModel.startAuthorization()
 
-        guard #available(iOS 11, *) else { return }
         iconView.accessibilityIgnoresInvertColors = true
     }
 
@@ -93,9 +92,6 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
     @IBOutlet var titleLabel: UILabel!
 
     @IBOutlet var activityIndicator: StudIpActivityIndicator!
-
-    /// Weakly typed because `@available` cannot be applied to properties.
-    private var authenticationSession: NSObject?
 
     var areOrganizationViewsHidden: Bool = true {
         didSet {
@@ -148,11 +144,7 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
             animateWithSpring {
                 self.isActivityIndicatorHidden = false
             }
-            if #available(iOSApplicationExtension 11.0, *) {
-                (authenticationSession as? SFAuthenticationSession)?.cancel()
-            } else {
-                presentedViewController?.dismiss(animated: true, completion: nil)
-            }
+            presentedViewController?.dismiss(animated: true, completion: nil)
         case .signingIn:
             break
         case .signedIn:
@@ -166,21 +158,11 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
     // MARK: - Authorizing the Application
 
     private func authorize(at url: URL) {
-        guard #available(iOSApplicationExtension 11.0, *), Targets.current == .app else {
-            guard let controller = htmlContentService.safariViewController(for: url) else {
-                return Targets.current.open(url: url, completion: nil)
-            }
-            controller.delegate = self
-            return present(controller, animated: true, completion: nil)
+        guard let controller = htmlContentService.safariViewController(for: url) else {
+            return Targets.current.open(url: url, completion: nil)
         }
-
-        let session = SFAuthenticationSession(url: url, callbackURLScheme: App.scheme) { url, _ in
-            self.authenticationSession = nil
-            guard let url = url else { return self.performSegue(withRoute: .unwindToSignIn) }
-            self.viewModel.finishAuthorization(with: url)
-        }
-        session.start()
-        authenticationSession = session
+        controller.delegate = self
+        return present(controller, animated: true, completion: nil)
     }
 
     // MARK: - Notifications

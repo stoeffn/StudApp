@@ -54,11 +54,7 @@ public final class CoreDataService {
     private static func persistentStoreDescription(forStoreAt url: URL) -> NSPersistentStoreDescription {
         let description: NSPersistentStoreDescription = NSPersistentStoreDescription(url: url)
         description.type = NSSQLiteStoreType
-
-        if #available(iOSApplicationExtension 11.0, *) {
-            description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
-        }
-
+        description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
         return description
     }
 

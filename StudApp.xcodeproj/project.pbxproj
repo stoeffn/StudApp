@@ -285,7 +285,6 @@
 		24E4B99E1FF25D350061983C /* FileProviderItemConvertibleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89EB1FB7778300A4A3C6 /* FileProviderItemConvertibleState.swift */; };
 		24E4B9A01FF25D770061983C /* FileProviderChangeCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FE89E81FB7725100A4A3C6 /* FileProviderChangeCache.swift */; };
 		24E4B9A11FF25D9B0061983C /* WorkingSetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24712BE31FB888E30067E416 /* WorkingSetViewModel.swift */; };
-		24E4B9A41FF25E8C0061983C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E4B9A31FF25E8C0061983C /* Constants.swift */; };
 		24E4B9A61FF260240061983C /* ObjectIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E4B9A51FF260240061983C /* ObjectIdentifier.swift */; };
 		24E525C31FEDB276000FB71A /* CourseHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E525C21FEDB276000FB71A /* CourseHeader.swift */; };
 		24E60B621FC8C725000EDD2A /* App.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24E60B611FC8C723000EDD2A /* App.storyboard */; };
@@ -696,7 +695,6 @@
 		24E0934D2084F7100067C123 /* Disclaimer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Disclaimer.storyboard; sourceTree = "<group>"; };
 		24E2AD191FF2CECC001D3E27 /* Events.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Events.storyboard; sourceTree = "<group>"; };
 		24E2AD1C1FF2D5B0001D3E27 /* EventListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewModel.swift; sourceTree = "<group>"; };
-		24E4B9A31FF25E8C0061983C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		24E4B9A51FF260240061983C /* ObjectIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectIdentifier.swift; sourceTree = "<group>"; };
 		24E4B9A71FF284830061983C /* BaseDirectories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDirectories.swift; sourceTree = "<group>"; };
 		24E525C21FEDB276000FB71A /* CourseHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseHeader.swift; sourceTree = "<group>"; };
@@ -1873,7 +1871,6 @@
 		24E4B9A21FF25E7B0061983C /* FileProvider */ = {
 			isa = PBXGroup;
 			children = (
-				24E4B9A31FF25E8C0061983C /* Constants.swift */,
 				248C024D202E4FFE004CB8C9 /* NSFileProviderError+Reasons.swift */,
 			);
 			path = FileProvider;
@@ -2644,7 +2641,6 @@
 				24BF7B671FF673650013BA23 /* FetchedResultsControllerDelegate.swift in Sources */,
 				24D360F61FAA5DE800BBBAED /* File.swift in Sources */,
 				24D361661FAA648B00BBBAED /* SignInViewModel.swift in Sources */,
-				24E4B9A41FF25E8C0061983C /* Constants.swift in Sources */,
 				248C0247202E4C58004CB8C9 /* ReachabilityService.swift in Sources */,
 				24D360E81FAA5D7600BBBAED /* Course.swift in Sources */,
 				242B03741FD7470200863B08 /* ColorPickerViewModel.swift in Sources */,
@@ -2978,7 +2974,7 @@
 				DEVELOPMENT_TEAM = X63VKA93X8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = StudFileProviderUI/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3002,7 +2998,7 @@
 				DEVELOPMENT_TEAM = X63VKA93X8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = StudFileProviderUI/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3147,7 +3143,7 @@
 				DEVELOPMENT_TEAM = X63VKA93X8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = StudApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3174,7 +3170,7 @@
 				DEVELOPMENT_TEAM = X63VKA93X8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = StudApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3288,7 +3284,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = StudKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3325,7 +3321,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = StudKit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3393,7 +3389,7 @@
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = X63VKA93X8;
 				INFOPLIST_FILE = StudNotificationService/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3420,7 +3416,7 @@
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = X63VKA93X8;
 				INFOPLIST_FILE = StudNotificationService/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3451,7 +3447,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = StudKitUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3483,7 +3479,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = StudKitUI/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3509,7 +3505,7 @@
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = X63VKA93X8;
 				INFOPLIST_FILE = StudFileProvider/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -3536,7 +3532,7 @@
 				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = X63VKA93X8;
 				INFOPLIST_FILE = StudFileProvider/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

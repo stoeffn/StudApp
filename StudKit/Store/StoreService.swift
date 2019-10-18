@@ -57,7 +57,6 @@ public final class StoreService: NSObject {
         }
 
         guard
-            #available(iOSApplicationExtension 10.3, *),
             let user = User.current,
             didRequestRatingAt + reviewRequestTimeout < Date(),
             user.downloads.count >= reviewRequestMinimumDownloadCount

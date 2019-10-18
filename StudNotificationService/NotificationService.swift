@@ -29,11 +29,9 @@ final class NotificationService: UNNotificationServiceExtension {
 
         guard let content = content else { return }
 
-        if #available(iOSApplicationExtension 12.0, *) {
-            let ownerFullname = content.userInfo[DocumentUpdateNotification.CodingKeys.ownerFullname.rawValue] as? String
-            content.summaryArgumentCount = 1
-            content.summaryArgument = ownerFullname ?? content.summaryArgument
-        }
+        let ownerFullname = content.userInfo[DocumentUpdateNotification.CodingKeys.ownerFullname.rawValue] as? String
+        content.summaryArgumentCount = 1
+        content.summaryArgument = ownerFullname ?? content.summaryArgument
 
         contentHandler(content)
     }

@@ -35,11 +35,8 @@ final class FolderController: UITableViewController, Routable {
         navigationItem.title = viewModel.container.title
         navigationItem.rightBarButtonItem = nil
 
-        if #available(iOS 11.0, *) {
-            tableView.dragDelegate = self
-            tableView.dragInteractionEnabled = true
-        }
-
+        tableView.dragDelegate = self
+        tableView.dragInteractionEnabled = true
         tableView.tableHeaderView = nil
         tableView.estimatedRowHeight = FileCell.estimatedHeight
     }
@@ -140,7 +137,6 @@ final class FolderController: UITableViewController, Routable {
 
     // MARK: - Table View Delegate
 
-    @available(iOS 11.0, *)
     private func markAsNewSwipeAction(for file: File) -> UIContextualAction? {
         guard !file.isFolder, !file.isNew else { return nil }
         let action = UIContextualAction(style: .normal, title: Strings.Actions.markAsNew.localized) { _, _, handler in
@@ -152,7 +148,6 @@ final class FolderController: UITableViewController, Routable {
         return action
     }
 
-    @available(iOS 11.0, *)
     private func markAsSeenSwipeAction(for file: File) -> UIContextualAction? {
         guard !file.isFolder, file.isNew else { return nil }
         let action = UIContextualAction(style: .normal, title: Strings.Actions.markAsSeen.localized) { _, _, handler in
@@ -164,7 +159,6 @@ final class FolderController: UITableViewController, Routable {
         return action
     }
 
-    @available(iOS 11.0, *)
     override func tableView(_: UITableView,
                             leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let file = viewModel[rowAt: indexPath.row]
@@ -174,7 +168,6 @@ final class FolderController: UITableViewController, Routable {
         ].compactMap { $0 })
     }
 
-    @available(iOS 11.0, *)
     override func tableView(_: UITableView, trailingSwipeActionsConfigurationForRowAt _: IndexPath) -> UISwipeActionsConfiguration? {
         return UISwipeActionsConfiguration(actions: [])
     }
@@ -267,7 +260,6 @@ final class FolderController: UITableViewController, Routable {
 
 // MARK: - Table View Drag Delegate
 
-@available(iOS 11.0, *)
 extension FolderController: UITableViewDragDelegate {
     func tableView(_: UITableView, itemsForBeginning _: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         guard let itemProvider = viewModel[rowAt: indexPath.row].itemProvider else { return [] }

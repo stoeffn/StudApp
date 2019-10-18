@@ -24,7 +24,6 @@ final class CourseCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        guard #available(iOS 11.0, *) else { return }
         colorView.accessibilityIgnoresInvertColors = true
     }
 
@@ -39,7 +38,7 @@ final class CourseCell: UITableViewCell {
 
             colorView.backgroundColor = course.isHidden ? .darkGray : course.color
             titleLabel.text = course.title
-            titleLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 3 : 1
+            titleLabel.numberOfLines = Targets.current.preferredContentSizeCategory.isAccessibilityCategory ? 3 : 1
             lecturersLabel.text = lecturerNames
 
             let hiddenStateDescription = course.isHidden ? Strings.States.hidden.localized : Strings.States.visible.localized

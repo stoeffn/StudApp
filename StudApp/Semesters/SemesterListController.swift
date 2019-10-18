@@ -27,11 +27,9 @@ final class SemesterListController: UITableViewController, DataSourceSectionDele
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = Strings.Terms.courses.localized
+        navigationController?.navigationBar.prefersLargeTitles = true
 
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = true
-        }
+        navigationItem.title = Strings.Terms.courses.localized
 
         tableView.tableFooterView = nil
 

@@ -50,11 +50,9 @@ extension Course {
 
         CSSearchableIndex.default().indexSearchableItems(documents.map { $0.searchableItem }) { _ in }
 
-        if #available(iOSApplicationExtension 11.0, *) {
-            let itemIdentifier = NSFileProviderItemIdentifier(rawValue: objectIdentifier.rawValue)
-            NSFileProviderManager.default.signalEnumerator(for: itemIdentifier) { _ in }
-            NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
-        }
+        let itemIdentifier = NSFileProviderItemIdentifier(rawValue: objectIdentifier.rawValue)
+        NSFileProviderManager.default.signalEnumerator(for: itemIdentifier) { _ in }
+        NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
 
         return Set(folders).union(documents)
     }

@@ -30,9 +30,7 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if #available(iOSApplicationExtension 13.0, *) {
-            isModalInPresentation = true
-        }
+        isModalInPresentation = true
 
         htmlContentService = ServiceContainer.default[HtmlContentService.self]
 
@@ -51,6 +49,8 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
         tableView.tableHeaderView?.layoutIfNeeded()
         tableView.tableHeaderView = tableView.tableHeaderView
 
+        iconView.accessibilityIgnoresInvertColors = true
+
         welcomeLabel.text = Strings.Callouts.welcomeToStudApp.localized
         welcomeLabel.font = UIFont.preferredFont(forTextStyle: .title1).bold
 
@@ -68,10 +68,6 @@ final class OrganizationListController: UITableViewController, Routable, DataSou
 
         viewModel.fetch()
         viewModel.update()
-
-        if #available(iOSApplicationExtension 11.0, *) {
-            iconView.accessibilityIgnoresInvertColors = true
-        }
     }
 
     deinit {

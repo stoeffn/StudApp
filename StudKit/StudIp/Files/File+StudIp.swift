@@ -47,11 +47,9 @@ extension File {
             .map { $0.searchableItem }
         CSSearchableIndex.default().indexSearchableItems(searchableItems) { _ in }
 
-        if #available(iOSApplicationExtension 11.0, *) {
-            let itemIdentifier = NSFileProviderItemIdentifier(rawValue: folder.objectIdentifier.rawValue)
-            NSFileProviderManager.default.signalEnumerator(for: itemIdentifier) { _ in }
-            NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
-        }
+        let itemIdentifier = NSFileProviderItemIdentifier(rawValue: folder.objectIdentifier.rawValue)
+        NSFileProviderManager.default.signalEnumerator(for: itemIdentifier) { _ in }
+        NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
 
         return folder.children
     }
@@ -98,16 +96,11 @@ extension File {
 
         guard let downloadTask = task else { return nil }
 
-        if #available(iOSApplicationExtension 11.0, *) {
-            let itemIdentifier = NSFileProviderItemIdentifier(rawValue: objectIdentifier.rawValue)
-            NSFileProviderManager.default.register(downloadTask, forItemWithIdentifier: itemIdentifier) { _ in
-                downloadTask.resume()
-            }
-            return downloadTask.progress
+        let itemIdentifier = NSFileProviderItemIdentifier(rawValue: objectIdentifier.rawValue)
+        NSFileProviderManager.default.register(downloadTask, forItemWithIdentifier: itemIdentifier) { _ in
+            downloadTask.resume()
         }
-
-        downloadTask.resume()
-        return nil
+        return downloadTask.progress
     }
 
     public func removeDownload() throws {

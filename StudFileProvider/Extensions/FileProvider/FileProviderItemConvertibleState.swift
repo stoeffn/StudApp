@@ -35,6 +35,6 @@ public protocol FileProviderItemConvertibleState: AnyObject {
 extension FileProviderItemConvertibleState {
     /// Whether this item is not in the user's favorites, i.e. has no favorite rank.
     public var isUnranked: Bool {
-        return favoriteRank == fileProviderFavoriteRankUnranked
+        return favoriteRank == Int(NSFileProviderFavoriteRankUnranked)
     }
 }

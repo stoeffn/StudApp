@@ -197,7 +197,6 @@ public extension File {
             .appendingPathComponent(name, isDirectory: isFolder)
     }
 
-    @available(iOSApplicationExtension 11.0, *)
     var itemProvider: NSItemProvider? {
         guard
             !isFolder, state.isDownloaded,
@@ -253,9 +252,7 @@ extension File {
         activity.contentAttributeSet = searchableItemAttributes
         activity.keywords = keywords
         activity.objectIdentifier = objectIdentifier
-        if #available(iOSApplicationExtension 12.0, *) {
-            activity.isEligibleForPrediction = true
-        }
+        activity.isEligibleForPrediction = true
         return activity
     }
 }

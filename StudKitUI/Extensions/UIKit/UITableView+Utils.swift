@@ -17,16 +17,6 @@
 //
 
 public extension UITableView {
-    func update(updates: @escaping (UITableView) -> Void) {
-        if #available(iOSApplicationExtension 11.0, *) {
-            performBatchUpdates({ updates(self) }, completion: nil)
-        } else {
-            beginUpdates()
-            updates(self)
-            endUpdates()
-        }
-    }
-
     var topMostIndexPath: IndexPath? {
         let sectionHeaderHeight = delegate?.tableView?(self, heightForHeaderInSection: 0) ?? 0
         let indexPathsAndRects = indexPathsForVisibleRows?.map { (indexPath: $0, rect: rectForRow(at: $0)) }

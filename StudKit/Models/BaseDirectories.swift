@@ -42,10 +42,7 @@ public enum BaseDirectories {
         case .downloads:
             return BaseDirectories.appGroup.url.appendingPathComponent("Downloads", isDirectory: true)
         case .fileProvider:
-            guard
-                #available(iOSApplicationExtension 11.0, *),
-                !ProcessInfo.processInfo.isMacCatalystApp
-            else { return BaseDirectories.downloads.url }
+            guard !ProcessInfo.processInfo.isMacCatalystApp else { return BaseDirectories.downloads.url }
             return NSFileProviderManager.default.documentStorageURL
         }
     }

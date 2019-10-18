@@ -103,7 +103,6 @@ public final class StudIpActivityIndicator: UIView {
         innerCircle.path = UIBezierPath(ovalIn: bounds.insetBy(dx: bounds.width / 3.5, dy: bounds.width / 3.5)).cgPath
         layer.addSublayer(innerCircle)
 
-        guard #available(iOSApplicationExtension 11.0, *) else { return }
         accessibilityIgnoresInvertColors = true
     }
 

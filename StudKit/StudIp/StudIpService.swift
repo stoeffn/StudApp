@@ -75,9 +75,7 @@ public class StudIpService {
             try? persistableApiAuthorizing?.persistCredentials()
             try? coreDataService.viewContext.saveAndWaitWhenChanged()
 
-            if #available(iOSApplicationExtension 11.0, *) {
-                NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
-            }
+            NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
 
             completion(result)
         }
@@ -108,10 +106,8 @@ public class StudIpService {
 
         CSSearchableIndex.default().deleteAllSearchableItems { _ in }
 
-        if #available(iOSApplicationExtension 11.0, *) {
-            NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
-            NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
-        }
+        NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
+        NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
     }
 
     // MARK: - Updating

@@ -25,7 +25,6 @@ final class EventCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        guard #available(iOS 11.0, *) else { return }
         colorView.accessibilityIgnoresInvertColors = true
         cancellationLabel.accessibilityIgnoresInvertColors = true
         notEnrolledLabel?.accessibilityIgnoresInvertColors = true
@@ -42,11 +41,11 @@ final class EventCell: UITableViewCell {
             colorView.backgroundColor = event.course?.color ?? UI.Colors.studBlue
 
             titleLabel.text = event.course?.title ?? event.summary
-            titleLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 3 : 2
+            titleLabel.numberOfLines = Targets.current.preferredContentSizeCategory.isAccessibilityCategory ? 3 : 2
 
             summaryLabel.isHidden = event.summary == nil || event.course == nil
             summaryLabel.text = event.summary
-            summaryLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 5 : 3
+            summaryLabel.numberOfLines = Targets.current.preferredContentSizeCategory.isAccessibilityCategory ? 5 : 3
 
             cancellationLabel.isHidden = !event.isCanceled
             cancellationLabel.text = Strings.States.canceled.localized
@@ -59,7 +58,7 @@ final class EventCell: UITableViewCell {
 
             locationLabel.isHidden = event.location == nil
             locationLabel.text = event.location
-            locationLabel.numberOfLines = Targets.current.prefersAccessibilityContentSize ? 5 : 3
+            locationLabel.numberOfLines = Targets.current.preferredContentSizeCategory.isAccessibilityCategory ? 5 : 3
 
             let fromToTimes = Strings.Formats.fromTo.localized(startsAt, endsAt)
             let atLocation = event.location != nil ? Strings.Formats.atLocation.localized(event.location ?? "") : nil

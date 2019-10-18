@@ -62,6 +62,7 @@ final class CourseHeader: UITableViewHeaderFooterView {
         backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
 
         addSubview(colorView)
+        colorView.accessibilityIgnoresInvertColors = true
 
         addSubview(titleLabel)
         titleLabel.leadingAnchor.constraint(equalTo: readableContentGuide.leadingAnchor).isActive = true
@@ -71,10 +72,6 @@ final class CourseHeader: UITableViewHeaderFooterView {
 
         isAccessibilityElement = true
         accessibilityTraits.insert(.button)
-
-        if #available(iOS 11.0, *) {
-            colorView.accessibilityIgnoresInvertColors = true
-        }
 
         NotificationCenter.default.addObserver(self, selector: #selector(reduceTransparencyDidChange(notification:)),
                                                name: UIAccessibility.reduceTransparencyStatusDidChangeNotification, object: nil)
