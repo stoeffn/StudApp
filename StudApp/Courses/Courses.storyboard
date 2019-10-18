@@ -1069,10 +1069,10 @@ Gebäude 3703: Technische Informatik</string>
             </objects>
             <point key="canvasLocation" x="1078" y="132"/>
         </scene>
-        <!--Borderless Navigation Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="X1J-Up-CLu">
             <objects>
-                <navigationController storyboardIdentifier="CourseListNavigation" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EOg-85-93W" customClass="BorderlessNavigationController" customModule="StudKitUI" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CourseListNavigation" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EOg-85-93W" sceneMemberID="viewController">
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lRn-2f-8Mu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>

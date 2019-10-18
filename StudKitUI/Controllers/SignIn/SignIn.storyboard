@@ -317,10 +317,10 @@
             </objects>
             <point key="canvasLocation" x="645.60000000000002" y="608.54572713643188"/>
         </scene>
-        <!--Borderless Navigation Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="6yh-zB-2Ps">
             <objects>
-                <navigationController storyboardIdentifier="SignInNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="nJg-0c-dPm" customClass="BorderlessNavigationController" customModule="StudKitUI" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SignInNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="nJg-0c-dPm" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FQZ-8j-RNu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
