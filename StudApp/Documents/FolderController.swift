@@ -103,22 +103,6 @@ final class FolderController: UITableViewController, Routable {
         }
     }
 
-    // MARK: - Restoration
-
-    override func encodeRestorableState(with coder: NSCoder) {
-        coder.encode(viewModel.container.objectIdentifier.rawValue, forKey: ObjectIdentifier.typeIdentifier)
-        super.encode(with: coder)
-    }
-
-    override func decodeRestorableState(with coder: NSCoder) {
-        if let restoredObjectIdentifier = coder.decodeObject(forKey: ObjectIdentifier.typeIdentifier) as? String,
-            let folder = File.fetch(byObjectId: ObjectIdentifier(rawValue: restoredObjectIdentifier)) {
-            prepareContent(for: .folder(folder))
-        }
-
-        super.decodeRestorableState(with: coder)
-    }
-
     // MARK: - Table View Data Source
 
     override func numberOfSections(in _: UITableView) -> Int {

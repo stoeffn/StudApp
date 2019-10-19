@@ -127,22 +127,6 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
         viewModel?.fetch()
     }
 
-    // MARK: - Restoration
-
-    override func encodeRestorableState(with coder: NSCoder) {
-        coder.encode(viewModel?.container.objectIdentifier.rawValue, forKey: ObjectIdentifier.typeIdentifier)
-        super.encode(with: coder)
-    }
-
-    override func decodeRestorableState(with coder: NSCoder) {
-        if let restoredObjectIdentifier = coder.decodeObject(forKey: ObjectIdentifier.typeIdentifier) as? String,
-            let course = Course.fetch(byObjectId: ObjectIdentifier(rawValue: restoredObjectIdentifier)) {
-            prepareContent(for: .eventList(for: course))
-        }
-
-        super.decodeRestorableState(with: coder)
-    }
-
     // MARK: - User Interface
 
     @IBOutlet var dateTabBarContainer: UIView!
