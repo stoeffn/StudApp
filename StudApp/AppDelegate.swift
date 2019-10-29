@@ -116,16 +116,6 @@ extension AppDelegate: UIApplicationDelegate {
         else { return completionHandler(false) }
         completionHandler(appController.handle(quickAction: quickAction))
     }
-
-    // MARK: Opening a URL-Specified Resource
-
-    func application(_: UIApplication, open url: URL, options _: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        NotificationCenter.default.post(name: .safariViewControllerDidLoadAppUrl, object: self, userInfo: [
-            Notification.Name.safariViewControllerDidLoadAppUrlKey: url,
-        ])
-
-        return true
-    }
 }
 
 // MARK: - User Notifications

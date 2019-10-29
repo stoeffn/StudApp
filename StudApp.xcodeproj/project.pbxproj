@@ -142,8 +142,6 @@
 		247CC29A203897A20067207B /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241FD96A1FA9090F00FBD750 /* UI.swift */; };
 		247CC29B203897C10067207B /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D41FB24F4C00F30DEA /* Routes.swift */; };
 		247CC29C203897C60067207B /* Routable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24CFB5D31FB24F4C00F30DEA /* Routable.swift */; };
-		247CC29D203897CA0067207B /* SafariServices+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C023E202E4C34004CB8C9 /* SafariServices+Constants.swift */; };
-		247CC29E203897CD0067207B /* SFSafariViewController+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248C023D202E4C34004CB8C9 /* SFSafariViewController+Notifications.swift */; };
 		247CC29F203897E20067207B /* UIAlertController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CC2C11FDF2ED900FE7376 /* UIAlertController+Utils.swift */; };
 		247CC2A0203897E50067207B /* UIColor+Adjustments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B03601FD7220F00863B08 /* UIColor+Adjustments.swift */; };
 		247CC2A1203897E80067207B /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 242B03621FD7221900863B08 /* UIColor+Utils.swift */; };
@@ -583,8 +581,6 @@
 		248525A12038601200BC4CAB /* announcementCollection.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = announcementCollection.json; sourceTree = "<group>"; };
 		248525AB20387AA300BC4CAB /* rootFolder.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = rootFolder.json; sourceTree = "<group>"; };
 		2486D92B2036FCC100692FF2 /* IdentifiableResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifiableResponse.swift; sourceTree = "<group>"; };
-		248C023D202E4C34004CB8C9 /* SFSafariViewController+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SFSafariViewController+Notifications.swift"; sourceTree = "<group>"; };
-		248C023E202E4C34004CB8C9 /* SafariServices+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SafariServices+Constants.swift"; sourceTree = "<group>"; };
 		248C0241202E4C57004CB8C9 /* RangeIterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeIterator.swift; sourceTree = "<group>"; };
 		248C0243202E4C57004CB8C9 /* ReachabilityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityService.swift; sourceTree = "<group>"; };
 		248C0244202E4C57004CB8C9 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
@@ -1541,7 +1537,6 @@
 		247CC296203897330067207B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				248C023C202E4BFF004CB8C9 /* SafariServices */,
 				247CC2BD203898B70067207B /* StudKit */,
 				241FD9631FA8FF8A00FBD750 /* UIKit */,
 			);
@@ -1573,15 +1568,6 @@
 				247CC2C0203898FA0067207B /* Course+Colors.swift */,
 			);
 			path = Courses;
-			sourceTree = "<group>";
-		};
-		248C023C202E4BFF004CB8C9 /* SafariServices */ = {
-			isa = PBXGroup;
-			children = (
-				248C023E202E4C34004CB8C9 /* SafariServices+Constants.swift */,
-				248C023D202E4C34004CB8C9 /* SFSafariViewController+Notifications.swift */,
-			);
-			path = SafariServices;
 			sourceTree = "<group>";
 		};
 		248C0258202E58A0004CB8C9 /* Settings */ = {
@@ -2758,12 +2744,10 @@
 				24EDDBD820407B8E0034985B /* Organization+UI.swift in Sources */,
 				247CC2A6203897FB0067207B /* UITableViewCell+Utils.swift in Sources */,
 				244FC1682048219600A5304B /* HtmlContentService.swift in Sources */,
-				247CC29D203897CA0067207B /* SafariServices+Constants.swift in Sources */,
 				24E0934C2084F7070067C123 /* DisclaimerController.swift in Sources */,
 				247CC2A5203897F70067207B /* UITableView+Utils.swift in Sources */,
 				247CC2972038976A0067207B /* UIViewController+Routes.swift in Sources */,
 				24390EEF2038A0450064E49A /* ByTypeNameIdentifiable+Conformances.swift in Sources */,
-				247CC29E203897CD0067207B /* SFSafariViewController+Notifications.swift in Sources */,
 				247CC2BA203898540067207B /* GroupedTextField.swift in Sources */,
 				247CC2B4203898350067207B /* BorderlessNavigationController.swift in Sources */,
 				247CC2A7203898010067207B /* ActionCell.swift in Sources */,

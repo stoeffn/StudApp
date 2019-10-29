@@ -16,11 +16,10 @@
 //  along with this program. If not, see http://www.gnu.org/licenses/.
 //
 
-import SafariServices
+import AuthenticationServices
 import StudKit
 
-final class SignInController: UIViewController, Routable, SFSafariViewControllerDelegate {
-    private var htmlContentService: HtmlContentService!
+final class SignInController: UIViewController, Routable, ASWebAuthenticationPresentationContextProviding {
     private var viewModel: SignInViewModel!
     private var observations = [NSKeyValueObservation]()
 
@@ -32,11 +31,6 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        htmlContentService = ServiceContainer.default[HtmlContentService.self]
-
-        NotificationCenter.default.addObserver(self, selector: #selector(safariViewControllerDidLoadAppUrl(notification:)),
-                                               name: .safariViewControllerDidLoadAppUrl, object: nil)
 
         titleLabel.text = viewModel.organization.title
         areOrganizationViewsHidden = true
@@ -157,28 +151,25 @@ final class SignInController: UIViewController, Routable, SFSafariViewController
 
     // MARK: - Authorizing the Application
 
+    private var authenticationSession: ASWebAuthenticationSession?
+
     private func authorize(at url: URL) {
-        guard let controller = htmlContentService.safariViewController(for: url) else {
-            return Targets.current.open(url: url, completion: nil)
+        let authenticationSession = ASWebAuthenticationSession(url: url, callbackURLScheme: App.scheme) { url, error in
+            self.authenticationSession = nil
+
+            guard let url = url else {
+                return self.performSegue(withRoute: .unwindToSignIn)
+            }
+            self.viewModel.finishAuthorization(with: url)
         }
-        controller.delegate = self
-        return present(controller, animated: true, completion: nil)
+        authenticationSession.presentationContextProvider = self
+        authenticationSession.start()
+        
+        self.authenticationSession = authenticationSession
     }
 
-    // MARK: - Notifications
-
-    @objc
-    private func safariViewControllerDidLoadAppUrl(notification: Notification) {
-        presentedViewController?.dismiss(animated: true, completion: nil)
-
-        guard let url = notification.userInfo?[Notification.Name.safariViewControllerDidLoadAppUrlKey] as? URL else {
-            return viewModel.cancel()
-        }
-
-        viewModel.finishAuthorization(with: url)
-    }
-
-    func safariViewControllerDidFinish(_: SFSafariViewController) {
-        viewModel.cancel()
+    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        guard let window = view.window else { fatalError() }
+        return window
     }
 }
