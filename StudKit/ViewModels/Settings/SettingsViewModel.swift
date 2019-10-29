@@ -73,6 +73,8 @@ public final class SettingsViewModel: NSObject {
     }
 
     public func updateNotificationSettings() {
+        guard supportsNotifications else { return }
+
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             DispatchQueue.main.async {
                 self.allowsNotifications = settings.authorizationStatus != .denied
