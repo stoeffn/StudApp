@@ -43,10 +43,7 @@ final class PreviewController: QLPreviewController, Routable {
                 self.file.isNew = false
             }
 
-            // Fixes showing preview for the first time on iOS 13.
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(300)) {
-                self.refreshCurrentPreviewItem()
-            }
+            self.refreshCurrentPreviewItem()
         }
     }
 

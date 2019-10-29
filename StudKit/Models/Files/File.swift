@@ -261,7 +261,7 @@ extension File {
 
 extension File: QLPreviewItem {
     public var previewItemURL: URL? {
-        return localUrl(in: .fileProvider)
+        return localUrl(in: .downloads)
     }
 
     public var previewItemTitle: String? {
