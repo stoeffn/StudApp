@@ -56,7 +56,7 @@ final class DateHeader: UITableViewHeaderFooterView {
     private(set) lazy var whiteView: UIView = {
         let view = UIView()
         view.autoresizingMask = [UIView.AutoresizingMask.flexibleWidth, UIView.AutoresizingMask.flexibleHeight]
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         return view
     }()
 
@@ -69,7 +69,7 @@ final class DateHeader: UITableViewHeaderFooterView {
     }()
 
     private func initUserInterface() {
-        backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+        backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .regular))
 
         addSubview(whiteView)
 
