@@ -47,9 +47,11 @@ extension File {
             .map { $0.searchableItem }
         CSSearchableIndex.default().indexSearchableItems(searchableItems) { _ in }
 
+        #if !targetEnvironment(macCatalyst)
         let itemIdentifier = NSFileProviderItemIdentifier(rawValue: folder.objectIdentifier.rawValue)
         NSFileProviderManager.default.signalEnumerator(for: itemIdentifier) { _ in }
         NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+        #endif
 
         return folder.children
     }
@@ -96,10 +98,15 @@ extension File {
 
         guard let downloadTask = task else { return nil }
 
+        #if targetEnvironment(macCatalyst)
+        downloadTask.resume()
+        #else
         let itemIdentifier = NSFileProviderItemIdentifier(rawValue: objectIdentifier.rawValue)
         NSFileProviderManager.default.register(downloadTask, forItemWithIdentifier: itemIdentifier) { _ in
             downloadTask.resume()
         }
+        #endif
+
         return downloadTask.progress
     }
 

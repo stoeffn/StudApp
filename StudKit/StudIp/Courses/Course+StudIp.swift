@@ -50,9 +50,11 @@ extension Course {
 
         CSSearchableIndex.default().indexSearchableItems(documents.map { $0.searchableItem }) { _ in }
 
+        #if !targetEnvironment(macCatalyst)
         let itemIdentifier = NSFileProviderItemIdentifier(rawValue: objectIdentifier.rawValue)
         NSFileProviderManager.default.signalEnumerator(for: itemIdentifier) { _ in }
         NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+        #endif
 
         return Set(folders).union(documents)
     }

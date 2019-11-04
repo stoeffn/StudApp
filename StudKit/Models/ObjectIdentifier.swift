@@ -74,9 +74,19 @@ extension ObjectIdentifier: RawRepresentable {
 
     private static let rawValueSeparator = "-"
 
+    #if targetEnvironment(macCatalyst)
+
+    private static let rootEntityRawValue = "root"
+
+    private static let workingSetEntityRawValue = "workingSet"
+
+    #else
+
     private static let rootEntityRawValue = NSFileProviderItemIdentifier.rootContainer.rawValue
 
     private static let workingSetEntityRawValue = NSFileProviderItemIdentifier.workingSet.rawValue
+    
+    #endif
 
     public init?(rawValue: String) {
         let parts = rawValue.components(separatedBy: ObjectIdentifier.rawValueSeparator)

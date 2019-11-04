@@ -47,6 +47,7 @@ extension User {
 
         CSSearchableIndex.default().indexSearchableItems(courses.map { $0.searchableItem }) { _ in }
 
+        #if !targetEnvironment(macCatalyst)
         NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
         NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
 
@@ -54,6 +55,7 @@ extension User {
             let itemidentifier = NSFileProviderItemIdentifier(rawValue: semester.objectIdentifier.rawValue)
             NSFileProviderManager.default.signalEnumerator(for: itemidentifier) { _ in }
         }
+        #endif
 
         return Set(courses)
     }

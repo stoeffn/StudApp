@@ -75,7 +75,9 @@ public class StudIpService {
             try? persistableApiAuthorizing?.persistCredentials()
             try? coreDataService.viewContext.saveAndWaitWhenChanged()
 
+            #if !targetEnvironment(macCatalyst)
             NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
+            #endif
 
             completion(result)
         }
@@ -106,8 +108,10 @@ public class StudIpService {
 
         CSSearchableIndex.default().deleteAllSearchableItems { _ in }
 
+        #if !targetEnvironment(macCatalyst)
         NSFileProviderManager.default.signalEnumerator(for: .rootContainer) { _ in }
         NSFileProviderManager.default.signalEnumerator(for: .workingSet) { _ in }
+        #endif
     }
 
     // MARK: - Updating

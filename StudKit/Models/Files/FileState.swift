@@ -47,7 +47,9 @@ public final class FileState: NSManagedObject, CDCreatable, CDSortable {
     public required convenience init(createIn context: NSManagedObjectContext) {
         self.init(context: context)
 
+        #if !targetEnvironment(macCatalyst)
         favoriteRank = Int64(NSFileProviderFavoriteRankUnranked)
+        #endif
     }
 
     // MARK: - Sorting

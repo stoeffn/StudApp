@@ -18,6 +18,8 @@
 
 import FileProvider
 
+#if !targetEnvironment(macCatalyst)
+
 public extension NSFileProviderError {
     enum Reasons: String {
         case notSignedIn
@@ -26,3 +28,5 @@ public extension NSFileProviderError {
 
     static let reasonKey = "reason"
 }
+
+#endif
