@@ -163,7 +163,7 @@ final class EventListController: UITableViewController, DataSourceDelegate, Rout
 
         let isEmpty = viewModel?.isEmpty ?? false
 
-        emptyView.backgroundColor = isEmpty ? .systemGroupedBackground : .systemGroupedBackground
+        emptyView.backgroundColor = isEmpty ? .systemGroupedBackground : .systemBackground
 
         tableView.backgroundView = isEmpty ? emptyView : nil
         tableView.tableFooterView = isEmpty ? nil : emptyView
